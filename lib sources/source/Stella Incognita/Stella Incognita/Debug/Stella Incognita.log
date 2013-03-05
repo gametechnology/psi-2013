@@ -1,0 +1,26 @@
+﻿Build started 3/5/2013 10:11:23 AM.
+     1>Project "C:\Users\Aggror\Documents\psi-2013\lib sources\source\Stella Incognita\Stella Incognita\Stella Incognita.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\Stella Incognita.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\..\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+       ManifestResourceCompile:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\Stella Incognita.exe.embed.manifest.res" "Debug\Stella Incognita_manifest.rc" 
+       Link:
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Aggror\Documents\psi-2013\lib sources\source\Stella Incognita\Debug\Stella Incognita.exe" /INCREMENTAL /NOLOGO /LIBPATH:"..\..\..\lib\Win32-visualstudio" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\Stella Incognita.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Aggror\Documents\psi-2013\lib sources\source\Stella Incognita\Debug\Stella Incognita.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Aggror\Documents\psi-2013\lib sources\source\Stella Incognita\Debug\Stella Incognita.lib" /MACHINE:X86 "Debug\Stella Incognita.exe.embed.manifest.res"
+         Debug\main.obj
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\Stella Incognita.exe.embed.manifest" /manifest "Debug\Stella Incognita.exe.intermediate.manifest"
+         All outputs are up-to-date.
+       LinkEmbedManifest:
+         All outputs are up-to-date.
+         Stella Incognita.vcxproj -> C:\Users\Aggror\Documents\psi-2013\lib sources\source\Stella Incognita\Debug\Stella Incognita.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\Stella Incognita.unsuccessfulbuild".
+         Touching "Debug\Stella Incognita.lastbuildstate".
+     1>Done Building Project "C:\Users\Aggror\Documents\psi-2013\lib sources\source\Stella Incognita\Stella Incognita\Stella Incognita.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.68
