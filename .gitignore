@@ -11,3 +11,11 @@
 *.lai
 *.la
 *.a
+
+
+# Visual Studio
+ipch/
+*.sdf
+*.tlog
+*.suo
+*.vcxproj.user
