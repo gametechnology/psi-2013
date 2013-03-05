@@ -8,6 +8,11 @@ using namespace video;
 using namespace scene;
 using namespace io;
 
+// Disable DOS window.
+#ifdef _IRR_WINDOWS_
+#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
+#endif
+
 int main()
 {
 	// Create the iirlicht device
