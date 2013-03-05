@@ -1,8 +1,20 @@
-# Visual Studio files and folders
-syntax: glob
+# Compiled Object files
+*.slo
+*.lo
+*.o
 
-ipch/**
-bin/**
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+
+# Visual Studio
+ipch/
 *.sdf
 *.tlog
 *.suo
