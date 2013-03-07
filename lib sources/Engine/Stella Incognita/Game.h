@@ -12,8 +12,8 @@ using namespace irr;
 class Game
 {
 public:
-	Game(void);
-	~Game(void);
+	Game();
+	~Game();
 
 	IrrlichtDevice* device;
 	stack<Scene*> scenes; 
