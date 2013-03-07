@@ -9,11 +9,12 @@
 using namespace std;
 using namespace irr;
 
-class Engine
+class Game
 {
 public:
-	Engine(void);
-	~Engine(void);
+	Game(void);
+	~Game(void);
+
 	IrrlichtDevice* device;
 	stack<Scene*> scenes; 
 	Message* messages;
