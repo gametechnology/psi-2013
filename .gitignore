@@ -1,13 +1,9 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
+# Visual Studio files and folders
+syntax: glob
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
+ipch/**
+bin/**
+*.sdf
+*.tlog
+*.suo
+*.vcxproj.user
