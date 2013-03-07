@@ -7,3 +7,4 @@ bin/**
 *.tlog
 *.suo
 *.vcxproj.user
+*.opensdf
