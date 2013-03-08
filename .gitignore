@@ -7,3 +7,5 @@ bin/**
 *.tlog
 *.suo
 *.vcxproj.user
+#filter not working, needs to be done
+*.obj

@@ -66,11 +66,13 @@
   <ItemGroup>
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="PlanetManager.cpp" />
     <ClCompile Include="SkyBoxManager.cpp" />
     <ClCompile Include="Station.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input.h" />
+    <ClInclude Include="PlanetManager.h" />
     <ClInclude Include="SkyBoxManager.h" />
     <ClInclude Include="Station.h" />
   </ItemGroup>

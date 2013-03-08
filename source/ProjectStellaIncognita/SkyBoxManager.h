@@ -19,7 +19,7 @@ class SkyBoxManager
 		IVideoDriver*	_vidDriver;
 		ISceneNode*		_skyBox;
 		ITexture*		_skyBoxTexture;
-		stringw				_currentTexture;
+		stringw			_currentTexture;
 };
 
 #endif // SKYBOXMANAGER_H

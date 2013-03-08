@@ -6,6 +6,7 @@ Helm Station
 
 #include <irrlicht.h>
 #include "SkyBoxManager.h"
+#include "PlanetManager.h"
 #include "Station.h"
 #include "Input.h"
 
@@ -34,10 +35,10 @@ ISceneManager* smgr;
 IGUIEnvironment* guienv;
 
 //Initiation of a mesh
-IMesh* mesh[8];
+//IMesh* mesh[8];
 
 //Initiation of a node
-ISceneNode* node[20];
+//ISceneNode* node[20];
 
 //Initiation of the camera
 ICameraSceneNode* csn;
@@ -45,14 +46,14 @@ ICameraSceneNode* csn;
 //Initiation of light
 ILightSceneNode* light;
 
-//Texture of the cockpit
-ITexture* cockpit;
-
 //SkyBox Manager
 SkyBoxManager* skyBoxMgr;
 
+//Planet Manager
+PlanetManager* planetMgr;
 //Station
 Station* helmStation;
+
 unsigned scale = 100;
 
 //input currently only keyboard
@@ -85,7 +86,7 @@ int main()
 	energyTextBox->setRelativePosition(vector2di(276,653));
 
 	//the mesh gets the model with the scene manager
-	 mesh[0] = smgr->getMesh("../../assets/Models/floor.3ds");
+	/* mesh[0] = smgr->getMesh("../../assets/Models/floor.3ds");
 	 mesh[1] = smgr->getMesh("../../assets/Models/Cube.3ds");
 	 mesh[2] = smgr->getMesh("../../assets/Models/teapot.3ds");
 	 mesh[3] = smgr->getMesh("../../assets/Models/UnknownAst.3ds");
@@ -112,12 +113,17 @@ int main()
 			rerun = false;
 		}
 		i++;
-	 }
+	 }*/
 
 	
 	//SkyBoxManager
 	skyBoxMgr = new SkyBoxManager();
 	skyBoxMgr->loadTexture(smgr, driver);
+
+	//PlanetManager
+	planetMgr = new PlanetManager();
+	planetMgr->InitializeMeshes(smgr);
+	planetMgr->PlacePlanets();
 
 	//HelmStation
 	helmStation = new Station();
