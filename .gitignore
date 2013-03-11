@@ -1,8 +1,7 @@
 # Visual Studio files and folders
-syntax: glob
-
-ipch/**
-bin/**
+debug/
+ipch/
+bin/
 *.sdf
 *.tlog
 *.suo
