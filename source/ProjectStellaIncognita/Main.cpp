@@ -45,7 +45,7 @@ IGUIEnvironment* guienv;
 ICameraSceneNode* csn;
 
 //Initiation of light
-ILightSceneNode* light;
+//ILightSceneNode* light;
 
 //SkyBox Manager
 SkyBoxManager* skyBoxMgr;
@@ -55,7 +55,7 @@ PlanetManager* planetMgr;
 //Station
 Station* helmStation;
 
-unsigned scale = 100;
+unsigned scale = 1;
 
 //input currently only keyboard
 Input input;
@@ -74,7 +74,7 @@ int main()
 	//add the camera to the scene
 	csn = smgr->addCameraSceneNodeFPS();
 
-	light = smgr->addLightSceneNode(0,vector3df(5000,5000,5000),SColor(100,100,100,255),100000);
+//	light = smgr->addLightSceneNode(0,vector3df(5000,5000,5000),SColor(100,100,100,255),100000);
 	//the the GUI
 	guienv = device->getGUIEnvironment();
 
@@ -94,6 +94,7 @@ int main()
 	planetMgr = new PlanetManager();
 	planetMgr->InitializeMeshes(smgr);
 	planetMgr->PlacePlanets();
+	planetMgr->LetThereBeLights(smgr);
 
 	//HelmStation
 	helmStation = new Station();
