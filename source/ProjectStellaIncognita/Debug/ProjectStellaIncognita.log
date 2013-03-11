@@ -1,22 +1,30 @@
-﻿Build started 3/8/2013 5:34:25 PM.
+﻿Build started 3/11/2013 10:33:15 AM.
      1>Project "C:\Users\Johan\Documents\HvA\Jaar4\PSI\psi-2013\source\ProjectStellaIncognita\ProjectStellaIncognita.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\ProjectStellaIncognita.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\Johan\Documents\HvA\Jaar4\PSI\psi-2013\include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt PlanetManager.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Input.cpp Main.cpp PlanetManager.cpp SkyBoxManager.cpp Station.cpp Thruster.cpp
+         Thruster.cpp
          PlanetManager.cpp
-     1>c:\users\johan\documents\hva\jaar4\psi\psi-2013\source\projectstellaincognita\planetmanager.cpp(24): warning C4244: 'argument' : conversion from 'int' to 'irr::f32', possible loss of data
-     1>c:\users\johan\documents\hva\jaar4\psi\psi-2013\source\projectstellaincognita\planetmanager.cpp(24): warning C4244: 'argument' : conversion from 'int' to 'irr::f32', possible loss of data
-     1>c:\users\johan\documents\hva\jaar4\psi\psi-2013\source\projectstellaincognita\planetmanager.cpp(24): warning C4244: 'argument' : conversion from 'int' to 'irr::f32', possible loss of data
-     1>c:\users\johan\documents\hva\jaar4\psi\psi-2013\source\projectstellaincognita\planetmanager.cpp(26): warning C4244: 'argument' : conversion from 'unsigned int' to 'irr::f32', possible loss of data
-     1>c:\users\johan\documents\hva\jaar4\psi\psi-2013\source\projectstellaincognita\planetmanager.cpp(26): warning C4244: 'argument' : conversion from 'unsigned int' to 'irr::f32', possible loss of data
-     1>c:\users\johan\documents\hva\jaar4\psi\psi-2013\source\projectstellaincognita\planetmanager.cpp(26): warning C4244: 'argument' : conversion from 'unsigned int' to 'irr::f32', possible loss of data
+     1>c:\users\johan\documents\hva\jaar4\psi\psi-2013\source\projectstellaincognita\planetmanager.cpp(34): warning C4244: 'argument' : conversion from 'int' to 'irr::f32', possible loss of data
+     1>c:\users\johan\documents\hva\jaar4\psi\psi-2013\source\projectstellaincognita\planetmanager.cpp(34): warning C4244: 'argument' : conversion from 'int' to 'irr::f32', possible loss of data
+     1>c:\users\johan\documents\hva\jaar4\psi\psi-2013\source\projectstellaincognita\planetmanager.cpp(34): warning C4244: 'argument' : conversion from 'int' to 'irr::f32', possible loss of data
+     1>c:\users\johan\documents\hva\jaar4\psi\psi-2013\source\projectstellaincognita\planetmanager.cpp(35): warning C4244: 'argument' : conversion from 'unsigned int' to 'irr::f32', possible loss of data
+     1>c:\users\johan\documents\hva\jaar4\psi\psi-2013\source\projectstellaincognita\planetmanager.cpp(35): warning C4244: 'argument' : conversion from 'unsigned int' to 'irr::f32', possible loss of data
+     1>c:\users\johan\documents\hva\jaar4\psi\psi-2013\source\projectstellaincognita\planetmanager.cpp(35): warning C4244: 'argument' : conversion from 'unsigned int' to 'irr::f32', possible loss of data
+         Main.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         Station.cpp
+         SkyBoxManager.cpp
+         Input.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"bin\Win32-VisualStudio\ProjectStellaIncognita.exe" /NOLOGO /LIBPATH:"C:\Users\Johan\Documents\HvA\Jaar4\PSI\psi-2013\lib\Win32-visualstudio" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\ProjectStellaIncognita.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Johan\Documents\HvA\Jaar4\PSI\psi-2013\source\ProjectStellaIncognita\bin\Win32-VisualStudio\ProjectStellaIncognita.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"bin\Win32-VisualStudio\ProjectStellaIncognita.lib" /MACHINE:X86 Debug\Input.obj
          Debug\Main.obj
          Debug\PlanetManager.obj
          Debug\SkyBoxManager.obj
          Debug\Station.obj
+         Debug\Thruster.obj
          LINK : bin\Win32-VisualStudio\ProjectStellaIncognita.exe not found or not built by the last incremental link; performing full link
          ProjectStellaIncognita.vcxproj -> C:\Users\Johan\Documents\HvA\Jaar4\PSI\psi-2013\source\ProjectStellaIncognita\bin\Win32-VisualStudio\ProjectStellaIncognita.exe
        Manifest:
@@ -28,4 +36,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.16
+Time Elapsed 00:00:07.50

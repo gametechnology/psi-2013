@@ -1,0 +1,28 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+
+# Visual Studio
+ipch/
+debug/
+*.sdf
+*.tlog
+*.suo
+*.vcxproj.user
+<<<<<<< HEAD
+#filter not working, needs to be done
+*.obj
+=======
+lib sources/Engine/Stella Incognita.opensdf
+>>>>>>> 50dcff46e3799d5a40ebf8424b08b7c0dd84fe52
