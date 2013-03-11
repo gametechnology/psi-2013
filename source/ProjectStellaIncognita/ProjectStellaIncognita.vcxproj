@@ -65,6 +65,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CalculateRotation.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="PlanetManager.cpp" />
@@ -73,6 +74,7 @@
     <ClCompile Include="Thruster.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CalculateRotation.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="PlanetManager.h" />
     <ClInclude Include="SkyBoxManager.h" />

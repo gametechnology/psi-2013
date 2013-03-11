@@ -10,6 +10,7 @@ Helm Station
 #include "Station.h"
 #include "Input.h"
 #include "Thruster.h"
+#include "CalculateRotation.h"
 
 using namespace std;
 using namespace irr;
@@ -153,6 +154,32 @@ int main()
 	//vector for the rotation
 	vector3df rotation = vector3df(0,0,0);
 
+	//used for the momentum of inertia, currently not used, only m is used (mass)
+	CalculateRotation mathRotation;
+	float h, w, d, m;
+
+	m = 5000;
+	h = 50;
+	w = 35;
+	d = 100;
+
+	float inertiaData[16];
+
+	for(unsigned i = 0; i < 16; i++)
+	{
+		inertiaData[i] = 0.0f;
+	}
+
+	inertiaData[0] = (((1.0f / 5.0f) * m) * (pow(w, 2) + pow(d, 2)));
+	inertiaData[5] = (((1.0f / 5.0f) * m) * (pow(h, 2) + pow(d, 2)));
+	inertiaData[10] = (((1.0f / 5.0f) * m) * (pow(h, 2) + pow(w, 2)));
+	inertiaData[15] = 1.0f;
+
+	matrix4 inertiaMatrix;
+	inertiaMatrix.setM(inertiaData);
+
+
+
 	//while the program is running, it will perform this
 	while(device->run())
 	{
@@ -210,37 +237,38 @@ int main()
 			//rotates the ship Left
 			if(input.IsKeyDown(KEY_KEY_A))
 			{
-				rotation += thruster.UseThruster(100);
+				rotation += thruster.UseThruster(100, m);
 			}
 			//rotates the ship Right
 			if(input.IsKeyDown(KEY_KEY_D))
 			{
-				rotation += thruster2.UseThruster(100);
+				rotation += thruster2.UseThruster(100, m);
 			}
 			
 			//rotates the ship Down
-			if(input.IsKeyDown(KEY_KEY_S))
+			if(input.IsKeyDown(KEY_KEY_W))
 			{
-				rotation += thruster3.UseThruster(100);
+				rotation += thruster3.UseThruster(100, m);
 			}
 			
 			//rotates the ship Up
-			if(input.IsKeyDown(KEY_KEY_W))
+			if(input.IsKeyDown(KEY_KEY_S))
 			{
-				rotation += thruster4.UseThruster(100);
+				rotation += thruster4.UseThruster(100, m);
 			}
 		
 			//rotates the ship Rolling Right
-			if(input.IsKeyDown(KEY_KEY_E))
+			if(input.IsKeyDown(KEY_KEY_Q))
 			{
-				rotation += thruster5.UseThruster(100);
+				rotation += thruster5.UseThruster(100, m);
 			}
 			
 			//rotates the ship Rolling Left
-			if(input.IsKeyDown(KEY_KEY_Q))
+			if(input.IsKeyDown(KEY_KEY_E))
 			{
-				rotation += thruster6.UseThruster(100);
+				rotation += thruster6.UseThruster(100, m);
 			}
+			matrix4 rotationMatrix = mathRotation.CreateFromQuaternion(mathRotation.CreateFromYawPitchRoll(rotation.X, rotation.Y, rotation.Z));
 
 			//Change velocity and position if no key is pressed. This is to maintain speed, because there is no resistance in space
 			velocity.Z = initialVelocity.Z;
@@ -248,9 +276,8 @@ int main()
 			initialVelocity = velocity;
 			initialPos = nodePosition;
 			boosterMP = 1;
+			csn->setViewMatrixAffector(rotationMatrix);
 		    csn->setPosition(nodePosition);
-			csn->setRotation(rotation);
-
 			//draw the scene
 			driver->endScene();
 		}//end if isWindowActive

@@ -21,12 +21,12 @@ Thruster::Thruster(vector3df position, vector3df centerShipPosition, Thruster::T
 	Thruster::direction = Thruster::setForce();
 }
 
-vector3df Thruster::UseThruster(float energy)
+vector3df Thruster::UseThruster(float energy, float mass)
 {
 	vector3df distanceFromCenter = Thruster::distanceFromCenter;
 	vector3df torque = distanceFromCenter.crossProduct(Thruster::direction);
 	torque = torque.normalize();
-	torque *= 0.05f;
+	torque *= (1.0f / mass);
 	return torque;
 }
 
@@ -42,27 +42,27 @@ vector3df Thruster::setForce()
 	switch(Thruster::thrusterSide)
 	{
 	case Left:
-		direction = vector3df(1,0,0);
-		break;
-
-	case Right:
-		direction = vector3df(-1,0,0);
-		break;
-
-	case Up:
 		direction = vector3df(0,1,0);
 		break;
 
-	case Down:
+	case Right:
 		direction = vector3df(0,-1,0);
 		break;
 
+	case Up:
+		direction = vector3df(-1,0,0);
+		break;
+
+	case Down:
+		direction = vector3df(1,0,0);
+		break;
+
 	case RollLeft:
-		direction = vector3df(0,0,1);
+		direction = vector3df(1,1,0);
 		break;
 
 	case RollRight:
-		direction = vector3df(0,0,-1);
+		direction = vector3df(1,1,0);
 		break;
 	}
 

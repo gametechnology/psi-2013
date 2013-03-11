@@ -19,6 +19,8 @@ public:
 
 	static matrix4 CreateFromQuaternion(quaternion quat);
 
+	vector3df calcAngularMotion(matrix4 inertiaMatrix, vector3df torque);
+
 };
 
 #endif

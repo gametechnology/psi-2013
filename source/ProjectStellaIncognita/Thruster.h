@@ -30,7 +30,7 @@ public:
 	Thruster(vector3df position, vector3df centerShipPosition, ThrusterPointingSide thrusterSide, float maxThrust);
 
 	//when called the thruster is used and returns the torque vector
-	vector3df UseThruster(float energy);
+	vector3df UseThruster(float energy, float mass);
 
 	void setPosition(vector3df centerShipPosition);
 
