@@ -16,8 +16,8 @@ class PlanetManager
 		void InitializeMeshes(ISceneManager* smgr);
 		void PlacePlanets();
 	private:
-		IMesh*			_planetMesh;
-		ISceneNode*		_planetNode;
+		IMesh*			_planetMesh[8];
+		ISceneNode*		_planetNode[20];
 		ISceneManager* _sceneManager;
 		unsigned		_scale;
 		signed			_posX;

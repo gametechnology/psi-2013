@@ -84,37 +84,6 @@ int main()
 	//Make a energytextbox	
 	IGUIStaticText* energyTextBox = guienv->addStaticText(L"this is text", rect<s32>(10,10,100,22), false,true,0,-1,false); 
 	energyTextBox->setRelativePosition(vector2di(276,653));
-
-	//the mesh gets the model with the scene manager
-	/* mesh[0] = smgr->getMesh("../../assets/Models/floor.3ds");
-	 mesh[1] = smgr->getMesh("../../assets/Models/Cube.3ds");
-	 mesh[2] = smgr->getMesh("../../assets/Models/teapot.3ds");
-	 mesh[3] = smgr->getMesh("../../assets/Models/UnknownAst.3ds");
-	 mesh[0]->getBoundingBox();
-	 mesh[1]->getBoundingBox();
-	 mesh[2]->getBoundingBox();
-	 mesh[3]->getBoundingBox();
-
-	 //add the mesh to a scene node
- 
-	 bool rerun = true;
-	 unsigned i = 0;
-	 while (rerun)
-	 {
-		node[i] = smgr->addMeshSceneNode(mesh[rand() % 3+1]);
-		signed v1 = (rand() % 1000 + 1)-1000;
-		signed v2 = (rand() % 1000 + 1)-1000;
-		signed v3 = (rand() % 1000 + 1)-1000;
-		node[i]->setPosition(vector3df(v1,v2,v3));
-		node[i]->setScale(vector3df(scale,scale,scale));
-	
-		if (i+1>=20)
-		{
-			rerun = false;
-		}
-		i++;
-	 }*/
-
 	
 	//SkyBoxManager
 	skyBoxMgr = new SkyBoxManager();
