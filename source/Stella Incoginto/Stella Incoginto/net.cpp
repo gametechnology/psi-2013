@@ -1,9 +1,9 @@
 #include "stdafx.h"
 
-#include <irrlicht.h>
+
 #include <process.h>
 #include <sstream>
-#include <SFML/Network.hpp>
+
 
 
 using namespace irr;
@@ -24,8 +24,9 @@ class Net{
 		static BOOLEAN isServer;
 		static std::string serverip;
 		static BOOLEAN isrunning;
-		static BOOLEAN playernumber;
+		static int playernumber;
 		static list<int> clientip;
+		
 		static void senderthread(void * var)
 		{    
 			sf::SocketUDP Socket;
@@ -35,11 +36,11 @@ class Net{
 			int z;
 			
 			while(true){
-				
+				int packageid = 0;
 				if (isServer ==  FALSE){
 					sf::Packet packettosend;
 					std::string header = "RegUpdt";
-					packettosend << header << playernumber << x << y  << z ;
+					packettosend << header << playernumber << packageid << x << y  << z ;
 					if (Socket.Send(packettosend, serverip, 7000) != sf::Socket::Done)
 					{
 						// Error...
@@ -124,7 +125,9 @@ class Net{
 		*/
 		Net::Net()
 		{
-			isServer = TRUE;
+			//Net::isServer = TRUE;
+			//Net::serverip = "";
+			
 			//TODO write connect code;
 		}
 		/*
@@ -132,8 +135,9 @@ class Net{
 		*/
 		Net::Net(std::string ipadres)
 		{
-			serverip = ipadres;
-			isServer = TRUE;
+			//Net::serverip = ipadres;
+			//Net::isServer = FALSE;
+			
 			//TODO write connect code;
 
 		}	

@@ -102,7 +102,6 @@ int main()
 		nodeother->setMD2Animation(scene::EMAT_STAND);
 		nodeother->setMaterialTexture( 0, driver->getTexture("sydney.bmp") );
 	}
-	Net networkhandler(node,nodeother);
 	ICameraSceneNode *cam = smgr->addCameraSceneNode(0, vector3df(0,30,-40), vector3df(0,5,0));
 	u32 then = device->getTimer()->getTime();
 
