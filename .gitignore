@@ -16,3 +16,16 @@ build/psi.sdf
 build/PSI.suo
 bin/Win32-VisualStudio/Irrlicht.ilk
 bin/Win32-VisualStudio/Irrlicht.pdb
+bin/Win32-VisualStudio/main-game.exe
+bin/Win32-VisualStudio/main-game.ilk
+bin/Win32-VisualStudio/main-game.pdb
+bin/Win32-VisualStudio/network-prototype.exe
+bin/Win32-VisualStudio/network-prototype.ilk
+bin/Win32-VisualStudio/network-prototype.pdb
+bin/Win32-VisualStudio/psi.exe
+bin/Win32-VisualStudio/psi.ilk
+bin/Win32-VisualStudio/psi.pdb
+build/main-game/Debug/
+build/network-prototype/Debug/
+source/Irrlicht/obj/Debug/
+source/Irrlicht/obj/Debug/
