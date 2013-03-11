@@ -1,4 +1,4 @@
-// Stella Incoginto.cpp : Defines the entry point for the console application.
+// Stella Incoginto.cpp : Defines the entry point for the  application.
 //
 
 #include "stdafx.h"
@@ -8,14 +8,7 @@
 #include <sstream>
 #include <SFML/Network.hpp>
 #define ARRAY_SIZE(array) (sizeof((array))/sizeof((array[0])))
-/*
-In the Irrlicht Engine, everything can be found in the namespace 'irr'. So if
-you want to use a class of the engine, you have to write irr:: before the name
-of the class. For example to use the IrrlichtDevice write: irr::IrrlichtDevice.
-To get rid of the irr:: in front of the name of every class, we tell the
-compiler that we use that namespace from now on, and we will not have to write
-irr:: anymore.
-*/
+
 using namespace irr;
 
 class MyEventReceiver : public IEventReceiver
@@ -48,29 +41,14 @@ private:
 	bool KeyIsDown[KEY_KEY_CODES_COUNT];
 };
 
-/*
-There are 5 sub namespaces in the Irrlicht Engine. Take a look at them, you can
-read a detailed description of them in the documentation by clicking on the top
-menu item 'Namespace List' or by using this link:
-http://irrlicht.sourceforge.net/docu/namespaces.html
-Like the irr namespace, we do not want these 5 sub namespaces now, to keep this
-example simple. Hence, we tell the compiler again that we do not want always to
-write their names.
-*/
+
 using namespace core;
 using namespace scene;
 using namespace video;
 using namespace io;
 using namespace gui;
 
-/*
-To be able to use the Irrlicht.DLL file, we need to link with the Irrlicht.lib.
-We could set this option in the project settings, but to make it easy, we use a
-pragma comment lib for VisualStudio. On Windows platforms, we have to get rid
-of the console window, which pops up when starting a program with main(). This
-is done by the second pragma. We could also use the WinMain method, though
-losing platform independence then.
-*/
+
 #ifdef _IRR_WINDOWS_
 #pragma comment(lib, "Irrlicht.lib")
 #pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")

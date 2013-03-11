@@ -11,8 +11,7 @@ using namespace irr;
 using namespace core;
 using namespace scene;
 using namespace video;
-using namespace io;
-using namespace gui;
+
 
 
 #ifdef _IRR_WINDOWS_
@@ -22,23 +21,46 @@ using namespace gui;
 	
 class Net{
 	private:
+		static BOOLEAN isServer;
+		static std::string serverip;
+		static BOOLEAN isrunning;
+		static BOOLEAN playernumber;
+		static list<int> clientip;
 		static void senderthread(void * var)
 		{    
 			sf::SocketUDP Socket;
-			IAnimatedMeshSceneNode * node = (IAnimatedMeshSceneNode*)var;
+			//TODO write recieve data code.
+			int x;
+			int y;
+			int z;
 			
 			while(true){
-				sf::Packet packettosend;
-				vector3df position = node->getPosition();
-
-				packettosend << position.X << position.Y  << position.Z ;
-				// Create the UDP socket
-		
-				if (Socket.Send(packettosend, "192.168.2.8", 7000) != sf::Socket::Done)
-				{
-					// Error...
+				
+				if (isServer ==  FALSE){
+					sf::Packet packettosend;
+					std::string header = "RegUpdt";
+					packettosend << header << playernumber << x << y  << z ;
+					if (Socket.Send(packettosend, serverip, 7000) != sf::Socket::Done)
+					{
+						// Error...
 			
+					}
 				}
+				else
+				{
+					
+					for (list<int>::ConstIterator iterator = clientip.begin(); iterator != clientip.end(); ++iterator) {
+						sf::Packet packettosend;
+						std::string header = "RegUpdt";
+						packettosend << header << playernumber << x << y  << z ;
+						if (Socket.Send(packettosend, *iterator, 7000) != sf::Socket::Done)
+						{
+							// Error...
+			
+						}
+					}
+				}
+				Sleep(30);
 			}
 			Socket.Close();
 			return;
@@ -60,28 +82,62 @@ class Net{
 					// Error...
 			
 				}
-				else{			
-					float x;
-					float y;
-					float z;
-					packettorecieve >> x >> y >> z ;
-		
-					nodeother->setPosition(vector3df(x,y,z));
+				else{
+					std::string header;
+					packettorecieve >> header;
+					if (header == "RegUpdt"){
+						
+						int playernumber;
+						float x;
+						float y;
+						float z;
+						packettorecieve >> playernumber >> x >> y >> z ;
+						//TODO update datar recieved;
+						if (isServer == true)
+						{
+							for (list<int>::ConstIterator iterator = clientip.begin(); iterator != clientip.end(); ++iterator) {
+								//TODO some check that we don't send to client we recieved from
+								sf::Packet packettosend;
+								std::string header = "RegUpdt";
+								packettosend << header << playernumber << x << y  << z ;
+								if (Socket.Send(packettosend, *iterator, 7000) != sf::Socket::Done)
+								{
+									// Error...
 			
-			
+								}
+							}
+						}
+					}
 				}
 			}
 			Socket.Close();
 			return;
 		}
+		//TODO write check package recieved code.
 	public:
-		Net(void *, void *);			
+		Net();		
+		Net(std::string);
+		void StartGame();
 };
-		Net::Net(void * player1, void * player2)
+		/*
+		Use this function if you are the server
+		*/
+		Net::Net()
 		{
-			//begin threads	
-			_beginthread(senderthread,0, player1);
-			_beginthread(revieverthread,0, player2);
-		}	
+			isServer = TRUE;
+			//TODO write connect code;
+		}
+		/*
+		Use this function if you are a client an pass the server of the as the parameter.
+		*/
+		Net::Net(std::string ipadres)
+		{
+			serverip = ipadres;
+			isServer = TRUE;
+			//TODO write connect code;
 
+		}	
+		void Net::StartGame(){
+			// TODO write start game code;
+		}
 
