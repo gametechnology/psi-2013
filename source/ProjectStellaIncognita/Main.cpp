@@ -131,7 +131,7 @@ int main()
 		{
 			// Text for Textbox
 			stringw velocitystr = L"Velocity: ";
-			velocitystr += u32(velocity.Z);
+			velocitystr += s32(velocity.Z);
 			stringw energystr = L"Energy: ";
 			energystr += u32(boostUnit);
 			velocityTextBox->setText(velocitystr.c_str());
