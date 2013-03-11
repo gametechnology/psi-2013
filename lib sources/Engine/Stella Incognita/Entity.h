@@ -13,21 +13,27 @@ class Entity : Composite
 {
 public:
 	Entity();
+	Entity(Composite* parent);
 	~Entity();
 
 	// Variables
+	irr::scene::ISceneNode* irrNode;
+
+	float mass;
+	vector3d<float> force;
 	vector3d<float> position;
 	vector3d<float> velocity;
 	vector3d<float> accelaration;
 	vector3d<float> orientation;
-	vector3d<float> orientationVelocity;
-	vector3d<float> orientationAccelaration;
+	vector3d<float> angularVelocity;
+	vector3d<float> angularAccelaration;
+
+	vector3d<float> anchorPoint;
+	bool visible;
 
 	// Methods
 	virtual void Update();
 	virtual void Draw();
-
-	
 };
 
 #endif
