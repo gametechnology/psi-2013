@@ -8,16 +8,22 @@
 
 using namespace std;
 using namespace irr;
+using namespace core;
+using namespace video;
+using namespace scene;
 
 class Game
 {
 public:
 	Game();
 	~Game();
+	void run();
+	static void addScene(Scene* defaultScene);
 
-	IrrlichtDevice* device;
-	stack<Scene*> scenes; 
-	Message* messages;
+	static IrrlichtDevice* device;
+	static IVideoDriver* driver;
+	static stack<Scene*>* scenes; 
+	static Message* messages;
 
 };
 

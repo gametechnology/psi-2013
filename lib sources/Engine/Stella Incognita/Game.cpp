@@ -12,33 +12,51 @@
 using namespace irr;
 using namespace core;
 using namespace video;
-//using namespace scene;
+using namespace scene;
 //using namespace io;
+
+// Predefine static variables
+IrrlichtDevice* Game::device;
+IVideoDriver* Game::driver;
+stack<Scene*>* Game::scenes; 
+Message* Game::messages;
 
 Game::Game()
 {
-	// Create the iirlicht device
-	IrrlichtDevice* device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, false, 0);
+	//Create a new stack to store all scenes
+	Game::scenes = new stack<Scene*>;
+	
+	// Create the irrlicht device 
+	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, false, 0);
 
 	// If the device was not created correctly, then shut down the program
-	if(device) {
+	if(Game::device) {
 		// Create a driver 
-		IVideoDriver* driver = device->getVideoDriver();
+		driver = Game::device->getVideoDriver();
 
 		//Set title of the window
-		device->setWindowCaption(L"Stella Incognita");
-
-		//Main loop
-		while(device->run())
-		{
-			driver->beginScene(true, true, SColor(255,255,255,255));
-			driver->endScene();
-		}
-
-		device->drop();
+		Game::device->setWindowCaption(L"Stella Incognita");
 	}
 }
 
+void Game::run()
+{
+		//Main loop
+		while(Game::device->run())
+		{
+			//scenes->top()->Update();
+			Game::driver->beginScene(true, true, SColor(255,255,255,255));
+			Game::scenes->top()->smgr->drawAll();
+			Game::driver->endScene();
+		}
+
+		Game::device->drop();
+}
+
+void Game::addScene(Scene* defaultScene)
+{
+	Game::scenes->push(defaultScene);
+}
 
 Game::~Game()
 {
