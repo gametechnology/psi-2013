@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	while(!GetKeyState(0x31))
+	while(true)
 	{
 		while(enet_host_service(server, &event, 1000) > 0)
 		{
