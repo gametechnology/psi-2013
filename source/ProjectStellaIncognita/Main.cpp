@@ -9,6 +9,7 @@ Helm Station
 #include "PlanetManager.h"
 #include "Station.h"
 #include "Input.h"
+#include "Thruster.h"
 
 using namespace std;
 using namespace irr;
@@ -108,7 +109,19 @@ int main()
 	 vector3df initialPos;
 	 f32 accelerationUnit = 1;
 	 u32 then = device->getTimer()->getTime();
+
+
+	//creates all the thrusters for the rotation
+	Thruster thruster = Thruster(vector3df(0, 0, 0), vector3df(2,0,5), Thruster::Left, 10.0f);
+	Thruster thruster2 = Thruster(vector3df(0,0,0), vector3df(-2, 0, 5), Thruster::Right, 10.0f);
+	Thruster thruster3 = Thruster(vector3df(0,0,0), vector3df(0, -1, 5), Thruster::Up, 10.0f);
+	Thruster thruster4 = Thruster(vector3df(0,0,0), vector3df(0, 1, 5), Thruster::Down, 10.0f);
+	Thruster thruster5 = Thruster(vector3df(0,0,0), vector3df(2, -1, 0), Thruster::RollLeft, 10.0f);
+	Thruster thruster6 = Thruster(vector3df(0,0,0), vector3df(-2, -1, 0), Thruster::RollRight, 10.0f);
 	
+	//vector for the rotation
+	vector3df rotation = vector3df(0,0,0);
+
 	//while the program is running, it will perform this
 	while(device->run())
 	{
@@ -163,6 +176,41 @@ int main()
 			 initialPos = nodePosition;
 		    }
 
+			//rotates the ship Left
+			if(input.IsKeyDown(KEY_KEY_A))
+			{
+				rotation += thruster.UseThruster(100);
+			}
+			//rotates the ship Right
+			if(input.IsKeyDown(KEY_KEY_D))
+			{
+				rotation += thruster2.UseThruster(100);
+			}
+			
+			//rotates the ship Down
+			if(input.IsKeyDown(KEY_KEY_S))
+			{
+				rotation += thruster3.UseThruster(100);
+			}
+			
+			//rotates the ship Up
+			if(input.IsKeyDown(KEY_KEY_W))
+			{
+				rotation += thruster4.UseThruster(100);
+			}
+		
+			//rotates the ship Rolling Right
+			if(input.IsKeyDown(KEY_KEY_E))
+			{
+				rotation += thruster5.UseThruster(100);
+			}
+			
+			//rotates the ship Rolling Left
+			if(input.IsKeyDown(KEY_KEY_Q))
+			{
+				rotation += thruster6.UseThruster(100);
+			}
+
 			//Change velocity and position if no key is pressed. This is to maintain speed, because there is no resistance in space
 			velocity.Z = initialVelocity.Z;
 			nodePosition.Z = (initialVelocity.Z*frameDeltaTime) + initialPos.Z;
@@ -170,6 +218,7 @@ int main()
 			initialPos = nodePosition;
 			boosterMP = 1;
 		    csn->setPosition(nodePosition);
+			csn->setRotation(rotation);
 
 			//draw the scene
 			driver->endScene();
