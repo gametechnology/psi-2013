@@ -46,7 +46,7 @@ IGUIEnvironment* guienv;
 ICameraSceneNode* csn;
 
 //Initiation of light
-ILightSceneNode* light;
+//ILightSceneNode* light;
 
 //SkyBox Manager
 SkyBoxManager* skyBoxMgr;
@@ -56,7 +56,7 @@ PlanetManager* planetMgr;
 //Station
 Station* helmStation;
 
-unsigned scale = 100;
+unsigned scale = 1;
 
 //input currently only keyboard
 Input input;
@@ -75,7 +75,7 @@ int main()
 	//add the camera to the scene
 	csn = smgr->addCameraSceneNodeFPS();
 
-	light = smgr->addLightSceneNode(0,vector3df(5000,5000,5000),SColor(100,100,100,255),100000);
+//	light = smgr->addLightSceneNode(0,vector3df(5000,5000,5000),SColor(100,100,100,255),100000);
 	//the the GUI
 	guienv = device->getGUIEnvironment();
 
@@ -86,37 +86,6 @@ int main()
 	//Make a energytextbox	
 	IGUIStaticText* energyTextBox = guienv->addStaticText(L"this is text", rect<s32>(10,10,100,22), false,true,0,-1,false); 
 	energyTextBox->setRelativePosition(vector2di(276,653));
-
-	//the mesh gets the model with the scene manager
-	/* mesh[0] = smgr->getMesh("../../assets/Models/floor.3ds");
-	 mesh[1] = smgr->getMesh("../../assets/Models/Cube.3ds");
-	 mesh[2] = smgr->getMesh("../../assets/Models/teapot.3ds");
-	 mesh[3] = smgr->getMesh("../../assets/Models/UnknownAst.3ds");
-	 mesh[0]->getBoundingBox();
-	 mesh[1]->getBoundingBox();
-	 mesh[2]->getBoundingBox();
-	 mesh[3]->getBoundingBox();
-
-	 //add the mesh to a scene node
- 
-	 bool rerun = true;
-	 unsigned i = 0;
-	 while (rerun)
-	 {
-		node[i] = smgr->addMeshSceneNode(mesh[rand() % 3+1]);
-		signed v1 = (rand() % 1000 + 1)-1000;
-		signed v2 = (rand() % 1000 + 1)-1000;
-		signed v3 = (rand() % 1000 + 1)-1000;
-		node[i]->setPosition(vector3df(v1,v2,v3));
-		node[i]->setScale(vector3df(scale,scale,scale));
-	
-		if (i+1>=20)
-		{
-			rerun = false;
-		}
-		i++;
-	 }*/
-
 	
 	//SkyBoxManager
 	skyBoxMgr = new SkyBoxManager();
@@ -126,6 +95,7 @@ int main()
 	planetMgr = new PlanetManager();
 	planetMgr->InitializeMeshes(smgr);
 	planetMgr->PlacePlanets();
+	planetMgr->LetThereBeLights(smgr);
 
 	//HelmStation
 	helmStation = new Station();
@@ -188,7 +158,7 @@ int main()
 		{
 			// Text for Textbox
 			stringw velocitystr = L"Velocity: ";
-			velocitystr += u32(velocity.Z);
+			velocitystr += s32(velocity.Z);
 			stringw energystr = L"Energy: ";
 			energystr += u32(boostUnit);
 			velocityTextBox->setText(velocitystr.c_str());
