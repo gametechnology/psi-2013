@@ -11,3 +11,8 @@
 *.lai
 *.la
 *.a
+build/psi.opensdf
+build/psi.sdf
+build/PSI.suo
+bin/Win32-VisualStudio/Irrlicht.ilk
+bin/Win32-VisualStudio/Irrlicht.pdb
