@@ -29,3 +29,12 @@ build/main-game/Debug/
 build/network-prototype/Debug/
 source/Irrlicht/obj/Debug/
 source/Irrlicht/obj/Debug/
+build/ipch/
+build/network-server-prototype/Debug/
+build/network-client-prototype/Debug/
+bin/Win32-VisualStudio/network-client-prototype.exe
+bin/Win32-VisualStudio/network-client-prototype.ilk
+bin/Win32-VisualStudio/network-client-prototype.pdb
+bin/Win32-VisualStudio/network-server-prototype.exe
+bin/Win32-VisualStudio/network-server-prototype.ilk
+bin/Win32-VisualStudio/network-server-prototype.pdb
