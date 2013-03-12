@@ -18,6 +18,7 @@ public:
 	Game();
 	~Game();
 	void run();
+	static Scene getTopScene();
 	static void addScene(Scene* defaultScene);
 
 	static IrrlichtDevice* device;
