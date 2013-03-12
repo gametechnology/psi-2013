@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Play.h"
+#include "Entity.h"
 
 int main()
 {
@@ -7,5 +8,9 @@ int main()
 	Play* playScene = new Play();
 	game.addScene(playScene);
 	game.run();
+
+	
+
+
 	return 0;
 }

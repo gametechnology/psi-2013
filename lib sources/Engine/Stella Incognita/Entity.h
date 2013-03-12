@@ -9,7 +9,7 @@
 using namespace irr;
 using namespace core;
 
-class Entity : Composite
+class Entity : public Composite
 {
 public:
 	Entity();
