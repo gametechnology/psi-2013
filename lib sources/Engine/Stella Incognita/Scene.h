@@ -25,6 +25,7 @@ public:
 
 	State state;
 	ISceneManager* smgr;
+	bool enabled;
 };
 
 #endif

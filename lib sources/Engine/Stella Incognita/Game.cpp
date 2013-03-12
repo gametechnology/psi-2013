@@ -45,7 +45,7 @@ void Game::run()
 		while(Game::device->run())
 		{
 			//scenes->top()->Update();
-			Game::driver->beginScene(true, true, SColor(255,255,255,255));
+			Game::driver->beginScene(true, true, SColor(255,100,101,140));
 			Game::scenes->top()->smgr->drawAll();
 			Game::driver->endScene();
 		}
@@ -53,9 +53,9 @@ void Game::run()
 		Game::device->drop();
 }
 
-void Game::addScene(Scene* defaultScene)
+void Game::addScene(Scene* scene)
 {
-	Game::scenes->push(defaultScene);
+	Game::scenes->push(scene);
 }
 
 Game::~Game()

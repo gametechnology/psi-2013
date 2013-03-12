@@ -1,16 +1,21 @@
 #include "Game.h"
-#include "Play.h"
+#include "TestScene.h"
 #include "Entity.h"
 
 int main()
 {
+	// Create engine
 	Game game = Game();
-	Play* playScene = new Play();
-	game.addScene(playScene);
-	game.run();
 
+	// Create test scene
+	TestScene* testScene = new TestScene();
+	game.addScene(testScene);
+
+	// Init the test scene
+	testScene->Init();
 	
-
+	// Start the main loop
+	game.run();
 
 	return 0;
 }
