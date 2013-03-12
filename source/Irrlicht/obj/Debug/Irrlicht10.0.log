@@ -1,156 +1,23 @@
-﻿Build started 3/11/2013 5:47:27 PM.
-     1>Project "C:\Users\nmatt_000\Documents\psi2.0\psi-2013\source\Irrlicht\Irrlicht10.0.vcxproj" on node 2 (build target(s)).
+﻿Build started 3/12/2013 3:27:37 PM.
+     1>Project "C:\Users\nmatt_000\Documents\psi2.0\psi-2013\source\Irrlicht\Irrlicht10.0.vcxproj" on node 3 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "obj\Debug\Irrlicht.unsuccessfulbuild".
+         Creating "obj\Debug\Irrlicht.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\include /Izlib /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D IRRLICHT_EXPORTS /D _CRT_SECURE_NO_DEPRECATE /D _VC80_UPGRADE=0x0710 /D _WINDLL /D _ITERATOR_DEBUG_LEVEL=0 /Gm- /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR- /Fo"obj\Debug\\" /Fd"obj\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt CLogger.cpp CMountPointReader.cpp CNPKReader.cpp COpenGLDriver.cpp COpenGLExtensionHandler.cpp COpenGLNormalMapRenderer.cpp COpenGLParallaxMapRenderer.cpp COpenGLSLMaterialRenderer.cpp COpenGLShaderMaterialRenderer.cpp CPakReader.cpp CSoftwareTexture2.cpp CTRGouraud2.cpp CTRGouraudAlpha2.cpp CTRGouraudAlphaNoZ2.cpp CTRNormalMap.cpp CTRStencilShadow.cpp CTRTextureBlend.cpp CTRTextureDetailMap2.cpp CTRTextureGouraud2.cpp CTRTextureGouraudAdd2.cpp CTRTextureGouraudAddNoZ2.cpp CTRTextureGouraudAlpha.cpp CTRTextureGouraudAlphaNoZ.cpp CTRTextureGouraudNoZ2.cpp CTRTextureGouraudVertexAlpha2.cpp CTRTextureLightMap2_Add.cpp CTRTextureLightMap2_M1.cpp CTRTextureLightMap2_M2.cpp CTRTextureLightMap2_M4.cpp CTRTextureLightMapGouraud2_M4.cpp CTRTextureWire2.cpp CTarReader.cpp CWADReader.cpp CWriteFile.cpp CXMLReader.cpp CXMLWriter.cpp CZipReader.cpp IBurningShader.cpp Irrlicht.cpp aesGladman\aescrypt.cpp aesGladman\aeskey.cpp aesGladman\aestab.cpp aesGladman\fileenc.cpp aesGladman\hmac.cpp aesGladman\prng.cpp aesGladman\pwd2key.cpp aesGladman\sha1.cpp aesGladman\sha2.cpp irrXML.cpp os.cpp
-         CLogger.cpp
-         CMountPointReader.cpp
-         CNPKReader.cpp
-         COpenGLDriver.cpp
-         COpenGLExtensionHandler.cpp
-         COpenGLNormalMapRenderer.cpp
-         COpenGLParallaxMapRenderer.cpp
-         COpenGLSLMaterialRenderer.cpp
-         COpenGLShaderMaterialRenderer.cpp
-         CPakReader.cpp
-         CSoftwareTexture2.cpp
-         CTRGouraud2.cpp
-         CTRGouraudAlpha2.cpp
-         CTRGouraudAlphaNoZ2.cpp
-         CTRNormalMap.cpp
-         CTRStencilShadow.cpp
-         CTRTextureBlend.cpp
-         CTRTextureDetailMap2.cpp
-         CTRTextureGouraud2.cpp
-         CTRTextureGouraudAdd2.cpp
-         Generating Code...
-         Compiling...
-         CTRTextureGouraudAddNoZ2.cpp
-         CTRTextureGouraudAlpha.cpp
-         CTRTextureGouraudAlphaNoZ.cpp
-         CTRTextureGouraudNoZ2.cpp
-         CTRTextureGouraudVertexAlpha2.cpp
-         CTRTextureLightMap2_Add.cpp
-         CTRTextureLightMap2_M1.cpp
-         CTRTextureLightMap2_M2.cpp
-         CTRTextureLightMap2_M4.cpp
-         CTRTextureLightMapGouraud2_M4.cpp
-         CTRTextureWire2.cpp
-         CTarReader.cpp
-         CWADReader.cpp
-         CWriteFile.cpp
-         CXMLReader.cpp
-         CXMLWriter.cpp
-         CZipReader.cpp
-         IBurningShader.cpp
-         Irrlicht.cpp
-         aescrypt.cpp
-         Generating Code...
-         Compiling...
-         aeskey.cpp
-         aestab.cpp
-         fileenc.cpp
-         hmac.cpp
-         prng.cpp
-         pwd2key.cpp
-         sha1.cpp
-         sha2.cpp
-         irrXML.cpp
-         os.cpp
-         Generating Code...
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\include /Izlib /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _USRDLL /D IRRLICHT_EXPORTS /D _CRT_SECURE_NO_DEPRECATE /D _VC80_UPGRADE=0x0710 /D _WINDLL /D _ITERATOR_DEBUG_LEVEL=0 /Gm- /RTC1 /MTd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR- /Fo"obj\Debug\\" /Fd"obj\Debug\vc100.pdb" /Gd /TC /analyze- /errorReport:prompt lzma\LzmaDec.c zlib\adler32.c zlib\compress.c zlib\crc32.c zlib\deflate.c zlib\inffast.c zlib\inflate.c zlib\inftrees.c zlib\trees.c zlib\uncompr.c zlib\zutil.c jpeglib\jaricom.c jpeglib\jcapimin.c jpeglib\jcapistd.c jpeglib\jcarith.c jpeglib\jccoefct.c jpeglib\jccolor.c jpeglib\jcdctmgr.c jpeglib\jchuff.c jpeglib\jcinit.c jpeglib\jcmainct.c jpeglib\jcmarker.c jpeglib\jcmaster.c jpeglib\jcomapi.c jpeglib\jcparam.c jpeglib\jcprepct.c jpeglib\jcsample.c jpeglib\jctrans.c jpeglib\jdapimin.c jpeglib\jdapistd.c jpeglib\jdarith.c jpeglib\jdatadst.c jpeglib\jdatasrc.c jpeglib\jdcoefct.c jpeglib\jdcolor.c jpeglib\jddctmgr.c jpeglib\jdhuff.c jpeglib\jdinput.c jpeglib\jdmainct.c jpeglib\jdmarker.c jpeglib\jdmaster.c jpeglib\jdmerge.c jpeglib\jdpostct.c jpeglib\jdsample.c jpeglib\jdtrans.c jpeglib\jerror.c jpeglib\jfdctflt.c jpeglib\jfdctfst.c jpeglib\jfdctint.c jpeglib\jidctflt.c jpeglib\jidctfst.c jpeglib\jidctint.c jpeglib\jmemmgr.c jpeglib\jmemnobs.c jpeglib\jquant1.c jpeglib\jquant2.c jpeglib\jutils.c libpng\png.c libpng\pngerror.c libpng\pngget.c libpng\pngmem.c libpng\pngpread.c libpng\pngread.c libpng\pngrio.c libpng\pngrtran.c libpng\pngrutil.c libpng\pngset.c libpng\pngtrans.c libpng\pngwio.c libpng\pngwrite.c libpng\pngwtran.c libpng\pngwutil.c bzip2\blocksort.c bzip2\bzcompress.c bzip2\bzlib.c bzip2\crctable.c bzip2\decompress.c bzip2\huffman.c bzip2\randtable.c
-         LzmaDec.c
-         adler32.c
-         compress.c
-         crc32.c
-         deflate.c
-         inffast.c
-         inflate.c
-         inftrees.c
-         trees.c
-         uncompr.c
-         zutil.c
-         jaricom.c
-         jcapimin.c
-         jcapistd.c
-         jcarith.c
-         jccoefct.c
-         jccolor.c
-         jcdctmgr.c
-         jchuff.c
-         jcinit.c
-         Generating Code...
-         Compiling...
-         jcmainct.c
-         jcmarker.c
-         jcmaster.c
-         jcomapi.c
-         jcparam.c
-         jcprepct.c
-         jcsample.c
-         jctrans.c
-         jdapimin.c
-         jdapistd.c
-         jdarith.c
-         jdatadst.c
-         jdatasrc.c
-         jdcoefct.c
-         jdcolor.c
-         jddctmgr.c
-         jdhuff.c
-         jdinput.c
-         jdmainct.c
-         jdmarker.c
-         Generating Code...
-         Compiling...
-         jdmaster.c
-         jdmerge.c
-         jdpostct.c
-         jdsample.c
-         jdtrans.c
-         jerror.c
-         jfdctflt.c
-         jfdctfst.c
-         jfdctint.c
-         jidctflt.c
-         jidctfst.c
-         jidctint.c
-         jmemmgr.c
-         jmemnobs.c
-         jquant1.c
-         jquant2.c
-         jutils.c
-         png.c
-         pngerror.c
-         pngget.c
-         Generating Code...
-         Compiling...
-         pngmem.c
-         pngpread.c
-         pngread.c
-         pngrio.c
-         pngrtran.c
-         pngrutil.c
-         pngset.c
-         pngtrans.c
-         pngwio.c
-         pngwrite.c
-         pngwtran.c
-         pngwutil.c
-         blocksort.c
-         bzcompress.c
-         bzlib.c
-         crctable.c
-         decompress.c
-         huffman.c
-         randtable.c
-         Generating Code...
+         All outputs are up-to-date.
+         All outputs are up-to-date.
        ResourceCompile:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _DEBUG /D _VC80_UPGRADE=0x0710 /l"0x0c07" /nologo /fo"obj\Debug\Irrlicht.res" Irrlicht.rc 
-     1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.CppCommon.targets(393,5): error MSB6006: "rc.exe" exited with code -1073741502.
-     1>Done Building Project "C:\Users\nmatt_000\Documents\psi2.0\psi-2013\source\Irrlicht\Irrlicht10.0.vcxproj" (build target(s)) -- FAILED.
+         All outputs are up-to-date.
+       ManifestResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+       Manifest:
+         All outputs are up-to-date.
+       FinalizeBuildStatus:
+         Deleting file "obj\Debug\Irrlicht.unsuccessfulbuild".
+         Touching "obj\Debug\Irrlicht.lastbuildstate".
+     1>Done Building Project "C:\Users\nmatt_000\Documents\psi2.0\psi-2013\source\Irrlicht\Irrlicht10.0.vcxproj" (build target(s)).
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:18.08
+Time Elapsed 00:00:00.63

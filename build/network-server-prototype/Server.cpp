@@ -2,31 +2,12 @@
 #include "stdafx.h"
 #include <enet/enet.h>
 
-// Irrlicht
-#include <irrlicht.h>
-
-using namespace irr; 
-using namespace core; 
-using namespace video;
-
-#if defined(_MSC_VER)    
-	#pragma comment(lib, "Irrlicht.lib") 
-#endif
-
 int main(int argc, char **argv)
 {
 	ENetAddress address;
 	ENetHost *server;
 	ENetEvent event;
 	ENetPacket *packet;
-	
-	// irrlicht
-	IrrlichtDevice* device = createDevice(EDT_OPENGL, dimension2d<u32>(640, 480), 16, false, false, false, 0);
-	if (!device)        
-		return 1;
-    
-	IVideoDriver* driver = device->getVideoDriver();
-   
 	
 	if (enet_initialize() != 0)
 	{
@@ -48,13 +29,8 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	// Game Loop 
-	while(device->run())
+	while(true)
 	{
-		// simply creates an empty irrlicht window
-		driver->beginScene(true, true, SColor(255, 255, 255, 255));
-		driver->endScene();
-
 		while(enet_host_service(server, &event, 1000) > 0)
 		{
 			switch(event.type)
@@ -77,7 +53,6 @@ int main(int argc, char **argv)
 			}
 		}
 	}	 
-	device->drop();
 
 	enet_host_destroy(server);
 }

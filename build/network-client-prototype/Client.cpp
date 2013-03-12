@@ -39,6 +39,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
+	// If connect send packages
 	if (enet_host_service(client, &event, 1000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT)
 	{
 		connected = true;
