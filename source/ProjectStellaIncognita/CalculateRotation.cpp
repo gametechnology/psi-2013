@@ -63,6 +63,9 @@ quaternion CalculateRotation::CreateFromYawPitchRoll(float yaw, float pitch, flo
 //returns the acceleration of the angularMotion
 vector3df CalculateRotation::calcAngularMotion(matrix4 inertiaMatrix, vector3df torque)
 {
-	inertiaMatrix.makeInverse();
-	return vector3df(0,0,0);//(inertiaMatrix * torque);
+	matrix4 inertiamatrix = inertiaMatrix;
+	inertiamatrix.makeInverse();
+	vector3df acceleration;
+	inertiamatrix.transformVect(acceleration, torque);
+	return acceleration;
 }
