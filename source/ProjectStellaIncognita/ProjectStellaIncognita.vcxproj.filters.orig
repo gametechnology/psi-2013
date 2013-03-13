@@ -33,7 +33,11 @@
     <ClCompile Include="Thruster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Ship.cpp">
+=======
     <ClCompile Include="CalculateRotation.cpp">
+>>>>>>> 3486665cbce6361ed1c44e238e8370ea3da2a16f
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,7 +57,11 @@
     <ClInclude Include="Thruster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Ship.h">
+=======
     <ClInclude Include="CalculateRotation.h">
+>>>>>>> 3486665cbce6361ed1c44e238e8370ea3da2a16f
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -22,3 +22,4 @@ debug/
 *.vcxproj.user
 lib sources/Engine/Stella Incognita.opensdf
 *.obj
+source/ProjectStellaIncognita/ProjectStellaIncognita.vcxproj

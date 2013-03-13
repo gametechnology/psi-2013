@@ -10,6 +10,7 @@ Helm Station
 #include "Station.h"
 #include "Input.h"
 #include "Thruster.h"
+#include "CalculateRotation.h"
 
 using namespace std;
 using namespace irr;
@@ -111,17 +112,51 @@ int main()
 	 f32 accelerationUnit = 1;
 	 u32 then = device->getTimer()->getTime();
 
+	 //sets the force of the small and big thrusters
+	 Thruster::bigThrusterForce = 400;
+	 Thruster::smallThrusterForce = 200;
 
 	//creates all the thrusters for the rotation
-	Thruster thruster = Thruster(vector3df(0, 0, 0), vector3df(2,0,5), Thruster::Left, 10.0f);
-	Thruster thruster2 = Thruster(vector3df(0,0,0), vector3df(-2, 0, 5), Thruster::Right, 10.0f);
-	Thruster thruster3 = Thruster(vector3df(0,0,0), vector3df(0, -1, 5), Thruster::Up, 10.0f);
-	Thruster thruster4 = Thruster(vector3df(0,0,0), vector3df(0, 1, 5), Thruster::Down, 10.0f);
-	Thruster thruster5 = Thruster(vector3df(0,0,0), vector3df(2, -1, 0), Thruster::RollLeft, 10.0f);
-	Thruster thruster6 = Thruster(vector3df(0,0,0), vector3df(-2, -1, 0), Thruster::RollRight, 10.0f);
+	Thruster thruster = Thruster(vector3df(0, 0, 0), vector3df(2,0,5), Thruster::Left);
+	Thruster thruster2 = Thruster(vector3df(0,0,0), vector3df(-2, 0, 5), Thruster::Right);
+	Thruster thruster3 = Thruster(vector3df(0,0,0), vector3df(0, -1, 5), Thruster::Up);
+	Thruster thruster4 = Thruster(vector3df(0,0,0), vector3df(0, 1, 5), Thruster::Down);
+	Thruster thruster5 = Thruster(vector3df(0,0,0), vector3df(2, -1, 0), Thruster::RollLeft);
+	Thruster thruster6 = Thruster(vector3df(0,0,0), vector3df(-2, -1, 0), Thruster::RollRight);
 	
+	//creates a big thruster at the back, and two small thrusters up front
+	Thruster bigThruster = Thruster(vector3df(0,0,0), vector3df(0, 0, -5), Thruster::Forward);
+	Thruster smallThruster1 = Thruster(vector3df(0,0,0), vector3df(1, 0, 7), Thruster::Backward);
+	Thruster smallThruster2 = Thruster(vector3df(0,0,0), vector3df(-1, 0, 7), Thruster::Backward);
+
 	//vector for the rotation
 	vector3df rotation = vector3df(0,0,0);
+
+	//used for the momentum of inertia, currently not used, only m is used (mass)
+	CalculateRotation mathRotation;
+	float h, w, d, m;
+
+	m = 5000;
+	h = 50;
+	w = 35;
+	d = 100;
+
+	float inertiaData[16];
+
+	for(unsigned i = 0; i < 16; i++)
+	{
+		inertiaData[i] = 0.0f;
+	}
+
+	inertiaData[0] = (((1.0f / 5.0f) * m) * (pow(w, 2) + pow(d, 2)));
+	inertiaData[5] = (((1.0f / 5.0f) * m) * (pow(h, 2) + pow(d, 2)));
+	inertiaData[10] = (((1.0f / 5.0f) * m) * (pow(h, 2) + pow(w, 2)));
+	inertiaData[15] = 1.0f;
+
+	matrix4 inertiaMatrix;
+	inertiaMatrix.setM(inertiaData);
+
+
 
 	//while the program is running, it will perform this
 	while(device->run())
@@ -164,53 +199,63 @@ int main()
 			//If Z key is pressed , go forward. If X key, go backwards.
 			if(input.IsKeyDown(KEY_UP) && velocity.Z < MAX_SPEED)
 			{
-			  velocity.Z = ((accelerationUnit * boosterMP) *frameDeltaTime) + initialVelocity.Z;
-			  nodePosition.Z = (0.5f*accelerationUnit* pow(frameDeltaTime,2)) + (initialVelocity.Z*frameDeltaTime) + initialPos.Z;
-			  initialVelocity = velocity;
-			  initialPos = nodePosition;
+				//accelerationUnit = bigThruster.UseThruster(m);
+				velocity.Z = ((accelerationUnit * boosterMP) *frameDeltaTime) + initialVelocity.Z;
+				nodePosition.Z = (0.5f*accelerationUnit* pow(frameDeltaTime,2)) + (initialVelocity.Z*frameDeltaTime) + initialPos.Z;
+				initialVelocity = velocity;
+				initialPos = nodePosition;
 			}
 			else if(input.IsKeyDown(KEY_DOWN) && velocity.Z > MIN_SPEED)
 			{
-			 velocity.Z = -((accelerationUnit * boosterMP) *frameDeltaTime) + initialVelocity.Z;
-			 nodePosition.Z = -(0.5f*accelerationUnit* pow(frameDeltaTime,2)) + (initialVelocity.Z*frameDeltaTime) + initialPos.Z;
-			 initialVelocity = velocity;
-			 initialPos = nodePosition;
+				//accelerationUnit = smallThruster1.UseThruster(m) + smallThruster2.UseThruster(m);
+				velocity.Z = -((accelerationUnit * boosterMP) *frameDeltaTime) + initialVelocity.Z;
+				nodePosition.Z = -(0.5f*accelerationUnit* pow(frameDeltaTime,2)) + (initialVelocity.Z*frameDeltaTime) + initialPos.Z;
+				initialVelocity = velocity;
+				initialPos = nodePosition;
 		    }
 
 			//rotates the ship Left
 			if(input.IsKeyDown(KEY_KEY_A))
 			{
-				rotation += thruster.UseThruster(100);
+				//mathRotation.calcAngularMotion returns the acceleration which needs to be converted to velocity which then can be add to thsi rotation
+				rotation += mathRotation.calcAngularMotion(inertiaMatrix, thruster.UseThruster());
 			}
 			//rotates the ship Right
 			if(input.IsKeyDown(KEY_KEY_D))
 			{
-				rotation += thruster2.UseThruster(100);
+				//mathRotation.calcAngularMotion returns the acceleration which needs to be converted to velocity which then can be add to thsi rotation
+				rotation += mathRotation.calcAngularMotion(inertiaMatrix, thruster2.UseThruster());
 			}
 			
 			//rotates the ship Down
-			if(input.IsKeyDown(KEY_KEY_S))
+			if(input.IsKeyDown(KEY_KEY_W))
 			{
-				rotation += thruster3.UseThruster(100);
+				//mathRotation.calcAngularMotion returns the acceleration which needs to be converted to velocity which then can be add to thsi rotation
+				rotation += mathRotation.calcAngularMotion(inertiaMatrix, thruster3.UseThruster());
 			}
 			
 			//rotates the ship Up
-			if(input.IsKeyDown(KEY_KEY_W))
+			if(input.IsKeyDown(KEY_KEY_S))
 			{
-				rotation += thruster4.UseThruster(100);
+				//mathRotation.calcAngularMotion returns the acceleration which needs to be converted to velocity which then can be add to thsi rotation
+				rotation += mathRotation.calcAngularMotion(inertiaMatrix, thruster4.UseThruster());
 			}
 		
 			//rotates the ship Rolling Right
-			if(input.IsKeyDown(KEY_KEY_E))
+			if(input.IsKeyDown(KEY_KEY_Q))
 			{
-				rotation += thruster5.UseThruster(100);
+				//mathRotation.calcAngularMotion returns the acceleration which needs to be converted to velocity which then can be add to thsi rotation
+				rotation += mathRotation.calcAngularMotion(inertiaMatrix, thruster5.UseThruster());
 			}
 			
 			//rotates the ship Rolling Left
-			if(input.IsKeyDown(KEY_KEY_Q))
+			if(input.IsKeyDown(KEY_KEY_E))
 			{
-				rotation += thruster6.UseThruster(100);
+				//mathRotation.calcAngularMotion returns the acceleration which needs to be converted to velocity which then can be add to thsi rotation
+				rotation += mathRotation.calcAngularMotion(inertiaMatrix, thruster6.UseThruster());
 			}
+
+			matrix4 rotationMatrix = mathRotation.CreateFromQuaternion(mathRotation.CreateFromYawPitchRoll(rotation.X, rotation.Y, rotation.Z));
 
 			//Change velocity and position if no key is pressed. This is to maintain speed, because there is no resistance in space
 			velocity.Z = initialVelocity.Z;
@@ -218,8 +263,9 @@ int main()
 			initialVelocity = velocity;
 			initialPos = nodePosition;
 			boosterMP = 1;
+
+			csn->setViewMatrixAffector(rotationMatrix);
 		    csn->setPosition(nodePosition);
-			csn->setRotation(rotation);
 
 			//draw the scene
 			driver->endScene();
