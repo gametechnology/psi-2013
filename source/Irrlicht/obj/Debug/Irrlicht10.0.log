@@ -1,5 +1,5 @@
-﻿Build started 3/12/2013 3:27:37 PM.
-     1>Project "C:\Users\nmatt_000\Documents\psi2.0\psi-2013\source\Irrlicht\Irrlicht10.0.vcxproj" on node 3 (build target(s)).
+﻿Build started 3/12/2013 3:36:02 PM.
+     1>Project "C:\Users\nmatt_000\Documents\psi2.0\psi-2013\source\Irrlicht\Irrlicht10.0.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "obj\Debug\Irrlicht.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -20,4 +20,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:00.63
+Time Elapsed 00:00:00.43
