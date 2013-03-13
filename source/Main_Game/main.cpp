@@ -3,6 +3,7 @@
 #endif
 
 #include <irrlicht.h>
+#include "networking.h"
 
 using namespace irr;
 using namespace core;
@@ -39,7 +40,12 @@ private:
 int main() {
     // create device
     MyEventReceiver receiver;
+	ServerHandler* server;
+	ClientHandler* client;
 
+	server = new ServerHandler();
+	client = new ClientHandler();
+ 
 	// Creates device (takes opengl as default driver)
     IrrlichtDevice* device = createDevice(EDT_OPENGL,
             core::dimension2d<u32>(640, 480), 16, false, false, false, &receiver);
