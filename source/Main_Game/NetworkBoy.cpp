@@ -41,20 +41,6 @@ void NetworkBoy::connect(const char* ipString)
 	
 }
 
-void NetworkBoy::setupServer()
-{
-	isServer = true;
-
-	serverAddress.host = ENET_HOST_ANY;
-	serverAddress.port = 51234;
-	host = enet_host_create(&serverAddress, 32, 2, 0, 0);
-
-	if(host == NULL)
-		std::cout << "Error while creating ENet server host";
-	else
-		std::cout << "Created ENet server host";
-}
-
 void NetworkBoy::flush()
 {
 	

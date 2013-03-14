@@ -16,7 +16,6 @@ class NetworkBoy {
 		NetworkBoy();
 		~NetworkBoy();
 		void connect(const char* ipString);
-		void setupServer();
 		void flush();
 		void receivePackets();
 
