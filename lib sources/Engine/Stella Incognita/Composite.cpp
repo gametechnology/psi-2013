@@ -13,10 +13,6 @@ Composite::~Composite()
 {
 }
 
-void Composite::init()
-{
-}
-
 void Composite::handleMessage(unsigned int message, void* data)
 {
 	for (list<Component*>::iterator i = components.begin(); i != components.end(); ++i)

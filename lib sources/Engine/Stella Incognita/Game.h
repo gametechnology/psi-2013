@@ -17,7 +17,9 @@ class Game
 public:
 	Game();
 	~Game();
-	void run();
+	
+	static void run();
+
 	static Scene* getCurrentScene();
 	static void addScene(Scene* defaultScene);
 	static void removeScene();

@@ -46,7 +46,7 @@ void Game::run()
 	{
 		Game::getCurrentScene()->update();
 		Game::driver->beginScene(true, true, SColor(255,100,101,140));
-		Game::scenes->top()->smgr->drawAll();
+		Game::scenes->top()->sceneManager->drawAll();
 		Game::driver->endScene();
 	}
 
@@ -61,6 +61,7 @@ Scene* Game::getCurrentScene()
 void Game::addScene(Scene* scene)
 {
 	Game::scenes->push(scene);
+	scene->init();
 }
 
 void Game::removeScene()

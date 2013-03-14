@@ -15,7 +15,7 @@ public:
 
 	list<Component*> components;
 
-	virtual void init();
+	virtual void init() { };
 	virtual void handleMessage(unsigned int message, void* data);
 	virtual void update();
 

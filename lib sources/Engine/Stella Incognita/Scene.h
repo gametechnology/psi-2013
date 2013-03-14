@@ -20,12 +20,12 @@ public:
 		LOADING,
 		PLAYING,
 		PAUSED,
-		EXIT
+		EXITING
 	};
 
 	State state;
-	ISceneManager* smgr;
-	bool enabled;
+	ISceneManager* sceneManager;
+	//bool enabled;
 };
 
 #endif

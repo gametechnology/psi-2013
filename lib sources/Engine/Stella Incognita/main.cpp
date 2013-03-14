@@ -15,14 +15,10 @@ int main()
 	Game game = Game();
 
 	// Create test scene
-	TestScene* testScene = new TestScene();
-	game.addScene(testScene);
-
-	// Init the test scene
-	testScene->init();
+	Game::addScene(new TestScene());
 	
 	// Start the main loop
-	game.run();
+	Game::run();
 
 	// Debug for memory leaks
 	#ifdef _DEBUG

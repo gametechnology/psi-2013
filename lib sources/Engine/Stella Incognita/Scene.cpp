@@ -8,10 +8,10 @@ Scene::Scene()
 	state = LOADING;
 
 	// Create a scene manager
-	smgr = Game::device->getSceneManager();
+	sceneManager = Game::device->getSceneManager();
 
 	// Scene is enabled
-	enabled = true;
+	//enabled = true;
 }
 
 Scene::~Scene()

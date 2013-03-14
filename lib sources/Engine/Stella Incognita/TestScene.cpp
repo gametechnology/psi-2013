@@ -11,11 +11,11 @@ TestScene::TestScene(void)
 void TestScene::init()
 {
 	// Get the mesh
-	irr::scene::IAnimatedMesh* mesh = smgr->getMesh("sydney.md2");
+	irr::scene::IAnimatedMesh* mesh = sceneManager->getMesh("sydney.md2");
 
 	// Create model entity
 	Entity* testModel = new Entity();
-	testModel->irrNode =  smgr->addMeshSceneNode( mesh );
+	testModel->irrNode =  sceneManager->addMeshSceneNode( mesh );
 	this->addComponent(testModel);
 
 	//Set material on model
@@ -24,7 +24,7 @@ void TestScene::init()
 
 	// Create camera entity
 	Entity* camera = new Entity();
-	camera->irrNode =  smgr->addCameraSceneNode(0, vector3df(0,4,-40), vector3df(0,4,0));
+	camera->irrNode =  sceneManager->addCameraSceneNode(0, vector3df(0,4,-40), vector3df(0,4,0));
 	this->addComponent(camera);
 }
 
