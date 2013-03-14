@@ -25,7 +25,7 @@ Game::Game()
 {
 	//Create a new stack to store all scenes
 	Game::scenes = new stack<Scene*>;
-	
+
 	// Create the irrlicht device 
 	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, false, 0);
 
@@ -41,19 +41,19 @@ Game::Game()
 
 void Game::run()
 {
-		//Main loop
-		while(Game::device->run())
-		{
-			Game::getTopScene()->Update();
-			Game::driver->beginScene(true, true, SColor(255,100,101,140));
-			Game::scenes->top()->smgr->drawAll();
-			Game::driver->endScene();
-		}
+	//Main loop
+	while(Game::device->run())
+	{
+		Game::getCurrentScene()->Update();
+		Game::driver->beginScene(true, true, SColor(255,100,101,140));
+		Game::scenes->top()->smgr->drawAll();
+		Game::driver->endScene();
+	}
 
-		Game::device->drop();
+	Game::device->drop();
 }
 
-Scene* Game::getTopScene()
+Scene* Game::getCurrentScene()
 {
 	return scenes->top();
 }
@@ -63,6 +63,16 @@ void Game::addScene(Scene* scene)
 	Game::scenes->push(scene);
 }
 
+void Game::removeScene()
+{
+	Game::scenes->pop();
+}
+
 Game::~Game()
 {
+	//device->drop();
+	//delete device;
+	//delete driver;
+	//delete messages;
+	//delete scenes;
 }

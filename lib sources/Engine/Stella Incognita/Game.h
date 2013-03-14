@@ -18,14 +18,15 @@ public:
 	Game();
 	~Game();
 	void run();
-	static Scene* getTopScene();
+	static Scene* getCurrentScene();
 	static void addScene(Scene* defaultScene);
+	static void removeScene();
 
 	static IrrlichtDevice* device;
 	static IVideoDriver* driver;
-	static stack<Scene*>* scenes; 
 	static Message* messages;
-
+protected:
+	static stack<Scene*>* scenes; 
 };
 
 #endif
