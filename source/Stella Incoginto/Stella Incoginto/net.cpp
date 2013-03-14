@@ -3,7 +3,7 @@
 
 #include <process.h>
 #include <sstream>
-
+#include "client.h"
 
 
 using namespace irr;
@@ -24,12 +24,11 @@ private:
 	static BOOLEAN isServer;
 	static std::string serverip;
 	static BOOLEAN isrunning;
-	static int playernumber;
-	static list<int> clientip;
-		
-		static int lastpackageids[];
-		static int lastpackageid;
-		static int packageidsend = 0;
+	static list<Client> clientlist;
+	static Client mypc;
+	static int lastpackageidrecieved;
+	// 0 = connecting, 1 = inlobby, 2 = loading 3 = ingame
+	static int stagegame;
 	static void senderthread(void * var)
 	{    
 		sf::SocketUDP Socket;
@@ -39,38 +38,43 @@ private:
 		int z;
 
 		while(true){
-				
-			if (isServer ==  FALSE){
-				sf::Packet packettosend;
-				std::string header = "RegUpdt";
-					packettosend << header << playernumber << packageidsend  << x << y  << z ;
-				if (Socket.Send(packettosend, serverip, 7000) != sf::Socket::Done)
-				{
-					// Error...
+			switch(stagegame){
+				case 3:
+					if (isServer ==  FALSE){
+						sf::Packet packettosend;
+						std::string header = "RegUpdt";
+						packettosend << header << mypc.Playernumber << mypc.lastpackageid  << x << y  << z ;
+						if (Socket.Send(packettosend, serverip, 7000) != sf::Socket::Done)
+						{
+							// Error...
 
-				}
-			}
-			else
-			{
-
-				for (list<int>::ConstIterator iterator = clientip.begin(); iterator != clientip.end(); ++iterator) {
-					sf::Packet packettosend;
-					std::string header = "RegUpdt";
-					packettosend << header << playernumber << x << y  << z ;
-					if (Socket.Send(packettosend, *iterator, 7000) != sf::Socket::Done)
-					{
-						// Error...
-
+						}
 					}
-				}
+					else
+					{
+
+						for (list<Client>::ConstIterator iterator = clientlist.begin(); iterator != clientlist.end(); ++iterator) {
+							sf::Packet packettosend;
+							std::string header = "RegUpdt";
+							packettosend << header << mypc.Playernumber << x << y  << z ;
+							if (Socket.Send(packettosend, iterator->Ipadress, 7000) != sf::Socket::Done)
+							{
+								// Error...
+
+							}
+						}
+					}
+				break;
+				default:
+
 			}
-				packageidsend++;
+			mypc.lastpackageid++;
 			Sleep(30);
 		}
 		Socket.Close();
 		return;
 	}
-		static void  recieverthread(void * var)
+	static void  recieverthread(void * var)
 	{
 		IAnimatedMeshSceneNode * nodeother = (IAnimatedMeshSceneNode*)var;
 		sf::SocketUDP Socket;
@@ -91,35 +95,38 @@ private:
 				std::string header;
 				packettorecieve >> header;
 				if (header == "RegUpdt"){
-
+					Client * sender = GetClientByIp(Sender.ToString());
 					int playernumber;
-						int packageid;
+					int packageid;
 					float x;
 					float y;
 					float z;
 						packettorecieve >> playernumber >> packageid >> x >> y >> z ;
-						if((isServer == true && lastpackageids[playernumber -1] < packageid) || (isServer == false && lastpackageid < packageid))
+					
+						if((isServer == true && sender->lastpackageid < packageid) || (isServer == false && lastpackageidrecieved < packageid))
 						{
 							//update code;
 					if (isServer == true)
 					{
-								lastpackageids[playernumber -1] = packageid;
-								for (list<int>::ConstIterator iterator = clientip.begin(); iterator != clientip.end(); ++iterator) {
+								sender->lastpackageid = packageid;
+								for (list<Client>::ConstIterator iterator = clientlist.begin(); iterator != clientlist.end(); ++iterator) {
 									//TODO some check that we don't send to client we recieved from
+									if(iterator->Ipadress == Sender.ToString())
+										continue;
 									sf::Packet packettosend;
 									std::string header = "RegUpdt";
-									packettosend << header << playernumber << packageidsend << x << y  << z ;
-									if (Socket.Send(packettosend, *iterator, 7000) != sf::Socket::Done)
+									packettosend << header << playernumber << mypc.lastpackageid << x << y  << z ;
+									if (Socket.Send(packettosend, iterator->Ipadress, 7000) != sf::Socket::Done)
 									{
 										// Error...
 
 									}
 								}
-								packageidsend++;
+								mypc.lastpackageid++;
 							}
 							else
 							{
-								lastpackageid = packageid;
+								mypc.lastpackageid = packageid;
 							}
 					}
 				}
@@ -128,10 +135,12 @@ private:
 		Socket.Close();
 		return;
 	}
+	static Client * GetClientByIp(std::string);
 		//TODO write check package recieved code.
 public:
 	Net();		
 	Net(std::string);
+
 	void StartGame()
 	{
 		if(isServer)
@@ -139,23 +148,23 @@ public:
 			// Create an UDP socket.
 			sf::SocketUDP Socket;
 			// Copy the list with client IPs so we can remove clients that have responded.
-			list<int> copyclientip = clientip;
+			list<Client> copyclient = clientlist;
 
 			while(true)
 			{
 				// Loop through the clients.
-				for (list<int>::Iterator i = copyclientip.begin(); i != copyclientip.end(); i++)
+				for (list<Client>::Iterator i = copyclient.begin(); i != copyclient.end(); i++)
 				{
 					// Send a packet with header StartGame and a begin position to the client.
 					sf::Packet packettosend;
 					std::string header = "StartGame";
-					packettosend << header << playernumber << 0 << 0 << 0 ;
-					if (Socket.Send(packettosend, *i, 7000) != sf::Socket::Done) 
+					packettosend << header << 0 << 0 << 0 ;
+					if (Socket.Send(packettosend, i->Ipadress, 7000) != sf::Socket::Done) 
 					{ 
 						// Error.
 					}
 
-					Sleep(1000);
+					
 
 					sf::Packet packettorecieve;
 					sf::IPAddress Sender;
@@ -170,12 +179,12 @@ public:
 						packettorecieve >> header;
 						if (header == "StartGameAck")
 						{
-							for (list<int>::Iterator i = copyclientip.begin(); i != copyclientip.end(); i++)
+							for (list<Client>::Iterator i = copyclient.begin(); i != copyclient.end(); i++)
 							{
-								if(Sender == *i)
+								if(Sender == i->Ipadress)
 								{
 									// Remove the client ip that responded from the list.
-									copyclientip.erase(i);
+									copyclient.erase(i);
 									break;
 								}
 							}
@@ -183,43 +192,53 @@ public:
 					}
 				}
 				// Stop sending packets when every client has responded.
-				if(copyclientip.size() == 0)
+				if(copyclient.size() == 0)
 				{
 					break;
 				}
+				Sleep(50);
 			}
 		}
 	}
 };
-		BOOLEAN Net:: isServer;
-		std::string Net:: serverip;
-		BOOLEAN Net:: isrunning;
-		int Net:: playernumber;
-		list<int> Net:: clientip;
+		BOOLEAN isServer;
+		std::string serverip;
+		BOOLEAN isrunning;
+		list<Client> clientlist;
+		Client mypc;
+		int lastpackageidrecieved;
 		
-/*
-Use this function if you are the server
-*/
-Net::Net()
-{
-			Net::isServer = TRUE;
-		//	_beginthread(senderthread,0,NULL);
-		//	_beginthread(recieverthread,0,NULL);
-	//TODO write connect code;
-}
-/*
-Use this function if you are a client an pass the server of the as the parameter.
-*/
-Net::Net(std::string ipadres)
-{
-			Net::serverip = ipadres;
-			Net::isServer = FALSE;
+		/*
+		Use this function if you are the server
+		*/
+		Net::Net()
+		{
+				
+			
+					Net::isServer = TRUE;
+					_beginthread(senderthread,0,NULL);
+					_beginthread(recieverthread,0,NULL);
+			//TODO write connect code;
+		}
+		/*
+		Use this function if you are a client an pass the server of the as the parameter.
+		*/
+		Net::Net(std::string ipadres)
+		{			
 
-	//TODO write connect code;
+					Net::serverip = ipadres;
+					Net::isServer = FALSE;
+					_beginthread(senderthread,0,NULL);
+					_beginthread(recieverthread,0,NULL);
+			//TODO write connect code;
 
-}	
 		}	
-		void Net::StartGame(){
-			// TODO write start game code;
+
+		Client * Net::GetClientByIp(std::string ipadress)
+		{
+			for (list<Client>::ConstIterator iterator = clientlist.begin(); iterator != clientlist.end(); ++iterator) {
+				if(iterator->Ipadress == ipadress)
+					return (Client*)&iterator;
+			}
 		}
 
