@@ -1,25 +1,21 @@
-﻿Build started 3/12/2013 1:04:49 PM.
-     1>Project "C:\Users\Aggror\Documents\psi-2013\lib sources\Engine\Stella Incognita\Stella Incognita.vcxproj" on node 2 (rebuild target(s)).
-     1>PrepareForBuild:
-         Creating directory "C:\Users\Aggror\Documents\psi-2013\lib sources\Engine\Release\".
-       InitializeBuildStatus:
-         Creating "Release\Stella Incognita.unsuccessfulbuild" because "AlwaysCreate" was specified.
+﻿Build started 3/14/2013 9:18:30 AM.
+     1>Project "C:\Users\Aggror\Documents\psi-2013\lib sources\Engine\Stella Incognita\Stella Incognita.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Release\Stella Incognita.unsuccessfulbuild".
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Component.cpp Composite.cpp Entity.cpp Game.cpp main.cpp Play.cpp Scene.cpp
-         Component.cpp
-         Composite.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Entity.cpp Game.cpp main.cpp Scene.cpp TestScene.cpp
          Entity.cpp
      1>c:\users\aggror\documents\psi-2013\lib sources\engine\stella incognita\Entity.h(2): fatal error C1083: Cannot open include file: 'irrlicht.h': No such file or directory
          Game.cpp
      1>Game.cpp(1): fatal error C1083: Cannot open include file: 'irrlicht.h': No such file or directory
          main.cpp
      1>c:\users\aggror\documents\psi-2013\lib sources\engine\stella incognita\Game.h(1): fatal error C1083: Cannot open include file: 'irrlicht.h': No such file or directory
-         Play.cpp
-     1>c:\users\aggror\documents\psi-2013\lib sources\engine\stella incognita\Entity.h(2): fatal error C1083: Cannot open include file: 'irrlicht.h': No such file or directory
          Scene.cpp
      1>c:\users\aggror\documents\psi-2013\lib sources\engine\stella incognita\Entity.h(2): fatal error C1083: Cannot open include file: 'irrlicht.h': No such file or directory
-     1>Done Building Project "C:\Users\Aggror\Documents\psi-2013\lib sources\Engine\Stella Incognita\Stella Incognita.vcxproj" (rebuild target(s)) -- FAILED.
+         TestScene.cpp
+     1>c:\users\aggror\documents\psi-2013\lib sources\engine\stella incognita\Entity.h(2): fatal error C1083: Cannot open include file: 'irrlicht.h': No such file or directory
+     1>Done Building Project "C:\Users\Aggror\Documents\psi-2013\lib sources\Engine\Stella Incognita\Stella Incognita.vcxproj" (build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:01.37
+Time Elapsed 00:00:00.90

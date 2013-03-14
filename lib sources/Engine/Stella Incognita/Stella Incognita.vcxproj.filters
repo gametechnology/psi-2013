@@ -63,4 +63,10 @@
     </ClInclude>
     <ClInclude Include="TestScene.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="sydney.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="sydney.md2" />
+  </ItemGroup>
 </Project>
