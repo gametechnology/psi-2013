@@ -52,12 +52,6 @@
     <ClInclude Include="Message.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\irrlist.h">
-      <Filter>Irrlicht Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\irrlicht.h">
-      <Filter>Irrlicht Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
