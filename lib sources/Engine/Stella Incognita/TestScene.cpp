@@ -12,13 +12,9 @@ TestScene::TestScene(void)
 
 void TestScene::init()
 {
-	// Get the mesh
-	irr::scene::IAnimatedMesh* mesh = sceneManager->getMesh("sydney.md2");
-
 	// Create model entity
 	Entity* testModel = new Entity();
-	testModel->irrNode =  sceneManager->addMeshSceneNode( mesh );
-	this->addComponent(testModel);
+	testModel->createNode("sydney.md2");
 
 	//Set material on model
 	//testModel->irrNode->setMaterialTexture( 0, Game::driver->getTexture("../../Irrlicht/Media/sydney.bmp") );

@@ -1,7 +1,6 @@
 #include "Scene.h"
 #include "Game.h"
 
-
 Scene::Scene()
 {
 	// Set the state

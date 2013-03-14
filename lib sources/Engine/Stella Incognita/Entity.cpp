@@ -1,4 +1,5 @@
 #include "Entity.h"
+#include "Game.h"
 
 Entity::Entity()
 {
@@ -38,6 +39,17 @@ void Entity::draw()
 	this->irrNode->setVisible(true);
 
 	this->irrNode->render();
+}
+
+void Entity::createNode(std::string modelPath)
+{
+	// Get the mesh
+	irr::scene::IAnimatedMesh* mesh = Game::getSceneManager()->getMesh(modelPath.c_str());
+
+	// Create model entity
+	Entity* tempModel = new Entity();
+	tempModel->irrNode =  Game::getSceneManager()->addMeshSceneNode( mesh );
+	Game::getCurrentScene()->addComponent(tempModel);
 }
 
 Entity::~Entity()

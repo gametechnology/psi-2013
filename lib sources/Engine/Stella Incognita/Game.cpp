@@ -58,6 +58,11 @@ Scene* Game::getCurrentScene()
 	return scenes->top();
 }
 
+ISceneManager* Game::getSceneManager()
+{
+	return scenes->top()->sceneManager;
+}
+
 void Game::addScene(Scene* scene)
 {
 	Game::scenes->push(scene);

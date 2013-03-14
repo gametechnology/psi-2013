@@ -2,6 +2,7 @@
 #include "irrlicht.h"
 #include <vector3d.h>
 #include "irrMath.h"
+#include <string>
 
 #ifndef ENTITY
 #define ENTITY
@@ -34,6 +35,7 @@ public:
 	// Methods
 	virtual void update();
 	virtual void draw();
+	virtual void createNode(std::string modelPath);
 };
 
 #endif

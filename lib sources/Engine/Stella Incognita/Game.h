@@ -21,6 +21,7 @@ public:
 	static void run();
 
 	static Scene* getCurrentScene();
+	static ISceneManager* getSceneManager();
 	static void addScene(Scene* defaultScene);
 	static void removeScene();
 
