@@ -14,7 +14,7 @@ class Client{
 		list<int> lastimportantrecievedpackages;
 		int Playernumber;
 		std::string Name;
-		Client(std::string, int ,std::string);
+		Client(std::string ipadress, int playernumber ,std::string name);
 		Client();
 };
 #endif
