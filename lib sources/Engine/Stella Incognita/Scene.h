@@ -25,7 +25,6 @@ public:
 
 	State state;
 	ISceneManager* sceneManager;
-	//bool enabled;
 };
 
 #endif

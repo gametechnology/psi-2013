@@ -1,6 +1,5 @@
 #include "Game.h"
 #include "TestScene.h"
-#include "Entity.h"
 
 // Include memory leak detection files.
 #ifdef _DEBUG

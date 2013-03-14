@@ -24,6 +24,7 @@ public:
 	static ISceneManager* getSceneManager();
 	static void addScene(Scene* defaultScene);
 	static void removeScene();
+	
 
 	static IrrlichtDevice* device;
 	static IVideoDriver* driver;

@@ -1,7 +1,7 @@
 #include "Scene.h"
 #include "Game.h"
 
-Scene::Scene()
+Scene::Scene() : Composite(NULL)
 {
 	// Set the state
 	state = LOADING;

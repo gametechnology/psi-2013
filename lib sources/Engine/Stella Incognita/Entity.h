@@ -13,12 +13,11 @@ using namespace core;
 class Entity : public Composite
 {
 public:
-	Entity();
 	Entity(Composite* parent);
 	~Entity();
 
 	// Variables
-	irr::scene::ISceneNode* irrNode;
+	irr::scene::ISceneNode* node;
 
 	float mass;
 	vector3d<float> force;

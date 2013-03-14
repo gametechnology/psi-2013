@@ -1,9 +1,5 @@
 #include "Composite.h"
 
-Composite::Composite():Component(NULL)
-{
-}
-
 Composite::Composite(Composite* parent):Component(parent)
 {
 }
