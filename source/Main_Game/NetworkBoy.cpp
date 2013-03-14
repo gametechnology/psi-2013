@@ -10,7 +10,7 @@ enum PACKET_TYPE : unsigned short
 NetworkBoy::NetworkBoy()
 {	
 	enet_initialize();
-	port = 56000;
+	port = 1234;
 	host = NULL;
 }
 
@@ -31,7 +31,7 @@ void NetworkBoy::connect(const char* ipString)
 		std::cout << "Created ENet client host\n";
 
 	enet_address_set_host(&serverAddress, ipString);
-	serverAddress.port = 51234;
+	serverAddress.port = this->port;
 	serverPeer = enet_host_connect(host, &serverAddress, 2, 0);
 
 	if(serverPeer == NULL)
