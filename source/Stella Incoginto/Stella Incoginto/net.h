@@ -1,5 +1,24 @@
 #ifndef Net_H
 #define Net_H
+#include "stdafx.h"
+
+
+#include <process.h>
+#include <sstream>
+#include "client.h"
+using namespace irr;
+
+using namespace core;
+using namespace scene;
+using namespace video;
+
+
+
+#ifdef _IRR_WINDOWS_
+#pragma comment(lib, "Irrlicht.lib")
+#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
+#endif
+
 class Net{
 	private:
 		static BOOLEAN isServer;
@@ -11,7 +30,7 @@ class Net{
 		// 0 = connecting, 1 = inlobby, 2 = loading 3 = ingame
 		static int stagegame;
 		static void senderthread(void * var);
-		static void  revieverthread(void * var);
+		static void recieverthread(void * var);
 		static Client * GetClientByIp(std::string);
 	public:
 		Net();		

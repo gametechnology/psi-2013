@@ -1,35 +1,17 @@
 #include "stdafx.h"
+#include "net.h"
 
 
-#include <process.h>
-#include <sstream>
-#include "client.h"
+	BOOLEAN Net::isServer;
+	std::string Net::serverip;
+	BOOLEAN Net::isrunning;
+	list<Client> Net::clientlist;
+	Client Net::mypc;
+	int Net::lastpackageidrecieved;
+// 0 = connecting, 1 = inlobby, 2 = loading 3 = ingame
+	int Net::stagegame;
 
-
-using namespace irr;
-
-using namespace core;
-using namespace scene;
-using namespace video;
-
-
-
-#ifdef _IRR_WINDOWS_
-#pragma comment(lib, "Irrlicht.lib")
-#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
-#endif
-
-class Net{
-private:
-	static BOOLEAN isServer;
-	static std::string serverip;
-	static BOOLEAN isrunning;
-	static list<Client> clientlist;
-	static Client mypc;
-	static int lastpackageidrecieved;
-	// 0 = connecting, 1 = inlobby, 2 = loading 3 = ingame
-	static int stagegame;
-	static void senderthread(void * var)
+	void Net::senderthread(void * var)
 	{    
 		sf::SocketUDP Socket;
 		//TODO write recieve data code.
@@ -66,7 +48,7 @@ private:
 					}
 				break;
 				default:
-
+					break;
 			}
 			mypc.lastpackageid++;
 			Sleep(30);
@@ -74,7 +56,7 @@ private:
 		Socket.Close();
 		return;
 	}
-	static void  recieverthread(void * var)
+	void  Net::recieverthread(void * var)
 	{
 		IAnimatedMeshSceneNode * nodeother = (IAnimatedMeshSceneNode*)var;
 		sf::SocketUDP Socket;
@@ -135,13 +117,43 @@ private:
 		Socket.Close();
 		return;
 	}
-	static Client * GetClientByIp(std::string);
-		//TODO write check package recieved code.
-public:
-	Net();		
-	Net(std::string);
 
-	void StartGame()
+		
+		
+		/*
+		Use this function if you are the server
+		*/
+		Net::Net()
+		{
+					isServer = TRUE;
+					/*
+					_beginthread(senderthread,0,NULL);
+					_beginthread(recieverthread,0,NULL);*/
+			//TODO write connect code;
+		}
+		/*
+		Use this function if you are a client an pass the server of the as the parameter.
+		*/
+		Net::Net(std::string ipadres)
+		{			
+
+					serverip = ipadres;
+					isServer = FALSE;
+					/*
+					_beginthread(senderthread,0,NULL);
+					_beginthread(recieverthread,0,NULL);*/
+			//TODO write connect code;
+
+		}	
+
+	Client * Net::GetClientByIp(std::string ipadress)
+		{
+			for (list<Client>::ConstIterator iterator = clientlist.begin(); iterator != clientlist.end(); ++iterator) {
+				if(iterator->Ipadress == ipadress)
+					return (Client*)&iterator;
+			}
+		}
+	void Net::StartGame()
 	{
 		if(isServer)
 		{
@@ -200,45 +212,3 @@ public:
 			}
 		}
 	}
-};
-		BOOLEAN isServer;
-		std::string serverip;
-		BOOLEAN isrunning;
-		list<Client> clientlist;
-		Client mypc;
-		int lastpackageidrecieved;
-		
-		/*
-		Use this function if you are the server
-		*/
-		Net::Net()
-		{
-				
-			
-					Net::isServer = TRUE;
-					_beginthread(senderthread,0,NULL);
-					_beginthread(recieverthread,0,NULL);
-			//TODO write connect code;
-		}
-		/*
-		Use this function if you are a client an pass the server of the as the parameter.
-		*/
-		Net::Net(std::string ipadres)
-		{			
-
-					Net::serverip = ipadres;
-					Net::isServer = FALSE;
-					_beginthread(senderthread,0,NULL);
-					_beginthread(recieverthread,0,NULL);
-			//TODO write connect code;
-
-		}	
-
-		Client * Net::GetClientByIp(std::string ipadress)
-		{
-			for (list<Client>::ConstIterator iterator = clientlist.begin(); iterator != clientlist.end(); ++iterator) {
-				if(iterator->Ipadress == ipadress)
-					return (Client*)&iterator;
-			}
-		}
-
