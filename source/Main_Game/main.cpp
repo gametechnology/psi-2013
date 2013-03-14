@@ -3,6 +3,8 @@
 #endif
 
 #include <irrlicht.h>
+#include "MainEventReceiver.cpp";
+#include "NetworkBoy.h";
 
 using namespace irr;
 using namespace core;
@@ -49,12 +51,24 @@ int main() {
 
     video::IVideoDriver* driver = device->getVideoDriver();
     scene::ISceneManager* smgr = device->getSceneManager();
+	IGUIEnvironment* guienv = device->getGUIEnvironment();
 
-	scene::ISceneNode * node1 = smgr->addSphereSceneNode();
-	node1->setPosition(core::vector3df(0,0,50));
+	irr::gui::IGUIButton* connectButton = guienv->addButton(rect<s32>(10, 120, 110, 120+32), 0, GUI_ID_CONNECT_BUTTON, L"Connect");
+	irr::gui::IGUIEditBox* ipBox = guienv->addEditBox(L"", rect<s32>(10, 80, 200, 100));
 
-	scene::ISceneNode * node2 = smgr->addSphereSceneNode();
-	node2->setPosition(core::vector3df(20,0,50));
+	// create our network interface
+	NetworkBoy networkBoy;
+
+	// Store the appropriate data in a context structure.
+	SAppContext context;
+	context.device = device;
+	context.networkBoy = &networkBoy;
+	context.ipBox = ipBox;
+	context.connect = connectButton;
+
+	// Then create the event receiver, giving it that context structure.
+	MainEventReceiver guiReceiver(context);
+	device->setEventReceiver(&guiReceiver);
 
 	// Camera view
 	smgr->addCameraSceneNode();
@@ -62,50 +76,10 @@ int main() {
 	//game loop
     while(device->run())
     {
-		// moving node1
-		core::vector3df nodePositionA = node1->getPosition();
-
-        if(receiver.IsKeyDown(irr::KEY_KEY_W))
-            nodePositionA.Y += 0.01f;
-        else if(receiver.IsKeyDown(irr::KEY_KEY_S))
-            nodePositionA.Y -= 0.01f;
-
-        if(receiver.IsKeyDown(irr::KEY_KEY_A))
-            nodePositionA.X -= 0.01f;
-        else if(receiver.IsKeyDown(irr::KEY_KEY_D))
-            nodePositionA.X += 0.01f;
-
-		if(receiver.IsKeyDown(irr::KEY_KEY_Z))
-            nodePositionA.Z -= 0.01f;
-        else if(receiver.IsKeyDown(irr::KEY_KEY_Q))
-            nodePositionA.Z += 0.01f;
-
-        node1->setPosition(nodePositionA);
-
-
-		// moving node2
-		core::vector3df nodePositionB = node2->getPosition();
-
-        if(receiver.IsKeyDown(irr::KEY_KEY_I))
-            nodePositionB.Y += 0.01f;
-        else if(receiver.IsKeyDown(irr::KEY_KEY_K))
-            nodePositionB.Y -= 0.01f;
-
-        if(receiver.IsKeyDown(irr::KEY_KEY_J))
-            nodePositionB.X -= 0.01f;
-        else if(receiver.IsKeyDown(irr::KEY_KEY_L))
-            nodePositionB.X += 0.01f;
-
-		if(receiver.IsKeyDown(irr::KEY_KEY_M))
-            nodePositionB.Z -= 0.01f;
-        else if(receiver.IsKeyDown(irr::KEY_KEY_U))
-            nodePositionB.Z += 0.01f;
-
-        node2->setPosition(nodePositionB);
-
         driver->beginScene(true, true, video::SColor(255,113,113,133));
 
         smgr->drawAll(); // draw the 3d scene
+		guienv->drawAll(); // draw the ui
         driver->endScene();
     }
 
