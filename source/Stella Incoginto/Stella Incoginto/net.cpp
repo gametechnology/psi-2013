@@ -18,90 +18,91 @@ using namespace video;
 #pragma comment(lib, "Irrlicht.lib")
 #pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
-	
+
 class Net{
-	private:
-		static BOOLEAN isServer;
-		static std::string serverip;
-		static BOOLEAN isrunning;
-		static int playernumber;
-		static list<int> clientip;
+private:
+	static BOOLEAN isServer;
+	static std::string serverip;
+	static BOOLEAN isrunning;
+	static int playernumber;
+	static list<int> clientip;
+		
 		static int lastpackageids[];
 		static int lastpackageid;
 		static int packageidsend = 0;
-		static void senderthread(void * var)
-		{    
-			sf::SocketUDP Socket;
-			//TODO write recieve data code.
-			int x;
-			int y;
-			int z;
-			
-			while(true){
+	static void senderthread(void * var)
+	{    
+		sf::SocketUDP Socket;
+		//TODO write recieve data code.
+		int x;
+		int y;
+		int z;
+
+		while(true){
 				
-				if (isServer ==  FALSE){
-					sf::Packet packettosend;
-					std::string header = "RegUpdt";
+			if (isServer ==  FALSE){
+				sf::Packet packettosend;
+				std::string header = "RegUpdt";
 					packettosend << header << playernumber << packageidsend  << x << y  << z ;
-					if (Socket.Send(packettosend, serverip, 7000) != sf::Socket::Done)
-					{
-						// Error...
-			
-					}
-				}
-				else
-				{
-					
-					for (list<int>::ConstIterator iterator = clientip.begin(); iterator != clientip.end(); ++iterator) {
-						sf::Packet packettosend;
-						std::string header = "RegUpdt";
-						packettosend << header << playernumber << x << y  << z ;
-						if (Socket.Send(packettosend, *iterator, 7000) != sf::Socket::Done)
-						{
-							// Error...
-			
-						}
-					}
-				}
-				packageidsend++;
-				Sleep(30);
-			}
-			Socket.Close();
-			return;
-		}
-		static void  recieverthread(void * var)
-		{
-			IAnimatedMeshSceneNode * nodeother = (IAnimatedMeshSceneNode*)var;
-			sf::SocketUDP Socket;
-			if (!Socket.Bind(7000))
-				return;
-	
-			while (true)
-			{
-				sf::Packet packettorecieve;
-				sf::IPAddress Sender;
-				unsigned short Port;
-				if (Socket.Receive(packettorecieve, Sender, Port) != sf::Socket::Done)
+				if (Socket.Send(packettosend, serverip, 7000) != sf::Socket::Done)
 				{
 					// Error...
-			
+
 				}
-				else{
-					std::string header;
-					packettorecieve >> header;
-					if (header == "RegUpdt"){
-						
-						int playernumber;
+			}
+			else
+			{
+
+				for (list<int>::ConstIterator iterator = clientip.begin(); iterator != clientip.end(); ++iterator) {
+					sf::Packet packettosend;
+					std::string header = "RegUpdt";
+					packettosend << header << playernumber << x << y  << z ;
+					if (Socket.Send(packettosend, *iterator, 7000) != sf::Socket::Done)
+					{
+						// Error...
+
+					}
+				}
+			}
+				packageidsend++;
+			Sleep(30);
+		}
+		Socket.Close();
+		return;
+	}
+		static void  recieverthread(void * var)
+	{
+		IAnimatedMeshSceneNode * nodeother = (IAnimatedMeshSceneNode*)var;
+		sf::SocketUDP Socket;
+		if (!Socket.Bind(7000))
+			return;
+
+		while (true)
+		{
+			sf::Packet packettorecieve;
+			sf::IPAddress Sender;
+			unsigned short Port;
+			if (Socket.Receive(packettorecieve, Sender, Port) != sf::Socket::Done)
+			{
+				// Error...
+
+			}
+			else{
+				std::string header;
+				packettorecieve >> header;
+				if (header == "RegUpdt"){
+
+					int playernumber;
 						int packageid;
-						float x;
-						float y;
-						float z;
+					float x;
+					float y;
+					float z;
 						packettorecieve >> playernumber >> packageid >> x >> y >> z ;
 						if((isServer == true && lastpackageids[playernumber -1] < packageid) || (isServer == false && lastpackageid < packageid))
 						{
 							//update code;
-							if (isServer == true)
-							{
+					if (isServer == true)
+					{
 								lastpackageids[playernumber -1] = packageid;
 								for (list<int>::ConstIterator iterator = clientip.begin(); iterator != clientip.end(); ++iterator) {
 									//TODO some check that we don't send to client we recieved from
@@ -111,7 +112,7 @@ class Net{
 									if (Socket.Send(packettosend, *iterator, 7000) != sf::Socket::Done)
 									{
 										// Error...
-			
+
 									}
 								}
 								packageidsend++;
@@ -120,17 +121,75 @@ class Net{
 							{
 								lastpackageid = packageid;
 							}
-						}
 					}
 				}
 			}
-			Socket.Close();
-			return;
 		}
-	public:
-		Net();		
-		Net(std::string);
-		void StartGame();
+		Socket.Close();
+		return;
+	}
+		//TODO write check package recieved code.
+public:
+	Net();		
+	Net(std::string);
+	void StartGame()
+	{
+		if(isServer)
+		{
+			// Create an UDP socket.
+			sf::SocketUDP Socket;
+			// Copy the list with client IPs so we can remove clients that have responded.
+			list<int> copyclientip = clientip;
+
+			while(true)
+			{
+				// Loop through the clients.
+				for (list<int>::Iterator i = copyclientip.begin(); i != copyclientip.end(); i++)
+				{
+					// Send a packet with header StartGame and a begin position to the client.
+					sf::Packet packettosend;
+					std::string header = "StartGame";
+					packettosend << header << playernumber << 0 << 0 << 0 ;
+					if (Socket.Send(packettosend, *i, 7000) != sf::Socket::Done) 
+					{ 
+						// Error.
+					}
+
+					Sleep(1000);
+
+					sf::Packet packettorecieve;
+					sf::IPAddress Sender;
+					unsigned short Port;
+					if (Socket.Receive(packettorecieve, Sender, Port) != sf::Socket::Done)
+					{
+						// Error.
+					}
+					else
+					{
+						std::string header;
+						packettorecieve >> header;
+						if (header == "StartGameAck")
+						{
+							for (list<int>::Iterator i = copyclientip.begin(); i != copyclientip.end(); i++)
+							{
+								if(Sender == *i)
+								{
+									// Remove the client ip that responded from the list.
+									copyclientip.erase(i);
+									break;
+								}
+							}
+						}
+					}
+				}
+				// Stop sending packets when every client has responded.
+				if(copyclientip.size() == 0)
+				{
+					break;
+				}
+			}
+		}
+	}
 };
 		BOOLEAN Net:: isServer;
 		std::string Net:: serverip;
@@ -138,26 +197,27 @@ class Net{
 		int Net:: playernumber;
 		list<int> Net:: clientip;
 		
-		/*
-		Use this function if you are the server
-		*/
-		Net::Net()
-		{
+/*
+Use this function if you are the server
+*/
+Net::Net()
+{
 			Net::isServer = TRUE;
-			_beginthread(senderthread,0,NULL);
-			_beginthread(recieverthread,0,NULL);
-			//TODO write connect code;
-		}
-		/*
-		Use this function if you are a client an pass the server of the as the parameter.
-		*/
-		Net::Net(std::string ipadres)
-		{
+		//	_beginthread(senderthread,0,NULL);
+		//	_beginthread(recieverthread,0,NULL);
+	//TODO write connect code;
+}
+/*
+Use this function if you are a client an pass the server of the as the parameter.
+*/
+Net::Net(std::string ipadres)
+{
 			Net::serverip = ipadres;
 			Net::isServer = FALSE;
-			
-			//TODO write connect code;
 
+	//TODO write connect code;
+
+}	
 		}	
 		void Net::StartGame(){
 			// TODO write start game code;
