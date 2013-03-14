@@ -10,6 +10,7 @@ namespaces. We also store a pointer to the Irrlicht device,
 a counter variable for changing the creation position of a window,
 and a pointer to a listbox.
 */
+#include <string.h>
 #include <irrlicht.h>
 #include "driverChoice.h"
 
@@ -33,13 +34,20 @@ struct SAppContext
 	s32				counter;
 	IGUIListBox*	listbox;
 };
+IGUIEditBox *hostIp;
+IGUIButton *host;
+IGUIButton *client;
+//TODO: MOdify to call the list for the net class
+list<int> clientList;
+
 
 // Define some values that we'll use to identify individual GUI controls.
 enum
 {
 	GUI_ID_QUIT_BUTTON = 101,
-	GUI_ID_NEW_WINDOW_BUTTON,
-	GUI_ID_FILE_OPEN_BUTTON,
+	GUI_ID_NEW_WINDOW_BUTTON,//hostButton
+	GUI_ID_FILE_OPEN_BUTTON,//playerButton
+	GUI_ID_FILE_START_BUTTON,
 	GUI_ID_TRANSPARENCY_SCROLL_BAR
 };
 
@@ -108,35 +116,49 @@ public:
 					Context.device->closeDevice();
 					return true;
 
-				case GUI_ID_NEW_WINDOW_BUTTON:
+				case GUI_ID_NEW_WINDOW_BUTTON: //host
 					{
-					Context.listbox->addItem(L"Window created");
+						host->setEnabled(true);
+						env->addButton(rect<s32>(10,360,110,360 + 32), 0, GUI_ID_FILE_START_BUTTON,
+			L"Start", L"Start a new game");
+						
+						
+
+
+					Context.listbox->addItem(L"put list content");
 					Context.counter += 30;
 					if (Context.counter > 200)
 						Context.counter = 0;
 
-					IGUIWindow* window = env->addWindow(
-						rect<s32>(100 + Context.counter, 100 + Context.counter, 300 + Context.counter, 200 + Context.counter),
-						false, // modal?
-						L"Test window");
-
-					env->addStaticText(L"Please close me",
-						rect<s32>(35,35,140,50),
-						true, // border?
-						false, // wordwrap?
-						window);
+					client->setEnabled(false);
 					}
 					return true;
 
-				case GUI_ID_FILE_OPEN_BUTTON:
-					Context.listbox->addItem(L"File open");
+				case GUI_ID_FILE_OPEN_BUTTON: //client
+					client->setEnabled(true);
+					env->addButton(rect<s32>(10,360,110,360 + 32), 0, GUI_ID_FILE_START_BUTTON,
+			L"Start", L"Start a new game");
+
+					hostIp = env->addEditBox(L"Host IP", rect<s32>(350, 80, 550, 100));
+
+					Context.listbox->addItem(L"put list content");
 					// There are some options for the file open dialog
 					// We set the title, make it a modal window, and make sure
 					// that the working directory is restored after the dialog
 					// is finished.
-					env->addFileOpenDialog(L"Please choose a file.", true, 0, -1, true);
+					//env->addFileOpenDialog(L"Please choose a file.", true, 0, -1, true);
+
+					host->setEnabled(false);
+
+
 					return true;
 
+				case GUI_ID_FILE_START_BUTTON:
+					//TODO: put the content of the box in some structure to send to the net class
+					if(!host->isEnabled())
+					hostIp->getText();					
+					
+					return true;
 				default:
 					return false;
 				}
@@ -144,10 +166,11 @@ public:
 
 			case EGET_FILE_SELECTED:
 				{
-					// show the model filename, selected in the file dialog
+					/*/ show the model filename, selected in the file dialog
 					IGUIFileOpenDialog* dialog =
 						(IGUIFileOpenDialog*)event.GUIEvent.Caller;
 					Context.listbox->addItem(dialog->getFileName());
+					*/
 				}
 				break;
 
@@ -215,10 +238,12 @@ int main()
 
 	env->addButton(rect<s32>(10,240,110,240 + 32), 0, GUI_ID_QUIT_BUTTON,
 			L"Quit", L"Exits Program");
-	env->addButton(rect<s32>(10,280,110,280 + 32), 0, GUI_ID_NEW_WINDOW_BUTTON,
-			L"New Window", L"Launches a new Window");
-	env->addButton(rect<s32>(10,320,110,320 + 32), 0, GUI_ID_FILE_OPEN_BUTTON,
-			L"File Open", L"Opens a file");
+	host = env->addButton(rect<s32>(10,280,110,280 + 32), 0, GUI_ID_NEW_WINDOW_BUTTON,
+			L"Host", L"create a new host");
+	client =env->addButton(rect<s32>(10,320,110,320 + 32), 0, GUI_ID_FILE_OPEN_BUTTON,
+			L"Client", L"create a new client");
+	
+	
 
 	/*
 	Now, we add a static text and a scrollbar, which modifies the
@@ -236,9 +261,10 @@ int main()
 	// set scrollbar position to alpha value of an arbitrary element
 	scrollbar->setPos(env->getSkin()->getColor(EGDC_WINDOW).getAlpha());
 
-	env->addStaticText(L"Logging ListBox:", rect<s32>(50,110,250,130), true);
+	env->addStaticText(L"Connected Players:", rect<s32>(50,110,250,130), true);
 	IGUIListBox * listbox = env->addListBox(rect<s32>(50, 140, 250, 210));
-	env->addEditBox(L"Editable Text", rect<s32>(350, 80, 550, 100));
+	//env->addEditBox(L"Host IP", rect<s32>(350, 80, 550, 100));
+	
 
 	// Store the appropriate data in a context structure.
 	SAppContext context;
