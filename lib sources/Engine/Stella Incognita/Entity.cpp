@@ -42,4 +42,5 @@ void Entity::draw()
 
 Entity::~Entity()
 {
+	delete irrNode;
 }

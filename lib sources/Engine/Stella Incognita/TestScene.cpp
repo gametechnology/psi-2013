@@ -2,6 +2,8 @@
 #include "irrlicht.h"
 #include "Game.h"
 #include "Composite.h"
+#include "Component.h"
+#include <list>
 
 TestScene::TestScene(void)
 {
@@ -31,8 +33,9 @@ void TestScene::init()
 
 TestScene::~TestScene(void)
 {
-	delete testModel;
-	delete camera;
-
-	// TODO: use a loop to remove all entity
+	//Remove all entities from the scene list
+	for(std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i )
+	{
+		delete (*i);
+	}
 }
