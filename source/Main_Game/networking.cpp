@@ -48,14 +48,13 @@ ClientHandler::~ClientHandler()
 	enet_host_destroy(client);
 }
 
-void ClientHandler::setupClient(const char *address_name)
+void ClientHandler::setupClient(const char* address_name)
 {
 	client = enet_host_create (NULL, 1, 2, 57600 / 8, 14400 / 8);
 
 	if (client == NULL)
 	{
 		fprintf(stderr, "An error occurred while trying to create an ENet client host.\n");
-		getchar();
 		exit(EXIT_FAILURE);
 	}
 
@@ -67,7 +66,6 @@ void ClientHandler::setupClient(const char *address_name)
 	if (peer == NULL)
 	{
 		fprintf(stderr, "No available peers for initiating an ENet connection.\n");
-		getchar();
 		exit(EXIT_FAILURE);
 	}
 
@@ -75,14 +73,13 @@ void ClientHandler::setupClient(const char *address_name)
 	if (enet_host_service(client, &event, 1000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT)
 	{
 		connected = true;
-		puts("Connection to localhost:1234 succeeded.");
+		printf("Connection to %s:%i succeeded.", address_name, address.port);
 		sendPacket("Client connected");
 	}
 	else
 	{
 		enet_peer_reset(peer);
-		puts("Connection to localhost:1234 failed.");
-		getchar();
+		printf("Connection to %s:%i failed.", address_name, address.port);
 	}
 }
 
@@ -107,7 +104,6 @@ void ClientHandler::sendPacket(const char* data)
 		case ENET_EVENT_TYPE_DISCONNECT:
 			connected = false;
 			printf("You have been disconnected.\n");
-			getchar();
 			exit(EXIT_FAILURE);
 		}
 	}

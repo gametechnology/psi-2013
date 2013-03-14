@@ -106,12 +106,10 @@
   <ItemGroup>
     <ClCompile Include="..\..\source\Main_Game\main.cpp" />
     <ClCompile Include="..\..\source\Main_Game\MainEventReceiver.cpp" />
-    <ClCompile Include="..\..\source\Main_Game\NetworkBoy.cpp" />
     <ClCompile Include="..\..\source\Main_Game\networking.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\Main_Game\networking.h" />
-    <ClInclude Include="..\..\source\Main_Game\NetworkBoy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

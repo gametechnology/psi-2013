@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "main-game", "main-game\main
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "network-server-prototype", "network-server-prototype\network-server-prototype.vcxproj", "{52E75CB6-6EA7-49E3-AB3F-286EFF1EF66A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "network-client-prototype", "network-client-prototype\network-client-prototype.vcxproj", "{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -97,27 +95,6 @@ Global
 		{52E75CB6-6EA7-49E3-AB3F-286EFF1EF66A}.Static lib - Release|Win32.ActiveCfg = Release|Win32
 		{52E75CB6-6EA7-49E3-AB3F-286EFF1EF66A}.Static lib - Release|Win32.Build.0 = Release|Win32
 		{52E75CB6-6EA7-49E3-AB3F-286EFF1EF66A}.Static lib - Release|x64.ActiveCfg = Release|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Debug|Win32.ActiveCfg = Debug|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Debug|Win32.Build.0 = Debug|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Debug|x64.ActiveCfg = Debug|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Release - Fast FPU|Win32.ActiveCfg = Release|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Release - Fast FPU|Win32.Build.0 = Release|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Release - Fast FPU|x64.ActiveCfg = Release|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Release|Win32.ActiveCfg = Release|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Release|Win32.Build.0 = Release|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Release|x64.ActiveCfg = Release|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.SDL-Debug|Win32.ActiveCfg = Debug|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.SDL-Debug|Win32.Build.0 = Debug|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.SDL-Debug|x64.ActiveCfg = Debug|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Static lib - Debug|Win32.ActiveCfg = Debug|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Static lib - Debug|Win32.Build.0 = Debug|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Static lib - Debug|x64.ActiveCfg = Debug|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Static lib - Release - Fast FPU|Win32.ActiveCfg = Release|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Static lib - Release - Fast FPU|Win32.Build.0 = Release|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Static lib - Release - Fast FPU|x64.ActiveCfg = Release|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Static lib - Release|Win32.ActiveCfg = Release|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Static lib - Release|Win32.Build.0 = Release|Win32
-		{0BEF1E0E-1B91-46A9-95BD-BA73453741AC}.Static lib - Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

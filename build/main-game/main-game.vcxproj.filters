@@ -21,18 +21,12 @@
     <ClCompile Include="..\..\source\Main_Game\networking.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Main_Game\NetworkBoy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\source\Main_Game\MainEventReceiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\Main_Game\networking.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\source\Main_Game\NetworkBoy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
