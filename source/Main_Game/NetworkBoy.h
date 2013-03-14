@@ -12,6 +12,11 @@ using namespace gui;
 #define NETWORKBOY_H
 
 class NetworkBoy {
+		ENetHost* host;
+		ENetPeer* serverPeer;
+		ENetAddress serverAddress;
+
+		bool isServer;		
     public:
 		NetworkBoy();
 		~NetworkBoy();
@@ -20,12 +25,5 @@ class NetworkBoy {
 		void receivePackets();
 
 		unsigned short port;
-    private:
-
-		ENetHost* host;
-		ENetPeer* serverPeer;
-
-		bool isServer;
-		ENetAddress serverAddress;
 };
 #endif

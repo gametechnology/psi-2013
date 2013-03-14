@@ -1,5 +1,5 @@
 #include <irrlicht.h>
-#include "NetworkBoy.h"
+#include "networking.h"
 #include <cstdlib>
 #include <string>
 #include <iostream>
@@ -18,22 +18,24 @@ struct SAppContext
 {
 	IrrlichtDevice *device;
 	IGUIListBox*	listbox;
-	NetworkBoy*		networkBoy;
-	irr::gui::IGUIEditBox* ipBox;
-	irr::gui::IGUIButton* connect;
+	ClientHandler*		client;
+	IGUIEditBox* ipBox;
+	IGUIEditBox* dataBox;
+	IGUIButton* connect;
 };
 
 // Define some values that we'll use to identify individual GUI controls.
 enum
 {
 	GUI_ID_CONNECT_BUTTON = 101,
+	GUI_SEND_PACKET,
 	GUI_ID_IPBAR
 };
 
 class MainEventReceiver : public IEventReceiver
 {
 public:
-	MainEventReceiver(SAppContext & context) : Context(context) { }
+	MainEventReceiver(SAppContext& context) : Context(context) { }
 
 	virtual bool OnEvent(const SEvent& event)
 	{
@@ -61,14 +63,34 @@ public:
 						*sOutput += cOut;
 
 						delete nbOfChar;
-						
-						Context.networkBoy->connect(sOutput->data());
-						
+
+						Context.client->setupClient(sOutput->data());
+
 						delete[] cOut;
 						delete sOutput;
 					}
 					break;
+				case GUI_SEND_PACKET:
+					{
+						// because the text of the GUI textbar is a w_char, we need to convert it to a std::string
+						// therefore we need this magic code piece
 
+						std::string* sOutput = new std::string();
+						size_t* nbOfChar = new size_t; 
+						char* cOut = new char[1023];
+						size_t sizeInBytes = 1023;
+
+						wcstombs_s( nbOfChar, cOut, sizeInBytes, Context.dataBox->getText(), 1023);
+						*sOutput += cOut;
+
+						delete nbOfChar;
+
+						Context.client->sendPacket(sOutput->data());
+
+						delete[] cOut;
+						delete sOutput;
+					}
+					break;
 				default:
 					return false;
 				}

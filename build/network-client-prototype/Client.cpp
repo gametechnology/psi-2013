@@ -27,7 +27,7 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
-	enet_address_set_host(&address, "localhost");
+	enet_address_set_host(&address, "145.92.73.103");
 	address.port = 1234;
 
 	peer = enet_host_connect(client, &address, 2, 0);

@@ -2,6 +2,7 @@
 #define __NETWORKING_H_INCLUDED__
 
 #include <enet\enet.h>
+#include <string>
 
 class ServerHandler
 {
@@ -32,7 +33,9 @@ public:
 
 	~ClientHandler();
 
-	virtual void setupClient();
+	virtual void setupClient(const char *address_name);
+
+	virtual void sendPacket(const char *data);
 };
 
 #endif
