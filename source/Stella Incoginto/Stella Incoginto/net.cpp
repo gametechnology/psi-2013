@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "net.h"
 
-
+#include "NetSup.h"
 	BOOLEAN Net::isServer;
 	std::string Net::serverip;
 	BOOLEAN Net::isrunning;
@@ -212,3 +212,108 @@
 			}
 		}
 	}
+/*
+Use this function if you are the client
+*/
+Net::Net(std::string ipadres)
+	{
+		serverip = ipadres;
+		isServer = FALSE;
+		//create and open the socket~
+		sf::SocketUDP Socket;
+		if (!Socket.Bind(8008))
+			return;
+
+		//create and fill the initctos struct.
+		sf::Packet initPackage;
+		initctos initctos;
+		initctos.header = "initctos";
+		initctos.name = "temp";
+		initctos.id = 0;
+		//put the struct into a package and send
+		initPackage << initctos.header << initctos.name << initctos.id;
+		if (Socket.Send(initPackage, serverip, 8008) != sf::Socket::Done)
+		{
+			printf("Client failed to send package \n should prolly try again");
+		} 
+		else
+		{
+			printf("Client sent init package, now wait for confirmation");
+			bool received = false;
+			sf::Packet initctos_confPackage;
+			sf::IPAddress Sender;
+			unsigned short Port;
+			//while package isn't received, or failed to receive, keep trying to receive.
+			//TODO: needs a timer for necessary resend and timeout.
+			while(!received){
+				if (Socket.Receive(initctos_confPackage, Sender, Port) != sf::Socket::Done && Sender == serverip)
+				{
+					printf("Client: Init confirmation Package failed to receive");
+				} else{
+					received = true;
+				}
+			}
+			printf("Client: Confirmation received");
+		} 
+
+		
+Net::Net()
+{
+	isServer = TRUE;
+	sf::SocketUDP Socket;
+	sf::IPAddress Sender;
+	unsigned short Port;
+	if (!Socket.Bind(Port))
+		return;
+	while(true){
+		sf::Packet initPackage;
+		initctos init;
+		if (Socket.Receive(initctos_confPackage, Sender, Port) != sf::Socket::Done)
+		{
+			printf("Server: package failed to receive");
+		}
+		initPackage >> init.header >> init.name >>init.id;
+		if (init.header == "initctos"){
+			//unpack the package, and put it in an struct
+			bool clientAdded = false;
+			packettorecieve >> init.id >> init.name;
+			//check the current netPlayers arrays list to see if the player trying to connect is already added.
+			//if not, the player gets added to the clients list.
+			for(int i = 0; i < 8; i++){
+				if(clients[i].name != NULL){
+					clients[num_players_con].adress =  &Sender;
+					clients[num_players_con].name = &init.name;
+				}
+					clientAdded = true;
+			} 
+			if(clientAdded){
+				sf::Packet confirmation_package;
+				initctos_conf confirmation;
+				confirmation.header = "initctos_conf";
+				confirmation.name = init.name;
+				confirmation.id = init.id;
+				confirmation_package << confirmation.header << confirmation.name << confirmation.id;
+				if (Socket.Send(confirmation_package, Sender, 7000) != sf::Socket::Done)
+				{
+					printf("Server: Confirmation Package failed to send");
+				}
+				//create and send a confermation package to the client
+				sf::Packet confirmation_package;
+				initctos_conf confirmation;
+				confirmation.header = "initctos_conf";
+				confirmation.name = init.name;
+				confirmation.id = init.id;
+				confirmation_package << confirmation.header << confirmation.name << confirmation.id;
+				if (Socket.Send(confirmation_package, Sender, 8008) != sf::Socket::Done)
+				{
+					printf("Server: Confirmation Package failed to send");
+				}
+			}
+		
+		}
+		else {
+			printf("Server: Package received is not an initctos package");
+		}
+	}//end of while loop
+}	
+
