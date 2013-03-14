@@ -44,7 +44,7 @@ void Game::run()
 	//Main loop
 	while(Game::device->run())
 	{
-		Game::getCurrentScene()->Update();
+		Game::getCurrentScene()->update();
 		Game::driver->beginScene(true, true, SColor(255,100,101,140));
 		Game::scenes->top()->smgr->drawAll();
 		Game::driver->endScene();

@@ -9,7 +9,7 @@ class TestScene : public Scene
 public:
 	TestScene(void);
 	~TestScene(void);
-	void Init();
+	void init();
 
 	Entity* testModel;
 	Entity* camera;

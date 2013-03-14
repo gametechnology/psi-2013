@@ -32,8 +32,8 @@ public:
 	bool visible;
 
 	// Methods
-	virtual void Update();
-	virtual void Draw();
+	virtual void update();
+	virtual void draw();
 };
 
 #endif

@@ -14,9 +14,9 @@ public:
 
 	Composite* parent;
 
-	virtual void Init() = 0;
-	virtual void HandleMessage(unsigned int message, void* data) = 0;
-	virtual void Update() = 0;
+	virtual void init() = 0;
+	virtual void handleMessage(unsigned int message, void* data) = 0;
+	virtual void update() = 0;
 
 };
 

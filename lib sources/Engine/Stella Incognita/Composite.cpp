@@ -13,32 +13,32 @@ Composite::~Composite()
 {
 }
 
-void Composite::Init()
+void Composite::init()
 {
 }
 
-void Composite::HandleMessage(unsigned int message, void* data)
-{
-	for (list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
-	{
-		(*i)->HandleMessage(message, data);
-	}
-}
-
-void Composite::Update()
+void Composite::handleMessage(unsigned int message, void* data)
 {
 	for (list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
 	{
-		(*i)->Update();
+		(*i)->handleMessage(message, data);
 	}
 }
 
-void Composite::AddComponent(Component* component)
+void Composite::update()
+{
+	for (list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
+	{
+		(*i)->update();
+	}
+}
+
+void Composite::addComponent(Component* component)
 {
 	components.push_back(component);
 }
 
-void Composite::RemoveComponent(Component* component)
+void Composite::removeComponent(Component* component)
 {
 	components.remove(component);
 }

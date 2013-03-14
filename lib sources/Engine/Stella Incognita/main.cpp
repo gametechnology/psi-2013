@@ -19,7 +19,7 @@ int main()
 	game.addScene(testScene);
 
 	// Init the test scene
-	testScene->Init();
+	testScene->init();
 	
 	// Start the main loop
 	game.run();

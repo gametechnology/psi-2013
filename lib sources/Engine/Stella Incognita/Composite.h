@@ -15,12 +15,12 @@ public:
 
 	list<Component*> components;
 
-	virtual void Init();
-	virtual void HandleMessage(unsigned int message, void* data);
-	virtual void Update();
+	virtual void init();
+	virtual void handleMessage(unsigned int message, void* data);
+	virtual void update();
 
-	virtual void AddComponent(Component* component);
-	virtual void RemoveComponent(Component* component);
+	virtual void addComponent(Component* component);
+	virtual void removeComponent(Component* component);
 };
 
 #endif

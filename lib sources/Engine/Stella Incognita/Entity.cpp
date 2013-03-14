@@ -12,9 +12,9 @@ Entity::Entity(Composite* parent):Composite(parent)
 	this->mass = 1;
 }
 
-void Entity::Update()
+void Entity::update()
 {
-	Composite::Update();
+	Composite::update();
 
 	//this->angularAccelaration = ();
 	this->angularVelocity += this->angularAccelaration;
@@ -28,7 +28,7 @@ void Entity::Update()
 	//this->irrNode->setRotation(this->orientation);
 }
 
-void Entity::Draw()
+void Entity::draw()
 {
 	if (!this->visible)
 	{
