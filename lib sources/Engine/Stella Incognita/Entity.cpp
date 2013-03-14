@@ -24,8 +24,8 @@ void Entity::Update()
 	this->velocity += this->accelaration;
 	this->position += this->velocity;
 
-	this->irrNode->setPosition(this->position);
-	this->irrNode->setRotation(this->orientation);
+	//this->irrNode->setPosition(this->position);
+	//this->irrNode->setRotation(this->orientation);
 }
 
 void Entity::Draw()

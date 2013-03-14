@@ -53,9 +53,9 @@ void Game::run()
 		Game::device->drop();
 }
 
-Scene Game::getTopScene()
+Scene* Game::getTopScene()
 {
-	return this->scenes->top();
+	return scenes->top();
 }
 
 void Game::addScene(Scene* scene)
