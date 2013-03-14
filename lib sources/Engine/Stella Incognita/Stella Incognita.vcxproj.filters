@@ -67,6 +67,8 @@
     <None Include="sydney.bmp">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="sydney.md2" />
+    <None Include="sydney.md2">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
