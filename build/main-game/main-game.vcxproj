@@ -105,6 +105,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\Main_Game\main.cpp" />
+    <ClCompile Include="..\..\source\Main_Game\MainEventReceiver.cpp" />
+    <ClCompile Include="..\..\source\Main_Game\NetworkBoy.cpp" />
     <ClCompile Include="..\..\source\Main_Game\networking.cpp" />
   </ItemGroup>
   <ItemGroup>

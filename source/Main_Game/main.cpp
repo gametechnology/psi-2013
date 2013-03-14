@@ -5,6 +5,7 @@
 #include <irrlicht.h>
 #include "networking.h"
 #include "NetworkBoy.h";
+#include "MainEventReceiver.cpp";
 
 using namespace irr;
 using namespace core;
@@ -80,7 +81,7 @@ int main() {
 
 	//game loop
     while(device->run())
-    {
+    {	
         driver->beginScene(true, true, video::SColor(255,113,113,133));
 
         smgr->drawAll(); // draw the 3d scene
