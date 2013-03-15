@@ -1,6 +1,5 @@
 #include "irrlicht.h"
 #include "Scene.h"
-#include "Message.h"
 #include <forward_list>
 
 #ifndef ENGINE
@@ -27,7 +26,6 @@ public:
 
 	static IrrlichtDevice* device;
 	static IVideoDriver* driver;
-	static Message* messages;
 protected:
 	static std::forward_list<Scene*>* scenes; 
 };

@@ -49,7 +49,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\include; ..\..\lib\Engine</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include; ..\..\lib sources\Engine\Stella Incognita</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

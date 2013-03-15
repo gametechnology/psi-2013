@@ -18,13 +18,12 @@ using namespace scene;
 // Predefine static variables
 IrrlichtDevice* Game::device;
 IVideoDriver* Game::driver;
-forward_list<Scene*>* Game::scenes;
-Message* Game::messages;
+std::forward_list<Scene*>* Game::scenes;
 
 Game::Game()
 {
 	//Create a new stack to store all scenes
-	Game::scenes = new forward_list<Scene*>;
+	Game::scenes = new std::forward_list<Scene*>;
 
 	// Create the irrlicht device 
 	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, false, 0);

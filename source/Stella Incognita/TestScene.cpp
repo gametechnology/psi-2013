@@ -14,7 +14,9 @@ TestScene::TestScene(void)
 void TestScene::init()
 {
 	// Create model entity
-	addComponent(new Player(this));
+	Player* player = new Player(this);
+	addComponent(player);
+	//player->handleMessage(DAMAGE, new int(1));
 
 	// Create camera entity
 	Entity* camera = new Entity(this);

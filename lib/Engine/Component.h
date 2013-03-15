@@ -1,7 +1,6 @@
 #ifndef COMPONENT
 #define COMPONENT
 
-using namespace std;
 
 class Composite;
 

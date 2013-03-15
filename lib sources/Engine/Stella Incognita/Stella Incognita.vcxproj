@@ -93,7 +93,6 @@
     <ClInclude Include="Composite.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
-    <ClInclude Include="Message.h" />
     <ClInclude Include="Scene.h" />
   </ItemGroup>
   <ItemGroup>

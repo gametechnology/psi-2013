@@ -1,12 +1,11 @@
 #include "irrlicht.h"
 #include "Scene.h"
 #include "Message.h"
-#include <stack>
+#include <forward_list>
 
 #ifndef ENGINE
 #define ENGINE
 
-using namespace std;
 using namespace irr;
 using namespace core;
 using namespace video;
@@ -30,7 +29,7 @@ public:
 	static IVideoDriver* driver;
 	static Message* messages;
 protected:
-	static stack<Scene*>* scenes; 
+	static std::forward_list<Scene*>* scenes; 
 };
 
 #endif
