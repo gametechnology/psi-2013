@@ -5,6 +5,7 @@
 #include "Component.h"
 #include "Player.h"
 #include <list>
+#include "Messages.h"
 
 TestScene::TestScene(void)
 {
@@ -16,7 +17,7 @@ void TestScene::init()
 	// Create model entity
 	Player* player = new Player(this);
 	addComponent(player);
-	//player->handleMessage(DAMAGE, new int(1));
+	player->handleMessage(DAMAGE, new int(1));
 
 	// Create camera entity
 	Entity* camera = new Entity(this);
