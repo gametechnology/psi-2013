@@ -1,3 +1,7 @@
+/*
+	Example entity for loading a model
+*/
+
 #ifndef PLAYER
 #define PLAYER
 

@@ -6,7 +6,6 @@
 #ifndef SCENE
 #define SCENE
 
-using namespace std;
 using namespace core;
 using namespace scene;
 
