@@ -17,7 +17,7 @@
 ipch/
 debug/
 *.sdf
+*.opensdf
 *.tlog
 *.suo
 *.vcxproj.user
-lib sources/Engine/Stella Incognita.opensdf
