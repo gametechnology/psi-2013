@@ -1,0 +1,15 @@
+
+***************************************************************
+
+************************ ENGINE README ************************
+
+!!!!!!!!!!!!!!!!!!!!!!UNDER CONSTRUCTION!!!!!!!!!!!!!!!!!!!!!!!
+
+
+1.	Create a new C++ project
+
+2.	Include the engine library from the lib sources folder
+
+3.	Create a new 'Game' instance
+
+4.	You now have included the engine and are ready to use it

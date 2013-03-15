@@ -12,7 +12,6 @@ void Entity::update()
 {
 	Composite::update();
 
-	//this->angularAccelaration = ();
 	this->angularVelocity += this->angularAccelaration;
 	this->orientation += this->angularVelocity;
 
