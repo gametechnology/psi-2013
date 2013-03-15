@@ -9,6 +9,7 @@
 class Player : public Entity  {
 public:
 	Player(Composite* parent);
+	void Player::handleMessage(unsigned int message, void* data = 0);
 	virtual ~Player();
 };
 
