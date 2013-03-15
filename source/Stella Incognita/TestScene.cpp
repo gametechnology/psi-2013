@@ -19,6 +19,7 @@ void TestScene::init()
 	// Create camera entity
 	Entity* camera = new Entity(this);
 	camera->node =  sceneManager->addCameraSceneNode(0, vector3df(0,4,-40), vector3df(0,4,0));
+	camera->position = vector3df(0,4,-40);
 	this->addComponent(camera);
 }
 
