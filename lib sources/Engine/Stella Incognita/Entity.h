@@ -14,7 +14,7 @@ class Entity : public Composite
 {
 public:
 	Entity(Composite* parent);
-	~Entity();
+	virtual ~Entity();
 
 	// Variables
 	irr::scene::ISceneNode* node;

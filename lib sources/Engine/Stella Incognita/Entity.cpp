@@ -5,6 +5,7 @@
 Entity::Entity(Composite* parent):Composite(parent)
 {
 	this->mass = 1;
+	node = NULL;
 }
 
 void Entity::update()
@@ -18,13 +19,16 @@ void Entity::update()
 	this->accelaration = (1 / this->mass) * this->force;
 	this->velocity += this->accelaration;
 	this->position += this->velocity;
-
-	//this->node->setPosition(this->position);
-	//this->node->setRotation(this->orientation);
+	if (node != NULL)
+	{
+		this->node->setPosition(this->position);
+		this->node->setRotation(this->orientation);
+	}
 }
 
 void Entity::draw()
 {
+	if (node == NULL) return;
 	if (!this->visible)
 	{
 		this->node->setVisible(false);
@@ -48,5 +52,9 @@ void Entity::createNode(std::string modelPath)
 
 Entity::~Entity()
 {
-	delete node;
+	Composite::~Composite();
+	if (node != NULL)
+	{
+		node->drop();
+	}
 }

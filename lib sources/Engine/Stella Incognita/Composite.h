@@ -8,7 +8,7 @@ class Composite : public Component
 {
 public:
 	Composite(Composite* parent);
-	~Composite();
+	virtual ~Composite();
 
 	virtual void update();
 	virtual void handleMessage(unsigned int message, void* data);

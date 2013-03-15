@@ -15,4 +15,5 @@ Scene::Scene() : Composite(NULL)
 
 Scene::~Scene()
 {
+	Composite::~Composite();
 }

@@ -18,13 +18,13 @@ using namespace scene;
 // Predefine static variables
 IrrlichtDevice* Game::device;
 IVideoDriver* Game::driver;
-stack<Scene*>* Game::scenes; 
+forward_list<Scene*>* Game::scenes;
 Message* Game::messages;
 
 Game::Game()
 {
 	//Create a new stack to store all scenes
-	Game::scenes = new stack<Scene*>;
+	Game::scenes = new forward_list<Scene*>;
 
 	// Create the irrlicht device 
 	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, false, 0);
@@ -46,39 +46,40 @@ void Game::run()
 	{
 		Game::getCurrentScene()->update();
 		Game::driver->beginScene(true, true, SColor(255,100,101,140));
-		Game::scenes->top()->sceneManager->drawAll();
+		(*Game::scenes->begin())->sceneManager->drawAll();
 		Game::driver->endScene();
 	}
-
 	Game::device->drop();
 }
 
 Scene* Game::getCurrentScene()
 {
-	return scenes->top();
+	return *scenes->begin();
 }
 
 ISceneManager* Game::getSceneManager()
 {
-	return scenes->top()->sceneManager;
+	return (*scenes->begin())->sceneManager;
 }
 
 void Game::addScene(Scene* scene)
 {
-	Game::scenes->push(scene);
+	Game::scenes->push_front(scene);
 	scene->init();
 }
 
 void Game::removeScene()
 {
-	Game::scenes->pop();
+	Game::scenes->pop_front();
 }
 
 Game::~Game()
 {
-	//device->drop();
-	//delete device;
-	//delete driver;
 	//delete messages;
-	//delete scenes;
+	//for (std::forward_list<Scene*>::iterator i = scenes->begin(); i != scenes->end(); ++i)
+	//{
+	//	delete (*i);
+	//}
+	scenes->clear();
+	delete scenes;
 }
