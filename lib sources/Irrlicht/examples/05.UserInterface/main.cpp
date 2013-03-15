@@ -14,6 +14,7 @@ and a pointer to a listbox.
 #include <irrlicht.h>
 #include "driverChoice.h"
 
+
 using namespace irr;
 
 using namespace core;
@@ -34,11 +35,15 @@ struct SAppContext
 	s32				counter;
 	IGUIListBox*	listbox;
 };
-IGUIEditBox *hostIp;
+IGUIEditBox *hostIp, *userName;
 IGUIButton *host;
 IGUIButton *client;
+IGUIButton *start;
+
+IGUIListBox * listbox;
+
 //TODO: MOdify to call the list for the net class
-list<int> clientList;
+list<wchar_t*> clientList;
 
 
 // Define some values that we'll use to identify individual GUI controls.
@@ -48,7 +53,9 @@ enum
 	GUI_ID_NEW_WINDOW_BUTTON,//hostButton
 	GUI_ID_FILE_OPEN_BUTTON,//playerButton
 	GUI_ID_FILE_START_BUTTON,
+	GUI_ID_CONNECT_BUTTON,
 	GUI_ID_TRANSPARENCY_SCROLL_BAR
+
 };
 
 /*
@@ -119,34 +126,37 @@ public:
 				case GUI_ID_NEW_WINDOW_BUTTON: //host
 					{
 						host->setEnabled(true);
-						env->addButton(rect<s32>(10,360,110,360 + 32), 0, GUI_ID_FILE_START_BUTTON,
+						start = env->addButton(rect<s32>(10,360,110,360 + 32), 0, GUI_ID_FILE_START_BUTTON,
 			L"Start", L"Start a new game");
+						start->setEnabled(false);
 						
 						
 
 
+					/*
 					Context.listbox->addItem(L"put list content");
 					Context.counter += 30;
 					if (Context.counter > 200)
 						Context.counter = 0;
-
+						*/
 					client->setEnabled(false);
 					}
 					return true;
 
 				case GUI_ID_FILE_OPEN_BUTTON: //client
 					client->setEnabled(true);
-					env->addButton(rect<s32>(10,360,110,360 + 32), 0, GUI_ID_FILE_START_BUTTON,
+					start = env->addButton(rect<s32>(10,360,110,360 + 32), 0, GUI_ID_FILE_START_BUTTON,
 			L"Start", L"Start a new game");
+					start->setEnabled(false);
+					env->addButton(rect<s32>(10,400,110,400 + 32), 0, GUI_ID_CONNECT_BUTTON,
+			L"Connect", L"connect to a server");
 
 					hostIp = env->addEditBox(L"Host IP", rect<s32>(350, 80, 550, 100));
+					userName= env->addEditBox(L"user name", rect<s32>(350, 100, 550, 120));
 
-					Context.listbox->addItem(L"put list content");
-					// There are some options for the file open dialog
-					// We set the title, make it a modal window, and make sure
-					// that the working directory is restored after the dialog
-					// is finished.
-					//env->addFileOpenDialog(L"Please choose a file.", true, 0, -1, true);
+					//Context.listbox->addItem(L"put list content");
+					
+
 
 					host->setEnabled(false);
 
@@ -158,6 +168,17 @@ public:
 					if(!host->isEnabled())
 					hostIp->getText();					
 					
+
+					return true;
+				case GUI_ID_CONNECT_BUTTON:
+					//TODO:put the content of the box in the clientList
+					userName->getText();
+
+					//only for test
+					listbox->addItem(userName->getText());
+
+					//remove and the TODO above be done
+
 					return true;
 				default:
 					return false;
@@ -177,6 +198,8 @@ public:
 			default:
 				break;
 			}
+			if(listbox->getItemCount() >=1)
+				start->setEnabled(true);
 		}
 
 		return false;
@@ -262,7 +285,7 @@ int main()
 	scrollbar->setPos(env->getSkin()->getColor(EGDC_WINDOW).getAlpha());
 
 	env->addStaticText(L"Connected Players:", rect<s32>(50,110,250,130), true);
-	IGUIListBox * listbox = env->addListBox(rect<s32>(50, 140, 250, 210));
+	listbox = env->addListBox(rect<s32>(50, 140, 250, 210));
 	//env->addEditBox(L"Host IP", rect<s32>(350, 80, 550, 100));
 	
 
