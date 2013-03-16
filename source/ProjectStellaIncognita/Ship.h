@@ -11,12 +11,12 @@ using namespace core;
 class Ship
 {
 	public:
-		Ship(){};
-		~Ship(){};
+		Ship();
+		~Ship();
 		vector3df* shipPosition;
-		setShipPosition(vector3df* shipPosition);
-		vector3df getShipPosition(){};
+		void setShipPosition(vector3df* shipPosition);
+		vector3df getShipPosition();
 	private:
 		vector3df _shipPosition;
-}
+};
 #endif

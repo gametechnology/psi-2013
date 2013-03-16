@@ -5,7 +5,7 @@ Ship::Ship()
 
 }
 
-Ship::setShipPosition(vector3df* position)
+void Ship::setShipPosition(vector3df* position)
 {
 	this->shipPosition = position;
 }
