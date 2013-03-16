@@ -1,13 +1,15 @@
 #include "Camera.h"
 #include "Game.h"
+#include "CameraMover.h"
 
 
-Camera::Camera(Composite* parent):Entity(parent)
+Camera::Camera(Composite* parent, vector3df position, vector3df lookAt):Entity(parent)
 {
 	if (parent != NULL && dynamic_cast<Entity*>(parent) != NULL)
 		parentIsEntity = true;
 	else parentIsEntity = false; 
-	node = Game::getSceneManager()->addCameraSceneNode();
+	node = Game::getSceneManager()->addCameraSceneNode(NULL, position, lookAt);
+	addComponent(new CameraMover(this));
 }
 
 irr::scene::ICameraSceneNode* Camera::getCameraNode()
@@ -15,19 +17,11 @@ irr::scene::ICameraSceneNode* Camera::getCameraNode()
 	return ((irr::scene::ICameraSceneNode*)(node));
 }
 
-void Camera::update()
+Entity* Camera::getEntity()
 {
-	
-	position = node->getPosition();
-	orientation = node->getRotation();
-	if (this->parentIsEntity)
-	{
-		position -= oldParentPosition;
-		orientation -= oldParentOrientation;
-		position += ((Entity*)(parent))->position;
-		orientation += ((Entity*)(parent))->orientation;
-	}
-	Entity::update();
+	if (parentIsEntity)
+		return (Entity*)(parent);
+	else return NULL;
 }
 
 Camera::~Camera()

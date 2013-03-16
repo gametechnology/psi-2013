@@ -4,6 +4,7 @@
 #include "Composite.h"
 #include "Component.h"
 #include "Player.h"
+#include "Camera.h"
 #include <list>
 #include "Messages.h"
 
@@ -20,9 +21,8 @@ void TestScene::init()
 	player->handleMessage(DAMAGE, new int(789));	// Send a message to player and components.
 
 	// Create camera entity
-	Entity* camera = new Entity(this);
-	camera->node =  sceneManager->addCameraSceneNode(0, vector3df(0,4,-40), vector3df(0,4,0));
-	camera->position = vector3df(0,4,-40);
+	Camera* camera = new Camera(this, vector3df(0,4,-4), vector3df(0,4,0));
+	camera->velocity.Z -= 0.001;
 	addComponent(camera);
 }
 

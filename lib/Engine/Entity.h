@@ -33,7 +33,7 @@ public:
 
 	// Methods
 	virtual void update();
-	virtual void draw();
+	void draw();
 	virtual void createNode(std::string modelPath);
 };
 
