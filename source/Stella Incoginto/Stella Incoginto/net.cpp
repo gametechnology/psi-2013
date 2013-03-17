@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "net.h"
 #include "NetSup.h"
-
+#include "netSupPos.h"
 
 	BOOLEAN Net::isServer;
 	std::string Net::serverip;
@@ -91,6 +91,11 @@
 						if((isServer == true && sender->lastpackageid < packageid) || (isServer == false && lastpackageidrecieved < packageid))
 						{
 							//update code;
+							if(isServer == false) {
+								UpdateGame(Socket, serverip, packageid);
+							}
+							lastpackageidrecieved = packageid;
+
 					if (isServer == true)
 					{
 								sender->lastpackageid = packageid;
@@ -285,3 +290,21 @@ Net::Net()
 	}//end of while loop
 }	
 
+void Net::UpdateGame(sf::SocketUDP Socket, std::string ipadres, int lastpackagerecieved)
+{
+	sf::Packet posupdate;
+	initpos init;
+	
+	sf::IPAddress Sender;
+	unsigned short Port;
+	if (Socket.Receive(posupdate, Sender, Port) != sf::Socket::Done && Sender == serverip)
+	{
+		//printf("Client failed to recieve package");
+	} else {
+		posupdate >> init.header >> init.name >> init.id;
+		if (init.header == "posupdate" && init.id > lastpackagerecieved) 
+		{
+			posupdate >> init.x >> init.y >> init.z;
+		}
+	}
+}

@@ -36,6 +36,7 @@ class Net{
 		Net();		
 		Net(std::string);
 		void StartGame();
+		static void UpdateGame(sf::SocketUDP Socket, std::string, int lastpackagerecieved);
 		
 			
 };
