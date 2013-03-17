@@ -20,7 +20,7 @@ using namespace video;
 #endif
 
 class Net{
-	private:
+	public:
 		static BOOLEAN isServer;
 		static std::string serverip;
 		static BOOLEAN isrunning;

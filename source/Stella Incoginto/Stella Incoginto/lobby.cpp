@@ -45,7 +45,8 @@ Net *network;
 IGUIListBox * listbox;
 BOOLEAN startmainscene; 
 //TODO: MOdify to call the list for the net class
-list<wchar_t*> clientList;
+list<Client> clientList;
+//Client client;
 
 
 // Define some values that we'll use to identify individual GUI controls.
@@ -170,8 +171,10 @@ public:
 				}
 				if(id ==   GUI_ID_CONNECT_BUTTON){
 					
-					userName->getText();
+					stringc name = userName->getText();
 					stringc  ipaddres = hostIp->getText();
+					Client *client = new Client(ipaddres.c_str(),clientList.getSize(), name.c_str());
+					clientList.push_back(*client);
 					
 					network = new Net(ipaddres.c_str());
 					//only for test
@@ -192,6 +195,9 @@ public:
 			
 			if(listbox->getItemCount() >=1)
 				start->setEnabled(true);
+			if(Net::stagegame == 1)
+				listbox->setEnabled(true);
+
 		}
 
 		return false;
@@ -278,6 +284,7 @@ int main()
 
 	env->addStaticText(L"Connected Players:", rect<s32>(50,110,250,130), true);
 	listbox = env->addListBox(rect<s32>(50, 140, 250, 210));
+	listbox->setEnabled(false);
 	//env->addEditBox(L"Host IP", rect<s32>(350, 80, 550, 100));
 	
 
