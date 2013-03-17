@@ -1,0 +1,36 @@
+﻿Build started 3/17/2013 1:01:30 PM.
+     1>Project "C:\Users\Goosfraba\Documents\School\Jaar 3\PSI project\psi-2013\psi-2013\PSI-Helm Prototype\PSI-Helm Prototype\PSI-Helm Prototype.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Release\PSI-Helm Prototype.unsuccessfulbuild".
+       ClCompile:
+         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\include /I"..\..\lib sources\Engine\Stella Incognita" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Release\PSI-Helm Prototype.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\include /I"..\..\lib sources\Engine\Stella Incognita" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Release\PSI-Helm Prototype.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt GameScreen.cpp MyEventReceiver.cpp "PSI-Helm Prototype.cpp" StandardObject.cpp
+         GameScreen.cpp
+     1>GameScreen.cpp(40): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
+     1>GameScreen.cpp(44): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
+     1>GameScreen.cpp(49): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
+     1>GameScreen.cpp(53): warning C4244: 'argument' : conversion from 'float' to 'irr::s32', possible loss of data
+         MyEventReceiver.cpp
+         PSI-Helm Prototype.cpp
+         StandardObject.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Goosfraba\Documents\School\Jaar 3\PSI project\psi-2013\psi-2013\PSI-Helm Prototype\Release\PSI-Helm Prototype.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"..\..\lib\Win32-visualstudio" /LIBPATH:"..\..\lib sources\Engine\Debug" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\PSI-Helm Prototype.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Goosfraba\Documents\School\Jaar 3\PSI project\psi-2013\psi-2013\PSI-Helm Prototype\Release\PSI-Helm Prototype.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Goosfraba\Documents\School\Jaar 3\PSI project\psi-2013\psi-2013\PSI-Helm Prototype\Release\PSI-Helm Prototype.lib" /MACHINE:X86 Release\GameScreen.obj
+         Release\MyEventReceiver.obj
+         "Release\PSI-Helm Prototype.obj"
+         Release\StandardObject.obj
+         Release\stdafx.obj
+         Generating code
+         Finished generating code
+         PSI-Helm Prototype.vcxproj -> C:\Users\Goosfraba\Documents\School\Jaar 3\PSI project\psi-2013\psi-2013\PSI-Helm Prototype\Release\PSI-Helm Prototype.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Goosfraba\Documents\School\Jaar 3\PSI project\psi-2013\psi-2013\PSI-Helm Prototype\Release\PSI-Helm Prototype.exe;#1" /manifest "Release\PSI-Helm Prototype.exe.intermediate.manifest"
+       FinalizeBuildStatus:
+         Deleting file "Release\PSI-Helm Prototype.unsuccessfulbuild".
+         Touching "Release\PSI-Helm Prototype.lastbuildstate".
+     1>Done Building Project "C:\Users\Goosfraba\Documents\School\Jaar 3\PSI project\psi-2013\psi-2013\PSI-Helm Prototype\PSI-Helm Prototype\PSI-Helm Prototype.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:10.58
