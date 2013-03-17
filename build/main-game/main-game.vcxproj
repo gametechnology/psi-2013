@@ -104,12 +104,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\Main_Game\main.cpp" />
+    <ClCompile Include="..\..\source\Main_Game\Main.cpp" />
     <ClCompile Include="..\..\source\Main_Game\MainEventReceiver.cpp" />
-    <ClCompile Include="..\..\source\Main_Game\networking.cpp" />
+    <ClCompile Include="..\..\source\Main_Game\Networking.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\source\Main_Game\networking.h" />
+    <ClInclude Include="..\..\source\Main_Game\Networking.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

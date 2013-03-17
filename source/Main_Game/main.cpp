@@ -3,9 +3,8 @@
 #endif
 
 #include <irrlicht.h>
-#include "networking.h"
-#include "NetworkBoy.h";
-#include "MainEventReceiver.cpp";
+#include "Networking.h"
+#include "MainEventReceiver.cpp"
 
 using namespace irr;
 using namespace core;
@@ -14,6 +13,9 @@ using namespace video;
 using namespace gui;
 
 class MyEventReceiver : public IEventReceiver {
+	// This array is used to store the current state of each key
+    bool KeyIsDown[KEY_KEY_CODES_COUNT];
+
 public:
     // On event take input
     virtual bool OnEvent(const SEvent& event) {
@@ -33,10 +35,6 @@ public:
         for (u32 i=0; i<KEY_KEY_CODES_COUNT; ++i)
             KeyIsDown[i] = false;
     }
-
-private:
-    // This array is used to store the current state of each key
-    bool KeyIsDown[KEY_KEY_CODES_COUNT];
 };
 
 int main() {
@@ -63,9 +61,6 @@ int main() {
 
 	IGUIButton* sendButton = guienv->addButton(rect<s32>(10, 320, 310, 320+32), 0, GUI_SEND_PACKET, L"Send");
 	IGUIEditBox* dataBox = guienv->addEditBox(L"", rect<s32>(10, 280, 400, 300));
-
-	// create our network interface
-	NetworkBoy networkBoy;
 
 	// Store the appropriate data in a context structure.
 	SAppContext context;

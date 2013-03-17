@@ -1,14 +1,27 @@
 // Network
-#include "stdafx.h"
 #include <enet/enet.h>
+#include <stdio.h>
 
 int main(int argc, char **argv)
 {
+	// The host address.
 	ENetAddress address;
+
+	// The server that will be receiving packets.
 	ENetHost *server;
+	
+	// Received data from which packet data will be extracted.
 	ENetEvent event;
+
+	// Packet that will be send as a respond to the connected client.
 	ENetPacket *packet;
 	
+
+	/*
+	*
+	* Initializing the server. 
+	*
+	*/
 	if (enet_initialize() != 0)
 	{
 		fprintf (stderr, "An error occurred while initializing ENet.\n");
@@ -17,6 +30,12 @@ int main(int argc, char **argv)
 	}
 	atexit(enet_deinitialize);
 
+
+	/*
+	*
+	* Creating the actual server.
+	*
+	*/
 	address.host = ENET_HOST_ANY;
 	address.port = 1234;
 
@@ -29,6 +48,12 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 
+
+	/*
+	*
+	* Running the server and receive packets from connected clients.
+	*
+	*/
 	while(true)
 	{
 		while(enet_host_service(server, &event, 1000) > 0)
@@ -54,5 +79,8 @@ int main(int argc, char **argv)
 		}
 	}	 
 
+	/*
+	* Destroy the server.
+	*/
 	enet_host_destroy(server);
 }

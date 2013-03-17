@@ -1,4 +1,4 @@
-#include "networking.h"
+#include "Networking.h"
 #include <iostream>
 
 ServerHandler::ServerHandler()
