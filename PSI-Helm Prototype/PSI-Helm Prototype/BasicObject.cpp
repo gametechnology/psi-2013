@@ -32,9 +32,6 @@ using namespace std;
 	// if we use this constructor you will get flags....
 	// Base constructor with position and other atributes
 	BasicObject::BasicObject(vector3df position) {
-		//Shortend up the functution ;)
-
-		// how we will import the pictures of the planets?
 		BasicObject::BasicObject( position, "../Assets/r_flag.md3", "../Assets/r_flag2.tga");
 	}
 
