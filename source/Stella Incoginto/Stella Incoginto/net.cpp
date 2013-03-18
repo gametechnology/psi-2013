@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "net.h"
 #include "NetSup.h"
-
+#include "netSupPos.h"
 
 BOOLEAN Net::isServer;
 std::string Net::serverip;
@@ -25,6 +25,42 @@ void Net::senderthread(void * var)
 
 	while(true){
 		switch(stagegame){
+		case 0:
+			if(!isServer)
+			{
+				//create and fill the initctos struct.
+				sf::Packet initPackage;
+				initctos initctos;
+				initctos.header = "initctos";
+				initctos.name = "temp";
+				initctos.id = 0;
+				//put the struct into a package and send
+				initPackage << initctos.header << initctos.name << initctos.id;
+				if (Socket.Send(initPackage, serverip, 8008) != sf::Socket::Done)
+				{
+					
+				} 
+			}
+		case 1:
+			if(isServer)
+			{
+				//create and fill the initctos struct.
+				sf::Packet lobbyPackage;
+				std::string header = "lobbyupdate";
+				lobbyPackage << header << static_cast<sf::Uint32>(clientlist.size());
+				for (list<Client>::Iterator it = clientlist.begin(); it != clientlist.end(); ++it)
+					lobbyPackage << *it;
+				for (list<Client>::Iterator i = clientlist.begin(); i != clientlist.end(); i++)
+				{
+					
+					if (Socket.Send(lobbyPackage,  i->Ipadress, 8008) != sf::Socket::Done)
+					{
+					
+					}
+				}
+			}
+			break;
+
 		case 2:
 			if(isServer)
 			{
@@ -71,11 +107,12 @@ void Net::senderthread(void * var)
 					}
 				}
 			}
+			mypc.lastpackageid++;
 			break;
 		default:
 			break;
 		}
-		mypc.lastpackageid++;
+		
 		Sleep(30);
 	}
 	Socket.Close();
@@ -113,6 +150,11 @@ void  Net::recieverthread(void * var)
 				if((isServer == true && sender->lastpackageid < packageid) || (isServer == false && lastpackageidrecieved < packageid))
 				{
 					//update code;
+							if(isServer == false) {
+								UpdateGame(Socket, serverip, packageid);
+							}
+							lastpackageidrecieved = packageid;
+
 					if (isServer == true)
 					{
 						sender->lastpackageid = packageid;
@@ -137,6 +179,37 @@ void  Net::recieverthread(void * var)
 					}
 				}
 			}
+			if (header == "initctos")
+			{
+				std::string name;
+				packettorecieve >> name;
+				Client * sender = GetClientByIp(Sender.ToString());
+				if(isServer)
+				{
+					if(sender != NULL)
+						continue;
+					clientlist.push_front(Client(Sender.ToString(),num_players_con + 1,name));
+					num_players_con++;
+				}
+				
+			}
+			if (header == "initctos_conf")
+			{
+				if(!isServer)
+				{
+					stagegame = 1;
+					sf::Uint32 size;
+					packettorecieve >> size;
+					for (sf::Uint32 i = 0; i < size; ++i)
+					{
+						Client item;
+						packettorecieve >> item;
+						Client * sender = GetClientByIp(Sender.ToString());
+						if(sender == NULL)
+							clientlist.push_back(item);
+					}
+				}
+			}
 		}
 	}
 	Socket.Close();
@@ -149,7 +222,9 @@ Client * Net::GetClientByIp(std::string ipadress)
 		if(iterator->Ipadress == ipadress)
 			return (Client*)&iterator;
 	}
+	return NULL;
 }
+
 void Net::StartGame()
 {
 	if(isServer)
@@ -209,101 +284,45 @@ void Net::StartGame()
 		}
 	}
 }
-/*
-Use this function if you are the client
-*/
-Net::Net(std::string ipadres)
+
+Net::Net(std::string ipadres, std::string name)
 {
 	serverip = ipadres;
 	isServer = FALSE;
-	//create and open the socket~
-	sf::SocketUDP Socket;
-	if (!Socket.Bind(8008))
-		return;
-
-	//create and fill the initctos struct.
-	sf::Packet initPackage;
-	initctos initctos;
-	initctos.header = "initctos";
-	initctos.name = "temp";
-	initctos.id = 0;
-	//put the struct into a package and send
-	initPackage << initctos.header << initctos.name << initctos.id;
-	if (Socket.Send(initPackage, serverip, 8008) != sf::Socket::Done)
-	{
-		printf("Client failed to send package \n should prolly try again");
-	} 
-	else
-	{
-		printf("Client sent init package, now wait for confirmation");
-		bool received = false;
-		sf::Packet initctos_confPackage;
-		sf::IPAddress Sender;
-		unsigned short Port;
-		//while package isn't received, or failed to receive, keep trying to receive.
-		//TODO: needs a timer for necessary resend and timeout.
-		while(!received){
-			if (Socket.Receive(initctos_confPackage, Sender, Port) != sf::Socket::Done && Sender == serverip)
-			{
-				printf("Client: Init confirmation Package failed to receive");
-			} else{
-				received = true;
-			}
-		}
-		printf("Client: Confirmation received");
-	}
+	mypc.Name = name;
+	int  a =1;
+	_beginthread(senderthread, 0, &a);
+	_beginthread(recieverthread, 0, &a);
 } 
 
-
-Net::Net()
+		
+Net::Net(std::string name)
 {
 	isServer = TRUE;
-	sf::SocketUDP Socket;
-	sf::IPAddress Sender;
-	unsigned short Port = 8008;
-	if (!Socket.Bind(Port))
-		return;
-	while(true){
-		sf::Packet initPackage;
-		initctos init;
-		if (Socket.Receive(initPackage, Sender, Port) != sf::Socket::Done)
-		{
-			printf("Server: package failed to receive");
-		}
-		initPackage >> init.header >> init.name >>init.id;
-		if (init.header == "initctos"){
-			//unpack the package, and put it in an struct
-			bool clientAdded = false;
-			bool clientAlreadyAdded = false;
-			initPackage >> init.id >> init.name;
-			//check the current netPlayers arrays list to see if the player trying to connect is already added.
-			//if not, the player gets added to the clients list.
-
-			for (list<Client>::Iterator i = clientlist.begin(); i != clientlist.end(); i++)
-			{
-				if(i->Name != init.name){
-					clientlist.push_back(Client(Sender.ToString(), num_players_con, init.name));
-					clientAdded = true;
-				}
-			} 
-			if(clientAdded){
-				//create and send a confermation package to the client
-				sf::Packet confirmation_package;
-				initctos_conf confirmation;
-				confirmation.header = "initctos_conf";
-				confirmation.name = init.name;
-				confirmation.id = init.id;
-				confirmation_package << confirmation.header << confirmation.name << confirmation.id;
-				if (Socket.Send(confirmation_package, Sender, 8008) != sf::Socket::Done)
-				{
-					printf("Server: Confirmation Package failed to send");
-				}
-			}
-
-		}
-		else {
-			printf("Server: Package received is not an initctos package");
-		}
-	}//end of while loop
+	mypc.Name = name;
+	clientlist.push_back(Client("",1,name));
+	num_players_con++;
+	int  a =1;
+	_beginthread(senderthread, 0, &a);
+	_beginthread(recieverthread, 0, &a);
 }	
 
+
+void Net::UpdateGame(sf::SocketUDP Socket, std::string ipadres, int lastpackagerecieved)
+{
+	sf::Packet posupdate;
+	initpos init;
+	
+	sf::IPAddress Sender;
+	unsigned short Port;
+	if (Socket.Receive(posupdate, Sender, Port) != sf::Socket::Done && Sender == serverip)
+	{
+		//printf("Client failed to recieve package");
+	} else {
+		posupdate >> init.header >> init.name >> init.id;
+		if (init.header == "posupdate" && init.id > lastpackagerecieved) 
+		{
+			posupdate >> init.x >> init.y >> init.z;
+		}
+	}
+}
