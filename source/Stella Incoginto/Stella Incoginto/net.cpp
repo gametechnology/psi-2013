@@ -155,6 +155,7 @@ Client * Net::GetClientByIp(std::string ipadress)
 			return (Client*)&iterator;
 	}
 }
+
 void Net::StartGame()
 {
 	if(isServer)
@@ -217,9 +218,10 @@ void Net::StartGame()
 /*
 Use this function if you are the client
 */
-Net::Net(std::string ipadres)
-{
-	serverip = ipadres;
+void Net::InitiateNetC(void * ipadres){
+	_beginthread(senderthread, 0, NULL);
+	char * cip = ipadres;
+	serverip = cip;
 	isServer = FALSE;
 	//create and open the socket~
 	sf::SocketUDP Socket;
@@ -257,11 +259,9 @@ Net::Net(std::string ipadres)
 		}
 		printf("Client: Confirmation received");
 	}
-} 
+}
 
-
-Net::Net()
-{
+void Net::InitiateNetS(){
 	isServer = TRUE;
 	sf::SocketUDP Socket;
 	sf::IPAddress Sender;
@@ -310,7 +310,21 @@ Net::Net()
 			printf("Server: Package received is not an initctos package");
 		}
 	}//end of while loop
+}
+
+Net::Net(std::string ipadres)
+{
+	void *vp = static_cast<void*>(new std::string(ipadres));
+	_beginthread(&Net::InitiateNetC, 0, &vp);
+} 
+
+		
+Net::Net()
+{
+	int a = 1;
+	_beginthread(&Net::InitiateNetS, 0, &a);
 }	
+
 
 void Net::UpdateGame(sf::SocketUDP Socket, std::string ipadres, int lastpackagerecieved)
 {

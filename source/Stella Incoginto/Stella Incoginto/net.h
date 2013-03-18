@@ -32,7 +32,9 @@ class Net{
 		static int stagegame;
 		static void senderthread(void * var);
 		static void recieverthread(void * var);
-		static Client * GetClientByIp(std::string);
+		static Client * GetClientByIp(std::string ipadres);
+		void InitiateNetS();
+		void InitiateNetC(void * ipadres);
 	public:
 		Net();		
 		Net(std::string);
