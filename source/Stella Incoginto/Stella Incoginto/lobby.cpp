@@ -324,7 +324,7 @@ int main()
 			std::string str = "player: "+ clientList.getLast()->Name+ " ip: "+ clientList.getLast()->Ipadress;
 			std::wstring widestr = std::wstring(str.begin(), str.end());
 			const wchar_t* widecstr = widestr.c_str();
-			listbox->addItem(widecstr);
+			listbox->addItem(widecstr); //updating list
 		}
 		driver->endScene();
 	}
