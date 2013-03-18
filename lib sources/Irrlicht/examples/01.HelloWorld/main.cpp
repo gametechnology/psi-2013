@@ -47,7 +47,6 @@ Engine header files so we can include it now in our code.
 #include <fstream>
 #include <string>
 #include <vector>
-#include <thread>
 
 #include "Net.h"
 
@@ -91,7 +90,106 @@ losing platform independence then.
 //#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
 
-int example()
+int networking()
+{
+	wait(1.0f);
+
+	if(!InitializeSockets())
+	{
+		printf("failed to initialize sockets\n");
+		getchar();
+		return 1;
+	}
+
+	int port = 8008;
+
+	printf("creating socket on port %d\n", port);
+
+	Socket socket;
+	if(!socket.Open(port))
+	{
+		printf("failed to create socket\n");
+		getchar();
+		return 1;
+	}
+
+	bool isHost;
+	vector<Address> addresses;
+	std::string input;
+
+	while(true)
+	{
+		printf("host? y/n\n");
+		cin >> input;
+
+		if(input == "y")
+		{
+			isHost = true;
+			break;
+		}
+		else if(input == "n")
+		{
+			isHost = false;
+			break;
+		}
+		printf("invalid iput, try again\n");
+	}
+
+	if(!isHost)
+	{
+		while(true)
+		{
+			printf("please enter ip adress of host\n");
+			cin >> input;
+
+			int a,b,c,d;
+			if ( sscanf_s( input.c_str(), "%d.%d.%d.%d", &a, &b, &c, &d ) == 4 )
+			{
+				addresses.push_back( Address( a,b,c,d,port ) );
+				break;
+			}
+			else
+			{
+				printf("invalid ip, try again\n");
+			}
+		}
+
+		while(true)
+		{
+			cin >> input;
+
+			char data[100];
+
+			strcpy(data, input.c_str());
+
+			for ( int i = 0; i < (int) addresses.size(); ++i )
+				socket.Send( addresses[i], data, sizeof( data ) );
+		}
+	}
+
+	if(isHost)
+	{
+		while ( true )
+		{
+			Address sender;
+			unsigned char buffer[256];
+			int bytes_read = socket.Receive( sender, buffer, sizeof( buffer ) );
+			if ( !bytes_read )
+			{
+				continue;
+			}
+
+			printf( "received packet from %d.%d.%d.%d:%d (%d bytes) %s\n", sender.GetA(), sender.GetB(), sender.GetC(), sender.GetD(), sender.GetPort(), bytes_read, buffer );
+		}
+	}
+
+	return 0;
+}
+
+/*
+This is the main method. We can now use main() on every platform.
+*/
+int main()
 {
 	/*
 	The most important function of the engine is the createDevice()
@@ -199,7 +297,7 @@ int example()
 	approximately the place where our md2 model is.
 	*/
 	smgr->addCameraSceneNode(0, vector3df(0,30,-40), vector3df(0,5,0));
-
+	networking();
 	/*
 	Ok, now we have set up the scene, lets draw everything: We run the
 	device in a while() loop, until the device does not want to run any
@@ -232,121 +330,6 @@ int example()
 	information.
 	*/
 	device->drop();
-
-	return 0;
-}
-
-int networking()
-{
-	wait(1.0f);
-
-	if(!InitializeSockets())
-	{
-		printf("failed to initialize sockets\n");
-		getchar();
-		return 1;
-	}
-
-	int port = 8008;
-
-	printf("creating socket on port %d\n", port);
-
-	Socket socket;
-	if(!socket.Open(port))
-	{
-		printf("failed to create socket\n");
-		getchar();
-		return 1;
-	}
-
-	bool isHost;
-	vector<Address> addresses;
-	std::string input;
-
-	while(true)
-	{
-		printf("host? y/n\n");
-		cin >> input;
-
-		if(input == "y")
-		{
-			isHost = true;
-			break;
-		}
-		else if(input == "n")
-		{
-			isHost = false;
-			break;
-		}
-		printf("invalid iput, try again\n");
-	}
-
-	if(!isHost)
-	{
-		while(true)
-		{
-			printf("please enter ip adress of host\n");
-			cin >> input;
-
-			int a,b,c,d;
-			if ( sscanf_s( input.c_str(), "%d.%d.%d.%d", &a, &b, &c, &d ) == 4 )
-			{
-				addresses.push_back( Address( a,b,c,d,port ) );
-				break;
-			}
-			else
-			{
-				printf("invalid ip, try again\n");
-			}
-		}
-
-		while(true)
-		{
-			cin >> input;
-
-			char data[100];
-
-			strcpy(data, input.c_str());
-
-			for ( int i = 0; i < (int) addresses.size(); ++i )
-				socket.Send( addresses[i], data, sizeof( data ) );
-		}
-	}
-
-	if(isHost)
-	{
-		while ( true )
-		{
-			Address sender;
-			unsigned char buffer[256];
-			int bytes_read = socket.Receive( sender, buffer, sizeof( buffer ) );
-			if ( !bytes_read )
-			{
-				continue;
-			}
-			else
-			{
-				char ack[] = "packet received!";
-				socket.Send( sender, ack, sizeof( ack ) );
-			}
-
-			printf( "received packet from %d.%d.%d.%d:%d (%d bytes) %s\n", sender.GetA(), sender.GetB(), sender.GetC(), sender.GetD(), sender.GetPort(), bytes_read, buffer );
-		}
-	}
-
-	return 0;
-}
-
-/*
-This is the main method. We can now use main() on every platform.
-*/
-int main()
-{
-	std::thread threadOne (example);
-	std::thread threadTwo (networking);
-
-	threadOne.join();
-	threadTwo.join();
 
 	return 0;
 }
