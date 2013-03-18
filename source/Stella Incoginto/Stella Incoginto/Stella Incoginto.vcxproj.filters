@@ -27,15 +27,27 @@
     <ClInclude Include="net.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="client.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mainscene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Stella Incoginto.cpp">
+    <ClCompile Include="net.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="net.cpp">
+    <ClCompile Include="client.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lobby.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mainscene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
