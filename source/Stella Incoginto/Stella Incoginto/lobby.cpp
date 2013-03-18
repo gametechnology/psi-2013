@@ -47,7 +47,7 @@ BOOLEAN startmainscene;
 //TODO: MOdify to call the list for the net class
 list<Client> clientList;
 //Client client;
-
+int lastListSize = 0;
 
 // Define some values that we'll use to identify individual GUI controls.
 enum
@@ -315,7 +315,14 @@ int main()
 		driver->beginScene(true, true, SColor(0,200,200,200));
 
 		env->drawAll();
-	
+
+		
+		if(clientList.size() > lastListSize){
+			std::string str = "player: "+ clientList.getLast()->Name+ " ip: "+ clientList.getLast()->Ipadress;
+			std::wstring widestr = std::wstring(str.begin(), str.end());
+			const wchar_t* widecstr = widestr.c_str();
+			listbox->addItem(widecstr); 
+		}
 		driver->endScene();
 	}
 
