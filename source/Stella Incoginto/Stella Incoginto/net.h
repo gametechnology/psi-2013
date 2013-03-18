@@ -25,6 +25,7 @@ class Net{
 		static std::string serverip;
 		static BOOLEAN isrunning;
 		static list<Client> clientlist;
+		static list<Client> copyclientlist;
 		static Client mypc;
 		static int lastpackageidrecieved;
 		// 0 = connecting, 1 = inlobby, 2 = loading 3 = ingame

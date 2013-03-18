@@ -14,25 +14,25 @@ specified. This is different for every IDE and compiler you use. Let's explain
 shortly how to do this in Microsoft Visual Studio:
 
 - If you use Version 6.0, select the Menu Extras -> Options.
-  Select the directories tab, and select the 'Include' Item in the combo box.
-  Add the \c include directory of the irrlicht engine folder to the list of
-  directories. Now the compiler will find the Irrlicht.h header file. We also
-  need the irrlicht.lib to be found, so stay in that dialog, select 'Libraries'
-  in the combo box and add the \c lib/VisualStudio directory.
-  \image html "vc6optionsdir.jpg"
-  \image latex "vc6optionsdir.jpg"
-  \image html "vc6include.jpg"
-  \image latex "vc6include.jpg"
+Select the directories tab, and select the 'Include' Item in the combo box.
+Add the \c include directory of the irrlicht engine folder to the list of
+directories. Now the compiler will find the Irrlicht.h header file. We also
+need the irrlicht.lib to be found, so stay in that dialog, select 'Libraries'
+in the combo box and add the \c lib/VisualStudio directory.
+\image html "vc6optionsdir.jpg"
+\image latex "vc6optionsdir.jpg"
+\image html "vc6include.jpg"
+\image latex "vc6include.jpg"
 
 - If your IDE is Visual Studio .NET, select Tools -> Options.
-  Select the projects entry and then select VC++ directories. Select 'show
-  directories for include files' in the combo box, and add the \c include
-  directory of the irrlicht engine folder to the list of directories. Now the
-  compiler will find the Irrlicht.h header file. We also need the irrlicht.lib
-  to be found, so stay in that dialog, select 'show directories for Library
-  files' and add the \c lib/VisualStudio directory.
-  \image html "vcnetinclude.jpg"
-  \image latex "vcnetinclude.jpg"
+Select the projects entry and then select VC++ directories. Select 'show
+directories for include files' in the combo box, and add the \c include
+directory of the irrlicht engine folder to the list of directories. Now the
+compiler will find the Irrlicht.h header file. We also need the irrlicht.lib
+to be found, so stay in that dialog, select 'show directories for Library
+files' and add the \c lib/VisualStudio directory.
+\image html "vcnetinclude.jpg"
+\image latex "vcnetinclude.jpg"
 
 That's it. With your IDE set up like this, you will now be able to develop
 applications with the Irrlicht Engine.
@@ -43,6 +43,13 @@ After we have set up the IDE, the compiler will know where to find the Irrlicht
 Engine header files so we can include it now in our code.
 */
 #include <irrlicht.h>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <thread>
+
+#include "Net.h"
 
 /*
 In the Irrlicht Engine, everything can be found in the namespace 'irr'. So if
@@ -68,6 +75,8 @@ using namespace scene;
 using namespace video;
 using namespace io;
 using namespace gui;
+using namespace std;
+using namespace net;
 
 /*
 To be able to use the Irrlicht.DLL file, we need to link with the Irrlicht.lib.
@@ -79,14 +88,10 @@ losing platform independence then.
 */
 #ifdef _IRR_WINDOWS_
 #pragma comment(lib, "Irrlicht.lib")
-#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
+//#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
 
-
-/*
-This is the main method. We can now use main() on every platform.
-*/
-int main()
+int example()
 {
 	/*
 	The most important function of the engine is the createDevice()
@@ -95,35 +100,35 @@ int main()
 	parameters:
 
 	- deviceType: Type of the device. This can currently be the Null-device,
-	   one of the two software renderers, D3D8, D3D9, or OpenGL. In this
-	   example we use EDT_SOFTWARE, but to try out, you might want to
-	   change it to EDT_BURNINGSVIDEO, EDT_NULL, EDT_DIRECT3D8,
-	   EDT_DIRECT3D9, or EDT_OPENGL.
+	one of the two software renderers, D3D8, D3D9, or OpenGL. In this
+	example we use EDT_SOFTWARE, but to try out, you might want to
+	change it to EDT_BURNINGSVIDEO, EDT_NULL, EDT_DIRECT3D8,
+	EDT_DIRECT3D9, or EDT_OPENGL.
 
 	- windowSize: Size of the Window or screen in FullScreenMode to be
-	   created. In this example we use 640x480.
+	created. In this example we use 640x480.
 
 	- bits: Amount of color bits per pixel. This should be 16 or 32. The
-	   parameter is often ignored when running in windowed mode.
+	parameter is often ignored when running in windowed mode.
 
 	- fullscreen: Specifies if we want the device to run in fullscreen mode
-	   or not.
+	or not.
 
 	- stencilbuffer: Specifies if we want to use the stencil buffer (for
-	   drawing shadows).
+	drawing shadows).
 
 	- vsync: Specifies if we want to have vsync enabled, this is only useful
-	   in fullscreen mode.
+	in fullscreen mode.
 
 	- eventReceiver: An object to receive events. We do not want to use this
-	   parameter here, and set it to 0.
+	parameter here, and set it to 0.
 
 	Always check the return value to cope with unsupported drivers,
 	dimensions, etc.
 	*/
 	IrrlichtDevice *device =
 		createDevice( video::EDT_SOFTWARE, dimension2d<u32>(640, 480), 16,
-			false, false, false, 0);
+		false, false, false, 0);
 
 	if (!device)
 		return 1;
@@ -227,6 +232,121 @@ int main()
 	information.
 	*/
 	device->drop();
+
+	return 0;
+}
+
+int networking()
+{
+	wait(1.0f);
+
+	if(!InitializeSockets())
+	{
+		printf("failed to initialize sockets\n");
+		getchar();
+		return 1;
+	}
+
+	int port = 8008;
+
+	printf("creating socket on port %d\n", port);
+
+	Socket socket;
+	if(!socket.Open(port))
+	{
+		printf("failed to create socket\n");
+		getchar();
+		return 1;
+	}
+
+	bool isHost;
+	vector<Address> addresses;
+	std::string input;
+
+	while(true)
+	{
+		printf("host? y/n\n");
+		cin >> input;
+
+		if(input == "y")
+		{
+			isHost = true;
+			break;
+		}
+		else if(input == "n")
+		{
+			isHost = false;
+			break;
+		}
+		printf("invalid iput, try again\n");
+	}
+
+	if(!isHost)
+	{
+		while(true)
+		{
+			printf("please enter ip adress of host\n");
+			cin >> input;
+
+			int a,b,c,d;
+			if ( sscanf_s( input.c_str(), "%d.%d.%d.%d", &a, &b, &c, &d ) == 4 )
+			{
+				addresses.push_back( Address( a,b,c,d,port ) );
+				break;
+			}
+			else
+			{
+				printf("invalid ip, try again\n");
+			}
+		}
+
+		while(true)
+		{
+			cin >> input;
+
+			char data[100];
+
+			strcpy(data, input.c_str());
+
+			for ( int i = 0; i < (int) addresses.size(); ++i )
+				socket.Send( addresses[i], data, sizeof( data ) );
+		}
+	}
+
+	if(isHost)
+	{
+		while ( true )
+		{
+			Address sender;
+			unsigned char buffer[256];
+			int bytes_read = socket.Receive( sender, buffer, sizeof( buffer ) );
+			if ( !bytes_read )
+			{
+				continue;
+			}
+			else
+			{
+				char ack[] = "packet received!";
+				socket.Send( sender, ack, sizeof( ack ) );
+			}
+
+			printf( "received packet from %d.%d.%d.%d:%d (%d bytes) %s\n", sender.GetA(), sender.GetB(), sender.GetC(), sender.GetD(), sender.GetPort(), bytes_read, buffer );
+		}
+	}
+
+	return 0;
+}
+
+/*
+This is the main method. We can now use main() on every platform.
+*/
+int main()
+{
+	std::thread threadOne (example);
+	std::thread threadTwo (networking);
+
+	threadOne.join();
+	threadTwo.join();
 
 	return 0;
 }
