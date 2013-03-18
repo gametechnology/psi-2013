@@ -33,11 +33,9 @@ class Net{
 		static void senderthread(void * var);
 		static void recieverthread(void * var);
 		static Client * GetClientByIp(std::string ipadres);
-		void InitiateNetS();
-		void InitiateNetC(void * ipadres);
 	public:
-		Net();		
-		Net(std::string);
+		Net(std::string name);		
+		Net(std::string,std::string name);
 		void StartGame();
 		static void UpdateGame(sf::SocketUDP Socket, std::string, int lastpackagerecieved);
 		

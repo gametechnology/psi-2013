@@ -131,7 +131,7 @@ public:
 						start = env->addButton(rect<s32>(10,360,110,360 + 32), 0, GUI_ID_FILE_START_BUTTON,
 						L"Start", L"Start a new game");
 						start->setEnabled(false);
-						network = new Net();
+						network = new Net("Za Host");
 					/*
 					Context.listbox->addItem(L"put list content");
 					Context.counter += 30;
@@ -176,7 +176,7 @@ public:
 					Client *client = new Client(ipaddres.c_str(),clientList.getSize(), name.c_str());
 					clientList.push_back(*client);
 					
-					network = new Net(ipaddres.c_str());
+					network = new Net(ipaddres.c_str(), name.c_str());
 					//only for test
 					//listbox->addItem(userName->getText());
 
