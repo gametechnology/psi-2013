@@ -173,9 +173,6 @@ public:
 					
 					stringc name = userName->getText();
 					stringc  ipaddres = hostIp->getText();
-					Client *client = new Client(ipaddres.c_str(),clientList.getSize(), name.c_str());
-					clientList.push_back(*client);
-					
 					network = new Net(ipaddres.c_str(), name.c_str());
 					//only for test
 					//listbox->addItem(userName->getText());

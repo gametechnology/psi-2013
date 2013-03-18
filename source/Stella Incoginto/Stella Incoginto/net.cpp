@@ -30,13 +30,12 @@ void Net::senderthread(void * var)
 			{
 				//create and fill the initctos struct.
 				sf::Packet initPackage;
-				initctos initctos;
-				initctos.header = "initctos";
-				initctos.name = "temp";
-				initctos.id = 0;
+				std::string header = "initctos";
+				std::string name = mypc.Name;
+				
 				//put the struct into a package and send
-				initPackage << initctos.header << initctos.name << initctos.id;
-				if (Socket.Send(initPackage, serverip, 8008) != sf::Socket::Done)
+				initPackage << header << name << 0;
+				if (Socket.Send(initPackage, serverip, 7000) != sf::Socket::Done)
 				{
 					
 				} 
@@ -45,6 +44,9 @@ void Net::senderthread(void * var)
 			if(isServer)
 			{
 				//create and fill the initctos struct.
+				
+				if(clientlist.size() == 0)
+					continue;
 				sf::Packet lobbyPackage;
 				std::string header = "lobbyupdate";
 				lobbyPackage << header << static_cast<sf::Uint32>(clientlist.size());
@@ -53,7 +55,7 @@ void Net::senderthread(void * var)
 				for (list<Client>::Iterator i = clientlist.begin(); i != clientlist.end(); i++)
 				{
 					
-					if (Socket.Send(lobbyPackage,  i->Ipadress, 8008) != sf::Socket::Done)
+					if (Socket.Send(lobbyPackage,  i->Ipadress, 7000) != sf::Socket::Done)
 					{
 					
 					}
@@ -218,6 +220,8 @@ void  Net::recieverthread(void * var)
 
 Client * Net::GetClientByIp(std::string ipadress)
 {
+	if (clientlist.size() == 0)
+		return NULL;
 	for (list<Client>::ConstIterator iterator = clientlist.begin(); iterator != clientlist.end(); ++iterator) {
 		if(iterator->Ipadress == ipadress)
 			return (Client*)&iterator;
@@ -289,6 +293,7 @@ Net::Net(std::string ipadres, std::string name)
 {
 	serverip = ipadres;
 	isServer = FALSE;
+	mypc = Client();
 	mypc.Name = name;
 	int  a =1;
 	_beginthread(senderthread, 0, &a);
@@ -299,10 +304,11 @@ Net::Net(std::string ipadres, std::string name)
 Net::Net(std::string name)
 {
 	isServer = TRUE;
+	mypc = Client();
 	mypc.Name = name;
-	clientlist.push_back(Client("",1,name));
-	num_players_con++;
 	int  a =1;
+	stagegame = 1;
+	clientlist = list<Client>();
 	_beginthread(senderthread, 0, &a);
 	_beginthread(recieverthread, 0, &a);
 }	
