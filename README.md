@@ -9,7 +9,9 @@ Bin
 Build
 > This folder holds all the solution and project files. Every solution has his own folder and every Project in the Solution has his own sub-folder. 
 > So for example: the solution Example has the folder 'Example' in the 'build' folder. The Example folder holds a 'ExampleProject' folder with the project files.
+>
 > !!! IMPORTANT NOTE !!!
+>
 > You should ALWAYS add the .sdf file to the .gitignore. The .sdf files can grow huge in size and will be rebuild every time you build the project. So the files MUST be excluded from a commit to avoid cluttering the repo with huge, useless files.
 
 Docs
