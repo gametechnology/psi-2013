@@ -1,0 +1,144 @@
+\hypertarget{classirr_1_1scene_1_1_c_default_scene_node_animator_factory}{\section{irr\-:\-:scene\-:\-:C\-Default\-Scene\-Node\-Animator\-Factory Class Reference}
+\label{classirr_1_1scene_1_1_c_default_scene_node_animator_factory}\index{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory@{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory}}
+}
+
+
+Interface making it possible to dynamicly create scene nodes animators.  
+
+
+
+
+{\ttfamily \#include $<$C\-Default\-Scene\-Node\-Animator\-Factory.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Default\-Scene\-Node\-Animator\-Factory\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_default_scene_node_animator_factory}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_af9ec8cd1c1bc77051b7429012be0786f}{{\bfseries C\-Default\-Scene\-Node\-Animator\-Factory} (I\-Scene\-Manager $\ast$mgr, gui\-::\-I\-Cursor\-Control $\ast$crs)}\label{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_af9ec8cd1c1bc77051b7429012be0786f}
+
+\item 
+virtual I\-Scene\-Node\-Animator $\ast$ \hyperlink{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_af70fd6b4dc422d6b375e48a24f6090d7}{create\-Scene\-Node\-Animator} (E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-A\-N\-I\-M\-A\-T\-O\-R\-\_\-\-T\-Y\-P\-E type, I\-Scene\-Node $\ast$target)
+\begin{DoxyCompactList}\small\item\em creates a scene node animator based on its type id \end{DoxyCompactList}\item 
+virtual I\-Scene\-Node\-Animator $\ast$ \hyperlink{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_afe50931ca4959d65d913dde0ef6017ff}{create\-Scene\-Node\-Animator} (const char $\ast$type\-Name, I\-Scene\-Node $\ast$target)
+\begin{DoxyCompactList}\small\item\em creates a scene node animator based on its type name \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_af79bc33d7240115ae9dc9cde2c3068f3}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_af79bc33d7240115ae9dc9cde2c3068f3}{get\-Creatable\-Scene\-Node\-Animator\-Type\-Count} () const }\label{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_af79bc33d7240115ae9dc9cde2c3068f3}
+
+\begin{DoxyCompactList}\small\item\em returns amount of scene node animator types this factory is able to create \end{DoxyCompactList}\item 
+virtual E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-A\-N\-I\-M\-A\-T\-O\-R\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_ab88873d84f49f44d08be9b5560dbe9ce}{get\-Createable\-Scene\-Node\-Animator\-Type} (u32 idx) const 
+\begin{DoxyCompactList}\small\item\em returns type of a createable scene node animator type \end{DoxyCompactList}\item 
+virtual const c8 $\ast$ \hyperlink{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_a7ee3202458abed35df7d6afb72ce0dc1}{get\-Createable\-Scene\-Node\-Animator\-Type\-Name} (u32 idx) const 
+\begin{DoxyCompactList}\small\item\em returns type name of a createable scene node animator type \end{DoxyCompactList}\item 
+virtual const c8 $\ast$ \hyperlink{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_a6b6ddf89b502e4c425c1f17da82158e2}{get\-Createable\-Scene\-Node\-Animator\-Type\-Name} (E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-A\-N\-I\-M\-A\-T\-O\-R\-\_\-\-T\-Y\-P\-E type) const 
+\begin{DoxyCompactList}\small\item\em returns type name of a createable scene node animator type \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface making it possible to dynamicly create scene nodes animators. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_af70fd6b4dc422d6b375e48a24f6090d7}{\index{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory@{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory}!create\-Scene\-Node\-Animator@{create\-Scene\-Node\-Animator}}
+\index{create\-Scene\-Node\-Animator@{create\-Scene\-Node\-Animator}!irr::scene::CDefaultSceneNodeAnimatorFactory@{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory}}
+\subsubsection[{create\-Scene\-Node\-Animator}]{\setlength{\rightskip}{0pt plus 5cm}I\-Scene\-Node\-Animator $\ast$ irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory\-::create\-Scene\-Node\-Animator (
+\begin{DoxyParamCaption}
+\item[{E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-A\-N\-I\-M\-A\-T\-O\-R\-\_\-\-T\-Y\-P\-E}]{type, }
+\item[{I\-Scene\-Node $\ast$}]{target}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_af70fd6b4dc422d6b375e48a24f6090d7}
+
+
+creates a scene node animator based on its type id 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type,\-:} & Type of the scene node animator to add. \\
+\hline
+{\em target,\-:} & Target scene node of the new animator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns pointer to the new scene node animator or null if not successful. You need to drop this pointer after calling this, see I\-Reference\-Counted\-::drop() for details. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_afe50931ca4959d65d913dde0ef6017ff}{\index{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory@{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory}!create\-Scene\-Node\-Animator@{create\-Scene\-Node\-Animator}}
+\index{create\-Scene\-Node\-Animator@{create\-Scene\-Node\-Animator}!irr::scene::CDefaultSceneNodeAnimatorFactory@{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory}}
+\subsubsection[{create\-Scene\-Node\-Animator}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Scene\-Node\-Animator$\ast$ irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory\-::create\-Scene\-Node\-Animator (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{type\-Name, }
+\item[{I\-Scene\-Node $\ast$}]{target}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_afe50931ca4959d65d913dde0ef6017ff}
+
+
+creates a scene node animator based on its type name 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type\-Name,\-:} & Type of the scene node animator to add. \\
+\hline
+{\em target,\-:} & Target scene node of the new animator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns pointer to the new scene node animator or null if not successful. You need to drop this pointer after calling this, see I\-Reference\-Counted\-::drop() for details. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_ab88873d84f49f44d08be9b5560dbe9ce}{\index{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory@{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory}!get\-Createable\-Scene\-Node\-Animator\-Type@{get\-Createable\-Scene\-Node\-Animator\-Type}}
+\index{get\-Createable\-Scene\-Node\-Animator\-Type@{get\-Createable\-Scene\-Node\-Animator\-Type}!irr::scene::CDefaultSceneNodeAnimatorFactory@{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory}}
+\subsubsection[{get\-Createable\-Scene\-Node\-Animator\-Type}]{\setlength{\rightskip}{0pt plus 5cm}E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-A\-N\-I\-M\-A\-T\-O\-R\-\_\-\-T\-Y\-P\-E irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory\-::get\-Createable\-Scene\-Node\-Animator\-Type (
+\begin{DoxyParamCaption}
+\item[{u32}]{idx}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_ab88873d84f49f44d08be9b5560dbe9ce}
+
+
+returns type of a createable scene node animator type 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx,\-:} & Index of scene node animator type in this factory. Must be a value between 0 and get\-Creatable\-Scene\-Node\-Type\-Count() \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_a7ee3202458abed35df7d6afb72ce0dc1}{\index{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory@{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory}!get\-Createable\-Scene\-Node\-Animator\-Type\-Name@{get\-Createable\-Scene\-Node\-Animator\-Type\-Name}}
+\index{get\-Createable\-Scene\-Node\-Animator\-Type\-Name@{get\-Createable\-Scene\-Node\-Animator\-Type\-Name}!irr::scene::CDefaultSceneNodeAnimatorFactory@{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory}}
+\subsubsection[{get\-Createable\-Scene\-Node\-Animator\-Type\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const c8 $\ast$ irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory\-::get\-Createable\-Scene\-Node\-Animator\-Type\-Name (
+\begin{DoxyParamCaption}
+\item[{u32}]{idx}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_a7ee3202458abed35df7d6afb72ce0dc1}
+
+
+returns type name of a createable scene node animator type 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx,\-:} & Index of scene node animator type in this factory. Must be a value between 0 and \hyperlink{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_af79bc33d7240115ae9dc9cde2c3068f3}{get\-Creatable\-Scene\-Node\-Animator\-Type\-Count()} \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_a6b6ddf89b502e4c425c1f17da82158e2}{\index{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory@{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory}!get\-Createable\-Scene\-Node\-Animator\-Type\-Name@{get\-Createable\-Scene\-Node\-Animator\-Type\-Name}}
+\index{get\-Createable\-Scene\-Node\-Animator\-Type\-Name@{get\-Createable\-Scene\-Node\-Animator\-Type\-Name}!irr::scene::CDefaultSceneNodeAnimatorFactory@{irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory}}
+\subsubsection[{get\-Createable\-Scene\-Node\-Animator\-Type\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const c8 $\ast$ irr\-::scene\-::\-C\-Default\-Scene\-Node\-Animator\-Factory\-::get\-Createable\-Scene\-Node\-Animator\-Type\-Name (
+\begin{DoxyParamCaption}
+\item[{E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-A\-N\-I\-M\-A\-T\-O\-R\-\_\-\-T\-Y\-P\-E}]{type}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_default_scene_node_animator_factory_a6b6ddf89b502e4c425c1f17da82158e2}
+
+
+returns type name of a createable scene node animator type 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type,\-:} & Type of scene node animator. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: Returns name of scene node animator type if this factory can create the type, otherwise 0. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Default\-Scene\-Node\-Animator\-Factory.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Default\-Scene\-Node\-Animator\-Factory.\-cpp\end{DoxyCompactItemize}

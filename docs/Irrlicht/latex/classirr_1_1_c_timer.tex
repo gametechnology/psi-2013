@@ -1,0 +1,149 @@
+\hypertarget{classirr_1_1_c_timer}{\section{irr\-:\-:C\-Timer Class Reference}
+\label{classirr_1_1_c_timer}\index{irr\-::\-C\-Timer@{irr\-::\-C\-Timer}}
+}
+
+
+Device independent implementation of the timer.  
+
+
+
+
+{\ttfamily \#include $<$C\-Timer.\-h$>$}
+
+Inheritance diagram for irr\-:\-:C\-Timer\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1_c_timer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1_c_timer_a2a059923625194e2777188bcec435089}{{\bfseries C\-Timer} (bool use\-Performance\-Timer=true)}\label{classirr_1_1_c_timer_a2a059923625194e2777188bcec435089}
+
+\item 
+virtual u32 \hyperlink{classirr_1_1_c_timer_aa1baf582e2c6f5fec45f5939cd47ef46}{get\-Real\-Time} () const 
+\begin{DoxyCompactList}\small\item\em Returns current real time in milliseconds of the system. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1_c_timer_abcc36450a9ec9f9bd219fbe536d7c0c0}{virtual Real\-Time\-Date \hyperlink{classirr_1_1_c_timer_abcc36450a9ec9f9bd219fbe536d7c0c0}{get\-Real\-Time\-And\-Date} () const }\label{classirr_1_1_c_timer_abcc36450a9ec9f9bd219fbe536d7c0c0}
+
+\begin{DoxyCompactList}\small\item\em Get current time and date in calendar form. \end{DoxyCompactList}\item 
+virtual u32 \hyperlink{classirr_1_1_c_timer_ab8fc2a90ee160e65c2cdbef10414af8a}{get\-Time} () const 
+\begin{DoxyCompactList}\small\item\em Returns current virtual time in milliseconds. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1_c_timer_a399a94713673709ede8825bcfc36fe52}{virtual void \hyperlink{classirr_1_1_c_timer_a399a94713673709ede8825bcfc36fe52}{set\-Time} (u32 time)}\label{classirr_1_1_c_timer_a399a94713673709ede8825bcfc36fe52}
+
+\begin{DoxyCompactList}\small\item\em sets current virtual time \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1_c_timer_ae23aecfc1d00cc84f644dc6e6b4bd43e}{stop} ()
+\begin{DoxyCompactList}\small\item\em Stops the game timer. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1_c_timer_a5298de9fe072d5498bbd5f89f493bdd1}{start} ()
+\begin{DoxyCompactList}\small\item\em Starts the game timer. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1_c_timer_a60ca45e787a2baf9128ce6e8de7a75be}{set\-Speed} (f32 speed=1.\-0f)
+\begin{DoxyCompactList}\small\item\em Sets the speed of the timer. \end{DoxyCompactList}\item 
+virtual f32 \hyperlink{classirr_1_1_c_timer_a54ff6a5dc05b1fed7328f6b117b5d2ab}{get\-Speed} () const 
+\begin{DoxyCompactList}\small\item\em Returns current speed of the timer. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1_c_timer_a79eedba66b2919c594730a71a11c6963}{virtual bool \hyperlink{classirr_1_1_c_timer_a79eedba66b2919c594730a71a11c6963}{is\-Stopped} () const }\label{classirr_1_1_c_timer_a79eedba66b2919c594730a71a11c6963}
+
+\begin{DoxyCompactList}\small\item\em Returns if game timer is currently stopped. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1_c_timer_ab0507a4903ea6ecfe9deababa94d19ea}{tick} ()
+\begin{DoxyCompactList}\small\item\em Advances the virtual time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Device independent implementation of the timer. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1_c_timer_aa1baf582e2c6f5fec45f5939cd47ef46}{\index{irr\-::\-C\-Timer@{irr\-::\-C\-Timer}!get\-Real\-Time@{get\-Real\-Time}}
+\index{get\-Real\-Time@{get\-Real\-Time}!irr::CTimer@{irr\-::\-C\-Timer}}
+\subsubsection[{get\-Real\-Time}]{\setlength{\rightskip}{0pt plus 5cm}virtual u32 irr\-::\-C\-Timer\-::get\-Real\-Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1_c_timer_aa1baf582e2c6f5fec45f5939cd47ef46}
+
+
+Returns current real time in milliseconds of the system. 
+
+\begin{DoxyVerb}This value does not start with 0 when the application starts.
+\end{DoxyVerb}
+ For example in one implementation the value returned could be the amount of milliseconds which have elapsed since the system was started. \hypertarget{classirr_1_1_c_timer_a54ff6a5dc05b1fed7328f6b117b5d2ab}{\index{irr\-::\-C\-Timer@{irr\-::\-C\-Timer}!get\-Speed@{get\-Speed}}
+\index{get\-Speed@{get\-Speed}!irr::CTimer@{irr\-::\-C\-Timer}}
+\subsubsection[{get\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}virtual f32 irr\-::\-C\-Timer\-::get\-Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1_c_timer_a54ff6a5dc05b1fed7328f6b117b5d2ab}
+
+
+Returns current speed of the timer. 
+
+\begin{DoxyVerb}The speed is the factor with which the time is running faster or slower then the
+\end{DoxyVerb}
+ real system time. \hypertarget{classirr_1_1_c_timer_ab8fc2a90ee160e65c2cdbef10414af8a}{\index{irr\-::\-C\-Timer@{irr\-::\-C\-Timer}!get\-Time@{get\-Time}}
+\index{get\-Time@{get\-Time}!irr::CTimer@{irr\-::\-C\-Timer}}
+\subsubsection[{get\-Time}]{\setlength{\rightskip}{0pt plus 5cm}virtual u32 irr\-::\-C\-Timer\-::get\-Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1_c_timer_ab8fc2a90ee160e65c2cdbef10414af8a}
+
+
+Returns current virtual time in milliseconds. 
+
+\begin{DoxyVerb}This value starts with 0 and can be manipulated using setTime(), stopTimer(),
+\end{DoxyVerb}
+ start\-Timer(), etc. This value depends on the set speed of the timer if the timer is stopped, etc. If you need the system time, use \hyperlink{classirr_1_1_c_timer_aa1baf582e2c6f5fec45f5939cd47ef46}{get\-Real\-Time()} \hypertarget{classirr_1_1_c_timer_a60ca45e787a2baf9128ce6e8de7a75be}{\index{irr\-::\-C\-Timer@{irr\-::\-C\-Timer}!set\-Speed@{set\-Speed}}
+\index{set\-Speed@{set\-Speed}!irr::CTimer@{irr\-::\-C\-Timer}}
+\subsubsection[{set\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::\-C\-Timer\-::set\-Speed (
+\begin{DoxyParamCaption}
+\item[{f32}]{speed = {\ttfamily 1.0f}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1_c_timer_a60ca45e787a2baf9128ce6e8de7a75be}
+
+
+Sets the speed of the timer. 
+
+\begin{DoxyVerb}The speed is the factor with which the time is running faster or slower then the
+\end{DoxyVerb}
+ real system time. \hypertarget{classirr_1_1_c_timer_a5298de9fe072d5498bbd5f89f493bdd1}{\index{irr\-::\-C\-Timer@{irr\-::\-C\-Timer}!start@{start}}
+\index{start@{start}!irr::CTimer@{irr\-::\-C\-Timer}}
+\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::\-C\-Timer\-::start (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1_c_timer_a5298de9fe072d5498bbd5f89f493bdd1}
+
+
+Starts the game timer. 
+
+\begin{DoxyVerb}The timer is reference counted, which means everything which calls
+\end{DoxyVerb}
+ stop\-Timer() will also have to call start\-Timer(), otherwise the timer may not start/stop corretly again. \hypertarget{classirr_1_1_c_timer_ae23aecfc1d00cc84f644dc6e6b4bd43e}{\index{irr\-::\-C\-Timer@{irr\-::\-C\-Timer}!stop@{stop}}
+\index{stop@{stop}!irr::CTimer@{irr\-::\-C\-Timer}}
+\subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::\-C\-Timer\-::stop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1_c_timer_ae23aecfc1d00cc84f644dc6e6b4bd43e}
+
+
+Stops the game timer. 
+
+\begin{DoxyVerb}The timer is reference counted, which means everything which calls
+\end{DoxyVerb}
+ stop\-Timer() will also have to call start\-Timer(), otherwise the timer may not start/stop corretly again. \hypertarget{classirr_1_1_c_timer_ab0507a4903ea6ecfe9deababa94d19ea}{\index{irr\-::\-C\-Timer@{irr\-::\-C\-Timer}!tick@{tick}}
+\index{tick@{tick}!irr::CTimer@{irr\-::\-C\-Timer}}
+\subsubsection[{tick}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::\-C\-Timer\-::tick (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1_c_timer_ab0507a4903ea6ecfe9deababa94d19ea}
+
+
+Advances the virtual time. 
+
+\begin{DoxyVerb}Makes the virtual timer update the time value based on the real time. This is
+\end{DoxyVerb}
+ called automaticly when calling Irrlicht\-Device\-::run(), but you can call it manually if you don't use this method. 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Timer.\-h\end{DoxyCompactItemize}

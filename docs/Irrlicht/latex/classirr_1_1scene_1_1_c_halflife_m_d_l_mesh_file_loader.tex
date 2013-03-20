@@ -1,0 +1,64 @@
+\hypertarget{classirr_1_1scene_1_1_c_halflife_m_d_l_mesh_file_loader}{\section{irr\-:\-:scene\-:\-:C\-Halflife\-M\-D\-L\-Mesh\-File\-Loader Class Reference}
+\label{classirr_1_1scene_1_1_c_halflife_m_d_l_mesh_file_loader}\index{irr\-::scene\-::\-C\-Halflife\-M\-D\-L\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-Halflife\-M\-D\-L\-Mesh\-File\-Loader}}
+}
+
+
+Meshloader capable of loading Half\-Life Model files.  
+
+
+
+
+{\ttfamily \#include $<$C\-Animated\-Mesh\-Half\-Life.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Halflife\-M\-D\-L\-Mesh\-File\-Loader\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_halflife_m_d_l_mesh_file_loader}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_halflife_m_d_l_mesh_file_loader_a9da15f9571ca10b69f67e7cab241f072}{\hyperlink{classirr_1_1scene_1_1_c_halflife_m_d_l_mesh_file_loader_a9da15f9571ca10b69f67e7cab241f072}{C\-Halflife\-M\-D\-L\-Mesh\-File\-Loader} (scene\-::\-I\-Scene\-Manager $\ast$smgr)}\label{classirr_1_1scene_1_1_c_halflife_m_d_l_mesh_file_loader_a9da15f9571ca10b69f67e7cab241f072}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_halflife_m_d_l_mesh_file_loader_a8b7b5e4f6a4813487793caa52ecb501a}{is\-A\-Loadable\-File\-Extension} (const io\-::path \&filename) const 
+\begin{DoxyCompactList}\small\item\em returns true if the file maybe is able to be loaded by this class \end{DoxyCompactList}\item 
+virtual I\-Animated\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_halflife_m_d_l_mesh_file_loader_a11c26000684def0d73f6dcc1fcf57ad4}{create\-Mesh} (io\-::\-I\-Read\-File $\ast$file)
+\begin{DoxyCompactList}\small\item\em creates/loads an animated mesh from the file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Meshloader capable of loading Half\-Life Model files. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_halflife_m_d_l_mesh_file_loader_a11c26000684def0d73f6dcc1fcf57ad4}{\index{irr\-::scene\-::\-C\-Halflife\-M\-D\-L\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-Halflife\-M\-D\-L\-Mesh\-File\-Loader}!create\-Mesh@{create\-Mesh}}
+\index{create\-Mesh@{create\-Mesh}!irr::scene::CHalflifeMDLMeshFileLoader@{irr\-::scene\-::\-C\-Halflife\-M\-D\-L\-Mesh\-File\-Loader}}
+\subsubsection[{create\-Mesh}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Animated\-Mesh$\ast$ irr\-::scene\-::\-C\-Halflife\-M\-D\-L\-Mesh\-File\-Loader\-::create\-Mesh (
+\begin{DoxyParamCaption}
+\item[{io\-::\-I\-Read\-File $\ast$}]{file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_halflife_m_d_l_mesh_file_loader_a11c26000684def0d73f6dcc1fcf57ad4}
+
+
+creates/loads an animated mesh from the file. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the created mesh. Returns 0 if loading failed. If you no longer need the mesh, you should call I\-Animated\-Mesh\-::drop(). See I\-Reference\-Counted\-::drop() for more information. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_halflife_m_d_l_mesh_file_loader_a8b7b5e4f6a4813487793caa52ecb501a}{\index{irr\-::scene\-::\-C\-Halflife\-M\-D\-L\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-Halflife\-M\-D\-L\-Mesh\-File\-Loader}!is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}}
+\index{is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}!irr::scene::CHalflifeMDLMeshFileLoader@{irr\-::scene\-::\-C\-Halflife\-M\-D\-L\-Mesh\-File\-Loader}}
+\subsubsection[{is\-A\-Loadable\-File\-Extension}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool irr\-::scene\-::\-C\-Halflife\-M\-D\-L\-Mesh\-File\-Loader\-::is\-A\-Loadable\-File\-Extension (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{filename}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_halflife_m_d_l_mesh_file_loader_a8b7b5e4f6a4813487793caa52ecb501a}
+
+
+returns true if the file maybe is able to be loaded by this class 
+
+based on the file extension (e.\-g. \char`\"{}.\-bsp\char`\"{}) 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Animated\-Mesh\-Half\-Life.\-h\end{DoxyCompactItemize}

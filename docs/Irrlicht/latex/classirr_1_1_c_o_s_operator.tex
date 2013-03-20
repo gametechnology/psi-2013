@@ -1,0 +1,101 @@
+\hypertarget{classirr_1_1_c_o_s_operator}{\section{irr\-:\-:C\-O\-S\-Operator Class Reference}
+\label{classirr_1_1_c_o_s_operator}\index{irr\-::\-C\-O\-S\-Operator@{irr\-::\-C\-O\-S\-Operator}}
+}
+
+
+The Operating system operator provides operation system specific methods and informations.  
+
+
+
+
+{\ttfamily \#include $<$C\-O\-S\-Operator.\-h$>$}
+
+Inheritance diagram for irr\-:\-:C\-O\-S\-Operator\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1_c_o_s_operator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1_c_o_s_operator_a860c05dd8b793193e2f5a78c88ab1034}{{\bfseries C\-O\-S\-Operator} (const core\-::stringc \&osversion)}\label{classirr_1_1_c_o_s_operator_a860c05dd8b793193e2f5a78c88ab1034}
+
+\item 
+virtual const core\-::stringc \& \hyperlink{classirr_1_1_c_o_s_operator_a2ca0531582a8c7d72228e006e6700654}{get\-Operating\-System\-Version} () const 
+\begin{DoxyCompactList}\small\item\em returns the current operation system version as string. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1_c_o_s_operator_ad76a87772c572b108801cbd1523a0d3e}{virtual void \hyperlink{classirr_1_1_c_o_s_operator_ad76a87772c572b108801cbd1523a0d3e}{copy\-To\-Clipboard} (const c8 $\ast$text) const }\label{classirr_1_1_c_o_s_operator_ad76a87772c572b108801cbd1523a0d3e}
+
+\begin{DoxyCompactList}\small\item\em copies text to the clipboard \end{DoxyCompactList}\item 
+virtual const c8 $\ast$ \hyperlink{classirr_1_1_c_o_s_operator_afcf3f5158b24ee63bf295db317eb6e99}{get\-Text\-From\-Clipboard} () const 
+\item 
+virtual bool \hyperlink{classirr_1_1_c_o_s_operator_a77e21742c1f9734cb14d1da4dbf388b4}{get\-Processor\-Speed\-M\-Hz} (u32 $\ast$M\-Hz) const 
+\item 
+virtual bool \hyperlink{classirr_1_1_c_o_s_operator_ad6b40407fd8b0f2569b9dbbcb84e9825}{get\-System\-Memory} (u32 $\ast$Total, u32 $\ast$Avail) const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The Operating system operator provides operation system specific methods and informations. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1_c_o_s_operator_a2ca0531582a8c7d72228e006e6700654}{\index{irr\-::\-C\-O\-S\-Operator@{irr\-::\-C\-O\-S\-Operator}!get\-Operating\-System\-Version@{get\-Operating\-System\-Version}}
+\index{get\-Operating\-System\-Version@{get\-Operating\-System\-Version}!irr::COSOperator@{irr\-::\-C\-O\-S\-Operator}}
+\subsubsection[{get\-Operating\-System\-Version}]{\setlength{\rightskip}{0pt plus 5cm}const core\-::stringc \& irr\-::\-C\-O\-S\-Operator\-::get\-Operating\-System\-Version (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1_c_o_s_operator_a2ca0531582a8c7d72228e006e6700654}
+
+
+returns the current operation system version as string. 
+
+returns the current operating system version as string. \hypertarget{classirr_1_1_c_o_s_operator_a77e21742c1f9734cb14d1da4dbf388b4}{\index{irr\-::\-C\-O\-S\-Operator@{irr\-::\-C\-O\-S\-Operator}!get\-Processor\-Speed\-M\-Hz@{get\-Processor\-Speed\-M\-Hz}}
+\index{get\-Processor\-Speed\-M\-Hz@{get\-Processor\-Speed\-M\-Hz}!irr::COSOperator@{irr\-::\-C\-O\-S\-Operator}}
+\subsubsection[{get\-Processor\-Speed\-M\-Hz}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::\-C\-O\-S\-Operator\-::get\-Processor\-Speed\-M\-Hz (
+\begin{DoxyParamCaption}
+\item[{u32 $\ast$}]{M\-Hz}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1_c_o_s_operator_a77e21742c1f9734cb14d1da4dbf388b4}
+gets the processor speed in megahertz 
+\begin{DoxyParams}{Parameters}
+{\em Mhz,\-:} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, false if not 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1_c_o_s_operator_ad6b40407fd8b0f2569b9dbbcb84e9825}{\index{irr\-::\-C\-O\-S\-Operator@{irr\-::\-C\-O\-S\-Operator}!get\-System\-Memory@{get\-System\-Memory}}
+\index{get\-System\-Memory@{get\-System\-Memory}!irr::COSOperator@{irr\-::\-C\-O\-S\-Operator}}
+\subsubsection[{get\-System\-Memory}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::\-C\-O\-S\-Operator\-::get\-System\-Memory (
+\begin{DoxyParamCaption}
+\item[{u32 $\ast$}]{Total, }
+\item[{u32 $\ast$}]{Avail}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1_c_o_s_operator_ad6b40407fd8b0f2569b9dbbcb84e9825}
+gets the total and available system R\-A\-M in k\-B 
+\begin{DoxyParams}{Parameters}
+{\em Total,\-:} & will contain the total system memory \\
+\hline
+{\em Avail,\-:} & will contain the available memory \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns true if successful, false if not 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1_c_o_s_operator_afcf3f5158b24ee63bf295db317eb6e99}{\index{irr\-::\-C\-O\-S\-Operator@{irr\-::\-C\-O\-S\-Operator}!get\-Text\-From\-Clipboard@{get\-Text\-From\-Clipboard}}
+\index{get\-Text\-From\-Clipboard@{get\-Text\-From\-Clipboard}!irr::COSOperator@{irr\-::\-C\-O\-S\-Operator}}
+\subsubsection[{get\-Text\-From\-Clipboard}]{\setlength{\rightskip}{0pt plus 5cm}const c8 $\ast$ irr\-::\-C\-O\-S\-Operator\-::get\-Text\-From\-Clipboard (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1_c_o_s_operator_afcf3f5158b24ee63bf295db317eb6e99}
+gets text from the clipboard \begin{DoxyReturn}{Returns}
+Returns 0 if no string is in there. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-O\-S\-Operator.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-O\-S\-Operator.\-cpp\end{DoxyCompactItemize}

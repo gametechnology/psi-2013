@@ -1,0 +1,422 @@
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node}{\section{irr\-:\-:scene\-:\-:C\-Camera\-Scene\-Node Class Reference}
+\label{classirr_1_1scene_1_1_c_camera_scene_node}\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+}
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Camera\-Scene\-Node\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_camera_scene_node}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_afb0093484ad13f0595cc93ee8a199d0a}{\hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_afb0093484ad13f0595cc93ee8a199d0a}{C\-Camera\-Scene\-Node} (I\-Scene\-Node $\ast$parent, I\-Scene\-Manager $\ast$mgr, s32 id, const core\-::vector3df \&position=core\-::vector3df(0, 0, 0), const core\-::vector3df \&lookat=core\-::vector3df(0, 0, 100))}\label{classirr_1_1scene_1_1_c_camera_scene_node_afb0093484ad13f0595cc93ee8a199d0a}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_ad2d2b2f9a6f4ce8b0d44ee201ba7a3ae}{set\-Projection\-Matrix} (const core\-::matrix4 \&projection, bool is\-Orthogonal=false)
+\begin{DoxyCompactList}\small\item\em Sets the projection matrix of the camera. \end{DoxyCompactList}\item 
+virtual const core\-::matrix4 \& \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a61da190621c8e7b3c6f782b840dc8354}{get\-Projection\-Matrix} () const 
+\item 
+virtual const core\-::matrix4 \& \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_acb871f3a6867b1d9c674ffce80bb1d90}{get\-View\-Matrix} () const 
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a4d25347c4505d1c386d1d3dfc4955bae}{set\-View\-Matrix\-Affector} (const core\-::matrix4 \&affector)
+\begin{DoxyCompactList}\small\item\em Sets a custom view matrix affector. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a9888c41b476739a21ff11780a220c446}{virtual const core\-::matrix4 \& \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a9888c41b476739a21ff11780a220c446}{get\-View\-Matrix\-Affector} () const }\label{classirr_1_1scene_1_1_c_camera_scene_node_a9888c41b476739a21ff11780a220c446}
+
+\begin{DoxyCompactList}\small\item\em Gets the custom view matrix affector. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a1234f5a92cce9cfd827d84e9a6939def}{On\-Event} (const S\-Event \&event)
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a57c8d7bd0721067ddbc6f728d882c5d8}{set\-Target} (const core\-::vector3df \&pos)
+\begin{DoxyCompactList}\small\item\em Sets the look at target of the camera. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_ab8e0cefadcd6fa48b58d91063c305f6b}{set\-Rotation} (const core\-::vector3df \&rotation)
+\begin{DoxyCompactList}\small\item\em Sets the rotation of the node. \end{DoxyCompactList}\item 
+virtual const core\-::vector3df \& \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_ad04b0d739c5d119b9c072d5e064010ef}{get\-Target} () const 
+\begin{DoxyCompactList}\small\item\em Gets the current look at target of the camera. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a80f876d42938b059af26e5f9c99eeb0e}{set\-Up\-Vector} (const core\-::vector3df \&pos)
+\item 
+virtual const core\-::vector3df \& \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a16c565caaad16d39f30d57e80df931ca}{get\-Up\-Vector} () const 
+\item 
+virtual f32 \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a04817de1499d5c729979489e8945462a}{get\-Near\-Value} () const 
+\item 
+virtual f32 \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a9572cc1de9706535ad5ce7b42dba6bce}{get\-Far\-Value} () const 
+\item 
+virtual f32 \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a0096263987b854296fb3b05fb803cfda}{get\-Aspect\-Ratio} () const 
+\item 
+virtual f32 \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a952a8c5bb41313256b5210b45f7d29c8}{get\-F\-O\-V} () const 
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_aebef61b52ca7bc3d047d065858b499e9}{virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_aebef61b52ca7bc3d047d065858b499e9}{set\-Near\-Value} (f32 zn)}\label{classirr_1_1scene_1_1_c_camera_scene_node_aebef61b52ca7bc3d047d065858b499e9}
+
+\begin{DoxyCompactList}\small\item\em Sets the value of the near clipping plane. (default\-: 1.\-0f) \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_ab095815e7ad4c95bc54787563177fe59}{virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_ab095815e7ad4c95bc54787563177fe59}{set\-Far\-Value} (f32 zf)}\label{classirr_1_1scene_1_1_c_camera_scene_node_ab095815e7ad4c95bc54787563177fe59}
+
+\begin{DoxyCompactList}\small\item\em Sets the value of the far clipping plane (default\-: 2000.\-0f) \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a0cb6d45cc8122fb0e21731308f0ded23}{virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a0cb6d45cc8122fb0e21731308f0ded23}{set\-Aspect\-Ratio} (f32 aspect)}\label{classirr_1_1scene_1_1_c_camera_scene_node_a0cb6d45cc8122fb0e21731308f0ded23}
+
+\begin{DoxyCompactList}\small\item\em Sets the aspect ratio (default\-: 4.\-0f / 3.\-0f) \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a905b7e939a1efc0a6b1857981392a30f}{virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a905b7e939a1efc0a6b1857981392a30f}{set\-F\-O\-V} (f32 fovy)}\label{classirr_1_1scene_1_1_c_camera_scene_node_a905b7e939a1efc0a6b1857981392a30f}
+
+\begin{DoxyCompactList}\small\item\em Sets the field of view (Default\-: P\-I / 3.\-5f) \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a528e9f314c8ab9b75ec082caf5ecdaad}{On\-Register\-Scene\-Node} ()
+\begin{DoxyCompactList}\small\item\em Pre\-Render event. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_aaa4b74ecb932dfcc422c9af2e6c904a8}{render} ()
+\begin{DoxyCompactList}\small\item\em Render. \end{DoxyCompactList}\item 
+virtual const core\-::aabbox3d\\*
+$<$ f32 $>$ \& \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a00867ef7a5af4d42a884d1b2cb2f1cf4}{get\-Bounding\-Box} () const 
+\begin{DoxyCompactList}\small\item\em Returns the axis aligned bounding box of this node. \end{DoxyCompactList}\item 
+virtual const S\-View\-Frustum $\ast$ \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_af354b1802ce22c04233bba69835f4fbf}{get\-View\-Frustum} () const 
+\begin{DoxyCompactList}\small\item\em Returns the view area. Sometimes needed by bsp or lod render nodes. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a02d7f9a9e12264d99b532db16c0479bd}{set\-Input\-Receiver\-Enabled} (bool enabled)
+\begin{DoxyCompactList}\small\item\em Disables or enables the camera to get key or mouse inputs. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a7e6ac1b8d2aecdb445af9feae1279aab}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a7e6ac1b8d2aecdb445af9feae1279aab}{is\-Input\-Receiver\-Enabled} () const }\label{classirr_1_1scene_1_1_c_camera_scene_node_a7e6ac1b8d2aecdb445af9feae1279aab}
+
+\begin{DoxyCompactList}\small\item\em Returns if the input receiver of the camera is currently enabled. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a6f52cc9f603b1d576c32c13d992366bc}{virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a6f52cc9f603b1d576c32c13d992366bc}{serialize\-Attributes} (io\-::\-I\-Attributes $\ast$out, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0) const }\label{classirr_1_1scene_1_1_c_camera_scene_node_a6f52cc9f603b1d576c32c13d992366bc}
+
+\begin{DoxyCompactList}\small\item\em Writes attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a48b7c015411a0afff6878abf875e9d14}{virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a48b7c015411a0afff6878abf875e9d14}{deserialize\-Attributes} (io\-::\-I\-Attributes $\ast$in, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0)}\label{classirr_1_1scene_1_1_c_camera_scene_node_a48b7c015411a0afff6878abf875e9d14}
+
+\begin{DoxyCompactList}\small\item\em Reads attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a81595772f903d74b90f8310dec5d741e}{virtual E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a81595772f903d74b90f8310dec5d741e}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_camera_scene_node_a81595772f903d74b90f8310dec5d741e}
+
+\begin{DoxyCompactList}\small\item\em Returns type of the scene node. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a28fad5aaca2451574ed9e0544e165e3d}{bind\-Target\-And\-Rotation} (bool bound)
+\begin{DoxyCompactList}\small\item\em Binds the camera scene node's rotation to its target position and vice vera, or unbinds them. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a573cbc81603938876b199e681da85728}{get\-Target\-And\-Rotation\-Binding} (void) const 
+\begin{DoxyCompactList}\small\item\em Queries if the camera scene node's rotation and its target position are bound together. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_abc92a271a8e92d328a0397990732650a}{virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_abc92a271a8e92d328a0397990732650a}{clone} (I\-Scene\-Node $\ast$new\-Parent=0, I\-Scene\-Manager $\ast$new\-Manager=0)}\label{classirr_1_1scene_1_1_c_camera_scene_node_abc92a271a8e92d328a0397990732650a}
+
+\begin{DoxyCompactList}\small\item\em Creates a clone of this scene node and its children. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_aa0d18fa923a76eec54022586e78848b6}{void {\bfseries recalculate\-Projection\-Matrix} ()}\label{classirr_1_1scene_1_1_c_camera_scene_node_aa0d18fa923a76eec54022586e78848b6}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_ac2c437474c1380b8b3c78f7549b5b6c2}{void {\bfseries recalculate\-View\-Area} ()}\label{classirr_1_1scene_1_1_c_camera_scene_node_ac2c437474c1380b8b3c78f7549b5b6c2}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a960091de5e95b5b78196869523b366be}{core\-::vector3df {\bfseries Target}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a960091de5e95b5b78196869523b366be}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_acedb805a67063b1aef179a3041d8201f}{core\-::vector3df {\bfseries Up\-Vector}}\label{classirr_1_1scene_1_1_c_camera_scene_node_acedb805a67063b1aef179a3041d8201f}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a0920a68b00038a09b76181faf33aec3e}{f32 {\bfseries Fovy}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a0920a68b00038a09b76181faf33aec3e}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_acfd8761ca4cc85298f499a70b5f2fedb}{f32 {\bfseries Aspect}}\label{classirr_1_1scene_1_1_c_camera_scene_node_acfd8761ca4cc85298f499a70b5f2fedb}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_acc23c1ceabc13c9ea4027ab6da479989}{f32 {\bfseries Z\-Near}}\label{classirr_1_1scene_1_1_c_camera_scene_node_acc23c1ceabc13c9ea4027ab6da479989}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a6256470243f3c7386dd6508ec4f5a332}{f32 {\bfseries Z\-Far}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a6256470243f3c7386dd6508ec4f5a332}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a68cf8f866bd49de71bfa3c5cbbae1d5d}{S\-View\-Frustum {\bfseries View\-Area}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a68cf8f866bd49de71bfa3c5cbbae1d5d}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a12b6006a2585ab651436b07833a17ab2}{core\-::matrix4 {\bfseries Affector}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a12b6006a2585ab651436b07833a17ab2}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a0e9da2636a2c9f3ef97999ce4e1843f4}{bool {\bfseries Input\-Receiver\-Enabled}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a0e9da2636a2c9f3ef97999ce4e1843f4}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a807a317f73058c5ddcae2d6f635a8a52}{bool {\bfseries Target\-And\-Rotation\-Are\-Bound}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a807a317f73058c5ddcae2d6f635a8a52}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a28fad5aaca2451574ed9e0544e165e3d}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!bind\-Target\-And\-Rotation@{bind\-Target\-And\-Rotation}}
+\index{bind\-Target\-And\-Rotation@{bind\-Target\-And\-Rotation}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{bind\-Target\-And\-Rotation}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::bind\-Target\-And\-Rotation (
+\begin{DoxyParamCaption}
+\item[{bool}]{bound}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a28fad5aaca2451574ed9e0544e165e3d}
+
+
+Binds the camera scene node's rotation to its target position and vice vera, or unbinds them. 
+
+Set the binding between the camera's rotation adn target. \hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a0096263987b854296fb3b05fb803cfda}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!get\-Aspect\-Ratio@{get\-Aspect\-Ratio}}
+\index{get\-Aspect\-Ratio@{get\-Aspect\-Ratio}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{get\-Aspect\-Ratio}]{\setlength{\rightskip}{0pt plus 5cm}f32 irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::get\-Aspect\-Ratio (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a0096263987b854296fb3b05fb803cfda}
+Get the aspect ratio of the camera. \begin{DoxyReturn}{Returns}
+The aspect ratio of the camera. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a00867ef7a5af4d42a884d1b2cb2f1cf4}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!get\-Bounding\-Box@{get\-Bounding\-Box}}
+\index{get\-Bounding\-Box@{get\-Bounding\-Box}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{get\-Bounding\-Box}]{\setlength{\rightskip}{0pt plus 5cm}const core\-::aabbox3d$<$ f32 $>$ \& irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::get\-Bounding\-Box (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a00867ef7a5af4d42a884d1b2cb2f1cf4}
+
+
+Returns the axis aligned bounding box of this node. 
+
+returns the axis aligned bounding box of this node \hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a9572cc1de9706535ad5ce7b42dba6bce}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!get\-Far\-Value@{get\-Far\-Value}}
+\index{get\-Far\-Value@{get\-Far\-Value}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{get\-Far\-Value}]{\setlength{\rightskip}{0pt plus 5cm}f32 irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::get\-Far\-Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a9572cc1de9706535ad5ce7b42dba6bce}
+Gets the distance from the camera to the far plane. \begin{DoxyReturn}{Returns}
+Value of the far plane of the camera. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a952a8c5bb41313256b5210b45f7d29c8}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!get\-F\-O\-V@{get\-F\-O\-V}}
+\index{get\-F\-O\-V@{get\-F\-O\-V}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{get\-F\-O\-V}]{\setlength{\rightskip}{0pt plus 5cm}f32 irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::get\-F\-O\-V (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a952a8c5bb41313256b5210b45f7d29c8}
+Gets the field of view of the camera. \begin{DoxyReturn}{Returns}
+Field of view of the camera 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a04817de1499d5c729979489e8945462a}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!get\-Near\-Value@{get\-Near\-Value}}
+\index{get\-Near\-Value@{get\-Near\-Value}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{get\-Near\-Value}]{\setlength{\rightskip}{0pt plus 5cm}f32 irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::get\-Near\-Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a04817de1499d5c729979489e8945462a}
+Gets distance from the camera to the near plane. \begin{DoxyReturn}{Returns}
+Value of the near plane of the camera. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a61da190621c8e7b3c6f782b840dc8354}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!get\-Projection\-Matrix@{get\-Projection\-Matrix}}
+\index{get\-Projection\-Matrix@{get\-Projection\-Matrix}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{get\-Projection\-Matrix}]{\setlength{\rightskip}{0pt plus 5cm}const core\-::matrix4 \& irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::get\-Projection\-Matrix (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a61da190621c8e7b3c6f782b840dc8354}
+Gets the current projection matrix of the camera \begin{DoxyReturn}{Returns}
+Returns the current projection matrix of the camera. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_ad04b0d739c5d119b9c072d5e064010ef}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!get\-Target@{get\-Target}}
+\index{get\-Target@{get\-Target}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{get\-Target}]{\setlength{\rightskip}{0pt plus 5cm}const core\-::vector3df \& irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::get\-Target (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_ad04b0d739c5d119b9c072d5e064010ef}
+
+
+Gets the current look at target of the camera. 
+
+\begin{DoxyReturn}{Returns}
+The current look at target of the camera
+\end{DoxyReturn}
+Gets the current look at target of the camera \begin{DoxyReturn}{Returns}
+Returns the current look at target of the camera 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a573cbc81603938876b199e681da85728}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!get\-Target\-And\-Rotation\-Binding@{get\-Target\-And\-Rotation\-Binding}}
+\index{get\-Target\-And\-Rotation\-Binding@{get\-Target\-And\-Rotation\-Binding}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{get\-Target\-And\-Rotation\-Binding}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::get\-Target\-And\-Rotation\-Binding (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a573cbc81603938876b199e681da85728}
+
+
+Queries if the camera scene node's rotation and its target position are bound together. 
+
+Gets the binding between the camera's rotation and target. \hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a16c565caaad16d39f30d57e80df931ca}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!get\-Up\-Vector@{get\-Up\-Vector}}
+\index{get\-Up\-Vector@{get\-Up\-Vector}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{get\-Up\-Vector}]{\setlength{\rightskip}{0pt plus 5cm}const core\-::vector3df \& irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::get\-Up\-Vector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a16c565caaad16d39f30d57e80df931ca}
+Gets the up vector of the camera. \begin{DoxyReturn}{Returns}
+Returns the up vector of the camera. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_af354b1802ce22c04233bba69835f4fbf}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!get\-View\-Frustum@{get\-View\-Frustum}}
+\index{get\-View\-Frustum@{get\-View\-Frustum}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{get\-View\-Frustum}]{\setlength{\rightskip}{0pt plus 5cm}const S\-View\-Frustum $\ast$ irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::get\-View\-Frustum (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_af354b1802ce22c04233bba69835f4fbf}
+
+
+Returns the view area. Sometimes needed by bsp or lod render nodes. 
+
+returns the view frustum. needed sometimes by bsp or lod render nodes. \hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_acb871f3a6867b1d9c674ffce80bb1d90}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!get\-View\-Matrix@{get\-View\-Matrix}}
+\index{get\-View\-Matrix@{get\-View\-Matrix}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{get\-View\-Matrix}]{\setlength{\rightskip}{0pt plus 5cm}const core\-::matrix4 \& irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::get\-View\-Matrix (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_acb871f3a6867b1d9c674ffce80bb1d90}
+Gets the current view matrix of the camera \begin{DoxyReturn}{Returns}
+Returns the current view matrix of the camera. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a1234f5a92cce9cfd827d84e9a6939def}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!On\-Event@{On\-Event}}
+\index{On\-Event@{On\-Event}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{On\-Event}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::\-On\-Event (
+\begin{DoxyParamCaption}
+\item[{const S\-Event \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a1234f5a92cce9cfd827d84e9a6939def}
+It is possible to send mouse and key events to the camera. Most cameras may ignore this input, but camera scene nodes which are created for example with scene\-::\-I\-Scene\-Manager\-::add\-Maya\-Camera\-Scene\-Node or scene\-::\-I\-Scene\-Manager\-::add\-Mesh\-Viewer\-Camera\-Scene\-Node, may want to get this input for changing their position, look at target or whatever.
+
+It is possible to send mouse and key events to the camera. Most cameras may ignore this input, but camera scene nodes which are created for example with scene\-::\-I\-Scene\-Manager\-::add\-Maya\-Camera\-Scene\-Node or scene\-::\-I\-Scene\-Manager\-::add\-F\-P\-S\-Camera\-Scene\-Node, may want to get this input for changing their position, look at target or whatever. \hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a528e9f314c8ab9b75ec082caf5ecdaad}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!On\-Register\-Scene\-Node@{On\-Register\-Scene\-Node}}
+\index{On\-Register\-Scene\-Node@{On\-Register\-Scene\-Node}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{On\-Register\-Scene\-Node}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::\-On\-Register\-Scene\-Node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a528e9f314c8ab9b75ec082caf5ecdaad}
+
+
+Pre\-Render event. 
+
+prerender \hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_aaa4b74ecb932dfcc422c9af2e6c904a8}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!render@{render}}
+\index{render@{render}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{render}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::render (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_aaa4b74ecb932dfcc422c9af2e6c904a8}
+
+
+Render. 
+
+render \hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a02d7f9a9e12264d99b532db16c0479bd}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!set\-Input\-Receiver\-Enabled@{set\-Input\-Receiver\-Enabled}}
+\index{set\-Input\-Receiver\-Enabled@{set\-Input\-Receiver\-Enabled}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{set\-Input\-Receiver\-Enabled}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::set\-Input\-Receiver\-Enabled (
+\begin{DoxyParamCaption}
+\item[{bool}]{enabled}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a02d7f9a9e12264d99b532db16c0479bd}
+
+
+Disables or enables the camera to get key or mouse inputs. 
+
+Disables or enables the camera to get key or mouse inputs. If this is set to true, the camera will respond to key inputs otherwise not. \hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_ad2d2b2f9a6f4ce8b0d44ee201ba7a3ae}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!set\-Projection\-Matrix@{set\-Projection\-Matrix}}
+\index{set\-Projection\-Matrix@{set\-Projection\-Matrix}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{set\-Projection\-Matrix}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::set\-Projection\-Matrix (
+\begin{DoxyParamCaption}
+\item[{const core\-::matrix4 \&}]{projection, }
+\item[{bool}]{is\-Orthogonal = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_ad2d2b2f9a6f4ce8b0d44ee201ba7a3ae}
+
+
+Sets the projection matrix of the camera. 
+
+\begin{DoxyVerb}The core::matrix4 class has some methods
+\end{DoxyVerb}
+ to build a projection matrix. e.\-g\-: core\-::matrix4\-::build\-Projection\-Matrix\-Perspective\-Fov\-L\-H. Note that the matrix will only stay as set by this method until one of the following Methods are called\-: set\-Near\-Value, set\-Far\-Value, set\-Aspect\-Ratio, set\-F\-O\-V. 
+\begin{DoxyParams}{Parameters}
+{\em projection} & The new projection matrix of the camera. \\
+\hline
+{\em is\-Orthogonal} & Set this to true if the matrix is an orthogonal one (e.\-g. from matrix4\-::build\-Projection\-Matrix\-Ortho\-L\-H().\\
+\hline
+\end{DoxyParams}
+\begin{DoxyVerb}The core::matrix4 class has some methods
+\end{DoxyVerb}
+ to build a projection matrix. e.\-g\-: core\-::matrix4\-::build\-Projection\-Matrix\-Perspective\-Fov\-L\-H 
+\begin{DoxyParams}{Parameters}
+{\em projection,\-:} & The new projection matrix of the camera. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_ab8e0cefadcd6fa48b58d91063c305f6b}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!set\-Rotation@{set\-Rotation}}
+\index{set\-Rotation@{set\-Rotation}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{set\-Rotation}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::set\-Rotation (
+\begin{DoxyParamCaption}
+\item[{const core\-::vector3df \&}]{rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_ab8e0cefadcd6fa48b58d91063c305f6b}
+
+
+Sets the rotation of the node. 
+
+\begin{DoxyVerb}This only modifies the relative rotation of the node.
+\end{DoxyVerb}
+ If the camera's target and rotation are bound (\begin{DoxySeeAlso}{See Also}
+\hyperlink{classirr_1_1scene_1_1_c_camera_scene_node_a28fad5aaca2451574ed9e0544e165e3d}{bind\-Target\-And\-Rotation()} ) then calling this will also change the camera's target to match the rotation. 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em rotation} & New rotation of the node in degrees. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a57c8d7bd0721067ddbc6f728d882c5d8}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!set\-Target@{set\-Target}}
+\index{set\-Target@{set\-Target}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{set\-Target}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::set\-Target (
+\begin{DoxyParamCaption}
+\item[{const core\-::vector3df \&}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a57c8d7bd0721067ddbc6f728d882c5d8}
+
+
+Sets the look at target of the camera. 
+
+\begin{DoxyVerb}If the camera's target and rotation are bound (@see bindTargetAndRotation() )
+\end{DoxyVerb}
+ then calling this will also change the camera's scene node rotation to match the target. 
+\begin{DoxyParams}{Parameters}
+{\em pos,\-:} & Look at target of the camera.\\
+\hline
+\end{DoxyParams}
+sets the look at target of the camera 
+\begin{DoxyParams}{Parameters}
+{\em pos,\-:} & Look at target of the camera. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a80f876d42938b059af26e5f9c99eeb0e}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!set\-Up\-Vector@{set\-Up\-Vector}}
+\index{set\-Up\-Vector@{set\-Up\-Vector}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{set\-Up\-Vector}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::set\-Up\-Vector (
+\begin{DoxyParamCaption}
+\item[{const core\-::vector3df \&}]{pos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a80f876d42938b059af26e5f9c99eeb0e}
+Sets the up vector of the camera. 
+\begin{DoxyParams}{Parameters}
+{\em pos,\-:} & New upvector of the camera.\\
+\hline
+\end{DoxyParams}
+sets the up vector of the camera 
+\begin{DoxyParams}{Parameters}
+{\em pos,\-:} & New upvector of the camera. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_camera_scene_node_a4d25347c4505d1c386d1d3dfc4955bae}{\index{irr\-::scene\-::\-C\-Camera\-Scene\-Node@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}!set\-View\-Matrix\-Affector@{set\-View\-Matrix\-Affector}}
+\index{set\-View\-Matrix\-Affector@{set\-View\-Matrix\-Affector}!irr::scene::CCameraSceneNode@{irr\-::scene\-::\-C\-Camera\-Scene\-Node}}
+\subsubsection[{set\-View\-Matrix\-Affector}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Camera\-Scene\-Node\-::set\-View\-Matrix\-Affector (
+\begin{DoxyParamCaption}
+\item[{const core\-::matrix4 \&}]{affector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_camera_scene_node_a4d25347c4505d1c386d1d3dfc4955bae}
+
+
+Sets a custom view matrix affector. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em affector,\-:} & The affector matrix.\\
+\hline
+\end{DoxyParams}
+Sets a custom view matrix affector. The matrix passed here, will be multiplied with the view matrix when it gets updated. This allows for custom camera setups like, for example, a reflection camera. 
+\begin{DoxyParams}{Parameters}
+{\em affector,\-:} & The affector matrix. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Camera\-Scene\-Node.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Camera\-Scene\-Node.\-cpp\end{DoxyCompactItemize}

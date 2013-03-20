@@ -1,0 +1,78 @@
+\hypertarget{classirr_1_1scene_1_1_c_shadow_volume_scene_node}{\section{irr\-:\-:scene\-:\-:C\-Shadow\-Volume\-Scene\-Node Class Reference}
+\label{classirr_1_1scene_1_1_c_shadow_volume_scene_node}\index{irr\-::scene\-::\-C\-Shadow\-Volume\-Scene\-Node@{irr\-::scene\-::\-C\-Shadow\-Volume\-Scene\-Node}}
+}
+
+
+Scene node for rendering a shadow volume into a stencil buffer.  
+
+
+
+
+{\ttfamily \#include $<$C\-Shadow\-Volume\-Scene\-Node.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Shadow\-Volume\-Scene\-Node\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_shadow_volume_scene_node}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_shadow_volume_scene_node_adc42969b78551b5ff5133bcac5c77b5f}{\hyperlink{classirr_1_1scene_1_1_c_shadow_volume_scene_node_adc42969b78551b5ff5133bcac5c77b5f}{C\-Shadow\-Volume\-Scene\-Node} (const I\-Mesh $\ast$shadow\-Mesh, I\-Scene\-Node $\ast$parent, I\-Scene\-Manager $\ast$mgr, s32 id, bool zfailmethod=true, f32 infinity=10000.\-0f)}\label{classirr_1_1scene_1_1_c_shadow_volume_scene_node_adc42969b78551b5ff5133bcac5c77b5f}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_shadow_volume_scene_node_aae84a60cb5cef8b620a89950c7d164ba}{virtual \hyperlink{classirr_1_1scene_1_1_c_shadow_volume_scene_node_aae84a60cb5cef8b620a89950c7d164ba}{$\sim$\-C\-Shadow\-Volume\-Scene\-Node} ()}\label{classirr_1_1scene_1_1_c_shadow_volume_scene_node_aae84a60cb5cef8b620a89950c7d164ba}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_shadow_volume_scene_node_a2c3f5dffc57c18c9ff4d0a9f5f971abd}{set\-Shadow\-Mesh} (const I\-Mesh $\ast$mesh)
+\begin{DoxyCompactList}\small\item\em Sets the mesh from which the shadow volume should be generated. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_shadow_volume_scene_node_abb040483a3f02cb51ca38adf37d51df9}{update\-Shadow\-Volumes} ()
+\begin{DoxyCompactList}\small\item\em Updates the shadow volumes for current light positions. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_shadow_volume_scene_node_a13445e4f508b148ee30aab9191fafce1}{virtual void \hyperlink{classirr_1_1scene_1_1_c_shadow_volume_scene_node_a13445e4f508b148ee30aab9191fafce1}{On\-Register\-Scene\-Node} ()}\label{classirr_1_1scene_1_1_c_shadow_volume_scene_node_a13445e4f508b148ee30aab9191fafce1}
+
+\begin{DoxyCompactList}\small\item\em pre render method \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_shadow_volume_scene_node_ab07d7fcb4341fc56bed5393306e44070}{virtual void \hyperlink{classirr_1_1scene_1_1_c_shadow_volume_scene_node_ab07d7fcb4341fc56bed5393306e44070}{render} ()}\label{classirr_1_1scene_1_1_c_shadow_volume_scene_node_ab07d7fcb4341fc56bed5393306e44070}
+
+\begin{DoxyCompactList}\small\item\em renders the node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_shadow_volume_scene_node_a304cac4805760acad661db6261c92f4a}{virtual const core\-::aabbox3d\\*
+$<$ f32 $>$ \& \hyperlink{classirr_1_1scene_1_1_c_shadow_volume_scene_node_a304cac4805760acad661db6261c92f4a}{get\-Bounding\-Box} () const }\label{classirr_1_1scene_1_1_c_shadow_volume_scene_node_a304cac4805760acad661db6261c92f4a}
+
+\begin{DoxyCompactList}\small\item\em returns the axis aligned bounding box of this node \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_shadow_volume_scene_node_a81874863146307182005f4ecef0fff28}{virtual E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_shadow_volume_scene_node_a81874863146307182005f4ecef0fff28}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_shadow_volume_scene_node_a81874863146307182005f4ecef0fff28}
+
+\begin{DoxyCompactList}\small\item\em Returns type of the scene node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Scene node for rendering a shadow volume into a stencil buffer. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_shadow_volume_scene_node_a2c3f5dffc57c18c9ff4d0a9f5f971abd}{\index{irr\-::scene\-::\-C\-Shadow\-Volume\-Scene\-Node@{irr\-::scene\-::\-C\-Shadow\-Volume\-Scene\-Node}!set\-Shadow\-Mesh@{set\-Shadow\-Mesh}}
+\index{set\-Shadow\-Mesh@{set\-Shadow\-Mesh}!irr::scene::CShadowVolumeSceneNode@{irr\-::scene\-::\-C\-Shadow\-Volume\-Scene\-Node}}
+\subsubsection[{set\-Shadow\-Mesh}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Shadow\-Volume\-Scene\-Node\-::set\-Shadow\-Mesh (
+\begin{DoxyParamCaption}
+\item[{const I\-Mesh $\ast$}]{mesh}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_shadow_volume_scene_node_a2c3f5dffc57c18c9ff4d0a9f5f971abd}
+
+
+Sets the mesh from which the shadow volume should be generated. 
+
+To optimize shadow rendering, use a simpler mesh for shadows. \hypertarget{classirr_1_1scene_1_1_c_shadow_volume_scene_node_abb040483a3f02cb51ca38adf37d51df9}{\index{irr\-::scene\-::\-C\-Shadow\-Volume\-Scene\-Node@{irr\-::scene\-::\-C\-Shadow\-Volume\-Scene\-Node}!update\-Shadow\-Volumes@{update\-Shadow\-Volumes}}
+\index{update\-Shadow\-Volumes@{update\-Shadow\-Volumes}!irr::scene::CShadowVolumeSceneNode@{irr\-::scene\-::\-C\-Shadow\-Volume\-Scene\-Node}}
+\subsubsection[{update\-Shadow\-Volumes}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Shadow\-Volume\-Scene\-Node\-::update\-Shadow\-Volumes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_shadow_volume_scene_node_abb040483a3f02cb51ca38adf37d51df9}
+
+
+Updates the shadow volumes for current light positions. 
+
+Called each render cycle from Animated Mesh Scene\-Node render method. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Shadow\-Volume\-Scene\-Node.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Shadow\-Volume\-Scene\-Node.\-cpp\end{DoxyCompactItemize}

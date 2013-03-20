@@ -1,0 +1,206 @@
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s}{\section{irr\-:\-:scene\-:\-:C\-Scene\-Node\-Animator\-Camera\-F\-P\-S Class Reference}
+\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s}\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}}
+}
+
+
+Special scene node animator for F\-P\-S cameras.  
+
+
+
+
+{\ttfamily \#include $<$C\-Scene\-Node\-Animator\-Camera\-F\-P\-S.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Scene\-Node\-Animator\-Camera\-F\-P\-S\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a9b1db47a2b725bcae9b7e9a6c7568ab4}{C\-Scene\-Node\-Animator\-Camera\-F\-P\-S} (gui\-::\-I\-Cursor\-Control $\ast$cursor\-Control, f32 rotate\-Speed=100.\-0f, f32 move\-Speed=.\-5f, f32 jump\-Speed=0.\-f, S\-Key\-Map $\ast$key\-Map\-Array=0, u32 key\-Map\-Size=0, bool no\-Vertical\-Movement=false, bool invert\-Y=false)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_af264f8294f6250565a48850c453d63da}{$\sim$\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_af0baa8ce5b5f291fc20d2efa7a2a03b9}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_af0baa8ce5b5f291fc20d2efa7a2a03b9}{animate\-Node} (I\-Scene\-Node $\ast$node, u32 time\-Ms)}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_af0baa8ce5b5f291fc20d2efa7a2a03b9}
+
+\begin{DoxyCompactList}\small\item\em Animates the scene node, currently only works on cameras. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a69701adc3db7e3c85cb4397507787c05}{On\-Event} (const S\-Event \&event)
+\begin{DoxyCompactList}\small\item\em Event receiver. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_ab88654eda9e694f1d8edad0afb4f19a1}{virtual f32 \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_ab88654eda9e694f1d8edad0afb4f19a1}{get\-Move\-Speed} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_ab88654eda9e694f1d8edad0afb4f19a1}
+
+\begin{DoxyCompactList}\small\item\em Returns the speed of movement in units per second. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a644f6b5d1823a887c375320df91dd292}{set\-Move\-Speed} (f32 move\-Speed)
+\begin{DoxyCompactList}\small\item\em Sets the speed of movement in units per second. \end{DoxyCompactList}\item 
+virtual f32 \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_ad771362c0af30759c572f1e8f1a807f3}{get\-Rotate\-Speed} () const 
+\begin{DoxyCompactList}\small\item\em Returns the rotation speed. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a4a07a826e69b2b247d6778f640011948}{set\-Rotate\-Speed} (f32 rotate\-Speed)
+\begin{DoxyCompactList}\small\item\em Set the rotation speed. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a2366a78aa414bb9c585614c8b25c7437}{set\-Key\-Map} (S\-Key\-Map $\ast$map, u32 count)
+\begin{DoxyCompactList}\small\item\em Sets the keyboard mapping for this animator. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_ac10585a69457ca50fc8eeb9d22e09c35}{set\-Key\-Map} (const core\-::array$<$ S\-Key\-Map $>$ \&keymap)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a16bf719bb80c1b1fcad08f6d05818437}{virtual const core\-::array\\*
+$<$ S\-Key\-Map $>$ \& \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a16bf719bb80c1b1fcad08f6d05818437}{get\-Key\-Map} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a16bf719bb80c1b1fcad08f6d05818437}
+
+\begin{DoxyCompactList}\small\item\em Gets the keyboard mapping for this animator. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a822eca9e509743de9e27085e1b8fd269}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a822eca9e509743de9e27085e1b8fd269}{set\-Vertical\-Movement} (bool allow)}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a822eca9e509743de9e27085e1b8fd269}
+
+\begin{DoxyCompactList}\small\item\em Sets whether vertical movement should be allowed. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a1fd401f019ab59bc0937c6745a31c525}{set\-Invert\-Mouse} (bool invert)
+\begin{DoxyCompactList}\small\item\em Sets whether the Y axis of the mouse should be inverted. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_addf42c2c96e38dfe2ba7ab5242ba534c}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_addf42c2c96e38dfe2ba7ab5242ba534c}{is\-Event\-Receiver\-Enabled} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_addf42c2c96e38dfe2ba7ab5242ba534c}
+
+\begin{DoxyCompactList}\small\item\em This animator will receive events when attached to the active camera. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_aed0f7fa741f48c610178625e507de76d}{virtual E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-A\-N\-I\-M\-A\-T\-O\-R\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_aed0f7fa741f48c610178625e507de76d}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_aed0f7fa741f48c610178625e507de76d}
+
+\begin{DoxyCompactList}\small\item\em Returns the type of this animator. \end{DoxyCompactList}\item 
+virtual I\-Scene\-Node\-Animator $\ast$ \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_aba6d524d03d5bad7a42716594471199b}{create\-Clone} (I\-Scene\-Node $\ast$node, I\-Scene\-Manager $\ast$new\-Manager=0)
+\begin{DoxyCompactList}\small\item\em Creates a clone of this animator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Special scene node animator for F\-P\-S cameras. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a9b1db47a2b725bcae9b7e9a6c7568ab4}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}!C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}}
+\index{C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}!irr::scene::CSceneNodeAnimatorCameraFPS@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}}
+\subsubsection[{C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S (
+\begin{DoxyParamCaption}
+\item[{gui\-::\-I\-Cursor\-Control $\ast$}]{cursor\-Control, }
+\item[{f32}]{rotate\-Speed = {\ttfamily 100.0f}, }
+\item[{f32}]{move\-Speed = {\ttfamily .5f}, }
+\item[{f32}]{jump\-Speed = {\ttfamily 0.f}, }
+\item[{S\-Key\-Map $\ast$}]{key\-Map\-Array = {\ttfamily 0}, }
+\item[{u32}]{key\-Map\-Size = {\ttfamily 0}, }
+\item[{bool}]{no\-Vertical\-Movement = {\ttfamily false}, }
+\item[{bool}]{invert\-Y = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a9b1db47a2b725bcae9b7e9a6c7568ab4}
+
+
+Constructor. 
+
+constructor \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_af264f8294f6250565a48850c453d63da}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}!$\sim$\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{$\sim$\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}}
+\index{$\sim$\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{$\sim$\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}!irr::scene::CSceneNodeAnimatorCameraFPS@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}}
+\subsubsection[{$\sim$\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S\-::$\sim$\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_af264f8294f6250565a48850c453d63da}
+
+
+Destructor. 
+
+destructor 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_aba6d524d03d5bad7a42716594471199b}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}!create\-Clone@{create\-Clone}}
+\index{create\-Clone@{create\-Clone}!irr::scene::CSceneNodeAnimatorCameraFPS@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}}
+\subsubsection[{create\-Clone}]{\setlength{\rightskip}{0pt plus 5cm}I\-Scene\-Node\-Animator $\ast$ irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S\-::create\-Clone (
+\begin{DoxyParamCaption}
+\item[{I\-Scene\-Node $\ast$}]{node, }
+\item[{I\-Scene\-Manager $\ast$}]{new\-Manager = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_aba6d524d03d5bad7a42716594471199b}
+
+
+Creates a clone of this animator. 
+
+\begin{DoxyVerb}Please note that you will have to drop
+\end{DoxyVerb}
+ (I\-Reference\-Counted\-::drop()) the returned pointer once you're done with it. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_ad771362c0af30759c572f1e8f1a807f3}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}!get\-Rotate\-Speed@{get\-Rotate\-Speed}}
+\index{get\-Rotate\-Speed@{get\-Rotate\-Speed}!irr::scene::CSceneNodeAnimatorCameraFPS@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}}
+\subsubsection[{get\-Rotate\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}f32 irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S\-::get\-Rotate\-Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_ad771362c0af30759c572f1e8f1a807f3}
+
+
+Returns the rotation speed. 
+
+Gets the rotation speed. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a69701adc3db7e3c85cb4397507787c05}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}!On\-Event@{On\-Event}}
+\index{On\-Event@{On\-Event}!irr::scene::CSceneNodeAnimatorCameraFPS@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}}
+\subsubsection[{On\-Event}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S\-::\-On\-Event (
+\begin{DoxyParamCaption}
+\item[{const S\-Event \&}]{evt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a69701adc3db7e3c85cb4397507787c05}
+
+
+Event receiver. 
+
+It is possible to send mouse and key events to the camera. Most cameras may ignore this input, but camera scene nodes which are created for example with scene\-::\-I\-Scene\-Manager\-::add\-Maya\-Camera\-Scene\-Node or scene\-::\-I\-Scene\-Manager\-::add\-F\-P\-S\-Camera\-Scene\-Node, may want to get this input for changing their position, look at target or whatever. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a1fd401f019ab59bc0937c6745a31c525}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}!set\-Invert\-Mouse@{set\-Invert\-Mouse}}
+\index{set\-Invert\-Mouse@{set\-Invert\-Mouse}!irr::scene::CSceneNodeAnimatorCameraFPS@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}}
+\subsubsection[{set\-Invert\-Mouse}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S\-::set\-Invert\-Mouse (
+\begin{DoxyParamCaption}
+\item[{bool}]{invert}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a1fd401f019ab59bc0937c6745a31c525}
+
+
+Sets whether the Y axis of the mouse should be inverted. 
+
+\begin{DoxyVerb}If enabled then moving the mouse down will cause
+\end{DoxyVerb}
+ the camera to look up. It is disabled by default. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a2366a78aa414bb9c585614c8b25c7437}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}!set\-Key\-Map@{set\-Key\-Map}}
+\index{set\-Key\-Map@{set\-Key\-Map}!irr::scene::CSceneNodeAnimatorCameraFPS@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}}
+\subsubsection[{set\-Key\-Map}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S\-::set\-Key\-Map (
+\begin{DoxyParamCaption}
+\item[{S\-Key\-Map $\ast$}]{map, }
+\item[{u32}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a2366a78aa414bb9c585614c8b25c7437}
+
+
+Sets the keyboard mapping for this animator. 
+
+Sets the keyboard mapping for this animator (old style) 
+\begin{DoxyParams}{Parameters}
+{\em keymap,\-:} & an array of keyboard mappings, see S\-Key\-Map \\
+\hline
+{\em count,\-:} & the size of the keyboard map array \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_ac10585a69457ca50fc8eeb9d22e09c35}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}!set\-Key\-Map@{set\-Key\-Map}}
+\index{set\-Key\-Map@{set\-Key\-Map}!irr::scene::CSceneNodeAnimatorCameraFPS@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}}
+\subsubsection[{set\-Key\-Map}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S\-::set\-Key\-Map (
+\begin{DoxyParamCaption}
+\item[{const core\-::array$<$ S\-Key\-Map $>$ \&}]{keymap}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_ac10585a69457ca50fc8eeb9d22e09c35}
+Sets the keyboard mapping for this animator 
+\begin{DoxyParams}{Parameters}
+{\em keymap} & The new keymap array \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a644f6b5d1823a887c375320df91dd292}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}!set\-Move\-Speed@{set\-Move\-Speed}}
+\index{set\-Move\-Speed@{set\-Move\-Speed}!irr::scene::CSceneNodeAnimatorCameraFPS@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}}
+\subsubsection[{set\-Move\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S\-::set\-Move\-Speed (
+\begin{DoxyParamCaption}
+\item[{f32}]{move\-Speed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a644f6b5d1823a887c375320df91dd292}
+
+
+Sets the speed of movement in units per second. 
+
+Sets the movement speed. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a4a07a826e69b2b247d6778f640011948}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}!set\-Rotate\-Speed@{set\-Rotate\-Speed}}
+\index{set\-Rotate\-Speed@{set\-Rotate\-Speed}!irr::scene::CSceneNodeAnimatorCameraFPS@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S}}
+\subsubsection[{set\-Rotate\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-F\-P\-S\-::set\-Rotate\-Speed (
+\begin{DoxyParamCaption}
+\item[{f32}]{rotate\-Speed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_f_p_s_a4a07a826e69b2b247d6778f640011948}
+
+
+Set the rotation speed. 
+
+Sets the rotation speed. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Scene\-Node\-Animator\-Camera\-F\-P\-S.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Scene\-Node\-Animator\-Camera\-F\-P\-S.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,65 @@
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_properties}{\section{irr\-:\-:scene\-:\-:C\-Collada\-Mesh\-Writer\-Properties Class Reference}
+\label{classirr_1_1scene_1_1_c_collada_mesh_writer_properties}\index{irr\-::scene\-::\-C\-Collada\-Mesh\-Writer\-Properties@{irr\-::scene\-::\-C\-Collada\-Mesh\-Writer\-Properties}}
+}
+
+
+Callback interface for properties which can be used to influence collada writing.  
+
+
+
+
+{\ttfamily \#include $<$C\-Collada\-Mesh\-Writer.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Collada\-Mesh\-Writer\-Properties\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_collada_mesh_writer_properties}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_af1848e6467e716e21a68fccefbe3f136}{virtual \\*
+irr\-::scene\-::\-E\-\_\-\-C\-O\-L\-L\-A\-D\-A\-\_\-\-T\-E\-C\-H\-N\-I\-Q\-U\-E\-\_\-\-F\-X \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_af1848e6467e716e21a68fccefbe3f136}{get\-Technique\-Fx} (const irr\-::video\-::\-S\-Material \&material) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_af1848e6467e716e21a68fccefbe3f136}
+
+\begin{DoxyCompactList}\small\item\em Which lighting model should be used in the technique (F\-X) section when exporting effects (materials) \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a4e485a65a9687e9bce76c2b7783faa65}{virtual irr\-::s32 \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a4e485a65a9687e9bce76c2b7783faa65}{get\-Texture\-Idx} (const irr\-::video\-::\-S\-Material \&material, irr\-::scene\-::\-E\-\_\-\-C\-O\-L\-L\-A\-D\-A\-\_\-\-C\-O\-L\-O\-R\-\_\-\-S\-A\-M\-P\-L\-E\-R cs) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a4e485a65a9687e9bce76c2b7783faa65}
+
+\begin{DoxyCompactList}\small\item\em Which texture index should be used when writing the texture of the given sampler color. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a0de4bbdd8ea2a4bb6cb1f77addc022b4}{virtual \\*
+irr\-::scene\-::\-E\-\_\-\-C\-O\-L\-L\-A\-D\-A\-\_\-\-I\-R\-R\-\_\-\-C\-O\-L\-O\-R \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a0de4bbdd8ea2a4bb6cb1f77addc022b4}{get\-Color\-Mapping} (const irr\-::video\-::\-S\-Material \&material, irr\-::scene\-::\-E\-\_\-\-C\-O\-L\-L\-A\-D\-A\-\_\-\-C\-O\-L\-O\-R\-\_\-\-S\-A\-M\-P\-L\-E\-R cs) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a0de4bbdd8ea2a4bb6cb1f77addc022b4}
+
+\begin{DoxyCompactList}\small\item\em Return which color from Irrlicht should be used for the color requested by collada. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_add935642caaaedac95c0a058ef5ef39d}{virtual irr\-::video\-::\-S\-Color \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_add935642caaaedac95c0a058ef5ef39d}{get\-Custom\-Color} (const irr\-::video\-::\-S\-Material \&material, irr\-::scene\-::\-E\-\_\-\-C\-O\-L\-L\-A\-D\-A\-\_\-\-C\-O\-L\-O\-R\-\_\-\-S\-A\-M\-P\-L\-E\-R cs) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_add935642caaaedac95c0a058ef5ef39d}
+
+\begin{DoxyCompactList}\small\item\em Return custom colors for certain color types requested by collada. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_acdef47c2e21450badb30621e1274b80b}{virtual \\*
+irr\-::scene\-::\-E\-\_\-\-C\-O\-L\-L\-A\-D\-A\-\_\-\-T\-R\-A\-N\-S\-P\-A\-R\-E\-N\-T\-\_\-\-F\-X \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_acdef47c2e21450badb30621e1274b80b}{get\-Transparent\-Fx} (const irr\-::video\-::\-S\-Material \&material) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_acdef47c2e21450badb30621e1274b80b}
+
+\begin{DoxyCompactList}\small\item\em Return the settings for transparence. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a557c159b5d0948e56026cd03aa5a1779}{virtual irr\-::f32 \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a557c159b5d0948e56026cd03aa5a1779}{get\-Transparency} (const irr\-::video\-::\-S\-Material \&material) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a557c159b5d0948e56026cd03aa5a1779}
+
+\begin{DoxyCompactList}\small\item\em Transparency value for that material. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a36475ed57fb88fc8225822e52420d379}{virtual irr\-::f32 \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a36475ed57fb88fc8225822e52420d379}{get\-Reflectivity} (const irr\-::video\-::\-S\-Material \&material) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a36475ed57fb88fc8225822e52420d379}
+
+\begin{DoxyCompactList}\small\item\em Reflectivity value for that material. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a23044162722d6f3367a1f4e5fb8eb907}{virtual irr\-::f32 \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a23044162722d6f3367a1f4e5fb8eb907}{get\-Index\-Of\-Refraction} (const irr\-::video\-::\-S\-Material \&material) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a23044162722d6f3367a1f4e5fb8eb907}
+
+\begin{DoxyCompactList}\small\item\em Return index of refraction for that material. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a25ff8053c6c3f8611b57034506c1a693}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a25ff8053c6c3f8611b57034506c1a693}{is\-Exportable} (const irr\-::scene\-::\-I\-Scene\-Node $\ast$node) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a25ff8053c6c3f8611b57034506c1a693}
+
+\begin{DoxyCompactList}\small\item\em Should node be used in scene export? By default all visible nodes are exported. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_aa14d66794e69028b1010c4d32a6390d5}{virtual irr\-::scene\-::\-I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_aa14d66794e69028b1010c4d32a6390d5}{get\-Mesh} (irr\-::scene\-::\-I\-Scene\-Node $\ast$node)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_aa14d66794e69028b1010c4d32a6390d5}
+
+\begin{DoxyCompactList}\small\item\em Return the mesh for the given nod. If it has no mesh or shouldn't export it's mesh return 0. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a48d4c28d31109b72e5cabf5b53ff9ad8}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a48d4c28d31109b72e5cabf5b53ff9ad8}{use\-Node\-Material} (const scene\-::\-I\-Scene\-Node $\ast$node) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_properties_a48d4c28d31109b72e5cabf5b53ff9ad8}
+
+\begin{DoxyCompactList}\small\item\em Return if the node has it's own material overwriting the mesh-\/materials. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Callback interface for properties which can be used to influence collada writing. 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Collada\-Mesh\-Writer.\-h\end{DoxyCompactItemize}

@@ -1,0 +1,225 @@
+\hypertarget{classirr_1_1video_1_1_c_software_driver}{\section{irr\-:\-:video\-:\-:C\-Software\-Driver Class Reference}
+\label{classirr_1_1video_1_1_c_software_driver}\index{irr\-::video\-::\-C\-Software\-Driver@{irr\-::video\-::\-C\-Software\-Driver}}
+}
+Inheritance diagram for irr\-:\-:video\-:\-:C\-Software\-Driver\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classirr_1_1video_1_1_c_software_driver}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_aff8f7e0f80d82b59f03dab65bd12ce0c}{\hyperlink{classirr_1_1video_1_1_c_software_driver_aff8f7e0f80d82b59f03dab65bd12ce0c}{C\-Software\-Driver} (const core\-::dimension2d$<$ u32 $>$ \&window\-Size, bool fullscreen, io\-::\-I\-File\-System $\ast$io, \hyperlink{classirr_1_1video_1_1_i_image_presenter}{video\-::\-I\-Image\-Presenter} $\ast$presenter)}\label{classirr_1_1video_1_1_c_software_driver_aff8f7e0f80d82b59f03dab65bd12ce0c}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_ac4250bc3c50302cecabf4dcd5544cc3b}{virtual \hyperlink{classirr_1_1video_1_1_c_software_driver_ac4250bc3c50302cecabf4dcd5544cc3b}{$\sim$\-C\-Software\-Driver} ()}\label{classirr_1_1video_1_1_c_software_driver_ac4250bc3c50302cecabf4dcd5544cc3b}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a26b827fccbd65e86293575e50c4307f2}{virtual bool \hyperlink{classirr_1_1video_1_1_c_software_driver_a26b827fccbd65e86293575e50c4307f2}{query\-Feature} (E\-\_\-\-V\-I\-D\-E\-O\-\_\-\-D\-R\-I\-V\-E\-R\-\_\-\-F\-E\-A\-T\-U\-R\-E feature) const }\label{classirr_1_1video_1_1_c_software_driver_a26b827fccbd65e86293575e50c4307f2}
+
+\begin{DoxyCompactList}\small\item\em queries the features of the driver, returns true if feature is available \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a1a752a52b558591139fd6a5527a9eee5}{virtual void \hyperlink{classirr_1_1video_1_1_c_software_driver_a1a752a52b558591139fd6a5527a9eee5}{set\-Transform} (E\-\_\-\-T\-R\-A\-N\-S\-F\-O\-R\-M\-A\-T\-I\-O\-N\-\_\-\-S\-T\-A\-T\-E state, const core\-::matrix4 \&mat)}\label{classirr_1_1video_1_1_c_software_driver_a1a752a52b558591139fd6a5527a9eee5}
+
+\begin{DoxyCompactList}\small\item\em sets transformation \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_ab5f51c51641231e789b9be87b65a80a4}{virtual void \hyperlink{classirr_1_1video_1_1_c_software_driver_ab5f51c51641231e789b9be87b65a80a4}{set\-Material} (const S\-Material \&material)}\label{classirr_1_1video_1_1_c_software_driver_ab5f51c51641231e789b9be87b65a80a4}
+
+\begin{DoxyCompactList}\small\item\em sets a material \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a1e55257f41455609821ade94064d31cd}{virtual bool \hyperlink{classirr_1_1video_1_1_c_software_driver_a1e55257f41455609821ade94064d31cd}{set\-Render\-Target} (video\-::\-I\-Texture $\ast$texture, bool clear\-Back\-Buffer, bool \hyperlink{classirr_1_1video_1_1_c_software_driver_af7753ce2c17f7c7cbbc463dc97c0dc83}{clear\-Z\-Buffer}, S\-Color color)}\label{classirr_1_1video_1_1_c_software_driver_a1e55257f41455609821ade94064d31cd}
+
+\begin{DoxyCompactList}\small\item\em sets a render target \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a6bce0c6019906139f5be29a5acc17653}{virtual void \hyperlink{classirr_1_1video_1_1_c_software_driver_a6bce0c6019906139f5be29a5acc17653}{set\-View\-Port} (const core\-::rect$<$ s32 $>$ \&area)}\label{classirr_1_1video_1_1_c_software_driver_a6bce0c6019906139f5be29a5acc17653}
+
+\begin{DoxyCompactList}\small\item\em sets a viewport \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_aa6810e911f7aab78e0279844f4398902}{virtual bool \hyperlink{classirr_1_1video_1_1_c_software_driver_aa6810e911f7aab78e0279844f4398902}{begin\-Scene} (bool back\-Buffer=true, bool z\-Buffer=true, S\-Color color=S\-Color(255, 0, 0, 0), const S\-Exposed\-Video\-Data \&video\-Data=S\-Exposed\-Video\-Data(), core\-::rect$<$ s32 $>$ $\ast$source\-Rect=0)}\label{classirr_1_1video_1_1_c_software_driver_aa6810e911f7aab78e0279844f4398902}
+
+\begin{DoxyCompactList}\small\item\em clears the zbuffer \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_ad19688733aa008c91c30ab08d10f6d26}{virtual bool \hyperlink{classirr_1_1video_1_1_c_software_driver_ad19688733aa008c91c30ab08d10f6d26}{end\-Scene} ()}\label{classirr_1_1video_1_1_c_software_driver_ad19688733aa008c91c30ab08d10f6d26}
+
+\begin{DoxyCompactList}\small\item\em presents the rendered scene on the screen, returns false if failed \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1video_1_1_c_software_driver_aede9981a1ee57e15c90f5310c907ec86}{On\-Resize} (const core\-::dimension2d$<$ u32 $>$ \&size)
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a7f6b977bc2fc758052abcd06b2681634}{virtual const \\*
+core\-::dimension2d$<$ u32 $>$ \& \hyperlink{classirr_1_1video_1_1_c_software_driver_a7f6b977bc2fc758052abcd06b2681634}{get\-Current\-Render\-Target\-Size} () const }\label{classirr_1_1video_1_1_c_software_driver_a7f6b977bc2fc758052abcd06b2681634}
+
+\begin{DoxyCompactList}\small\item\em returns size of the current render target \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a5a9bd4fc2a1c1a15c53b27722b82367d}{void \hyperlink{classirr_1_1video_1_1_c_software_driver_a5a9bd4fc2a1c1a15c53b27722b82367d}{draw\-Vertex\-Primitive\-List} (const void $\ast$vertices, u32 vertex\-Count, const void $\ast$index\-List, u32 primitive\-Count, E\-\_\-\-V\-E\-R\-T\-E\-X\-\_\-\-T\-Y\-P\-E v\-Type, scene\-::\-E\-\_\-\-P\-R\-I\-M\-I\-T\-I\-V\-E\-\_\-\-T\-Y\-P\-E p\-Type, E\-\_\-\-I\-N\-D\-E\-X\-\_\-\-T\-Y\-P\-E i\-Type)}\label{classirr_1_1video_1_1_c_software_driver_a5a9bd4fc2a1c1a15c53b27722b82367d}
+
+\begin{DoxyCompactList}\small\item\em draws a vertex primitive list \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_af75755c9f5c6c6b71b2811053d51f5f9}{virtual void \hyperlink{classirr_1_1video_1_1_c_software_driver_af75755c9f5c6c6b71b2811053d51f5f9}{draw3\-D\-Line} (const core\-::vector3df \&start, const core\-::vector3df \&end, S\-Color color=S\-Color(255, 255, 255, 255))}\label{classirr_1_1video_1_1_c_software_driver_af75755c9f5c6c6b71b2811053d51f5f9}
+
+\begin{DoxyCompactList}\small\item\em Draws a 3d line. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_aa135482d884994bf5ef32e047227f97c}{virtual void \hyperlink{classirr_1_1video_1_1_c_software_driver_aa135482d884994bf5ef32e047227f97c}{draw2\-D\-Image} (const video\-::\-I\-Texture $\ast$texture, const core\-::position2d$<$ s32 $>$ \&dest\-Pos, const core\-::rect$<$ s32 $>$ \&source\-Rect, const core\-::rect$<$ s32 $>$ $\ast$clip\-Rect=0, S\-Color color=S\-Color(255, 255, 255, 255), bool use\-Alpha\-Channel\-Of\-Texture=false)}\label{classirr_1_1video_1_1_c_software_driver_aa135482d884994bf5ef32e047227f97c}
+
+\begin{DoxyCompactList}\small\item\em draws an 2d image, using a color (if color is other then Color(255,255,255,255)) and the alpha channel of the texture if wanted. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a6eb0be7ddfe46de0c9fb53cc461d69c9}{virtual void \hyperlink{classirr_1_1video_1_1_c_software_driver_a6eb0be7ddfe46de0c9fb53cc461d69c9}{draw2\-D\-Rectangle} (S\-Color color, const core\-::rect$<$ s32 $>$ \&pos, const core\-::rect$<$ s32 $>$ $\ast$clip=0)}\label{classirr_1_1video_1_1_c_software_driver_a6eb0be7ddfe46de0c9fb53cc461d69c9}
+
+\begin{DoxyCompactList}\small\item\em draw an 2d rectangle \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_ac2f3595af172c29d68196201291532a9}{virtual void \hyperlink{classirr_1_1video_1_1_c_software_driver_ac2f3595af172c29d68196201291532a9}{draw2\-D\-Rectangle} (const core\-::rect$<$ s32 $>$ \&pos, S\-Color color\-Left\-Up, S\-Color color\-Right\-Up, S\-Color color\-Left\-Down, S\-Color color\-Right\-Down, const core\-::rect$<$ s32 $>$ $\ast$clip=0)}\label{classirr_1_1video_1_1_c_software_driver_ac2f3595af172c29d68196201291532a9}
+
+\begin{DoxyCompactList}\small\item\em Draws an 2d rectangle with a gradient. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a29ce4d773667259bcbc7c5a6f43285cf}{virtual void \hyperlink{classirr_1_1video_1_1_c_software_driver_a29ce4d773667259bcbc7c5a6f43285cf}{draw2\-D\-Line} (const core\-::position2d$<$ s32 $>$ \&start, const core\-::position2d$<$ s32 $>$ \&end, S\-Color color=S\-Color(255, 255, 255, 255))}\label{classirr_1_1video_1_1_c_software_driver_a29ce4d773667259bcbc7c5a6f43285cf}
+
+\begin{DoxyCompactList}\small\item\em Draws a 2d line. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a85269504de4c24987af67be15088608d}{virtual void \hyperlink{classirr_1_1video_1_1_c_software_driver_a85269504de4c24987af67be15088608d}{draw\-Pixel} (u32 x, u32 y, const S\-Color \&color)}\label{classirr_1_1video_1_1_c_software_driver_a85269504de4c24987af67be15088608d}
+
+\begin{DoxyCompactList}\small\item\em Draws a single pixel. \end{DoxyCompactList}\item 
+virtual const wchar\-\_\-t $\ast$ \hyperlink{classirr_1_1video_1_1_c_software_driver_a239d6935765a2860311b7b08a424edf8}{get\-Name} () const 
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_ac8dc5a7a189e15f5592ee556c42d7417}{virtual E\-\_\-\-D\-R\-I\-V\-E\-R\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1video_1_1_c_software_driver_ac8dc5a7a189e15f5592ee556c42d7417}{get\-Driver\-Type} () const }\label{classirr_1_1video_1_1_c_software_driver_ac8dc5a7a189e15f5592ee556c42d7417}
+
+\begin{DoxyCompactList}\small\item\em Returns type of video driver. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_ab3bf70ce084dbc2a1dbafc17155cf0d2}{virtual E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T \hyperlink{classirr_1_1video_1_1_c_software_driver_ab3bf70ce084dbc2a1dbafc17155cf0d2}{get\-Color\-Format} () const }\label{classirr_1_1video_1_1_c_software_driver_ab3bf70ce084dbc2a1dbafc17155cf0d2}
+
+\begin{DoxyCompactList}\small\item\em get color format of the current color buffer \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a6ea56a7fafbcc2fea36668d750817d04}{virtual const core\-::matrix4 \& \hyperlink{classirr_1_1video_1_1_c_software_driver_a6ea56a7fafbcc2fea36668d750817d04}{get\-Transform} (E\-\_\-\-T\-R\-A\-N\-S\-F\-O\-R\-M\-A\-T\-I\-O\-N\-\_\-\-S\-T\-A\-T\-E state) const }\label{classirr_1_1video_1_1_c_software_driver_a6ea56a7fafbcc2fea36668d750817d04}
+
+\begin{DoxyCompactList}\small\item\em Returns the transformation set by set\-Transform. \end{DoxyCompactList}\item 
+virtual video\-::\-I\-Texture $\ast$ \hyperlink{classirr_1_1video_1_1_c_software_driver_af63c3a2bf6c2d392d97e2cd97d4c3209}{create\-Device\-Dependent\-Texture} (I\-Image $\ast$surface, const io\-::path \&name, void $\ast$mipmap\-Data=0)
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a76fa001128953f8436dd2deae8ed4979}{virtual I\-Texture $\ast$ \hyperlink{classirr_1_1video_1_1_c_software_driver_a76fa001128953f8436dd2deae8ed4979}{add\-Render\-Target\-Texture} (const core\-::dimension2d$<$ u32 $>$ \&size, const io\-::path \&name, const E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T format=E\-C\-F\-\_\-\-U\-N\-K\-N\-O\-W\-N)}\label{classirr_1_1video_1_1_c_software_driver_a76fa001128953f8436dd2deae8ed4979}
+
+\begin{DoxyCompactList}\small\item\em Creates a render target texture. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_af7753ce2c17f7c7cbbc463dc97c0dc83}{virtual void \hyperlink{classirr_1_1video_1_1_c_software_driver_af7753ce2c17f7c7cbbc463dc97c0dc83}{clear\-Z\-Buffer} ()}\label{classirr_1_1video_1_1_c_software_driver_af7753ce2c17f7c7cbbc463dc97c0dc83}
+
+\begin{DoxyCompactList}\small\item\em Clears the Z\-Buffer. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a72a4065ac301ee42b9d62aed8be59419}{virtual I\-Image $\ast$ \hyperlink{classirr_1_1video_1_1_c_software_driver_a72a4065ac301ee42b9d62aed8be59419}{create\-Screen\-Shot} (video\-::\-E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T format=video\-::\-E\-C\-F\-\_\-\-U\-N\-K\-N\-O\-W\-N, video\-::\-E\-\_\-\-R\-E\-N\-D\-E\-R\-\_\-\-T\-A\-R\-G\-E\-T target=video\-::\-E\-R\-T\-\_\-\-F\-R\-A\-M\-E\-\_\-\-B\-U\-F\-F\-E\-R)}\label{classirr_1_1video_1_1_c_software_driver_a72a4065ac301ee42b9d62aed8be59419}
+
+\begin{DoxyCompactList}\small\item\em Returns an image created from the last rendered frame. \end{DoxyCompactList}\item 
+virtual u32 \hyperlink{classirr_1_1video_1_1_c_software_driver_aa8c493318e46699bac981e74b2366602}{get\-Maximal\-Primitive\-Count} () const 
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a712e19b90393459681d72d5d308318a6}{void \hyperlink{classirr_1_1video_1_1_c_software_driver_a712e19b90393459681d72d5d308318a6}{set\-Render\-Target} (\hyperlink{classirr_1_1video_1_1_c_image}{video\-::\-C\-Image} $\ast$image)}\label{classirr_1_1video_1_1_c_software_driver_a712e19b90393459681d72d5d308318a6}
+
+\begin{DoxyCompactList}\small\item\em sets a render target \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a5facd516f4e20509053a8f052dcd9544}{bool \hyperlink{classirr_1_1video_1_1_c_software_driver_a5facd516f4e20509053a8f052dcd9544}{set\-Active\-Texture} (u32 stage, video\-::\-I\-Texture $\ast$texture)}\label{classirr_1_1video_1_1_c_software_driver_a5facd516f4e20509053a8f052dcd9544}
+
+\begin{DoxyCompactList}\small\item\em sets the current Texture \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_ab9a030a9837e80231bf46aad6bacdeb2}{void \hyperlink{classirr_1_1video_1_1_c_software_driver_ab9a030a9837e80231bf46aad6bacdeb2}{switch\-To\-Triangle\-Renderer} (E\-Triangle\-Renderer renderer)}\label{classirr_1_1video_1_1_c_software_driver_ab9a030a9837e80231bf46aad6bacdeb2}
+
+\begin{DoxyCompactList}\small\item\em switches to a triangle renderer \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a7b79eba95e9bdcae8fdd885137f796e4}{void \hyperlink{classirr_1_1video_1_1_c_software_driver_a7b79eba95e9bdcae8fdd885137f796e4}{select\-Right\-Triangle\-Renderer} ()}\label{classirr_1_1video_1_1_c_software_driver_a7b79eba95e9bdcae8fdd885137f796e4}
+
+\begin{DoxyCompactList}\small\item\em void selects the right triangle renderer based on the render states. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a37763353f625e337795741146d697132}{void \hyperlink{classirr_1_1video_1_1_c_software_driver_a37763353f625e337795741146d697132}{clip\-Triangle} (f32 $\ast$transformed\-Pos)}\label{classirr_1_1video_1_1_c_software_driver_a37763353f625e337795741146d697132}
+
+\begin{DoxyCompactList}\small\item\em clips a triangle agains the viewing frustum \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a0fe54788b7635f73445f780cf6991af7}{void \hyperlink{classirr_1_1video_1_1_c_software_driver_a0fe54788b7635f73445f780cf6991af7}{draw\-Vertex\-Primitive\-List16} (const void $\ast$vertices, u32 vertex\-Count, const u16 $\ast$index\-List, u32 primitive\-Count, E\-\_\-\-V\-E\-R\-T\-E\-X\-\_\-\-T\-Y\-P\-E v\-Type, scene\-::\-E\-\_\-\-P\-R\-I\-M\-I\-T\-I\-V\-E\-\_\-\-T\-Y\-P\-E p\-Type)}\label{classirr_1_1video_1_1_c_software_driver_a0fe54788b7635f73445f780cf6991af7}
+
+\begin{DoxyCompactList}\small\item\em draws a vertex primitive list \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_aa1cce639bda2a3c959a2c286a80800bd}{{\footnotesize template$<$class V\-E\-R\-T\-E\-X\-T\-Y\-P\-E $>$ }\\void {\bfseries draw\-Clipped\-Indexed\-Triangle\-List\-T} (const V\-E\-R\-T\-E\-X\-T\-Y\-P\-E $\ast$vertices, s32 vertex\-Count, const u16 $\ast$index\-List, s32 triangle\-Count)}\label{classirr_1_1video_1_1_c_software_driver_aa1cce639bda2a3c959a2c286a80800bd}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a3a2cca5608f0d24d72efb8a0777733ab}{\hyperlink{classirr_1_1video_1_1_c_image}{video\-::\-C\-Image} $\ast$ {\bfseries Back\-Buffer}}\label{classirr_1_1video_1_1_c_software_driver_a3a2cca5608f0d24d72efb8a0777733ab}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a79e1a4247c448b9da18c2e72c2bb97e3}{\hyperlink{classirr_1_1video_1_1_i_image_presenter}{video\-::\-I\-Image\-Presenter} $\ast$ {\bfseries Presenter}}\label{classirr_1_1video_1_1_c_software_driver_a79e1a4247c448b9da18c2e72c2bb97e3}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a945c0adeff075ce81303671601fbd21d}{void $\ast$ {\bfseries Window\-Id}}\label{classirr_1_1video_1_1_c_software_driver_a945c0adeff075ce81303671601fbd21d}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_aae97faefdc5beba943e111e94aa1ba96}{core\-::rect$<$ s32 $>$ $\ast$ {\bfseries Scene\-Source\-Rect}}\label{classirr_1_1video_1_1_c_software_driver_aae97faefdc5beba943e111e94aa1ba96}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a8f8cae9b22f627d6f49b73fff89c8f2c}{core\-::array$<$ \hyperlink{structirr_1_1video_1_1_s2_d_vertex}{S2\-D\-Vertex} $>$ {\bfseries Transformed\-Points}}\label{classirr_1_1video_1_1_c_software_driver_a8f8cae9b22f627d6f49b73fff89c8f2c}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_aee5719bad39a3d6d7c5b0960cc7c1bd0}{video\-::\-I\-Texture $\ast$ {\bfseries Render\-Target\-Texture}}\label{classirr_1_1video_1_1_c_software_driver_aee5719bad39a3d6d7c5b0960cc7c1bd0}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_aeb8312f0cbe9a665bd3fe51558fc1b72}{\hyperlink{classirr_1_1video_1_1_c_image}{video\-::\-C\-Image} $\ast$ {\bfseries Render\-Target\-Surface}}\label{classirr_1_1video_1_1_c_software_driver_aeb8312f0cbe9a665bd3fe51558fc1b72}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a90e18f4000d0f125ecd4435a1f54088e}{core\-::position2d$<$ s32 $>$ {\bfseries Render2\-D\-Translation}}\label{classirr_1_1video_1_1_c_software_driver_a90e18f4000d0f125ecd4435a1f54088e}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a0d65de7eb09daa9817acb4e3857b6739}{core\-::dimension2d$<$ u32 $>$ {\bfseries Render\-Target\-Size}}\label{classirr_1_1video_1_1_c_software_driver_a0d65de7eb09daa9817acb4e3857b6739}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_aed41a971197c6f32e05ca72377b66e78}{core\-::dimension2d$<$ u32 $>$ {\bfseries View\-Port\-Size}}\label{classirr_1_1video_1_1_c_software_driver_aed41a971197c6f32e05ca72377b66e78}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a52177fb6e6b42b38a88510b454eb69fb}{core\-::matrix4 {\bfseries Transformation\-Matrix} \mbox{[}E\-T\-S\-\_\-\-C\-O\-U\-N\-T\mbox{]}}\label{classirr_1_1video_1_1_c_software_driver_a52177fb6e6b42b38a88510b454eb69fb}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a7b42e805d43c96d2a3854d10613ba9ae}{\hyperlink{classirr_1_1video_1_1_i_triangle_renderer}{I\-Triangle\-Renderer} $\ast$ {\bfseries Current\-Triangle\-Renderer}}\label{classirr_1_1video_1_1_c_software_driver_a7b42e805d43c96d2a3854d10613ba9ae}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a8b6ea804cae51ad97d3c1cfe88fbbe34}{\hyperlink{classirr_1_1video_1_1_i_triangle_renderer}{I\-Triangle\-Renderer} $\ast$ {\bfseries Triangle\-Renderers} \mbox{[}E\-T\-R\-\_\-\-C\-O\-U\-N\-T\mbox{]}}\label{classirr_1_1video_1_1_c_software_driver_a8b6ea804cae51ad97d3c1cfe88fbbe34}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_af715ef1b737da38804b2d4a4b1b6873c}{E\-Triangle\-Renderer {\bfseries Current\-Renderer}}\label{classirr_1_1video_1_1_c_software_driver_af715ef1b737da38804b2d4a4b1b6873c}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a7c0ed9965a57559bc374b2f4808bd1e7}{\hyperlink{classirr_1_1video_1_1_i_z_buffer}{I\-Z\-Buffer} $\ast$ {\bfseries Z\-Buffer}}\label{classirr_1_1video_1_1_c_software_driver_a7c0ed9965a57559bc374b2f4808bd1e7}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a55f78271bea1204104e03b826c4b886b}{video\-::\-I\-Texture $\ast$ {\bfseries Texture}}\label{classirr_1_1video_1_1_c_software_driver_a55f78271bea1204104e03b826c4b886b}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a26c3c6438ea881435b5d9e308927b348}{S\-Material {\bfseries Material}}\label{classirr_1_1video_1_1_c_software_driver_a26c3c6438ea881435b5d9e308927b348}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1video_1_1_c_software_driver_af63c3a2bf6c2d392d97e2cd97d4c3209}{\index{irr\-::video\-::\-C\-Software\-Driver@{irr\-::video\-::\-C\-Software\-Driver}!create\-Device\-Dependent\-Texture@{create\-Device\-Dependent\-Texture}}
+\index{create\-Device\-Dependent\-Texture@{create\-Device\-Dependent\-Texture}!irr::video::CSoftwareDriver@{irr\-::video\-::\-C\-Software\-Driver}}
+\subsubsection[{create\-Device\-Dependent\-Texture}]{\setlength{\rightskip}{0pt plus 5cm}virtual video\-::\-I\-Texture$\ast$ irr\-::video\-::\-C\-Software\-Driver\-::create\-Device\-Dependent\-Texture (
+\begin{DoxyParamCaption}
+\item[{I\-Image $\ast$}]{surface, }
+\item[{const io\-::path \&}]{name, }
+\item[{void $\ast$}]{mipmap\-Data = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1video_1_1_c_software_driver_af63c3a2bf6c2d392d97e2cd97d4c3209}
+returns a device dependent texture from a software surface (I\-Image) T\-H\-I\-S M\-E\-T\-H\-O\-D H\-A\-S T\-O B\-E O\-V\-E\-R\-R\-I\-D\-D\-E\-N B\-Y D\-E\-R\-I\-V\-E\-D D\-R\-I\-V\-E\-R\-S W\-I\-T\-H O\-W\-N T\-E\-X\-T\-U\-R\-E\-S 
+
+Reimplemented from \hyperlink{classirr_1_1video_1_1_c_null_driver_aaf9971d937700eb90cbf1ff74b249eba}{irr\-::video\-::\-C\-Null\-Driver}.
+
+\hypertarget{classirr_1_1video_1_1_c_software_driver_aa8c493318e46699bac981e74b2366602}{\index{irr\-::video\-::\-C\-Software\-Driver@{irr\-::video\-::\-C\-Software\-Driver}!get\-Maximal\-Primitive\-Count@{get\-Maximal\-Primitive\-Count}}
+\index{get\-Maximal\-Primitive\-Count@{get\-Maximal\-Primitive\-Count}!irr::video::CSoftwareDriver@{irr\-::video\-::\-C\-Software\-Driver}}
+\subsubsection[{get\-Maximal\-Primitive\-Count}]{\setlength{\rightskip}{0pt plus 5cm}virtual u32 irr\-::video\-::\-C\-Software\-Driver\-::get\-Maximal\-Primitive\-Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1video_1_1_c_software_driver_aa8c493318e46699bac981e74b2366602}
+Returns the maximum amount of primitives (mostly vertices) which the device is able to render with one draw\-Indexed\-Triangle\-List call. 
+
+Reimplemented from \hyperlink{classirr_1_1video_1_1_c_null_driver_a309d710b5cbec16c81c8a1d1d536866c}{irr\-::video\-::\-C\-Null\-Driver}.
+
+\hypertarget{classirr_1_1video_1_1_c_software_driver_a239d6935765a2860311b7b08a424edf8}{\index{irr\-::video\-::\-C\-Software\-Driver@{irr\-::video\-::\-C\-Software\-Driver}!get\-Name@{get\-Name}}
+\index{get\-Name@{get\-Name}!irr::video::CSoftwareDriver@{irr\-::video\-::\-C\-Software\-Driver}}
+\subsubsection[{get\-Name}]{\setlength{\rightskip}{0pt plus 5cm}virtual const wchar\-\_\-t$\ast$ irr\-::video\-::\-C\-Software\-Driver\-::get\-Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1video_1_1_c_software_driver_a239d6935765a2860311b7b08a424edf8}
+\begin{DoxyReturn}{Returns}
+Returns the name of the video driver. Example\-: In case of the Direct3\-D8 driver, it would return \char`\"{}\-Direct3\-D8.\-1\char`\"{}. 
+\end{DoxyReturn}
+
+
+Reimplemented from \hyperlink{classirr_1_1video_1_1_c_null_driver_a0073a2daf8c0de73a4e2e05538214d2b}{irr\-::video\-::\-C\-Null\-Driver}.
+
+\hypertarget{classirr_1_1video_1_1_c_software_driver_aede9981a1ee57e15c90f5310c907ec86}{\index{irr\-::video\-::\-C\-Software\-Driver@{irr\-::video\-::\-C\-Software\-Driver}!On\-Resize@{On\-Resize}}
+\index{On\-Resize@{On\-Resize}!irr::video::CSoftwareDriver@{irr\-::video\-::\-C\-Software\-Driver}}
+\subsubsection[{On\-Resize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::video\-::\-C\-Software\-Driver\-::\-On\-Resize (
+\begin{DoxyParamCaption}
+\item[{const core\-::dimension2d$<$ u32 $>$ \&}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1video_1_1_c_software_driver_aede9981a1ee57e15c90f5310c907ec86}
+Only used by the internal engine. Used to notify the driver that the window was resized. 
+
+Reimplemented from \hyperlink{classirr_1_1video_1_1_c_null_driver_ae1aac99888a5b15573af57b0b01d1bed}{irr\-::video\-::\-C\-Null\-Driver}.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Software\-Driver.\-h\end{DoxyCompactItemize}

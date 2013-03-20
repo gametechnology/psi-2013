@@ -1,0 +1,56 @@
+\hypertarget{classirr_1_1scene_1_1_c_m_s3_d_mesh_file_loader}{\section{irr\-:\-:scene\-:\-:C\-M\-S3\-D\-Mesh\-File\-Loader Class Reference}
+\label{classirr_1_1scene_1_1_c_m_s3_d_mesh_file_loader}\index{irr\-::scene\-::\-C\-M\-S3\-D\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-M\-S3\-D\-Mesh\-File\-Loader}}
+}
+
+
+Meshloader capable of loading Milkshape 3\-D files.  
+
+
+
+
+{\ttfamily \#include $<$C\-M\-S3\-D\-Mesh\-File\-Loader.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-M\-S3\-D\-Mesh\-File\-Loader\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_m_s3_d_mesh_file_loader}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_m_s3_d_mesh_file_loader_ad52b4589795155476a6a63f5fccb79b8}{\hyperlink{classirr_1_1scene_1_1_c_m_s3_d_mesh_file_loader_ad52b4589795155476a6a63f5fccb79b8}{C\-M\-S3\-D\-Mesh\-File\-Loader} (video\-::\-I\-Video\-Driver $\ast$driver)}\label{classirr_1_1scene_1_1_c_m_s3_d_mesh_file_loader_ad52b4589795155476a6a63f5fccb79b8}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_m_s3_d_mesh_file_loader_a060f133c067358cc54b869c557f34757}{is\-A\-Loadable\-File\-Extension} (const io\-::path \&filename) const 
+\item 
+virtual I\-Animated\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_m_s3_d_mesh_file_loader_a75455007a1ca4819e0d79ef803dedb4d}{create\-Mesh} (io\-::\-I\-Read\-File $\ast$file)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Meshloader capable of loading Milkshape 3\-D files. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_m_s3_d_mesh_file_loader_a75455007a1ca4819e0d79ef803dedb4d}{\index{irr\-::scene\-::\-C\-M\-S3\-D\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-M\-S3\-D\-Mesh\-File\-Loader}!create\-Mesh@{create\-Mesh}}
+\index{create\-Mesh@{create\-Mesh}!irr::scene::CMS3DMeshFileLoader@{irr\-::scene\-::\-C\-M\-S3\-D\-Mesh\-File\-Loader}}
+\subsubsection[{create\-Mesh}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Animated\-Mesh$\ast$ irr\-::scene\-::\-C\-M\-S3\-D\-Mesh\-File\-Loader\-::create\-Mesh (
+\begin{DoxyParamCaption}
+\item[{io\-::\-I\-Read\-File $\ast$}]{file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_m_s3_d_mesh_file_loader_a75455007a1ca4819e0d79ef803dedb4d}
+creates/loads an animated mesh from the file. \begin{DoxyReturn}{Returns}
+Pointer to the created mesh. Returns 0 if loading failed. If you no longer need the mesh, you should call I\-Animated\-Mesh\-::drop(). See I\-Reference\-Counted\-::drop() for more information. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_m_s3_d_mesh_file_loader_a060f133c067358cc54b869c557f34757}{\index{irr\-::scene\-::\-C\-M\-S3\-D\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-M\-S3\-D\-Mesh\-File\-Loader}!is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}}
+\index{is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}!irr::scene::CMS3DMeshFileLoader@{irr\-::scene\-::\-C\-M\-S3\-D\-Mesh\-File\-Loader}}
+\subsubsection[{is\-A\-Loadable\-File\-Extension}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool irr\-::scene\-::\-C\-M\-S3\-D\-Mesh\-File\-Loader\-::is\-A\-Loadable\-File\-Extension (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{filename}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_m_s3_d_mesh_file_loader_a060f133c067358cc54b869c557f34757}
+returns true if the file might be loadable by this class based on the file extension (e.\-g. \char`\"{}.\-bsp\char`\"{}) 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-M\-S3\-D\-Mesh\-File\-Loader.\-h\end{DoxyCompactItemize}

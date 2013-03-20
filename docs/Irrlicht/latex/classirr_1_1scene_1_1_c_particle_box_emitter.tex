@@ -1,0 +1,119 @@
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter}{\section{irr\-:\-:scene\-:\-:C\-Particle\-Box\-Emitter Class Reference}
+\label{classirr_1_1scene_1_1_c_particle_box_emitter}\index{irr\-::scene\-::\-C\-Particle\-Box\-Emitter@{irr\-::scene\-::\-C\-Particle\-Box\-Emitter}}
+}
+
+
+A default box emitter.  
+
+
+
+
+{\ttfamily \#include $<$C\-Particle\-Box\-Emitter.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Particle\-Box\-Emitter\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_particle_box_emitter}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_ade8138b1554120245767815889a7826a}{\hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_ade8138b1554120245767815889a7826a}{C\-Particle\-Box\-Emitter} (const core\-::aabbox3df \&box, const core\-::vector3df \&direction=core\-::vector3df(0.\-0f, 0.\-03f, 0.\-0f), u32 min\-Particles\-Per\-Second=20, u32 max\-Particles\-Per\-Second=40, video\-::\-S\-Color min\-Start\-Color=video\-::\-S\-Color(255, 0, 0, 0), video\-::\-S\-Color max\-Start\-Color=video\-::\-S\-Color(255, 255, 255, 255), u32 life\-Time\-Min=2000, u32 life\-Time\-Max=4000, s32 max\-Angle\-Degrees=0, const core\-::dimension2df \&min\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f), const core\-::dimension2df \&max\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f))}\label{classirr_1_1scene_1_1_c_particle_box_emitter_ade8138b1554120245767815889a7826a}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual s32 \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_ab80b12473a21b3d18b369d6b6662e069}{emitt} (u32 now, u32 time\-Since\-Last\-Call, S\-Particle $\ast$\&out\-Array)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a4f8214d2beb772db7ba80dc3103ed7d7}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a4f8214d2beb772db7ba80dc3103ed7d7}{set\-Direction} (const core\-::vector3df \&new\-Direction)}\label{classirr_1_1scene_1_1_c_particle_box_emitter_a4f8214d2beb772db7ba80dc3103ed7d7}
+
+\begin{DoxyCompactList}\small\item\em Set direction the emitter emits particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a411f97e43433564c3085eb6b3e3fd880}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a411f97e43433564c3085eb6b3e3fd880}{set\-Min\-Particles\-Per\-Second} (u32 min\-P\-P\-S)}\label{classirr_1_1scene_1_1_c_particle_box_emitter_a411f97e43433564c3085eb6b3e3fd880}
+
+\begin{DoxyCompactList}\small\item\em Set minimum number of particles emitted per second. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a4c77db60df4298b0a82d52b5d408afa8}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a4c77db60df4298b0a82d52b5d408afa8}{set\-Max\-Particles\-Per\-Second} (u32 max\-P\-P\-S)}\label{classirr_1_1scene_1_1_c_particle_box_emitter_a4c77db60df4298b0a82d52b5d408afa8}
+
+\begin{DoxyCompactList}\small\item\em Set maximum number of particles emitted per second. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_aaafde396c0a4fd675ae99fa199754f42}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_aaafde396c0a4fd675ae99fa199754f42}{set\-Min\-Start\-Color} (const video\-::\-S\-Color \&color)}\label{classirr_1_1scene_1_1_c_particle_box_emitter_aaafde396c0a4fd675ae99fa199754f42}
+
+\begin{DoxyCompactList}\small\item\em Set minimum start color. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a61980198d2c67fab7656638e10c4aaf4}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a61980198d2c67fab7656638e10c4aaf4}{set\-Max\-Start\-Color} (const video\-::\-S\-Color \&color)}\label{classirr_1_1scene_1_1_c_particle_box_emitter_a61980198d2c67fab7656638e10c4aaf4}
+
+\begin{DoxyCompactList}\small\item\em Set maximum start color. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_ae7575d40ac22954b05d232613740cd1c}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_ae7575d40ac22954b05d232613740cd1c}{set\-Max\-Start\-Size} (const core\-::dimension2df \&size)}\label{classirr_1_1scene_1_1_c_particle_box_emitter_ae7575d40ac22954b05d232613740cd1c}
+
+\begin{DoxyCompactList}\small\item\em Set the maximum starting size for particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_acdb5220dd66fb5be8ab8180a49bd8b6a}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_acdb5220dd66fb5be8ab8180a49bd8b6a}{set\-Min\-Start\-Size} (const core\-::dimension2df \&size)}\label{classirr_1_1scene_1_1_c_particle_box_emitter_acdb5220dd66fb5be8ab8180a49bd8b6a}
+
+\begin{DoxyCompactList}\small\item\em Set the minimum starting size for particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a88fdebe95f3e5409515598dc4b83b4ca}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a88fdebe95f3e5409515598dc4b83b4ca}{set\-Min\-Life\-Time} (u32 life\-Time\-Min)}\label{classirr_1_1scene_1_1_c_particle_box_emitter_a88fdebe95f3e5409515598dc4b83b4ca}
+
+\begin{DoxyCompactList}\small\item\em Set the minimum particle life-\/time in milliseconds. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a7002700e4a921f6bc3d236b2697d6670}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a7002700e4a921f6bc3d236b2697d6670}{set\-Max\-Life\-Time} (u32 life\-Time\-Max)}\label{classirr_1_1scene_1_1_c_particle_box_emitter_a7002700e4a921f6bc3d236b2697d6670}
+
+\begin{DoxyCompactList}\small\item\em Set the maximum particle life-\/time in milliseconds. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a0515b97a058603a75f0eb660c3131942}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a0515b97a058603a75f0eb660c3131942}{set\-Max\-Angle\-Degrees} (s32 max\-Angle\-Degrees)}\label{classirr_1_1scene_1_1_c_particle_box_emitter_a0515b97a058603a75f0eb660c3131942}
+
+\begin{DoxyCompactList}\small\item\em Maximal random derivation from the direction. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a409975f5c5c2c433c01149aa593ee392}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a409975f5c5c2c433c01149aa593ee392}{set\-Box} (const core\-::aabbox3df \&box)}\label{classirr_1_1scene_1_1_c_particle_box_emitter_a409975f5c5c2c433c01149aa593ee392}
+
+\begin{DoxyCompactList}\small\item\em Set box from which the particles are emitted. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_afdb07e118e162453464db0a56e4e304e}{virtual const core\-::vector3df \& \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_afdb07e118e162453464db0a56e4e304e}{get\-Direction} () const }\label{classirr_1_1scene_1_1_c_particle_box_emitter_afdb07e118e162453464db0a56e4e304e}
+
+\begin{DoxyCompactList}\small\item\em Gets direction the emitter emits particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a212da0aeae2145986718919c218042fd}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a212da0aeae2145986718919c218042fd}{get\-Min\-Particles\-Per\-Second} () const }\label{classirr_1_1scene_1_1_c_particle_box_emitter_a212da0aeae2145986718919c218042fd}
+
+\begin{DoxyCompactList}\small\item\em Gets minimum number of particles emitted per second. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_aa3e73227ac1f85b2671bc49f04f71c60}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_aa3e73227ac1f85b2671bc49f04f71c60}{get\-Max\-Particles\-Per\-Second} () const }\label{classirr_1_1scene_1_1_c_particle_box_emitter_aa3e73227ac1f85b2671bc49f04f71c60}
+
+\begin{DoxyCompactList}\small\item\em Gets maximum number of particles emitted per second. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a09ebdc14d1dd95555a5d475e001cb408}{virtual const video\-::\-S\-Color \& \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a09ebdc14d1dd95555a5d475e001cb408}{get\-Min\-Start\-Color} () const }\label{classirr_1_1scene_1_1_c_particle_box_emitter_a09ebdc14d1dd95555a5d475e001cb408}
+
+\begin{DoxyCompactList}\small\item\em Gets minimum start color. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a7a4ae893b38b2761de7d2db370dbf5a0}{virtual const video\-::\-S\-Color \& \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a7a4ae893b38b2761de7d2db370dbf5a0}{get\-Max\-Start\-Color} () const }\label{classirr_1_1scene_1_1_c_particle_box_emitter_a7a4ae893b38b2761de7d2db370dbf5a0}
+
+\begin{DoxyCompactList}\small\item\em Gets maximum start color. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_add7d33f71aa4f021a1173f04ec20c37f}{virtual const core\-::dimension2df \& \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_add7d33f71aa4f021a1173f04ec20c37f}{get\-Max\-Start\-Size} () const }\label{classirr_1_1scene_1_1_c_particle_box_emitter_add7d33f71aa4f021a1173f04ec20c37f}
+
+\begin{DoxyCompactList}\small\item\em Gets the maximum starting size for particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a52c8091c97e801c3dc0d645d50b5636a}{virtual const core\-::dimension2df \& \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a52c8091c97e801c3dc0d645d50b5636a}{get\-Min\-Start\-Size} () const }\label{classirr_1_1scene_1_1_c_particle_box_emitter_a52c8091c97e801c3dc0d645d50b5636a}
+
+\begin{DoxyCompactList}\small\item\em Gets the minimum starting size for particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a8bcf07e8d8c150f812cfd6aa05faffc8}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a8bcf07e8d8c150f812cfd6aa05faffc8}{get\-Min\-Life\-Time} () const }\label{classirr_1_1scene_1_1_c_particle_box_emitter_a8bcf07e8d8c150f812cfd6aa05faffc8}
+
+\begin{DoxyCompactList}\small\item\em Get the minimum particle life-\/time in milliseconds. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_acbf1ee20b45903cfc17e9a526bc6fbd2}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_acbf1ee20b45903cfc17e9a526bc6fbd2}{get\-Max\-Life\-Time} () const }\label{classirr_1_1scene_1_1_c_particle_box_emitter_acbf1ee20b45903cfc17e9a526bc6fbd2}
+
+\begin{DoxyCompactList}\small\item\em Get the maximum particle life-\/time in milliseconds. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_aaab6c481a504c1e6f09e106723436347}{virtual s32 \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_aaab6c481a504c1e6f09e106723436347}{get\-Max\-Angle\-Degrees} () const }\label{classirr_1_1scene_1_1_c_particle_box_emitter_aaab6c481a504c1e6f09e106723436347}
+
+\begin{DoxyCompactList}\small\item\em Maximal random derivation from the direction. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a36f83701f1c7e52e4d75e73b53b3cdc1}{virtual const core\-::aabbox3df \& \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a36f83701f1c7e52e4d75e73b53b3cdc1}{get\-Box} () const }\label{classirr_1_1scene_1_1_c_particle_box_emitter_a36f83701f1c7e52e4d75e73b53b3cdc1}
+
+\begin{DoxyCompactList}\small\item\em Get box from which the particles are emitted. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_a847d4efc8d4cf50eb919682c1c4823a2}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_a847d4efc8d4cf50eb919682c1c4823a2}{serialize\-Attributes} (io\-::\-I\-Attributes $\ast$out, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options) const }\label{classirr_1_1scene_1_1_c_particle_box_emitter_a847d4efc8d4cf50eb919682c1c4823a2}
+
+\begin{DoxyCompactList}\small\item\em Writes attributes of the object. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_adcaf83b1168f9de2017eab6f93da6cd6}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_box_emitter_adcaf83b1168f9de2017eab6f93da6cd6}{deserialize\-Attributes} (io\-::\-I\-Attributes $\ast$in, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options)}\label{classirr_1_1scene_1_1_c_particle_box_emitter_adcaf83b1168f9de2017eab6f93da6cd6}
+
+\begin{DoxyCompactList}\small\item\em Reads attributes of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A default box emitter. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_particle_box_emitter_ab80b12473a21b3d18b369d6b6662e069}{\index{irr\-::scene\-::\-C\-Particle\-Box\-Emitter@{irr\-::scene\-::\-C\-Particle\-Box\-Emitter}!emitt@{emitt}}
+\index{emitt@{emitt}!irr::scene::CParticleBoxEmitter@{irr\-::scene\-::\-C\-Particle\-Box\-Emitter}}
+\subsubsection[{emitt}]{\setlength{\rightskip}{0pt plus 5cm}s32 irr\-::scene\-::\-C\-Particle\-Box\-Emitter\-::emitt (
+\begin{DoxyParamCaption}
+\item[{u32}]{now, }
+\item[{u32}]{time\-Since\-Last\-Call, }
+\item[{S\-Particle $\ast$\&}]{out\-Array}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_box_emitter_ab80b12473a21b3d18b369d6b6662e069}
+Prepares an array with new particles to emitt into the system and returns how much new particles there are. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Particle\-Box\-Emitter.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Particle\-Box\-Emitter.\-cpp\end{DoxyCompactItemize}

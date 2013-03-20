@@ -1,0 +1,85 @@
+\hypertarget{_c_collada_file_loader_8h}{\section{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-C\-Collada\-File\-Loader.h File Reference}
+\label{_c_collada_file_loader_8h}\index{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-C\-Collada\-File\-Loader.\-h@{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-C\-Collada\-File\-Loader.\-h}}
+}
+{\ttfamily \#include \char`\"{}I\-Mesh\-Loader.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-File\-System.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Video\-Driver.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}irr\-String.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}S\-Mesh.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}S\-Mesh\-Buffer.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Scene\-Manager.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}irr\-Map.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Attributes.\-h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structirr_1_1scene_1_1_s_collada_param}{irr\-::scene\-::\-S\-Collada\-Param}
+\begin{DoxyCompactList}\small\item\em Collada Parameter. \end{DoxyCompactList}\item 
+struct \hyperlink{structirr_1_1scene_1_1_s_collada_input}{irr\-::scene\-::\-S\-Collada\-Input}
+\begin{DoxyCompactList}\small\item\em Collada Input. \end{DoxyCompactList}\item 
+struct \hyperlink{structirr_1_1scene_1_1_s_collada_image}{irr\-::scene\-::\-S\-Collada\-Image}
+\begin{DoxyCompactList}\small\item\em Collada images. \end{DoxyCompactList}\item 
+struct \hyperlink{structirr_1_1scene_1_1_s_collada_texture}{irr\-::scene\-::\-S\-Collada\-Texture}
+\begin{DoxyCompactList}\small\item\em Collada texture. \end{DoxyCompactList}\item 
+struct \hyperlink{structirr_1_1scene_1_1_s_collada_material}{irr\-::scene\-::\-S\-Collada\-Material}
+\begin{DoxyCompactList}\small\item\em Collada material. \end{DoxyCompactList}\item 
+struct \hyperlink{structirr_1_1scene_1_1_s_collada_effect}{irr\-::scene\-::\-S\-Collada\-Effect}
+\begin{DoxyCompactList}\small\item\em Collada effect (materials, shaders, and programs) \end{DoxyCompactList}\item 
+struct \hyperlink{structirr_1_1scene_1_1_s_number_array}{irr\-::scene\-::\-S\-Number\-Array}
+\item 
+struct \hyperlink{structirr_1_1scene_1_1_s_accessor}{irr\-::scene\-::\-S\-Accessor}
+\item 
+struct \hyperlink{structirr_1_1scene_1_1_s_source}{irr\-::scene\-::\-S\-Source}
+\item 
+class \hyperlink{classirr_1_1scene_1_1_c_collada_file_loader}{irr\-::scene\-::\-C\-Collada\-File\-Loader}
+\begin{DoxyCompactList}\small\item\em Meshloader capable of loading C\-O\-L\-L\-A\-D\-A meshes and scene descriptions into Irrlicht. \end{DoxyCompactList}\item 
+class \hyperlink{classirr_1_1scene_1_1_i_collada_prefab}{irr\-::scene\-::\-I\-Collada\-Prefab}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespaceirr}{irr}
+\item 
+namespace \hyperlink{namespaceirr_1_1scene}{irr\-::scene}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceirr_1_1scene_a09a60ce67758d20bb73126d571daa487}{irr\-::scene\-::\-E\-C\-O\-L\-L\-A\-D\-A\-\_\-\-P\-A\-R\-A\-M\-\_\-\-N\-A\-M\-E} \{ \\*
+\hyperlink{namespaceirr_1_1scene_a09a60ce67758d20bb73126d571daa487ae16bc6b2e28c49fc0f752bbc32549129}{irr\-::scene\-::\-E\-C\-P\-N\-\_\-\-C\-O\-L\-O\-R} = 0, 
+\hyperlink{namespaceirr_1_1scene_a09a60ce67758d20bb73126d571daa487a6c6e7c228e8dc0c7194f82ff0fc02f0a}{irr\-::scene\-::\-E\-C\-P\-N\-\_\-\-A\-M\-B\-I\-E\-N\-T}, 
+\hyperlink{namespaceirr_1_1scene_a09a60ce67758d20bb73126d571daa487a85aa2479126ca1017e8cdd8fc8f944b5}{irr\-::scene\-::\-E\-C\-P\-N\-\_\-\-D\-I\-F\-F\-U\-S\-E}, 
+\hyperlink{namespaceirr_1_1scene_a09a60ce67758d20bb73126d571daa487a04d857ae230d8be2b37fe8f316638d03}{irr\-::scene\-::\-E\-C\-P\-N\-\_\-\-S\-P\-E\-C\-U\-L\-A\-R}, 
+\\*
+\hyperlink{namespaceirr_1_1scene_a09a60ce67758d20bb73126d571daa487a766a4b6b396bc7cdebef258107116f6e}{irr\-::scene\-::\-E\-C\-P\-N\-\_\-\-S\-H\-I\-N\-I\-N\-E\-S\-S}, 
+\hyperlink{namespaceirr_1_1scene_a09a60ce67758d20bb73126d571daa487ae14362b9c98b9a73b7b80c769e96811e}{irr\-::scene\-::\-E\-C\-P\-N\-\_\-\-T\-R\-A\-N\-S\-P\-A\-R\-E\-N\-C\-Y}, 
+\hyperlink{namespaceirr_1_1scene_a09a60ce67758d20bb73126d571daa487a2c29acd2ee18f04c04289d3099c5d3ba}{irr\-::scene\-::\-E\-C\-P\-N\-\_\-\-Y\-F\-O\-V}, 
+\hyperlink{namespaceirr_1_1scene_a09a60ce67758d20bb73126d571daa487a47dddd28977002bb36449f5481533e4a}{irr\-::scene\-::\-E\-C\-P\-N\-\_\-\-Z\-N\-E\-A\-R}, 
+\\*
+\hyperlink{namespaceirr_1_1scene_a09a60ce67758d20bb73126d571daa487a762a51dcfda394ce47aeac90b5192054}{irr\-::scene\-::\-E\-C\-P\-N\-\_\-\-Z\-F\-A\-R}, 
+\hyperlink{namespaceirr_1_1scene_a09a60ce67758d20bb73126d571daa487a828322beac3cb9131350f277f9ffe8a3}{irr\-::scene\-::\-E\-C\-P\-N\-\_\-\-C\-O\-U\-N\-T}
+ \}
+\item 
+enum \hyperlink{namespaceirr_1_1scene_a240b93879dbe4816169df21d212ccdf2}{irr\-::scene\-::\-E\-C\-O\-L\-L\-A\-D\-A\-\_\-\-P\-A\-R\-A\-M\-\_\-\-T\-Y\-P\-E} \{ \\*
+\hyperlink{namespaceirr_1_1scene_a240b93879dbe4816169df21d212ccdf2a51091b128ff8cccfcfc1b5ced2a50829}{irr\-::scene\-::\-E\-C\-P\-T\-\_\-\-F\-L\-O\-A\-T} = 0, 
+\hyperlink{namespaceirr_1_1scene_a240b93879dbe4816169df21d212ccdf2a412154d8c031f4302a6613c215d5911b}{irr\-::scene\-::\-E\-C\-P\-T\-\_\-\-F\-L\-O\-A\-T2}, 
+\hyperlink{namespaceirr_1_1scene_a240b93879dbe4816169df21d212ccdf2affd6366b83c326b161b14217aa575048}{irr\-::scene\-::\-E\-C\-P\-T\-\_\-\-F\-L\-O\-A\-T3}, 
+\hyperlink{namespaceirr_1_1scene_a240b93879dbe4816169df21d212ccdf2a0e1d906e6361743004768a37fa46f881}{irr\-::scene\-::\-E\-C\-P\-T\-\_\-\-F\-L\-O\-A\-T4}, 
+\\*
+\hyperlink{namespaceirr_1_1scene_a240b93879dbe4816169df21d212ccdf2a41af9c6d10f190e1d4ece656ec1fbd52}{irr\-::scene\-::\-E\-C\-P\-T\-\_\-\-C\-O\-U\-N\-T}
+ \}
+\item 
+enum \hyperlink{namespaceirr_1_1scene_a64e4fa8a05f39e08f3e68bbf5869d6df}{irr\-::scene\-::\-E\-C\-O\-L\-L\-A\-D\-A\-\_\-\-I\-N\-P\-U\-T\-\_\-\-S\-E\-M\-A\-N\-T\-I\-C} \{ \\*
+\hyperlink{namespaceirr_1_1scene_a64e4fa8a05f39e08f3e68bbf5869d6dfaf2a47fb929f7f98a1b2099c7a166f8ea}{irr\-::scene\-::\-E\-C\-I\-S\-\_\-\-P\-O\-S\-I\-T\-I\-O\-N} = 0, 
+\hyperlink{namespaceirr_1_1scene_a64e4fa8a05f39e08f3e68bbf5869d6dfa20d02362ab47ebc55a873dfce04064b8}{irr\-::scene\-::\-E\-C\-I\-S\-\_\-\-V\-E\-R\-T\-E\-X}, 
+\hyperlink{namespaceirr_1_1scene_a64e4fa8a05f39e08f3e68bbf5869d6dfa7d06730e6566c5f3a38b3d8179edb450}{irr\-::scene\-::\-E\-C\-I\-S\-\_\-\-N\-O\-R\-M\-A\-L}, 
+\hyperlink{namespaceirr_1_1scene_a64e4fa8a05f39e08f3e68bbf5869d6dfa170ed18f332393540b8a01a55aeeb668}{irr\-::scene\-::\-E\-C\-I\-S\-\_\-\-T\-E\-X\-C\-O\-O\-R\-D}, 
+\\*
+\hyperlink{namespaceirr_1_1scene_a64e4fa8a05f39e08f3e68bbf5869d6dfa0023dafc616e21b3c87d750d782248c5}{irr\-::scene\-::\-E\-C\-I\-S\-\_\-\-U\-V}, 
+\hyperlink{namespaceirr_1_1scene_a64e4fa8a05f39e08f3e68bbf5869d6dfab18c0eec34a97c3f39743b4a4998d28b}{irr\-::scene\-::\-E\-C\-I\-S\-\_\-\-T\-A\-N\-G\-E\-N\-T}, 
+\hyperlink{namespaceirr_1_1scene_a64e4fa8a05f39e08f3e68bbf5869d6dfaaee2002fa0cb23f238612552032ed31e}{irr\-::scene\-::\-E\-C\-I\-S\-\_\-\-I\-M\-A\-G\-E}, 
+\hyperlink{namespaceirr_1_1scene_a64e4fa8a05f39e08f3e68bbf5869d6dfa6a196c2fbcf2d90e9c9cf380740a473a}{irr\-::scene\-::\-E\-C\-I\-S\-\_\-\-T\-E\-X\-T\-U\-R\-E}, 
+\\*
+\hyperlink{namespaceirr_1_1scene_a64e4fa8a05f39e08f3e68bbf5869d6dfa6b5c094dc20024963061ddb3af4f7dd2}{irr\-::scene\-::\-E\-C\-I\-S\-\_\-\-C\-O\-U\-N\-T}
+ \}
+\end{DoxyCompactItemize}

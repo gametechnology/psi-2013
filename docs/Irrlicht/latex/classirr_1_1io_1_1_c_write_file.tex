@@ -1,0 +1,88 @@
+\hypertarget{classirr_1_1io_1_1_c_write_file}{\section{irr\-:\-:io\-:\-:C\-Write\-File Class Reference}
+\label{classirr_1_1io_1_1_c_write_file}\index{irr\-::io\-::\-C\-Write\-File@{irr\-::io\-::\-C\-Write\-File}}
+}
+
+
+{\ttfamily \#include $<$C\-Write\-File.\-h$>$}
+
+Inheritance diagram for irr\-:\-:io\-:\-:C\-Write\-File\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1io_1_1_c_write_file}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1io_1_1_c_write_file_ae06a6e0a2b56b5f38f17895794a929d3}{{\bfseries C\-Write\-File} (const io\-::path \&file\-Name, bool append)}\label{classirr_1_1io_1_1_c_write_file_ae06a6e0a2b56b5f38f17895794a929d3}
+
+\item 
+virtual s32 \hyperlink{classirr_1_1io_1_1_c_write_file_acc23d39409fa952330123ecf03ef4752}{write} (const void $\ast$buffer, u32 size\-To\-Write)
+\begin{DoxyCompactList}\small\item\em Reads an amount of bytes from the file. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1io_1_1_c_write_file_a53f3c5370d3c15bfa51c0bdb1675ac11}{seek} (long final\-Pos, bool relative\-Movement=false)
+\begin{DoxyCompactList}\small\item\em Changes position in file, returns true if successful. \end{DoxyCompactList}\item 
+virtual long \hyperlink{classirr_1_1io_1_1_c_write_file_a02a85f61b46ad875a8b9816dff8c0094}{get\-Pos} () const 
+\begin{DoxyCompactList}\small\item\em Returns the current position in the file. \end{DoxyCompactList}\item 
+virtual const io\-::path \& \hyperlink{classirr_1_1io_1_1_c_write_file_a2d9b6b6ca506c7b642480cbb5f1a96f3}{get\-File\-Name} () const 
+\begin{DoxyCompactList}\small\item\em Returns name of file. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_write_file_a5f1b063f41cab5c984a27579f348221a}{bool \hyperlink{classirr_1_1io_1_1_c_write_file_a5f1b063f41cab5c984a27579f348221a}{is\-Open} () const }\label{classirr_1_1io_1_1_c_write_file_a5f1b063f41cab5c984a27579f348221a}
+
+\begin{DoxyCompactList}\small\item\em returns if file is open \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for writing a real file to disk. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1io_1_1_c_write_file_a2d9b6b6ca506c7b642480cbb5f1a96f3}{\index{irr\-::io\-::\-C\-Write\-File@{irr\-::io\-::\-C\-Write\-File}!get\-File\-Name@{get\-File\-Name}}
+\index{get\-File\-Name@{get\-File\-Name}!irr::io::CWriteFile@{irr\-::io\-::\-C\-Write\-File}}
+\subsubsection[{get\-File\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const io\-::path \& irr\-::io\-::\-C\-Write\-File\-::get\-File\-Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_write_file_a2d9b6b6ca506c7b642480cbb5f1a96f3}
+
+
+Returns name of file. 
+
+returns name of file \hypertarget{classirr_1_1io_1_1_c_write_file_a02a85f61b46ad875a8b9816dff8c0094}{\index{irr\-::io\-::\-C\-Write\-File@{irr\-::io\-::\-C\-Write\-File}!get\-Pos@{get\-Pos}}
+\index{get\-Pos@{get\-Pos}!irr::io::CWriteFile@{irr\-::io\-::\-C\-Write\-File}}
+\subsubsection[{get\-Pos}]{\setlength{\rightskip}{0pt plus 5cm}long irr\-::io\-::\-C\-Write\-File\-::get\-Pos (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_write_file_a02a85f61b46ad875a8b9816dff8c0094}
+
+
+Returns the current position in the file. 
+
+returns where in the file we are. \hypertarget{classirr_1_1io_1_1_c_write_file_a53f3c5370d3c15bfa51c0bdb1675ac11}{\index{irr\-::io\-::\-C\-Write\-File@{irr\-::io\-::\-C\-Write\-File}!seek@{seek}}
+\index{seek@{seek}!irr::io::CWriteFile@{irr\-::io\-::\-C\-Write\-File}}
+\subsubsection[{seek}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::io\-::\-C\-Write\-File\-::seek (
+\begin{DoxyParamCaption}
+\item[{long}]{final\-Pos, }
+\item[{bool}]{relative\-Movement = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_write_file_a53f3c5370d3c15bfa51c0bdb1675ac11}
+
+
+Changes position in file, returns true if successful. 
+
+changes position in file, returns true if successful if relative\-Movement==true, the pos is changed relative to current pos, otherwise from begin of file \hypertarget{classirr_1_1io_1_1_c_write_file_acc23d39409fa952330123ecf03ef4752}{\index{irr\-::io\-::\-C\-Write\-File@{irr\-::io\-::\-C\-Write\-File}!write@{write}}
+\index{write@{write}!irr::io::CWriteFile@{irr\-::io\-::\-C\-Write\-File}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}s32 irr\-::io\-::\-C\-Write\-File\-::write (
+\begin{DoxyParamCaption}
+\item[{const void $\ast$}]{buffer, }
+\item[{u32}]{size\-To\-Write}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_write_file_acc23d39409fa952330123ecf03ef4752}
+
+
+Reads an amount of bytes from the file. 
+
+returns how much was read 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Write\-File.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Write\-File.\-cpp\end{DoxyCompactItemize}

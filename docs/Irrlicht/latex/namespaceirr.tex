@@ -1,0 +1,930 @@
+\hypertarget{namespaceirr}{\section{irr Namespace Reference}
+\label{namespaceirr}\index{irr@{irr}}
+}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespaceirr_1_1core}{core}
+\item 
+namespace \hyperlink{namespaceirr_1_1gui}{gui}
+\item 
+namespace \hyperlink{namespaceirr_1_1io}{io}
+\item 
+namespace \hyperlink{namespaceirr_1_1os}{os}
+\item 
+namespace \hyperlink{namespaceirr_1_1scene}{scene}
+\item 
+namespace \hyperlink{namespaceirr_1_1video}{video}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structirr_1_1_s_blit_job}{S\-Blit\-Job}
+\item 
+struct \hyperlink{structirr_1_1blitter_table}{blitter\-Table}
+\item 
+class \hyperlink{classirr_1_1_c_irr_device_stub}{C\-Irr\-Device\-Stub}
+\begin{DoxyCompactList}\small\item\em Stub for an Irrlicht Device implementation. \end{DoxyCompactList}\item 
+class \hyperlink{classirr_1_1_c_logger}{C\-Logger}
+\begin{DoxyCompactList}\small\item\em Class for logging messages, warnings and errors to stdout. \end{DoxyCompactList}\item 
+class \hyperlink{classirr_1_1_c_o_s_operator}{C\-O\-S\-Operator}
+\begin{DoxyCompactList}\small\item\em The Operating system operator provides operation system specific methods and informations. \end{DoxyCompactList}\item 
+class \hyperlink{classirr_1_1_c_timer}{C\-Timer}
+\begin{DoxyCompactList}\small\item\em Device independent implementation of the timer. \end{DoxyCompactList}\item 
+class \hyperlink{classirr_1_1_octree}{Octree}
+\begin{DoxyCompactList}\small\item\em template octree. \end{DoxyCompactList}\item 
+struct \hyperlink{structirr_1_1s_internal_texture}{s\-Internal\-Texture}
+\item 
+struct \hyperlink{structirr_1_1_abs_rectangle}{Abs\-Rectangle}
+\item 
+struct \hyperlink{structirr_1_1s_intervall}{s\-Intervall}
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void}($\ast$ \hyperlink{namespaceirr_a0884da614eab7ae475c55550c2f97bd0}{t\-Execute\-Blit} )(const \hyperlink{structirr_1_1_s_blit_job}{S\-Blit\-Job} $\ast$job)
+\item 
+typedef u16 \hyperlink{namespaceirr_ab51ec14fc2884a414e9fb5a2ca6f03da}{t\-Video\-Sample}
+\item 
+typedef s32 \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point}
+\item 
+typedef u32 \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu}
+\item 
+typedef f32 \hyperlink{namespaceirr_aebc1099fc704ff027ddbc3cc7231d9c2}{fp24}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72}{e\-Clip\-Code} \{ \\*
+\hyperlink{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72a06bb4e3f0e93de59bd903d9d1fb775dd}{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-E\-M\-P\-T\-Y} = 0, 
+\hyperlink{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72a94162a78ee6f332a5210ce57db6a767c}{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-B\-O\-T\-T\-O\-M} = 1, 
+\hyperlink{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72a574e434577931ebf422c2a3eb94cc06d}{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-T\-O\-P} = 2, 
+\hyperlink{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72a6c7c9ccd002dabbba52525457efe2d04}{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-L\-E\-F\-T} = 4, 
+\\*
+\hyperlink{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72abd01ad58214518c41c17e1bace7ee8aa}{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-R\-I\-G\-H\-T} = 8
+ \}
+\item 
+enum \hyperlink{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19}{e\-Blitter} \{ \\*
+\hyperlink{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19a6ba81f3556494ec3344c55eaaf07cdb0}{B\-L\-I\-T\-T\-E\-R\-\_\-\-I\-N\-V\-A\-L\-I\-D} = 0, 
+\hyperlink{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19afed89712a4074704bf2e4771108a9722}{B\-L\-I\-T\-T\-E\-R\-\_\-\-C\-O\-L\-O\-R}, 
+\hyperlink{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19aa754bfab6fc8c11c70543a50834ebf55}{B\-L\-I\-T\-T\-E\-R\-\_\-\-C\-O\-L\-O\-R\-\_\-\-A\-L\-P\-H\-A}, 
+\hyperlink{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19a87cab497b440715578b4d5cc94658c9a}{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E}, 
+\\*
+\hyperlink{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19a3b1adaf176108937a5dea289675d7073}{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-A\-L\-P\-H\-A\-\_\-\-B\-L\-E\-N\-D}, 
+\hyperlink{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19aaf100d7c23ee7284686394464ebca601}{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-A\-L\-P\-H\-A\-\_\-\-C\-O\-L\-O\-R\-\_\-\-B\-L\-E\-N\-D}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+u32 \hyperlink{namespaceirr_af4d2e4162c604839ffa20952ab42ae91}{Get\-Clip\-Code} (const \hyperlink{structirr_1_1_abs_rectangle}{Abs\-Rectangle} \&\hyperlink{glext_8h_abe08814c2f72843fde4d8df41440d5a0}{r}, const core\-::position2d$<$ s32 $>$ \&\hyperlink{glext_8h_aa5367c14d90f462230c2611b81b41d23}{p})
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_a025df9c688152c1cbc7c32a19caf4b2d}{Get\-Clip} (\hyperlink{structirr_1_1_abs_rectangle}{Abs\-Rectangle} \&clipping, video\-::\-I\-Image $\ast$\hyperlink{glext_8h_a00140d6f5c548b26daf170bf16e86a6d}{t})
+\item 
+u32 \hyperlink{namespaceirr_a8d7d380f15452450f4a6bc9f0107b5c9}{Pixel\-Lerp32} (const u32 \hyperlink{glext_8h_afdd0f0e67e302eefcb4f6b23732e7ea3}{source}, const u32 \hyperlink{glext_8h_a79169be77d7e02a24f68a5bfe627dc29}{value})
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_a36c604989dd9f1db04858b3f54e4c33e}{set\-Clip} (\hyperlink{structirr_1_1_abs_rectangle}{Abs\-Rectangle} \&out, const core\-::rect$<$ s32 $>$ $\ast$clip, const video\-::\-I\-Image $\ast$tex, s32 passnative)
+\item 
+I\-R\-R\-L\-I\-C\-H\-T\-\_\-\-A\-P\-I Irrlicht\-Device \\*
+$\ast$I\-R\-R\-C\-A\-L\-L\-C\-O\-N\-V \hyperlink{namespaceirr_a76e06a2193f58be59fcf0e30145516d5}{create\-Device} (video\-::\-E\-\_\-\-D\-R\-I\-V\-E\-R\-\_\-\-T\-Y\-P\-E driver\-Type, const core\-::dimension2d$<$ u32 $>$ \&window\-Size, u32 \hyperlink{glext_8h_a47cf4c5c5dc1c252e3be3e4f59ffb98a}{bits}, bool fullscreen, bool stencilbuffer, bool vsync, I\-Event\-Receiver $\ast$\hyperlink{glext_8h_a1dbb21208b9047cc8031ca9c840d3c2f}{res})
+\begin{DoxyCompactList}\small\item\em stub for calling create\-Device\-Ex \end{DoxyCompactList}\item 
+I\-R\-R\-L\-I\-C\-H\-T\-\_\-\-A\-P\-I Irrlicht\-Device \\*
+$\ast$I\-R\-R\-C\-A\-L\-L\-C\-O\-N\-V \hyperlink{namespaceirr_ac87a68ed29e7b6f454a5bfa5efc43bec}{create\-Device\-Ex} (const S\-Irrlicht\-Creation\-Parameters \&\hyperlink{glext_8h_a7eca977aec48ecd8d48ebd7558c0538c}{params})
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_ad2ddd8ca49676249e463c61701dffc13}{memset32} (\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} $\ast$dest, const u32 \hyperlink{glext_8h_a79169be77d7e02a24f68a5bfe627dc29}{value}, u32 bytesize)
+\begin{DoxyCompactList}\small\item\em a more useful memset for pixel \end{DoxyCompactList}\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_ab6b322d02a81e6e47d72ed26392baa43}{memset16} (\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} $\ast$dest, const u16 \hyperlink{glext_8h_a79169be77d7e02a24f68a5bfe627dc29}{value}, u32 bytesize)
+\begin{DoxyCompactList}\small\item\em a more useful memset for pixel \end{DoxyCompactList}\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_a7d85ef9b5ef5429e75a2bbce691a5c0c}{memcpy32\-\_\-small} (\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} $\ast$dest, const \hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} $\ast$\hyperlink{glext_8h_afdd0f0e67e302eefcb4f6b23732e7ea3}{source}, u32 bytesize)
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} u32 \hyperlink{namespaceirr_aacb0bcbb0a7a0464bdf8983e2850a013}{if\-\_\-mask\-\_\-a\-\_\-else\-\_\-b} (const u32 \hyperlink{glext_8h_abb269dedb7ad104274cc9f5c0c7285bc}{mask}, const u32 \hyperlink{glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}, const u32 \hyperlink{glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b})
+\begin{DoxyCompactList}\small\item\em conditional set based on mask and arithmetic shift \end{DoxyCompactList}\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} u32 \hyperlink{namespaceirr_a03ddb0cb06633940be2b9f48c936205b}{Pixel\-Blend32} (const u32 c2, const u32 c1, u32 \hyperlink{glext_8h_a55d98ec4b6aa35ace9b91275e7ad847b}{alpha})
+\item 
+u16 \hyperlink{namespaceirr_a7d68dae3725bdc1776723793e9967892}{Pixel\-Blend16} (const u16 c2, const u32 c1, const u16 \hyperlink{glext_8h_a55d98ec4b6aa35ace9b91275e7ad847b}{alpha})
+\item 
+u16 \hyperlink{namespaceirr_af787eebe45789ae72a40225bf234ea0a}{Pixel\-Mul16} (const u16 c0, const u16 c1)
+\item 
+u16 \hyperlink{namespaceirr_a08c63e47cf02ea3bb9624aa5b4ca0fba}{Pixel\-Mul16\-\_\-2} (u16 c0, u16 c1)
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} u32 \hyperlink{namespaceirr_a9f0e4eeb9470c5d83e0d9599a6031264}{Pixel\-Mul32} (const u32 c0, const u32 c1)
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} u32 \hyperlink{namespaceirr_ad3301e8dd2da82f115d8f610c97d84f0}{Pixel\-Mul32\-\_\-2} (const u32 c0, const u32 c1)
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} u32 \hyperlink{namespaceirr_a2017c88e68bc997fd86106fbda9fea4e}{Pixel\-Add32} (const u32 c2, const u32 c1)
+\item 
+u16 \hyperlink{namespaceirr_a8e4c2285b836cae10bd134680a90a53b}{Pixel\-Blend16} (const u16 c2, const u16 c1)
+\item 
+u32 \hyperlink{namespaceirr_aff15ad94ca4a5eadb9699461ffb18fb1}{Pixel\-Blend16\-\_\-simd} (const u32 c2, const u32 c1)
+\item 
+u32 \hyperlink{namespaceirr_a3bb3a374d15ae98bf3c111a499b44ed0}{Pixel\-Blend32} (const u32 c2, const u32 c1)
+\item 
+\hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{namespaceirr_a1b94060a7c7858b742f07c5d71aa884c}{s32\-\_\-to\-\_\-fix\-Point} (const s32 \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x})
+\item 
+\hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \hyperlink{namespaceirr_ae62164bbde615f6a775166982fe4e164}{u32\-\_\-to\-\_\-fix\-Point} (const u32 \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x})
+\item 
+u32 \hyperlink{namespaceirr_a01779509f8e399e091b1323529d98264}{fix\-Pointu\-\_\-to\-\_\-u32} (const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} f32 \hyperlink{namespaceirr_a7f2ebf723939650061dfebab8acdb749}{fix\-\_\-inverse32} (const f32 \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{namespaceirr_a34642625eccbe3da3a76fa18b16c05ec}{tofix} (const f32 \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x}, const f32 mulby=\hyperlink{_software_driver2__helper_8h_a4f872f6c397c15ca3a7cdc0e6ca66f58}{F\-I\-X\-\_\-\-P\-O\-I\-N\-T\-\_\-\-F32\-\_\-\-M\-U\-L})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \hyperlink{namespaceirr_a4ed91dd74e00632768fdf63b068be96b}{imul\-Fixu} (const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x}, const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \hyperlink{glext_8h_a9298c7ad619074f5285b32c6b72bfdea}{y})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{namespaceirr_a3d32c70035383b1f4b4fcbbefd828519}{imul\-Fix} (const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x}, const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_a9298c7ad619074f5285b32c6b72bfdea}{y})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{namespaceirr_a01f09b77edce4c61ac0955f2173f1f52}{imul\-Fix2} (const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x}, const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_a9298c7ad619074f5285b32c6b72bfdea}{y})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{namespaceirr_a63a6b8ef02281778267feb06a3581885}{imul\-Fix\-\_\-tex1} (const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x}, const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_a9298c7ad619074f5285b32c6b72bfdea}{y})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{namespaceirr_a2218ffd22c021ec4454e6f8a914628af}{imul\-Fix\-\_\-tex2} (const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x}, const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_a9298c7ad619074f5285b32c6b72bfdea}{y})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{namespaceirr_afc6ce544461cf575aade384b1d8091ad}{imul\-Fix\-\_\-tex4} (const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x}, const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_a9298c7ad619074f5285b32c6b72bfdea}{y})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{namespaceirr_a09c984a086308449d053836385fe279c}{clampfix\-\_\-maxcolor} (const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{namespaceirr_a9768645b21c34c46d451b9184931bef4}{clampfix\-\_\-mincolor} (const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{namespaceirr_af6ca53e4c19b40c347d27dcb6a2faed3}{saturate\-Fix} (const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a})
+\item 
+s32 \hyperlink{namespaceirr_a836592602072af48741b5bc01ef1d1ff}{round\-Fix} (const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x})
+\item 
+s32 \hyperlink{namespaceirr_a95e65340c729c923c971e222a3acc232}{f32\-\_\-to\-\_\-23\-Bits} (const f32 \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{namespaceirr_ab51ec14fc2884a414e9fb5a2ca6f03da}{t\-Video\-Sample} \hyperlink{namespaceirr_a87f2b93c95eeddf53359d12cc8114cb1}{fix\-\_\-to\-\_\-color} (const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_abe08814c2f72843fde4d8df41440d5a0}{r}, const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_a9cd653b1648845554169fbc3a3f6d37a}{g}, const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{namespaceirr_ab51ec14fc2884a414e9fb5a2ca6f03da}{t\-Video\-Sample} \hyperlink{namespaceirr_ae6673708be067c5763b8be0029d6590a}{fix4\-\_\-to\-\_\-color} (const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}, const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_abe08814c2f72843fde4d8df41440d5a0}{r}, const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_a9cd653b1648845554169fbc3a3f6d37a}{g}, const \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \hyperlink{glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b})
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_a79f1ba35c2a15e6272edf3ab5f675f64}{color\-\_\-to\-\_\-fix} (\hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_abe08814c2f72843fde4d8df41440d5a0}{r}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a9cd653b1648845554169fbc3a3f6d37a}{g}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b}, const \hyperlink{namespaceirr_ab51ec14fc2884a414e9fb5a2ca6f03da}{t\-Video\-Sample} t00)
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_ab62915ae7f038df5bf7b2c6066467ede}{color\-\_\-to\-\_\-fix} (\hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_abe08814c2f72843fde4d8df41440d5a0}{r}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a9cd653b1648845554169fbc3a3f6d37a}{g}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b}, const \hyperlink{namespaceirr_ab51ec14fc2884a414e9fb5a2ca6f03da}{t\-Video\-Sample} t00)
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_affbb2b997f79481fc3816470b92dda47}{color\-\_\-to\-\_\-fix1} (\hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_abe08814c2f72843fde4d8df41440d5a0}{r}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a9cd653b1648845554169fbc3a3f6d37a}{g}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b}, const \hyperlink{namespaceirr_ab51ec14fc2884a414e9fb5a2ca6f03da}{t\-Video\-Sample} t00)
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_a5326a03b56b67d57b5c80e5e78ff9c76}{color\-\_\-to\-\_\-fix1} (\hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_abe08814c2f72843fde4d8df41440d5a0}{r}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a9cd653b1648845554169fbc3a3f6d37a}{g}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b}, const \hyperlink{namespaceirr_ab51ec14fc2884a414e9fb5a2ca6f03da}{t\-Video\-Sample} t00)
+\item 
+\hyperlink{namespaceirr_ab51ec14fc2884a414e9fb5a2ca6f03da}{t\-Video\-Sample} \hyperlink{namespaceirr_a2dd2d1818fb54bc279e7cfc4c779277e}{get\-Texel\-\_\-plain} (const \hyperlink{structirr_1_1s_internal_texture}{s\-Internal\-Texture} $\ast$\hyperlink{glext_8h_a00140d6f5c548b26daf170bf16e86a6d}{t}, const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} tx, const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \hyperlink{glext_8h_ae09063918284e24e3265a007fd1cc983}{ty})
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_aeb5c4629ac3ee9b380257a506f882f6c}{get\-Texel\-\_\-fix} (\hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_abe08814c2f72843fde4d8df41440d5a0}{r}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a9cd653b1648845554169fbc3a3f6d37a}{g}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b}, const \hyperlink{structirr_1_1s_internal_texture}{s\-Internal\-Texture} $\ast$\hyperlink{glext_8h_a00140d6f5c548b26daf170bf16e86a6d}{t}, const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} tx, const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \hyperlink{glext_8h_ae09063918284e24e3265a007fd1cc983}{ty})
+\item 
+\hyperlink{_software_driver2__compile__config_8h_a3695e51e0a187a6c49684ba3206b0d0a}{R\-E\-A\-L\-I\-N\-L\-I\-N\-E} \hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_ac39f44bad5f8d1a2a9b13da21c65c099}{get\-Texel\-\_\-fix} (\hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}, const \hyperlink{structirr_1_1s_internal_texture}{s\-Internal\-Texture} $\ast$\hyperlink{glext_8h_a00140d6f5c548b26daf170bf16e86a6d}{t}, const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} tx, const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \hyperlink{glext_8h_ae09063918284e24e3265a007fd1cc983}{ty})
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_ae578e5c3b658653f38af54ea93c02050}{get\-Sample\-\_\-texture\-\_\-dither} (\hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_abe08814c2f72843fde4d8df41440d5a0}{r}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a9cd653b1648845554169fbc3a3f6d37a}{g}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b}, const \hyperlink{structirr_1_1s_internal_texture}{s\-Internal\-Texture} $\ast$\hyperlink{glext_8h_a00140d6f5c548b26daf170bf16e86a6d}{t}, const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} tx, const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \hyperlink{glext_8h_ae09063918284e24e3265a007fd1cc983}{ty}, const u32 \hyperlink{glext_8h_ad77deca22f617d3f0e0eb786445689fc}{x}, const u32 \hyperlink{glext_8h_a9298c7ad619074f5285b32c6b72bfdea}{y})
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_a031fcfffd4e02b472eead4baa1ebf32a}{get\-Sample\-\_\-texture} (\hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_abe08814c2f72843fde4d8df41440d5a0}{r}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a9cd653b1648845554169fbc3a3f6d37a}{g}, \hyperlink{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{t\-Fix\-Point} \&\hyperlink{glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b}, const \hyperlink{structirr_1_1s_internal_texture}{s\-Internal\-Texture} $\ast$\hyperlink{glext_8h_a00140d6f5c548b26daf170bf16e86a6d}{t}, const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} tx, const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \hyperlink{glext_8h_ae09063918284e24e3265a007fd1cc983}{ty})
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_a5f6a0c7efbe97f3f38ad8dfb05e0f313}{get\-Sample\-\_\-texture} (\hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \&\hyperlink{glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}, \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \&\hyperlink{glext_8h_abe08814c2f72843fde4d8df41440d5a0}{r}, \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \&\hyperlink{glext_8h_a9cd653b1648845554169fbc3a3f6d37a}{g}, \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \&\hyperlink{glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b}, const \hyperlink{structirr_1_1s_internal_texture}{s\-Internal\-Texture} $\ast$\hyperlink{glext_8h_a00140d6f5c548b26daf170bf16e86a6d}{t}, const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} tx, const \hyperlink{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{t\-Fix\-Pointu} \hyperlink{glext_8h_ae09063918284e24e3265a007fd1cc983}{ty})
+\item 
+bool \hyperlink{namespaceirr_af037e002b14219cdcb337a6868e5258e}{intersect} (\hyperlink{structirr_1_1_abs_rectangle}{Abs\-Rectangle} \&dest, const \hyperlink{structirr_1_1_abs_rectangle}{Abs\-Rectangle} \&\hyperlink{glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}, const \hyperlink{structirr_1_1_abs_rectangle}{Abs\-Rectangle} \&\hyperlink{glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b})
+\begin{DoxyCompactList}\small\item\em 2\-D Intersection test \end{DoxyCompactList}\item 
+s32 \hyperlink{namespaceirr_a629d1d3d549f97c5af24f5a58327679b}{intervall\-\_\-intersect\-\_\-test} (const \hyperlink{structirr_1_1s_intervall}{s\-Intervall} \&\hyperlink{glext_8h_ac8729153468b5dcf13f971b21d84d4e5}{a}, const \hyperlink{structirr_1_1s_intervall}{s\-Intervall} \&\hyperlink{glext_8h_a6eba317e3cf44d6d26c04a5a8f197dcb}{b})
+\end{DoxyCompactItemize}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{namespaceirr_aebc1099fc704ff027ddbc3cc7231d9c2}{\index{irr@{irr}!fp24@{fp24}}
+\index{fp24@{fp24}!irr@{irr}}
+\subsubsection[{fp24}]{\setlength{\rightskip}{0pt plus 5cm}typedef f32 {\bf irr\-::fp24}}}\label{namespaceirr_aebc1099fc704ff027ddbc3cc7231d9c2}
+
+
+Definition at line 669 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a0884da614eab7ae475c55550c2f97bd0}{\index{irr@{irr}!t\-Execute\-Blit@{t\-Execute\-Blit}}
+\index{t\-Execute\-Blit@{t\-Execute\-Blit}!irr@{irr}}
+\subsubsection[{t\-Execute\-Blit}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf void}($\ast$ irr\-::t\-Execute\-Blit)(const {\bf S\-Blit\-Job} $\ast$job)}}\label{namespaceirr_a0884da614eab7ae475c55550c2f97bd0}
+
+
+Definition at line 1003 of file C\-Blit.\-h.
+
+\hypertarget{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}{\index{irr@{irr}!t\-Fix\-Point@{t\-Fix\-Point}}
+\index{t\-Fix\-Point@{t\-Fix\-Point}!irr@{irr}}
+\subsubsection[{t\-Fix\-Point}]{\setlength{\rightskip}{0pt plus 5cm}typedef s32 {\bf irr\-::t\-Fix\-Point}}}\label{namespaceirr_a705cfbd95ac6f0e531f1b341af6fae39}
+
+
+Definition at line 394 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}{\index{irr@{irr}!t\-Fix\-Pointu@{t\-Fix\-Pointu}}
+\index{t\-Fix\-Pointu@{t\-Fix\-Pointu}!irr@{irr}}
+\subsubsection[{t\-Fix\-Pointu}]{\setlength{\rightskip}{0pt plus 5cm}typedef u32 {\bf irr\-::t\-Fix\-Pointu}}}\label{namespaceirr_abd8e4c96433c2eecb4b48987f9cd7859}
+
+
+Definition at line 395 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_ab51ec14fc2884a414e9fb5a2ca6f03da}{\index{irr@{irr}!t\-Video\-Sample@{t\-Video\-Sample}}
+\index{t\-Video\-Sample@{t\-Video\-Sample}!irr@{irr}}
+\subsubsection[{t\-Video\-Sample}]{\setlength{\rightskip}{0pt plus 5cm}typedef u16 {\bf irr\-::t\-Video\-Sample}}}\label{namespaceirr_ab51ec14fc2884a414e9fb5a2ca6f03da}
+
+
+Definition at line 45 of file Software\-Driver2\-\_\-helper.\-h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19}{\index{irr@{irr}!e\-Blitter@{e\-Blitter}}
+\index{e\-Blitter@{e\-Blitter}!irr@{irr}}
+\subsubsection[{e\-Blitter}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf irr\-::e\-Blitter}}}\label{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{B\-L\-I\-T\-T\-E\-R\-\_\-\-I\-N\-V\-A\-L\-I\-D@{B\-L\-I\-T\-T\-E\-R\-\_\-\-I\-N\-V\-A\-L\-I\-D}!irr@{irr}}\index{irr@{irr}!B\-L\-I\-T\-T\-E\-R\-\_\-\-I\-N\-V\-A\-L\-I\-D@{B\-L\-I\-T\-T\-E\-R\-\_\-\-I\-N\-V\-A\-L\-I\-D}}\item[{\em 
+\hypertarget{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19a6ba81f3556494ec3344c55eaaf07cdb0}{B\-L\-I\-T\-T\-E\-R\-\_\-\-I\-N\-V\-A\-L\-I\-D}\label{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19a6ba81f3556494ec3344c55eaaf07cdb0}
+}]\index{B\-L\-I\-T\-T\-E\-R\-\_\-\-C\-O\-L\-O\-R@{B\-L\-I\-T\-T\-E\-R\-\_\-\-C\-O\-L\-O\-R}!irr@{irr}}\index{irr@{irr}!B\-L\-I\-T\-T\-E\-R\-\_\-\-C\-O\-L\-O\-R@{B\-L\-I\-T\-T\-E\-R\-\_\-\-C\-O\-L\-O\-R}}\item[{\em 
+\hypertarget{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19afed89712a4074704bf2e4771108a9722}{B\-L\-I\-T\-T\-E\-R\-\_\-\-C\-O\-L\-O\-R}\label{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19afed89712a4074704bf2e4771108a9722}
+}]\index{B\-L\-I\-T\-T\-E\-R\-\_\-\-C\-O\-L\-O\-R\-\_\-\-A\-L\-P\-H\-A@{B\-L\-I\-T\-T\-E\-R\-\_\-\-C\-O\-L\-O\-R\-\_\-\-A\-L\-P\-H\-A}!irr@{irr}}\index{irr@{irr}!B\-L\-I\-T\-T\-E\-R\-\_\-\-C\-O\-L\-O\-R\-\_\-\-A\-L\-P\-H\-A@{B\-L\-I\-T\-T\-E\-R\-\_\-\-C\-O\-L\-O\-R\-\_\-\-A\-L\-P\-H\-A}}\item[{\em 
+\hypertarget{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19aa754bfab6fc8c11c70543a50834ebf55}{B\-L\-I\-T\-T\-E\-R\-\_\-\-C\-O\-L\-O\-R\-\_\-\-A\-L\-P\-H\-A}\label{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19aa754bfab6fc8c11c70543a50834ebf55}
+}]\index{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E@{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E}!irr@{irr}}\index{irr@{irr}!B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E@{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E}}\item[{\em 
+\hypertarget{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19a87cab497b440715578b4d5cc94658c9a}{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E}\label{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19a87cab497b440715578b4d5cc94658c9a}
+}]\index{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-A\-L\-P\-H\-A\-\_\-\-B\-L\-E\-N\-D@{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-A\-L\-P\-H\-A\-\_\-\-B\-L\-E\-N\-D}!irr@{irr}}\index{irr@{irr}!B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-A\-L\-P\-H\-A\-\_\-\-B\-L\-E\-N\-D@{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-A\-L\-P\-H\-A\-\_\-\-B\-L\-E\-N\-D}}\item[{\em 
+\hypertarget{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19a3b1adaf176108937a5dea289675d7073}{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-A\-L\-P\-H\-A\-\_\-\-B\-L\-E\-N\-D}\label{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19a3b1adaf176108937a5dea289675d7073}
+}]\index{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-A\-L\-P\-H\-A\-\_\-\-C\-O\-L\-O\-R\-\_\-\-B\-L\-E\-N\-D@{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-A\-L\-P\-H\-A\-\_\-\-C\-O\-L\-O\-R\-\_\-\-B\-L\-E\-N\-D}!irr@{irr}}\index{irr@{irr}!B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-A\-L\-P\-H\-A\-\_\-\-C\-O\-L\-O\-R\-\_\-\-B\-L\-E\-N\-D@{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-A\-L\-P\-H\-A\-\_\-\-C\-O\-L\-O\-R\-\_\-\-B\-L\-E\-N\-D}}\item[{\em 
+\hypertarget{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19aaf100d7c23ee7284686394464ebca601}{B\-L\-I\-T\-T\-E\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-A\-L\-P\-H\-A\-\_\-\-C\-O\-L\-O\-R\-\_\-\-B\-L\-E\-N\-D}\label{namespaceirr_aa14849102f59d5f9d3997a77e4ebfc19aaf100d7c23ee7284686394464ebca601}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 993 of file C\-Blit.\-h.
+
+\hypertarget{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72}{\index{irr@{irr}!e\-Clip\-Code@{e\-Clip\-Code}}
+\index{e\-Clip\-Code@{e\-Clip\-Code}!irr@{irr}}
+\subsubsection[{e\-Clip\-Code}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf irr\-::e\-Clip\-Code}}}\label{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72}
+\begin{Desc}
+\item[Enumerator]\par
+\begin{description}
+\index{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-E\-M\-P\-T\-Y@{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-E\-M\-P\-T\-Y}!irr@{irr}}\index{irr@{irr}!C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-E\-M\-P\-T\-Y@{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-E\-M\-P\-T\-Y}}\item[{\em 
+\hypertarget{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72a06bb4e3f0e93de59bd903d9d1fb775dd}{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-E\-M\-P\-T\-Y}\label{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72a06bb4e3f0e93de59bd903d9d1fb775dd}
+}]\index{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-B\-O\-T\-T\-O\-M@{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-B\-O\-T\-T\-O\-M}!irr@{irr}}\index{irr@{irr}!C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-B\-O\-T\-T\-O\-M@{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-B\-O\-T\-T\-O\-M}}\item[{\em 
+\hypertarget{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72a94162a78ee6f332a5210ce57db6a767c}{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-B\-O\-T\-T\-O\-M}\label{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72a94162a78ee6f332a5210ce57db6a767c}
+}]\index{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-T\-O\-P@{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-T\-O\-P}!irr@{irr}}\index{irr@{irr}!C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-T\-O\-P@{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-T\-O\-P}}\item[{\em 
+\hypertarget{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72a574e434577931ebf422c2a3eb94cc06d}{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-T\-O\-P}\label{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72a574e434577931ebf422c2a3eb94cc06d}
+}]\index{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-L\-E\-F\-T@{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-L\-E\-F\-T}!irr@{irr}}\index{irr@{irr}!C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-L\-E\-F\-T@{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-L\-E\-F\-T}}\item[{\em 
+\hypertarget{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72a6c7c9ccd002dabbba52525457efe2d04}{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-L\-E\-F\-T}\label{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72a6c7c9ccd002dabbba52525457efe2d04}
+}]\index{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-R\-I\-G\-H\-T@{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-R\-I\-G\-H\-T}!irr@{irr}}\index{irr@{irr}!C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-R\-I\-G\-H\-T@{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-R\-I\-G\-H\-T}}\item[{\em 
+\hypertarget{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72abd01ad58214518c41c17e1bace7ee8aa}{C\-L\-I\-P\-C\-O\-D\-E\-\_\-\-R\-I\-G\-H\-T}\label{namespaceirr_a346b1626bbed2cac3dc9957bc6cc5e72abd01ad58214518c41c17e1bace7ee8aa}
+}]\end{description}
+\end{Desc}
+
+
+Definition at line 40 of file C\-Blit.\-h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceirr_a09c984a086308449d053836385fe279c}{\index{irr@{irr}!clampfix\-\_\-maxcolor@{clampfix\-\_\-maxcolor}}
+\index{clampfix\-\_\-maxcolor@{clampfix\-\_\-maxcolor}!irr@{irr}}
+\subsubsection[{clampfix\-\_\-maxcolor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf t\-Fix\-Point} irr\-::clampfix\-\_\-maxcolor (
+\begin{DoxyParamCaption}
+\item[{const t\-Fix\-Point}]{a}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a09c984a086308449d053836385fe279c}
+clamp Fix\-Point to maxcolor in Fix\-Point, min(a,31) 
+
+Definition at line 549 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a9768645b21c34c46d451b9184931bef4}{\index{irr@{irr}!clampfix\-\_\-mincolor@{clampfix\-\_\-mincolor}}
+\index{clampfix\-\_\-mincolor@{clampfix\-\_\-mincolor}!irr@{irr}}
+\subsubsection[{clampfix\-\_\-mincolor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf t\-Fix\-Point} irr\-::clampfix\-\_\-mincolor (
+\begin{DoxyParamCaption}
+\item[{const t\-Fix\-Point}]{a}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a9768645b21c34c46d451b9184931bef4}
+clamp Fix\-Point to 0 in Fix\-Point, max(a,0) 
+
+Definition at line 558 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a79f1ba35c2a15e6272edf3ab5f675f64}{\index{irr@{irr}!color\-\_\-to\-\_\-fix@{color\-\_\-to\-\_\-fix}}
+\index{color\-\_\-to\-\_\-fix@{color\-\_\-to\-\_\-fix}!irr@{irr}}
+\subsubsection[{color\-\_\-to\-\_\-fix}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::color\-\_\-to\-\_\-fix (
+\begin{DoxyParamCaption}
+\item[{t\-Fix\-Point \&}]{r, }
+\item[{t\-Fix\-Point \&}]{g, }
+\item[{t\-Fix\-Point \&}]{b, }
+\item[{const t\-Video\-Sample}]{t00}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a79f1ba35c2a15e6272edf3ab5f675f64}
+return fixpoint from Video\-Sample granularity C\-O\-L\-O\-R\-\_\-\-M\-A\-X 
+
+Definition at line 625 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_ab62915ae7f038df5bf7b2c6066467ede}{\index{irr@{irr}!color\-\_\-to\-\_\-fix@{color\-\_\-to\-\_\-fix}}
+\index{color\-\_\-to\-\_\-fix@{color\-\_\-to\-\_\-fix}!irr@{irr}}
+\subsubsection[{color\-\_\-to\-\_\-fix}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::color\-\_\-to\-\_\-fix (
+\begin{DoxyParamCaption}
+\item[{t\-Fix\-Point \&}]{a, }
+\item[{t\-Fix\-Point \&}]{r, }
+\item[{t\-Fix\-Point \&}]{g, }
+\item[{t\-Fix\-Point \&}]{b, }
+\item[{const t\-Video\-Sample}]{t00}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_ab62915ae7f038df5bf7b2c6066467ede}
+return fixpoint from Video\-Sample granularity C\-O\-L\-O\-R\-\_\-\-M\-A\-X 
+
+Definition at line 635 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_affbb2b997f79481fc3816470b92dda47}{\index{irr@{irr}!color\-\_\-to\-\_\-fix1@{color\-\_\-to\-\_\-fix1}}
+\index{color\-\_\-to\-\_\-fix1@{color\-\_\-to\-\_\-fix1}!irr@{irr}}
+\subsubsection[{color\-\_\-to\-\_\-fix1}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::color\-\_\-to\-\_\-fix1 (
+\begin{DoxyParamCaption}
+\item[{t\-Fix\-Point \&}]{r, }
+\item[{t\-Fix\-Point \&}]{g, }
+\item[{t\-Fix\-Point \&}]{b, }
+\item[{const t\-Video\-Sample}]{t00}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_affbb2b997f79481fc3816470b92dda47}
+return fixpoint from Video\-Sample granularity 0..F\-I\-X\-\_\-\-P\-O\-I\-N\-T\-\_\-\-O\-N\-E 
+
+Definition at line 646 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a5326a03b56b67d57b5c80e5e78ff9c76}{\index{irr@{irr}!color\-\_\-to\-\_\-fix1@{color\-\_\-to\-\_\-fix1}}
+\index{color\-\_\-to\-\_\-fix1@{color\-\_\-to\-\_\-fix1}!irr@{irr}}
+\subsubsection[{color\-\_\-to\-\_\-fix1}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::color\-\_\-to\-\_\-fix1 (
+\begin{DoxyParamCaption}
+\item[{t\-Fix\-Point \&}]{a, }
+\item[{t\-Fix\-Point \&}]{r, }
+\item[{t\-Fix\-Point \&}]{g, }
+\item[{t\-Fix\-Point \&}]{b, }
+\item[{const t\-Video\-Sample}]{t00}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a5326a03b56b67d57b5c80e5e78ff9c76}
+return fixpoint from Video\-Sample granularity 0..F\-I\-X\-\_\-\-P\-O\-I\-N\-T\-\_\-\-O\-N\-E 
+
+Definition at line 656 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a76e06a2193f58be59fcf0e30145516d5}{\index{irr@{irr}!create\-Device@{create\-Device}}
+\index{create\-Device@{create\-Device}!irr@{irr}}
+\subsubsection[{create\-Device}]{\setlength{\rightskip}{0pt plus 5cm}I\-R\-R\-L\-I\-C\-H\-T\-\_\-\-A\-P\-I Irrlicht\-Device$\ast$ I\-R\-R\-C\-A\-L\-L\-C\-O\-N\-V irr\-::create\-Device (
+\begin{DoxyParamCaption}
+\item[{video\-::\-E\-\_\-\-D\-R\-I\-V\-E\-R\-\_\-\-T\-Y\-P\-E}]{driver\-Type, }
+\item[{const core\-::dimension2d$<$ u32 $>$ \&}]{window\-Size, }
+\item[{u32}]{bits, }
+\item[{bool}]{fullscreen, }
+\item[{bool}]{stencilbuffer, }
+\item[{bool}]{vsync, }
+\item[{I\-Event\-Receiver $\ast$}]{res}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a76e06a2193f58be59fcf0e30145516d5}
+
+
+stub for calling create\-Device\-Ex 
+
+
+
+Definition at line 48 of file Irrlicht.\-cpp.
+
+\hypertarget{namespaceirr_ac87a68ed29e7b6f454a5bfa5efc43bec}{\index{irr@{irr}!create\-Device\-Ex@{create\-Device\-Ex}}
+\index{create\-Device\-Ex@{create\-Device\-Ex}!irr@{irr}}
+\subsubsection[{create\-Device\-Ex}]{\setlength{\rightskip}{0pt plus 5cm}I\-R\-R\-L\-I\-C\-H\-T\-\_\-\-A\-P\-I Irrlicht\-Device$\ast$ I\-R\-R\-C\-A\-L\-L\-C\-O\-N\-V irr\-::create\-Device\-Ex (
+\begin{DoxyParamCaption}
+\item[{const S\-Irrlicht\-Creation\-Parameters \&}]{params}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_ac87a68ed29e7b6f454a5bfa5efc43bec}
+
+
+Definition at line 65 of file Irrlicht.\-cpp.
+
+\hypertarget{namespaceirr_a95e65340c729c923c971e222a3acc232}{\index{irr@{irr}!f32\-\_\-to\-\_\-23\-Bits@{f32\-\_\-to\-\_\-23\-Bits}}
+\index{f32\-\_\-to\-\_\-23\-Bits@{f32\-\_\-to\-\_\-23\-Bits}!irr@{irr}}
+\subsubsection[{f32\-\_\-to\-\_\-23\-Bits}]{\setlength{\rightskip}{0pt plus 5cm}s32 irr\-::f32\-\_\-to\-\_\-23\-Bits (
+\begin{DoxyParamCaption}
+\item[{const f32}]{x}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a95e65340c729c923c971e222a3acc232}
+
+
+Definition at line 578 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_ae6673708be067c5763b8be0029d6590a}{\index{irr@{irr}!fix4\-\_\-to\-\_\-color@{fix4\-\_\-to\-\_\-color}}
+\index{fix4\-\_\-to\-\_\-color@{fix4\-\_\-to\-\_\-color}!irr@{irr}}
+\subsubsection[{fix4\-\_\-to\-\_\-color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf t\-Video\-Sample} irr\-::fix4\-\_\-to\-\_\-color (
+\begin{DoxyParamCaption}
+\item[{const t\-Fix\-Point}]{a, }
+\item[{const t\-Fix\-Point}]{r, }
+\item[{const t\-Fix\-Point}]{g, }
+\item[{const t\-Fix\-Point}]{b}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_ae6673708be067c5763b8be0029d6590a}
+return Video\-Sample from fixpoint 
+
+Definition at line 606 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a7f2ebf723939650061dfebab8acdb749}{\index{irr@{irr}!fix\-\_\-inverse32@{fix\-\_\-inverse32}}
+\index{fix\-\_\-inverse32@{fix\-\_\-inverse32}!irr@{irr}}
+\subsubsection[{fix\-\_\-inverse32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} f32 irr\-::fix\-\_\-inverse32 (
+\begin{DoxyParamCaption}
+\item[{const f32}]{x}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a7f2ebf723939650061dfebab8acdb749}
+
+
+Definition at line 465 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a87f2b93c95eeddf53359d12cc8114cb1}{\index{irr@{irr}!fix\-\_\-to\-\_\-color@{fix\-\_\-to\-\_\-color}}
+\index{fix\-\_\-to\-\_\-color@{fix\-\_\-to\-\_\-color}!irr@{irr}}
+\subsubsection[{fix\-\_\-to\-\_\-color}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf t\-Video\-Sample} irr\-::fix\-\_\-to\-\_\-color (
+\begin{DoxyParamCaption}
+\item[{const t\-Fix\-Point}]{r, }
+\item[{const t\-Fix\-Point}]{g, }
+\item[{const t\-Fix\-Point}]{b}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a87f2b93c95eeddf53359d12cc8114cb1}
+return Video\-Sample from fixpoint 
+
+Definition at line 587 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a01779509f8e399e091b1323529d98264}{\index{irr@{irr}!fix\-Pointu\-\_\-to\-\_\-u32@{fix\-Pointu\-\_\-to\-\_\-u32}}
+\index{fix\-Pointu\-\_\-to\-\_\-u32@{fix\-Pointu\-\_\-to\-\_\-u32}!irr@{irr}}
+\subsubsection[{fix\-Pointu\-\_\-to\-\_\-u32}]{\setlength{\rightskip}{0pt plus 5cm}u32 irr\-::fix\-Pointu\-\_\-to\-\_\-u32 (
+\begin{DoxyParamCaption}
+\item[{const t\-Fix\-Pointu}]{x}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a01779509f8e399e091b1323529d98264}
+
+
+Definition at line 458 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a025df9c688152c1cbc7c32a19caf4b2d}{\index{irr@{irr}!Get\-Clip@{Get\-Clip}}
+\index{Get\-Clip@{Get\-Clip}!irr@{irr}}
+\subsubsection[{Get\-Clip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::\-Get\-Clip (
+\begin{DoxyParamCaption}
+\item[{Abs\-Rectangle \&}]{clipping, }
+\item[{video\-::\-I\-Image $\ast$}]{t}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a025df9c688152c1cbc7c32a19caf4b2d}
+
+
+Definition at line 160 of file C\-Blit.\-h.
+
+\hypertarget{namespaceirr_af4d2e4162c604839ffa20952ab42ae91}{\index{irr@{irr}!Get\-Clip\-Code@{Get\-Clip\-Code}}
+\index{Get\-Clip\-Code@{Get\-Clip\-Code}!irr@{irr}}
+\subsubsection[{Get\-Clip\-Code}]{\setlength{\rightskip}{0pt plus 5cm}u32 irr\-::\-Get\-Clip\-Code (
+\begin{DoxyParamCaption}
+\item[{const Abs\-Rectangle \&}]{r, }
+\item[{const core\-::position2d$<$ s32 $>$ \&}]{p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_af4d2e4162c604839ffa20952ab42ae91}
+
+
+Definition at line 49 of file C\-Blit.\-h.
+
+\hypertarget{namespaceirr_a031fcfffd4e02b472eead4baa1ebf32a}{\index{irr@{irr}!get\-Sample\-\_\-texture@{get\-Sample\-\_\-texture}}
+\index{get\-Sample\-\_\-texture@{get\-Sample\-\_\-texture}!irr@{irr}}
+\subsubsection[{get\-Sample\-\_\-texture}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::get\-Sample\-\_\-texture (
+\begin{DoxyParamCaption}
+\item[{t\-Fix\-Point \&}]{r, }
+\item[{t\-Fix\-Point \&}]{g, }
+\item[{t\-Fix\-Point \&}]{b, }
+\item[{const s\-Internal\-Texture $\ast$}]{t, }
+\item[{const t\-Fix\-Pointu}]{tx, }
+\item[{const t\-Fix\-Pointu}]{ty}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a031fcfffd4e02b472eead4baa1ebf32a}
+
+
+Definition at line 808 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a5f6a0c7efbe97f3f38ad8dfb05e0f313}{\index{irr@{irr}!get\-Sample\-\_\-texture@{get\-Sample\-\_\-texture}}
+\index{get\-Sample\-\_\-texture@{get\-Sample\-\_\-texture}!irr@{irr}}
+\subsubsection[{get\-Sample\-\_\-texture}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::get\-Sample\-\_\-texture (
+\begin{DoxyParamCaption}
+\item[{t\-Fix\-Pointu \&}]{a, }
+\item[{t\-Fix\-Pointu \&}]{r, }
+\item[{t\-Fix\-Pointu \&}]{g, }
+\item[{t\-Fix\-Pointu \&}]{b, }
+\item[{const s\-Internal\-Texture $\ast$}]{t, }
+\item[{const t\-Fix\-Pointu}]{tx, }
+\item[{const t\-Fix\-Pointu}]{ty}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a5f6a0c7efbe97f3f38ad8dfb05e0f313}
+
+
+Definition at line 825 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_ae578e5c3b658653f38af54ea93c02050}{\index{irr@{irr}!get\-Sample\-\_\-texture\-\_\-dither@{get\-Sample\-\_\-texture\-\_\-dither}}
+\index{get\-Sample\-\_\-texture\-\_\-dither@{get\-Sample\-\_\-texture\-\_\-dither}!irr@{irr}}
+\subsubsection[{get\-Sample\-\_\-texture\-\_\-dither}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::get\-Sample\-\_\-texture\-\_\-dither (
+\begin{DoxyParamCaption}
+\item[{t\-Fix\-Point \&}]{r, }
+\item[{t\-Fix\-Point \&}]{g, }
+\item[{t\-Fix\-Point \&}]{b, }
+\item[{const s\-Internal\-Texture $\ast$}]{t, }
+\item[{const t\-Fix\-Pointu}]{tx, }
+\item[{const t\-Fix\-Pointu}]{ty, }
+\item[{const u32}]{x, }
+\item[{const u32}]{y}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_ae578e5c3b658653f38af54ea93c02050}
+
+
+Definition at line 770 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_aeb5c4629ac3ee9b380257a506f882f6c}{\index{irr@{irr}!get\-Texel\-\_\-fix@{get\-Texel\-\_\-fix}}
+\index{get\-Texel\-\_\-fix@{get\-Texel\-\_\-fix}!irr@{irr}}
+\subsubsection[{get\-Texel\-\_\-fix}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::get\-Texel\-\_\-fix (
+\begin{DoxyParamCaption}
+\item[{t\-Fix\-Point \&}]{r, }
+\item[{t\-Fix\-Point \&}]{g, }
+\item[{t\-Fix\-Point \&}]{b, }
+\item[{const s\-Internal\-Texture $\ast$}]{t, }
+\item[{const t\-Fix\-Pointu}]{tx, }
+\item[{const t\-Fix\-Pointu}]{ty}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_aeb5c4629ac3ee9b380257a506f882f6c}
+
+
+Definition at line 733 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_ac39f44bad5f8d1a2a9b13da21c65c099}{\index{irr@{irr}!get\-Texel\-\_\-fix@{get\-Texel\-\_\-fix}}
+\index{get\-Texel\-\_\-fix@{get\-Texel\-\_\-fix}!irr@{irr}}
+\subsubsection[{get\-Texel\-\_\-fix}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf void} irr\-::get\-Texel\-\_\-fix (
+\begin{DoxyParamCaption}
+\item[{t\-Fix\-Point \&}]{a, }
+\item[{const s\-Internal\-Texture $\ast$}]{t, }
+\item[{const t\-Fix\-Pointu}]{tx, }
+\item[{const t\-Fix\-Pointu}]{ty}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_ac39f44bad5f8d1a2a9b13da21c65c099}
+
+
+Definition at line 753 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a2dd2d1818fb54bc279e7cfc4c779277e}{\index{irr@{irr}!get\-Texel\-\_\-plain@{get\-Texel\-\_\-plain}}
+\index{get\-Texel\-\_\-plain@{get\-Texel\-\_\-plain}!irr@{irr}}
+\subsubsection[{get\-Texel\-\_\-plain}]{\setlength{\rightskip}{0pt plus 5cm}{\bf t\-Video\-Sample} irr\-::get\-Texel\-\_\-plain (
+\begin{DoxyParamCaption}
+\item[{const s\-Internal\-Texture $\ast$}]{t, }
+\item[{const t\-Fix\-Pointu}]{tx, }
+\item[{const t\-Fix\-Pointu}]{ty}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a2dd2d1818fb54bc279e7cfc4c779277e}
+
+
+Definition at line 721 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_aacb0bcbb0a7a0464bdf8983e2850a013}{\index{irr@{irr}!if\-\_\-mask\-\_\-a\-\_\-else\-\_\-b@{if\-\_\-mask\-\_\-a\-\_\-else\-\_\-b}}
+\index{if\-\_\-mask\-\_\-a\-\_\-else\-\_\-b@{if\-\_\-mask\-\_\-a\-\_\-else\-\_\-b}!irr@{irr}}
+\subsubsection[{if\-\_\-mask\-\_\-a\-\_\-else\-\_\-b}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} u32 irr\-::if\-\_\-mask\-\_\-a\-\_\-else\-\_\-b (
+\begin{DoxyParamCaption}
+\item[{const u32}]{mask, }
+\item[{const u32}]{a, }
+\item[{const u32}]{b}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_aacb0bcbb0a7a0464bdf8983e2850a013}
+
+
+conditional set based on mask and arithmetic shift 
+
+
+
+Definition at line 176 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a3d32c70035383b1f4b4fcbbefd828519}{\index{irr@{irr}!imul\-Fix@{imul\-Fix}}
+\index{imul\-Fix@{imul\-Fix}!irr@{irr}}
+\subsubsection[{imul\-Fix}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf t\-Fix\-Point} irr\-::imul\-Fix (
+\begin{DoxyParamCaption}
+\item[{const t\-Fix\-Point}]{x, }
+\item[{const t\-Fix\-Point}]{y}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a3d32c70035383b1f4b4fcbbefd828519}
+
+
+Definition at line 504 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a01f09b77edce4c61ac0955f2173f1f52}{\index{irr@{irr}!imul\-Fix2@{imul\-Fix2}}
+\index{imul\-Fix2@{imul\-Fix2}!irr@{irr}}
+\subsubsection[{imul\-Fix2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf t\-Fix\-Point} irr\-::imul\-Fix2 (
+\begin{DoxyParamCaption}
+\item[{const t\-Fix\-Point}]{x, }
+\item[{const t\-Fix\-Point}]{y}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a01f09b77edce4c61ac0955f2173f1f52}
+
+
+Definition at line 512 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a63a6b8ef02281778267feb06a3581885}{\index{irr@{irr}!imul\-Fix\-\_\-tex1@{imul\-Fix\-\_\-tex1}}
+\index{imul\-Fix\-\_\-tex1@{imul\-Fix\-\_\-tex1}!irr@{irr}}
+\subsubsection[{imul\-Fix\-\_\-tex1}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf t\-Fix\-Point} irr\-::imul\-Fix\-\_\-tex1 (
+\begin{DoxyParamCaption}
+\item[{const t\-Fix\-Point}]{x, }
+\item[{const t\-Fix\-Point}]{y}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a63a6b8ef02281778267feb06a3581885}
+
+
+Definition at line 521 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a2218ffd22c021ec4454e6f8a914628af}{\index{irr@{irr}!imul\-Fix\-\_\-tex2@{imul\-Fix\-\_\-tex2}}
+\index{imul\-Fix\-\_\-tex2@{imul\-Fix\-\_\-tex2}!irr@{irr}}
+\subsubsection[{imul\-Fix\-\_\-tex2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf t\-Fix\-Point} irr\-::imul\-Fix\-\_\-tex2 (
+\begin{DoxyParamCaption}
+\item[{const t\-Fix\-Point}]{x, }
+\item[{const t\-Fix\-Point}]{y}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a2218ffd22c021ec4454e6f8a914628af}
+
+
+Definition at line 529 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_afc6ce544461cf575aade384b1d8091ad}{\index{irr@{irr}!imul\-Fix\-\_\-tex4@{imul\-Fix\-\_\-tex4}}
+\index{imul\-Fix\-\_\-tex4@{imul\-Fix\-\_\-tex4}!irr@{irr}}
+\subsubsection[{imul\-Fix\-\_\-tex4}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf t\-Fix\-Point} irr\-::imul\-Fix\-\_\-tex4 (
+\begin{DoxyParamCaption}
+\item[{const t\-Fix\-Point}]{x, }
+\item[{const t\-Fix\-Point}]{y}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_afc6ce544461cf575aade384b1d8091ad}
+
+
+Definition at line 537 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a4ed91dd74e00632768fdf63b068be96b}{\index{irr@{irr}!imul\-Fixu@{imul\-Fixu}}
+\index{imul\-Fixu@{imul\-Fixu}!irr@{irr}}
+\subsubsection[{imul\-Fixu}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf t\-Fix\-Pointu} irr\-::imul\-Fixu (
+\begin{DoxyParamCaption}
+\item[{const t\-Fix\-Pointu}]{x, }
+\item[{const t\-Fix\-Pointu}]{y}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a4ed91dd74e00632768fdf63b068be96b}
+
+
+Definition at line 496 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_af037e002b14219cdcb337a6868e5258e}{\index{irr@{irr}!intersect@{intersect}}
+\index{intersect@{intersect}!irr@{irr}}
+\subsubsection[{intersect}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::intersect (
+\begin{DoxyParamCaption}
+\item[{Abs\-Rectangle \&}]{dest, }
+\item[{const Abs\-Rectangle \&}]{a, }
+\item[{const Abs\-Rectangle \&}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_af037e002b14219cdcb337a6868e5258e}
+
+
+2\-D Intersection test 
+
+
+
+Definition at line 1016 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a629d1d3d549f97c5af24f5a58327679b}{\index{irr@{irr}!intervall\-\_\-intersect\-\_\-test@{intervall\-\_\-intersect\-\_\-test}}
+\index{intervall\-\_\-intersect\-\_\-test@{intervall\-\_\-intersect\-\_\-test}!irr@{irr}}
+\subsubsection[{intervall\-\_\-intersect\-\_\-test}]{\setlength{\rightskip}{0pt plus 5cm}s32 irr\-::intervall\-\_\-intersect\-\_\-test (
+\begin{DoxyParamCaption}
+\item[{const s\-Intervall \&}]{a, }
+\item[{const s\-Intervall \&}]{b}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a629d1d3d549f97c5af24f5a58327679b}
+
+
+Definition at line 1033 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a7d85ef9b5ef5429e75a2bbce691a5c0c}{\index{irr@{irr}!memcpy32\-\_\-small@{memcpy32\-\_\-small}}
+\index{memcpy32\-\_\-small@{memcpy32\-\_\-small}!irr@{irr}}
+\subsubsection[{memcpy32\-\_\-small}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf void} irr\-::memcpy32\-\_\-small (
+\begin{DoxyParamCaption}
+\item[{{\bf void} $\ast$}]{dest, }
+\item[{const {\bf void} $\ast$}]{source, }
+\item[{u32}]{bytesize}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a7d85ef9b5ef5429e75a2bbce691a5c0c}
+
+
+Definition at line 143 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_ab6b322d02a81e6e47d72ed26392baa43}{\index{irr@{irr}!memset16@{memset16}}
+\index{memset16@{memset16}!irr@{irr}}
+\subsubsection[{memset16}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::memset16 (
+\begin{DoxyParamCaption}
+\item[{{\bf void} $\ast$}]{dest, }
+\item[{const u16}]{value, }
+\item[{u32}]{bytesize}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_ab6b322d02a81e6e47d72ed26392baa43}
+
+
+a more useful memset for pixel 
+
+
+
+Definition at line 106 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_ad2ddd8ca49676249e463c61701dffc13}{\index{irr@{irr}!memset32@{memset32}}
+\index{memset32@{memset32}!irr@{irr}}
+\subsubsection[{memset32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::memset32 (
+\begin{DoxyParamCaption}
+\item[{{\bf void} $\ast$}]{dest, }
+\item[{const u32}]{value, }
+\item[{u32}]{bytesize}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_ad2ddd8ca49676249e463c61701dffc13}
+
+
+a more useful memset for pixel 
+
+
+
+Definition at line 71 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a2017c88e68bc997fd86106fbda9fea4e}{\index{irr@{irr}!Pixel\-Add32@{Pixel\-Add32}}
+\index{Pixel\-Add32@{Pixel\-Add32}!irr@{irr}}
+\subsubsection[{Pixel\-Add32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} u32 irr\-::\-Pixel\-Add32 (
+\begin{DoxyParamCaption}
+\item[{const u32}]{c2, }
+\item[{const u32}]{c1}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a2017c88e68bc997fd86106fbda9fea4e}
+
+
+Definition at line 288 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a7d68dae3725bdc1776723793e9967892}{\index{irr@{irr}!Pixel\-Blend16@{Pixel\-Blend16}}
+\index{Pixel\-Blend16@{Pixel\-Blend16}!irr@{irr}}
+\subsubsection[{Pixel\-Blend16}]{\setlength{\rightskip}{0pt plus 5cm}u16 irr\-::\-Pixel\-Blend16 (
+\begin{DoxyParamCaption}
+\item[{const u16}]{c2, }
+\item[{const u32}]{c1, }
+\item[{const u16}]{alpha}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a7d68dae3725bdc1776723793e9967892}
+Pixel = dest $\ast$ ( 1 -\/ alpha ) + source $\ast$ alpha alpha \mbox{[}0;32\mbox{]} 
+
+Definition at line 216 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a8e4c2285b836cae10bd134680a90a53b}{\index{irr@{irr}!Pixel\-Blend16@{Pixel\-Blend16}}
+\index{Pixel\-Blend16@{Pixel\-Blend16}!irr@{irr}}
+\subsubsection[{Pixel\-Blend16}]{\setlength{\rightskip}{0pt plus 5cm}u16 irr\-::\-Pixel\-Blend16 (
+\begin{DoxyParamCaption}
+\item[{const u16}]{c2, }
+\item[{const u16}]{c1}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a8e4c2285b836cae10bd134680a90a53b}
+
+
+Definition at line 330 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_aff15ad94ca4a5eadb9699461ffb18fb1}{\index{irr@{irr}!Pixel\-Blend16\-\_\-simd@{Pixel\-Blend16\-\_\-simd}}
+\index{Pixel\-Blend16\-\_\-simd@{Pixel\-Blend16\-\_\-simd}!irr@{irr}}
+\subsubsection[{Pixel\-Blend16\-\_\-simd}]{\setlength{\rightskip}{0pt plus 5cm}u32 irr\-::\-Pixel\-Blend16\-\_\-simd (
+\begin{DoxyParamCaption}
+\item[{const u32}]{c2, }
+\item[{const u32}]{c1}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_aff15ad94ca4a5eadb9699461ffb18fb1}
+
+
+Definition at line 337 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a03ddb0cb06633940be2b9f48c936205b}{\index{irr@{irr}!Pixel\-Blend32@{Pixel\-Blend32}}
+\index{Pixel\-Blend32@{Pixel\-Blend32}!irr@{irr}}
+\subsubsection[{Pixel\-Blend32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} u32 irr\-::\-Pixel\-Blend32 (
+\begin{DoxyParamCaption}
+\item[{const u32}]{c2, }
+\item[{const u32}]{c1, }
+\item[{u32}]{alpha}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a03ddb0cb06633940be2b9f48c936205b}
+Pixel = dest $\ast$ ( 1 -\/ alpha ) + source $\ast$ alpha alpha \mbox{[}0;256\mbox{]} 
+
+Definition at line 186 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a3bb3a374d15ae98bf3c111a499b44ed0}{\index{irr@{irr}!Pixel\-Blend32@{Pixel\-Blend32}}
+\index{Pixel\-Blend32@{Pixel\-Blend32}!irr@{irr}}
+\subsubsection[{Pixel\-Blend32}]{\setlength{\rightskip}{0pt plus 5cm}u32 irr\-::\-Pixel\-Blend32 (
+\begin{DoxyParamCaption}
+\item[{const u32}]{c2, }
+\item[{const u32}]{c1}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a3bb3a374d15ae98bf3c111a499b44ed0}
+Pixel = dest $\ast$ ( 1 -\/ Source\-Alpha ) + source $\ast$ Source\-Alpha 
+
+Definition at line 348 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a8d7d380f15452450f4a6bc9f0107b5c9}{\index{irr@{irr}!Pixel\-Lerp32@{Pixel\-Lerp32}}
+\index{Pixel\-Lerp32@{Pixel\-Lerp32}!irr@{irr}}
+\subsubsection[{Pixel\-Lerp32}]{\setlength{\rightskip}{0pt plus 5cm}u32 irr\-::\-Pixel\-Lerp32 (
+\begin{DoxyParamCaption}
+\item[{const u32}]{source, }
+\item[{const u32}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a8d7d380f15452450f4a6bc9f0107b5c9}
+Scale Color by (1/value) value 0 -\/ 256 ( alpha ) 
+
+Definition at line 191 of file C\-Blit.\-h.
+
+\hypertarget{namespaceirr_af787eebe45789ae72a40225bf234ea0a}{\index{irr@{irr}!Pixel\-Mul16@{Pixel\-Mul16}}
+\index{Pixel\-Mul16@{Pixel\-Mul16}!irr@{irr}}
+\subsubsection[{Pixel\-Mul16}]{\setlength{\rightskip}{0pt plus 5cm}u16 irr\-::\-Pixel\-Mul16 (
+\begin{DoxyParamCaption}
+\item[{const u16}]{c0, }
+\item[{const u16}]{c1}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_af787eebe45789ae72a40225bf234ea0a}
+
+
+Definition at line 244 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a08c63e47cf02ea3bb9624aa5b4ca0fba}{\index{irr@{irr}!Pixel\-Mul16\-\_\-2@{Pixel\-Mul16\-\_\-2}}
+\index{Pixel\-Mul16\-\_\-2@{Pixel\-Mul16\-\_\-2}!irr@{irr}}
+\subsubsection[{Pixel\-Mul16\-\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}u16 irr\-::\-Pixel\-Mul16\-\_\-2 (
+\begin{DoxyParamCaption}
+\item[{u16}]{c0, }
+\item[{u16}]{c1}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a08c63e47cf02ea3bb9624aa5b4ca0fba}
+
+
+Definition at line 255 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a9f0e4eeb9470c5d83e0d9599a6031264}{\index{irr@{irr}!Pixel\-Mul32@{Pixel\-Mul32}}
+\index{Pixel\-Mul32@{Pixel\-Mul32}!irr@{irr}}
+\subsubsection[{Pixel\-Mul32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} u32 irr\-::\-Pixel\-Mul32 (
+\begin{DoxyParamCaption}
+\item[{const u32}]{c0, }
+\item[{const u32}]{c1}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a9f0e4eeb9470c5d83e0d9599a6031264}
+
+
+Definition at line 266 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_ad3301e8dd2da82f115d8f610c97d84f0}{\index{irr@{irr}!Pixel\-Mul32\-\_\-2@{Pixel\-Mul32\-\_\-2}}
+\index{Pixel\-Mul32\-\_\-2@{Pixel\-Mul32\-\_\-2}!irr@{irr}}
+\subsubsection[{Pixel\-Mul32\-\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} u32 irr\-::\-Pixel\-Mul32\-\_\-2 (
+\begin{DoxyParamCaption}
+\item[{const u32}]{c0, }
+\item[{const u32}]{c1}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_ad3301e8dd2da82f115d8f610c97d84f0}
+
+
+Definition at line 277 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a836592602072af48741b5bc01ef1d1ff}{\index{irr@{irr}!round\-Fix@{round\-Fix}}
+\index{round\-Fix@{round\-Fix}!irr@{irr}}
+\subsubsection[{round\-Fix}]{\setlength{\rightskip}{0pt plus 5cm}s32 irr\-::round\-Fix (
+\begin{DoxyParamCaption}
+\item[{const t\-Fix\-Point}]{x}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a836592602072af48741b5bc01ef1d1ff}
+
+
+Definition at line 570 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a1b94060a7c7858b742f07c5d71aa884c}{\index{irr@{irr}!s32\-\_\-to\-\_\-fix\-Point@{s32\-\_\-to\-\_\-fix\-Point}}
+\index{s32\-\_\-to\-\_\-fix\-Point@{s32\-\_\-to\-\_\-fix\-Point}!irr@{irr}}
+\subsubsection[{s32\-\_\-to\-\_\-fix\-Point}]{\setlength{\rightskip}{0pt plus 5cm}{\bf t\-Fix\-Point} irr\-::s32\-\_\-to\-\_\-fix\-Point (
+\begin{DoxyParamCaption}
+\item[{const s32}]{x}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a1b94060a7c7858b742f07c5d71aa884c}
+
+
+Definition at line 448 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_af6ca53e4c19b40c347d27dcb6a2faed3}{\index{irr@{irr}!saturate\-Fix@{saturate\-Fix}}
+\index{saturate\-Fix@{saturate\-Fix}!irr@{irr}}
+\subsubsection[{saturate\-Fix}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf t\-Fix\-Point} irr\-::saturate\-Fix (
+\begin{DoxyParamCaption}
+\item[{const t\-Fix\-Point}]{a}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_af6ca53e4c19b40c347d27dcb6a2faed3}
+
+
+Definition at line 563 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_a36c604989dd9f1db04858b3f54e4c33e}{\index{irr@{irr}!set\-Clip@{set\-Clip}}
+\index{set\-Clip@{set\-Clip}!irr@{irr}}
+\subsubsection[{set\-Clip}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::set\-Clip (
+\begin{DoxyParamCaption}
+\item[{Abs\-Rectangle \&}]{out, }
+\item[{const core\-::rect$<$ s32 $>$ $\ast$}]{clip, }
+\item[{const video\-::\-I\-Image $\ast$}]{tex, }
+\item[{s32}]{passnative}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_a36c604989dd9f1db04858b3f54e4c33e}
+
+
+Definition at line 1062 of file C\-Blit.\-h.
+
+\hypertarget{namespaceirr_a34642625eccbe3da3a76fa18b16c05ec}{\index{irr@{irr}!tofix@{tofix}}
+\index{tofix@{tofix}!irr@{irr}}
+\subsubsection[{tofix}]{\setlength{\rightskip}{0pt plus 5cm}{\bf R\-E\-A\-L\-I\-N\-L\-I\-N\-E} {\bf t\-Fix\-Point} irr\-::tofix (
+\begin{DoxyParamCaption}
+\item[{const f32}]{x, }
+\item[{const f32}]{mulby = {\ttfamily {\bf F\-I\-X\-\_\-\-P\-O\-I\-N\-T\-\_\-\-F32\-\_\-\-M\-U\-L}}}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_a34642625eccbe3da3a76fa18b16c05ec}
+
+
+Definition at line 487 of file Software\-Driver2\-\_\-helper.\-h.
+
+\hypertarget{namespaceirr_ae62164bbde615f6a775166982fe4e164}{\index{irr@{irr}!u32\-\_\-to\-\_\-fix\-Point@{u32\-\_\-to\-\_\-fix\-Point}}
+\index{u32\-\_\-to\-\_\-fix\-Point@{u32\-\_\-to\-\_\-fix\-Point}!irr@{irr}}
+\subsubsection[{u32\-\_\-to\-\_\-fix\-Point}]{\setlength{\rightskip}{0pt plus 5cm}{\bf t\-Fix\-Pointu} irr\-::u32\-\_\-to\-\_\-fix\-Point (
+\begin{DoxyParamCaption}
+\item[{const u32}]{x}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{namespaceirr_ae62164bbde615f6a775166982fe4e164}
+
+
+Definition at line 453 of file Software\-Driver2\-\_\-helper.\-h.
+

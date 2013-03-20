@@ -1,0 +1,60 @@
+\hypertarget{classirr_1_1io_1_1_c_read_file}{\section{irr\-:\-:io\-:\-:C\-Read\-File Class Reference}
+\label{classirr_1_1io_1_1_c_read_file}\index{irr\-::io\-::\-C\-Read\-File@{irr\-::io\-::\-C\-Read\-File}}
+}
+
+
+{\ttfamily \#include $<$C\-Read\-File.\-h$>$}
+
+Inheritance diagram for irr\-:\-:io\-:\-:C\-Read\-File\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1io_1_1_c_read_file}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1io_1_1_c_read_file_aff2d711645b645dbce0ad20aefcb1933}{{\bfseries C\-Read\-File} (const io\-::path \&file\-Name)}\label{classirr_1_1io_1_1_c_read_file_aff2d711645b645dbce0ad20aefcb1933}
+
+\item 
+\hypertarget{classirr_1_1io_1_1_c_read_file_a94aab546e88a21f5edc556ca9aea567f}{virtual s32 \hyperlink{classirr_1_1io_1_1_c_read_file_a94aab546e88a21f5edc556ca9aea567f}{read} (void $\ast$buffer, u32 size\-To\-Read)}\label{classirr_1_1io_1_1_c_read_file_a94aab546e88a21f5edc556ca9aea567f}
+
+\begin{DoxyCompactList}\small\item\em returns how much was read \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1io_1_1_c_read_file_a56b92b55be46710dddd67e74460531e2}{seek} (long final\-Pos, bool relative\-Movement=false)
+\begin{DoxyCompactList}\small\item\em changes position in file, returns true if successful \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_read_file_a5df24d6a44fce05960c2b7e5887b4fc3}{virtual long \hyperlink{classirr_1_1io_1_1_c_read_file_a5df24d6a44fce05960c2b7e5887b4fc3}{get\-Size} () const }\label{classirr_1_1io_1_1_c_read_file_a5df24d6a44fce05960c2b7e5887b4fc3}
+
+\begin{DoxyCompactList}\small\item\em returns size of file \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_read_file_aad019208888e10a48e2659f1ac09e7c2}{virtual bool \hyperlink{classirr_1_1io_1_1_c_read_file_aad019208888e10a48e2659f1ac09e7c2}{is\-Open} () const }\label{classirr_1_1io_1_1_c_read_file_aad019208888e10a48e2659f1ac09e7c2}
+
+\begin{DoxyCompactList}\small\item\em returns if file is open \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_read_file_afa94d0e29a3fe3c81f1ef85d8ed12a8f}{virtual long \hyperlink{classirr_1_1io_1_1_c_read_file_afa94d0e29a3fe3c81f1ef85d8ed12a8f}{get\-Pos} () const }\label{classirr_1_1io_1_1_c_read_file_afa94d0e29a3fe3c81f1ef85d8ed12a8f}
+
+\begin{DoxyCompactList}\small\item\em returns where in the file we are. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_read_file_a22f6bb59d789ce2f21043483dfcc7e8e}{virtual const io\-::path \& \hyperlink{classirr_1_1io_1_1_c_read_file_a22f6bb59d789ce2f21043483dfcc7e8e}{get\-File\-Name} () const }\label{classirr_1_1io_1_1_c_read_file_a22f6bb59d789ce2f21043483dfcc7e8e}
+
+\begin{DoxyCompactList}\small\item\em returns name of file \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for reading a real file from disk. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1io_1_1_c_read_file_a56b92b55be46710dddd67e74460531e2}{\index{irr\-::io\-::\-C\-Read\-File@{irr\-::io\-::\-C\-Read\-File}!seek@{seek}}
+\index{seek@{seek}!irr::io::CReadFile@{irr\-::io\-::\-C\-Read\-File}}
+\subsubsection[{seek}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::io\-::\-C\-Read\-File\-::seek (
+\begin{DoxyParamCaption}
+\item[{long}]{final\-Pos, }
+\item[{bool}]{relative\-Movement = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_read_file_a56b92b55be46710dddd67e74460531e2}
+
+
+changes position in file, returns true if successful 
+
+changes position in file, returns true if successful if relative\-Movement==true, the pos is changed relative to current pos, otherwise from begin of file 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Read\-File.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Read\-File.\-cpp\end{DoxyCompactItemize}

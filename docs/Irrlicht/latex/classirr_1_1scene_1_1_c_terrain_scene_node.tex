@@ -1,0 +1,449 @@
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node}{\section{irr\-:\-:scene\-:\-:C\-Terrain\-Scene\-Node Class Reference}
+\label{classirr_1_1scene_1_1_c_terrain_scene_node}\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+}
+
+
+A scene node for displaying terrain using the geo mip map algorithm.  
+
+
+
+
+{\ttfamily \#include $<$C\-Terrain\-Scene\-Node.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Terrain\-Scene\-Node\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_terrain_scene_node}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_abf0c2423999b9658f9ad1e3bba086720}{C\-Terrain\-Scene\-Node} (I\-Scene\-Node $\ast$parent, I\-Scene\-Manager $\ast$mgr, io\-::\-I\-File\-System $\ast$fs, s32 id, s32 max\-L\-O\-D=4, E\-\_\-\-T\-E\-R\-R\-A\-I\-N\-\_\-\-P\-A\-T\-C\-H\-\_\-\-S\-I\-Z\-E patch\-Size=E\-T\-P\-S\-\_\-17, const core\-::vector3df \&position=core\-::vector3df(0.\-0f, 0.\-0f, 0.\-0f), const core\-::vector3df \&rotation=core\-::vector3df(0.\-0f, 0.\-0f, 0.\-0f), const core\-::vector3df \&scale=core\-::vector3df(1.\-0f, 1.\-0f, 1.\-0f))
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_ac0d97bfc9ff0cf8201bc1121d1172d7b}{virtual \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_ac0d97bfc9ff0cf8201bc1121d1172d7b}{$\sim$\-C\-Terrain\-Scene\-Node} ()}\label{classirr_1_1scene_1_1_c_terrain_scene_node_ac0d97bfc9ff0cf8201bc1121d1172d7b}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_ae3734e983126fd07beb8e769589162c2}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_ae3734e983126fd07beb8e769589162c2}{load\-Height\-Map} (io\-::\-I\-Read\-File $\ast$file, video\-::\-S\-Color vertex\-Color=video\-::\-S\-Color(255, 255, 255, 255), s32 smooth\-Factor=0)}\label{classirr_1_1scene_1_1_c_terrain_scene_node_ae3734e983126fd07beb8e769589162c2}
+
+\begin{DoxyCompactList}\small\item\em Initializes the terrain data. Loads the vertices from the height\-Map\-File. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a05faa690ac383a121808e926bbd24a1f}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a05faa690ac383a121808e926bbd24a1f}{load\-Height\-Map\-R\-A\-W} (io\-::\-I\-Read\-File $\ast$file, s32 bits\-Per\-Pixel=16, bool signed\-Data=true, bool float\-Vals=false, s32 width=0, video\-::\-S\-Color vertex\-Color=video\-::\-S\-Color(255, 255, 255, 255), s32 smooth\-Factor=0)}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a05faa690ac383a121808e926bbd24a1f}
+
+\begin{DoxyCompactList}\small\item\em Initializes the terrain data. Loads the vertices from the height\-Map\-File. \end{DoxyCompactList}\item 
+virtual video\-::\-S\-Material \& \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_aac2cd795bd791d460df82f065304c6fc}{get\-Material} (u32 i)
+\begin{DoxyCompactList}\small\item\em Returns the material based on the zero based index i. \end{DoxyCompactList}\item 
+virtual u32 \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a71e48b82cf8acff480287d65807bf13d}{get\-Material\-Count} () const 
+\begin{DoxyCompactList}\small\item\em Returns amount of materials used by this scene node ( always 1 ) \end{DoxyCompactList}\item 
+virtual const core\-::vector3df \& \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a17b77af71ad0e9b35ca21f167a7e9e27}{get\-Scale} () const 
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a7017656346664116a78f207acb21c1b9}{set\-Scale} (const core\-::vector3df \&scale)
+\item 
+virtual const core\-::vector3df \& \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a199ac8ad782803c658401141e8b9d420}{get\-Rotation} () const 
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_afb8017fda081bc31eec1c810c4c7f796}{set\-Rotation} (const core\-::vector3df \&rotation)
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a746868fc885ea23e38784ce8a2740489}{set\-Rotation\-Pivot} (const core\-::vector3df \&pivot)
+\item 
+virtual const core\-::vector3df \& \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_aeaa67deffa97589163afa11d75faec35}{get\-Position} () const 
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_aeb6d8f5609b98e9f269ccffd74178d75}{set\-Position} (const core\-::vector3df \&newpos)
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_acf84ba8a40e35d94f7137a68c1acb9fb}{On\-Register\-Scene\-Node} ()
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_aae80a172a06889273adadd13b6aa64ad}{virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_aae80a172a06889273adadd13b6aa64ad}{render} ()}\label{classirr_1_1scene_1_1_c_terrain_scene_node_aae80a172a06889273adadd13b6aa64ad}
+
+\begin{DoxyCompactList}\small\item\em Render the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a1338c7c5102594673fc837f7554bd79a}{virtual const core\-::aabbox3d\\*
+$<$ f32 $>$ \& \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a1338c7c5102594673fc837f7554bd79a}{get\-Bounding\-Box} () const }\label{classirr_1_1scene_1_1_c_terrain_scene_node_a1338c7c5102594673fc837f7554bd79a}
+
+\begin{DoxyCompactList}\small\item\em Return the bounding box of the entire terrain. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a16df767d60ef3979421d854938feef42}{virtual const core\-::aabbox3d\\*
+$<$ f32 $>$ \& \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a16df767d60ef3979421d854938feef42}{get\-Bounding\-Box} (s32 patch\-X, s32 patch\-Z) const }\label{classirr_1_1scene_1_1_c_terrain_scene_node_a16df767d60ef3979421d854938feef42}
+
+\begin{DoxyCompactList}\small\item\em Return the bounding box of a patch. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_af89a205b4f80037970c260f1f90885b7}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_af89a205b4f80037970c260f1f90885b7}{get\-Index\-Count} () const }\label{classirr_1_1scene_1_1_c_terrain_scene_node_af89a205b4f80037970c260f1f90885b7}
+
+\begin{DoxyCompactList}\small\item\em Return the number of indices currently used to draw the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a99c9c429ca8ede2921d58dde1686094a}{virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a99c9c429ca8ede2921d58dde1686094a}{get\-Mesh} ()}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a99c9c429ca8ede2921d58dde1686094a}
+
+\begin{DoxyCompactList}\small\item\em Returns the mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a78b649a7eec9d5cd9b84449858ab25fb}{virtual I\-Mesh\-Buffer $\ast$ \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a78b649a7eec9d5cd9b84449858ab25fb}{get\-Render\-Buffer} ()}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a78b649a7eec9d5cd9b84449858ab25fb}
+
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the buffer used by the terrain (most users will not need this) \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a2867dd7ecb1150d4ccc8598542e59126}{get\-Mesh\-Buffer\-For\-L\-O\-D} (I\-Dynamic\-Mesh\-Buffer \&mb, s32 L\-O\-D=0) const 
+\item 
+virtual s32 \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a51de8d7ff1cfe4cf4d0dd288ab50c14c}{get\-Indices\-For\-Patch} (core\-::array$<$ u32 $>$ \&indices, s32 patch\-X, s32 patch\-Z, s32 L\-O\-D=0)
+\item 
+virtual s32 \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_aa2832de1cc9bd349490473d151aea2c4}{get\-Current\-L\-O\-D\-Of\-Patches} (core\-::array$<$ s32 $>$ \&L\-O\-Ds) const 
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a71fc289346513dfdaf17942e21ef967b}{set\-L\-O\-D\-Of\-Patch} (s32 patch\-X, s32 patch\-Z, s32 L\-O\-D=0)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a19359cbd20636918ae7ed2be4c6e9ee5}{virtual const core\-::vector3df \& \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a19359cbd20636918ae7ed2be4c6e9ee5}{get\-Terrain\-Center} () const }\label{classirr_1_1scene_1_1_c_terrain_scene_node_a19359cbd20636918ae7ed2be4c6e9ee5}
+
+\begin{DoxyCompactList}\small\item\em Returns center of terrain. \end{DoxyCompactList}\item 
+virtual f32 \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_ab406b0b5c2acbd5c6048314345682a8b}{get\-Height} (f32 x, f32 y) const 
+\begin{DoxyCompactList}\small\item\em Returns center of terrain. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_aa098919c643b088d6ff93c79fbd02b07}{set\-Camera\-Movement\-Delta} (f32 delta)
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a9a8b1191a069e7b085383be5a9aaf947}{set\-Camera\-Rotation\-Delta} (f32 delta)
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_acb114e9d0c2f48b31ca07d9cb57b7c60}{set\-Dynamic\-Selector\-Update} (bool b\-Val)
+\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_ae7f41826b0842b235948e7155361edb8}{override\-L\-O\-D\-Distance} (s32 L\-O\-D, f64 new\-Distance)
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_ab601dacdc758a052340fb2e2ecbdb256}{scale\-Texture} (f32 scale=1.\-0f, f32 scale2=0.\-0f)
+\begin{DoxyCompactList}\small\item\em Scales the two textures. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a50f186786d3cb925d73c1ba474695012}{virtual E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a50f186786d3cb925d73c1ba474695012}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_terrain_scene_node_a50f186786d3cb925d73c1ba474695012}
+
+\begin{DoxyCompactList}\small\item\em Returns type of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_aaf110dbd297b4b03ebe590d7c759ba66}{virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_aaf110dbd297b4b03ebe590d7c759ba66}{serialize\-Attributes} (io\-::\-I\-Attributes $\ast$out, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0) const }\label{classirr_1_1scene_1_1_c_terrain_scene_node_aaf110dbd297b4b03ebe590d7c759ba66}
+
+\begin{DoxyCompactList}\small\item\em Writes attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_ac2c618b04c915041172e69603d47a64f}{virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_ac2c618b04c915041172e69603d47a64f}{deserialize\-Attributes} (io\-::\-I\-Attributes $\ast$in, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0)}\label{classirr_1_1scene_1_1_c_terrain_scene_node_ac2c618b04c915041172e69603d47a64f}
+
+\begin{DoxyCompactList}\small\item\em Reads attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a21b7ec2f16ce2c7141cd8d1513b1bec5}{virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_terrain_scene_node_a21b7ec2f16ce2c7141cd8d1513b1bec5}{clone} (I\-Scene\-Node $\ast$new\-Parent, I\-Scene\-Manager $\ast$new\-Manager)}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a21b7ec2f16ce2c7141cd8d1513b1bec5}
+
+\begin{DoxyCompactList}\small\item\em Creates a clone of this scene node and its children. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a3593e8e73b51f0d6b9848814f7b602f5}{class {\bfseries C\-Terrain\-Triangle\-Selector}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a3593e8e73b51f0d6b9848814f7b602f5}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A scene node for displaying terrain using the geo mip map algorithm. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_abf0c2423999b9658f9ad1e3bba086720}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!C\-Terrain\-Scene\-Node@{C\-Terrain\-Scene\-Node}}
+\index{C\-Terrain\-Scene\-Node@{C\-Terrain\-Scene\-Node}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{C\-Terrain\-Scene\-Node}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::\-C\-Terrain\-Scene\-Node (
+\begin{DoxyParamCaption}
+\item[{I\-Scene\-Node $\ast$}]{parent, }
+\item[{I\-Scene\-Manager $\ast$}]{mgr, }
+\item[{io\-::\-I\-File\-System $\ast$}]{fs, }
+\item[{s32}]{id, }
+\item[{s32}]{max\-L\-O\-D = {\ttfamily 4}, }
+\item[{E\-\_\-\-T\-E\-R\-R\-A\-I\-N\-\_\-\-P\-A\-T\-C\-H\-\_\-\-S\-I\-Z\-E}]{patch\-Size = {\ttfamily ETPS\-\_\-17}, }
+\item[{const core\-::vector3df \&}]{position = {\ttfamily core\-:\-:vector3df(0.0f,~0.0f,~0.0f)}, }
+\item[{const core\-::vector3df \&}]{rotation = {\ttfamily core\-:\-:vector3df(0.0f,~0.0f,~0.0f)}, }
+\item[{const core\-::vector3df \&}]{scale = {\ttfamily core\-:\-:vector3df(1.0f,~1.0f,~1.0f)}}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_abf0c2423999b9658f9ad1e3bba086720}
+
+
+constructor 
+
+constructor 
+\begin{DoxyParams}{Parameters}
+{\em parent,\-:} & The node which this node is a child of. Making this node a child of another node, or making it a parent of another node is yet untested and most likely does not work properly. \\
+\hline
+{\em mgr,\-:} & Pointer to the scene manager. \\
+\hline
+{\em id,\-:} & The id of the node \\
+\hline
+{\em max\-L\-O\-D,\-:} & The maximum L\-O\-D ( Level of Detail ) for the node. \\
+\hline
+{\em patch\-Size,\-:} & An E\-\_\-\-G\-E\-O\-M\-I\-P\-M\-A\-P\-\_\-\-P\-A\-T\-C\-H\-\_\-\-S\-I\-Z\-E enumeration defining the size of each patch of the terrain. \\
+\hline
+{\em position,\-:} & The absolute position of this node. \\
+\hline
+{\em rotation,\-:} & The absolute rotation of this node. ( N\-O\-T Y\-E\-T I\-M\-P\-L\-E\-M\-E\-N\-T\-E\-D ) \\
+\hline
+{\em scale,\-:} & The scale factor for the terrain. If you're using a heightmap of size 128x128 and would like your terrain to be 12800x12800 in game units, then use a scale factor of ( core\-::vector ( 100.\-0f, 100.\-0f, 100.\-0f ). If you use a Y scaling factor of 0.\-0f, then your terrain will be flat. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_aa2832de1cc9bd349490473d151aea2c4}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!get\-Current\-L\-O\-D\-Of\-Patches@{get\-Current\-L\-O\-D\-Of\-Patches}}
+\index{get\-Current\-L\-O\-D\-Of\-Patches@{get\-Current\-L\-O\-D\-Of\-Patches}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{get\-Current\-L\-O\-D\-Of\-Patches}]{\setlength{\rightskip}{0pt plus 5cm}s32 irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::get\-Current\-L\-O\-D\-Of\-Patches (
+\begin{DoxyParamCaption}
+\item[{core\-::array$<$ s32 $>$ \&}]{L\-O\-Ds}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_aa2832de1cc9bd349490473d151aea2c4}
+Populates an array with the Current\-L\-O\-D of each patch. 
+\begin{DoxyParams}{Parameters}
+{\em L\-O\-Ds,\-:} & A reference to a core\-::array$<$s32$>$ to hold the values \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the number of elements in the array 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_ab406b0b5c2acbd5c6048314345682a8b}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!get\-Height@{get\-Height}}
+\index{get\-Height@{get\-Height}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{get\-Height}]{\setlength{\rightskip}{0pt plus 5cm}f32 irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::get\-Height (
+\begin{DoxyParamCaption}
+\item[{f32}]{x, }
+\item[{f32}]{y}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_ab406b0b5c2acbd5c6048314345682a8b}
+
+
+Returns center of terrain. 
+
+Gets the height. \hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a51de8d7ff1cfe4cf4d0dd288ab50c14c}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!get\-Indices\-For\-Patch@{get\-Indices\-For\-Patch}}
+\index{get\-Indices\-For\-Patch@{get\-Indices\-For\-Patch}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{get\-Indices\-For\-Patch}]{\setlength{\rightskip}{0pt plus 5cm}s32 irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::get\-Indices\-For\-Patch (
+\begin{DoxyParamCaption}
+\item[{core\-::array$<$ u32 $>$ \&}]{indices, }
+\item[{s32}]{patch\-X, }
+\item[{s32}]{patch\-Z, }
+\item[{s32}]{L\-O\-D = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a51de8d7ff1cfe4cf4d0dd288ab50c14c}
+Gets the indices for a specified patch at a specified Level of Detail. 
+\begin{DoxyParams}{Parameters}
+{\em indices,\-:} & A reference to an array of u32 indices. \\
+\hline
+{\em patch\-X,\-:} & Patch x coordinate. \\
+\hline
+{\em patch\-Z,\-:} & Patch z coordinate. \\
+\hline
+{\em L\-O\-D,\-:} & The level of detail to get for that patch. If -\/1, then get the Current\-L\-O\-D. If the Current\-L\-O\-D is set to -\/1, meaning it's not shown, then it will retrieve the triangles at the highest L\-O\-D (0). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: Number of indices put into the buffer.
+\end{DoxyReturn}
+Gets the indices for a specified patch at a specified Level of Detail. 
+\begin{DoxyParams}{Parameters}
+{\em mb,\-:} & A reference to an array of u32 indices. \\
+\hline
+{\em patch\-X,\-:} & Patch x coordinate. \\
+\hline
+{\em patch\-Z,\-:} & Patch z coordinate. \\
+\hline
+{\em L\-O\-D,\-:} & The level of detail to get for that patch. If -\/1, then get the Current\-L\-O\-D. If the Current\-L\-O\-D is set to -\/1, meaning it's not shown, then it will retrieve the triangles at the highest L\-O\-D (0). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: Number if indices put into the buffer. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_aac2cd795bd791d460df82f065304c6fc}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!get\-Material@{get\-Material}}
+\index{get\-Material@{get\-Material}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{get\-Material}]{\setlength{\rightskip}{0pt plus 5cm}video\-::\-S\-Material \& irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::get\-Material (
+\begin{DoxyParamCaption}
+\item[{u32}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_aac2cd795bd791d460df82f065304c6fc}
+
+
+Returns the material based on the zero based index i. 
+
+Returns the material based on the zero based index i. This scene node only uses 1 material. 
+\begin{DoxyParams}{Parameters}
+{\em i,\-:} & Zero based index i. U\-N\-U\-S\-E\-D, left in for virtual purposes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the single material this scene node uses. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a71e48b82cf8acff480287d65807bf13d}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!get\-Material\-Count@{get\-Material\-Count}}
+\index{get\-Material\-Count@{get\-Material\-Count}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{get\-Material\-Count}]{\setlength{\rightskip}{0pt plus 5cm}u32 irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::get\-Material\-Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a71e48b82cf8acff480287d65807bf13d}
+
+
+Returns amount of materials used by this scene node ( always 1 ) 
+
+Returns amount of materials used by this scene node ( always 1 ) \begin{DoxyReturn}{Returns}
+Returns current count of materials used by this scene node ( always 1 ) 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a2867dd7ecb1150d4ccc8598542e59126}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!get\-Mesh\-Buffer\-For\-L\-O\-D@{get\-Mesh\-Buffer\-For\-L\-O\-D}}
+\index{get\-Mesh\-Buffer\-For\-L\-O\-D@{get\-Mesh\-Buffer\-For\-L\-O\-D}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{get\-Mesh\-Buffer\-For\-L\-O\-D}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::get\-Mesh\-Buffer\-For\-L\-O\-D (
+\begin{DoxyParamCaption}
+\item[{I\-Dynamic\-Mesh\-Buffer \&}]{mb, }
+\item[{s32}]{L\-O\-D = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a2867dd7ecb1150d4ccc8598542e59126}
+Gets the meshbuffer data based on a specified Level of Detail. 
+\begin{DoxyParams}{Parameters}
+{\em mb,\-:} & A reference to an I\-Dynamic\-Mesh\-Buffer object \\
+\hline
+{\em L\-O\-D,\-:} & The Level Of Detail you want the indices from.\\
+\hline
+\end{DoxyParams}
+Gets the meshbuffer data based on a specified Level of Detail. 
+\begin{DoxyParams}{Parameters}
+{\em mb,\-:} & A reference to an S\-Mesh\-Buffer object \\
+\hline
+{\em L\-O\-D,\-:} & The Level Of Detail you want the indices from. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_aeaa67deffa97589163afa11d75faec35}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!get\-Position@{get\-Position}}
+\index{get\-Position@{get\-Position}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{get\-Position}]{\setlength{\rightskip}{0pt plus 5cm}virtual const core\-::vector3df\& irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::get\-Position (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_aeaa67deffa97589163afa11d75faec35}
+Gets the last positioning vector applied to the scene node. \begin{DoxyReturn}{Returns}
+Returns the last position vector applied to the scene node. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a199ac8ad782803c658401141e8b9d420}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!get\-Rotation@{get\-Rotation}}
+\index{get\-Rotation@{get\-Rotation}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{get\-Rotation}]{\setlength{\rightskip}{0pt plus 5cm}virtual const core\-::vector3df\& irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::get\-Rotation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a199ac8ad782803c658401141e8b9d420}
+Gets the last rotation factor applied to the scene node. \begin{DoxyReturn}{Returns}
+Returns the last rotation factor applied to the scene node. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a17b77af71ad0e9b35ca21f167a7e9e27}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!get\-Scale@{get\-Scale}}
+\index{get\-Scale@{get\-Scale}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{get\-Scale}]{\setlength{\rightskip}{0pt plus 5cm}virtual const core\-::vector3df\& irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::get\-Scale (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a17b77af71ad0e9b35ca21f167a7e9e27}
+Gets the last scaling factor applied to the scene node. This value only represents the last scaling factor presented to the node. For instance, if you make create the node with a scale factor of ( 1.\-0f, 1.\-0f, 1.\-0f ) then call set\-Scale ( 50.\-0f, 5.\-0f, 50.\-0f ), then make another call to set\-Scale with the values ( 2.\-0f, 2.\-0f, 2.\-0f ), this will return core\-::vector3df ( 2.\-0f, 2.\-0f, 2.\-0f ), although the total scaling of the scene node is core\-::vector3df ( 100.\-0f, 10.\-0f, 100.\-0f ). \begin{DoxyReturn}{Returns}
+Returns the last scaling factor passed to the scene node. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_acf84ba8a40e35d94f7137a68c1acb9fb}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!On\-Register\-Scene\-Node@{On\-Register\-Scene\-Node}}
+\index{On\-Register\-Scene\-Node@{On\-Register\-Scene\-Node}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{On\-Register\-Scene\-Node}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::\-On\-Register\-Scene\-Node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_acf84ba8a40e35d94f7137a68c1acb9fb}
+Updates the scene nodes indices if the camera has moved or rotated by a certain threshold, which can be changed using the Set\-Camera\-Movement\-Delta\-Threshold and Set\-Camera\-Rotation\-Delta\-Threshold functions. This also determines if a given patch for the scene node is within the view frustum and if it's not the indices are not generated for that patch. \hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_ae7f41826b0842b235948e7155361edb8}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!override\-L\-O\-D\-Distance@{override\-L\-O\-D\-Distance}}
+\index{override\-L\-O\-D\-Distance@{override\-L\-O\-D\-Distance}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{override\-L\-O\-D\-Distance}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::override\-L\-O\-D\-Distance (
+\begin{DoxyParamCaption}
+\item[{s32}]{L\-O\-D, }
+\item[{f64}]{new\-Distance}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_ae7f41826b0842b235948e7155361edb8}
+Override the default generation of distance thresholds for determining the L\-O\-D a patch is rendered at. If any L\-O\-D is overridden, then the scene node will no longer apply scaling factors to these values. If you override these distances and then apply a scale to the scene node, it is your responsibility to update the new distances to work best with your new terrain size.
+
+Override the default generation of distance thresholds for determining the L\-O\-D a patch is rendered at. \hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_ab601dacdc758a052340fb2e2ecbdb256}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!scale\-Texture@{scale\-Texture}}
+\index{scale\-Texture@{scale\-Texture}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{scale\-Texture}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::scale\-Texture (
+\begin{DoxyParamCaption}
+\item[{f32}]{resolution = {\ttfamily 1.0f}, }
+\item[{f32}]{resolution2 = {\ttfamily 0.0f}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_ab601dacdc758a052340fb2e2ecbdb256}
+
+
+Scales the two textures. 
+
+Creates a planar texture mapping on the terrain 
+\begin{DoxyParams}{Parameters}
+{\em resolution,\-:} & resolution of the planar mapping. This is the value specifying the relation between world space and texture coordinate space. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_aa098919c643b088d6ff93c79fbd02b07}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!set\-Camera\-Movement\-Delta@{set\-Camera\-Movement\-Delta}}
+\index{set\-Camera\-Movement\-Delta@{set\-Camera\-Movement\-Delta}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{set\-Camera\-Movement\-Delta}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::set\-Camera\-Movement\-Delta (
+\begin{DoxyParamCaption}
+\item[{f32}]{delta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_aa098919c643b088d6ff93c79fbd02b07}
+Sets the movement camera threshold which is used to determine when to recalculate indices for the scene node. The default value is 10.\-0f. \hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a9a8b1191a069e7b085383be5a9aaf947}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!set\-Camera\-Rotation\-Delta@{set\-Camera\-Rotation\-Delta}}
+\index{set\-Camera\-Rotation\-Delta@{set\-Camera\-Rotation\-Delta}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{set\-Camera\-Rotation\-Delta}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::set\-Camera\-Rotation\-Delta (
+\begin{DoxyParamCaption}
+\item[{f32}]{delta}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a9a8b1191a069e7b085383be5a9aaf947}
+Sets the rotation camera threshold which is used to determine when to recalculate indices for the scene node. The default value is 1.\-0f. \hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_acb114e9d0c2f48b31ca07d9cb57b7c60}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!set\-Dynamic\-Selector\-Update@{set\-Dynamic\-Selector\-Update}}
+\index{set\-Dynamic\-Selector\-Update@{set\-Dynamic\-Selector\-Update}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{set\-Dynamic\-Selector\-Update}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::set\-Dynamic\-Selector\-Update (
+\begin{DoxyParamCaption}
+\item[{bool}]{b\-Val}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_acb114e9d0c2f48b31ca07d9cb57b7c60}
+Sets whether or not the node should dynamically update it its associated selector when the geomipmap data changes. param b\-Val\-: Boolean value representing whether or not to update selector dynamically. N\-O\-T\-E\-: Temporarily disabled while working out issues with Dynamic\-Selector\-Update \hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a71fc289346513dfdaf17942e21ef967b}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!set\-L\-O\-D\-Of\-Patch@{set\-L\-O\-D\-Of\-Patch}}
+\index{set\-L\-O\-D\-Of\-Patch@{set\-L\-O\-D\-Of\-Patch}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{set\-L\-O\-D\-Of\-Patch}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::set\-L\-O\-D\-Of\-Patch (
+\begin{DoxyParamCaption}
+\item[{s32}]{patch\-X, }
+\item[{s32}]{patch\-Z, }
+\item[{s32}]{L\-O\-D = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a71fc289346513dfdaf17942e21ef967b}
+Manually sets the L\-O\-D of a patch 
+\begin{DoxyParams}{Parameters}
+{\em patch\-X,\-:} & Patch x coordinate. \\
+\hline
+{\em patch\-Z,\-:} & Patch z coordinate. \\
+\hline
+{\em L\-O\-D,\-:} & The level of detail to set the patch to. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_aeb6d8f5609b98e9f269ccffd74178d75}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!set\-Position@{set\-Position}}
+\index{set\-Position@{set\-Position}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{set\-Position}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::set\-Position (
+\begin{DoxyParamCaption}
+\item[{const core\-::vector3df \&}]{newpos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_aeb6d8f5609b98e9f269ccffd74178d75}
+Moves the scene nodes vertices by the vector specified. 
+\begin{DoxyParams}{Parameters}
+{\em newpos,\-:} & Vector specifying how much to move each vertex of the scene node.\\
+\hline
+\end{DoxyParams}
+Sets the position of the node. 
+\begin{DoxyParams}{Parameters}
+{\em newpos,\-:} & New postition of the scene node. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_afb8017fda081bc31eec1c810c4c7f796}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!set\-Rotation@{set\-Rotation}}
+\index{set\-Rotation@{set\-Rotation}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{set\-Rotation}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::set\-Rotation (
+\begin{DoxyParamCaption}
+\item[{const core\-::vector3df \&}]{rotation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_afb8017fda081bc31eec1c810c4c7f796}
+Rotates the node. This only modifies the relative rotation of the node. 
+\begin{DoxyParams}{Parameters}
+{\em rotation,\-:} & New rotation of the node in degrees.\\
+\hline
+\end{DoxyParams}
+Sets the rotation of the node. This only modifies the relative rotation of the node. 
+\begin{DoxyParams}{Parameters}
+{\em rotation,\-:} & New rotation of the node in degrees. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a746868fc885ea23e38784ce8a2740489}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!set\-Rotation\-Pivot@{set\-Rotation\-Pivot}}
+\index{set\-Rotation\-Pivot@{set\-Rotation\-Pivot}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{set\-Rotation\-Pivot}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::set\-Rotation\-Pivot (
+\begin{DoxyParamCaption}
+\item[{const core\-::vector3df \&}]{pivot}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a746868fc885ea23e38784ce8a2740489}
+Sets the pivot point for rotation of this node. N\-O\-T\-E\-: The default for the Rotation\-Pivot will be the center of the individual tile.
+
+Sets the pivot point for rotation of this node. This is useful for the Tiled\-Terrain\-Manager to rotate all terrain tiles around a global world point. N\-O\-T\-E\-: The default for the Rotation\-Pivot will be the center of the individual tile. \hypertarget{classirr_1_1scene_1_1_c_terrain_scene_node_a7017656346664116a78f207acb21c1b9}{\index{irr\-::scene\-::\-C\-Terrain\-Scene\-Node@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}!set\-Scale@{set\-Scale}}
+\index{set\-Scale@{set\-Scale}!irr::scene::CTerrainSceneNode@{irr\-::scene\-::\-C\-Terrain\-Scene\-Node}}
+\subsubsection[{set\-Scale}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Terrain\-Scene\-Node\-::set\-Scale (
+\begin{DoxyParamCaption}
+\item[{const core\-::vector3df \&}]{scale}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_scene_node_a7017656346664116a78f207acb21c1b9}
+Scales the scene nodes vertices by the vector specified. 
+\begin{DoxyParams}{Parameters}
+{\em scale,\-:} & Scaling factor to apply to the node.\\
+\hline
+\end{DoxyParams}
+Sets the scale of the scene node. 
+\begin{DoxyParams}{Parameters}
+{\em scale,\-:} & New scale of the node \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Terrain\-Scene\-Node.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Terrain\-Scene\-Node.\-cpp\end{DoxyCompactItemize}

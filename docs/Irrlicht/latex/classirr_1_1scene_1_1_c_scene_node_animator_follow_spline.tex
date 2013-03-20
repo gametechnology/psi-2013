@@ -1,0 +1,86 @@
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline}{\section{irr\-:\-:scene\-:\-:C\-Scene\-Node\-Animator\-Follow\-Spline Class Reference}
+\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline}\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Follow\-Spline@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Follow\-Spline}}
+}
+
+
+{\ttfamily \#include $<$C\-Scene\-Node\-Animator\-Follow\-Spline.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Scene\-Node\-Animator\-Follow\-Spline\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a6a1a6c9b12707e53d802edc7ccd55d64}{\hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a6a1a6c9b12707e53d802edc7ccd55d64}{C\-Scene\-Node\-Animator\-Follow\-Spline} (u32 start\-Time, const core\-::array$<$ core\-::vector3df $>$ \&points, f32 speed=1.\-0f, f32 tightness=0.\-5f, bool loop=true, bool pingpong=false)}\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a6a1a6c9b12707e53d802edc7ccd55d64}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a6652b9b2dc467e1d8e2a66dedb2ac814}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a6652b9b2dc467e1d8e2a66dedb2ac814}{animate\-Node} (I\-Scene\-Node $\ast$node, u32 time\-Ms)}\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a6652b9b2dc467e1d8e2a66dedb2ac814}
+
+\begin{DoxyCompactList}\small\item\em animates a scene node \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a73eeba6a545eb46c0d89167ea3bd3a6d}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a73eeba6a545eb46c0d89167ea3bd3a6d}{serialize\-Attributes} (io\-::\-I\-Attributes $\ast$out, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0) const }\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a73eeba6a545eb46c0d89167ea3bd3a6d}
+
+\begin{DoxyCompactList}\small\item\em Writes attributes of the scene node animator. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a3d271f65877dc09aa4f4c2a96d5d06e9}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a3d271f65877dc09aa4f4c2a96d5d06e9}{deserialize\-Attributes} (io\-::\-I\-Attributes $\ast$in, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0)}\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a3d271f65877dc09aa4f4c2a96d5d06e9}
+
+\begin{DoxyCompactList}\small\item\em Reads attributes of the scene node animator. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a6bde10787c5b14a387b3e8ad6cabd271}{virtual E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-A\-N\-I\-M\-A\-T\-O\-R\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a6bde10787c5b14a387b3e8ad6cabd271}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a6bde10787c5b14a387b3e8ad6cabd271}
+
+\begin{DoxyCompactList}\small\item\em Returns type of the scene node animator. \end{DoxyCompactList}\item 
+virtual I\-Scene\-Node\-Animator $\ast$ \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a5c0874a0894f8a620e5b3deb59b7ee0c}{create\-Clone} (I\-Scene\-Node $\ast$node, I\-Scene\-Manager $\ast$new\-Manager=0)
+\begin{DoxyCompactList}\small\item\em Creates a clone of this animator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a1f41d962087f278246ada5c422a91339}{s32 \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a1f41d962087f278246ada5c422a91339}{clamp} (s32 idx, s32 size)}\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a1f41d962087f278246ada5c422a91339}
+
+\begin{DoxyCompactList}\small\item\em clamps a the value idx to fit into range 0..size-\/1 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a6fff000b1bec5914853ec120e09b8e50}{core\-::array$<$ core\-::vector3df $>$ {\bfseries Points}}\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a6fff000b1bec5914853ec120e09b8e50}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a3650c7be980a1dbfd19ccba9317190c1}{f32 {\bfseries Speed}}\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a3650c7be980a1dbfd19ccba9317190c1}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a127c8e99d4fc5c3918bfb13fdd18951f}{f32 {\bfseries Tightness}}\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a127c8e99d4fc5c3918bfb13fdd18951f}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a0915083defa92efda40ed10ea24e8828}{u32 {\bfseries Start\-Time}}\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a0915083defa92efda40ed10ea24e8828}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_ac5271c18130e24eee8f3d280999eaa6e}{bool {\bfseries Loop}}\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_ac5271c18130e24eee8f3d280999eaa6e}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a132314677c37cf8ddc41026d6fb2e916}{bool {\bfseries Ping\-Pong}}\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a132314677c37cf8ddc41026d6fb2e916}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Scene node animator based free code Matthias Gall wrote and sent in. (Most of this code is written by him, I only modified bits.) 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a5c0874a0894f8a620e5b3deb59b7ee0c}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Follow\-Spline@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Follow\-Spline}!create\-Clone@{create\-Clone}}
+\index{create\-Clone@{create\-Clone}!irr::scene::CSceneNodeAnimatorFollowSpline@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Follow\-Spline}}
+\subsubsection[{create\-Clone}]{\setlength{\rightskip}{0pt plus 5cm}I\-Scene\-Node\-Animator $\ast$ irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Follow\-Spline\-::create\-Clone (
+\begin{DoxyParamCaption}
+\item[{I\-Scene\-Node $\ast$}]{node, }
+\item[{I\-Scene\-Manager $\ast$}]{new\-Manager = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_follow_spline_a5c0874a0894f8a620e5b3deb59b7ee0c}
+
+
+Creates a clone of this animator. 
+
+\begin{DoxyVerb}Please note that you will have to drop
+\end{DoxyVerb}
+ (I\-Reference\-Counted\-::drop()) the returned pointer after calling this. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Scene\-Node\-Animator\-Follow\-Spline.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Scene\-Node\-Animator\-Follow\-Spline.\-cpp\end{DoxyCompactItemize}

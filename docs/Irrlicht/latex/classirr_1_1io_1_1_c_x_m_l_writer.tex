@@ -1,0 +1,71 @@
+\hypertarget{classirr_1_1io_1_1_c_x_m_l_writer}{\section{irr\-:\-:io\-:\-:C\-X\-M\-L\-Writer Class Reference}
+\label{classirr_1_1io_1_1_c_x_m_l_writer}\index{irr\-::io\-::\-C\-X\-M\-L\-Writer@{irr\-::io\-::\-C\-X\-M\-L\-Writer}}
+}
+
+
+Interface providing methods for making it easier to write X\-M\-L files.  
+
+
+
+
+{\ttfamily \#include $<$C\-X\-M\-L\-Writer.\-h$>$}
+
+Inheritance diagram for irr\-:\-:io\-:\-:C\-X\-M\-L\-Writer\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1io_1_1_c_x_m_l_writer}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structirr_1_1io_1_1_c_x_m_l_writer_1_1_x_m_l_special_characters}{X\-M\-L\-Special\-Characters}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1io_1_1_c_x_m_l_writer_a145f6db13dd7c0b97cfe109167edf326}{\hyperlink{classirr_1_1io_1_1_c_x_m_l_writer_a145f6db13dd7c0b97cfe109167edf326}{C\-X\-M\-L\-Writer} (I\-Write\-File $\ast$file)}\label{classirr_1_1io_1_1_c_x_m_l_writer_a145f6db13dd7c0b97cfe109167edf326}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_x_m_l_writer_a85bcb4a9c28d7cece400455a92b6b288}{virtual \hyperlink{classirr_1_1io_1_1_c_x_m_l_writer_a85bcb4a9c28d7cece400455a92b6b288}{$\sim$\-C\-X\-M\-L\-Writer} ()}\label{classirr_1_1io_1_1_c_x_m_l_writer_a85bcb4a9c28d7cece400455a92b6b288}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_x_m_l_writer_ae7bad40d7e4538b9f4d2fa235e3b6e92}{virtual void \hyperlink{classirr_1_1io_1_1_c_x_m_l_writer_ae7bad40d7e4538b9f4d2fa235e3b6e92}{write\-X\-M\-L\-Header} ()}\label{classirr_1_1io_1_1_c_x_m_l_writer_ae7bad40d7e4538b9f4d2fa235e3b6e92}
+
+\begin{DoxyCompactList}\small\item\em Writes a xml 1.\-0 header like $<$?xml version=\char`\"{}1.\-0\char`\"{}?$>$ \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_x_m_l_writer_a8438e590a2c52853fa4f8aa7064c4ce6}{virtual void \hyperlink{classirr_1_1io_1_1_c_x_m_l_writer_a8438e590a2c52853fa4f8aa7064c4ce6}{write\-Element} (const wchar\-\_\-t $\ast$name, bool empty=false, const wchar\-\_\-t $\ast$attr1\-Name=0, const wchar\-\_\-t $\ast$attr1\-Value=0, const wchar\-\_\-t $\ast$attr2\-Name=0, const wchar\-\_\-t $\ast$attr2\-Value=0, const wchar\-\_\-t $\ast$attr3\-Name=0, const wchar\-\_\-t $\ast$attr3\-Value=0, const wchar\-\_\-t $\ast$attr4\-Name=0, const wchar\-\_\-t $\ast$attr4\-Value=0, const wchar\-\_\-t $\ast$attr5\-Name=0, const wchar\-\_\-t $\ast$attr5\-Value=0)}\label{classirr_1_1io_1_1_c_x_m_l_writer_a8438e590a2c52853fa4f8aa7064c4ce6}
+
+\begin{DoxyCompactList}\small\item\em Writes an xml element with maximal 5 attributes. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_x_m_l_writer_a38d26784ea3e93a8c4a3380a3c51b2e7}{virtual void \hyperlink{classirr_1_1io_1_1_c_x_m_l_writer_a38d26784ea3e93a8c4a3380a3c51b2e7}{write\-Element} (const wchar\-\_\-t $\ast$name, bool empty, core\-::array$<$ core\-::stringw $>$ \&names, core\-::array$<$ core\-::stringw $>$ \&values)}\label{classirr_1_1io_1_1_c_x_m_l_writer_a38d26784ea3e93a8c4a3380a3c51b2e7}
+
+\begin{DoxyCompactList}\small\item\em Writes an xml element with any number of attributes. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_x_m_l_writer_a72ba84b1d41ecc3f65c40b353e1bc758}{virtual void \hyperlink{classirr_1_1io_1_1_c_x_m_l_writer_a72ba84b1d41ecc3f65c40b353e1bc758}{write\-Comment} (const wchar\-\_\-t $\ast$comment)}\label{classirr_1_1io_1_1_c_x_m_l_writer_a72ba84b1d41ecc3f65c40b353e1bc758}
+
+\begin{DoxyCompactList}\small\item\em Writes a comment into the xml file. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_x_m_l_writer_a926beaf1967335ffc1b28025d7e19bc2}{virtual void \hyperlink{classirr_1_1io_1_1_c_x_m_l_writer_a926beaf1967335ffc1b28025d7e19bc2}{write\-Closing\-Tag} (const wchar\-\_\-t $\ast$name)}\label{classirr_1_1io_1_1_c_x_m_l_writer_a926beaf1967335ffc1b28025d7e19bc2}
+
+\begin{DoxyCompactList}\small\item\em Writes the closing tag for an element. Like $<$/foo$>$ \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_x_m_l_writer_a54ab8acc6ecced56fb220bd2d41c3584}{write\-Text} (const wchar\-\_\-t $\ast$text)
+\item 
+\hypertarget{classirr_1_1io_1_1_c_x_m_l_writer_a34f237513b64d2b83631acf41b0772ba}{virtual void \hyperlink{classirr_1_1io_1_1_c_x_m_l_writer_a34f237513b64d2b83631acf41b0772ba}{write\-Line\-Break} ()}\label{classirr_1_1io_1_1_c_x_m_l_writer_a34f237513b64d2b83631acf41b0772ba}
+
+\begin{DoxyCompactList}\small\item\em Writes a line break. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface providing methods for making it easier to write X\-M\-L files. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1io_1_1_c_x_m_l_writer_a54ab8acc6ecced56fb220bd2d41c3584}{\index{irr\-::io\-::\-C\-X\-M\-L\-Writer@{irr\-::io\-::\-C\-X\-M\-L\-Writer}!write\-Text@{write\-Text}}
+\index{write\-Text@{write\-Text}!irr::io::CXMLWriter@{irr\-::io\-::\-C\-X\-M\-L\-Writer}}
+\subsubsection[{write\-Text}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-X\-M\-L\-Writer\-::write\-Text (
+\begin{DoxyParamCaption}
+\item[{const wchar\-\_\-t $\ast$}]{text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_x_m_l_writer_a54ab8acc6ecced56fb220bd2d41c3584}
+Writes a text into the file. All occurrences of special characters like \& (\&), $<$ ($<$), $>$ ($>$), and " (") are automaticly replaced. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-X\-M\-L\-Writer.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-X\-M\-L\-Writer.\-cpp\end{DoxyCompactItemize}

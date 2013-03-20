@@ -1,0 +1,99 @@
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector}{\section{irr\-:\-:scene\-:\-:C\-Particle\-Attraction\-Affector Class Reference}
+\label{classirr_1_1scene_1_1_c_particle_attraction_affector}\index{irr\-::scene\-::\-C\-Particle\-Attraction\-Affector@{irr\-::scene\-::\-C\-Particle\-Attraction\-Affector}}
+}
+
+
+Particle Affector for attracting particles to a point.  
+
+
+
+
+{\ttfamily \#include $<$C\-Particle\-Attraction\-Affector.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Particle\-Attraction\-Affector\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_particle_attraction_affector}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a0e0d478b1e51a4e7653caaed76033bfe}{\hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a0e0d478b1e51a4e7653caaed76033bfe}{C\-Particle\-Attraction\-Affector} (const core\-::vector3df \&point=core\-::vector3df(), f32 speed=1.\-0f, bool attract=true, bool affect\-X=true, bool affect\-Y=true, bool affect\-Z=true)}\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a0e0d478b1e51a4e7653caaed76033bfe}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a0949adc32bdf31ff716a8826236b9ad6}{affect} (u32 now, S\-Particle $\ast$particlearray, u32 count)
+\begin{DoxyCompactList}\small\item\em Affects a particle. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a4553f7c685cf05d43c9f124fbd4395de}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a4553f7c685cf05d43c9f124fbd4395de}{set\-Point} (const core\-::vector3df \&point)}\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a4553f7c685cf05d43c9f124fbd4395de}
+
+\begin{DoxyCompactList}\small\item\em Set the point that particles will attract to. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a530343a28ba0d7f7e9a6394154c1ca7f}{set\-Speed} (f32 speed)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_acb8bf35e3b0ab8a7ba85b535ca4360fd}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_acb8bf35e3b0ab8a7ba85b535ca4360fd}{set\-Attract} (bool attract)}\label{classirr_1_1scene_1_1_c_particle_attraction_affector_acb8bf35e3b0ab8a7ba85b535ca4360fd}
+
+\begin{DoxyCompactList}\small\item\em Set whether or not the particles are attracting or detracting. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a1502d80352ee4e2b4c2215b50babbe25}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a1502d80352ee4e2b4c2215b50babbe25}{set\-Affect\-X} (bool \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a0949adc32bdf31ff716a8826236b9ad6}{affect})}\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a1502d80352ee4e2b4c2215b50babbe25}
+
+\begin{DoxyCompactList}\small\item\em Set whether or not this will affect particles in the X direction. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a2484d3f1b5076157aae0e77bf566e79f}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a2484d3f1b5076157aae0e77bf566e79f}{set\-Affect\-Y} (bool \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a0949adc32bdf31ff716a8826236b9ad6}{affect})}\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a2484d3f1b5076157aae0e77bf566e79f}
+
+\begin{DoxyCompactList}\small\item\em Set whether or not this will affect particles in the Y direction. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a70f37c6712b19da199a25378c44a57fe}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a70f37c6712b19da199a25378c44a57fe}{set\-Affect\-Z} (bool \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a0949adc32bdf31ff716a8826236b9ad6}{affect})}\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a70f37c6712b19da199a25378c44a57fe}
+
+\begin{DoxyCompactList}\small\item\em Set whether or not this will affect particles in the Z direction. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a3478aa75666e0672243e258531888295}{virtual const core\-::vector3df \& \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a3478aa75666e0672243e258531888295}{get\-Point} () const }\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a3478aa75666e0672243e258531888295}
+
+\begin{DoxyCompactList}\small\item\em Get the point that particles are attracted to. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a75809985a373e6d7517f6b62cb9afa87}{virtual f32 \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a75809985a373e6d7517f6b62cb9afa87}{get\-Speed} () const }\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a75809985a373e6d7517f6b62cb9afa87}
+
+\begin{DoxyCompactList}\small\item\em Get the speed that points attract to the specified point. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a51d5d0c4bbf77c4024e26a86f26ebeb1}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a51d5d0c4bbf77c4024e26a86f26ebeb1}{get\-Attract} () const }\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a51d5d0c4bbf77c4024e26a86f26ebeb1}
+
+\begin{DoxyCompactList}\small\item\em Get whether or not the particles are attracting or detracting. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a75d3c0985530408bbe6dbb2d508932de}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a75d3c0985530408bbe6dbb2d508932de}{get\-Affect\-X} () const }\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a75d3c0985530408bbe6dbb2d508932de}
+
+\begin{DoxyCompactList}\small\item\em Get whether or not the particles X position are affected. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_aaf84fc32dce020b382660265567aab5d}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_aaf84fc32dce020b382660265567aab5d}{get\-Affect\-Y} () const }\label{classirr_1_1scene_1_1_c_particle_attraction_affector_aaf84fc32dce020b382660265567aab5d}
+
+\begin{DoxyCompactList}\small\item\em Get whether or not the particles Y position are affected. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a929295db7bfbb9cff3aea9a02c39126c}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a929295db7bfbb9cff3aea9a02c39126c}{get\-Affect\-Z} () const }\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a929295db7bfbb9cff3aea9a02c39126c}
+
+\begin{DoxyCompactList}\small\item\em Get whether or not the particles Z position are affected. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a9b2c2f1e51bf94747e40a7608fe284f9}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a9b2c2f1e51bf94747e40a7608fe284f9}{serialize\-Attributes} (io\-::\-I\-Attributes $\ast$out, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options) const }\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a9b2c2f1e51bf94747e40a7608fe284f9}
+
+\begin{DoxyCompactList}\small\item\em Writes attributes of the object. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a8fd91072879c0e7ab1196ffc2dcba78c}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_attraction_affector_a8fd91072879c0e7ab1196ffc2dcba78c}{deserialize\-Attributes} (io\-::\-I\-Attributes $\ast$in, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options)}\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a8fd91072879c0e7ab1196ffc2dcba78c}
+
+\begin{DoxyCompactList}\small\item\em Reads attributes of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Particle Affector for attracting particles to a point. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a0949adc32bdf31ff716a8826236b9ad6}{\index{irr\-::scene\-::\-C\-Particle\-Attraction\-Affector@{irr\-::scene\-::\-C\-Particle\-Attraction\-Affector}!affect@{affect}}
+\index{affect@{affect}!irr::scene::CParticleAttractionAffector@{irr\-::scene\-::\-C\-Particle\-Attraction\-Affector}}
+\subsubsection[{affect}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Particle\-Attraction\-Affector\-::affect (
+\begin{DoxyParamCaption}
+\item[{u32}]{now, }
+\item[{S\-Particle $\ast$}]{particlearray, }
+\item[{u32}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a0949adc32bdf31ff716a8826236b9ad6}
+
+
+Affects a particle. 
+
+Affects an array of particles. \hypertarget{classirr_1_1scene_1_1_c_particle_attraction_affector_a530343a28ba0d7f7e9a6394154c1ca7f}{\index{irr\-::scene\-::\-C\-Particle\-Attraction\-Affector@{irr\-::scene\-::\-C\-Particle\-Attraction\-Affector}!set\-Speed@{set\-Speed}}
+\index{set\-Speed@{set\-Speed}!irr::scene::CParticleAttractionAffector@{irr\-::scene\-::\-C\-Particle\-Attraction\-Affector}}
+\subsubsection[{set\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::scene\-::\-C\-Particle\-Attraction\-Affector\-::set\-Speed (
+\begin{DoxyParamCaption}
+\item[{f32}]{speed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_attraction_affector_a530343a28ba0d7f7e9a6394154c1ca7f}
+Set the speed, in game units per second that the particles will attract to the specified point 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Particle\-Attraction\-Affector.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Particle\-Attraction\-Affector.\-cpp\end{DoxyCompactItemize}

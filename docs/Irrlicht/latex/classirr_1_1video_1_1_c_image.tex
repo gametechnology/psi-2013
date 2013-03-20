@@ -1,0 +1,213 @@
+\hypertarget{classirr_1_1video_1_1_c_image}{\section{irr\-:\-:video\-:\-:C\-Image Class Reference}
+\label{classirr_1_1video_1_1_c_image}\index{irr\-::video\-::\-C\-Image@{irr\-::video\-::\-C\-Image}}
+}
+
+
+{\ttfamily \#include $<$C\-Image.\-h$>$}
+
+Inheritance diagram for irr\-:\-:video\-:\-:C\-Image\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1video_1_1_c_image}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classirr_1_1video_1_1_c_image_a33fb599ad55a8a75c27c5a8a268ab6c5}{C\-Image} (E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T format, const core\-::dimension2d$<$ u32 $>$ \&size, void $\ast$data, bool own\-Foreign\-Memory=true, bool delete\-Memory=true)
+\begin{DoxyCompactList}\small\item\em constructor from raw image data \end{DoxyCompactList}\item 
+\hyperlink{classirr_1_1video_1_1_c_image_af2394e6328736041c35d80fb94f76258}{C\-Image} (E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T format, const core\-::dimension2d$<$ u32 $>$ \&size)
+\begin{DoxyCompactList}\small\item\em constructor for empty image \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a17b90b3c4c156f769bb9969eb7014d7a}{virtual \hyperlink{classirr_1_1video_1_1_c_image_a17b90b3c4c156f769bb9969eb7014d7a}{$\sim$\-C\-Image} ()}\label{classirr_1_1video_1_1_c_image_a17b90b3c4c156f769bb9969eb7014d7a}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_afefb05230de4553a06973434284b791f}{virtual void $\ast$ \hyperlink{classirr_1_1video_1_1_c_image_afefb05230de4553a06973434284b791f}{lock} ()}\label{classirr_1_1video_1_1_c_image_afefb05230de4553a06973434284b791f}
+
+\begin{DoxyCompactList}\small\item\em Lock function. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_ad453b4c5434cc115a97c6f6e5e9dd0ab}{virtual void \hyperlink{classirr_1_1video_1_1_c_image_ad453b4c5434cc115a97c6f6e5e9dd0ab}{unlock} ()}\label{classirr_1_1video_1_1_c_image_ad453b4c5434cc115a97c6f6e5e9dd0ab}
+
+\begin{DoxyCompactList}\small\item\em Unlock function. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a399565e9299380cf06510cf2ae96828b}{virtual const \\*
+core\-::dimension2d$<$ u32 $>$ \& \hyperlink{classirr_1_1video_1_1_c_image_a399565e9299380cf06510cf2ae96828b}{get\-Dimension} () const }\label{classirr_1_1video_1_1_c_image_a399565e9299380cf06510cf2ae96828b}
+
+\begin{DoxyCompactList}\small\item\em Returns width and height of image data. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a26adf6e55c6c12b583974ca18a20b3b8}{virtual u32 \hyperlink{classirr_1_1video_1_1_c_image_a26adf6e55c6c12b583974ca18a20b3b8}{get\-Bits\-Per\-Pixel} () const }\label{classirr_1_1video_1_1_c_image_a26adf6e55c6c12b583974ca18a20b3b8}
+
+\begin{DoxyCompactList}\small\item\em Returns bits per pixel. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_aca953049a05843815d67782186fff67e}{virtual u32 \hyperlink{classirr_1_1video_1_1_c_image_aca953049a05843815d67782186fff67e}{get\-Bytes\-Per\-Pixel} () const }\label{classirr_1_1video_1_1_c_image_aca953049a05843815d67782186fff67e}
+
+\begin{DoxyCompactList}\small\item\em Returns bytes per pixel. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a8ad3323913734f45b78cb3f68a7aa99a}{virtual u32 \hyperlink{classirr_1_1video_1_1_c_image_a8ad3323913734f45b78cb3f68a7aa99a}{get\-Image\-Data\-Size\-In\-Bytes} () const }\label{classirr_1_1video_1_1_c_image_a8ad3323913734f45b78cb3f68a7aa99a}
+
+\begin{DoxyCompactList}\small\item\em Returns image data size in bytes. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a693d76bbbb4669f193e61ee971569877}{virtual u32 \hyperlink{classirr_1_1video_1_1_c_image_a693d76bbbb4669f193e61ee971569877}{get\-Image\-Data\-Size\-In\-Pixels} () const }\label{classirr_1_1video_1_1_c_image_a693d76bbbb4669f193e61ee971569877}
+
+\begin{DoxyCompactList}\small\item\em Returns image data size in pixels. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a4d3aee5bc9b9c7258361a089229e156c}{virtual u32 \hyperlink{classirr_1_1video_1_1_c_image_a4d3aee5bc9b9c7258361a089229e156c}{get\-Red\-Mask} () const }\label{classirr_1_1video_1_1_c_image_a4d3aee5bc9b9c7258361a089229e156c}
+
+\begin{DoxyCompactList}\small\item\em returns mask for red value of a pixel \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a3354b02ba4e1a9211f5900099c587803}{virtual u32 \hyperlink{classirr_1_1video_1_1_c_image_a3354b02ba4e1a9211f5900099c587803}{get\-Green\-Mask} () const }\label{classirr_1_1video_1_1_c_image_a3354b02ba4e1a9211f5900099c587803}
+
+\begin{DoxyCompactList}\small\item\em returns mask for green value of a pixel \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a4c1abefe8a4f4b43d99f7a660c8e4dc0}{virtual u32 \hyperlink{classirr_1_1video_1_1_c_image_a4c1abefe8a4f4b43d99f7a660c8e4dc0}{get\-Blue\-Mask} () const }\label{classirr_1_1video_1_1_c_image_a4c1abefe8a4f4b43d99f7a660c8e4dc0}
+
+\begin{DoxyCompactList}\small\item\em returns mask for blue value of a pixel \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a94ee08f8c4ea7ef4c369576b57228075}{virtual u32 \hyperlink{classirr_1_1video_1_1_c_image_a94ee08f8c4ea7ef4c369576b57228075}{get\-Alpha\-Mask} () const }\label{classirr_1_1video_1_1_c_image_a94ee08f8c4ea7ef4c369576b57228075}
+
+\begin{DoxyCompactList}\small\item\em returns mask for alpha value of a pixel \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a3fb65cde3fcaea72fc82e0b242b4e3c2}{virtual S\-Color \hyperlink{classirr_1_1video_1_1_c_image_a3fb65cde3fcaea72fc82e0b242b4e3c2}{get\-Pixel} (u32 x, u32 y) const }\label{classirr_1_1video_1_1_c_image_a3fb65cde3fcaea72fc82e0b242b4e3c2}
+
+\begin{DoxyCompactList}\small\item\em returns a pixel \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a4649b7ed2d8c323c303b8603218bf669}{virtual void \hyperlink{classirr_1_1video_1_1_c_image_a4649b7ed2d8c323c303b8603218bf669}{set\-Pixel} (u32 x, u32 y, const S\-Color \&color, bool blend=false)}\label{classirr_1_1video_1_1_c_image_a4649b7ed2d8c323c303b8603218bf669}
+
+\begin{DoxyCompactList}\small\item\em sets a pixel \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a224cea58cc5b0e663ff2ed0e19441e21}{virtual E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T \hyperlink{classirr_1_1video_1_1_c_image_a224cea58cc5b0e663ff2ed0e19441e21}{get\-Color\-Format} () const }\label{classirr_1_1video_1_1_c_image_a224cea58cc5b0e663ff2ed0e19441e21}
+
+\begin{DoxyCompactList}\small\item\em returns the color format \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a45f4c9e025ad3bcd4ff4b4d0617ee501}{virtual u32 \hyperlink{classirr_1_1video_1_1_c_image_a45f4c9e025ad3bcd4ff4b4d0617ee501}{get\-Pitch} () const }\label{classirr_1_1video_1_1_c_image_a45f4c9e025ad3bcd4ff4b4d0617ee501}
+
+\begin{DoxyCompactList}\small\item\em returns pitch of image \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1video_1_1_c_image_a53eca0f6a2249b42474aa5a20d320642}{copy\-To\-Scaling} (void $\ast$target, u32 width, u32 height, E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T format, u32 pitch=0)
+\begin{DoxyCompactList}\small\item\em copies this surface into another, scaling it to fit. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1video_1_1_c_image_aaaf697105a454521d6350615ff295259}{copy\-To\-Scaling} (I\-Image $\ast$target)
+\begin{DoxyCompactList}\small\item\em copies this surface into another, scaling it to fit. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1video_1_1_c_image_a200537279763ba36f8efe3ec7eaadfcd}{copy\-To} (I\-Image $\ast$target, const core\-::position2d$<$ s32 $>$ \&pos=core\-::position2d$<$ s32 $>$(0, 0))
+\begin{DoxyCompactList}\small\item\em copies this surface into another \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1video_1_1_c_image_ab85a973100b8bde6ba8ee85952e8aa7b}{copy\-To} (I\-Image $\ast$target, const core\-::position2d$<$ s32 $>$ \&pos, const core\-::rect$<$ s32 $>$ \&source\-Rect, const core\-::rect$<$ s32 $>$ $\ast$clip\-Rect=0)
+\begin{DoxyCompactList}\small\item\em copies this surface into another \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1video_1_1_c_image_a5d4d094a70f4ae57ac388534fdbff1bb}{copy\-To\-With\-Alpha} (I\-Image $\ast$target, const core\-::position2d$<$ s32 $>$ \&pos, const core\-::rect$<$ s32 $>$ \&source\-Rect, const S\-Color \&color, const core\-::rect$<$ s32 $>$ $\ast$clip\-Rect=0)
+\begin{DoxyCompactList}\small\item\em copies this surface into another, using the alpha mask, an cliprect and a color to add with \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1video_1_1_c_image_ad4516d10c1e1f1e04a55fc7428721965}{copy\-To\-Scaling\-Box\-Filter} (I\-Image $\ast$target, s32 bias=0, bool blend=false)
+\begin{DoxyCompactList}\small\item\em copies this surface into another, scaling it to fit, appyling a box filter \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_image_a3e5a67a4108370ef54c2903cec3ae6f8}{virtual void \hyperlink{classirr_1_1video_1_1_c_image_a3e5a67a4108370ef54c2903cec3ae6f8}{fill} (const S\-Color \&color)}\label{classirr_1_1video_1_1_c_image_a3e5a67a4108370ef54c2903cec3ae6f8}
+
+\begin{DoxyCompactList}\small\item\em fills the surface with given color \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+I\-Image implementation with a lot of special image operations for 16 bit A1\-R5\-G5\-B5/32 Bit A8\-R8\-G8\-B8 images, which are used by the Software\-Device. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classirr_1_1video_1_1_c_image_a33fb599ad55a8a75c27c5a8a268ab6c5}{\index{irr\-::video\-::\-C\-Image@{irr\-::video\-::\-C\-Image}!C\-Image@{C\-Image}}
+\index{C\-Image@{C\-Image}!irr::video::CImage@{irr\-::video\-::\-C\-Image}}
+\subsubsection[{C\-Image}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::video\-::\-C\-Image\-::\-C\-Image (
+\begin{DoxyParamCaption}
+\item[{E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T}]{format, }
+\item[{const core\-::dimension2d$<$ u32 $>$ \&}]{size, }
+\item[{void $\ast$}]{data, }
+\item[{bool}]{own\-Foreign\-Memory = {\ttfamily true}, }
+\item[{bool}]{delete\-Memory = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1video_1_1_c_image_a33fb599ad55a8a75c27c5a8a268ab6c5}
+
+
+constructor from raw image data 
+
+Constructor from raw data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em use\-Foreign\-Memory,\-:} & If true, the image will use the data pointer directly and own it from now on, which means it will also try to delete \mbox{[}\mbox{]} the data when the image will be destructed. If false, the memory will by copied. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1video_1_1_c_image_af2394e6328736041c35d80fb94f76258}{\index{irr\-::video\-::\-C\-Image@{irr\-::video\-::\-C\-Image}!C\-Image@{C\-Image}}
+\index{C\-Image@{C\-Image}!irr::video::CImage@{irr\-::video\-::\-C\-Image}}
+\subsubsection[{C\-Image}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::video\-::\-C\-Image\-::\-C\-Image (
+\begin{DoxyParamCaption}
+\item[{E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T}]{format, }
+\item[{const core\-::dimension2d$<$ u32 $>$ \&}]{size}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1video_1_1_c_image_af2394e6328736041c35d80fb94f76258}
+
+
+constructor for empty image 
+
+Constructor of empty image. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1video_1_1_c_image_a200537279763ba36f8efe3ec7eaadfcd}{\index{irr\-::video\-::\-C\-Image@{irr\-::video\-::\-C\-Image}!copy\-To@{copy\-To}}
+\index{copy\-To@{copy\-To}!irr::video::CImage@{irr\-::video\-::\-C\-Image}}
+\subsubsection[{copy\-To}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Image\-::copy\-To (
+\begin{DoxyParamCaption}
+\item[{I\-Image $\ast$}]{target, }
+\item[{const core\-::position2d$<$ s32 $>$ \&}]{pos = {\ttfamily core\-:\-:position2d$<$s32$>$(0,0)}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1video_1_1_c_image_a200537279763ba36f8efe3ec7eaadfcd}
+
+
+copies this surface into another 
+
+copies this surface into another at given position \hypertarget{classirr_1_1video_1_1_c_image_ab85a973100b8bde6ba8ee85952e8aa7b}{\index{irr\-::video\-::\-C\-Image@{irr\-::video\-::\-C\-Image}!copy\-To@{copy\-To}}
+\index{copy\-To@{copy\-To}!irr::video::CImage@{irr\-::video\-::\-C\-Image}}
+\subsubsection[{copy\-To}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Image\-::copy\-To (
+\begin{DoxyParamCaption}
+\item[{I\-Image $\ast$}]{target, }
+\item[{const core\-::position2d$<$ s32 $>$ \&}]{pos, }
+\item[{const core\-::rect$<$ s32 $>$ \&}]{source\-Rect, }
+\item[{const core\-::rect$<$ s32 $>$ $\ast$}]{clip\-Rect = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1video_1_1_c_image_ab85a973100b8bde6ba8ee85952e8aa7b}
+
+
+copies this surface into another 
+
+copies this surface partially into another at given position \hypertarget{classirr_1_1video_1_1_c_image_a53eca0f6a2249b42474aa5a20d320642}{\index{irr\-::video\-::\-C\-Image@{irr\-::video\-::\-C\-Image}!copy\-To\-Scaling@{copy\-To\-Scaling}}
+\index{copy\-To\-Scaling@{copy\-To\-Scaling}!irr::video::CImage@{irr\-::video\-::\-C\-Image}}
+\subsubsection[{copy\-To\-Scaling}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Image\-::copy\-To\-Scaling (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{target, }
+\item[{u32}]{width, }
+\item[{u32}]{height, }
+\item[{E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T}]{format, }
+\item[{u32}]{pitch = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1video_1_1_c_image_a53eca0f6a2249b42474aa5a20d320642}
+
+
+copies this surface into another, scaling it to fit. 
+
+copies this surface into another, scaling it to the target image size \hypertarget{classirr_1_1video_1_1_c_image_aaaf697105a454521d6350615ff295259}{\index{irr\-::video\-::\-C\-Image@{irr\-::video\-::\-C\-Image}!copy\-To\-Scaling@{copy\-To\-Scaling}}
+\index{copy\-To\-Scaling@{copy\-To\-Scaling}!irr::video::CImage@{irr\-::video\-::\-C\-Image}}
+\subsubsection[{copy\-To\-Scaling}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Image\-::copy\-To\-Scaling (
+\begin{DoxyParamCaption}
+\item[{I\-Image $\ast$}]{target}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1video_1_1_c_image_aaaf697105a454521d6350615ff295259}
+
+
+copies this surface into another, scaling it to fit. 
+
+copies this surface into another, scaling it to the target image size \hypertarget{classirr_1_1video_1_1_c_image_ad4516d10c1e1f1e04a55fc7428721965}{\index{irr\-::video\-::\-C\-Image@{irr\-::video\-::\-C\-Image}!copy\-To\-Scaling\-Box\-Filter@{copy\-To\-Scaling\-Box\-Filter}}
+\index{copy\-To\-Scaling\-Box\-Filter@{copy\-To\-Scaling\-Box\-Filter}!irr::video::CImage@{irr\-::video\-::\-C\-Image}}
+\subsubsection[{copy\-To\-Scaling\-Box\-Filter}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Image\-::copy\-To\-Scaling\-Box\-Filter (
+\begin{DoxyParamCaption}
+\item[{I\-Image $\ast$}]{target, }
+\item[{s32}]{bias = {\ttfamily 0}, }
+\item[{bool}]{blend = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1video_1_1_c_image_ad4516d10c1e1f1e04a55fc7428721965}
+
+
+copies this surface into another, scaling it to fit, appyling a box filter 
+
+copies this surface into another, scaling it to fit it. \hypertarget{classirr_1_1video_1_1_c_image_a5d4d094a70f4ae57ac388534fdbff1bb}{\index{irr\-::video\-::\-C\-Image@{irr\-::video\-::\-C\-Image}!copy\-To\-With\-Alpha@{copy\-To\-With\-Alpha}}
+\index{copy\-To\-With\-Alpha@{copy\-To\-With\-Alpha}!irr::video::CImage@{irr\-::video\-::\-C\-Image}}
+\subsubsection[{copy\-To\-With\-Alpha}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Image\-::copy\-To\-With\-Alpha (
+\begin{DoxyParamCaption}
+\item[{I\-Image $\ast$}]{target, }
+\item[{const core\-::position2d$<$ s32 $>$ \&}]{pos, }
+\item[{const core\-::rect$<$ s32 $>$ \&}]{source\-Rect, }
+\item[{const S\-Color \&}]{color, }
+\item[{const core\-::rect$<$ s32 $>$ $\ast$}]{clip\-Rect = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1video_1_1_c_image_a5d4d094a70f4ae57ac388534fdbff1bb}
+
+
+copies this surface into another, using the alpha mask, an cliprect and a color to add with 
+
+copies this surface into another, using the alpha mask, a cliprect and a color to add with 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Image.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Image.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,262 @@
+\hypertarget{classirr_1_1io_1_1_c_file_system}{\section{irr\-:\-:io\-:\-:C\-File\-System Class Reference}
+\label{classirr_1_1io_1_1_c_file_system}\index{irr\-::io\-::\-C\-File\-System@{irr\-::io\-::\-C\-File\-System}}
+}
+
+
+{\ttfamily \#include $<$C\-File\-System.\-h$>$}
+
+Inheritance diagram for irr\-:\-:io\-:\-:C\-File\-System\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1io_1_1_c_file_system}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classirr_1_1io_1_1_c_file_system_a79c323f5672bb2b5ba96453f3a872fb0}{C\-File\-System} ()
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a6b5b858d6dfdbd2c87767484361dcea4}{virtual \hyperlink{classirr_1_1io_1_1_c_file_system_a6b5b858d6dfdbd2c87767484361dcea4}{$\sim$\-C\-File\-System} ()}\label{classirr_1_1io_1_1_c_file_system_a6b5b858d6dfdbd2c87767484361dcea4}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a06761f0a9a7f7cf0df598bdfacc1835b}{virtual I\-Read\-File $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_a06761f0a9a7f7cf0df598bdfacc1835b}{create\-And\-Open\-File} (const io\-::path \&filename)}\label{classirr_1_1io_1_1_c_file_system_a06761f0a9a7f7cf0df598bdfacc1835b}
+
+\begin{DoxyCompactList}\small\item\em opens a file for read access \end{DoxyCompactList}\item 
+virtual I\-Read\-File $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_a7376b00818669926d308e5f8176dfdb0}{create\-Memory\-Read\-File} (void $\ast$memory, s32 len, const io\-::path \&file\-Name, bool delete\-Memory\-When\-Dropped=false)
+\begin{DoxyCompactList}\small\item\em Creates an I\-Read\-File interface for accessing memory like a file. \end{DoxyCompactList}\item 
+virtual I\-Read\-File $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_a56a8b684a26c4b86510b8187a727c2f3}{create\-Limit\-Read\-File} (const io\-::path \&file\-Name, I\-Read\-File $\ast$already\-Opened\-File, long pos, long area\-Size)
+\begin{DoxyCompactList}\small\item\em Creates an I\-Read\-File interface for accessing files inside files. \end{DoxyCompactList}\item 
+virtual I\-Write\-File $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_a1ff14dd862a90cd474fe2a8ecaf92bad}{create\-Memory\-Write\-File} (void $\ast$memory, s32 len, const io\-::path \&file\-Name, bool delete\-Memory\-When\-Dropped=false)
+\begin{DoxyCompactList}\small\item\em Creates an I\-Write\-File interface for accessing memory like a file. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a247d85e560ff6355f596817dadf8cc66}{virtual I\-Write\-File $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_a247d85e560ff6355f596817dadf8cc66}{create\-And\-Write\-File} (const io\-::path \&filename, bool append=false)}\label{classirr_1_1io_1_1_c_file_system_a247d85e560ff6355f596817dadf8cc66}
+
+\begin{DoxyCompactList}\small\item\em Opens a file for write access. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a26126f856b0ffbf08beaf9e8cd943bc5}{virtual bool \hyperlink{classirr_1_1io_1_1_c_file_system_a26126f856b0ffbf08beaf9e8cd943bc5}{add\-File\-Archive} (const io\-::path \&filename, bool ignore\-Case=true, bool ignore\-Paths=true, E\-\_\-\-F\-I\-L\-E\-\_\-\-A\-R\-C\-H\-I\-V\-E\-\_\-\-T\-Y\-P\-E archive\-Type=E\-F\-A\-T\-\_\-\-U\-N\-K\-N\-O\-W\-N, const core\-::stringc \&password=\char`\"{}\char`\"{}, I\-File\-Archive $\ast$$\ast$ret\-Archive=0)}\label{classirr_1_1io_1_1_c_file_system_a26126f856b0ffbf08beaf9e8cd943bc5}
+
+\begin{DoxyCompactList}\small\item\em Adds an archive to the file system. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_adcba3f788f55199aeda2be7ff1a106b5}{virtual bool \hyperlink{classirr_1_1io_1_1_c_file_system_adcba3f788f55199aeda2be7ff1a106b5}{add\-File\-Archive} (I\-Read\-File $\ast$file, bool ignore\-Case=true, bool ignore\-Paths=true, E\-\_\-\-F\-I\-L\-E\-\_\-\-A\-R\-C\-H\-I\-V\-E\-\_\-\-T\-Y\-P\-E archive\-Type=E\-F\-A\-T\-\_\-\-U\-N\-K\-N\-O\-W\-N, const core\-::stringc \&password=\char`\"{}\char`\"{}, I\-File\-Archive $\ast$$\ast$ret\-Archive=0)}\label{classirr_1_1io_1_1_c_file_system_adcba3f788f55199aeda2be7ff1a106b5}
+
+\begin{DoxyCompactList}\small\item\em Adds an archive to the file system. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a1804a6df3af1217db08b7c5a13deb788}{virtual bool \hyperlink{classirr_1_1io_1_1_c_file_system_a1804a6df3af1217db08b7c5a13deb788}{add\-File\-Archive} (I\-File\-Archive $\ast$archive)}\label{classirr_1_1io_1_1_c_file_system_a1804a6df3af1217db08b7c5a13deb788}
+
+\begin{DoxyCompactList}\small\item\em Adds an archive to the file system. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a4912d9b72d602fe74f6a9c5c6388e492}{virtual bool \hyperlink{classirr_1_1io_1_1_c_file_system_a4912d9b72d602fe74f6a9c5c6388e492}{move\-File\-Archive} (u32 source\-Index, s32 relative)}\label{classirr_1_1io_1_1_c_file_system_a4912d9b72d602fe74f6a9c5c6388e492}
+
+\begin{DoxyCompactList}\small\item\em move the hirarchy of the filesystem. moves source\-Index relative up or down \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a25c49d0917f6629ccac0e003a6658027}{virtual void \hyperlink{classirr_1_1io_1_1_c_file_system_a25c49d0917f6629ccac0e003a6658027}{add\-Archive\-Loader} (I\-Archive\-Loader $\ast$loader)}\label{classirr_1_1io_1_1_c_file_system_a25c49d0917f6629ccac0e003a6658027}
+
+\begin{DoxyCompactList}\small\item\em Adds an external archive loader to the engine. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_adb2a7d59568962e0fcfa889b6b2c1f1f}{virtual u32 \hyperlink{classirr_1_1io_1_1_c_file_system_adb2a7d59568962e0fcfa889b6b2c1f1f}{get\-Archive\-Loader\-Count} () const }\label{classirr_1_1io_1_1_c_file_system_adb2a7d59568962e0fcfa889b6b2c1f1f}
+
+\begin{DoxyCompactList}\small\item\em Returns the total number of archive loaders added. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a0aacc3fc4c16fe77346aa402797d1ee1}{virtual I\-Archive\-Loader $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_a0aacc3fc4c16fe77346aa402797d1ee1}{get\-Archive\-Loader} (u32 index) const }\label{classirr_1_1io_1_1_c_file_system_a0aacc3fc4c16fe77346aa402797d1ee1}
+
+\begin{DoxyCompactList}\small\item\em Gets the archive loader by index. \end{DoxyCompactList}\item 
+virtual u32 \hyperlink{classirr_1_1io_1_1_c_file_system_a446954e1446c0e49c9d50c4c75ecbef9}{get\-File\-Archive\-Count} () const 
+\begin{DoxyCompactList}\small\item\em gets the file archive count \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a95c7d756b675b07115206f68a9effe22}{virtual I\-File\-Archive $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_a95c7d756b675b07115206f68a9effe22}{get\-File\-Archive} (u32 index)}\label{classirr_1_1io_1_1_c_file_system_a95c7d756b675b07115206f68a9effe22}
+
+\begin{DoxyCompactList}\small\item\em gets an archive \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a2870e1d08a60fe51c8185c3031239f68}{virtual bool \hyperlink{classirr_1_1io_1_1_c_file_system_a2870e1d08a60fe51c8185c3031239f68}{remove\-File\-Archive} (u32 index)}\label{classirr_1_1io_1_1_c_file_system_a2870e1d08a60fe51c8185c3031239f68}
+
+\begin{DoxyCompactList}\small\item\em removes an archive from the file system. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a01207b72b676a52feaa522e521e6e508}{virtual bool \hyperlink{classirr_1_1io_1_1_c_file_system_a01207b72b676a52feaa522e521e6e508}{remove\-File\-Archive} (const io\-::path \&filename)}\label{classirr_1_1io_1_1_c_file_system_a01207b72b676a52feaa522e521e6e508}
+
+\begin{DoxyCompactList}\small\item\em removes an archive from the file system. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a3d9b0ccc897abfdc22fe13e8a90b4451}{virtual bool \hyperlink{classirr_1_1io_1_1_c_file_system_a3d9b0ccc897abfdc22fe13e8a90b4451}{remove\-File\-Archive} (const I\-File\-Archive $\ast$archive)}\label{classirr_1_1io_1_1_c_file_system_a3d9b0ccc897abfdc22fe13e8a90b4451}
+
+\begin{DoxyCompactList}\small\item\em Removes an archive from the file system. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_abca7b787fcc1dbb02214ee02d457c072}{virtual const io\-::path \& \hyperlink{classirr_1_1io_1_1_c_file_system_abca7b787fcc1dbb02214ee02d457c072}{get\-Working\-Directory} ()}\label{classirr_1_1io_1_1_c_file_system_abca7b787fcc1dbb02214ee02d457c072}
+
+\begin{DoxyCompactList}\small\item\em Returns the string of the current working directory. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1io_1_1_c_file_system_af12a04e907e7784c82aa9ba3bf809433}{change\-Working\-Directory\-To} (const io\-::path \&new\-Directory)
+\begin{DoxyCompactList}\small\item\em Changes the current Working Directory to the given string. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a354d1ab30e57e777bc0d8173698ae4ae}{virtual io\-::path \hyperlink{classirr_1_1io_1_1_c_file_system_a354d1ab30e57e777bc0d8173698ae4ae}{get\-Absolute\-Path} (const io\-::path \&filename) const }\label{classirr_1_1io_1_1_c_file_system_a354d1ab30e57e777bc0d8173698ae4ae}
+
+\begin{DoxyCompactList}\small\item\em Converts a relative path to an absolute (unique) path, resolving symbolic links. \end{DoxyCompactList}\item 
+virtual io\-::path \hyperlink{classirr_1_1io_1_1_c_file_system_adcea7d28f61cde3d2aa972c208576d47}{get\-File\-Dir} (const io\-::path \&filename) const 
+\begin{DoxyCompactList}\small\item\em Returns the directory a file is located in. \end{DoxyCompactList}\item 
+virtual io\-::path \hyperlink{classirr_1_1io_1_1_c_file_system_a02f2b5b3386eb9522be3befc9bdca9b0}{get\-File\-Basename} (const io\-::path \&filename, bool keep\-Extension=true) const 
+\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a71073fb3a0fb03d451c99ffe399783df}{virtual io\-::path \& \hyperlink{classirr_1_1io_1_1_c_file_system_a71073fb3a0fb03d451c99ffe399783df}{flatten\-Filename} (io\-::path \&directory, const io\-::path \&root=\char`\"{}/\char`\"{}) const }\label{classirr_1_1io_1_1_c_file_system_a71073fb3a0fb03d451c99ffe399783df}
+
+\begin{DoxyCompactList}\small\item\em flatten a path and file name for example\-: \char`\"{}/you/me/../.\char`\"{} becomes \char`\"{}/you\char`\"{} \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a9f63d23890941f8dae5b6aaac7c08004}{virtual path \hyperlink{classirr_1_1io_1_1_c_file_system_a9f63d23890941f8dae5b6aaac7c08004}{get\-Relative\-Filename} (const path \&filename, const path \&directory) const }\label{classirr_1_1io_1_1_c_file_system_a9f63d23890941f8dae5b6aaac7c08004}
+
+\begin{DoxyCompactList}\small\item\em Get the relative filename, relative to the given directory. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a9778e874ac48202a820626f05557c7a5}{virtual E\-File\-System\-Type \hyperlink{classirr_1_1io_1_1_c_file_system_a9778e874ac48202a820626f05557c7a5}{set\-File\-List\-System} (E\-File\-System\-Type list\-Type)}\label{classirr_1_1io_1_1_c_file_system_a9778e874ac48202a820626f05557c7a5}
+
+\begin{DoxyCompactList}\small\item\em Sets the current file systen type. \end{DoxyCompactList}\item 
+virtual I\-File\-List $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_ad7e7f5f2a1d181fe626e98a938ddd25f}{create\-File\-List} ()
+\begin{DoxyCompactList}\small\item\em Creates a list of files and directories in the current working directory. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_ab2b85fcee2ad606b8e7fc04f91e779cd}{virtual I\-File\-List $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_ab2b85fcee2ad606b8e7fc04f91e779cd}{create\-Empty\-File\-List} (const io\-::path \&path, bool ignore\-Case, bool ignore\-Paths)}\label{classirr_1_1io_1_1_c_file_system_ab2b85fcee2ad606b8e7fc04f91e779cd}
+
+\begin{DoxyCompactList}\small\item\em Creates an empty filelist. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_ad8fc90a75664df0eb23a69046ed45fd2}{virtual bool \hyperlink{classirr_1_1io_1_1_c_file_system_ad8fc90a75664df0eb23a69046ed45fd2}{exist\-File} (const io\-::path \&filename) const }\label{classirr_1_1io_1_1_c_file_system_ad8fc90a75664df0eb23a69046ed45fd2}
+
+\begin{DoxyCompactList}\small\item\em determines if a file exists and would be able to be opened. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a25e8dfa7316fc9f9d2233511402e1100}{virtual I\-X\-M\-L\-Reader $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_a25e8dfa7316fc9f9d2233511402e1100}{create\-X\-M\-L\-Reader} (const io\-::path \&filename)}\label{classirr_1_1io_1_1_c_file_system_a25e8dfa7316fc9f9d2233511402e1100}
+
+\begin{DoxyCompactList}\small\item\em Creates a X\-M\-L Reader from a file. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a27349b7d0ab84563c21186902fd959c3}{virtual I\-X\-M\-L\-Reader $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_a27349b7d0ab84563c21186902fd959c3}{create\-X\-M\-L\-Reader} (I\-Read\-File $\ast$file)}\label{classirr_1_1io_1_1_c_file_system_a27349b7d0ab84563c21186902fd959c3}
+
+\begin{DoxyCompactList}\small\item\em Creates a X\-M\-L Reader from a file. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_aa32b93c33d5ce4ba6174b09938c09e02}{virtual I\-X\-M\-L\-Reader\-U\-T\-F8 $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_aa32b93c33d5ce4ba6174b09938c09e02}{create\-X\-M\-L\-Reader\-U\-T\-F8} (const io\-::path \&filename)}\label{classirr_1_1io_1_1_c_file_system_aa32b93c33d5ce4ba6174b09938c09e02}
+
+\begin{DoxyCompactList}\small\item\em Creates a X\-M\-L Reader from a file. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a93f021cde40811c8b2e9239ccb1db6b1}{virtual I\-X\-M\-L\-Reader\-U\-T\-F8 $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_a93f021cde40811c8b2e9239ccb1db6b1}{create\-X\-M\-L\-Reader\-U\-T\-F8} (I\-Read\-File $\ast$file)}\label{classirr_1_1io_1_1_c_file_system_a93f021cde40811c8b2e9239ccb1db6b1}
+
+\begin{DoxyCompactList}\small\item\em Creates a X\-M\-L Reader from a file. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a23e96a4ff77771eb15a59d4c3dcf5fbf}{virtual I\-X\-M\-L\-Writer $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_a23e96a4ff77771eb15a59d4c3dcf5fbf}{create\-X\-M\-L\-Writer} (const io\-::path \&filename)}\label{classirr_1_1io_1_1_c_file_system_a23e96a4ff77771eb15a59d4c3dcf5fbf}
+
+\begin{DoxyCompactList}\small\item\em Creates a X\-M\-L Writer from a file. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a078d2b82d731777201fcb0bb524ba047}{virtual I\-X\-M\-L\-Writer $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_a078d2b82d731777201fcb0bb524ba047}{create\-X\-M\-L\-Writer} (I\-Write\-File $\ast$file)}\label{classirr_1_1io_1_1_c_file_system_a078d2b82d731777201fcb0bb524ba047}
+
+\begin{DoxyCompactList}\small\item\em Creates a X\-M\-L Writer from a file. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_system_a6bba814972ef5c13488ad73dd7f77537}{virtual I\-Attributes $\ast$ \hyperlink{classirr_1_1io_1_1_c_file_system_a6bba814972ef5c13488ad73dd7f77537}{create\-Empty\-Attributes} (video\-::\-I\-Video\-Driver $\ast$driver)}\label{classirr_1_1io_1_1_c_file_system_a6bba814972ef5c13488ad73dd7f77537}
+
+\begin{DoxyCompactList}\small\item\em Creates a new empty collection of attributes, usable for serialization and more. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File\-System which uses normal files and one zipfile 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classirr_1_1io_1_1_c_file_system_a79c323f5672bb2b5ba96453f3a872fb0}{\index{irr\-::io\-::\-C\-File\-System@{irr\-::io\-::\-C\-File\-System}!C\-File\-System@{C\-File\-System}}
+\index{C\-File\-System@{C\-File\-System}!irr::io::CFileSystem@{irr\-::io\-::\-C\-File\-System}}
+\subsubsection[{C\-File\-System}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::io\-::\-C\-File\-System\-::\-C\-File\-System (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1io_1_1_c_file_system_a79c323f5672bb2b5ba96453f3a872fb0}
+
+
+constructor 
+
+reset current working directory 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1io_1_1_c_file_system_af12a04e907e7784c82aa9ba3bf809433}{\index{irr\-::io\-::\-C\-File\-System@{irr\-::io\-::\-C\-File\-System}!change\-Working\-Directory\-To@{change\-Working\-Directory\-To}}
+\index{change\-Working\-Directory\-To@{change\-Working\-Directory\-To}!irr::io::CFileSystem@{irr\-::io\-::\-C\-File\-System}}
+\subsubsection[{change\-Working\-Directory\-To}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::io\-::\-C\-File\-System\-::change\-Working\-Directory\-To (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{new\-Directory}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_file_system_af12a04e907e7784c82aa9ba3bf809433}
+
+
+Changes the current Working Directory to the given string. 
+
+Changes the current Working Directory to the string given. The string is operating system dependent. Under Windows it will look like this\-: \char`\"{}drive\-:\textbackslash{}directory\textbackslash{}sudirectory\textbackslash{}\char`\"{} \hypertarget{classirr_1_1io_1_1_c_file_system_ad7e7f5f2a1d181fe626e98a938ddd25f}{\index{irr\-::io\-::\-C\-File\-System@{irr\-::io\-::\-C\-File\-System}!create\-File\-List@{create\-File\-List}}
+\index{create\-File\-List@{create\-File\-List}!irr::io::CFileSystem@{irr\-::io\-::\-C\-File\-System}}
+\subsubsection[{create\-File\-List}]{\setlength{\rightskip}{0pt plus 5cm}I\-File\-List $\ast$ irr\-::io\-::\-C\-File\-System\-::create\-File\-List (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_file_system_ad7e7f5f2a1d181fe626e98a938ddd25f}
+
+
+Creates a list of files and directories in the current working directory. 
+
+Creates a list of files and directories in the current working directory and returns it. Construct from native filesystem
+
+Windows version
+
+Linux version
+
+create file list for the virtual filesystem
+
+add relative navigation
+
+P\-W\-D
+
+parent
+
+merge archives \hypertarget{classirr_1_1io_1_1_c_file_system_a56a8b684a26c4b86510b8187a727c2f3}{\index{irr\-::io\-::\-C\-File\-System@{irr\-::io\-::\-C\-File\-System}!create\-Limit\-Read\-File@{create\-Limit\-Read\-File}}
+\index{create\-Limit\-Read\-File@{create\-Limit\-Read\-File}!irr::io::CFileSystem@{irr\-::io\-::\-C\-File\-System}}
+\subsubsection[{create\-Limit\-Read\-File}]{\setlength{\rightskip}{0pt plus 5cm}I\-Read\-File $\ast$ irr\-::io\-::\-C\-File\-System\-::create\-Limit\-Read\-File (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{file\-Name, }
+\item[{I\-Read\-File $\ast$}]{already\-Opened\-File, }
+\item[{long}]{pos, }
+\item[{long}]{area\-Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_file_system_a56a8b684a26c4b86510b8187a727c2f3}
+
+
+Creates an I\-Read\-File interface for accessing files inside files. 
+
+Creates an I\-Read\-File interface for reading files inside files. \hypertarget{classirr_1_1io_1_1_c_file_system_a7376b00818669926d308e5f8176dfdb0}{\index{irr\-::io\-::\-C\-File\-System@{irr\-::io\-::\-C\-File\-System}!create\-Memory\-Read\-File@{create\-Memory\-Read\-File}}
+\index{create\-Memory\-Read\-File@{create\-Memory\-Read\-File}!irr::io::CFileSystem@{irr\-::io\-::\-C\-File\-System}}
+\subsubsection[{create\-Memory\-Read\-File}]{\setlength{\rightskip}{0pt plus 5cm}I\-Read\-File $\ast$ irr\-::io\-::\-C\-File\-System\-::create\-Memory\-Read\-File (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{memory, }
+\item[{s32}]{len, }
+\item[{const io\-::path \&}]{file\-Name, }
+\item[{bool}]{delete\-Memory\-When\-Dropped = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_file_system_a7376b00818669926d308e5f8176dfdb0}
+
+
+Creates an I\-Read\-File interface for accessing memory like a file. 
+
+Creates an I\-Read\-File interface for treating memory like a file. \hypertarget{classirr_1_1io_1_1_c_file_system_a1ff14dd862a90cd474fe2a8ecaf92bad}{\index{irr\-::io\-::\-C\-File\-System@{irr\-::io\-::\-C\-File\-System}!create\-Memory\-Write\-File@{create\-Memory\-Write\-File}}
+\index{create\-Memory\-Write\-File@{create\-Memory\-Write\-File}!irr::io::CFileSystem@{irr\-::io\-::\-C\-File\-System}}
+\subsubsection[{create\-Memory\-Write\-File}]{\setlength{\rightskip}{0pt plus 5cm}I\-Write\-File $\ast$ irr\-::io\-::\-C\-File\-System\-::create\-Memory\-Write\-File (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{memory, }
+\item[{s32}]{len, }
+\item[{const io\-::path \&}]{file\-Name, }
+\item[{bool}]{delete\-Memory\-When\-Dropped = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_file_system_a1ff14dd862a90cd474fe2a8ecaf92bad}
+
+
+Creates an I\-Write\-File interface for accessing memory like a file. 
+
+Creates an I\-Read\-File interface for treating memory like a file. \hypertarget{classirr_1_1io_1_1_c_file_system_a446954e1446c0e49c9d50c4c75ecbef9}{\index{irr\-::io\-::\-C\-File\-System@{irr\-::io\-::\-C\-File\-System}!get\-File\-Archive\-Count@{get\-File\-Archive\-Count}}
+\index{get\-File\-Archive\-Count@{get\-File\-Archive\-Count}!irr::io::CFileSystem@{irr\-::io\-::\-C\-File\-System}}
+\subsubsection[{get\-File\-Archive\-Count}]{\setlength{\rightskip}{0pt plus 5cm}u32 irr\-::io\-::\-C\-File\-System\-::get\-File\-Archive\-Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_file_system_a446954e1446c0e49c9d50c4c75ecbef9}
+
+
+gets the file archive count 
+
+gets an archive \hypertarget{classirr_1_1io_1_1_c_file_system_a02f2b5b3386eb9522be3befc9bdca9b0}{\index{irr\-::io\-::\-C\-File\-System@{irr\-::io\-::\-C\-File\-System}!get\-File\-Basename@{get\-File\-Basename}}
+\index{get\-File\-Basename@{get\-File\-Basename}!irr::io::CFileSystem@{irr\-::io\-::\-C\-File\-System}}
+\subsubsection[{get\-File\-Basename}]{\setlength{\rightskip}{0pt plus 5cm}io\-::path irr\-::io\-::\-C\-File\-System\-::get\-File\-Basename (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{filename, }
+\item[{bool}]{keep\-Extension = {\ttfamily true}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_file_system_a02f2b5b3386eb9522be3befc9bdca9b0}
+Returns the base part of a filename, i.\-e. the name without the directory part. If no directory is prefixed, the full name is returned. 
+\begin{DoxyParams}{Parameters}
+{\em filename,\-:} & The file to get the basename from\\
+\hline
+\end{DoxyParams}
+returns the base part of a filename, i.\-e. all except for the directory part. If no directory path is prefixed, the full name is returned. \hypertarget{classirr_1_1io_1_1_c_file_system_adcea7d28f61cde3d2aa972c208576d47}{\index{irr\-::io\-::\-C\-File\-System@{irr\-::io\-::\-C\-File\-System}!get\-File\-Dir@{get\-File\-Dir}}
+\index{get\-File\-Dir@{get\-File\-Dir}!irr::io::CFileSystem@{irr\-::io\-::\-C\-File\-System}}
+\subsubsection[{get\-File\-Dir}]{\setlength{\rightskip}{0pt plus 5cm}io\-::path irr\-::io\-::\-C\-File\-System\-::get\-File\-Dir (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{filename}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_file_system_adcea7d28f61cde3d2aa972c208576d47}
+
+
+Returns the directory a file is located in. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename,\-:} & The file to get the directory from\\
+\hline
+\end{DoxyParams}
+returns the directory part of a filename, i.\-e. all until the first slash or backslash, excluding it. If no directory path is prefixed, a '.' is returned. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-File\-System.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-File\-System.\-cpp\end{DoxyCompactItemize}

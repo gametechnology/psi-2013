@@ -1,0 +1,59 @@
+\hypertarget{classirr_1_1scene_1_1_c_s_t_l_mesh_writer}{\section{irr\-:\-:scene\-:\-:C\-S\-T\-L\-Mesh\-Writer Class Reference}
+\label{classirr_1_1scene_1_1_c_s_t_l_mesh_writer}\index{irr\-::scene\-::\-C\-S\-T\-L\-Mesh\-Writer@{irr\-::scene\-::\-C\-S\-T\-L\-Mesh\-Writer}}
+}
+
+
+class to write meshes, implementing a S\-T\-L writer  
+
+
+
+
+{\ttfamily \#include $<$C\-S\-T\-L\-Mesh\-Writer.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-S\-T\-L\-Mesh\-Writer\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_s_t_l_mesh_writer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a3471f8c8a9bc7be3dc517c147d55541f}{{\bfseries C\-S\-T\-L\-Mesh\-Writer} (scene\-::\-I\-Scene\-Manager $\ast$smgr)}\label{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a3471f8c8a9bc7be3dc517c147d55541f}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_ad3db2a0221537e09d73aa898e5c31623}{virtual E\-M\-E\-S\-H\-\_\-\-W\-R\-I\-T\-E\-R\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_ad3db2a0221537e09d73aa898e5c31623}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_ad3db2a0221537e09d73aa898e5c31623}
+
+\begin{DoxyCompactList}\small\item\em Returns the type of the mesh writer. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a50494f8accb95208937f7e83647aabaf}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a50494f8accb95208937f7e83647aabaf}{write\-Mesh} (io\-::\-I\-Write\-File $\ast$file, scene\-::\-I\-Mesh $\ast$mesh, s32 flags=E\-M\-W\-F\-\_\-\-N\-O\-N\-E)}\label{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a50494f8accb95208937f7e83647aabaf}
+
+\begin{DoxyCompactList}\small\item\em writes a mesh \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a7c342c2b76a3b5ddefe7aeeedb5c644d}{bool {\bfseries write\-Mesh\-Binary} (io\-::\-I\-Write\-File $\ast$file, scene\-::\-I\-Mesh $\ast$mesh, s32 flags)}\label{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a7c342c2b76a3b5ddefe7aeeedb5c644d}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a773fa656db06bf3668f823cabb79c4df}{bool {\bfseries write\-Mesh\-A\-S\-C\-I\-I} (io\-::\-I\-Write\-File $\ast$file, scene\-::\-I\-Mesh $\ast$mesh, s32 flags)}\label{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a773fa656db06bf3668f823cabb79c4df}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a4d89343c498113f9b45ca1c4e176fd55}{void {\bfseries get\-Vector\-As\-String\-Line} (const core\-::vector3df \&v, core\-::stringc \&s) const }\label{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a4d89343c498113f9b45ca1c4e176fd55}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a5cd2114128f78516e3d786822dff75cc}{void {\bfseries write\-Face} (io\-::\-I\-Write\-File $\ast$file, const core\-::vector3df \&v1, const core\-::vector3df \&v2, const core\-::vector3df \&v3)}\label{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a5cd2114128f78516e3d786822dff75cc}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a30763edf30a3b37b49d044fbf1982dfe}{scene\-::\-I\-Scene\-Manager $\ast$ {\bfseries Scene\-Manager}}\label{classirr_1_1scene_1_1_c_s_t_l_mesh_writer_a30763edf30a3b37b49d044fbf1982dfe}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+class to write meshes, implementing a S\-T\-L writer 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-S\-T\-L\-Mesh\-Writer.\-h\end{DoxyCompactItemize}

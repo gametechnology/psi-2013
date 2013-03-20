@@ -1,0 +1,205 @@
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh}{\section{irr\-:\-:scene\-:\-:C\-Skinned\-Mesh Class Reference}
+\label{classirr_1_1scene_1_1_c_skinned_mesh}\index{irr\-::scene\-::\-C\-Skinned\-Mesh@{irr\-::scene\-::\-C\-Skinned\-Mesh}}
+}
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Skinned\-Mesh\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_skinned_mesh}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a7a24142fadbcc307bd441597b9acbad5}{\hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a7a24142fadbcc307bd441597b9acbad5}{C\-Skinned\-Mesh} ()}\label{classirr_1_1scene_1_1_c_skinned_mesh_a7a24142fadbcc307bd441597b9acbad5}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_aa5bd846957f3f1d626685eafb8267891}{virtual \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_aa5bd846957f3f1d626685eafb8267891}{$\sim$\-C\-Skinned\-Mesh} ()}\label{classirr_1_1scene_1_1_c_skinned_mesh_aa5bd846957f3f1d626685eafb8267891}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a3c5a5ea413c8c70a92a287adef0587d4}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a3c5a5ea413c8c70a92a287adef0587d4}{get\-Frame\-Count} () const }\label{classirr_1_1scene_1_1_c_skinned_mesh_a3c5a5ea413c8c70a92a287adef0587d4}
+
+\begin{DoxyCompactList}\small\item\em returns the amount of frames. If the amount is 1, it is a static (=non animated) mesh. \end{DoxyCompactList}\item 
+virtual f32 \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a31a4f60a11d1cbab2405ef8fa51932d9}{get\-Animation\-Speed} () const 
+\begin{DoxyCompactList}\small\item\em Gets the default animation speed of the animated mesh. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_ab882bbc374b7376e9f476eda9f85e9ee}{set\-Animation\-Speed} (f32 fps)
+\begin{DoxyCompactList}\small\item\em Gets the frame count of the animated mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a43d4fa8eb4b60c5cae247ab9df38df04}{virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a43d4fa8eb4b60c5cae247ab9df38df04}{get\-Mesh} (s32 frame, s32 detail\-Level=255, s32 start\-Frame\-Loop=-\/1, s32 end\-Frame\-Loop=-\/1)}\label{classirr_1_1scene_1_1_c_skinned_mesh_a43d4fa8eb4b60c5cae247ab9df38df04}
+
+\begin{DoxyCompactList}\small\item\em returns the animated mesh based on a detail level (which is ignored) \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a5b33b20f1baf826eb491ccf5a5246253}{animate\-Mesh} (f32 frame, f32 blend)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_afe6d606859aff64c7c6c7a1c3546e896}{virtual void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_afe6d606859aff64c7c6c7a1c3546e896}{skin\-Mesh} ()}\label{classirr_1_1scene_1_1_c_skinned_mesh_afe6d606859aff64c7c6c7a1c3546e896}
+
+\begin{DoxyCompactList}\small\item\em Preforms a software skin on this mesh based of joint positions. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a85d14215acadf6574832b19db046eb59}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a85d14215acadf6574832b19db046eb59}{get\-Mesh\-Buffer\-Count} () const }\label{classirr_1_1scene_1_1_c_skinned_mesh_a85d14215acadf6574832b19db046eb59}
+
+\begin{DoxyCompactList}\small\item\em returns amount of mesh buffers. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a91eaa56889ae48b6dd00dec1d8f00d68}{virtual I\-Mesh\-Buffer $\ast$ \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a91eaa56889ae48b6dd00dec1d8f00d68}{get\-Mesh\-Buffer} (u32 nr) const }\label{classirr_1_1scene_1_1_c_skinned_mesh_a91eaa56889ae48b6dd00dec1d8f00d68}
+
+\begin{DoxyCompactList}\small\item\em returns pointer to a mesh buffer \end{DoxyCompactList}\item 
+virtual I\-Mesh\-Buffer $\ast$ \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_aaee0779795ec84d55c2a5d5a3c3b9d62}{get\-Mesh\-Buffer} (const video\-::\-S\-Material \&material) const 
+\begin{DoxyCompactList}\small\item\em Returns pointer to a mesh buffer which fits a material. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a7a4ebd8cee652720e109801a8654eb7d}{virtual const core\-::aabbox3d\\*
+$<$ f32 $>$ \& \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a7a4ebd8cee652720e109801a8654eb7d}{get\-Bounding\-Box} () const }\label{classirr_1_1scene_1_1_c_skinned_mesh_a7a4ebd8cee652720e109801a8654eb7d}
+
+\begin{DoxyCompactList}\small\item\em returns an axis aligned bounding box \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a63e55fce117840eb49034c70681974ae}{virtual void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a63e55fce117840eb49034c70681974ae}{set\-Bounding\-Box} (const core\-::aabbox3df \&box)}\label{classirr_1_1scene_1_1_c_skinned_mesh_a63e55fce117840eb49034c70681974ae}
+
+\begin{DoxyCompactList}\small\item\em set user axis aligned bounding box \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a5cb76375c5ec10d87bece2f31d40de6b}{virtual void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a5cb76375c5ec10d87bece2f31d40de6b}{set\-Material\-Flag} (video\-::\-E\-\_\-\-M\-A\-T\-E\-R\-I\-A\-L\-\_\-\-F\-L\-A\-G flag, bool newvalue)}\label{classirr_1_1scene_1_1_c_skinned_mesh_a5cb76375c5ec10d87bece2f31d40de6b}
+
+\begin{DoxyCompactList}\small\item\em sets a flag of all contained materials to a new value \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a4b7bb8d1ff94e6b6011d25406e987839}{virtual void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a4b7bb8d1ff94e6b6011d25406e987839}{set\-Hardware\-Mapping\-Hint} (E\-\_\-\-H\-A\-R\-D\-W\-A\-R\-E\-\_\-\-M\-A\-P\-P\-I\-N\-G new\-Mapping\-Hint, E\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-T\-Y\-P\-E buffer=E\-B\-T\-\_\-\-V\-E\-R\-T\-E\-X\-\_\-\-A\-N\-D\-\_\-\-I\-N\-D\-E\-X)}\label{classirr_1_1scene_1_1_c_skinned_mesh_a4b7bb8d1ff94e6b6011d25406e987839}
+
+\begin{DoxyCompactList}\small\item\em set the hardware mapping hint, for driver \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_ab7d58140f563c01086307fda52a3a997}{virtual void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_ab7d58140f563c01086307fda52a3a997}{set\-Dirty} (E\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-T\-Y\-P\-E buffer=E\-B\-T\-\_\-\-V\-E\-R\-T\-E\-X\-\_\-\-A\-N\-D\-\_\-\-I\-N\-D\-E\-X)}\label{classirr_1_1scene_1_1_c_skinned_mesh_ab7d58140f563c01086307fda52a3a997}
+
+\begin{DoxyCompactList}\small\item\em flags the meshbuffer as changed, reloads hardware buffers \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a86d801ccb8a922c9fd5bcf5576e76674}{virtual E\-\_\-\-A\-N\-I\-M\-A\-T\-E\-D\-\_\-\-M\-E\-S\-H\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a86d801ccb8a922c9fd5bcf5576e76674}{get\-Mesh\-Type} () const }\label{classirr_1_1scene_1_1_c_skinned_mesh_a86d801ccb8a922c9fd5bcf5576e76674}
+
+\begin{DoxyCompactList}\small\item\em Returns the type of the animated mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a442635bd9f0e8827a350245bcdcdd564}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a442635bd9f0e8827a350245bcdcdd564}{get\-Joint\-Count} () const }\label{classirr_1_1scene_1_1_c_skinned_mesh_a442635bd9f0e8827a350245bcdcdd564}
+
+\begin{DoxyCompactList}\small\item\em Gets joint count. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_ab36a098231f1e42f2160b89e81d863c0}{virtual const c8 $\ast$ \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_ab36a098231f1e42f2160b89e81d863c0}{get\-Joint\-Name} (u32 number) const }\label{classirr_1_1scene_1_1_c_skinned_mesh_ab36a098231f1e42f2160b89e81d863c0}
+
+\begin{DoxyCompactList}\small\item\em Gets the name of a joint. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a0ac5cb232ee475b774f8ede0c1b9b530}{virtual s32 \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a0ac5cb232ee475b774f8ede0c1b9b530}{get\-Joint\-Number} (const c8 $\ast$name) const }\label{classirr_1_1scene_1_1_c_skinned_mesh_a0ac5cb232ee475b774f8ede0c1b9b530}
+
+\begin{DoxyCompactList}\small\item\em Gets a joint number from its name. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a58255d1623292d8fa6f7386928e0160a}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a58255d1623292d8fa6f7386928e0160a}{use\-Animation\-From} (const I\-Skinned\-Mesh $\ast$mesh)}\label{classirr_1_1scene_1_1_c_skinned_mesh_a58255d1623292d8fa6f7386928e0160a}
+
+\begin{DoxyCompactList}\small\item\em uses animation from another mesh \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a5e8d7566ad703483e273668dc7822ae0}{update\-Normals\-When\-Animating} (bool on)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a933028d87c7b4dfec68b850d98464826}{virtual void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a933028d87c7b4dfec68b850d98464826}{set\-Interpolation\-Mode} (E\-\_\-\-I\-N\-T\-E\-R\-P\-O\-L\-A\-T\-I\-O\-N\-\_\-\-M\-O\-D\-E mode)}\label{classirr_1_1scene_1_1_c_skinned_mesh_a933028d87c7b4dfec68b850d98464826}
+
+\begin{DoxyCompactList}\small\item\em Sets Interpolation Mode. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_aebea4d54bbb8860db8fee429949c729d}{virtual void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_aebea4d54bbb8860db8fee429949c729d}{convert\-Mesh\-To\-Tangents} ()}\label{classirr_1_1scene_1_1_c_skinned_mesh_aebea4d54bbb8860db8fee429949c729d}
+
+\begin{DoxyCompactList}\small\item\em Convertes the mesh to contain tangent information. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a22724aef8d318614c211d1bc3871161d}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a22724aef8d318614c211d1bc3871161d}{is\-Static} ()}\label{classirr_1_1scene_1_1_c_skinned_mesh_a22724aef8d318614c211d1bc3871161d}
+
+\begin{DoxyCompactList}\small\item\em Does the mesh have no animation. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a5375a29e2f0e7b4f4b6392a8a0b79d8b}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a5375a29e2f0e7b4f4b6392a8a0b79d8b}{set\-Hardware\-Skinning} (bool on)}\label{classirr_1_1scene_1_1_c_skinned_mesh_a5375a29e2f0e7b4f4b6392a8a0b79d8b}
+
+\begin{DoxyCompactList}\small\item\em (This feature is not implemented in irrlicht yet) \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_ac857de913041104dd672c6912a253e50}{virtual core\-::array\\*
+$<$ S\-Skin\-Mesh\-Buffer $\ast$ $>$ \& \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_ac857de913041104dd672c6912a253e50}{get\-Mesh\-Buffers} ()}\label{classirr_1_1scene_1_1_c_skinned_mesh_ac857de913041104dd672c6912a253e50}
+
+\begin{DoxyCompactList}\small\item\em exposed for loaders to add mesh buffers \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_ac41b7fd1d76feda1e59f2b5f5b124340}{virtual core\-::array$<$ S\-Joint $\ast$ $>$ \& \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_ac41b7fd1d76feda1e59f2b5f5b124340}{get\-All\-Joints} ()}\label{classirr_1_1scene_1_1_c_skinned_mesh_ac41b7fd1d76feda1e59f2b5f5b124340}
+
+\begin{DoxyCompactList}\small\item\em alternative method for adding joints \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a269617e28d6748b6ffbd06166cbdd898}{virtual const core\-::array\\*
+$<$ S\-Joint $\ast$ $>$ \& \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a269617e28d6748b6ffbd06166cbdd898}{get\-All\-Joints} () const }\label{classirr_1_1scene_1_1_c_skinned_mesh_a269617e28d6748b6ffbd06166cbdd898}
+
+\begin{DoxyCompactList}\small\item\em alternative method for adding joints \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a34670046e0cfc3e8fc29bbe52b296973}{virtual void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a34670046e0cfc3e8fc29bbe52b296973}{finalize} ()}\label{classirr_1_1scene_1_1_c_skinned_mesh_a34670046e0cfc3e8fc29bbe52b296973}
+
+\begin{DoxyCompactList}\small\item\em loaders should call this after populating the mesh \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_ae6919ee05202cee8a2c4016f5cede810}{virtual S\-Skin\-Mesh\-Buffer $\ast$ \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_ae6919ee05202cee8a2c4016f5cede810}{add\-Mesh\-Buffer} ()}\label{classirr_1_1scene_1_1_c_skinned_mesh_ae6919ee05202cee8a2c4016f5cede810}
+
+\begin{DoxyCompactList}\small\item\em Adds a new meshbuffer to the mesh, access it as last one. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_adc2d46c126a5fe98677565b4df065583}{virtual S\-Joint $\ast$ \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_adc2d46c126a5fe98677565b4df065583}{add\-Joint} (S\-Joint $\ast$parent=0)}\label{classirr_1_1scene_1_1_c_skinned_mesh_adc2d46c126a5fe98677565b4df065583}
+
+\begin{DoxyCompactList}\small\item\em Adds a new joint to the mesh, access it as last one. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_ae8a450d6fed0d64f791f2b5a03a446a6}{virtual S\-Position\-Key $\ast$ \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_ae8a450d6fed0d64f791f2b5a03a446a6}{add\-Position\-Key} (S\-Joint $\ast$joint)}\label{classirr_1_1scene_1_1_c_skinned_mesh_ae8a450d6fed0d64f791f2b5a03a446a6}
+
+\begin{DoxyCompactList}\small\item\em Adds a new position key to the mesh, access it as last one. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_af48dac6dbedcd45c6d6e0b0eddc2ed7f}{virtual S\-Rotation\-Key $\ast$ \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_af48dac6dbedcd45c6d6e0b0eddc2ed7f}{add\-Rotation\-Key} (S\-Joint $\ast$joint)}\label{classirr_1_1scene_1_1_c_skinned_mesh_af48dac6dbedcd45c6d6e0b0eddc2ed7f}
+
+\begin{DoxyCompactList}\small\item\em Adds a new rotation key to the mesh, access it as last one. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a2697244d4e9c15f4bab3458a0e1a1027}{virtual S\-Scale\-Key $\ast$ \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a2697244d4e9c15f4bab3458a0e1a1027}{add\-Scale\-Key} (S\-Joint $\ast$joint)}\label{classirr_1_1scene_1_1_c_skinned_mesh_a2697244d4e9c15f4bab3458a0e1a1027}
+
+\begin{DoxyCompactList}\small\item\em Adds a new scale key to the mesh, access it as last one. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_abc4eab31c6ffff9a3217f7904edf825e}{virtual S\-Weight $\ast$ \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_abc4eab31c6ffff9a3217f7904edf825e}{add\-Weight} (S\-Joint $\ast$joint)}\label{classirr_1_1scene_1_1_c_skinned_mesh_abc4eab31c6ffff9a3217f7904edf825e}
+
+\begin{DoxyCompactList}\small\item\em Adds a new weight to the mesh, access it as last one. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a9049fdf0faaa79fc27394571ddc62e58}{virtual void {\bfseries update\-Bounding\-Box} (void)}\label{classirr_1_1scene_1_1_c_skinned_mesh_a9049fdf0faaa79fc27394571ddc62e58}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_aed212277278110657517e474adddaff9}{void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_aed212277278110657517e474adddaff9}{recover\-Joints\-From\-Mesh} (core\-::array$<$ I\-Bone\-Scene\-Node $\ast$ $>$ \&joint\-Child\-Scene\-Nodes)}\label{classirr_1_1scene_1_1_c_skinned_mesh_aed212277278110657517e474adddaff9}
+
+\begin{DoxyCompactList}\small\item\em Recovers the joints from the mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a7891a561328ce9c4ad056a981f3c61d1}{void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a7891a561328ce9c4ad056a981f3c61d1}{transfer\-Joints\-To\-Mesh} (const core\-::array$<$ I\-Bone\-Scene\-Node $\ast$ $>$ \&joint\-Child\-Scene\-Nodes)}\label{classirr_1_1scene_1_1_c_skinned_mesh_a7891a561328ce9c4ad056a981f3c61d1}
+
+\begin{DoxyCompactList}\small\item\em Tranfers the joint data to the mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a982b1826ff1df1ea2b122e4805a0cfbd}{void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_a982b1826ff1df1ea2b122e4805a0cfbd}{transfer\-Only\-Joints\-Hints\-To\-Mesh} (const core\-::array$<$ I\-Bone\-Scene\-Node $\ast$ $>$ \&joint\-Child\-Scene\-Nodes)}\label{classirr_1_1scene_1_1_c_skinned_mesh_a982b1826ff1df1ea2b122e4805a0cfbd}
+
+\begin{DoxyCompactList}\small\item\em Tranfers the joint hints to the mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_aa29a408757bd211083f015cc051af1f7}{void \hyperlink{classirr_1_1scene_1_1_c_skinned_mesh_aa29a408757bd211083f015cc051af1f7}{add\-Joints} (core\-::array$<$ I\-Bone\-Scene\-Node $\ast$ $>$ \&joint\-Child\-Scene\-Nodes, I\-Animated\-Mesh\-Scene\-Node $\ast$node, I\-Scene\-Manager $\ast$smgr)}\label{classirr_1_1scene_1_1_c_skinned_mesh_aa29a408757bd211083f015cc051af1f7}
+
+\begin{DoxyCompactList}\small\item\em Creates an array of joints from this mesh as children of node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a5b33b20f1baf826eb491ccf5a5246253}{\index{irr\-::scene\-::\-C\-Skinned\-Mesh@{irr\-::scene\-::\-C\-Skinned\-Mesh}!animate\-Mesh@{animate\-Mesh}}
+\index{animate\-Mesh@{animate\-Mesh}!irr::scene::CSkinnedMesh@{irr\-::scene\-::\-C\-Skinned\-Mesh}}
+\subsubsection[{animate\-Mesh}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::scene\-::\-C\-Skinned\-Mesh\-::animate\-Mesh (
+\begin{DoxyParamCaption}
+\item[{f32}]{frame, }
+\item[{f32}]{blend}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_skinned_mesh_a5b33b20f1baf826eb491ccf5a5246253}
+Animates this mesh's joints based on frame input blend\-: \{0-\/old position, 1-\/\-New position\} \hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a31a4f60a11d1cbab2405ef8fa51932d9}{\index{irr\-::scene\-::\-C\-Skinned\-Mesh@{irr\-::scene\-::\-C\-Skinned\-Mesh}!get\-Animation\-Speed@{get\-Animation\-Speed}}
+\index{get\-Animation\-Speed@{get\-Animation\-Speed}!irr::scene::CSkinnedMesh@{irr\-::scene\-::\-C\-Skinned\-Mesh}}
+\subsubsection[{get\-Animation\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}virtual f32 irr\-::scene\-::\-C\-Skinned\-Mesh\-::get\-Animation\-Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_skinned_mesh_a31a4f60a11d1cbab2405ef8fa51932d9}
+
+
+Gets the default animation speed of the animated mesh. 
+
+\begin{DoxyReturn}{Returns}
+Amount of frames per second. If the amount is 0, it is a static, non animated mesh. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_aaee0779795ec84d55c2a5d5a3c3b9d62}{\index{irr\-::scene\-::\-C\-Skinned\-Mesh@{irr\-::scene\-::\-C\-Skinned\-Mesh}!get\-Mesh\-Buffer@{get\-Mesh\-Buffer}}
+\index{get\-Mesh\-Buffer@{get\-Mesh\-Buffer}!irr::scene::CSkinnedMesh@{irr\-::scene\-::\-C\-Skinned\-Mesh}}
+\subsubsection[{get\-Mesh\-Buffer}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Mesh\-Buffer$\ast$ irr\-::scene\-::\-C\-Skinned\-Mesh\-::get\-Mesh\-Buffer (
+\begin{DoxyParamCaption}
+\item[{const video\-::\-S\-Material \&}]{material}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_skinned_mesh_aaee0779795ec84d55c2a5d5a3c3b9d62}
+
+
+Returns pointer to a mesh buffer which fits a material. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em material,\-:} & material to search for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the pointer to the mesh buffer or N\-U\-L\-L if there is no such mesh buffer. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_ab882bbc374b7376e9f476eda9f85e9ee}{\index{irr\-::scene\-::\-C\-Skinned\-Mesh@{irr\-::scene\-::\-C\-Skinned\-Mesh}!set\-Animation\-Speed@{set\-Animation\-Speed}}
+\index{set\-Animation\-Speed@{set\-Animation\-Speed}!irr::scene::CSkinnedMesh@{irr\-::scene\-::\-C\-Skinned\-Mesh}}
+\subsubsection[{set\-Animation\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::scene\-::\-C\-Skinned\-Mesh\-::set\-Animation\-Speed (
+\begin{DoxyParamCaption}
+\item[{f32}]{fps}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_skinned_mesh_ab882bbc374b7376e9f476eda9f85e9ee}
+
+
+Gets the frame count of the animated mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fps} & Frames per second to play the animation with. If the amount is 0, it is not animated. The actual speed is set in the scene node the mesh is instantiated in. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_skinned_mesh_a5e8d7566ad703483e273668dc7822ae0}{\index{irr\-::scene\-::\-C\-Skinned\-Mesh@{irr\-::scene\-::\-C\-Skinned\-Mesh}!update\-Normals\-When\-Animating@{update\-Normals\-When\-Animating}}
+\index{update\-Normals\-When\-Animating@{update\-Normals\-When\-Animating}!irr::scene::CSkinnedMesh@{irr\-::scene\-::\-C\-Skinned\-Mesh}}
+\subsubsection[{update\-Normals\-When\-Animating}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::scene\-::\-C\-Skinned\-Mesh\-::update\-Normals\-When\-Animating (
+\begin{DoxyParamCaption}
+\item[{bool}]{on}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_skinned_mesh_a5e8d7566ad703483e273668dc7822ae0}
+Update Normals when Animating False= Don't (default) True = Update normals, slower 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Skinned\-Mesh.\-h\end{DoxyCompactItemize}

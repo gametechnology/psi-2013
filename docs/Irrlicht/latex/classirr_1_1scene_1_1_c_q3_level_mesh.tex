@@ -1,0 +1,166 @@
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh}{\section{irr\-:\-:scene\-:\-:C\-Q3\-Level\-Mesh Class Reference}
+\label{classirr_1_1scene_1_1_c_q3_level_mesh}\index{irr\-::scene\-::\-C\-Q3\-Level\-Mesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}}
+}
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Q3\-Level\-Mesh\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_q3_level_mesh}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_a8662f8649cd36d54c49a50fc6ce10a97}{\hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_a8662f8649cd36d54c49a50fc6ce10a97}{C\-Q3\-Level\-Mesh} (io\-::\-I\-File\-System $\ast$fs, scene\-::\-I\-Scene\-Manager $\ast$smgr, const quake3\-::\-Q3\-Level\-Load\-Parameter \&load\-Param)}\label{classirr_1_1scene_1_1_c_q3_level_mesh_a8662f8649cd36d54c49a50fc6ce10a97}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_aa555f0b7864cb177a46df4b158147431}{virtual \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_aa555f0b7864cb177a46df4b158147431}{$\sim$\-C\-Q3\-Level\-Mesh} ()}\label{classirr_1_1scene_1_1_c_q3_level_mesh_aa555f0b7864cb177a46df4b158147431}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+bool \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_a9241443aa74fd7e4a1781112eb705e5a}{load\-File} (io\-::\-I\-Read\-File $\ast$file)
+\item 
+virtual u32 \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_ae0d420750860bad8e6321934b70211a4}{get\-Frame\-Count} () const 
+\item 
+virtual f32 \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_acf1dcb014e387a1f2bec3828f888757b}{get\-Animation\-Speed} () const 
+\begin{DoxyCompactList}\small\item\em Gets the default animation speed of the animated mesh. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_aa6db1e0cf0fc642ba7b941814fdc71cc}{set\-Animation\-Speed} (f32 fps)
+\begin{DoxyCompactList}\small\item\em Gets the frame count of the animated mesh. \end{DoxyCompactList}\item 
+virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_a8c3da71c31368805efcb02bd164de760}{get\-Mesh} (s32 frame\-In\-Ms, s32 detail\-Level=255, s32 start\-Frame\-Loop=-\/1, s32 end\-Frame\-Loop=-\/1)
+\item 
+virtual const core\-::aabbox3d\\*
+$<$ f32 $>$ \& \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_a74fd19ef4efd263a606a1efe13396931}{get\-Bounding\-Box} () const 
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_a09166afb1b6a5b53cfd8fe3d4984d3e1}{virtual void {\bfseries set\-Bounding\-Box} (const core\-::aabbox3df \&box)}\label{classirr_1_1scene_1_1_c_q3_level_mesh_a09166afb1b6a5b53cfd8fe3d4984d3e1}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_a888e5e4ae31cd927826c077f601716e7}{virtual E\-\_\-\-A\-N\-I\-M\-A\-T\-E\-D\-\_\-\-M\-E\-S\-H\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_a888e5e4ae31cd927826c077f601716e7}{get\-Mesh\-Type} () const }\label{classirr_1_1scene_1_1_c_q3_level_mesh_a888e5e4ae31cd927826c077f601716e7}
+
+\begin{DoxyCompactList}\small\item\em Returns the type of the animated mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_ae471fe9c4058a67948f79590f7527a1f}{virtual void \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_ae471fe9c4058a67948f79590f7527a1f}{get\-Shader} (io\-::\-I\-Read\-File $\ast$file)}\label{classirr_1_1scene_1_1_c_q3_level_mesh_ae471fe9c4058a67948f79590f7527a1f}
+
+\begin{DoxyCompactList}\small\item\em loads the shader definition \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_a7fe1de2c85690e8680462de2b2932411}{virtual const quake3\-::\-I\-Shader $\ast$ \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_a7fe1de2c85690e8680462de2b2932411}{get\-Shader} (const c8 $\ast$filename, bool file\-Name\-Is\-Valid=true)}\label{classirr_1_1scene_1_1_c_q3_level_mesh_a7fe1de2c85690e8680462de2b2932411}
+
+\begin{DoxyCompactList}\small\item\em loads the shader definition \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_a5de1a6c7d31f1e71666b0a28e2e2a878}{virtual const quake3\-::\-I\-Shader $\ast$ \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_a5de1a6c7d31f1e71666b0a28e2e2a878}{get\-Shader} (u32 index) const }\label{classirr_1_1scene_1_1_c_q3_level_mesh_a5de1a6c7d31f1e71666b0a28e2e2a878}
+
+\begin{DoxyCompactList}\small\item\em returns a already loaded Shader \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_ad0c966a58138d99062904be55bf6a925}{virtual void \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_ad0c966a58138d99062904be55bf6a925}{get\-Configuration} (io\-::\-I\-Read\-File $\ast$file)}\label{classirr_1_1scene_1_1_c_q3_level_mesh_ad0c966a58138d99062904be55bf6a925}
+
+\begin{DoxyCompactList}\small\item\em loads a configuration file \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_a7df18131963ec7468487c68a808b02fc}{virtual quake3\-::t\-Q3\-Entity\-List \& \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_a7df18131963ec7468487c68a808b02fc}{get\-Entity\-List} ()}\label{classirr_1_1scene_1_1_c_q3_level_mesh_a7df18131963ec7468487c68a808b02fc}
+
+\begin{DoxyCompactList}\small\item\em get's an interface to the entities \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_a9c6fe5b8a55a9d7738d763adc1406abd}{virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_a9c6fe5b8a55a9d7738d763adc1406abd}{get\-Brush\-Entity\-Mesh} (s32 num) const }\label{classirr_1_1scene_1_1_c_q3_level_mesh_a9c6fe5b8a55a9d7738d763adc1406abd}
+
+\begin{DoxyCompactList}\small\item\em returns the requested brush entity \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_ada645a6dfe104b6479d7589c6a3c7f33}{virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_ada645a6dfe104b6479d7589c6a3c7f33}{get\-Brush\-Entity\-Mesh} (quake3\-::\-I\-Entity \&ent) const }\label{classirr_1_1scene_1_1_c_q3_level_mesh_ada645a6dfe104b6479d7589c6a3c7f33}
+
+\begin{DoxyCompactList}\small\item\em returns the requested brush entity \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_a43007337e5db1be0bf85ddc7fab1ff70}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_a43007337e5db1be0bf85ddc7fab1ff70}{get\-Mesh\-Buffer\-Count} () const }\label{classirr_1_1scene_1_1_c_q3_level_mesh_a43007337e5db1be0bf85ddc7fab1ff70}
+
+\begin{DoxyCompactList}\small\item\em returns amount of mesh buffers. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_ac77483956ab7ea0de086cb786e6a9944}{virtual I\-Mesh\-Buffer $\ast$ \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_ac77483956ab7ea0de086cb786e6a9944}{get\-Mesh\-Buffer} (u32 nr) const }\label{classirr_1_1scene_1_1_c_q3_level_mesh_ac77483956ab7ea0de086cb786e6a9944}
+
+\begin{DoxyCompactList}\small\item\em returns pointer to a mesh buffer \end{DoxyCompactList}\item 
+virtual I\-Mesh\-Buffer $\ast$ \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_aa2154ba552ab970008d4f1b449e0ac9e}{get\-Mesh\-Buffer} (const video\-::\-S\-Material \&material) const 
+\begin{DoxyCompactList}\small\item\em Returns pointer to a mesh buffer which fits a material. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_a4929fb514f306780de3267fe58bb7196}{virtual void {\bfseries set\-Material\-Flag} (video\-::\-E\-\_\-\-M\-A\-T\-E\-R\-I\-A\-L\-\_\-\-F\-L\-A\-G flag, bool newvalue)}\label{classirr_1_1scene_1_1_c_q3_level_mesh_a4929fb514f306780de3267fe58bb7196}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_a1cc7539e3574e81e044b328bbf3ef251}{virtual void \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_a1cc7539e3574e81e044b328bbf3ef251}{set\-Hardware\-Mapping\-Hint} (E\-\_\-\-H\-A\-R\-D\-W\-A\-R\-E\-\_\-\-M\-A\-P\-P\-I\-N\-G new\-Mapping\-Hint, E\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-T\-Y\-P\-E buffer=E\-B\-T\-\_\-\-V\-E\-R\-T\-E\-X\-\_\-\-A\-N\-D\-\_\-\-I\-N\-D\-E\-X)}\label{classirr_1_1scene_1_1_c_q3_level_mesh_a1cc7539e3574e81e044b328bbf3ef251}
+
+\begin{DoxyCompactList}\small\item\em set the hardware mapping hint, for driver \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_ab99f3d21532b59ec5dec984b5cad54d3}{virtual void \hyperlink{classirr_1_1scene_1_1_c_q3_level_mesh_ab99f3d21532b59ec5dec984b5cad54d3}{set\-Dirty} (E\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-T\-Y\-P\-E buffer=E\-B\-T\-\_\-\-V\-E\-R\-T\-E\-X\-\_\-\-A\-N\-D\-\_\-\-I\-N\-D\-E\-X)}\label{classirr_1_1scene_1_1_c_q3_level_mesh_ab99f3d21532b59ec5dec984b5cad54d3}
+
+\begin{DoxyCompactList}\small\item\em flags the meshbuffer as changed, reloads hardware buffers \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_acf1dcb014e387a1f2bec3828f888757b}{\index{irr\-::scene\-::\-C\-Q3\-Level\-Mesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}!get\-Animation\-Speed@{get\-Animation\-Speed}}
+\index{get\-Animation\-Speed@{get\-Animation\-Speed}!irr::scene::CQ3LevelMesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}}
+\subsubsection[{get\-Animation\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}virtual f32 irr\-::scene\-::\-C\-Q3\-Level\-Mesh\-::get\-Animation\-Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_q3_level_mesh_acf1dcb014e387a1f2bec3828f888757b}
+
+
+Gets the default animation speed of the animated mesh. 
+
+\begin{DoxyReturn}{Returns}
+Amount of frames per second. If the amount is 0, it is a static, non animated mesh. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_a74fd19ef4efd263a606a1efe13396931}{\index{irr\-::scene\-::\-C\-Q3\-Level\-Mesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}!get\-Bounding\-Box@{get\-Bounding\-Box}}
+\index{get\-Bounding\-Box@{get\-Bounding\-Box}!irr::scene::CQ3LevelMesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}}
+\subsubsection[{get\-Bounding\-Box}]{\setlength{\rightskip}{0pt plus 5cm}virtual const core\-::aabbox3d$<$f32$>$\& irr\-::scene\-::\-C\-Q3\-Level\-Mesh\-::get\-Bounding\-Box (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_q3_level_mesh_a74fd19ef4efd263a606a1efe13396931}
+Returns an axis aligned bounding box of the mesh. \begin{DoxyReturn}{Returns}
+A bounding box of this mesh is returned. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_ae0d420750860bad8e6321934b70211a4}{\index{irr\-::scene\-::\-C\-Q3\-Level\-Mesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}!get\-Frame\-Count@{get\-Frame\-Count}}
+\index{get\-Frame\-Count@{get\-Frame\-Count}!irr::scene::CQ3LevelMesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}}
+\subsubsection[{get\-Frame\-Count}]{\setlength{\rightskip}{0pt plus 5cm}virtual u32 irr\-::scene\-::\-C\-Q3\-Level\-Mesh\-::get\-Frame\-Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_q3_level_mesh_ae0d420750860bad8e6321934b70211a4}
+returns the amount of frames in milliseconds. If the amount is 1, it is a static (=non animated) mesh. \hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_a8c3da71c31368805efcb02bd164de760}{\index{irr\-::scene\-::\-C\-Q3\-Level\-Mesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}!get\-Mesh@{get\-Mesh}}
+\index{get\-Mesh@{get\-Mesh}!irr::scene::CQ3LevelMesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}}
+\subsubsection[{get\-Mesh}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Mesh$\ast$ irr\-::scene\-::\-C\-Q3\-Level\-Mesh\-::get\-Mesh (
+\begin{DoxyParamCaption}
+\item[{s32}]{frame\-In\-Ms, }
+\item[{s32}]{detail\-Level = {\ttfamily 255}, }
+\item[{s32}]{start\-Frame\-Loop = {\ttfamily -\/1}, }
+\item[{s32}]{end\-Frame\-Loop = {\ttfamily -\/1}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_q3_level_mesh_a8c3da71c31368805efcb02bd164de760}
+returns the animated mesh based on a detail level. 0 is the lowest, 255 the highest detail. Note, that some Meshes will ignore the detail level. \hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_aa2154ba552ab970008d4f1b449e0ac9e}{\index{irr\-::scene\-::\-C\-Q3\-Level\-Mesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}!get\-Mesh\-Buffer@{get\-Mesh\-Buffer}}
+\index{get\-Mesh\-Buffer@{get\-Mesh\-Buffer}!irr::scene::CQ3LevelMesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}}
+\subsubsection[{get\-Mesh\-Buffer}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Mesh\-Buffer$\ast$ irr\-::scene\-::\-C\-Q3\-Level\-Mesh\-::get\-Mesh\-Buffer (
+\begin{DoxyParamCaption}
+\item[{const video\-::\-S\-Material \&}]{material}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_q3_level_mesh_aa2154ba552ab970008d4f1b449e0ac9e}
+
+
+Returns pointer to a mesh buffer which fits a material. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em material,\-:} & material to search for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the mesh buffer or 0 if there is no such mesh buffer. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_a9241443aa74fd7e4a1781112eb705e5a}{\index{irr\-::scene\-::\-C\-Q3\-Level\-Mesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}!load\-File@{load\-File}}
+\index{load\-File@{load\-File}!irr::scene::CQ3LevelMesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}}
+\subsubsection[{load\-File}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::scene\-::\-C\-Q3\-Level\-Mesh\-::load\-File (
+\begin{DoxyParamCaption}
+\item[{io\-::\-I\-Read\-File $\ast$}]{file}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1scene_1_1_c_q3_level_mesh_a9241443aa74fd7e4a1781112eb705e5a}
+loads a level from a .bsp-\/\-File. Also tries to load all needed textures. Returns true if successful. \hypertarget{classirr_1_1scene_1_1_c_q3_level_mesh_aa6db1e0cf0fc642ba7b941814fdc71cc}{\index{irr\-::scene\-::\-C\-Q3\-Level\-Mesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}!set\-Animation\-Speed@{set\-Animation\-Speed}}
+\index{set\-Animation\-Speed@{set\-Animation\-Speed}!irr::scene::CQ3LevelMesh@{irr\-::scene\-::\-C\-Q3\-Level\-Mesh}}
+\subsubsection[{set\-Animation\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::scene\-::\-C\-Q3\-Level\-Mesh\-::set\-Animation\-Speed (
+\begin{DoxyParamCaption}
+\item[{f32}]{fps}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_q3_level_mesh_aa6db1e0cf0fc642ba7b941814fdc71cc}
+
+
+Gets the frame count of the animated mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fps} & Frames per second to play the animation with. If the amount is 0, it is not animated. The actual speed is set in the scene node the mesh is instantiated in. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Q3\-Level\-Mesh.\-h\end{DoxyCompactItemize}

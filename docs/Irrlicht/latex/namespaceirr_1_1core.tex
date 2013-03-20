@@ -1,0 +1,178 @@
+\hypertarget{namespaceirr_1_1core}{\section{irr\-:\-:core Namespace Reference}
+\label{namespaceirr_1_1core}\index{irr\-::core@{irr\-::core}}
+}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{wglext_8h_a500a82aecba06f4550f6849b8099ca21}{int} \hyperlink{namespaceirr_1_1core_adf1a59061c12fe75f1ab6e07d5156d2d}{rle\-\_\-encode} (unsigned char $\ast$in\-\_\-buf, \hyperlink{wglext_8h_a500a82aecba06f4550f6849b8099ca21}{int} in\-\_\-buf\-\_\-size, unsigned char $\ast$out\-\_\-buf, \hyperlink{wglext_8h_a500a82aecba06f4550f6849b8099ca21}{int} out\-\_\-buf\-\_\-size)
+\item 
+unsigned long \hyperlink{namespaceirr_1_1core_ab428493e126e7af63ff35e298303b232}{process\-\_\-comp} (unsigned char $\ast$\hyperlink{glext_8h_aa3b73d9ca9f2e2396cbeae1ce6ce14be}{buf}, \hyperlink{wglext_8h_a500a82aecba06f4550f6849b8099ca21}{int} buf\-\_\-size, unsigned char $\ast$out\-\_\-buf, \hyperlink{wglext_8h_a500a82aecba06f4550f6849b8099ca21}{int} out\-\_\-buf\-\_\-size)
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_1_1core_a18f2fcccee4ea7a302baf3e32835d06a}{process\-\_\-uncomp} (unsigned char, unsigned char $\ast$out\-\_\-buf, \hyperlink{wglext_8h_a500a82aecba06f4550f6849b8099ca21}{int} out\-\_\-buf\-\_\-size)
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_1_1core_a5ce2643d3cf17bdd6a0ceec8924a4357}{flush\-\_\-outbuf} (unsigned char $\ast$out\-\_\-buf, \hyperlink{wglext_8h_a500a82aecba06f4550f6849b8099ca21}{int} out\-\_\-buf\-\_\-size)
+\item 
+unsigned long \hyperlink{namespaceirr_1_1core_a930c188a4512fb9475621d77ab953e0b}{get\-\_\-byte} (unsigned char $\ast$ch, unsigned char $\ast$in\-\_\-buf, \hyperlink{wglext_8h_a500a82aecba06f4550f6849b8099ca21}{int} in\-\_\-buf\-\_\-size, unsigned char $\ast$out\-\_\-buf, \hyperlink{wglext_8h_a500a82aecba06f4550f6849b8099ca21}{int} out\-\_\-buf\-\_\-size)
+\item 
+\hyperlink{wglext_8h_a9e6b7f1933461ef318bb000d6bd13b83}{void} \hyperlink{namespaceirr_1_1core_a3876647adcc4e06128c5383a6217e5ee}{put\-\_\-byte} (unsigned char ch, unsigned char $\ast$out\-\_\-buf, \hyperlink{wglext_8h_a500a82aecba06f4550f6849b8099ca21}{int} out\-\_\-buf\-\_\-size)
+\item 
+\hyperlink{wglext_8h_a500a82aecba06f4550f6849b8099ca21}{int} \hyperlink{namespaceirr_1_1core_aede9376c1eaba605a2be89c11f42622b}{rle\-\_\-decode} (unsigned char $\ast$in\-\_\-buf, \hyperlink{wglext_8h_a500a82aecba06f4550f6849b8099ca21}{int} in\-\_\-buf\-\_\-size, unsigned char $\ast$out\-\_\-buf, \hyperlink{wglext_8h_a500a82aecba06f4550f6849b8099ca21}{int} out\-\_\-buf\-\_\-size)
+\item 
+const matrix4 \hyperlink{namespaceirr_1_1core_a984d71a836d6d9f31b9dcde8723cd302}{Identity\-Matrix} (matrix4\-::\-E\-M4\-C\-O\-N\-S\-T\-\_\-\-I\-D\-E\-N\-T\-I\-T\-Y)
+\item 
+irr\-::core\-::stringc \hyperlink{namespaceirr_1_1core_a4b077c78cfcd1bf9d29ed57b12051abb}{L\-O\-C\-A\-L\-E\-\_\-\-D\-E\-C\-I\-M\-A\-L\-\_\-\-P\-O\-I\-N\-T\-S} (\char`\"{}.\char`\"{})
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const unsigned long \hyperlink{namespaceirr_1_1core_ac8c28ea1e11eb1ac7a51ef47816e1797}{L\-I\-M\-I\-T} = 1
+\item 
+const unsigned long \hyperlink{namespaceirr_1_1core_a0cb583561896e04ab6da7f6dcbae81f9}{N\-O\-N\-\_\-\-M\-A\-T\-C\-H} = 2
+\item 
+const unsigned long \hyperlink{namespaceirr_1_1core_aefbb417a19994ec03947e85ad44ee903}{E\-O\-D\-\_\-\-F\-O\-U\-N\-D} = 3
+\item 
+const unsigned long \hyperlink{namespaceirr_1_1core_a9b6758c9c2b72e94554995af8d3b056e}{E\-O\-D} = 0x00454f44
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceirr_1_1core_a5ce2643d3cf17bdd6a0ceec8924a4357}{\index{irr\-::core@{irr\-::core}!flush\-\_\-outbuf@{flush\-\_\-outbuf}}
+\index{flush\-\_\-outbuf@{flush\-\_\-outbuf}!irr::core@{irr\-::core}}
+\subsubsection[{flush\-\_\-outbuf}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::core\-::flush\-\_\-outbuf (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{out\-\_\-buf, }
+\item[{{\bf int}}]{out\-\_\-buf\-\_\-size}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_1_1core_a5ce2643d3cf17bdd6a0ceec8924a4357}
+
+
+Definition at line 329 of file C\-M\-Y3\-D\-Helper.\-h.
+
+\hypertarget{namespaceirr_1_1core_a930c188a4512fb9475621d77ab953e0b}{\index{irr\-::core@{irr\-::core}!get\-\_\-byte@{get\-\_\-byte}}
+\index{get\-\_\-byte@{get\-\_\-byte}!irr::core@{irr\-::core}}
+\subsubsection[{get\-\_\-byte}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long irr\-::core\-::get\-\_\-byte (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{ch, }
+\item[{unsigned char $\ast$}]{in\-\_\-buf, }
+\item[{{\bf int}}]{in\-\_\-buf\-\_\-size, }
+\item[{unsigned char $\ast$}]{out\-\_\-buf, }
+\item[{{\bf int}}]{out\-\_\-buf\-\_\-size}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_1_1core_a930c188a4512fb9475621d77ab953e0b}
+
+
+Definition at line 354 of file C\-M\-Y3\-D\-Helper.\-h.
+
+\hypertarget{namespaceirr_1_1core_a984d71a836d6d9f31b9dcde8723cd302}{\index{irr\-::core@{irr\-::core}!Identity\-Matrix@{Identity\-Matrix}}
+\index{Identity\-Matrix@{Identity\-Matrix}!irr::core@{irr\-::core}}
+\subsubsection[{Identity\-Matrix}]{\setlength{\rightskip}{0pt plus 5cm}const matrix4 irr\-::core\-::\-Identity\-Matrix (
+\begin{DoxyParamCaption}
+\item[{matrix4\-::\-E\-M4\-C\-O\-N\-S\-T\-\_\-\-I\-D\-E\-N\-T\-I\-T\-Y}]{}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_1_1core_a984d71a836d6d9f31b9dcde8723cd302}
+\hypertarget{namespaceirr_1_1core_a4b077c78cfcd1bf9d29ed57b12051abb}{\index{irr\-::core@{irr\-::core}!L\-O\-C\-A\-L\-E\-\_\-\-D\-E\-C\-I\-M\-A\-L\-\_\-\-P\-O\-I\-N\-T\-S@{L\-O\-C\-A\-L\-E\-\_\-\-D\-E\-C\-I\-M\-A\-L\-\_\-\-P\-O\-I\-N\-T\-S}}
+\index{L\-O\-C\-A\-L\-E\-\_\-\-D\-E\-C\-I\-M\-A\-L\-\_\-\-P\-O\-I\-N\-T\-S@{L\-O\-C\-A\-L\-E\-\_\-\-D\-E\-C\-I\-M\-A\-L\-\_\-\-P\-O\-I\-N\-T\-S}!irr::core@{irr\-::core}}
+\subsubsection[{L\-O\-C\-A\-L\-E\-\_\-\-D\-E\-C\-I\-M\-A\-L\-\_\-\-P\-O\-I\-N\-T\-S}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::core\-::stringc irr\-::core\-::\-L\-O\-C\-A\-L\-E\-\_\-\-D\-E\-C\-I\-M\-A\-L\-\_\-\-P\-O\-I\-N\-T\-S (
+\begin{DoxyParamCaption}
+\item[{\char`\"{}.\char`\"{}}]{}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_1_1core_a4b077c78cfcd1bf9d29ed57b12051abb}
+\hypertarget{namespaceirr_1_1core_ab428493e126e7af63ff35e298303b232}{\index{irr\-::core@{irr\-::core}!process\-\_\-comp@{process\-\_\-comp}}
+\index{process\-\_\-comp@{process\-\_\-comp}!irr::core@{irr\-::core}}
+\subsubsection[{process\-\_\-comp}]{\setlength{\rightskip}{0pt plus 5cm}unsigned long irr\-::core\-::process\-\_\-comp (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{buf, }
+\item[{{\bf int}}]{buf\-\_\-size, }
+\item[{unsigned char $\ast$}]{out\-\_\-buf, }
+\item[{{\bf int}}]{out\-\_\-buf\-\_\-size}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_1_1core_ab428493e126e7af63ff35e298303b232}
+
+
+Definition at line 267 of file C\-M\-Y3\-D\-Helper.\-h.
+
+\hypertarget{namespaceirr_1_1core_a18f2fcccee4ea7a302baf3e32835d06a}{\index{irr\-::core@{irr\-::core}!process\-\_\-uncomp@{process\-\_\-uncomp}}
+\index{process\-\_\-uncomp@{process\-\_\-uncomp}!irr::core@{irr\-::core}}
+\subsubsection[{process\-\_\-uncomp}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::core\-::process\-\_\-uncomp (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{char1, }
+\item[{unsigned char $\ast$}]{out\-\_\-buf, }
+\item[{{\bf int}}]{out\-\_\-buf\-\_\-size}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_1_1core_a18f2fcccee4ea7a302baf3e32835d06a}
+
+
+Definition at line 317 of file C\-M\-Y3\-D\-Helper.\-h.
+
+\hypertarget{namespaceirr_1_1core_a3876647adcc4e06128c5383a6217e5ee}{\index{irr\-::core@{irr\-::core}!put\-\_\-byte@{put\-\_\-byte}}
+\index{put\-\_\-byte@{put\-\_\-byte}!irr::core@{irr\-::core}}
+\subsubsection[{put\-\_\-byte}]{\setlength{\rightskip}{0pt plus 5cm}{\bf void} irr\-::core\-::put\-\_\-byte (
+\begin{DoxyParamCaption}
+\item[{unsigned char}]{ch, }
+\item[{unsigned char $\ast$}]{out\-\_\-buf, }
+\item[{{\bf int}}]{out\-\_\-buf\-\_\-size}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_1_1core_a3876647adcc4e06128c5383a6217e5ee}
+
+
+Definition at line 343 of file C\-M\-Y3\-D\-Helper.\-h.
+
+\hypertarget{namespaceirr_1_1core_aede9376c1eaba605a2be89c11f42622b}{\index{irr\-::core@{irr\-::core}!rle\-\_\-decode@{rle\-\_\-decode}}
+\index{rle\-\_\-decode@{rle\-\_\-decode}!irr::core@{irr\-::core}}
+\subsubsection[{rle\-\_\-decode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} irr\-::core\-::rle\-\_\-decode (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{in\-\_\-buf, }
+\item[{{\bf int}}]{in\-\_\-buf\-\_\-size, }
+\item[{unsigned char $\ast$}]{out\-\_\-buf, }
+\item[{{\bf int}}]{out\-\_\-buf\-\_\-size}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_1_1core_aede9376c1eaba605a2be89c11f42622b}
+
+
+Definition at line 383 of file C\-M\-Y3\-D\-Helper.\-h.
+
+\hypertarget{namespaceirr_1_1core_adf1a59061c12fe75f1ab6e07d5156d2d}{\index{irr\-::core@{irr\-::core}!rle\-\_\-encode@{rle\-\_\-encode}}
+\index{rle\-\_\-encode@{rle\-\_\-encode}!irr::core@{irr\-::core}}
+\subsubsection[{rle\-\_\-encode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf int} irr\-::core\-::rle\-\_\-encode (
+\begin{DoxyParamCaption}
+\item[{unsigned char $\ast$}]{in\-\_\-buf, }
+\item[{{\bf int}}]{in\-\_\-buf\-\_\-size, }
+\item[{unsigned char $\ast$}]{out\-\_\-buf, }
+\item[{{\bf int}}]{out\-\_\-buf\-\_\-size}
+\end{DoxyParamCaption}
+)}}\label{namespaceirr_1_1core_adf1a59061c12fe75f1ab6e07d5156d2d}
+
+
+Definition at line 184 of file C\-M\-Y3\-D\-Helper.\-h.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespaceirr_1_1core_a9b6758c9c2b72e94554995af8d3b056e}{\index{irr\-::core@{irr\-::core}!E\-O\-D@{E\-O\-D}}
+\index{E\-O\-D@{E\-O\-D}!irr::core@{irr\-::core}}
+\subsubsection[{E\-O\-D}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned long irr\-::core\-::\-E\-O\-D = 0x00454f44}}\label{namespaceirr_1_1core_a9b6758c9c2b72e94554995af8d3b056e}
+
+
+Definition at line 167 of file C\-M\-Y3\-D\-Helper.\-h.
+
+\hypertarget{namespaceirr_1_1core_aefbb417a19994ec03947e85ad44ee903}{\index{irr\-::core@{irr\-::core}!E\-O\-D\-\_\-\-F\-O\-U\-N\-D@{E\-O\-D\-\_\-\-F\-O\-U\-N\-D}}
+\index{E\-O\-D\-\_\-\-F\-O\-U\-N\-D@{E\-O\-D\-\_\-\-F\-O\-U\-N\-D}!irr::core@{irr\-::core}}
+\subsubsection[{E\-O\-D\-\_\-\-F\-O\-U\-N\-D}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned long irr\-::core\-::\-E\-O\-D\-\_\-\-F\-O\-U\-N\-D = 3}}\label{namespaceirr_1_1core_aefbb417a19994ec03947e85ad44ee903}
+
+
+Definition at line 166 of file C\-M\-Y3\-D\-Helper.\-h.
+
+\hypertarget{namespaceirr_1_1core_ac8c28ea1e11eb1ac7a51ef47816e1797}{\index{irr\-::core@{irr\-::core}!L\-I\-M\-I\-T@{L\-I\-M\-I\-T}}
+\index{L\-I\-M\-I\-T@{L\-I\-M\-I\-T}!irr::core@{irr\-::core}}
+\subsubsection[{L\-I\-M\-I\-T}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned long irr\-::core\-::\-L\-I\-M\-I\-T = 1}}\label{namespaceirr_1_1core_ac8c28ea1e11eb1ac7a51ef47816e1797}
+
+
+Definition at line 164 of file C\-M\-Y3\-D\-Helper.\-h.
+
+\hypertarget{namespaceirr_1_1core_a0cb583561896e04ab6da7f6dcbae81f9}{\index{irr\-::core@{irr\-::core}!N\-O\-N\-\_\-\-M\-A\-T\-C\-H@{N\-O\-N\-\_\-\-M\-A\-T\-C\-H}}
+\index{N\-O\-N\-\_\-\-M\-A\-T\-C\-H@{N\-O\-N\-\_\-\-M\-A\-T\-C\-H}!irr::core@{irr\-::core}}
+\subsubsection[{N\-O\-N\-\_\-\-M\-A\-T\-C\-H}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned long irr\-::core\-::\-N\-O\-N\-\_\-\-M\-A\-T\-C\-H = 2}}\label{namespaceirr_1_1core_a0cb583561896e04ab6da7f6dcbae81f9}
+
+
+Definition at line 165 of file C\-M\-Y3\-D\-Helper.\-h.
+

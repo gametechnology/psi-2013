@@ -1,0 +1,178 @@
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node}{\section{irr\-:\-:scene\-:\-:C\-Particle\-System\-Scene\-Node Class Reference}
+\label{classirr_1_1scene_1_1_c_particle_system_scene_node}\index{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node@{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node}}
+}
+
+
+A particle system scene node.  
+
+
+
+
+{\ttfamily \#include $<$C\-Particle\-System\-Scene\-Node.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Particle\-System\-Scene\-Node\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_particle_system_scene_node}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a8bf14f1811713bd25fa10946588d646f}{\hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a8bf14f1811713bd25fa10946588d646f}{C\-Particle\-System\-Scene\-Node} (bool create\-Default\-Emitter, I\-Scene\-Node $\ast$parent, I\-Scene\-Manager $\ast$mgr, s32 id, const core\-::vector3df \&position, const core\-::vector3df \&rotation, const core\-::vector3df \&scale)}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a8bf14f1811713bd25fa10946588d646f}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a6af8c07ade103607574c241baf08979f}{virtual \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a6af8c07ade103607574c241baf08979f}{$\sim$\-C\-Particle\-System\-Scene\-Node} ()}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a6af8c07ade103607574c241baf08979f}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a7e50a0d9fb0c5f28d648d285c57c7a67}{virtual I\-Particle\-Emitter $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a7e50a0d9fb0c5f28d648d285c57c7a67}{get\-Emitter} ()}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a7e50a0d9fb0c5f28d648d285c57c7a67}
+
+\begin{DoxyCompactList}\small\item\em Gets the particle emitter, which creates the particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_aa3c0c809a5f6d4a02aa2e2240aceec55}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_aa3c0c809a5f6d4a02aa2e2240aceec55}{set\-Emitter} (I\-Particle\-Emitter $\ast$emitter)}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_aa3c0c809a5f6d4a02aa2e2240aceec55}
+
+\begin{DoxyCompactList}\small\item\em Sets the particle emitter, which creates the particles. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a356f34f5b7c8e313179cb5809d6ac8d2}{add\-Affector} (I\-Particle\-Affector $\ast$affector)
+\begin{DoxyCompactList}\small\item\em Adds new particle affector to the particle system. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a4100dbb60b2427643060bd08b6533c17}{virtual const core\-::list\\*
+$<$ I\-Particle\-Affector $\ast$ $>$ \& \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a4100dbb60b2427643060bd08b6533c17}{get\-Affectors} () const }\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a4100dbb60b2427643060bd08b6533c17}
+
+\begin{DoxyCompactList}\small\item\em Get a list of all particle affectors. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a6ca0ea3d5ddcfa24044eacf67d07b06f}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a6ca0ea3d5ddcfa24044eacf67d07b06f}{remove\-All\-Affectors} ()}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a6ca0ea3d5ddcfa24044eacf67d07b06f}
+
+\begin{DoxyCompactList}\small\item\em Removes all particle affectors in the particle system. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_afef1cab6e7f8132b1724273f11bb5cb4}{virtual video\-::\-S\-Material \& \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_afef1cab6e7f8132b1724273f11bb5cb4}{get\-Material} (u32 i)}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_afef1cab6e7f8132b1724273f11bb5cb4}
+
+\begin{DoxyCompactList}\small\item\em Returns the material based on the zero based index i. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a614c1e7212ab08af5bc3cf4734ace881}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a614c1e7212ab08af5bc3cf4734ace881}{get\-Material\-Count} () const }\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a614c1e7212ab08af5bc3cf4734ace881}
+
+\begin{DoxyCompactList}\small\item\em Returns amount of materials used by this scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a772158bb9fce899231f794a93a8ae290}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a772158bb9fce899231f794a93a8ae290}{On\-Register\-Scene\-Node} ()}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a772158bb9fce899231f794a93a8ae290}
+
+\begin{DoxyCompactList}\small\item\em pre render event \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_ab3bc21a1447bd37a2232fdd9688ef446}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_ab3bc21a1447bd37a2232fdd9688ef446}{render} ()}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_ab3bc21a1447bd37a2232fdd9688ef446}
+
+\begin{DoxyCompactList}\small\item\em render \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_aa1cd6ce30368c4d80707af2e9f83ce2d}{virtual const core\-::aabbox3d\\*
+$<$ f32 $>$ \& \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_aa1cd6ce30368c4d80707af2e9f83ce2d}{get\-Bounding\-Box} () const }\label{classirr_1_1scene_1_1_c_particle_system_scene_node_aa1cd6ce30368c4d80707af2e9f83ce2d}
+
+\begin{DoxyCompactList}\small\item\em returns the axis aligned bounding box of this node \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a15870486f3faef770bb987321791ffba}{virtual \\*
+I\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a15870486f3faef770bb987321791ffba}{create\-Animated\-Mesh\-Scene\-Node\-Emitter} (scene\-::\-I\-Animated\-Mesh\-Scene\-Node $\ast$node, bool use\-Normal\-Direction=true, const core\-::vector3df \&direction=core\-::vector3df(0.\-0f, 0.\-03f, 0.\-0f), f32 normal\-Direction\-Modifier=100.\-0f, s32 mb\-Number=-\/1, bool every\-Mesh\-Vertex=false, u32 min\-Particles\-Per\-Second=5, u32 max\-Particles\-Per\-Second=10, const video\-::\-S\-Color \&min\-Start\-Color=video\-::\-S\-Color(255, 0, 0, 0), const video\-::\-S\-Color \&max\-Start\-Color=video\-::\-S\-Color(255, 255, 255, 255), u32 life\-Time\-Min=2000, u32 life\-Time\-Max=4000, s32 max\-Angle\-Degrees=0, const core\-::dimension2df \&min\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f), const core\-::dimension2df \&max\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f))}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a15870486f3faef770bb987321791ffba}
+
+\begin{DoxyCompactList}\small\item\em Creates a particle emitter for an animated mesh scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_ad4bbed15c1135a31a989496c1e0ad04f}{virtual I\-Particle\-Box\-Emitter $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_ad4bbed15c1135a31a989496c1e0ad04f}{create\-Box\-Emitter} (const core\-::aabbox3df \&box=core\-::aabbox3d$<$ f32 $>$(-\/10, 0,-\/10, 5, 30, 10), const core\-::vector3df \&direction=core\-::vector3df(0.\-0f, 0.\-03f, 0.\-0f), u32 min\-Particles\-Per\-Second=5, u32 max\-Particles\-Per\-Second=10, const video\-::\-S\-Color \&min\-Start\-Color=video\-::\-S\-Color(255, 0, 0, 0), const video\-::\-S\-Color \&max\-Start\-Color=video\-::\-S\-Color(255, 255, 255, 255), u32 life\-Time\-Min=2000, u32 life\-Time\-Max=4000, s32 max\-Angle\-Degrees=0, const core\-::dimension2df \&min\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f), const core\-::dimension2df \&max\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f))}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_ad4bbed15c1135a31a989496c1e0ad04f}
+
+\begin{DoxyCompactList}\small\item\em Creates a box particle emitter. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_aa8887b38e603216152bd31bd19affadb}{virtual I\-Particle\-Cylinder\-Emitter $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_aa8887b38e603216152bd31bd19affadb}{create\-Cylinder\-Emitter} (const core\-::vector3df \&center, f32 radius, const core\-::vector3df \&normal, f32 length, bool outline\-Only=false, const core\-::vector3df \&direction=core\-::vector3df(0.\-0f, 0.\-5f, 0.\-0f), u32 min\-Particles\-Per\-Second=5, u32 max\-Particles\-Pers\-Second=10, const video\-::\-S\-Color \&min\-Start\-Color=video\-::\-S\-Color(255, 0, 0, 0), const video\-::\-S\-Color \&max\-Start\-Color=video\-::\-S\-Color(255, 255, 255, 255), u32 life\-Time\-Min=2000, u32 life\-Time\-Max=4000, s32 max\-Angle\-Degrees=0, const core\-::dimension2df \&min\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f), const core\-::dimension2df \&max\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f))}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_aa8887b38e603216152bd31bd19affadb}
+
+\begin{DoxyCompactList}\small\item\em Creates a particle emitter for emitting from a cylinder. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a55545d6e2185c5f2c04247256ccf6b30}{virtual I\-Particle\-Mesh\-Emitter $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a55545d6e2185c5f2c04247256ccf6b30}{create\-Mesh\-Emitter} (scene\-::\-I\-Mesh $\ast$mesh, bool use\-Normal\-Direction=true, const core\-::vector3df \&direction=core\-::vector3df(0.\-0f, 0.\-03f, 0.\-0f), f32 normal\-Direction\-Modifier=100.\-0f, s32 mb\-Number=-\/1, bool every\-Mesh\-Vertex=false, u32 min\-Particles\-Per\-Second=5, u32 max\-Particles\-Per\-Second=10, const video\-::\-S\-Color \&min\-Start\-Color=video\-::\-S\-Color(255, 0, 0, 0), const video\-::\-S\-Color \&max\-Start\-Color=video\-::\-S\-Color(255, 255, 255, 255), u32 life\-Time\-Min=2000, u32 life\-Time\-Max=4000, s32 max\-Angle\-Degrees=0, const core\-::dimension2df \&min\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f), const core\-::dimension2df \&max\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f))}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a55545d6e2185c5f2c04247256ccf6b30}
+
+\begin{DoxyCompactList}\small\item\em Creates a mesh particle emitter. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a73be7a29fd83b5b51424508e89a7f40f}{virtual I\-Particle\-Point\-Emitter $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a73be7a29fd83b5b51424508e89a7f40f}{create\-Point\-Emitter} (const core\-::vector3df \&direction=core\-::vector3df(0.\-0f, 0.\-03f, 0.\-0f), u32 min\-Particles\-Per\-Second=5, u32 max\-Particles\-Per\-Second=10, const video\-::\-S\-Color \&min\-Start\-Color=video\-::\-S\-Color(255, 0, 0, 0), const video\-::\-S\-Color \&max\-Start\-Color=video\-::\-S\-Color(255, 255, 255, 255), u32 life\-Time\-Min=2000, u32 life\-Time\-Max=4000, s32 max\-Angle\-Degrees=0, const core\-::dimension2df \&min\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f), const core\-::dimension2df \&max\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f))}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a73be7a29fd83b5b51424508e89a7f40f}
+
+\begin{DoxyCompactList}\small\item\em Creates a point particle emitter. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a8b4509215a571258732a63c28f176012}{virtual I\-Particle\-Ring\-Emitter $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a8b4509215a571258732a63c28f176012}{create\-Ring\-Emitter} (const core\-::vector3df \&center, f32 radius, f32 ring\-Thickness, const core\-::vector3df \&direction=core\-::vector3df(0.\-0f, 0.\-03f, 0.\-0f), u32 min\-Particles\-Per\-Second=5, u32 max\-Particles\-Per\-Second=10, const video\-::\-S\-Color \&min\-Start\-Color=video\-::\-S\-Color(255, 0, 0, 0), const video\-::\-S\-Color \&max\-Start\-Color=video\-::\-S\-Color(255, 255, 255, 255), u32 life\-Time\-Min=2000, u32 life\-Time\-Max=4000, s32 max\-Angle\-Degrees=0, const core\-::dimension2df \&min\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f), const core\-::dimension2df \&max\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f))}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a8b4509215a571258732a63c28f176012}
+
+\begin{DoxyCompactList}\small\item\em Creates a ring particle emitter. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_aafc5ebfc9d2ca95956a0314defa8ae6a}{virtual I\-Particle\-Sphere\-Emitter $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_aafc5ebfc9d2ca95956a0314defa8ae6a}{create\-Sphere\-Emitter} (const core\-::vector3df \&center, f32 radius, const core\-::vector3df \&direction=core\-::vector3df(0.\-0f, 0.\-03f, 0.\-0f), u32 min\-Particles\-Per\-Second=5, u32 max\-Particles\-Per\-Second=10, const video\-::\-S\-Color \&min\-Start\-Color=video\-::\-S\-Color(255, 0, 0, 0), const video\-::\-S\-Color \&max\-Start\-Color=video\-::\-S\-Color(255, 255, 255, 255), u32 life\-Time\-Min=2000, u32 life\-Time\-Max=4000, s32 max\-Angle\-Degrees=0, const core\-::dimension2df \&min\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f), const core\-::dimension2df \&max\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f))}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_aafc5ebfc9d2ca95956a0314defa8ae6a}
+
+\begin{DoxyCompactList}\small\item\em Creates a sphere particle emitter. \end{DoxyCompactList}\item 
+virtual \\*
+I\-Particle\-Attraction\-Affector $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a20794c85f695e017c76f248d2b4f2ed3}{create\-Attraction\-Affector} (const core\-::vector3df \&point, f32 speed=1.\-0f, bool attract=true, bool affect\-X=true, bool affect\-Y=true, bool affect\-Z=true)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a6c5b3fbcf69adefd9610c307620d3006}{virtual I\-Particle\-Affector $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a6c5b3fbcf69adefd9610c307620d3006}{create\-Scale\-Particle\-Affector} (const core\-::dimension2df \&scale\-To=core\-::dimension2df(1.\-0f, 1.\-0f))}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a6c5b3fbcf69adefd9610c307620d3006}
+
+\begin{DoxyCompactList}\small\item\em Creates a scale particle affector. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_aa10f46a1d3da0798bbf754e84034a76d}{virtual I\-Particle\-Fade\-Out\-Affector $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_aa10f46a1d3da0798bbf754e84034a76d}{create\-Fade\-Out\-Particle\-Affector} (const video\-::\-S\-Color \&target\-Color=video\-::\-S\-Color(0, 0, 0, 0), u32 time\-Needed\-To\-Fade\-Out=1000)}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_aa10f46a1d3da0798bbf754e84034a76d}
+
+\begin{DoxyCompactList}\small\item\em Creates a fade out particle affector. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a22bdd7bbc0e2a8bb0c235c0676ca098f}{virtual I\-Particle\-Gravity\-Affector $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a22bdd7bbc0e2a8bb0c235c0676ca098f}{create\-Gravity\-Affector} (const core\-::vector3df \&gravity=core\-::vector3df(0.\-0f,-\/0.\-03f, 0.\-0f), u32 time\-Force\-Lost=1000)}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a22bdd7bbc0e2a8bb0c235c0676ca098f}
+
+\begin{DoxyCompactList}\small\item\em Creates a gravity affector. \end{DoxyCompactList}\item 
+virtual I\-Particle\-Rotation\-Affector $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_aacbba0af7c7d7e949c0bd4faf58b0f57}{create\-Rotation\-Affector} (const core\-::vector3df \&speed=core\-::vector3df(5.\-0f, 5.\-0f, 5.\-0f), const core\-::vector3df \&pivot\-Point=core\-::vector3df(0.\-0f, 0.\-0f, 0.\-0f))
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a3483f15f50c0b2c35ae0a56f03bd6214}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a3483f15f50c0b2c35ae0a56f03bd6214}{set\-Particle\-Size} (const core\-::dimension2d$<$ f32 $>$ \&size=core\-::dimension2d$<$ f32 $>$(5.\-0f, 5.\-0f))}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a3483f15f50c0b2c35ae0a56f03bd6214}
+
+\begin{DoxyCompactList}\small\item\em Sets the size of all particles. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_afbf0c2398be2f73b5a6c1790ab5de5c4}{set\-Particles\-Are\-Global} (bool global=true)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_aa92262e15729c4f1bdedb3b119bad17f}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_aa92262e15729c4f1bdedb3b119bad17f}{clear\-Particles} ()}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_aa92262e15729c4f1bdedb3b119bad17f}
+
+\begin{DoxyCompactList}\small\item\em Remove all currently visible particles. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a7864789e0e2afbc8c6438db9764c10f4}{do\-Particle\-System} (u32 time)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_acba8da24504fa177388bf9c2857c21ad}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_acba8da24504fa177388bf9c2857c21ad}{serialize\-Attributes} (io\-::\-I\-Attributes $\ast$out, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0) const }\label{classirr_1_1scene_1_1_c_particle_system_scene_node_acba8da24504fa177388bf9c2857c21ad}
+
+\begin{DoxyCompactList}\small\item\em Writes attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_accfa4498e355d5f34fbb28566e0f4663}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_accfa4498e355d5f34fbb28566e0f4663}{deserialize\-Attributes} (io\-::\-I\-Attributes $\ast$in, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0)}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_accfa4498e355d5f34fbb28566e0f4663}
+
+\begin{DoxyCompactList}\small\item\em Reads attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a08629faa392c46e79bba844b64381f01}{virtual E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_particle_system_scene_node_a08629faa392c46e79bba844b64381f01}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a08629faa392c46e79bba844b64381f01}
+
+\begin{DoxyCompactList}\small\item\em Returns type of the scene node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A particle system scene node. 
+
+\begin{DoxyVerb}A scene node controlling a particle system. The behavior of the particles
+\end{DoxyVerb}
+ can be controlled by setting the right particle emitters and affectors. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a356f34f5b7c8e313179cb5809d6ac8d2}{\index{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node@{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node}!add\-Affector@{add\-Affector}}
+\index{add\-Affector@{add\-Affector}!irr::scene::CParticleSystemSceneNode@{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node}}
+\subsubsection[{add\-Affector}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node\-::add\-Affector (
+\begin{DoxyParamCaption}
+\item[{I\-Particle\-Affector $\ast$}]{affector}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a356f34f5b7c8e313179cb5809d6ac8d2}
+
+
+Adds new particle affector to the particle system. 
+
+Adds new particle effector to the particle system. \hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a20794c85f695e017c76f248d2b4f2ed3}{\index{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node@{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node}!create\-Attraction\-Affector@{create\-Attraction\-Affector}}
+\index{create\-Attraction\-Affector@{create\-Attraction\-Affector}!irr::scene::CParticleSystemSceneNode@{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node}}
+\subsubsection[{create\-Attraction\-Affector}]{\setlength{\rightskip}{0pt plus 5cm}I\-Particle\-Attraction\-Affector $\ast$ irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node\-::create\-Attraction\-Affector (
+\begin{DoxyParamCaption}
+\item[{const core\-::vector3df \&}]{point, }
+\item[{f32}]{speed = {\ttfamily 1.0f}, }
+\item[{bool}]{attract = {\ttfamily true}, }
+\item[{bool}]{affect\-X = {\ttfamily true}, }
+\item[{bool}]{affect\-Y = {\ttfamily true}, }
+\item[{bool}]{affect\-Z = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a20794c85f695e017c76f248d2b4f2ed3}
+Creates a point attraction affector. This affector modifies the positions of the particles and attracts them to a specified point at a specified speed per second. \hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_aacbba0af7c7d7e949c0bd4faf58b0f57}{\index{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node@{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node}!create\-Rotation\-Affector@{create\-Rotation\-Affector}}
+\index{create\-Rotation\-Affector@{create\-Rotation\-Affector}!irr::scene::CParticleSystemSceneNode@{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node}}
+\subsubsection[{create\-Rotation\-Affector}]{\setlength{\rightskip}{0pt plus 5cm}I\-Particle\-Rotation\-Affector $\ast$ irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node\-::create\-Rotation\-Affector (
+\begin{DoxyParamCaption}
+\item[{const core\-::vector3df \&}]{speed = {\ttfamily core\-:\-:vector3df(5.0f,5.0f,5.0f)}, }
+\item[{const core\-::vector3df \&}]{pivot\-Point = {\ttfamily core\-:\-:vector3df(0.0f,0.0f,0.0f)}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_aacbba0af7c7d7e949c0bd4faf58b0f57}
+Creates a rotation affector. This affector rotates the particles around a specified pivot point. The speed is in Degrees per second.
+
+Creates a rotation affector. This affector rotates the particles around a specified pivot point. The speed represents Degrees of rotation per second. \hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_a7864789e0e2afbc8c6438db9764c10f4}{\index{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node@{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node}!do\-Particle\-System@{do\-Particle\-System}}
+\index{do\-Particle\-System@{do\-Particle\-System}!irr::scene::CParticleSystemSceneNode@{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node}}
+\subsubsection[{do\-Particle\-System}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node\-::do\-Particle\-System (
+\begin{DoxyParamCaption}
+\item[{u32}]{time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_a7864789e0e2afbc8c6438db9764c10f4}
+Do manually update the particles. This should only be called when you want to render the node outside the scenegraph, as the node will care about this otherwise automatically. \hypertarget{classirr_1_1scene_1_1_c_particle_system_scene_node_afbf0c2398be2f73b5a6c1790ab5de5c4}{\index{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node@{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node}!set\-Particles\-Are\-Global@{set\-Particles\-Are\-Global}}
+\index{set\-Particles\-Are\-Global@{set\-Particles\-Are\-Global}!irr::scene::CParticleSystemSceneNode@{irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node}}
+\subsubsection[{set\-Particles\-Are\-Global}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Particle\-System\-Scene\-Node\-::set\-Particles\-Are\-Global (
+\begin{DoxyParamCaption}
+\item[{bool}]{global = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_system_scene_node_afbf0c2398be2f73b5a6c1790ab5de5c4}
+Sets if the particles should be global. If they are, the particles are affected by the movement of the particle system scene node too, otherwise they completely ignore it. Default is true.
+
+Sets if the particles should be global. If it is, the particles are affected by the movement of the particle system scene node too, otherwise they completely ignore it. Default is true. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Particle\-System\-Scene\-Node.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Particle\-System\-Scene\-Node.\-cpp\end{DoxyCompactItemize}

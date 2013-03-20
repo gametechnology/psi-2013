@@ -1,0 +1,5 @@
+var classirr_1_1video_1_1_c_software2_material_renderer___t_r_a_n_s_p_a_r_e_n_t___a_d_d___c_o_l_o_r =
+[
+    [ "CSoftware2MaterialRenderer_TRANSPARENT_ADD_COLOR", "classirr_1_1video_1_1_c_software2_material_renderer___t_r_a_n_s_p_a_r_e_n_t___a_d_d___c_o_l_o_r.html#a69232dd8e5f1619b32a886f8c13ee2b5", null ],
+    [ "isTransparent", "classirr_1_1video_1_1_c_software2_material_renderer___t_r_a_n_s_p_a_r_e_n_t___a_d_d___c_o_l_o_r.html#a06150a5b60083cfd7361944da7732eb2", null ]
+];

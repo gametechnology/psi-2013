@@ -1,0 +1,106 @@
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node}{\section{irr\-:\-:scene\-:\-:C\-Octree\-Scene\-Node Class Reference}
+\label{classirr_1_1scene_1_1_c_octree_scene_node}\index{irr\-::scene\-::\-C\-Octree\-Scene\-Node@{irr\-::scene\-::\-C\-Octree\-Scene\-Node}}
+}
+
+
+implementation of the I\-Bsp\-Tree\-Scene\-Node  
+
+
+
+
+{\ttfamily \#include $<$C\-Octree\-Scene\-Node.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Octree\-Scene\-Node\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_octree_scene_node}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_adb2d39df980c0270c546ac5dcaf90bc4}{\hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_adb2d39df980c0270c546ac5dcaf90bc4}{C\-Octree\-Scene\-Node} (I\-Scene\-Node $\ast$parent, I\-Scene\-Manager $\ast$mgr, s32 id, s32 minimal\-Polys\-Per\-Node=512)}\label{classirr_1_1scene_1_1_c_octree_scene_node_adb2d39df980c0270c546ac5dcaf90bc4}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_aafa52fbbe82b8e3ff37fcf621ed3cf51}{virtual \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_aafa52fbbe82b8e3ff37fcf621ed3cf51}{$\sim$\-C\-Octree\-Scene\-Node} ()}\label{classirr_1_1scene_1_1_c_octree_scene_node_aafa52fbbe82b8e3ff37fcf621ed3cf51}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_a8370488a4c8526ee28b86754361cdc78}{virtual void {\bfseries On\-Register\-Scene\-Node} ()}\label{classirr_1_1scene_1_1_c_octree_scene_node_a8370488a4c8526ee28b86754361cdc78}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_ad0097e7c9423081ae2753ee6fc91ec05}{virtual void \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_ad0097e7c9423081ae2753ee6fc91ec05}{render} ()}\label{classirr_1_1scene_1_1_c_octree_scene_node_ad0097e7c9423081ae2753ee6fc91ec05}
+
+\begin{DoxyCompactList}\small\item\em renders the node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_a057c75f04fb7c7841a76fc7e1e5942d6}{virtual const core\-::aabbox3d\\*
+$<$ f32 $>$ \& \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_a057c75f04fb7c7841a76fc7e1e5942d6}{get\-Bounding\-Box} () const }\label{classirr_1_1scene_1_1_c_octree_scene_node_a057c75f04fb7c7841a76fc7e1e5942d6}
+
+\begin{DoxyCompactList}\small\item\em returns the axis aligned bounding box of this node \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_a7b13ad491fca4a8baf4775fe83c99eee}{bool \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_a7b13ad491fca4a8baf4775fe83c99eee}{create\-Tree} (I\-Mesh $\ast$mesh)}\label{classirr_1_1scene_1_1_c_octree_scene_node_a7b13ad491fca4a8baf4775fe83c99eee}
+
+\begin{DoxyCompactList}\small\item\em creates the tree \end{DoxyCompactList}\item 
+virtual video\-::\-S\-Material \& \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_ad9de3cdec5587b9446d135ff48595982}{get\-Material} (u32 i)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_adbc3a22d6eb63bdece57ae0445b9fde1}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_adbc3a22d6eb63bdece57ae0445b9fde1}{get\-Material\-Count} () const }\label{classirr_1_1scene_1_1_c_octree_scene_node_adbc3a22d6eb63bdece57ae0445b9fde1}
+
+\begin{DoxyCompactList}\small\item\em returns amount of materials used by this scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_afb81008e13075167888606c334cf5034}{virtual void \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_afb81008e13075167888606c334cf5034}{serialize\-Attributes} (io\-::\-I\-Attributes $\ast$out, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0) const }\label{classirr_1_1scene_1_1_c_octree_scene_node_afb81008e13075167888606c334cf5034}
+
+\begin{DoxyCompactList}\small\item\em Writes attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_ada355a7b6343dc1e0483180d4baafb19}{virtual void \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_ada355a7b6343dc1e0483180d4baafb19}{deserialize\-Attributes} (io\-::\-I\-Attributes $\ast$in, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0)}\label{classirr_1_1scene_1_1_c_octree_scene_node_ada355a7b6343dc1e0483180d4baafb19}
+
+\begin{DoxyCompactList}\small\item\em Reads attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_addf5a5e7a59be3f20c8252049c7d65d7}{virtual E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_addf5a5e7a59be3f20c8252049c7d65d7}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_octree_scene_node_addf5a5e7a59be3f20c8252049c7d65d7}
+
+\begin{DoxyCompactList}\small\item\em Returns type of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_a1716cefb4383bb265882d1316f72d9bd}{virtual void \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_a1716cefb4383bb265882d1316f72d9bd}{set\-Mesh} (I\-Mesh $\ast$mesh)}\label{classirr_1_1scene_1_1_c_octree_scene_node_a1716cefb4383bb265882d1316f72d9bd}
+
+\begin{DoxyCompactList}\small\item\em Sets a new mesh to display. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_a4b1d0a118f310fa30ab94cacfaa37aad}{virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_a4b1d0a118f310fa30ab94cacfaa37aad}{get\-Mesh} (void)}\label{classirr_1_1scene_1_1_c_octree_scene_node_a4b1d0a118f310fa30ab94cacfaa37aad}
+
+\begin{DoxyCompactList}\small\item\em Get the currently defined mesh for display. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_afaeef4d70f90efaf8547fbe03b814d61}{virtual void \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_afaeef4d70f90efaf8547fbe03b814d61}{set\-Read\-Only\-Materials} (bool readonly)}\label{classirr_1_1scene_1_1_c_octree_scene_node_afaeef4d70f90efaf8547fbe03b814d61}
+
+\begin{DoxyCompactList}\small\item\em Sets if the scene node should not copy the materials of the mesh but use them in a read only style. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_a092e97ddc4b76fd42eb7ffaf0c8de5bc}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_a092e97ddc4b76fd42eb7ffaf0c8de5bc}{is\-Read\-Only\-Materials} () const }\label{classirr_1_1scene_1_1_c_octree_scene_node_a092e97ddc4b76fd42eb7ffaf0c8de5bc}
+
+\begin{DoxyCompactList}\small\item\em Check if the scene node should not copy the materials of the mesh but use them in a read only style. \end{DoxyCompactList}\item 
+virtual I\-Shadow\-Volume\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_a49004b0e16ba6b4fe14cc3398fde0242}{add\-Shadow\-Volume\-Scene\-Node} (const I\-Mesh $\ast$shadow\-Mesh, s32 id, bool zfailmethod=true, f32 infinity=10000.\-0f)
+\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_ac6efdbcccf035f633b750d38ed88e869}{remove\-Child} (I\-Scene\-Node $\ast$child)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+implementation of the I\-Bsp\-Tree\-Scene\-Node 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_a49004b0e16ba6b4fe14cc3398fde0242}{\index{irr\-::scene\-::\-C\-Octree\-Scene\-Node@{irr\-::scene\-::\-C\-Octree\-Scene\-Node}!add\-Shadow\-Volume\-Scene\-Node@{add\-Shadow\-Volume\-Scene\-Node}}
+\index{add\-Shadow\-Volume\-Scene\-Node@{add\-Shadow\-Volume\-Scene\-Node}!irr::scene::COctreeSceneNode@{irr\-::scene\-::\-C\-Octree\-Scene\-Node}}
+\subsubsection[{add\-Shadow\-Volume\-Scene\-Node}]{\setlength{\rightskip}{0pt plus 5cm}I\-Shadow\-Volume\-Scene\-Node $\ast$ irr\-::scene\-::\-C\-Octree\-Scene\-Node\-::add\-Shadow\-Volume\-Scene\-Node (
+\begin{DoxyParamCaption}
+\item[{const I\-Mesh $\ast$}]{shadow\-Mesh, }
+\item[{s32}]{id, }
+\item[{bool}]{zfailmethod = {\ttfamily true}, }
+\item[{f32}]{infinity = {\ttfamily 10000.0f}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_octree_scene_node_a49004b0e16ba6b4fe14cc3398fde0242}
+Creates shadow volume scene node as child of this node and returns a pointer to it. \hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_ad9de3cdec5587b9446d135ff48595982}{\index{irr\-::scene\-::\-C\-Octree\-Scene\-Node@{irr\-::scene\-::\-C\-Octree\-Scene\-Node}!get\-Material@{get\-Material}}
+\index{get\-Material@{get\-Material}!irr::scene::COctreeSceneNode@{irr\-::scene\-::\-C\-Octree\-Scene\-Node}}
+\subsubsection[{get\-Material}]{\setlength{\rightskip}{0pt plus 5cm}video\-::\-S\-Material \& irr\-::scene\-::\-C\-Octree\-Scene\-Node\-::get\-Material (
+\begin{DoxyParamCaption}
+\item[{u32}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_octree_scene_node_ad9de3cdec5587b9446d135ff48595982}
+returns the material based on the zero based index i. To get the amount of materials used by this scene node, use \hyperlink{classirr_1_1scene_1_1_c_octree_scene_node_adbc3a22d6eb63bdece57ae0445b9fde1}{get\-Material\-Count()}. This function is needed for inserting the node into the scene hirachy on a optimal position for minimizing renderstate changes, but can also be used to directly modify the material of a scene node. \hypertarget{classirr_1_1scene_1_1_c_octree_scene_node_ac6efdbcccf035f633b750d38ed88e869}{\index{irr\-::scene\-::\-C\-Octree\-Scene\-Node@{irr\-::scene\-::\-C\-Octree\-Scene\-Node}!remove\-Child@{remove\-Child}}
+\index{remove\-Child@{remove\-Child}!irr::scene::COctreeSceneNode@{irr\-::scene\-::\-C\-Octree\-Scene\-Node}}
+\subsubsection[{remove\-Child}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::scene\-::\-C\-Octree\-Scene\-Node\-::remove\-Child (
+\begin{DoxyParamCaption}
+\item[{I\-Scene\-Node $\ast$}]{child}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_octree_scene_node_ac6efdbcccf035f633b750d38ed88e869}
+Removes a child from this scene node. Implemented here, to be able to remove the shadow properly, if there is one, or to remove attached childs. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Octree\-Scene\-Node.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Octree\-Scene\-Node.\-cpp\end{DoxyCompactItemize}

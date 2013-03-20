@@ -1,0 +1,265 @@
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator}{\section{irr\-:\-:scene\-:\-:C\-Mesh\-Manipulator Class Reference}
+\label{classirr_1_1scene_1_1_c_mesh_manipulator}\index{irr\-::scene\-::\-C\-Mesh\-Manipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}}
+}
+
+
+An interface for easy manipulation of meshes.  
+
+
+
+
+{\ttfamily \#include $<$C\-Mesh\-Manipulator.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Mesh\-Manipulator\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_mesh_manipulator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a761c2db306809f5be62ab46ce7eba57f}{flip\-Surfaces} (scene\-::\-I\-Mesh $\ast$mesh) const 
+\begin{DoxyCompactList}\small\item\em Flips the direction of surfaces. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a7ac014c657a2cff78ba107569097b151}{recalculate\-Normals} (scene\-::\-I\-Mesh $\ast$mesh, bool smooth=false, bool angle\-Weighted=false) const 
+\begin{DoxyCompactList}\small\item\em Recalculates all normals of the mesh. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a428c96302ec17f014092b0b9b9b3f5c8}{recalculate\-Normals} (I\-Mesh\-Buffer $\ast$buffer, bool smooth=false, bool angle\-Weighted=false) const 
+\begin{DoxyCompactList}\small\item\em Recalculates all normals of the mesh buffer. \end{DoxyCompactList}\item 
+virtual S\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_ad34378f259d9f925633ca5ffbd5595e2}{create\-Mesh\-Copy} (scene\-::\-I\-Mesh $\ast$mesh) const 
+\begin{DoxyCompactList}\small\item\em Clones a static I\-Mesh into a modifiable S\-Mesh. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a07e2a3d91cdea31e9fb76901924e2359}{make\-Planar\-Texture\-Mapping} (scene\-::\-I\-Mesh $\ast$mesh, f32 resolution=0.\-001f) const 
+\begin{DoxyCompactList}\small\item\em Creates a planar texture mapping on the mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_aad4c71b12e22b15a3e9e031a983866df}{virtual void \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_aad4c71b12e22b15a3e9e031a983866df}{make\-Planar\-Texture\-Mapping} (scene\-::\-I\-Mesh\-Buffer $\ast$meshbuffer, f32 resolution=0.\-001f) const }\label{classirr_1_1scene_1_1_c_mesh_manipulator_aad4c71b12e22b15a3e9e031a983866df}
+
+\begin{DoxyCompactList}\small\item\em Creates a planar texture mapping on the meshbuffer. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_a5fab1227c517cb05c0a7c8c92d1e4922}{void \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a5fab1227c517cb05c0a7c8c92d1e4922}{make\-Planar\-Texture\-Mapping} (scene\-::\-I\-Mesh\-Buffer $\ast$buffer, f32 resolution\-S, f32 resolution\-T, u8 axis, const core\-::vector3df \&offset) const }\label{classirr_1_1scene_1_1_c_mesh_manipulator_a5fab1227c517cb05c0a7c8c92d1e4922}
+
+\begin{DoxyCompactList}\small\item\em Creates a planar texture mapping on the meshbuffer. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_a120ba00acecca9c348d356dd1e429118}{void \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a120ba00acecca9c348d356dd1e429118}{make\-Planar\-Texture\-Mapping} (scene\-::\-I\-Mesh $\ast$mesh, f32 resolution\-S, f32 resolution\-T, u8 axis, const core\-::vector3df \&offset) const }\label{classirr_1_1scene_1_1_c_mesh_manipulator_a120ba00acecca9c348d356dd1e429118}
+
+\begin{DoxyCompactList}\small\item\em Creates a planar texture mapping on the mesh. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a55d73303cc42b667c2383173b3f63fc5}{recalculate\-Tangents} (I\-Mesh\-Buffer $\ast$buffer, bool \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a7ac014c657a2cff78ba107569097b151}{recalculate\-Normals}=false, bool smooth=false, bool angle\-Weighted=false) const 
+\begin{DoxyCompactList}\small\item\em Recalculates tangents, requires a tangent mesh buffer. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_aa48c6b32d658fc8264921e1da2ed1aa5}{recalculate\-Tangents} (I\-Mesh $\ast$mesh, bool \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a7ac014c657a2cff78ba107569097b151}{recalculate\-Normals}=false, bool smooth=false, bool angle\-Weighted=false) const 
+\begin{DoxyCompactList}\small\item\em Recalculates tangents, requires a tangent mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_a1156243875d47feb81734471e2c64698}{virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a1156243875d47feb81734471e2c64698}{create\-Mesh\-With\-Tangents} (I\-Mesh $\ast$mesh, bool \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a7ac014c657a2cff78ba107569097b151}{recalculate\-Normals}=false, bool smooth=false, bool angle\-Weighted=false, bool \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a55d73303cc42b667c2383173b3f63fc5}{recalculate\-Tangents}=true) const }\label{classirr_1_1scene_1_1_c_mesh_manipulator_a1156243875d47feb81734471e2c64698}
+
+\begin{DoxyCompactList}\small\item\em Creates a copy of the mesh, which will only consist of S3\-D\-Vertex\-Tangents vertices. \end{DoxyCompactList}\item 
+virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_ad0bd912b83c02b7183db031cac542483}{create\-Mesh\-With2\-T\-Coords} (I\-Mesh $\ast$mesh) const 
+\begin{DoxyCompactList}\small\item\em Creates a copy of the mesh, which will only consist of S3\-D2\-T\-Coords vertices. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_a248015a67f04a849482fcff221f09743}{virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a248015a67f04a849482fcff221f09743}{create\-Mesh\-With1\-T\-Coords} (I\-Mesh $\ast$mesh) const }\label{classirr_1_1scene_1_1_c_mesh_manipulator_a248015a67f04a849482fcff221f09743}
+
+\begin{DoxyCompactList}\small\item\em Creates a copy of the mesh, which will only consist of S3\-D\-Vertex vertices. \end{DoxyCompactList}\item 
+virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_acf8635e6d499caea68009c3384eb282a}{create\-Mesh\-Unique\-Primitives} (I\-Mesh $\ast$mesh) const 
+\begin{DoxyCompactList}\small\item\em Creates a copy of the mesh, which will only consist of unique triangles, i.\-e. no vertices are shared. \end{DoxyCompactList}\item 
+virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a9146c975f669050cc34aef1fd80532fd}{create\-Mesh\-Welded} (I\-Mesh $\ast$mesh, f32 tolerance=core\-::\-R\-O\-U\-N\-D\-I\-N\-G\-\_\-\-E\-R\-R\-O\-R\-\_\-f32) const 
+\begin{DoxyCompactList}\small\item\em Creates a copy of the mesh, which will have all duplicated vertices removed, i.\-e. maximal amount of vertices are shared via indexing. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_ada4f5a994c80d4bf3e5a3ea786300a66}{virtual s32 \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_ada4f5a994c80d4bf3e5a3ea786300a66}{get\-Poly\-Count} (scene\-::\-I\-Mesh $\ast$mesh) const }\label{classirr_1_1scene_1_1_c_mesh_manipulator_ada4f5a994c80d4bf3e5a3ea786300a66}
+
+\begin{DoxyCompactList}\small\item\em Returns amount of polygons in mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_a2b130967c2dd8ec019ff37a63e7aabf0}{virtual s32 \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a2b130967c2dd8ec019ff37a63e7aabf0}{get\-Poly\-Count} (scene\-::\-I\-Animated\-Mesh $\ast$mesh) const }\label{classirr_1_1scene_1_1_c_mesh_manipulator_a2b130967c2dd8ec019ff37a63e7aabf0}
+
+\begin{DoxyCompactList}\small\item\em Returns amount of polygons in mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_a6d19c37d0d5283011a73ed94884b3a2d}{virtual I\-Animated\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_a6d19c37d0d5283011a73ed94884b3a2d}{create\-Animated\-Mesh} (scene\-::\-I\-Mesh $\ast$mesh, scene\-::\-E\-\_\-\-A\-N\-I\-M\-A\-T\-E\-D\-\_\-\-M\-E\-S\-H\-\_\-\-T\-Y\-P\-E type) const }\label{classirr_1_1scene_1_1_c_mesh_manipulator_a6d19c37d0d5283011a73ed94884b3a2d}
+
+\begin{DoxyCompactList}\small\item\em create a new Animated\-Mesh and adds the mesh to it \end{DoxyCompactList}\item 
+virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_mesh_manipulator_aea6aa4efbc629e80c8d5c508cabd7b0b}{create\-Forsyth\-Optimized\-Mesh} (const scene\-::\-I\-Mesh $\ast$mesh) const 
+\begin{DoxyCompactList}\small\item\em create a mesh optimized for the vertex cache \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An interface for easy manipulation of meshes. 
+
+\begin{DoxyVerb}Scale, set alpha value, flip surfaces, and so on. This exists for fixing
+\end{DoxyVerb}
+ problems with wrong imported or exported meshes quickly after loading. It is not intended for doing mesh modifications and/or animations during runtime. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_aea6aa4efbc629e80c8d5c508cabd7b0b}{\index{irr\-::scene\-::\-C\-Mesh\-Manipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}!create\-Forsyth\-Optimized\-Mesh@{create\-Forsyth\-Optimized\-Mesh}}
+\index{create\-Forsyth\-Optimized\-Mesh@{create\-Forsyth\-Optimized\-Mesh}!irr::scene::CMeshManipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}}
+\subsubsection[{create\-Forsyth\-Optimized\-Mesh}]{\setlength{\rightskip}{0pt plus 5cm}I\-Mesh $\ast$ irr\-::scene\-::\-C\-Mesh\-Manipulator\-::create\-Forsyth\-Optimized\-Mesh (
+\begin{DoxyParamCaption}
+\item[{const scene\-::\-I\-Mesh $\ast$}]{mesh}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_mesh_manipulator_aea6aa4efbc629e80c8d5c508cabd7b0b}
+
+
+create a mesh optimized for the vertex cache 
+
+Vertex cache optimization according to the Forsyth paper\-: \href{http://home.comcast.net/~tom_forsyth/papers/fast_vert_cache_opt.html}{\tt http\-://home.\-comcast.\-net/$\sim$tom\-\_\-forsyth/papers/fast\-\_\-vert\-\_\-cache\-\_\-opt.\-html}
+
+The function is thread-\/safe (read\-: you can optimize several meshes in different threads)
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh} & Source mesh for the operation. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_ad34378f259d9f925633ca5ffbd5595e2}{\index{irr\-::scene\-::\-C\-Mesh\-Manipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}!create\-Mesh\-Copy@{create\-Mesh\-Copy}}
+\index{create\-Mesh\-Copy@{create\-Mesh\-Copy}!irr::scene::CMeshManipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}}
+\subsubsection[{create\-Mesh\-Copy}]{\setlength{\rightskip}{0pt plus 5cm}S\-Mesh $\ast$ irr\-::scene\-::\-C\-Mesh\-Manipulator\-::create\-Mesh\-Copy (
+\begin{DoxyParamCaption}
+\item[{scene\-::\-I\-Mesh $\ast$}]{mesh}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_mesh_manipulator_ad34378f259d9f925633ca5ffbd5595e2}
+
+
+Clones a static I\-Mesh into a modifiable S\-Mesh. 
+
+Clones a static I\-Mesh into a modifyable S\-Mesh. \hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_acf8635e6d499caea68009c3384eb282a}{\index{irr\-::scene\-::\-C\-Mesh\-Manipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}!create\-Mesh\-Unique\-Primitives@{create\-Mesh\-Unique\-Primitives}}
+\index{create\-Mesh\-Unique\-Primitives@{create\-Mesh\-Unique\-Primitives}!irr::scene::CMeshManipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}}
+\subsubsection[{create\-Mesh\-Unique\-Primitives}]{\setlength{\rightskip}{0pt plus 5cm}I\-Mesh $\ast$ irr\-::scene\-::\-C\-Mesh\-Manipulator\-::create\-Mesh\-Unique\-Primitives (
+\begin{DoxyParamCaption}
+\item[{I\-Mesh $\ast$}]{mesh}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_mesh_manipulator_acf8635e6d499caea68009c3384eb282a}
+
+
+Creates a copy of the mesh, which will only consist of unique triangles, i.\-e. no vertices are shared. 
+
+Creates a copy of the mesh, which will only consist of unique primitives. \hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_a9146c975f669050cc34aef1fd80532fd}{\index{irr\-::scene\-::\-C\-Mesh\-Manipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}!create\-Mesh\-Welded@{create\-Mesh\-Welded}}
+\index{create\-Mesh\-Welded@{create\-Mesh\-Welded}!irr::scene::CMeshManipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}}
+\subsubsection[{create\-Mesh\-Welded}]{\setlength{\rightskip}{0pt plus 5cm}I\-Mesh $\ast$ irr\-::scene\-::\-C\-Mesh\-Manipulator\-::create\-Mesh\-Welded (
+\begin{DoxyParamCaption}
+\item[{I\-Mesh $\ast$}]{mesh, }
+\item[{f32}]{tolerance = {\ttfamily core\-:\-:ROUNDING\-\_\-ERROR\-\_\-f32}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_mesh_manipulator_a9146c975f669050cc34aef1fd80532fd}
+
+
+Creates a copy of the mesh, which will have all duplicated vertices removed, i.\-e. maximal amount of vertices are shared via indexing. 
+
+Creates a copy of a mesh, which will have identical vertices welded together. \hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_ad0bd912b83c02b7183db031cac542483}{\index{irr\-::scene\-::\-C\-Mesh\-Manipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}!create\-Mesh\-With2\-T\-Coords@{create\-Mesh\-With2\-T\-Coords}}
+\index{create\-Mesh\-With2\-T\-Coords@{create\-Mesh\-With2\-T\-Coords}!irr::scene::CMeshManipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}}
+\subsubsection[{create\-Mesh\-With2\-T\-Coords}]{\setlength{\rightskip}{0pt plus 5cm}I\-Mesh $\ast$ irr\-::scene\-::\-C\-Mesh\-Manipulator\-::create\-Mesh\-With2\-T\-Coords (
+\begin{DoxyParamCaption}
+\item[{I\-Mesh $\ast$}]{mesh}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_mesh_manipulator_ad0bd912b83c02b7183db031cac542483}
+
+
+Creates a copy of the mesh, which will only consist of S3\-D2\-T\-Coords vertices. 
+
+Creates a copy of the mesh, which will only consist of S3\-D\-Vertex2\-T\-Coords vertices. \hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_a761c2db306809f5be62ab46ce7eba57f}{\index{irr\-::scene\-::\-C\-Mesh\-Manipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}!flip\-Surfaces@{flip\-Surfaces}}
+\index{flip\-Surfaces@{flip\-Surfaces}!irr::scene::CMeshManipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}}
+\subsubsection[{flip\-Surfaces}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Mesh\-Manipulator\-::flip\-Surfaces (
+\begin{DoxyParamCaption}
+\item[{scene\-::\-I\-Mesh $\ast$}]{mesh}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_mesh_manipulator_a761c2db306809f5be62ab46ce7eba57f}
+
+
+Flips the direction of surfaces. 
+
+\begin{DoxyVerb}Changes backfacing triangles to frontfacing triangles and vice versa.
+\end{DoxyVerb}
+ 
+\begin{DoxyParams}{Parameters}
+{\em mesh,\-:} & Mesh on which the operation is performed.\\
+\hline
+\end{DoxyParams}
+Flips the direction of surfaces. Changes backfacing triangles to frontfacing triangles and vice versa. 
+\begin{DoxyParams}{Parameters}
+{\em mesh,\-:} & Mesh on which the operation is performed. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_a07e2a3d91cdea31e9fb76901924e2359}{\index{irr\-::scene\-::\-C\-Mesh\-Manipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}!make\-Planar\-Texture\-Mapping@{make\-Planar\-Texture\-Mapping}}
+\index{make\-Planar\-Texture\-Mapping@{make\-Planar\-Texture\-Mapping}!irr::scene::CMeshManipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}}
+\subsubsection[{make\-Planar\-Texture\-Mapping}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Mesh\-Manipulator\-::make\-Planar\-Texture\-Mapping (
+\begin{DoxyParamCaption}
+\item[{scene\-::\-I\-Mesh $\ast$}]{mesh, }
+\item[{f32}]{resolution = {\ttfamily 0.001f}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_mesh_manipulator_a07e2a3d91cdea31e9fb76901924e2359}
+
+
+Creates a planar texture mapping on the mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh,\-:} & Mesh on which the operation is performed. \\
+\hline
+{\em resolution,\-:} & resolution of the planar mapping. This is the value specifying which is the relation between world space and texture coordinate space. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_a7ac014c657a2cff78ba107569097b151}{\index{irr\-::scene\-::\-C\-Mesh\-Manipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}!recalculate\-Normals@{recalculate\-Normals}}
+\index{recalculate\-Normals@{recalculate\-Normals}!irr::scene::CMeshManipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}}
+\subsubsection[{recalculate\-Normals}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Mesh\-Manipulator\-::recalculate\-Normals (
+\begin{DoxyParamCaption}
+\item[{scene\-::\-I\-Mesh $\ast$}]{mesh, }
+\item[{bool}]{smooth = {\ttfamily false}, }
+\item[{bool}]{angle\-Weighted = {\ttfamily false}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_mesh_manipulator_a7ac014c657a2cff78ba107569097b151}
+
+
+Recalculates all normals of the mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh,\-:} & Mesh on which the operation is performed. \\
+\hline
+{\em smooth,\-:} & Whether to use smoothed normals.\\
+\hline
+\end{DoxyParams}
+Recalculates all normals of the mesh. 
+\begin{DoxyParams}{Parameters}
+{\em mesh,\-:} & Mesh on which the operation is performed. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_a428c96302ec17f014092b0b9b9b3f5c8}{\index{irr\-::scene\-::\-C\-Mesh\-Manipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}!recalculate\-Normals@{recalculate\-Normals}}
+\index{recalculate\-Normals@{recalculate\-Normals}!irr::scene::CMeshManipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}}
+\subsubsection[{recalculate\-Normals}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Mesh\-Manipulator\-::recalculate\-Normals (
+\begin{DoxyParamCaption}
+\item[{I\-Mesh\-Buffer $\ast$}]{buffer, }
+\item[{bool}]{smooth = {\ttfamily false}, }
+\item[{bool}]{angle\-Weighted = {\ttfamily false}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_mesh_manipulator_a428c96302ec17f014092b0b9b9b3f5c8}
+
+
+Recalculates all normals of the mesh buffer. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buffer,\-:} & Mesh buffer on which the operation is performed. \\
+\hline
+{\em smooth,\-:} & Whether to use smoothed normals.\\
+\hline
+{\em buffer,\-:} & Mesh buffer on which the operation is performed. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_a55d73303cc42b667c2383173b3f63fc5}{\index{irr\-::scene\-::\-C\-Mesh\-Manipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}!recalculate\-Tangents@{recalculate\-Tangents}}
+\index{recalculate\-Tangents@{recalculate\-Tangents}!irr::scene::CMeshManipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}}
+\subsubsection[{recalculate\-Tangents}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Mesh\-Manipulator\-::recalculate\-Tangents (
+\begin{DoxyParamCaption}
+\item[{I\-Mesh\-Buffer $\ast$}]{buffer, }
+\item[{bool}]{recalculate\-Normals = {\ttfamily false}, }
+\item[{bool}]{smooth = {\ttfamily false}, }
+\item[{bool}]{angle\-Weighted = {\ttfamily false}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_mesh_manipulator_a55d73303cc42b667c2383173b3f63fc5}
+
+
+Recalculates tangents, requires a tangent mesh buffer. 
+
+Recalculates tangents for a tangent mesh buffer. \hypertarget{classirr_1_1scene_1_1_c_mesh_manipulator_aa48c6b32d658fc8264921e1da2ed1aa5}{\index{irr\-::scene\-::\-C\-Mesh\-Manipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}!recalculate\-Tangents@{recalculate\-Tangents}}
+\index{recalculate\-Tangents@{recalculate\-Tangents}!irr::scene::CMeshManipulator@{irr\-::scene\-::\-C\-Mesh\-Manipulator}}
+\subsubsection[{recalculate\-Tangents}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Mesh\-Manipulator\-::recalculate\-Tangents (
+\begin{DoxyParamCaption}
+\item[{I\-Mesh $\ast$}]{mesh, }
+\item[{bool}]{recalculate\-Normals = {\ttfamily false}, }
+\item[{bool}]{smooth = {\ttfamily false}, }
+\item[{bool}]{angle\-Weighted = {\ttfamily false}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_mesh_manipulator_aa48c6b32d658fc8264921e1da2ed1aa5}
+
+
+Recalculates tangents, requires a tangent mesh. 
+
+Recalculates tangents for all tangent mesh buffers. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Mesh\-Manipulator.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Mesh\-Manipulator.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,111 @@
+\hypertarget{classirr_1_1scene_1_1_c_particle_gravity_affector}{\section{irr\-:\-:scene\-:\-:C\-Particle\-Gravity\-Affector Class Reference}
+\label{classirr_1_1scene_1_1_c_particle_gravity_affector}\index{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector@{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector}}
+}
+
+
+Particle Affector for affecting direction of particle.  
+
+
+
+
+{\ttfamily \#include $<$C\-Particle\-Gravity\-Affector.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Particle\-Gravity\-Affector\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_particle_gravity_affector}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_gravity_affector_a0559a00d3db4582296955d1ee42b3d21}{\hyperlink{classirr_1_1scene_1_1_c_particle_gravity_affector_a0559a00d3db4582296955d1ee42b3d21}{C\-Particle\-Gravity\-Affector} (const core\-::vector3df \&gravity=core\-::vector3df(0.\-0f,-\/0.\-03f, 0.\-0f), u32 time\-Force\-Lost=1000)}\label{classirr_1_1scene_1_1_c_particle_gravity_affector_a0559a00d3db4582296955d1ee42b3d21}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_gravity_affector_ae5e505e59fedad636bfa173a63b23908}{affect} (u32 now, S\-Particle $\ast$particlearray, u32 count)
+\begin{DoxyCompactList}\small\item\em Affects a particle. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_gravity_affector_a5ad067a97a360878dbe6bce2b4f4c61e}{set\-Time\-Force\-Lost} (f32 time\-Force\-Lost)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_gravity_affector_a45f75d43207efe4d9994da114195812f}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_gravity_affector_a45f75d43207efe4d9994da114195812f}{set\-Gravity} (const core\-::vector3df \&gravity)}\label{classirr_1_1scene_1_1_c_particle_gravity_affector_a45f75d43207efe4d9994da114195812f}
+
+\begin{DoxyCompactList}\small\item\em Set the direction and force of gravity. \end{DoxyCompactList}\item 
+virtual f32 \hyperlink{classirr_1_1scene_1_1_c_particle_gravity_affector_abfb518370e03c89fba4ec02f06ab510f}{get\-Time\-Force\-Lost} () const 
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_gravity_affector_a122c71b8c63ae049e48170ed9c9db274}{virtual const core\-::vector3df \& \hyperlink{classirr_1_1scene_1_1_c_particle_gravity_affector_a122c71b8c63ae049e48170ed9c9db274}{get\-Gravity} () const }\label{classirr_1_1scene_1_1_c_particle_gravity_affector_a122c71b8c63ae049e48170ed9c9db274}
+
+\begin{DoxyCompactList}\small\item\em Set the direction and force of gravity. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_gravity_affector_a45f4b0e4164d6c82297636dcb3b7111e}{serialize\-Attributes} (io\-::\-I\-Attributes $\ast$out, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options) const 
+\begin{DoxyCompactList}\small\item\em Writes attributes of the object. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_gravity_affector_aff36efaec3a97a1ef0bd63c8d438717b}{deserialize\-Attributes} (io\-::\-I\-Attributes $\ast$in, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options)
+\begin{DoxyCompactList}\small\item\em Reads attributes of the object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Particle Affector for affecting direction of particle. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_particle_gravity_affector_ae5e505e59fedad636bfa173a63b23908}{\index{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector@{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector}!affect@{affect}}
+\index{affect@{affect}!irr::scene::CParticleGravityAffector@{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector}}
+\subsubsection[{affect}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Particle\-Gravity\-Affector\-::affect (
+\begin{DoxyParamCaption}
+\item[{u32}]{now, }
+\item[{S\-Particle $\ast$}]{particlearray, }
+\item[{u32}]{count}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_gravity_affector_ae5e505e59fedad636bfa173a63b23908}
+
+
+Affects a particle. 
+
+Affects an array of particles. \hypertarget{classirr_1_1scene_1_1_c_particle_gravity_affector_aff36efaec3a97a1ef0bd63c8d438717b}{\index{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector@{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector}!deserialize\-Attributes@{deserialize\-Attributes}}
+\index{deserialize\-Attributes@{deserialize\-Attributes}!irr::scene::CParticleGravityAffector@{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector}}
+\subsubsection[{deserialize\-Attributes}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Particle\-Gravity\-Affector\-::deserialize\-Attributes (
+\begin{DoxyParamCaption}
+\item[{io\-::\-I\-Attributes $\ast$}]{in, }
+\item[{io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$}]{options}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_gravity_affector_aff36efaec3a97a1ef0bd63c8d438717b}
+
+
+Reads attributes of the object. 
+
+Reads attributes of the object. Implement this to set the attributes of your scene node animator for scripting languages, editors, debuggers or xml deserialization purposes. 
+\begin{DoxyParams}{Parameters}
+{\em start\-Index,\-:} & start index where to start reading attributes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\-: returns last index of an attribute read by this affector 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_particle_gravity_affector_abfb518370e03c89fba4ec02f06ab510f}{\index{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector@{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector}!get\-Time\-Force\-Lost@{get\-Time\-Force\-Lost}}
+\index{get\-Time\-Force\-Lost@{get\-Time\-Force\-Lost}!irr::scene::CParticleGravityAffector@{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector}}
+\subsubsection[{get\-Time\-Force\-Lost}]{\setlength{\rightskip}{0pt plus 5cm}virtual f32 irr\-::scene\-::\-C\-Particle\-Gravity\-Affector\-::get\-Time\-Force\-Lost (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_gravity_affector_abfb518370e03c89fba4ec02f06ab510f}
+Set the time in milliseconds when the gravity force is totally lost and the particle does not move any more. \hypertarget{classirr_1_1scene_1_1_c_particle_gravity_affector_a45f4b0e4164d6c82297636dcb3b7111e}{\index{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector@{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector}!serialize\-Attributes@{serialize\-Attributes}}
+\index{serialize\-Attributes@{serialize\-Attributes}!irr::scene::CParticleGravityAffector@{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector}}
+\subsubsection[{serialize\-Attributes}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Particle\-Gravity\-Affector\-::serialize\-Attributes (
+\begin{DoxyParamCaption}
+\item[{io\-::\-I\-Attributes $\ast$}]{out, }
+\item[{io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$}]{options}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_gravity_affector_a45f4b0e4164d6c82297636dcb3b7111e}
+
+
+Writes attributes of the object. 
+
+Writes attributes of the object. Implement this to expose the attributes of your scene node animator for scripting languages, editors, debuggers or xml serialization purposes. \hypertarget{classirr_1_1scene_1_1_c_particle_gravity_affector_a5ad067a97a360878dbe6bce2b4f4c61e}{\index{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector@{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector}!set\-Time\-Force\-Lost@{set\-Time\-Force\-Lost}}
+\index{set\-Time\-Force\-Lost@{set\-Time\-Force\-Lost}!irr::scene::CParticleGravityAffector@{irr\-::scene\-::\-C\-Particle\-Gravity\-Affector}}
+\subsubsection[{set\-Time\-Force\-Lost}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::scene\-::\-C\-Particle\-Gravity\-Affector\-::set\-Time\-Force\-Lost (
+\begin{DoxyParamCaption}
+\item[{f32}]{time\-Force\-Lost}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_gravity_affector_a5ad067a97a360878dbe6bce2b4f4c61e}
+Set the time in milliseconds when the gravity force is totally lost and the particle does not move any more. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Particle\-Gravity\-Affector.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Particle\-Gravity\-Affector.\-cpp\end{DoxyCompactItemize}

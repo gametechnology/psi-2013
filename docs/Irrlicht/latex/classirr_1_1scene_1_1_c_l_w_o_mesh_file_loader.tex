@@ -1,0 +1,69 @@
+\hypertarget{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader}{\section{irr\-:\-:scene\-:\-:C\-L\-W\-O\-Mesh\-File\-Loader Class Reference}
+\label{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader}\index{irr\-::scene\-::\-C\-L\-W\-O\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-L\-W\-O\-Mesh\-File\-Loader}}
+}
+
+
+Meshloader capable of loading Lightwave 3\-D meshes.  
+
+
+
+
+{\ttfamily \#include $<$C\-L\-W\-O\-Mesh\-File\-Loader.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-L\-W\-O\-Mesh\-File\-Loader\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structirr_1_1scene_1_1_c_l_w_o_mesh_file_loader_1_1t_l_w_o_material}{t\-L\-W\-O\-Material}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader_a446f39e0638b26ac5dde9f1cb8987e9c}{\hyperlink{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader_a446f39e0638b26ac5dde9f1cb8987e9c}{C\-L\-W\-O\-Mesh\-File\-Loader} (scene\-::\-I\-Scene\-Manager $\ast$smgr, io\-::\-I\-File\-System $\ast$fs)}\label{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader_a446f39e0638b26ac5dde9f1cb8987e9c}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader_a6d472a86e3aaa922daf04db9a071c2f2}{virtual \hyperlink{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader_a6d472a86e3aaa922daf04db9a071c2f2}{$\sim$\-C\-L\-W\-O\-Mesh\-File\-Loader} ()}\label{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader_a6d472a86e3aaa922daf04db9a071c2f2}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader_a6c30c77ae517b9f08f5fc0e720e57523}{is\-A\-Loadable\-File\-Extension} (const io\-::path \&filename) const 
+\item 
+virtual I\-Animated\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader_a2756354f4690e8bc8c8e91fa299d5a21}{create\-Mesh} (io\-::\-I\-Read\-File $\ast$file)
+\begin{DoxyCompactList}\small\item\em creates/loads an animated mesh from the file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Meshloader capable of loading Lightwave 3\-D meshes. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader_a2756354f4690e8bc8c8e91fa299d5a21}{\index{irr\-::scene\-::\-C\-L\-W\-O\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-L\-W\-O\-Mesh\-File\-Loader}!create\-Mesh@{create\-Mesh}}
+\index{create\-Mesh@{create\-Mesh}!irr::scene::CLWOMeshFileLoader@{irr\-::scene\-::\-C\-L\-W\-O\-Mesh\-File\-Loader}}
+\subsubsection[{create\-Mesh}]{\setlength{\rightskip}{0pt plus 5cm}I\-Animated\-Mesh $\ast$ irr\-::scene\-::\-C\-L\-W\-O\-Mesh\-File\-Loader\-::create\-Mesh (
+\begin{DoxyParamCaption}
+\item[{io\-::\-I\-Read\-File $\ast$}]{file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader_a2756354f4690e8bc8c8e91fa299d5a21}
+
+
+creates/loads an animated mesh from the file. 
+
+creates/loads an animated mesh from the file. \begin{DoxyReturn}{Returns}
+Pointer to the created mesh. Returns 0 if loading failed. If you no longer need the mesh, you should call I\-Animated\-Mesh\-::drop(). See I\-Unknown\-::drop() for more information. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader_a6c30c77ae517b9f08f5fc0e720e57523}{\index{irr\-::scene\-::\-C\-L\-W\-O\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-L\-W\-O\-Mesh\-File\-Loader}!is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}}
+\index{is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}!irr::scene::CLWOMeshFileLoader@{irr\-::scene\-::\-C\-L\-W\-O\-Mesh\-File\-Loader}}
+\subsubsection[{is\-A\-Loadable\-File\-Extension}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::scene\-::\-C\-L\-W\-O\-Mesh\-File\-Loader\-::is\-A\-Loadable\-File\-Extension (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{filename}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_l_w_o_mesh_file_loader_a6c30c77ae517b9f08f5fc0e720e57523}
+returns true if the file maybe is able to be loaded by this class based on the file extension (e.\-g. \char`\"{}.\-bsp\char`\"{}) 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-L\-W\-O\-Mesh\-File\-Loader.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-L\-W\-O\-Mesh\-File\-Loader.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,59 @@
+\hypertarget{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader}{\section{irr\-:\-:scene\-:\-:C\-M\-D3\-Mesh\-File\-Loader Class Reference}
+\label{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader}\index{irr\-::scene\-::\-C\-M\-D3\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-M\-D3\-Mesh\-File\-Loader}}
+}
+
+
+Meshloader capable of loading md3 files.  
+
+
+
+
+{\ttfamily \#include $<$C\-M\-D3\-Mesh\-File\-Loader.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-M\-D3\-Mesh\-File\-Loader\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader_ab7419c520097258d6e4904e54199faeb}{\hyperlink{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader_ab7419c520097258d6e4904e54199faeb}{C\-M\-D3\-Mesh\-File\-Loader} (scene\-::\-I\-Scene\-Manager $\ast$smgr)}\label{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader_ab7419c520097258d6e4904e54199faeb}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader_af874687f459119bb7f627c26f3139b5c}{virtual \hyperlink{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader_af874687f459119bb7f627c26f3139b5c}{$\sim$\-C\-M\-D3\-Mesh\-File\-Loader} ()}\label{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader_af874687f459119bb7f627c26f3139b5c}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader_adfc3c2449b417b8acc940615ee65859c}{is\-A\-Loadable\-File\-Extension} (const io\-::path \&filename) const 
+\item 
+virtual I\-Animated\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader_a0e5439f0ff1c2fd8baedf35ddcf53bea}{create\-Mesh} (io\-::\-I\-Read\-File $\ast$file)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Meshloader capable of loading md3 files. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader_a0e5439f0ff1c2fd8baedf35ddcf53bea}{\index{irr\-::scene\-::\-C\-M\-D3\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-M\-D3\-Mesh\-File\-Loader}!create\-Mesh@{create\-Mesh}}
+\index{create\-Mesh@{create\-Mesh}!irr::scene::CMD3MeshFileLoader@{irr\-::scene\-::\-C\-M\-D3\-Mesh\-File\-Loader}}
+\subsubsection[{create\-Mesh}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Animated\-Mesh$\ast$ irr\-::scene\-::\-C\-M\-D3\-Mesh\-File\-Loader\-::create\-Mesh (
+\begin{DoxyParamCaption}
+\item[{io\-::\-I\-Read\-File $\ast$}]{file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader_a0e5439f0ff1c2fd8baedf35ddcf53bea}
+creates/loads an animated mesh from the file. \begin{DoxyReturn}{Returns}
+Pointer to the created mesh. Returns 0 if loading failed. If you no longer need the mesh, you should call I\-Animated\-Mesh\-::drop(). See I\-Reference\-Counted\-::drop() for more information. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader_adfc3c2449b417b8acc940615ee65859c}{\index{irr\-::scene\-::\-C\-M\-D3\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-M\-D3\-Mesh\-File\-Loader}!is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}}
+\index{is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}!irr::scene::CMD3MeshFileLoader@{irr\-::scene\-::\-C\-M\-D3\-Mesh\-File\-Loader}}
+\subsubsection[{is\-A\-Loadable\-File\-Extension}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool irr\-::scene\-::\-C\-M\-D3\-Mesh\-File\-Loader\-::is\-A\-Loadable\-File\-Extension (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{filename}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_m_d3_mesh_file_loader_adfc3c2449b417b8acc940615ee65859c}
+returns true if the file maybe is able to be loaded by this class based on the file extension (e.\-g. \char`\"{}.\-bsp\char`\"{}) 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-M\-D3\-Mesh\-File\-Loader.\-h\end{DoxyCompactItemize}

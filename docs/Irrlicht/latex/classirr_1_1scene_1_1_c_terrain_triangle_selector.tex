@@ -1,0 +1,97 @@
+\hypertarget{classirr_1_1scene_1_1_c_terrain_triangle_selector}{\section{irr\-:\-:scene\-:\-:C\-Terrain\-Triangle\-Selector Class Reference}
+\label{classirr_1_1scene_1_1_c_terrain_triangle_selector}\index{irr\-::scene\-::\-C\-Terrain\-Triangle\-Selector@{irr\-::scene\-::\-C\-Terrain\-Triangle\-Selector}}
+}
+
+
+Triangle Selector for the Terrain\-Scene\-Node.  
+
+
+
+
+{\ttfamily \#include $<$C\-Terrain\-Triangle\-Selector.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Terrain\-Triangle\-Selector\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_terrain_triangle_selector}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classirr_1_1scene_1_1_c_terrain_triangle_selector_ad07fd12ae7c3e84fb6339fdb249b79bb}{C\-Terrain\-Triangle\-Selector} (I\-Terrain\-Scene\-Node $\ast$node, s32 L\-O\-D)
+\begin{DoxyCompactList}\small\item\em Constructs a selector based on an I\-Terrain\-Scene\-Node. \end{DoxyCompactList}\item 
+virtual \hyperlink{classirr_1_1scene_1_1_c_terrain_triangle_selector_a3ef7d64d03c87d6ed83e6d03148c408c}{$\sim$\-C\-Terrain\-Triangle\-Selector} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_triangle_selector_af1b952f557023752305e9479571f063f}{virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_triangle_selector_af1b952f557023752305e9479571f063f}{set\-Triangle\-Data} (I\-Terrain\-Scene\-Node $\ast$node, s32 L\-O\-D)}\label{classirr_1_1scene_1_1_c_terrain_triangle_selector_af1b952f557023752305e9479571f063f}
+
+\begin{DoxyCompactList}\small\item\em Clears and sets triangle data. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_triangle_selector_a862b739a637e89a7c1f2ed8e23567fad}{void \hyperlink{classirr_1_1scene_1_1_c_terrain_triangle_selector_a862b739a637e89a7c1f2ed8e23567fad}{get\-Triangles} (core\-::triangle3df $\ast$triangles, s32 array\-Size, s32 \&out\-Triangle\-Count, const core\-::matrix4 $\ast$transform=0) const }\label{classirr_1_1scene_1_1_c_terrain_triangle_selector_a862b739a637e89a7c1f2ed8e23567fad}
+
+\begin{DoxyCompactList}\small\item\em Gets all triangles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_triangle_selector_a9ecdf641aa2365207c298376cada073e}{void \hyperlink{classirr_1_1scene_1_1_c_terrain_triangle_selector_a9ecdf641aa2365207c298376cada073e}{get\-Triangles} (core\-::triangle3df $\ast$triangles, s32 array\-Size, s32 \&out\-Triangle\-Count, const core\-::aabbox3d$<$ f32 $>$ \&box, const core\-::matrix4 $\ast$transform=0) const }\label{classirr_1_1scene_1_1_c_terrain_triangle_selector_a9ecdf641aa2365207c298376cada073e}
+
+\begin{DoxyCompactList}\small\item\em Gets all triangles which lie within a specific bounding box. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_triangle_selector_ab5a72897c8f1dc5cc2e7c6ace368c8ed}{virtual void \hyperlink{classirr_1_1scene_1_1_c_terrain_triangle_selector_ab5a72897c8f1dc5cc2e7c6ace368c8ed}{get\-Triangles} (core\-::triangle3df $\ast$triangles, s32 array\-Size, s32 \&out\-Triangle\-Count, const core\-::line3d$<$ f32 $>$ \&line, const core\-::matrix4 $\ast$transform=0) const }\label{classirr_1_1scene_1_1_c_terrain_triangle_selector_ab5a72897c8f1dc5cc2e7c6ace368c8ed}
+
+\begin{DoxyCompactList}\small\item\em Gets all triangles which have or may have contact with a 3d line. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_triangle_selector_a52a73928eb235d1a88544dfa83f91760}{virtual s32 \hyperlink{classirr_1_1scene_1_1_c_terrain_triangle_selector_a52a73928eb235d1a88544dfa83f91760}{get\-Triangle\-Count} () const }\label{classirr_1_1scene_1_1_c_terrain_triangle_selector_a52a73928eb235d1a88544dfa83f91760}
+
+\begin{DoxyCompactList}\small\item\em Returns amount of all available triangles in this selector. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_triangle_selector_aa5816025aa110345f9e0c6edacfeb332}{virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_terrain_triangle_selector_aa5816025aa110345f9e0c6edacfeb332}{get\-Scene\-Node\-For\-Triangle} (u32 triangle\-Index) const }\label{classirr_1_1scene_1_1_c_terrain_triangle_selector_aa5816025aa110345f9e0c6edacfeb332}
+
+\begin{DoxyCompactList}\small\item\em Return the scene node associated with a given triangle. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_triangle_selector_a0b12d9d72da339711db9402f5c94be64}{virtual u32 {\bfseries get\-Selector\-Count} () const }\label{classirr_1_1scene_1_1_c_terrain_triangle_selector_a0b12d9d72da339711db9402f5c94be64}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_triangle_selector_a8ff0505e1b96e4a849e096374e753192}{virtual I\-Triangle\-Selector $\ast$ {\bfseries get\-Selector} (u32 index)}\label{classirr_1_1scene_1_1_c_terrain_triangle_selector_a8ff0505e1b96e4a849e096374e753192}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_triangle_selector_a496f32287611417c57ab126363822df5}{virtual const I\-Triangle\-Selector $\ast$ {\bfseries get\-Selector} (u32 index) const }\label{classirr_1_1scene_1_1_c_terrain_triangle_selector_a496f32287611417c57ab126363822df5}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_terrain_triangle_selector_a6f9b01ca9d62f599f60e12e2ac3ea5a7}{class {\bfseries C\-Terrain\-Scene\-Node}}\label{classirr_1_1scene_1_1_c_terrain_triangle_selector_a6f9b01ca9d62f599f60e12e2ac3ea5a7}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Triangle Selector for the Terrain\-Scene\-Node. 
+
+\begin{DoxyVerb}The code for the TerrainTriangleSelector is based on the GeoMipMapSelector
+\end{DoxyVerb}
+ developed by Spintz. He made it available for Irrlicht and allowed it to be distributed under this licence. I only modified some parts. A lot of thanks go to him. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_terrain_triangle_selector_ad07fd12ae7c3e84fb6339fdb249b79bb}{\index{irr\-::scene\-::\-C\-Terrain\-Triangle\-Selector@{irr\-::scene\-::\-C\-Terrain\-Triangle\-Selector}!C\-Terrain\-Triangle\-Selector@{C\-Terrain\-Triangle\-Selector}}
+\index{C\-Terrain\-Triangle\-Selector@{C\-Terrain\-Triangle\-Selector}!irr::scene::CTerrainTriangleSelector@{irr\-::scene\-::\-C\-Terrain\-Triangle\-Selector}}
+\subsubsection[{C\-Terrain\-Triangle\-Selector}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::scene\-::\-C\-Terrain\-Triangle\-Selector\-::\-C\-Terrain\-Triangle\-Selector (
+\begin{DoxyParamCaption}
+\item[{I\-Terrain\-Scene\-Node $\ast$}]{node, }
+\item[{s32}]{L\-O\-D}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1scene_1_1_c_terrain_triangle_selector_ad07fd12ae7c3e84fb6339fdb249b79bb}
+
+
+Constructs a selector based on an I\-Terrain\-Scene\-Node. 
+
+constructor \hypertarget{classirr_1_1scene_1_1_c_terrain_triangle_selector_a3ef7d64d03c87d6ed83e6d03148c408c}{\index{irr\-::scene\-::\-C\-Terrain\-Triangle\-Selector@{irr\-::scene\-::\-C\-Terrain\-Triangle\-Selector}!$\sim$\-C\-Terrain\-Triangle\-Selector@{$\sim$\-C\-Terrain\-Triangle\-Selector}}
+\index{$\sim$\-C\-Terrain\-Triangle\-Selector@{$\sim$\-C\-Terrain\-Triangle\-Selector}!irr::scene::CTerrainTriangleSelector@{irr\-::scene\-::\-C\-Terrain\-Triangle\-Selector}}
+\subsubsection[{$\sim$\-C\-Terrain\-Triangle\-Selector}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::scene\-::\-C\-Terrain\-Triangle\-Selector\-::$\sim$\-C\-Terrain\-Triangle\-Selector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_terrain_triangle_selector_a3ef7d64d03c87d6ed83e6d03148c408c}
+
+
+Destructor. 
+
+destructor 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Terrain\-Triangle\-Selector.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Terrain\-Triangle\-Selector.\-cpp\end{DoxyCompactItemize}

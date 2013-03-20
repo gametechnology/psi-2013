@@ -1,0 +1,54 @@
+\hypertarget{classirr_1_1scene_1_1_c_geometry_creator}{\section{irr\-:\-:scene\-:\-:C\-Geometry\-Creator Class Reference}
+\label{classirr_1_1scene_1_1_c_geometry_creator}\index{irr\-::scene\-::\-C\-Geometry\-Creator@{irr\-::scene\-::\-C\-Geometry\-Creator}}
+}
+
+
+class for creating geometry on the fly  
+
+
+
+
+{\ttfamily \#include $<$C\-Geometry\-Creator.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Geometry\-Creator\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_geometry_creator}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_geometry_creator_af284e89b237136d78c5efd8e50c88902}{I\-Mesh $\ast$ {\bfseries create\-Cube\-Mesh} (const core\-::vector3df \&size) const }\label{classirr_1_1scene_1_1_c_geometry_creator_af284e89b237136d78c5efd8e50c88902}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_geometry_creator_a2196a7ad66907c8713a466fd1e40ef98}{I\-Mesh $\ast$ {\bfseries create\-Hill\-Plane\-Mesh} (const core\-::dimension2d$<$ f32 $>$ \&tile\-Size, const core\-::dimension2d$<$ u32 $>$ \&tile\-Count, video\-::\-S\-Material $\ast$material, f32 hill\-Height, const core\-::dimension2d$<$ f32 $>$ \&count\-Hills, const core\-::dimension2d$<$ f32 $>$ \&texture\-Repeat\-Count) const }\label{classirr_1_1scene_1_1_c_geometry_creator_a2196a7ad66907c8713a466fd1e40ef98}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_geometry_creator_a24de1d83233590b4a437a1e42f206961}{I\-Mesh $\ast$ {\bfseries create\-Terrain\-Mesh} (video\-::\-I\-Image $\ast$texture, video\-::\-I\-Image $\ast$heightmap, const core\-::dimension2d$<$ f32 $>$ \&stretch\-Size, f32 max\-Height, video\-::\-I\-Video\-Driver $\ast$driver, const core\-::dimension2d$<$ u32 $>$ \&default\-Vertex\-Block\-Size, bool debug\-Borders=false) const }\label{classirr_1_1scene_1_1_c_geometry_creator_a24de1d83233590b4a437a1e42f206961}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_geometry_creator_a7a573b8c31062be23b085356a2ffef35}{I\-Mesh $\ast$ {\bfseries create\-Arrow\-Mesh} (const u32 tesselation\-Cylinder, const u32 tesselation\-Cone, const f32 height, const f32 cylinder\-Height, const f32 width0, const f32 width1, const video\-::\-S\-Color vtx\-Color0, const video\-::\-S\-Color vtx\-Color1) const }\label{classirr_1_1scene_1_1_c_geometry_creator_a7a573b8c31062be23b085356a2ffef35}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_geometry_creator_a4188d2b1e686f2d130f72968daf0d8a4}{I\-Mesh $\ast$ {\bfseries create\-Sphere\-Mesh} (f32 radius, u32 poly\-Count\-X, u32 poly\-Count\-Y) const }\label{classirr_1_1scene_1_1_c_geometry_creator_a4188d2b1e686f2d130f72968daf0d8a4}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_geometry_creator_adb7d8be35b21b7ac5c1e355176e3b2d3}{I\-Mesh $\ast$ {\bfseries create\-Cylinder\-Mesh} (f32 radius, f32 length, u32 tesselation, const video\-::\-S\-Color \&color=0xffffffff, bool close\-Top=true, f32 oblique=0.\-f) const }\label{classirr_1_1scene_1_1_c_geometry_creator_adb7d8be35b21b7ac5c1e355176e3b2d3}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_geometry_creator_a51dedd17466f0db5aaef9f73c714c6a9}{I\-Mesh $\ast$ {\bfseries create\-Cone\-Mesh} (f32 radius, f32 length, u32 tesselation, const video\-::\-S\-Color \&color\-Top=0xffffffff, const video\-::\-S\-Color \&color\-Bottom=0xffffffff, f32 oblique=0.\-f) const }\label{classirr_1_1scene_1_1_c_geometry_creator_a51dedd17466f0db5aaef9f73c714c6a9}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_geometry_creator_a95e418383e7bc28bb7081ac0cf67f1fa}{I\-Mesh $\ast$ {\bfseries create\-Volume\-Light\-Mesh} (const u32 subdivide\-U=32, const u32 subdivide\-V=32, const video\-::\-S\-Color foot\-Color=0xffffffff, const video\-::\-S\-Color tail\-Color=0xffffffff, const f32 lp\-Distance=8.\-f, const core\-::vector3df \&light\-Dim=core\-::vector3df(1.\-f, 1.\-2f, 1.\-f)) const }\label{classirr_1_1scene_1_1_c_geometry_creator_a95e418383e7bc28bb7081ac0cf67f1fa}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+class for creating geometry on the fly 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Geometry\-Creator.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Geometry\-Creator.\-cpp\end{DoxyCompactItemize}

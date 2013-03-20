@@ -1,0 +1,42 @@
+\hypertarget{_c_shadow_volume_scene_node_8cpp}{\section{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-C\-Shadow\-Volume\-Scene\-Node.cpp File Reference}
+\label{_c_shadow_volume_scene_node_8cpp}\index{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-C\-Shadow\-Volume\-Scene\-Node.\-cpp@{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-C\-Shadow\-Volume\-Scene\-Node.\-cpp}}
+}
+{\ttfamily \#include \char`\"{}C\-Shadow\-Volume\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Scene\-Manager.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Mesh.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Video\-Driver.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Camera\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}S\-View\-Frustum.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}S\-Light.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}os.\-h\char`\"{}}\\*
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespaceirr}{irr}
+\item 
+namespace \hyperlink{namespaceirr_1_1scene}{irr\-::scene}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_c_shadow_volume_scene_node_8cpp_a28b05c223d3aa3304ebdf2f8f56d51de}{I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-A\-D\-J\-A\-C\-E\-N\-C\-Y}
+\item 
+\#define \hyperlink{_c_shadow_volume_scene_node_8cpp_a45f126443844c1c3ff03e102dd180200}{I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-R\-E\-V\-E\-R\-S\-E\-\_\-\-E\-X\-T\-R\-U\-D\-E\-D}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_c_shadow_volume_scene_node_8cpp_a28b05c223d3aa3304ebdf2f8f56d51de}{\index{C\-Shadow\-Volume\-Scene\-Node.\-cpp@{C\-Shadow\-Volume\-Scene\-Node.\-cpp}!I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-A\-D\-J\-A\-C\-E\-N\-C\-Y@{I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-A\-D\-J\-A\-C\-E\-N\-C\-Y}}
+\index{I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-A\-D\-J\-A\-C\-E\-N\-C\-Y@{I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-A\-D\-J\-A\-C\-E\-N\-C\-Y}!CShadowVolumeSceneNode.cpp@{C\-Shadow\-Volume\-Scene\-Node.\-cpp}}
+\subsubsection[{I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-A\-D\-J\-A\-C\-E\-N\-C\-Y}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-A\-D\-J\-A\-C\-E\-N\-C\-Y}}\label{_c_shadow_volume_scene_node_8cpp_a28b05c223d3aa3304ebdf2f8f56d51de}
+
+
+Definition at line 100 of file C\-Shadow\-Volume\-Scene\-Node.\-cpp.
+
+\hypertarget{_c_shadow_volume_scene_node_8cpp_a45f126443844c1c3ff03e102dd180200}{\index{C\-Shadow\-Volume\-Scene\-Node.\-cpp@{C\-Shadow\-Volume\-Scene\-Node.\-cpp}!I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-R\-E\-V\-E\-R\-S\-E\-\_\-\-E\-X\-T\-R\-U\-D\-E\-D@{I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-R\-E\-V\-E\-R\-S\-E\-\_\-\-E\-X\-T\-R\-U\-D\-E\-D}}
+\index{I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-R\-E\-V\-E\-R\-S\-E\-\_\-\-E\-X\-T\-R\-U\-D\-E\-D@{I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-R\-E\-V\-E\-R\-S\-E\-\_\-\-E\-X\-T\-R\-U\-D\-E\-D}!CShadowVolumeSceneNode.cpp@{C\-Shadow\-Volume\-Scene\-Node.\-cpp}}
+\subsubsection[{I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-R\-E\-V\-E\-R\-S\-E\-\_\-\-E\-X\-T\-R\-U\-D\-E\-D}]{\setlength{\rightskip}{0pt plus 5cm}\#define I\-R\-R\-\_\-\-U\-S\-E\-\_\-\-R\-E\-V\-E\-R\-S\-E\-\_\-\-E\-X\-T\-R\-U\-D\-E\-D}}\label{_c_shadow_volume_scene_node_8cpp_a45f126443844c1c3ff03e102dd180200}
+
+
+Definition at line 101 of file C\-Shadow\-Volume\-Scene\-Node.\-cpp.
+

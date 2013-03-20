@@ -1,0 +1,234 @@
+\hypertarget{classirr_1_1video_1_1_c_color_converter}{\section{irr\-:\-:video\-:\-:C\-Color\-Converter Class Reference}
+\label{classirr_1_1video_1_1_c_color_converter}\index{irr\-::video\-::\-C\-Color\-Converter@{irr\-::video\-::\-C\-Color\-Converter}}
+}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classirr_1_1video_1_1_c_color_converter_a15ce8ced41c985f8a98d739e962926f3}{convert1\-Bit\-To16\-Bit} (const u8 $\ast$in, s16 $\ast$out, s32 width, s32 height, s32 linepad=0, bool flip=false)
+\begin{DoxyCompactList}\small\item\em converts a monochrome bitmap to A1\-R5\-G5\-B5 \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_aefa750a97769f98979320d1b1095b468}{static void \hyperlink{classirr_1_1video_1_1_c_color_converter_aefa750a97769f98979320d1b1095b468}{convert4\-Bit\-To16\-Bit} (const u8 $\ast$in, s16 $\ast$out, s32 width, s32 height, const s32 $\ast$palette, s32 linepad=0, bool flip=false)}\label{classirr_1_1video_1_1_c_color_converter_aefa750a97769f98979320d1b1095b468}
+
+\begin{DoxyCompactList}\small\item\em converts a 4 bit palettized image to A1\-R5\-G5\-B5 \end{DoxyCompactList}\item 
+static void \hyperlink{classirr_1_1video_1_1_c_color_converter_aedd5f6662bbd580c16bf6667587e3a92}{convert8\-Bit\-To16\-Bit} (const u8 $\ast$in, s16 $\ast$out, s32 width, s32 height, const s32 $\ast$palette, s32 linepad=0, bool flip=false)
+\begin{DoxyCompactList}\small\item\em converts a 8 bit palettized image to A1\-R5\-G5\-B5 \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a6f6e3ab6ed50984965a19810c7ff571f}{static void \hyperlink{classirr_1_1video_1_1_c_color_converter_a6f6e3ab6ed50984965a19810c7ff571f}{convert8\-Bit\-To24\-Bit} (const u8 $\ast$in, u8 $\ast$out, s32 width, s32 height, const u8 $\ast$palette, s32 linepad=0, bool flip=false)}\label{classirr_1_1video_1_1_c_color_converter_a6f6e3ab6ed50984965a19810c7ff571f}
+
+\begin{DoxyCompactList}\small\item\em converts a 8 bit palettized or non palettized image (A8) into R8\-G8\-B8 \end{DoxyCompactList}\item 
+static void \hyperlink{classirr_1_1video_1_1_c_color_converter_a38ff2e832aa377d88dc9fe5c59713674}{convert8\-Bit\-To32\-Bit} (const u8 $\ast$in, u8 $\ast$out, s32 width, s32 height, const u8 $\ast$palette, s32 linepad=0, bool flip=false)
+\begin{DoxyCompactList}\small\item\em converts a 8 bit palettized or non palettized image (A8) into A8\-R8\-G8\-B8 \end{DoxyCompactList}\item 
+static void \hyperlink{classirr_1_1video_1_1_c_color_converter_a9ce1fd3fc97089f50a51f13edfc46185}{convert16\-Bit\-To16\-Bit} (const s16 $\ast$in, s16 $\ast$out, s32 width, s32 height, s32 linepad=0, bool flip=false)
+\begin{DoxyCompactList}\small\item\em converts R8\-G8\-B8 16 bit data to A1\-R5\-G5\-B5 data \end{DoxyCompactList}\item 
+static void \hyperlink{classirr_1_1video_1_1_c_color_converter_af31d361b66eb2ceabab969381a33f99e}{convert24\-Bit\-To24\-Bit} (const u8 $\ast$in, u8 $\ast$out, s32 width, s32 height, s32 linepad=0, bool flip=false, bool bgr=false)
+\begin{DoxyCompactList}\small\item\em copies R8\-G8\-B8 24bit data to 24bit data \end{DoxyCompactList}\item 
+static void \hyperlink{classirr_1_1video_1_1_c_color_converter_ab1845e4487bc0ec98e39a64868b8bbc3}{convert16bit\-To\-A8\-R8\-G8\-B8and\-Resize} (const s16 $\ast$in, s32 $\ast$out, s32 new\-Width, s32 new\-Height, s32 current\-Width, s32 current\-Height)
+\item 
+static void \hyperlink{classirr_1_1video_1_1_c_color_converter_a7e2729378d5af783571f5a7b5d70adf8}{convert32\-Bit\-To32\-Bit} (const s32 $\ast$in, s32 $\ast$out, s32 width, s32 height, s32 linepad, bool flip=false)
+\begin{DoxyCompactList}\small\item\em copies X8\-R8\-G8\-B8 32 bit data \end{DoxyCompactList}\item 
+static void \hyperlink{classirr_1_1video_1_1_c_color_converter_a8b5ccd5f7d5c9d8413c694f98fe630ed}{convert\-\_\-\-A1\-R5\-G5\-B5to\-R8\-G8\-B8} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_ae0835c78b1db72bd817499d344cd9434}{static void {\bfseries convert\-\_\-\-A1\-R5\-G5\-B5to\-B8\-G8\-R8} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_ae0835c78b1db72bd817499d344cd9434}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a148e795c52eddf8fdc03a1ab862ef74e}{static void {\bfseries convert\-\_\-\-A1\-R5\-G5\-B5to\-A8\-R8\-G8\-B8} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_a148e795c52eddf8fdc03a1ab862ef74e}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a1d7fa13bc956b865f196d987f1504743}{static void {\bfseries convert\-\_\-\-A1\-R5\-G5\-B5to\-A1\-R5\-G5\-B5} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_a1d7fa13bc956b865f196d987f1504743}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_af7d97bf7696346151932d9ac1e6dcbe1}{static void {\bfseries convert\-\_\-\-A1\-R5\-G5\-B5to\-R5\-G6\-B5} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_af7d97bf7696346151932d9ac1e6dcbe1}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_ae4d59dbcb03576adb8851452f31ec2f2}{static void {\bfseries convert\-\_\-\-A8\-R8\-G8\-B8to\-R8\-G8\-B8} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_ae4d59dbcb03576adb8851452f31ec2f2}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_af6a9c6ca2905b6ee5450acc588479825}{static void {\bfseries convert\-\_\-\-A8\-R8\-G8\-B8to\-B8\-G8\-R8} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_af6a9c6ca2905b6ee5450acc588479825}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a9aeba2990bae1723981416ee860e5029}{static void {\bfseries convert\-\_\-\-A8\-R8\-G8\-B8to\-A8\-R8\-G8\-B8} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_a9aeba2990bae1723981416ee860e5029}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a377bf92b7da4c745a8f91a3a8eb3b7b4}{static void {\bfseries convert\-\_\-\-A8\-R8\-G8\-B8to\-A1\-R5\-G5\-B5} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_a377bf92b7da4c745a8f91a3a8eb3b7b4}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a5565677bcdaaabfc305d8c0c82308213}{static void {\bfseries convert\-\_\-\-A8\-R8\-G8\-B8to\-R5\-G6\-B5} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_a5565677bcdaaabfc305d8c0c82308213}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_aaab15f631dd859fcc6ef9f5c62d74cbd}{static void {\bfseries convert\-\_\-\-A8\-R8\-G8\-B8to\-R3\-G3\-B2} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_aaab15f631dd859fcc6ef9f5c62d74cbd}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a1dd65320c2090f013a0862c56112ea35}{static void {\bfseries convert\-\_\-\-R8\-G8\-B8to\-R8\-G8\-B8} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_a1dd65320c2090f013a0862c56112ea35}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a32562669ed74d25f245e8102ca13eb24}{static void {\bfseries convert\-\_\-\-R8\-G8\-B8to\-A8\-R8\-G8\-B8} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_a32562669ed74d25f245e8102ca13eb24}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a1c368f96adfabe5ffcc3013606499c62}{static void {\bfseries convert\-\_\-\-R8\-G8\-B8to\-A1\-R5\-G5\-B5} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_a1c368f96adfabe5ffcc3013606499c62}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a3866aee3822c6e8a1c11d895f40a4848}{static void {\bfseries convert\-\_\-\-R8\-G8\-B8to\-R5\-G6\-B5} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_a3866aee3822c6e8a1c11d895f40a4848}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a81e4be184042ab16bb8b88bc61232996}{static void {\bfseries convert\-\_\-\-B8\-G8\-R8to\-A8\-R8\-G8\-B8} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_a81e4be184042ab16bb8b88bc61232996}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_aba06eff9dbd3ac4a784f53159b5440db}{static void {\bfseries convert\-\_\-\-B8\-G8\-R8\-A8to\-A8\-R8\-G8\-B8} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_aba06eff9dbd3ac4a784f53159b5440db}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a5d7a0d77eb66bacb94b0f5fc61c8a8a2}{static void {\bfseries convert\-\_\-\-R5\-G6\-B5to\-R5\-G6\-B5} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_a5d7a0d77eb66bacb94b0f5fc61c8a8a2}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a9f77d09416dd5eda118fcfac6c76b281}{static void {\bfseries convert\-\_\-\-R5\-G6\-B5to\-R8\-G8\-B8} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_a9f77d09416dd5eda118fcfac6c76b281}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_aac83c77b496cb5f71eb286c200e69c08}{static void {\bfseries convert\-\_\-\-R5\-G6\-B5to\-B8\-G8\-R8} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_aac83c77b496cb5f71eb286c200e69c08}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_aa6b9d6bee375e78a35046d9a57cf8e58}{static void {\bfseries convert\-\_\-\-R5\-G6\-B5to\-A8\-R8\-G8\-B8} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_aa6b9d6bee375e78a35046d9a57cf8e58}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_af0c61ad8ea46facfcd33b1247fcd8bfe}{static void {\bfseries convert\-\_\-\-R5\-G6\-B5to\-A1\-R5\-G5\-B5} (const void $\ast$s\-P, s32 s\-N, void $\ast$d\-P)}\label{classirr_1_1video_1_1_c_color_converter_af0c61ad8ea46facfcd33b1247fcd8bfe}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a413401a82f6d5b4dcdd703641778728e}{static void {\bfseries convert\-\_\-via\-Format} (const void $\ast$s\-P, E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T s\-F, s32 s\-N, void $\ast$d\-P, E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T d\-F)}\label{classirr_1_1video_1_1_c_color_converter_a413401a82f6d5b4dcdd703641778728e}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1video_1_1_c_color_converter_a9ce1fd3fc97089f50a51f13edfc46185}{\index{irr\-::video\-::\-C\-Color\-Converter@{irr\-::video\-::\-C\-Color\-Converter}!convert16\-Bit\-To16\-Bit@{convert16\-Bit\-To16\-Bit}}
+\index{convert16\-Bit\-To16\-Bit@{convert16\-Bit\-To16\-Bit}!irr::video::CColorConverter@{irr\-::video\-::\-C\-Color\-Converter}}
+\subsubsection[{convert16\-Bit\-To16\-Bit}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Color\-Converter\-::convert16\-Bit\-To16\-Bit (
+\begin{DoxyParamCaption}
+\item[{const s16 $\ast$}]{in, }
+\item[{s16 $\ast$}]{out, }
+\item[{s32}]{width, }
+\item[{s32}]{height, }
+\item[{s32}]{linepad = {\ttfamily 0}, }
+\item[{bool}]{flip = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1video_1_1_c_color_converter_a9ce1fd3fc97089f50a51f13edfc46185}
+
+
+converts R8\-G8\-B8 16 bit data to A1\-R5\-G5\-B5 data 
+
+converts 16bit data to 16bit data \hypertarget{classirr_1_1video_1_1_c_color_converter_ab1845e4487bc0ec98e39a64868b8bbc3}{\index{irr\-::video\-::\-C\-Color\-Converter@{irr\-::video\-::\-C\-Color\-Converter}!convert16bit\-To\-A8\-R8\-G8\-B8and\-Resize@{convert16bit\-To\-A8\-R8\-G8\-B8and\-Resize}}
+\index{convert16bit\-To\-A8\-R8\-G8\-B8and\-Resize@{convert16bit\-To\-A8\-R8\-G8\-B8and\-Resize}!irr::video::CColorConverter@{irr\-::video\-::\-C\-Color\-Converter}}
+\subsubsection[{convert16bit\-To\-A8\-R8\-G8\-B8and\-Resize}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Color\-Converter\-::convert16bit\-To\-A8\-R8\-G8\-B8and\-Resize (
+\begin{DoxyParamCaption}
+\item[{const s16 $\ast$}]{in, }
+\item[{s32 $\ast$}]{out, }
+\item[{s32}]{new\-Width, }
+\item[{s32}]{new\-Height, }
+\item[{s32}]{current\-Width, }
+\item[{s32}]{current\-Height}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1video_1_1_c_color_converter_ab1845e4487bc0ec98e39a64868b8bbc3}
+Resizes the surface to a new size and converts it at the same time to an A8\-R8\-G8\-B8 format, returning the pointer to the new buffer. \hypertarget{classirr_1_1video_1_1_c_color_converter_a15ce8ced41c985f8a98d739e962926f3}{\index{irr\-::video\-::\-C\-Color\-Converter@{irr\-::video\-::\-C\-Color\-Converter}!convert1\-Bit\-To16\-Bit@{convert1\-Bit\-To16\-Bit}}
+\index{convert1\-Bit\-To16\-Bit@{convert1\-Bit\-To16\-Bit}!irr::video::CColorConverter@{irr\-::video\-::\-C\-Color\-Converter}}
+\subsubsection[{convert1\-Bit\-To16\-Bit}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Color\-Converter\-::convert1\-Bit\-To16\-Bit (
+\begin{DoxyParamCaption}
+\item[{const u8 $\ast$}]{in, }
+\item[{s16 $\ast$}]{out, }
+\item[{s32}]{width, }
+\item[{s32}]{height, }
+\item[{s32}]{linepad = {\ttfamily 0}, }
+\item[{bool}]{flip = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1video_1_1_c_color_converter_a15ce8ced41c985f8a98d739e962926f3}
+
+
+converts a monochrome bitmap to A1\-R5\-G5\-B5 
+
+converts a monochrome bitmap to A1\-R5\-G5\-B5 data \hypertarget{classirr_1_1video_1_1_c_color_converter_af31d361b66eb2ceabab969381a33f99e}{\index{irr\-::video\-::\-C\-Color\-Converter@{irr\-::video\-::\-C\-Color\-Converter}!convert24\-Bit\-To24\-Bit@{convert24\-Bit\-To24\-Bit}}
+\index{convert24\-Bit\-To24\-Bit@{convert24\-Bit\-To24\-Bit}!irr::video::CColorConverter@{irr\-::video\-::\-C\-Color\-Converter}}
+\subsubsection[{convert24\-Bit\-To24\-Bit}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Color\-Converter\-::convert24\-Bit\-To24\-Bit (
+\begin{DoxyParamCaption}
+\item[{const u8 $\ast$}]{in, }
+\item[{u8 $\ast$}]{out, }
+\item[{s32}]{width, }
+\item[{s32}]{height, }
+\item[{s32}]{linepad = {\ttfamily 0}, }
+\item[{bool}]{flip = {\ttfamily false}, }
+\item[{bool}]{bgr = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1video_1_1_c_color_converter_af31d361b66eb2ceabab969381a33f99e}
+
+
+copies R8\-G8\-B8 24bit data to 24bit data 
+
+copies R8\-G8\-B8 24 bit data to 24 data, and flips and mirrors the image during the process. \hypertarget{classirr_1_1video_1_1_c_color_converter_a7e2729378d5af783571f5a7b5d70adf8}{\index{irr\-::video\-::\-C\-Color\-Converter@{irr\-::video\-::\-C\-Color\-Converter}!convert32\-Bit\-To32\-Bit@{convert32\-Bit\-To32\-Bit}}
+\index{convert32\-Bit\-To32\-Bit@{convert32\-Bit\-To32\-Bit}!irr::video::CColorConverter@{irr\-::video\-::\-C\-Color\-Converter}}
+\subsubsection[{convert32\-Bit\-To32\-Bit}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Color\-Converter\-::convert32\-Bit\-To32\-Bit (
+\begin{DoxyParamCaption}
+\item[{const s32 $\ast$}]{in, }
+\item[{s32 $\ast$}]{out, }
+\item[{s32}]{width, }
+\item[{s32}]{height, }
+\item[{s32}]{linepad, }
+\item[{bool}]{flip = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1video_1_1_c_color_converter_a7e2729378d5af783571f5a7b5d70adf8}
+
+
+copies X8\-R8\-G8\-B8 32 bit data 
+
+copies X8\-R8\-G8\-B8 32 bit data, and flips and mirrors the image during the process. \hypertarget{classirr_1_1video_1_1_c_color_converter_aedd5f6662bbd580c16bf6667587e3a92}{\index{irr\-::video\-::\-C\-Color\-Converter@{irr\-::video\-::\-C\-Color\-Converter}!convert8\-Bit\-To16\-Bit@{convert8\-Bit\-To16\-Bit}}
+\index{convert8\-Bit\-To16\-Bit@{convert8\-Bit\-To16\-Bit}!irr::video::CColorConverter@{irr\-::video\-::\-C\-Color\-Converter}}
+\subsubsection[{convert8\-Bit\-To16\-Bit}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Color\-Converter\-::convert8\-Bit\-To16\-Bit (
+\begin{DoxyParamCaption}
+\item[{const u8 $\ast$}]{in, }
+\item[{s16 $\ast$}]{out, }
+\item[{s32}]{width, }
+\item[{s32}]{height, }
+\item[{const s32 $\ast$}]{palette, }
+\item[{s32}]{linepad = {\ttfamily 0}, }
+\item[{bool}]{flip = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1video_1_1_c_color_converter_aedd5f6662bbd580c16bf6667587e3a92}
+
+
+converts a 8 bit palettized image to A1\-R5\-G5\-B5 
+
+converts a 8 bit palettized image into A1\-R5\-G5\-B5 \hypertarget{classirr_1_1video_1_1_c_color_converter_a38ff2e832aa377d88dc9fe5c59713674}{\index{irr\-::video\-::\-C\-Color\-Converter@{irr\-::video\-::\-C\-Color\-Converter}!convert8\-Bit\-To32\-Bit@{convert8\-Bit\-To32\-Bit}}
+\index{convert8\-Bit\-To32\-Bit@{convert8\-Bit\-To32\-Bit}!irr::video::CColorConverter@{irr\-::video\-::\-C\-Color\-Converter}}
+\subsubsection[{convert8\-Bit\-To32\-Bit}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Color\-Converter\-::convert8\-Bit\-To32\-Bit (
+\begin{DoxyParamCaption}
+\item[{const u8 $\ast$}]{in, }
+\item[{u8 $\ast$}]{out, }
+\item[{s32}]{width, }
+\item[{s32}]{height, }
+\item[{const u8 $\ast$}]{palette, }
+\item[{s32}]{linepad = {\ttfamily 0}, }
+\item[{bool}]{flip = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1video_1_1_c_color_converter_a38ff2e832aa377d88dc9fe5c59713674}
+
+
+converts a 8 bit palettized or non palettized image (A8) into A8\-R8\-G8\-B8 
+
+converts a 8 bit palettized or non palettized image (A8) into R8\-G8\-B8 \hypertarget{classirr_1_1video_1_1_c_color_converter_a8b5ccd5f7d5c9d8413c694f98fe630ed}{\index{irr\-::video\-::\-C\-Color\-Converter@{irr\-::video\-::\-C\-Color\-Converter}!convert\-\_\-\-A1\-R5\-G5\-B5to\-R8\-G8\-B8@{convert\-\_\-\-A1\-R5\-G5\-B5to\-R8\-G8\-B8}}
+\index{convert\-\_\-\-A1\-R5\-G5\-B5to\-R8\-G8\-B8@{convert\-\_\-\-A1\-R5\-G5\-B5to\-R8\-G8\-B8}!irr::video::CColorConverter@{irr\-::video\-::\-C\-Color\-Converter}}
+\subsubsection[{convert\-\_\-\-A1\-R5\-G5\-B5to\-R8\-G8\-B8}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::video\-::\-C\-Color\-Converter\-::convert\-\_\-\-A1\-R5\-G5\-B5to\-R8\-G8\-B8 (
+\begin{DoxyParamCaption}
+\item[{const void $\ast$}]{s\-P, }
+\item[{s32}]{s\-N, }
+\item[{void $\ast$}]{d\-P}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1video_1_1_c_color_converter_a8b5ccd5f7d5c9d8413c694f98fe630ed}
+functions for converting one image format to another efficiently and hopefully correctly.
+
+
+\begin{DoxyParams}{Parameters}
+{\em s\-P} & pointer to source pixel data \\
+\hline
+{\em s\-N} & number of source pixels to copy \\
+\hline
+{\em d\-P} & pointer to destination data buffer. must be big enough to hold s\-N pixels in the output format. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Color\-Converter.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Color\-Converter.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,92 @@
+\hypertarget{classirr_1_1video_1_1_c_software_texture2}{\section{irr\-:\-:video\-:\-:C\-Software\-Texture2 Class Reference}
+\label{classirr_1_1video_1_1_c_software_texture2}\index{irr\-::video\-::\-C\-Software\-Texture2@{irr\-::video\-::\-C\-Software\-Texture2}}
+}
+
+
+{\ttfamily \#include $<$C\-Software\-Texture2.\-h$>$}
+
+Inheritance diagram for irr\-:\-:video\-:\-:C\-Software\-Texture2\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1video_1_1_c_software_texture2}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classirr_1_1video_1_1_c_software_texture2_a998d86341a2ecbddfd9b6b1891692ea5}{e\-Tex2\-Flags} \{ {\bfseries G\-E\-N\-\_\-\-M\-I\-P\-M\-A\-P} = 1, 
+{\bfseries I\-S\-\_\-\-R\-E\-N\-D\-E\-R\-T\-A\-R\-G\-E\-T} = 2, 
+{\bfseries N\-P2\-\_\-\-S\-I\-Z\-E} = 4, 
+{\bfseries H\-A\-S\-\_\-\-A\-L\-P\-H\-A} = 8
+ \}
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_a0f0b23cec77dbfd96b20868d00a88ef2}{{\bfseries C\-Software\-Texture2} (I\-Image $\ast$surface, const io\-::path \&name, u32 flags, void $\ast$mipmap\-Data=0)}\label{classirr_1_1video_1_1_c_software_texture2_a0f0b23cec77dbfd96b20868d00a88ef2}
+
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_ae081b5ca79dfc8d273d23c9bf3d19de3}{virtual \hyperlink{classirr_1_1video_1_1_c_software_texture2_ae081b5ca79dfc8d273d23c9bf3d19de3}{$\sim$\-C\-Software\-Texture2} ()}\label{classirr_1_1video_1_1_c_software_texture2_ae081b5ca79dfc8d273d23c9bf3d19de3}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_a14d82c52f921e5d1972374c66abd05c0}{virtual void $\ast$ \hyperlink{classirr_1_1video_1_1_c_software_texture2_a14d82c52f921e5d1972374c66abd05c0}{lock} (E\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-L\-O\-C\-K\-\_\-\-M\-O\-D\-E mode=E\-T\-L\-M\-\_\-\-R\-E\-A\-D\-\_\-\-W\-R\-I\-T\-E, u32 mipmap\-Level=0)}\label{classirr_1_1video_1_1_c_software_texture2_a14d82c52f921e5d1972374c66abd05c0}
+
+\begin{DoxyCompactList}\small\item\em lock function \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_a76f6d8a5dd07ae944b5eeef07c2a2027}{virtual void \hyperlink{classirr_1_1video_1_1_c_software_texture2_a76f6d8a5dd07ae944b5eeef07c2a2027}{unlock} ()}\label{classirr_1_1video_1_1_c_software_texture2_a76f6d8a5dd07ae944b5eeef07c2a2027}
+
+\begin{DoxyCompactList}\small\item\em unlock function \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_a7c7a0c2972b6e91e36f70403145fcfca}{virtual const \\*
+core\-::dimension2d$<$ u32 $>$ \& \hyperlink{classirr_1_1video_1_1_c_software_texture2_a7c7a0c2972b6e91e36f70403145fcfca}{get\-Original\-Size} () const }\label{classirr_1_1video_1_1_c_software_texture2_a7c7a0c2972b6e91e36f70403145fcfca}
+
+\begin{DoxyCompactList}\small\item\em Returns original size of the texture. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_a53ed44dd5d24d97799e46304cb9d32a2}{f32 \hyperlink{classirr_1_1video_1_1_c_software_texture2_a53ed44dd5d24d97799e46304cb9d32a2}{get\-L\-O\-D\-Factor} (const f32 tex\-Area) const }\label{classirr_1_1video_1_1_c_software_texture2_a53ed44dd5d24d97799e46304cb9d32a2}
+
+\begin{DoxyCompactList}\small\item\em Returns the size of the largest mipmap. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_ab922a3d0f37643a70cd1565ca4c3354c}{virtual const \\*
+core\-::dimension2d$<$ u32 $>$ \& \hyperlink{classirr_1_1video_1_1_c_software_texture2_ab922a3d0f37643a70cd1565ca4c3354c}{get\-Size} () const }\label{classirr_1_1video_1_1_c_software_texture2_ab922a3d0f37643a70cd1565ca4c3354c}
+
+\begin{DoxyCompactList}\small\item\em Returns (=size) of the texture. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_a11ffa2919e8e2283faf4a87bab458c67}{virtual \hyperlink{classirr_1_1video_1_1_c_image}{C\-Image} $\ast$ \hyperlink{classirr_1_1video_1_1_c_software_texture2_a11ffa2919e8e2283faf4a87bab458c67}{get\-Image} () const }\label{classirr_1_1video_1_1_c_software_texture2_a11ffa2919e8e2283faf4a87bab458c67}
+
+\begin{DoxyCompactList}\small\item\em returns unoptimized surface \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_ac6255a53868937d91437feb40084e89b}{virtual \hyperlink{classirr_1_1video_1_1_c_image}{C\-Image} $\ast$ \hyperlink{classirr_1_1video_1_1_c_software_texture2_ac6255a53868937d91437feb40084e89b}{get\-Texture} () const }\label{classirr_1_1video_1_1_c_software_texture2_ac6255a53868937d91437feb40084e89b}
+
+\begin{DoxyCompactList}\small\item\em returns texture surface \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_aac89714188435707650e8a5bb60a5772}{virtual E\-\_\-\-D\-R\-I\-V\-E\-R\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1video_1_1_c_software_texture2_aac89714188435707650e8a5bb60a5772}{get\-Driver\-Type} () const }\label{classirr_1_1video_1_1_c_software_texture2_aac89714188435707650e8a5bb60a5772}
+
+\begin{DoxyCompactList}\small\item\em returns driver type of texture (=the driver, who created the texture) \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_a90747f82dd9fdb4ee6b8d41c34fea6fa}{virtual E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T \hyperlink{classirr_1_1video_1_1_c_software_texture2_a90747f82dd9fdb4ee6b8d41c34fea6fa}{get\-Color\-Format} () const }\label{classirr_1_1video_1_1_c_software_texture2_a90747f82dd9fdb4ee6b8d41c34fea6fa}
+
+\begin{DoxyCompactList}\small\item\em returns color format of texture \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_aa0e9b190025661c6150100e9fa418af9}{virtual u32 \hyperlink{classirr_1_1video_1_1_c_software_texture2_aa0e9b190025661c6150100e9fa418af9}{get\-Pitch} () const }\label{classirr_1_1video_1_1_c_software_texture2_aa0e9b190025661c6150100e9fa418af9}
+
+\begin{DoxyCompactList}\small\item\em returns pitch of texture (in bytes) \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1video_1_1_c_software_texture2_aa12ba18f895997b0ad49b0725f563b47}{regenerate\-Mip\-Map\-Levels} (void $\ast$mipmap\-Data=0)
+\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_a6915898811936d97b9113d439f4c2c6a}{virtual bool \hyperlink{classirr_1_1video_1_1_c_software_texture2_a6915898811936d97b9113d439f4c2c6a}{has\-Mip\-Maps} () const }\label{classirr_1_1video_1_1_c_software_texture2_a6915898811936d97b9113d439f4c2c6a}
+
+\begin{DoxyCompactList}\small\item\em support mipmaps \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_a18df549482006976fedc57b08687b301}{virtual bool \hyperlink{classirr_1_1video_1_1_c_software_texture2_a18df549482006976fedc57b08687b301}{has\-Alpha} () const }\label{classirr_1_1video_1_1_c_software_texture2_a18df549482006976fedc57b08687b301}
+
+\begin{DoxyCompactList}\small\item\em Returns if the texture has an alpha channel. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_ae30d46f2a5ee422dd4da5a256535ba12}{virtual bool \hyperlink{classirr_1_1video_1_1_c_software_texture2_ae30d46f2a5ee422dd4da5a256535ba12}{is\-Render\-Target} () const }\label{classirr_1_1video_1_1_c_software_texture2_ae30d46f2a5ee422dd4da5a256535ba12}
+
+\begin{DoxyCompactList}\small\item\em is a render target \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+interface for a Video Driver dependent Texture. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1video_1_1_c_software_texture2_aa12ba18f895997b0ad49b0725f563b47}{\index{irr\-::video\-::\-C\-Software\-Texture2@{irr\-::video\-::\-C\-Software\-Texture2}!regenerate\-Mip\-Map\-Levels@{regenerate\-Mip\-Map\-Levels}}
+\index{regenerate\-Mip\-Map\-Levels@{regenerate\-Mip\-Map\-Levels}!irr::video::CSoftwareTexture2@{irr\-::video\-::\-C\-Software\-Texture2}}
+\subsubsection[{regenerate\-Mip\-Map\-Levels}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::video\-::\-C\-Software\-Texture2\-::regenerate\-Mip\-Map\-Levels (
+\begin{DoxyParamCaption}
+\item[{void $\ast$}]{mipmap\-Data = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1video_1_1_c_software_texture2_aa12ba18f895997b0ad49b0725f563b47}
+Regenerates the mip map levels of the texture. Useful after locking and modifying the texture 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Software\-Texture2.\-h\end{DoxyCompactItemize}

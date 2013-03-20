@@ -1,0 +1,140 @@
+\hypertarget{_i_burning_shader_8h}{\section{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-I\-Burning\-Shader.h File Reference}
+\label{_i_burning_shader_8h}\index{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-I\-Burning\-Shader.\-h@{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-I\-Burning\-Shader.\-h}}
+}
+{\ttfamily \#include \char`\"{}Software\-Driver2\-\_\-compile\-\_\-config.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Reference\-Counted.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}irr\-Math.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Image.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}S2\-D\-Vertex.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rect.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Depth\-Buffer.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}S4\-D\-Vertex.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}irr\-Array.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}S\-Light.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}S\-Material.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}os.\-h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structirr_1_1video_1_1_s_burning_shader_light}{irr\-::video\-::\-S\-Burning\-Shader\-Light}
+\item 
+struct \hyperlink{structirr_1_1video_1_1_s_burning_shader_light_space}{irr\-::video\-::\-S\-Burning\-Shader\-Light\-Space}
+\item 
+struct \hyperlink{structirr_1_1video_1_1_s_burning_shader_material}{irr\-::video\-::\-S\-Burning\-Shader\-Material}
+\item 
+class \hyperlink{classirr_1_1video_1_1_i_burning_shader}{irr\-::video\-::\-I\-Burning\-Shader}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespaceirr}{irr}
+\item 
+namespace \hyperlink{namespaceirr_1_1video}{irr\-::video}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceirr_1_1video_a69ad1fdbbab524400afae5ce712b8294}{irr\-::video\-::e\-Light\-Flags} \{ \\*
+\hyperlink{namespaceirr_1_1video_a69ad1fdbbab524400afae5ce712b8294a283622c351f64786b88d9dbcd83e7e64}{irr\-::video\-::\-E\-N\-A\-B\-L\-E\-D} = 0x01, 
+\hyperlink{namespaceirr_1_1video_a69ad1fdbbab524400afae5ce712b8294af0ca87638b93e976479a96bde62a246d}{irr\-::video\-::\-P\-O\-I\-N\-T\-L\-I\-G\-H\-T} = 0x02, 
+\hyperlink{namespaceirr_1_1video_a69ad1fdbbab524400afae5ce712b8294abd7ffed0d30248cf24b18363f0639633}{irr\-::video\-::\-S\-P\-E\-C\-U\-L\-A\-R} = 0x04, 
+\hyperlink{namespaceirr_1_1video_a69ad1fdbbab524400afae5ce712b8294a7f38cba7ca5ce812c8a3f8906629a248}{irr\-::video\-::\-F\-O\-G} = 0x08, 
+\\*
+\hyperlink{namespaceirr_1_1video_a69ad1fdbbab524400afae5ce712b8294a4f96cc15301118f8e762768cb9fd2ca0}{irr\-::video\-::\-N\-O\-R\-M\-A\-L\-I\-Z\-E} = 0x10, 
+\hyperlink{namespaceirr_1_1video_a69ad1fdbbab524400afae5ce712b8294a2bdc46e0871ecb956074618797236daf}{irr\-::video\-::\-V\-E\-R\-T\-E\-X\-T\-R\-A\-N\-S\-F\-O\-R\-M} = 0x20
+ \}
+\item 
+enum \hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72}{irr\-::video\-::\-E\-Burning\-F\-F\-Shader} \{ \\*
+\hyperlink{namespaceirr_1_1video_a4511bd8f4f5da6146a7a7f18b64bcecaaa3ad27660fffaa85fc76bdc183e1af2d}{irr\-::video\-::\-E\-T\-R\-\_\-\-F\-L\-A\-T} = 0, 
+\hyperlink{namespaceirr_1_1video_a4511bd8f4f5da6146a7a7f18b64bcecaa4d12e8a1a6dd4b2d5f11f933509cc878}{irr\-::video\-::\-E\-T\-R\-\_\-\-F\-L\-A\-T\-\_\-\-W\-I\-R\-E}, 
+\hyperlink{namespaceirr_1_1video_a4511bd8f4f5da6146a7a7f18b64bcecaac49c9c9d760be0fc4fd69d697d22668e}{irr\-::video\-::\-E\-T\-R\-\_\-\-G\-O\-U\-R\-A\-U\-D}, 
+\hyperlink{namespaceirr_1_1video_a4511bd8f4f5da6146a7a7f18b64bcecaadf553babc38e8ac3e0cbbcb52ecab2eb}{irr\-::video\-::\-E\-T\-R\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-W\-I\-R\-E}, 
+\\*
+\hyperlink{namespaceirr_1_1video_a4511bd8f4f5da6146a7a7f18b64bcecaa0f2b6c6400b83edd6a93f3cfb5d2bcb4}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-F\-L\-A\-T}, 
+\hyperlink{namespaceirr_1_1video_a4511bd8f4f5da6146a7a7f18b64bcecaa58ba7a004ffa5c6060141679b55b37f4}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-F\-L\-A\-T\-\_\-\-W\-I\-R\-E}, 
+\hyperlink{namespaceirr_1_1video_a4511bd8f4f5da6146a7a7f18b64bcecaa36a3217d611cb305f662633adcfc66d6}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-G\-O\-U\-R\-A\-U\-D}, 
+\hyperlink{namespaceirr_1_1video_a4511bd8f4f5da6146a7a7f18b64bcecaac4dca1a18ea653f95898846ff21f35ae}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-W\-I\-R\-E}, 
+\\*
+\hyperlink{namespaceirr_1_1video_a4511bd8f4f5da6146a7a7f18b64bcecaa7abc0ed22f4605490741887da77ae62f}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-N\-O\-Z}, 
+\hyperlink{namespaceirr_1_1video_a4511bd8f4f5da6146a7a7f18b64bcecaadb163d636bbf8da40ca74b1be32c2112}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-A\-D\-D}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72a01cccc767a3351aee92f297d4c8bce30}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-A\-D\-D\-\_\-\-N\-O\-\_\-\-Z}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72a9fc54a79232f268b9c38bfd08efb26c3}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-V\-E\-R\-T\-E\-X\-\_\-\-A\-L\-P\-H\-A}, 
+\\*
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72a2c01d0ab7b651f5513d54b123ddf4e1b}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-L\-I\-G\-H\-T\-M\-A\-P\-\_\-\-M1}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72a4e297abc948dfa07d39c0f2284bfcc90}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-L\-I\-G\-H\-T\-M\-A\-P\-\_\-\-M2}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72a5c085c08f0c0d98f7b6f97eb9ff18cf1}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-L\-I\-G\-H\-T\-M\-A\-P\-\_\-\-M4}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72ab328cc1574056a7ba6bbd878b97dfedc}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-L\-I\-G\-H\-T\-M\-A\-P\-\_\-\-M4}, 
+\\*
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72a44f1d470ec9b8426fa30154961d78402}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-D\-E\-T\-A\-I\-L\-\_\-\-M\-A\-P}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72a3dfa5b4afd907f9c971e24f879a0fb8e}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-L\-I\-G\-H\-T\-M\-A\-P\-\_\-\-A\-D\-D}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72ae45cab905353e10ab6023ceea7f107b5}{irr\-::video\-::\-E\-T\-R\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-A\-L\-P\-H\-A}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72a68574b0df6d76093696878649d0e5612}{irr\-::video\-::\-E\-T\-R\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-A\-L\-P\-H\-A\-\_\-\-N\-O\-Z}, 
+\\*
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72ae3855acae06ef426935ca6632fb46a54}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-A\-L\-P\-H\-A}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72a9d8a8f8fcdc60855ac110671ac0f4174}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-G\-O\-U\-R\-A\-U\-D\-\_\-\-A\-L\-P\-H\-A\-\_\-\-N\-O\-Z}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72a4c86346fa4a50cc111b601403ea244cc}{irr\-::video\-::\-E\-T\-R\-\_\-\-N\-O\-R\-M\-A\-L\-\_\-\-M\-A\-P\-\_\-\-S\-O\-L\-I\-D}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72afad5cf6c684b6c9d9dc7b81fd7095854}{irr\-::video\-::\-E\-T\-R\-\_\-\-S\-T\-E\-N\-C\-I\-L\-\_\-\-S\-H\-A\-D\-O\-W}, 
+\\*
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72a4da5c835deefe00de6b808150428fb58}{irr\-::video\-::\-E\-T\-R\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-B\-L\-E\-N\-D}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72a18485e429f0c581c68619b029564df7d}{irr\-::video\-::\-E\-T\-R\-\_\-\-R\-E\-F\-E\-R\-E\-N\-C\-E}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72aec4158c35328798a308669c3c21e956b}{irr\-::video\-::\-E\-T\-R\-\_\-\-I\-N\-V\-A\-L\-I\-D}, 
+\hyperlink{namespaceirr_1_1video_a310498036ab89dcbbcb25db0f0b98f72a4107e29559b4528a899dc742a84ca42d}{irr\-::video\-::\-E\-T\-R2\-\_\-\-C\-O\-U\-N\-T}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_a5d22d593a774d47a8aadb94f69df7abd}{irr\-::video\-::create\-Triangle\-Renderer\-Texture\-Gouraud2} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_ac2b9957460cdd8253e0e9c9f0fb417cf}{irr\-::video\-::create\-Triangle\-Renderer\-Texture\-Light\-Map2\-\_\-\-M1} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_acbd45ceecacdf2f04b47bc334db7ec29}{irr\-::video\-::create\-Triangle\-Renderer\-Texture\-Light\-Map2\-\_\-\-M2} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_a4b9aaff35e558f4ef530250ac2570823}{irr\-::video\-::create\-Triangle\-Renderer\-Texture\-Light\-Map2\-\_\-\-M4} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_a5c6cca670f3291f9024b5eb7f916bec4}{irr\-::video\-::create\-Triangle\-Renderer\-G\-Texture\-Light\-Map2\-\_\-\-M4} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_af5624df435752c6e9f648f3b150fe9cf}{irr\-::video\-::create\-Triangle\-Renderer\-Texture\-Light\-Map2\-\_\-\-Add} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_ac52648c07d9801a2a579a5f72591c3b3}{irr\-::video\-::create\-Triangle\-Renderer\-Texture\-Detail\-Map2} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_ad1baaf969bce3367ec4db4f9c680d681}{irr\-::video\-::create\-Triangle\-Renderer\-Texture\-Vertex\-Alpha2} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_a86d6d9749b687b130c4c05c6e0352ba5}{irr\-::video\-::create\-Triangle\-Renderer\-Texture\-Gouraud\-Wire2} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_a2bfbe41be9e048e84a3e9bec8ef916ae}{irr\-::video\-::create\-Triangle\-Renderer\-Gouraud2} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_a11b0e9c9a44bcc1e9c3217114efcfbc0}{irr\-::video\-::create\-Triangle\-Renderer\-Gouraud\-Alpha2} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_afabf8aaca4eb1d777237a63d7467cb9f}{irr\-::video\-::create\-T\-R\-Gouraud\-Alpha\-No\-Z2} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_ac266251753e2cfeb20fce8496e2d0d76}{irr\-::video\-::create\-Triangle\-Renderer\-Gouraud\-Wire2} (C\-Burning\-Video\-Driver $\ast$driver)
+\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_a1bf9c7d9901af61f1fc70ed7a8804289}{irr\-::video\-::create\-Triangle\-Renderer\-Texture\-Flat2} (C\-Burning\-Video\-Driver $\ast$driver)
+\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_aa36552dbc369198b7f8e16fc5b87764d}{irr\-::video\-::create\-Triangle\-Renderer\-Texture\-Flat\-Wire2} (C\-Burning\-Video\-Driver $\ast$driver)
+\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_a69cd1fe0e612f3c6e6ec8181b8223b32}{irr\-::video\-::create\-T\-R\-Flat2} (C\-Burning\-Video\-Driver $\ast$driver)
+\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_a529886300f100f1739db12e938fa99d6}{irr\-::video\-::create\-T\-R\-Flat\-Wire2} (C\-Burning\-Video\-Driver $\ast$driver)
+\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_ad1c00ba25d35a79e8497d2f49f1df871}{irr\-::video\-::create\-T\-R\-Texture\-Gouraud\-No\-Z2} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_addac86c3cb75e25b676a61ced384fda0}{irr\-::video\-::create\-T\-R\-Texture\-Gouraud\-Add2} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_af0201080aa446827370806d2cac4d859}{irr\-::video\-::create\-T\-R\-Texture\-Gouraud\-Add\-No\-Z2} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_a3011b69ecdeff157fbbb4bd998190a82}{irr\-::video\-::create\-T\-R\-Texture\-Gouraud\-Alpha} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_a86c6358b7488b20803960bb71ecbd1e4}{irr\-::video\-::create\-T\-R\-Texture\-Gouraud\-Alpha\-No\-Z} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_aaf7b3d5cd7edbc65a5c8560ace910f20}{irr\-::video\-::create\-T\-R\-Texture\-Blend} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a flat triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_a9720671364e2cfb1ccd458418677f3da}{irr\-::video\-::create\-T\-R\-Texture\-Inverse\-Alpha\-Blend} (C\-Burning\-Video\-Driver $\ast$driver)
+\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_a9668bff0cc64eba0c28413a5e40f5463}{irr\-::video\-::create\-T\-R\-Normal\-Map} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_ae7fce77440b30748f78d0776204b8394}{irr\-::video\-::create\-T\-R\-Stencil\-Shadow} (C\-Burning\-Video\-Driver $\ast$driver)
+\begin{DoxyCompactList}\small\item\em creates a triangle renderer \end{DoxyCompactList}\item 
+I\-Burning\-Shader $\ast$ \hyperlink{namespaceirr_1_1video_ab7c41f07ee8248c0b23dfdb48dbbd4e3}{irr\-::video\-::create\-Triangle\-Renderer\-Reference} (C\-Burning\-Video\-Driver $\ast$driver)
+\end{DoxyCompactItemize}

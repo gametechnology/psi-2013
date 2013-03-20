@@ -1,0 +1,144 @@
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter}{\section{irr\-:\-:scene\-:\-:C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter Class Reference}
+\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter}\index{irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter@{irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter}}
+}
+
+
+An animated mesh emitter.  
+
+
+
+
+{\ttfamily \#include $<$C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a20b4d83bdd785999a17105f28fdf253e}{\hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a20b4d83bdd785999a17105f28fdf253e}{C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter} (I\-Animated\-Mesh\-Scene\-Node $\ast$node, bool use\-Normal\-Direction=true, const core\-::vector3df \&direction=core\-::vector3df(0.\-0f, 0.\-0f,-\/1.\-0f), f32 normal\-Direction\-Modifier=100.\-0f, s32 mb\-Number=-\/1, bool every\-Mesh\-Vertex=false, u32 min\-Particles\-Per\-Second=20, u32 max\-Particles\-Per\-Second=40, const video\-::\-S\-Color \&min\-Start\-Color=video\-::\-S\-Color(255, 0, 0, 0), const video\-::\-S\-Color \&max\-Start\-Color=video\-::\-S\-Color(255, 255, 255, 255), u32 life\-Time\-Min=2000, u32 life\-Time\-Max=4000, s32 max\-Angle\-Degrees=0, const core\-::dimension2df \&min\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f), const core\-::dimension2df \&max\-Start\-Size=core\-::dimension2df(5.\-0f, 5.\-0f))}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a20b4d83bdd785999a17105f28fdf253e}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+virtual s32 \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_afc87ec589be7ade34f05ecbd055505a0}{emitt} (u32 now, u32 time\-Since\-Last\-Call, S\-Particle $\ast$\&out\-Array)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a1c2acb065a161b791f6dfa7bc9dfb41f}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a1c2acb065a161b791f6dfa7bc9dfb41f}{set\-Animated\-Mesh\-Scene\-Node} (I\-Animated\-Mesh\-Scene\-Node $\ast$node)}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a1c2acb065a161b791f6dfa7bc9dfb41f}
+
+\begin{DoxyCompactList}\small\item\em Set Mesh to emit particles from. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a7f72a7cdf9864214364f91ebd2cf949e}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a7f72a7cdf9864214364f91ebd2cf949e}{set\-Use\-Normal\-Direction} (bool use\-Normal\-Direction)}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a7f72a7cdf9864214364f91ebd2cf949e}
+
+\begin{DoxyCompactList}\small\item\em Set whether to use vertex normal for direction, or direction specified. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a32c829775c24738168807351a2d769bc}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a32c829775c24738168807351a2d769bc}{set\-Direction} (const core\-::vector3df \&new\-Direction)}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a32c829775c24738168807351a2d769bc}
+
+\begin{DoxyCompactList}\small\item\em Set direction the emitter emits particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a182a06bf68d5619ef880dd606007d256}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a182a06bf68d5619ef880dd606007d256}{set\-Normal\-Direction\-Modifier} (f32 normal\-Direction\-Modifier)}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a182a06bf68d5619ef880dd606007d256}
+
+\begin{DoxyCompactList}\small\item\em Set the amount that the normal is divided by for getting a particles direction. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a491195f50cd08a710f335aa8ce46b23a}{set\-Every\-Mesh\-Vertex} (bool every\-Mesh\-Vertex)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_aa78c5b5425ad49137800a1e33c4e402a}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_aa78c5b5425ad49137800a1e33c4e402a}{set\-Min\-Particles\-Per\-Second} (u32 min\-P\-P\-S)}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_aa78c5b5425ad49137800a1e33c4e402a}
+
+\begin{DoxyCompactList}\small\item\em Set minimum number of particles the emitter emits per second. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a0b3c6ce310b5b9044ad4fc1fef0618a7}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a0b3c6ce310b5b9044ad4fc1fef0618a7}{set\-Max\-Particles\-Per\-Second} (u32 max\-P\-P\-S)}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a0b3c6ce310b5b9044ad4fc1fef0618a7}
+
+\begin{DoxyCompactList}\small\item\em Set maximum number of particles the emitter emits per second. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a0900cb133487bf32c501fc223310c442}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a0900cb133487bf32c501fc223310c442}{set\-Min\-Start\-Color} (const video\-::\-S\-Color \&color)}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a0900cb133487bf32c501fc223310c442}
+
+\begin{DoxyCompactList}\small\item\em Set minimum starting color for particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a4393a390c402a2472c33ffad2b28d6b0}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a4393a390c402a2472c33ffad2b28d6b0}{set\-Max\-Start\-Color} (const video\-::\-S\-Color \&color)}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a4393a390c402a2472c33ffad2b28d6b0}
+
+\begin{DoxyCompactList}\small\item\em Set maximum starting color for particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a705abcb9403e2283940a18b075cd7724}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a705abcb9403e2283940a18b075cd7724}{set\-Max\-Start\-Size} (const core\-::dimension2df \&size)}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a705abcb9403e2283940a18b075cd7724}
+
+\begin{DoxyCompactList}\small\item\em Set the maximum starting size for particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_ab8c67a1c2d72ca357ba69847a9c54bcc}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_ab8c67a1c2d72ca357ba69847a9c54bcc}{set\-Min\-Start\-Size} (const core\-::dimension2df \&size)}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_ab8c67a1c2d72ca357ba69847a9c54bcc}
+
+\begin{DoxyCompactList}\small\item\em Set the minimum starting size for particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a10452cc14f40ce43532f936674f70ff5}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a10452cc14f40ce43532f936674f70ff5}{set\-Min\-Life\-Time} (u32 life\-Time\-Min)}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a10452cc14f40ce43532f936674f70ff5}
+
+\begin{DoxyCompactList}\small\item\em Set the minimum particle life-\/time in milliseconds. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_ae9b227ab156d49b0ca42820314e9498a}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_ae9b227ab156d49b0ca42820314e9498a}{set\-Max\-Life\-Time} (u32 life\-Time\-Max)}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_ae9b227ab156d49b0ca42820314e9498a}
+
+\begin{DoxyCompactList}\small\item\em Set the maximum particle life-\/time in milliseconds. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a68c8f4a663c064bdd2260682eb39012c}{virtual void \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a68c8f4a663c064bdd2260682eb39012c}{set\-Max\-Angle\-Degrees} (s32 max\-Angle\-Degrees)}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a68c8f4a663c064bdd2260682eb39012c}
+
+\begin{DoxyCompactList}\small\item\em Maximal random derivation from the direction. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a6b652e48e1866b8b777de0a581692a74}{virtual const \\*
+I\-Animated\-Mesh\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a6b652e48e1866b8b777de0a581692a74}{get\-Animated\-Mesh\-Scene\-Node} () const }\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a6b652e48e1866b8b777de0a581692a74}
+
+\begin{DoxyCompactList}\small\item\em Get Mesh we're emitting particles from. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_af64402334958e7d3a8cfc7e4b1704c3b}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_af64402334958e7d3a8cfc7e4b1704c3b}{is\-Using\-Normal\-Direction} () const }\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_af64402334958e7d3a8cfc7e4b1704c3b}
+
+\begin{DoxyCompactList}\small\item\em Get whether to use vertex normal for direciton, or direction specified. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_ac70a60c4819bd6d6fb2c977c8ceb182a}{virtual const core\-::vector3df \& \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_ac70a60c4819bd6d6fb2c977c8ceb182a}{get\-Direction} () const }\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_ac70a60c4819bd6d6fb2c977c8ceb182a}
+
+\begin{DoxyCompactList}\small\item\em Get direction the emitter emits particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a2f3705f2a3e9dfef1dc2b1bd27a72028}{virtual f32 \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a2f3705f2a3e9dfef1dc2b1bd27a72028}{get\-Normal\-Direction\-Modifier} () const }\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a2f3705f2a3e9dfef1dc2b1bd27a72028}
+
+\begin{DoxyCompactList}\small\item\em Get the amount that the normal is divided by for getting a particles direction. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a83beffee35deaa05c1a3654b9e0fc42b}{get\-Every\-Mesh\-Vertex} () const 
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a5fbe62e7dec42e99bfffc6281b6e724a}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a5fbe62e7dec42e99bfffc6281b6e724a}{get\-Min\-Particles\-Per\-Second} () const }\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a5fbe62e7dec42e99bfffc6281b6e724a}
+
+\begin{DoxyCompactList}\small\item\em Get the minimum number of particles the emitter emits per second. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a7f81e54c8d329f3ce9871e1d51c3f1d4}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a7f81e54c8d329f3ce9871e1d51c3f1d4}{get\-Max\-Particles\-Per\-Second} () const }\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a7f81e54c8d329f3ce9871e1d51c3f1d4}
+
+\begin{DoxyCompactList}\small\item\em Get the maximum number of particles the emitter emits per second. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a8ffbfdd993528e655efa05420f50607a}{virtual const video\-::\-S\-Color \& \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a8ffbfdd993528e655efa05420f50607a}{get\-Min\-Start\-Color} () const }\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a8ffbfdd993528e655efa05420f50607a}
+
+\begin{DoxyCompactList}\small\item\em Get the minimum starting color for particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_af610f714b959db8d2029df8e04c3847c}{virtual const video\-::\-S\-Color \& \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_af610f714b959db8d2029df8e04c3847c}{get\-Max\-Start\-Color} () const }\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_af610f714b959db8d2029df8e04c3847c}
+
+\begin{DoxyCompactList}\small\item\em Get the maximum starting color for particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_abbbfdd2e8271f24ee9849f002d1a9606}{virtual const core\-::dimension2df \& \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_abbbfdd2e8271f24ee9849f002d1a9606}{get\-Max\-Start\-Size} () const }\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_abbbfdd2e8271f24ee9849f002d1a9606}
+
+\begin{DoxyCompactList}\small\item\em Get the maximum starting size for particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a1690b5859a1ceaacc4bd8a5e6f6b038f}{virtual const core\-::dimension2df \& \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a1690b5859a1ceaacc4bd8a5e6f6b038f}{get\-Min\-Start\-Size} () const }\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a1690b5859a1ceaacc4bd8a5e6f6b038f}
+
+\begin{DoxyCompactList}\small\item\em Get the minimum starting size for particles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_ac967f78521c382dc0981d0737b3a0bc0}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_ac967f78521c382dc0981d0737b3a0bc0}{get\-Min\-Life\-Time} () const }\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_ac967f78521c382dc0981d0737b3a0bc0}
+
+\begin{DoxyCompactList}\small\item\em Get the minimum particle life-\/time in milliseconds. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_adee6fe209b1c24e40632583eac00b9b5}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_adee6fe209b1c24e40632583eac00b9b5}{get\-Max\-Life\-Time} () const }\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_adee6fe209b1c24e40632583eac00b9b5}
+
+\begin{DoxyCompactList}\small\item\em Get the maximum particle life-\/time in milliseconds. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a97d52e6bcba8d811f3707c414a98c8d0}{virtual s32 \hyperlink{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a97d52e6bcba8d811f3707c414a98c8d0}{get\-Max\-Angle\-Degrees} () const }\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a97d52e6bcba8d811f3707c414a98c8d0}
+
+\begin{DoxyCompactList}\small\item\em Maximal random derivation from the direction. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An animated mesh emitter. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_afc87ec589be7ade34f05ecbd055505a0}{\index{irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter@{irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter}!emitt@{emitt}}
+\index{emitt@{emitt}!irr::scene::CParticleAnimatedMeshSceneNodeEmitter@{irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter}}
+\subsubsection[{emitt}]{\setlength{\rightskip}{0pt plus 5cm}s32 irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter\-::emitt (
+\begin{DoxyParamCaption}
+\item[{u32}]{now, }
+\item[{u32}]{time\-Since\-Last\-Call, }
+\item[{S\-Particle $\ast$\&}]{out\-Array}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_afc87ec589be7ade34f05ecbd055505a0}
+Prepares an array with new particles to emitt into the system and returns how much new particles there are. \hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a83beffee35deaa05c1a3654b9e0fc42b}{\index{irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter@{irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter}!get\-Every\-Mesh\-Vertex@{get\-Every\-Mesh\-Vertex}}
+\index{get\-Every\-Mesh\-Vertex@{get\-Every\-Mesh\-Vertex}!irr::scene::CParticleAnimatedMeshSceneNodeEmitter@{irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter}}
+\subsubsection[{get\-Every\-Mesh\-Vertex}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter\-::get\-Every\-Mesh\-Vertex (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a83beffee35deaa05c1a3654b9e0fc42b}
+Gets whether to emit min$<$-\/$>$max particles for every vertex per second, or to pick min$<$-\/$>$max vertices every second \hypertarget{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a491195f50cd08a710f335aa8ce46b23a}{\index{irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter@{irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter}!set\-Every\-Mesh\-Vertex@{set\-Every\-Mesh\-Vertex}}
+\index{set\-Every\-Mesh\-Vertex@{set\-Every\-Mesh\-Vertex}!irr::scene::CParticleAnimatedMeshSceneNodeEmitter@{irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter}}
+\subsubsection[{set\-Every\-Mesh\-Vertex}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::scene\-::\-C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter\-::set\-Every\-Mesh\-Vertex (
+\begin{DoxyParamCaption}
+\item[{bool}]{every\-Mesh\-Vertex}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_particle_animated_mesh_scene_node_emitter_a491195f50cd08a710f335aa8ce46b23a}
+Sets whether to emit min$<$-\/$>$max particles for every vertex per second, or to pick min$<$-\/$>$max vertices every second 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Particle\-Animated\-Mesh\-Scene\-Node\-Emitter.\-cpp\end{DoxyCompactItemize}

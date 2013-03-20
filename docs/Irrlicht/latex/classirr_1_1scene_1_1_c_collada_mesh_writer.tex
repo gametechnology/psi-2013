@@ -1,0 +1,275 @@
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer}{\section{irr\-:\-:scene\-:\-:C\-Collada\-Mesh\-Writer Class Reference}
+\label{classirr_1_1scene_1_1_c_collada_mesh_writer}\index{irr\-::scene\-::\-C\-Collada\-Mesh\-Writer@{irr\-::scene\-::\-C\-Collada\-Mesh\-Writer}}
+}
+
+
+class to write meshes, implementing a C\-O\-L\-L\-A\-D\-A (.dae, .xml) writer  
+
+
+
+
+{\ttfamily \#include $<$C\-Collada\-Mesh\-Writer.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Collada\-Mesh\-Writer\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_collada_mesh_writer}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structirr_1_1scene_1_1_c_collada_mesh_writer_1_1_material_name}{Material\-Name}
+\item 
+struct \hyperlink{structirr_1_1scene_1_1_c_collada_mesh_writer_1_1_s_collada_light}{S\-Collada\-Light}
+\item 
+struct \hyperlink{structirr_1_1scene_1_1_c_collada_mesh_writer_1_1_s_collada_mesh}{S\-Collada\-Mesh}
+\item 
+struct \hyperlink{structirr_1_1scene_1_1_c_collada_mesh_writer_1_1_s_component_global_start_pos}{S\-Component\-Global\-Start\-Pos}
+\item 
+struct \hyperlink{structirr_1_1scene_1_1_c_collada_mesh_writer_1_1_s_geometry_mesh_materials}{S\-Geometry\-Mesh\-Materials}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ab22f3834f4aef11b6c9e63bfe197e551}{{\bfseries C\-Collada\-Mesh\-Writer} (I\-Scene\-Manager $\ast$smgr, video\-::\-I\-Video\-Driver $\ast$driver, io\-::\-I\-File\-System $\ast$fs)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ab22f3834f4aef11b6c9e63bfe197e551}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_afd5a767814689033034e039a1b211f9f}{virtual E\-M\-E\-S\-H\-\_\-\-W\-R\-I\-T\-E\-R\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_afd5a767814689033034e039a1b211f9f}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_afd5a767814689033034e039a1b211f9f}
+
+\begin{DoxyCompactList}\small\item\em Returns the type of the mesh writer. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a918d41fd53f0510d05805cb1166e727a}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_a918d41fd53f0510d05805cb1166e727a}{write\-Scene} (io\-::\-I\-Write\-File $\ast$file, scene\-::\-I\-Scene\-Node $\ast$root)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a918d41fd53f0510d05805cb1166e727a}
+
+\begin{DoxyCompactList}\small\item\em writes a scene starting with the given node \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_aa40bbd87da58b9a55ac92378f6d3d319}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_collada_mesh_writer_aa40bbd87da58b9a55ac92378f6d3d319}{write\-Mesh} (io\-::\-I\-Write\-File $\ast$file, scene\-::\-I\-Mesh $\ast$mesh, s32 flags=E\-M\-W\-F\-\_\-\-N\-O\-N\-E)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_aa40bbd87da58b9a55ac92378f6d3d319}
+
+\begin{DoxyCompactList}\small\item\em writes a mesh \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ae21e29ddd284633045f96b08c1a215df}{virtual irr\-::core\-::stringw {\bfseries to\-N\-C\-Name} (const irr\-::core\-::stringw \&old\-String, const irr\-::core\-::stringw \&prefix=irr\-::core\-::stringw(L\char`\"{}\-\_\-\-N\-C\-\_\-\char`\"{})) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ae21e29ddd284633045f96b08c1a215df}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_aed6098cc1325764bbf16a0cdc9776f5a}{typedef core\-::map$<$ I\-Mesh \\*
+$\ast$, \hyperlink{structirr_1_1scene_1_1_c_collada_mesh_writer_1_1_s_collada_mesh}{S\-Collada\-Mesh} $>$\-::Node {\bfseries Mesh\-Node}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_aed6098cc1325764bbf16a0cdc9776f5a}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ab7ebf461a1613a98575e4b3aec57d67e}{typedef core\-::map$<$ I\-Scene\-Node \\*
+$\ast$, \hyperlink{structirr_1_1scene_1_1_c_collada_mesh_writer_1_1_s_collada_light}{S\-Collada\-Light} $>$\-::Node {\bfseries Light\-Node}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ab7ebf461a1613a98575e4b3aec57d67e}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a591df4b1269ea0af6248b28207e03e4b}{typedef core\-::map$<$ I\-Scene\-Node \\*
+$\ast$, irr\-::core\-::stringw $>$\-::Node {\bfseries Camera\-Node}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a591df4b1269ea0af6248b28207e03e4b}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a63826685bc5198dba16d525e4ca793d2}{void {\bfseries reset} ()}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a63826685bc5198dba16d525e4ca793d2}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ad4c57cc8b3e976e87ee19aff4eb6d2bf}{bool {\bfseries has\-Second\-Texture\-Coordinates} (video\-::\-E\-\_\-\-V\-E\-R\-T\-E\-X\-\_\-\-T\-Y\-P\-E type) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ad4c57cc8b3e976e87ee19aff4eb6d2bf}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_aa8e5b230a3091eb2f887499592279b79}{void {\bfseries write\-Uv} (const irr\-::core\-::vector2df \&vec)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_aa8e5b230a3091eb2f887499592279b79}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a367ec2be9a2bb5fe160a51a8987359bc}{void {\bfseries write\-Vector} (const irr\-::core\-::vector2df \&vec)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a367ec2be9a2bb5fe160a51a8987359bc}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a6a1b1839a31502a96d0d3d14a7286067}{void {\bfseries write\-Vector} (const irr\-::core\-::vector3df \&vec)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a6a1b1839a31502a96d0d3d14a7286067}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a0bb975088b2dca6d1fa25d5812bf06d1}{void {\bfseries write\-Color} (const irr\-::video\-::\-S\-Colorf \&colorf, bool write\-Alpha=true)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a0bb975088b2dca6d1fa25d5812bf06d1}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a47d333893c47fbc5ce914f72eb9b96ff}{irr\-::core\-::stringw {\bfseries to\-String} (const irr\-::video\-::\-E\-C\-O\-L\-O\-R\-\_\-\-F\-O\-R\-M\-A\-T format) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a47d333893c47fbc5ce914f72eb9b96ff}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a24678db9725f9be649ba9840146d9638}{irr\-::core\-::stringw {\bfseries to\-String} (const irr\-::video\-::\-E\-\_\-\-T\-E\-X\-T\-U\-R\-E\-\_\-\-C\-L\-A\-M\-P clamp) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a24678db9725f9be649ba9840146d9638}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a74844c50c605a47470f9de1d442b907e}{irr\-::core\-::stringw {\bfseries to\-String} (const irr\-::scene\-::\-E\-\_\-\-C\-O\-L\-L\-A\-D\-A\-\_\-\-T\-R\-A\-N\-S\-P\-A\-R\-E\-N\-T\-\_\-\-F\-X opaque) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a74844c50c605a47470f9de1d442b907e}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a7499c03358643e60c6548b4adece69f5}{irr\-::core\-::stringw {\bfseries to\-Ref} (const irr\-::core\-::stringw \&source) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a7499c03358643e60c6548b4adece69f5}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_abf29cee441db38c6038eae8df814cdfe}{bool {\bfseries is\-Camera} (const scene\-::\-I\-Scene\-Node $\ast$node) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_abf29cee441db38c6038eae8df814cdfe}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a7ac6e261ea68eaae45c3e218343bb1cd}{irr\-::core\-::stringw {\bfseries name\-For\-Mesh} (const scene\-::\-I\-Mesh $\ast$mesh, int instance) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a7ac6e261ea68eaae45c3e218343bb1cd}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ae855fcec372ccbde5b9c271389e282c6}{irr\-::core\-::stringw {\bfseries name\-For\-Node} (const scene\-::\-I\-Scene\-Node $\ast$node) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ae855fcec372ccbde5b9c271389e282c6}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a2431aa6e5636874643d21bb410fc9d4f}{irr\-::core\-::stringw {\bfseries name\-For\-Material} (const video\-::\-S\-Material \&material, int material\-Id, const scene\-::\-I\-Mesh $\ast$mesh, const scene\-::\-I\-Scene\-Node $\ast$node)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a2431aa6e5636874643d21bb410fc9d4f}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a8a602cbf1770a274ef5d2f45afbde319}{irr\-::core\-::stringw {\bfseries name\-For\-Material\-Symbol} (const scene\-::\-I\-Mesh $\ast$mesh, int material\-Id) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a8a602cbf1770a274ef5d2f45afbde319}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_af6b5bf14dbd4b26cb6942a47a8d84a33}{irr\-::core\-::stringw {\bfseries find\-Cached\-Material\-Name} (const irr\-::video\-::\-S\-Material \&material) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_af6b5bf14dbd4b26cb6942a47a8d84a33}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a549248b878dd96e192d00bddd26a880c}{irr\-::core\-::stringw {\bfseries min\-Texfilter\-To\-String} (bool bilinear, bool trilinear) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a549248b878dd96e192d00bddd26a880c}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_aa00e195b4d3e20b9d9d4dfcb2fba3723}{irr\-::core\-::stringw {\bfseries mag\-Texfilter\-To\-String} (bool bilinear, bool trilinear) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_aa00e195b4d3e20b9d9d4dfcb2fba3723}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a0a574df6c8ff1ab43055537a610b9df1}{irr\-::core\-::stringw {\bfseries path\-To\-U\-R\-I} (const irr\-::io\-::path \&path) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a0a574df6c8ff1ab43055537a610b9df1}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_aa68abcf9cfb90c1fcaa3c9f773625da0}{bool {\bfseries is\-Xml\-Name\-Start\-Char} (wchar\-\_\-t c) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_aa68abcf9cfb90c1fcaa3c9f773625da0}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ac90853356e950f16a12f2a3ce2436a99}{bool {\bfseries is\-Xml\-Name\-Char} (wchar\-\_\-t c) const }\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ac90853356e950f16a12f2a3ce2436a99}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_aa48e2bf6c680764b841cde30a5e32d8b}{s32 {\bfseries get\-Checked\-Texture\-Idx} (const video\-::\-S\-Material \&material, E\-\_\-\-C\-O\-L\-L\-A\-D\-A\-\_\-\-C\-O\-L\-O\-R\-\_\-\-S\-A\-M\-P\-L\-E\-R cs)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_aa48e2bf6c680764b841cde30a5e32d8b}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a36b08c92e3333f6a3cb6d294eee4c193}{video\-::\-S\-Color {\bfseries get\-Color\-Mapping} (const video\-::\-S\-Material \&material, E\-\_\-\-C\-O\-L\-L\-A\-D\-A\-\_\-\-C\-O\-L\-O\-R\-\_\-\-S\-A\-M\-P\-L\-E\-R cs, E\-\_\-\-C\-O\-L\-L\-A\-D\-A\-\_\-\-I\-R\-R\-\_\-\-C\-O\-L\-O\-R col\-Type)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a36b08c92e3333f6a3cb6d294eee4c193}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a905fd64ff1f411b2132fa76fa7729e30}{void {\bfseries write\-Asset} ()}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a905fd64ff1f411b2132fa76fa7729e30}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a3719e90126ef4f593d7bb4c56ca775c3}{void {\bfseries make\-Mesh\-Names} (irr\-::scene\-::\-I\-Scene\-Node $\ast$node)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a3719e90126ef4f593d7bb4c56ca775c3}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_aa24293847780f89db509d28813a12b4d}{void {\bfseries write\-Node\-Materials} (irr\-::scene\-::\-I\-Scene\-Node $\ast$node)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_aa24293847780f89db509d28813a12b4d}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ad66ca1230343b6cf7f62d08931eadb26}{void {\bfseries write\-Node\-Effects} (irr\-::scene\-::\-I\-Scene\-Node $\ast$node)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ad66ca1230343b6cf7f62d08931eadb26}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ad71af3b34d3e36925fc5bf81d94e2a01}{void {\bfseries write\-Node\-Lights} (irr\-::scene\-::\-I\-Scene\-Node $\ast$node)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ad71af3b34d3e36925fc5bf81d94e2a01}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a4c7aead4519431a3a2f39cdbeb0e2a4c}{void {\bfseries write\-Node\-Cameras} (irr\-::scene\-::\-I\-Scene\-Node $\ast$node)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a4c7aead4519431a3a2f39cdbeb0e2a4c}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a07b15cbd870dddb451790dfdc749b452}{void {\bfseries write\-All\-Mesh\-Geometries} ()}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a07b15cbd870dddb451790dfdc749b452}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a9469c8d8bbf46c733d2efb25dee40ac7}{void {\bfseries write\-Scene\-Node} (irr\-::scene\-::\-I\-Scene\-Node $\ast$node)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a9469c8d8bbf46c733d2efb25dee40ac7}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a96236500ea42b399bd3ed147c90eaea7}{void {\bfseries write\-Mesh\-Materials} (scene\-::\-I\-Mesh $\ast$mesh, irr\-::core\-::array$<$ irr\-::core\-::stringw $>$ $\ast$material\-Names\-Out=0)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a96236500ea42b399bd3ed147c90eaea7}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ac3d967aac0d94e66ca203b0d5942c3b1}{void {\bfseries write\-Mesh\-Effects} (scene\-::\-I\-Mesh $\ast$mesh)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ac3d967aac0d94e66ca203b0d5942c3b1}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a9ea7c39daa3f8d970a1f1903e8b9faaf}{void {\bfseries write\-Material\-Effect} (const irr\-::core\-::stringw \&materialname, const video\-::\-S\-Material \&material)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a9ea7c39daa3f8d970a1f1903e8b9faaf}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a9b97b733faa2968f0a8521dbea22b34d}{void {\bfseries write\-Mesh\-Geometry} (const irr\-::core\-::stringw \&meshname, scene\-::\-I\-Mesh $\ast$mesh)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a9b97b733faa2968f0a8521dbea22b34d}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a8f9bb5a388062e8ff4d106d3859238ee}{void {\bfseries write\-Mesh\-Instance\-Geometry} (const irr\-::core\-::stringw \&meshname, scene\-::\-I\-Mesh $\ast$mesh, scene\-::\-I\-Scene\-Node $\ast$node=0)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a8f9bb5a388062e8ff4d106d3859238ee}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a164b1c2384ba75fe10375cf2efa46da4}{void {\bfseries write\-Material} (const irr\-::core\-::stringw \&materialname)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a164b1c2384ba75fe10375cf2efa46da4}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_aa62ed8de8c90c44a51b7dcc1fc7467ac}{void {\bfseries write\-Light\-Instance} (const irr\-::core\-::stringw \&light\-Name)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_aa62ed8de8c90c44a51b7dcc1fc7467ac}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ac91279874e696355e876a706293f815c}{void {\bfseries write\-Camera\-Instance} (const irr\-::core\-::stringw \&camera\-Name)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ac91279874e696355e876a706293f815c}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a24382cae4533a9f2b5386c655379ca03}{void {\bfseries write\-Library\-Images} ()}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a24382cae4533a9f2b5386c655379ca03}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a3c2ecad39590d3628bb45c6852f1189c}{void {\bfseries write\-Color\-Fx} (const video\-::\-S\-Material \&material, const wchar\-\_\-t $\ast$colorname, E\-\_\-\-C\-O\-L\-L\-A\-D\-A\-\_\-\-C\-O\-L\-O\-R\-\_\-\-S\-A\-M\-P\-L\-E\-R cs, const wchar\-\_\-t $\ast$attr1\-Name=0, const wchar\-\_\-t $\ast$attr1\-Value=0)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a3c2ecad39590d3628bb45c6852f1189c}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_adde76518490d18e415b16d2fbe54f319}{void {\bfseries write\-Ambient\-Light\-Element} (const video\-::\-S\-Colorf \&col)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_adde76518490d18e415b16d2fbe54f319}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ac789ef66ebc0d7c45925585de09de83c}{void {\bfseries write\-Color\-Element} (const video\-::\-S\-Color \&col, bool write\-Alpha=true)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ac789ef66ebc0d7c45925585de09de83c}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a11904ec0e5a3e0724d458b45a2b7f219}{void {\bfseries write\-Color\-Element} (const video\-::\-S\-Colorf \&col, bool write\-Alpha=true)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a11904ec0e5a3e0724d458b45a2b7f219}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_aaafb7bbb1a24da31c37f8bf20a35db59}{void {\bfseries write\-Texture\-Sampler} (s32 texture\-Idx)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_aaafb7bbb1a24da31c37f8bf20a35db59}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a640e62c7c378bf8437a9197983dd86e6}{void {\bfseries write\-Fx\-Element} (const video\-::\-S\-Material \&material, E\-\_\-\-C\-O\-L\-L\-A\-D\-A\-\_\-\-T\-E\-C\-H\-N\-I\-Q\-U\-E\-\_\-\-F\-X tech\-Fx)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a640e62c7c378bf8437a9197983dd86e6}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a621a1606210ec06fac35970487f861a5}{void {\bfseries write\-Node} (const wchar\-\_\-t $\ast$node\-Name, const wchar\-\_\-t $\ast$content)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a621a1606210ec06fac35970487f861a5}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a9deb1b69a02a846ac02bf4c6449b922a}{void {\bfseries write\-Float\-Element} (irr\-::f32 value)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a9deb1b69a02a846ac02bf4c6449b922a}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_aa370cecb6bb69e28f3d928138a2f218e}{void {\bfseries write\-Rotate\-Element} (const irr\-::core\-::vector3df \&axis, irr\-::f32 angle)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_aa370cecb6bb69e28f3d928138a2f218e}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a9bea138c842a2ff0f01389a0df60fe2c}{void {\bfseries write\-Scale\-Element} (const irr\-::core\-::vector3df \&scale)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a9bea138c842a2ff0f01389a0df60fe2c}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a7ebce96d6bd8d588e27081359b04534f}{void {\bfseries write\-Translate\-Element} (const irr\-::core\-::vector3df \&translate)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a7ebce96d6bd8d588e27081359b04534f}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a1084e80167726204de275ebb8bbae557}{void {\bfseries write\-Matrix\-Element} (const irr\-::core\-::matrix4 \&matrix)}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a1084e80167726204de275ebb8bbae557}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a3042e83ebc15c43729e79c6b79e7ed61}{io\-::\-I\-File\-System $\ast$ {\bfseries File\-System}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a3042e83ebc15c43729e79c6b79e7ed61}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a828acbaa2a22ee4c5bd35061cc9f89a5}{video\-::\-I\-Video\-Driver $\ast$ {\bfseries Video\-Driver}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a828acbaa2a22ee4c5bd35061cc9f89a5}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a75b014ef303cfe069439a1f62dcfe2f5}{io\-::\-I\-X\-M\-L\-Writer $\ast$ {\bfseries Writer}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a75b014ef303cfe069439a1f62dcfe2f5}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ac4414c27d9265f9a5a19c7376771fda4}{core\-::array$<$ video\-::\-I\-Texture $\ast$ $>$ {\bfseries Library\-Images}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ac4414c27d9265f9a5a19c7376771fda4}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a33442bb1d157bb98c1d934e775e56194}{io\-::path {\bfseries Directory}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a33442bb1d157bb98c1d934e775e56194}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ad302accb190a7bf1b7605733da10b023}{core\-::map$<$ I\-Mesh $\ast$, \hyperlink{structirr_1_1scene_1_1_c_collada_mesh_writer_1_1_s_collada_mesh}{S\-Collada\-Mesh} $>$ {\bfseries Meshes}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ad302accb190a7bf1b7605733da10b023}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a07123aa1d73b2f9c7aa34c895133e934}{core\-::map$<$ I\-Scene\-Node \\*
+$\ast$, \hyperlink{structirr_1_1scene_1_1_c_collada_mesh_writer_1_1_s_collada_light}{S\-Collada\-Light} $>$ {\bfseries Light\-Nodes}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a07123aa1d73b2f9c7aa34c895133e934}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a1f2bc1b30cd9f4c6bbfc66f06c0cdc78}{core\-::map$<$ I\-Scene\-Node \\*
+$\ast$, irr\-::core\-::stringw $>$ {\bfseries Camera\-Nodes}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a1f2bc1b30cd9f4c6bbfc66f06c0cdc78}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_a41d765128bc47f70196ec2fed61ce338}{core\-::map$<$ irr\-::core\-::stringw, \\*
+bool $>$ {\bfseries Materials\-Written}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_a41d765128bc47f70196ec2fed61ce338}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_ad1b7fef37a2e6bfbad217864a051b7ce}{core\-::map$<$ irr\-::core\-::stringw, \\*
+bool $>$ {\bfseries Effects\-Written}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_ad1b7fef37a2e6bfbad217864a051b7ce}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_mesh_writer_aae1975c5b6517b8d65fab687416e5ff9}{irr\-::core\-::array$<$ \hyperlink{structirr_1_1scene_1_1_c_collada_mesh_writer_1_1_material_name}{Material\-Name} $>$ {\bfseries Material\-Name\-Cache}}\label{classirr_1_1scene_1_1_c_collada_mesh_writer_aae1975c5b6517b8d65fab687416e5ff9}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+class to write meshes, implementing a C\-O\-L\-L\-A\-D\-A (.dae, .xml) writer 
+
+\begin{DoxyVerb}This writer implementation has been originally developed for irrEdit and then
+\end{DoxyVerb}
+ merged out to the Irrlicht Engine 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Collada\-Mesh\-Writer.\-h\end{DoxyCompactItemize}

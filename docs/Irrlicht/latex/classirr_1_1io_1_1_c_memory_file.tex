@@ -1,0 +1,63 @@
+\hypertarget{classirr_1_1io_1_1_c_memory_file}{\section{irr\-:\-:io\-:\-:C\-Memory\-File Class Reference}
+\label{classirr_1_1io_1_1_c_memory_file}\index{irr\-::io\-::\-C\-Memory\-File@{irr\-::io\-::\-C\-Memory\-File}}
+}
+
+
+{\ttfamily \#include $<$C\-Memory\-File.\-h$>$}
+
+Inheritance diagram for irr\-:\-:io\-:\-:C\-Memory\-File\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1io_1_1_c_memory_file}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1io_1_1_c_memory_file_abe6b794cc58e6d8d4b30601287fa5e99}{\hyperlink{classirr_1_1io_1_1_c_memory_file_abe6b794cc58e6d8d4b30601287fa5e99}{C\-Memory\-File} (void $\ast$memory, long len, const io\-::path \&file\-Name, bool delete\-Memory\-When\-Dropped)}\label{classirr_1_1io_1_1_c_memory_file_abe6b794cc58e6d8d4b30601287fa5e99}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_memory_file_a44c6360f26520205f2266777fe0562c9}{virtual \hyperlink{classirr_1_1io_1_1_c_memory_file_a44c6360f26520205f2266777fe0562c9}{$\sim$\-C\-Memory\-File} ()}\label{classirr_1_1io_1_1_c_memory_file_a44c6360f26520205f2266777fe0562c9}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_memory_file_a9a8d7778983e8b98516ce0ede79afc07}{virtual s32 \hyperlink{classirr_1_1io_1_1_c_memory_file_a9a8d7778983e8b98516ce0ede79afc07}{read} (void $\ast$buffer, u32 size\-To\-Read)}\label{classirr_1_1io_1_1_c_memory_file_a9a8d7778983e8b98516ce0ede79afc07}
+
+\begin{DoxyCompactList}\small\item\em returns how much was read \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_memory_file_a9a47376b6659816778d255bccc341158}{virtual s32 \hyperlink{classirr_1_1io_1_1_c_memory_file_a9a47376b6659816778d255bccc341158}{write} (const void $\ast$buffer, u32 size\-To\-Write)}\label{classirr_1_1io_1_1_c_memory_file_a9a47376b6659816778d255bccc341158}
+
+\begin{DoxyCompactList}\small\item\em returns how much was written \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1io_1_1_c_memory_file_a5fce33ee67fa4655abd03e198f07abda}{seek} (long final\-Pos, bool relative\-Movement=false)
+\begin{DoxyCompactList}\small\item\em changes position in file, returns true if successful \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_memory_file_aaef8dad8e25866fedd88e8e856db083f}{virtual long \hyperlink{classirr_1_1io_1_1_c_memory_file_aaef8dad8e25866fedd88e8e856db083f}{get\-Size} () const }\label{classirr_1_1io_1_1_c_memory_file_aaef8dad8e25866fedd88e8e856db083f}
+
+\begin{DoxyCompactList}\small\item\em returns size of file \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_memory_file_ab84f511ede304b982d3aad5647d0f676}{virtual long \hyperlink{classirr_1_1io_1_1_c_memory_file_ab84f511ede304b982d3aad5647d0f676}{get\-Pos} () const }\label{classirr_1_1io_1_1_c_memory_file_ab84f511ede304b982d3aad5647d0f676}
+
+\begin{DoxyCompactList}\small\item\em returns where in the file we are. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_memory_file_a8e0ec707734c186c7ca083df1fecbac1}{virtual const io\-::path \& \hyperlink{classirr_1_1io_1_1_c_memory_file_a8e0ec707734c186c7ca083df1fecbac1}{get\-File\-Name} () const }\label{classirr_1_1io_1_1_c_memory_file_a8e0ec707734c186c7ca083df1fecbac1}
+
+\begin{DoxyCompactList}\small\item\em returns name of file \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class for reading and writing from memory. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1io_1_1_c_memory_file_a5fce33ee67fa4655abd03e198f07abda}{\index{irr\-::io\-::\-C\-Memory\-File@{irr\-::io\-::\-C\-Memory\-File}!seek@{seek}}
+\index{seek@{seek}!irr::io::CMemoryFile@{irr\-::io\-::\-C\-Memory\-File}}
+\subsubsection[{seek}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::io\-::\-C\-Memory\-File\-::seek (
+\begin{DoxyParamCaption}
+\item[{long}]{final\-Pos, }
+\item[{bool}]{relative\-Movement = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_memory_file_a5fce33ee67fa4655abd03e198f07abda}
+
+
+changes position in file, returns true if successful 
+
+changes position in file, returns true if successful if relative\-Movement==true, the pos is changed relative to current pos, otherwise from begin of file 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Memory\-File.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Memory\-File.\-cpp\end{DoxyCompactItemize}

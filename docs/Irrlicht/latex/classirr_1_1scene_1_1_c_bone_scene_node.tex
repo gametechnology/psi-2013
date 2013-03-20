@@ -1,0 +1,51 @@
+\hypertarget{classirr_1_1scene_1_1_c_bone_scene_node}{\section{irr\-:\-:scene\-:\-:C\-Bone\-Scene\-Node Class Reference}
+\label{classirr_1_1scene_1_1_c_bone_scene_node}\index{irr\-::scene\-::\-C\-Bone\-Scene\-Node@{irr\-::scene\-::\-C\-Bone\-Scene\-Node}}
+}
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Bone\-Scene\-Node\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_bone_scene_node}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_bone_scene_node_ae081c34c92966bab947b891453eb263e}{\hyperlink{classirr_1_1scene_1_1_c_bone_scene_node_ae081c34c92966bab947b891453eb263e}{C\-Bone\-Scene\-Node} (I\-Scene\-Node $\ast$parent, I\-Scene\-Manager $\ast$mgr, s32 id=-\/1, u32 bone\-Index=0, const c8 $\ast$bone\-Name=0)}\label{classirr_1_1scene_1_1_c_bone_scene_node_ae081c34c92966bab947b891453eb263e}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_bone_scene_node_a84b0b6b405c28ce80a32e6578368f81a}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_bone_scene_node_a84b0b6b405c28ce80a32e6578368f81a}{get\-Bone\-Index} () const }\label{classirr_1_1scene_1_1_c_bone_scene_node_a84b0b6b405c28ce80a32e6578368f81a}
+
+\begin{DoxyCompactList}\small\item\em Returns the index of the bone. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_bone_scene_node_a3f41cf08f51dd6fb67998313f4651177}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_bone_scene_node_a3f41cf08f51dd6fb67998313f4651177}{set\-Animation\-Mode} (E\-\_\-\-B\-O\-N\-E\-\_\-\-A\-N\-I\-M\-A\-T\-I\-O\-N\-\_\-\-M\-O\-D\-E mode)}\label{classirr_1_1scene_1_1_c_bone_scene_node_a3f41cf08f51dd6fb67998313f4651177}
+
+\begin{DoxyCompactList}\small\item\em Sets the animation mode of the bone. Returns true if successful. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_bone_scene_node_abf6bbe532586363a4db1627f43e2c99b}{virtual E\-\_\-\-B\-O\-N\-E\-\_\-\-A\-N\-I\-M\-A\-T\-I\-O\-N\-\_\-\-M\-O\-D\-E \hyperlink{classirr_1_1scene_1_1_c_bone_scene_node_abf6bbe532586363a4db1627f43e2c99b}{get\-Animation\-Mode} () const }\label{classirr_1_1scene_1_1_c_bone_scene_node_abf6bbe532586363a4db1627f43e2c99b}
+
+\begin{DoxyCompactList}\small\item\em Gets the current animation mode of the bone. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_bone_scene_node_aa3aaf49f643a1bb2553aa8e60dd00001}{virtual const core\-::aabbox3d\\*
+$<$ f32 $>$ \& \hyperlink{classirr_1_1scene_1_1_c_bone_scene_node_aa3aaf49f643a1bb2553aa8e60dd00001}{get\-Bounding\-Box} () const }\label{classirr_1_1scene_1_1_c_bone_scene_node_aa3aaf49f643a1bb2553aa8e60dd00001}
+
+\begin{DoxyCompactList}\small\item\em returns the axis aligned bounding box of this node \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_bone_scene_node_aa73509987c1e7db30be8fe63a18c4897}{virtual void {\bfseries On\-Animate} (u32 time\-Ms)}\label{classirr_1_1scene_1_1_c_bone_scene_node_aa73509987c1e7db30be8fe63a18c4897}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_bone_scene_node_ae98693a95ce4c177d147507301a65cec}{virtual void {\bfseries update\-Absolute\-Position\-Of\-All\-Children} ()}\label{classirr_1_1scene_1_1_c_bone_scene_node_ae98693a95ce4c177d147507301a65cec}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_bone_scene_node_adb7a9cfb1a498ca55135e5a224e69ce1}{virtual void \hyperlink{classirr_1_1scene_1_1_c_bone_scene_node_adb7a9cfb1a498ca55135e5a224e69ce1}{serialize\-Attributes} (io\-::\-I\-Attributes $\ast$out, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0) const }\label{classirr_1_1scene_1_1_c_bone_scene_node_adb7a9cfb1a498ca55135e5a224e69ce1}
+
+\begin{DoxyCompactList}\small\item\em Writes attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_bone_scene_node_a5eba7961bde9372db01a92b30bd3bc42}{virtual void \hyperlink{classirr_1_1scene_1_1_c_bone_scene_node_a5eba7961bde9372db01a92b30bd3bc42}{deserialize\-Attributes} (io\-::\-I\-Attributes $\ast$in, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0)}\label{classirr_1_1scene_1_1_c_bone_scene_node_a5eba7961bde9372db01a92b30bd3bc42}
+
+\begin{DoxyCompactList}\small\item\em Reads attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_bone_scene_node_af7deb666761c00bcc6f75fcaae596650}{virtual void \hyperlink{classirr_1_1scene_1_1_c_bone_scene_node_af7deb666761c00bcc6f75fcaae596650}{set\-Skinning\-Space} (E\-\_\-\-B\-O\-N\-E\-\_\-\-S\-K\-I\-N\-N\-I\-N\-G\-\_\-\-S\-P\-A\-C\-E space)}\label{classirr_1_1scene_1_1_c_bone_scene_node_af7deb666761c00bcc6f75fcaae596650}
+
+\begin{DoxyCompactList}\small\item\em How the relative transformation of the bone is used. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_bone_scene_node_af5fa23223eca0aa1f1dc5bffd236dd56}{virtual E\-\_\-\-B\-O\-N\-E\-\_\-\-S\-K\-I\-N\-N\-I\-N\-G\-\_\-\-S\-P\-A\-C\-E {\bfseries get\-Skinning\-Space} () const }\label{classirr_1_1scene_1_1_c_bone_scene_node_af5fa23223eca0aa1f1dc5bffd236dd56}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Bone\-Scene\-Node.\-h\end{DoxyCompactItemize}

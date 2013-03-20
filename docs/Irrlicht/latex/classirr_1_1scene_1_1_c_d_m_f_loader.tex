@@ -1,0 +1,98 @@
+\hypertarget{classirr_1_1scene_1_1_c_d_m_f_loader}{\section{irr\-:\-:scene\-:\-:C\-D\-M\-F\-Loader Class Reference}
+\label{classirr_1_1scene_1_1_c_d_m_f_loader}\index{irr\-::scene\-::\-C\-D\-M\-F\-Loader@{irr\-::scene\-::\-C\-D\-M\-F\-Loader}}
+}
+
+
+{\ttfamily \#include $<$C\-D\-M\-F\-Loader.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-D\-M\-F\-Loader\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_d_m_f_loader}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classirr_1_1scene_1_1_c_d_m_f_loader_a15a217939acac8c732a489405a08ae70}{C\-D\-M\-F\-Loader} (I\-Scene\-Manager $\ast$smgr, io\-::\-I\-File\-System $\ast$filesys)
+\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_d_m_f_loader_afd8eed83fde54a7e7af88a70642e0ebd}{is\-A\-Loadable\-File\-Extension} (const io\-::path \&filename) const 
+\item 
+virtual I\-Animated\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_d_m_f_loader_ad0a26f69a5ae1b5c612ab0593f2f2b63}{create\-Mesh} (io\-::\-I\-Read\-File $\ast$file)
+\item 
+int \hyperlink{classirr_1_1scene_1_1_c_d_m_f_loader_aa8edb30a292bff34cacbebfb380f53b8}{load\-Lights} (const c8 $\ast$filename, I\-Scene\-Manager $\ast$smgr, I\-Scene\-Node $\ast$parent=0, s32 base\-\_\-id=1000)
+\item 
+int \hyperlink{classirr_1_1scene_1_1_c_d_m_f_loader_a12a5dd1e41aac791d632a4931b049549}{load\-Water\-Plains} (const c8 $\ast$filename, I\-Scene\-Manager $\ast$smgr, I\-Scene\-Node $\ast$parent=0, s32 base\-\_\-id=2000, bool mode=true)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class to load Dele\-D mesh files. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_d_m_f_loader_a15a217939acac8c732a489405a08ae70}{\index{irr\-::scene\-::\-C\-D\-M\-F\-Loader@{irr\-::scene\-::\-C\-D\-M\-F\-Loader}!C\-D\-M\-F\-Loader@{C\-D\-M\-F\-Loader}}
+\index{C\-D\-M\-F\-Loader@{C\-D\-M\-F\-Loader}!irr::scene::CDMFLoader@{irr\-::scene\-::\-C\-D\-M\-F\-Loader}}
+\subsubsection[{C\-D\-M\-F\-Loader}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::scene\-::\-C\-D\-M\-F\-Loader\-::\-C\-D\-M\-F\-Loader (
+\begin{DoxyParamCaption}
+\item[{I\-Scene\-Manager $\ast$}]{smgr, }
+\item[{io\-::\-I\-File\-System $\ast$}]{filesys}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1scene_1_1_c_d_m_f_loader_a15a217939acac8c732a489405a08ae70}
+constructor 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_d_m_f_loader_ad0a26f69a5ae1b5c612ab0593f2f2b63}{\index{irr\-::scene\-::\-C\-D\-M\-F\-Loader@{irr\-::scene\-::\-C\-D\-M\-F\-Loader}!create\-Mesh@{create\-Mesh}}
+\index{create\-Mesh@{create\-Mesh}!irr::scene::CDMFLoader@{irr\-::scene\-::\-C\-D\-M\-F\-Loader}}
+\subsubsection[{create\-Mesh}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Animated\-Mesh$\ast$ irr\-::scene\-::\-C\-D\-M\-F\-Loader\-::create\-Mesh (
+\begin{DoxyParamCaption}
+\item[{io\-::\-I\-Read\-File $\ast$}]{file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_d_m_f_loader_ad0a26f69a5ae1b5c612ab0593f2f2b63}
+\begin{DoxyVerb}creates/loads an animated mesh from the file.
+\end{DoxyVerb}
+ \begin{DoxyReturn}{Returns}
+Pointer to the created mesh. Returns 0 if loading failed. If you no longer need the mesh, you should call I\-Animated\-Mesh\-::drop(). See I\-Reference\-Counted\-::drop() for more information. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_d_m_f_loader_afd8eed83fde54a7e7af88a70642e0ebd}{\index{irr\-::scene\-::\-C\-D\-M\-F\-Loader@{irr\-::scene\-::\-C\-D\-M\-F\-Loader}!is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}}
+\index{is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}!irr::scene::CDMFLoader@{irr\-::scene\-::\-C\-D\-M\-F\-Loader}}
+\subsubsection[{is\-A\-Loadable\-File\-Extension}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool irr\-::scene\-::\-C\-D\-M\-F\-Loader\-::is\-A\-Loadable\-File\-Extension (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{filename}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_d_m_f_loader_afd8eed83fde54a7e7af88a70642e0ebd}
+returns true if the file maybe is able to be loaded by this class based on the file extension (e.\-g. \char`\"{}.\-cob\char`\"{}) \hypertarget{classirr_1_1scene_1_1_c_d_m_f_loader_aa8edb30a292bff34cacbebfb380f53b8}{\index{irr\-::scene\-::\-C\-D\-M\-F\-Loader@{irr\-::scene\-::\-C\-D\-M\-F\-Loader}!load\-Lights@{load\-Lights}}
+\index{load\-Lights@{load\-Lights}!irr::scene::CDMFLoader@{irr\-::scene\-::\-C\-D\-M\-F\-Loader}}
+\subsubsection[{load\-Lights}]{\setlength{\rightskip}{0pt plus 5cm}int irr\-::scene\-::\-C\-D\-M\-F\-Loader\-::load\-Lights (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{filename, }
+\item[{I\-Scene\-Manager $\ast$}]{smgr, }
+\item[{I\-Scene\-Node $\ast$}]{parent = {\ttfamily 0}, }
+\item[{s32}]{base\-\_\-id = {\ttfamily 1000}}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1scene_1_1_c_d_m_f_loader_aa8edb30a292bff34cacbebfb380f53b8}
+\begin{DoxyVerb}loads dynamic lights present in this scene.
+\end{DoxyVerb}
+ Note that loaded lights from Dele\-D must have the suffix {\bfseries dynamic\-\_\-} and must be {\bfseries pointlight}. Irrlicht correctly loads specular color, diffuse color , position and distance of object affected by light. \begin{DoxyReturn}{Returns}
+number of lights loaded or 0 if loading failed. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_d_m_f_loader_a12a5dd1e41aac791d632a4931b049549}{\index{irr\-::scene\-::\-C\-D\-M\-F\-Loader@{irr\-::scene\-::\-C\-D\-M\-F\-Loader}!load\-Water\-Plains@{load\-Water\-Plains}}
+\index{load\-Water\-Plains@{load\-Water\-Plains}!irr::scene::CDMFLoader@{irr\-::scene\-::\-C\-D\-M\-F\-Loader}}
+\subsubsection[{load\-Water\-Plains}]{\setlength{\rightskip}{0pt plus 5cm}int irr\-::scene\-::\-C\-D\-M\-F\-Loader\-::load\-Water\-Plains (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{filename, }
+\item[{I\-Scene\-Manager $\ast$}]{smgr, }
+\item[{I\-Scene\-Node $\ast$}]{parent = {\ttfamily 0}, }
+\item[{s32}]{base\-\_\-id = {\ttfamily 2000}, }
+\item[{bool}]{mode = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1scene_1_1_c_d_m_f_loader_a12a5dd1e41aac791d632a4931b049549}
+\begin{DoxyVerb}loads water plains present in this scene.
+\end{DoxyVerb}
+ Note that loaded water plains from Dele\-D must have the suffix {\bfseries water\-\_\-} and must be {\bfseries rectangle} (with just 1 rectangular face). Irrlicht correctly loads position and rotation of water plain as well as texture layers. \begin{DoxyReturn}{Returns}
+number of water plains loaded or 0 if loading failed. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-D\-M\-F\-Loader.\-h\end{DoxyCompactItemize}

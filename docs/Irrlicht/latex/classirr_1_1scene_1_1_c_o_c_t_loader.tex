@@ -1,0 +1,50 @@
+\hypertarget{classirr_1_1scene_1_1_c_o_c_t_loader}{\section{irr\-:\-:scene\-:\-:C\-O\-C\-T\-Loader Class Reference}
+\label{classirr_1_1scene_1_1_c_o_c_t_loader}\index{irr\-::scene\-::\-C\-O\-C\-T\-Loader@{irr\-::scene\-::\-C\-O\-C\-T\-Loader}}
+}
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-O\-C\-T\-Loader\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_o_c_t_loader}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_o_c_t_loader_a725b2178d57e691fb3401aafcd207d4a}{\hyperlink{classirr_1_1scene_1_1_c_o_c_t_loader_a725b2178d57e691fb3401aafcd207d4a}{C\-O\-C\-T\-Loader} (I\-Scene\-Manager $\ast$smgr, io\-::\-I\-File\-System $\ast$fs)}\label{classirr_1_1scene_1_1_c_o_c_t_loader_a725b2178d57e691fb3401aafcd207d4a}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_o_c_t_loader_a9e9dc73b5141556e9262328a8714ec5b}{virtual \hyperlink{classirr_1_1scene_1_1_c_o_c_t_loader_a9e9dc73b5141556e9262328a8714ec5b}{$\sim$\-C\-O\-C\-T\-Loader} ()}\label{classirr_1_1scene_1_1_c_o_c_t_loader_a9e9dc73b5141556e9262328a8714ec5b}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_o_c_t_loader_ac9613156c3bc56002c904973de74cbe8}{is\-A\-Loadable\-File\-Extension} (const io\-::path \&filename) const 
+\item 
+virtual I\-Animated\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_o_c_t_loader_af8c8c8ddcaead7c525c1cbcca5ed0628}{create\-Mesh} (io\-::\-I\-Read\-File $\ast$file)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_o_c_t_loader_af301702ec34cfff40ae99c671179167d}{void {\bfseries O\-C\-T\-Load\-Lights} (io\-::\-I\-Read\-File $\ast$file, I\-Scene\-Node $\ast$parent=0, f32 radius=500.\-0f, f32 intensity\-Scale=0.\-0000001f $\ast$2.\-5, bool rewind=true)}\label{classirr_1_1scene_1_1_c_o_c_t_loader_af301702ec34cfff40ae99c671179167d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_o_c_t_loader_af8c8c8ddcaead7c525c1cbcca5ed0628}{\index{irr\-::scene\-::\-C\-O\-C\-T\-Loader@{irr\-::scene\-::\-C\-O\-C\-T\-Loader}!create\-Mesh@{create\-Mesh}}
+\index{create\-Mesh@{create\-Mesh}!irr::scene::COCTLoader@{irr\-::scene\-::\-C\-O\-C\-T\-Loader}}
+\subsubsection[{create\-Mesh}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Animated\-Mesh$\ast$ irr\-::scene\-::\-C\-O\-C\-T\-Loader\-::create\-Mesh (
+\begin{DoxyParamCaption}
+\item[{io\-::\-I\-Read\-File $\ast$}]{file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_o_c_t_loader_af8c8c8ddcaead7c525c1cbcca5ed0628}
+creates/loads an animated mesh from the file. \begin{DoxyReturn}{Returns}
+Pointer to the created mesh. Returns 0 if loading failed. If you no longer need the mesh, you should call I\-Animated\-Mesh\-::drop(). See I\-Reference\-Counted\-::drop() for more information. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_o_c_t_loader_ac9613156c3bc56002c904973de74cbe8}{\index{irr\-::scene\-::\-C\-O\-C\-T\-Loader@{irr\-::scene\-::\-C\-O\-C\-T\-Loader}!is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}}
+\index{is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}!irr::scene::COCTLoader@{irr\-::scene\-::\-C\-O\-C\-T\-Loader}}
+\subsubsection[{is\-A\-Loadable\-File\-Extension}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool irr\-::scene\-::\-C\-O\-C\-T\-Loader\-::is\-A\-Loadable\-File\-Extension (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{filename}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_o_c_t_loader_ac9613156c3bc56002c904973de74cbe8}
+returns true if the file maybe is able to be loaded by this class based on the file extension (e.\-g. \char`\"{}.\-cob\char`\"{}) 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-O\-C\-T\-Loader.\-h\end{DoxyCompactItemize}

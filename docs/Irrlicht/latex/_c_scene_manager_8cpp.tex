@@ -1,0 +1,84 @@
+\hypertarget{_c_scene_manager_8cpp}{\section{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-C\-Scene\-Manager.cpp File Reference}
+\label{_c_scene_manager_8cpp}\index{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-C\-Scene\-Manager.\-cpp@{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-C\-Scene\-Manager.\-cpp}}
+}
+{\ttfamily \#include \char`\"{}Irr\-Compile\-Config.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Scene\-Manager.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Video\-Driver.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-File\-System.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}S\-Animated\-Mesh.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Mesh\-Cache.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-X\-M\-L\-Writer.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Scene\-User\-Data\-Serializer.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-G\-U\-I\-Environment.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Material\-Renderer.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Read\-File.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Write\-File.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Scene\-Loader.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}os.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Cube\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Sphere\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Animated\-Mesh\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Octree\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Camera\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Light\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Billboard\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Mesh\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Sky\-Box\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Sky\-Dome\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Particle\-System\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Dummy\-Transformation\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Water\-Surface\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Terrain\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Empty\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Text\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Quake3\-Shader\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Volume\-Light\-Scene\-Node.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Default\-Scene\-Node\-Factory.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Scene\-Collision\-Manager.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Triangle\-Selector.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Octree\-Triangle\-Selector.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Triangle\-B\-B\-Selector.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Meta\-Triangle\-Selector.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Terrain\-Triangle\-Selector.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Scene\-Node\-Animator\-Rotation.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Scene\-Node\-Animator\-Fly\-Circle.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Scene\-Node\-Animator\-Fly\-Straight.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Scene\-Node\-Animator\-Texture.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Scene\-Node\-Animator\-Collision\-Response.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Scene\-Node\-Animator\-Delete.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Scene\-Node\-Animator\-Follow\-Spline.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Scene\-Node\-Animator\-Camera\-F\-P\-S.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Scene\-Node\-Animator\-Camera\-Maya.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Default\-Scene\-Node\-Animator\-Factory.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Geometry\-Creator.\-h\char`\"{}}\\*
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespaceirr}{irr}
+\item 
+namespace \hyperlink{namespaceirr_1_1scene}{irr\-::scene}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_c_scene_manager_8cpp_aee03b9c8353ad1f50d01095cedb7acb1}{S\-C\-E\-N\-E\-M\-A\-N\-A\-G\-E\-R\-\_\-\-D\-E\-B\-U\-G}
+\begin{DoxyCompactList}\small\item\em Enable debug features. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+I\-Scene\-Manager $\ast$ \hyperlink{namespaceirr_1_1scene_a58689a06e4e31bb0129026d0d5d5eb71}{irr\-::scene\-::create\-Scene\-Manager} (video\-::\-I\-Video\-Driver $\ast$driver, io\-::\-I\-File\-System $\ast$fs, gui\-::\-I\-Cursor\-Control $\ast$cc, gui\-::\-I\-G\-U\-I\-Environment $\ast$gui)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_c_scene_manager_8cpp_aee03b9c8353ad1f50d01095cedb7acb1}{\index{C\-Scene\-Manager.\-cpp@{C\-Scene\-Manager.\-cpp}!S\-C\-E\-N\-E\-M\-A\-N\-A\-G\-E\-R\-\_\-\-D\-E\-B\-U\-G@{S\-C\-E\-N\-E\-M\-A\-N\-A\-G\-E\-R\-\_\-\-D\-E\-B\-U\-G}}
+\index{S\-C\-E\-N\-E\-M\-A\-N\-A\-G\-E\-R\-\_\-\-D\-E\-B\-U\-G@{S\-C\-E\-N\-E\-M\-A\-N\-A\-G\-E\-R\-\_\-\-D\-E\-B\-U\-G}!CSceneManager.cpp@{C\-Scene\-Manager.\-cpp}}
+\subsubsection[{S\-C\-E\-N\-E\-M\-A\-N\-A\-G\-E\-R\-\_\-\-D\-E\-B\-U\-G}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\-C\-E\-N\-E\-M\-A\-N\-A\-G\-E\-R\-\_\-\-D\-E\-B\-U\-G}}\label{_c_scene_manager_8cpp_aee03b9c8353ad1f50d01095cedb7acb1}
+
+
+Enable debug features. 
+
+
+
+Definition at line 177 of file C\-Scene\-Manager.\-cpp.
+

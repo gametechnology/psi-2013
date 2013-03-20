@@ -1,0 +1,57 @@
+\hypertarget{classirr_1_1io_1_1_c_limit_read_file}{\section{irr\-:\-:io\-:\-:C\-Limit\-Read\-File Class Reference}
+\label{classirr_1_1io_1_1_c_limit_read_file}\index{irr\-::io\-::\-C\-Limit\-Read\-File@{irr\-::io\-::\-C\-Limit\-Read\-File}}
+}
+
+
+{\ttfamily \#include $<$C\-Limit\-Read\-File.\-h$>$}
+
+Inheritance diagram for irr\-:\-:io\-:\-:C\-Limit\-Read\-File\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1io_1_1_c_limit_read_file}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1io_1_1_c_limit_read_file_a520e5ed01f7c6ae5a7f86a1c58b39c3e}{{\bfseries C\-Limit\-Read\-File} (I\-Read\-File $\ast$already\-Opened\-File, long pos, long area\-Size, const io\-::path \&name)}\label{classirr_1_1io_1_1_c_limit_read_file_a520e5ed01f7c6ae5a7f86a1c58b39c3e}
+
+\item 
+\hypertarget{classirr_1_1io_1_1_c_limit_read_file_afe2774eae9e38f116981b2f869450de4}{virtual s32 \hyperlink{classirr_1_1io_1_1_c_limit_read_file_afe2774eae9e38f116981b2f869450de4}{read} (void $\ast$buffer, u32 size\-To\-Read)}\label{classirr_1_1io_1_1_c_limit_read_file_afe2774eae9e38f116981b2f869450de4}
+
+\begin{DoxyCompactList}\small\item\em returns how much was read \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1io_1_1_c_limit_read_file_a83b88015cd34726dc1751a4d3e795c12}{seek} (long final\-Pos, bool relative\-Movement=false)
+\begin{DoxyCompactList}\small\item\em changes position in file, returns true if successful \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_limit_read_file_aca7a8c3455013d9cc50e807de6cacd59}{virtual long \hyperlink{classirr_1_1io_1_1_c_limit_read_file_aca7a8c3455013d9cc50e807de6cacd59}{get\-Size} () const }\label{classirr_1_1io_1_1_c_limit_read_file_aca7a8c3455013d9cc50e807de6cacd59}
+
+\begin{DoxyCompactList}\small\item\em returns size of file \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_limit_read_file_ad901a3b2068808d9708059d46631df6d}{virtual long \hyperlink{classirr_1_1io_1_1_c_limit_read_file_ad901a3b2068808d9708059d46631df6d}{get\-Pos} () const }\label{classirr_1_1io_1_1_c_limit_read_file_ad901a3b2068808d9708059d46631df6d}
+
+\begin{DoxyCompactList}\small\item\em returns where in the file we are. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_limit_read_file_abb075ed4447e6be2fd008ab0fef75255}{virtual const io\-::path \& \hyperlink{classirr_1_1io_1_1_c_limit_read_file_abb075ed4447e6be2fd008ab0fef75255}{get\-File\-Name} () const }\label{classirr_1_1io_1_1_c_limit_read_file_abb075ed4447e6be2fd008ab0fef75255}
+
+\begin{DoxyCompactList}\small\item\em returns name of file \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+this is a read file, which is limited to some boundaries, so that it may only start from a certain file position and may only read until a certain file position. This can be useful, for example for reading uncompressed files in an archive (zip, tar). ! 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1io_1_1_c_limit_read_file_a83b88015cd34726dc1751a4d3e795c12}{\index{irr\-::io\-::\-C\-Limit\-Read\-File@{irr\-::io\-::\-C\-Limit\-Read\-File}!seek@{seek}}
+\index{seek@{seek}!irr::io::CLimitReadFile@{irr\-::io\-::\-C\-Limit\-Read\-File}}
+\subsubsection[{seek}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::io\-::\-C\-Limit\-Read\-File\-::seek (
+\begin{DoxyParamCaption}
+\item[{long}]{final\-Pos, }
+\item[{bool}]{relative\-Movement = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_limit_read_file_a83b88015cd34726dc1751a4d3e795c12}
+
+
+changes position in file, returns true if successful 
+
+changes position in file, returns true if successful if relative\-Movement==true, the pos is changed relative to current pos, otherwise from begin of file 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Limit\-Read\-File.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Limit\-Read\-File.\-cpp\end{DoxyCompactItemize}

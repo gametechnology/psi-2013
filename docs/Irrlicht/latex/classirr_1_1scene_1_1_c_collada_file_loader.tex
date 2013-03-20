@@ -1,0 +1,59 @@
+\hypertarget{classirr_1_1scene_1_1_c_collada_file_loader}{\section{irr\-:\-:scene\-:\-:C\-Collada\-File\-Loader Class Reference}
+\label{classirr_1_1scene_1_1_c_collada_file_loader}\index{irr\-::scene\-::\-C\-Collada\-File\-Loader@{irr\-::scene\-::\-C\-Collada\-File\-Loader}}
+}
+
+
+Meshloader capable of loading C\-O\-L\-L\-A\-D\-A meshes and scene descriptions into Irrlicht.  
+
+
+
+
+{\ttfamily \#include $<$C\-Collada\-File\-Loader.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Collada\-File\-Loader\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_collada_file_loader}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_file_loader_a38b57a016ce77d29b015cdfdd9a56c34}{\hyperlink{classirr_1_1scene_1_1_c_collada_file_loader_a38b57a016ce77d29b015cdfdd9a56c34}{C\-Collada\-File\-Loader} (scene\-::\-I\-Scene\-Manager $\ast$smgr, io\-::\-I\-File\-System $\ast$fs)}\label{classirr_1_1scene_1_1_c_collada_file_loader_a38b57a016ce77d29b015cdfdd9a56c34}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_collada_file_loader_a8a34e298e8a89a3817a01e6e2fa1ec53}{virtual \hyperlink{classirr_1_1scene_1_1_c_collada_file_loader_a8a34e298e8a89a3817a01e6e2fa1ec53}{$\sim$\-C\-Collada\-File\-Loader} ()}\label{classirr_1_1scene_1_1_c_collada_file_loader_a8a34e298e8a89a3817a01e6e2fa1ec53}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_collada_file_loader_a53e45168d79f779a88c8fe4d79a444c3}{is\-A\-Loadable\-File\-Extension} (const io\-::path \&filename) const 
+\item 
+virtual I\-Animated\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_collada_file_loader_a7be8ed6cb5625e51a1970fa3582c0040}{create\-Mesh} (io\-::\-I\-Read\-File $\ast$file)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Meshloader capable of loading C\-O\-L\-L\-A\-D\-A meshes and scene descriptions into Irrlicht. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_collada_file_loader_a7be8ed6cb5625e51a1970fa3582c0040}{\index{irr\-::scene\-::\-C\-Collada\-File\-Loader@{irr\-::scene\-::\-C\-Collada\-File\-Loader}!create\-Mesh@{create\-Mesh}}
+\index{create\-Mesh@{create\-Mesh}!irr::scene::CColladaFileLoader@{irr\-::scene\-::\-C\-Collada\-File\-Loader}}
+\subsubsection[{create\-Mesh}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Animated\-Mesh$\ast$ irr\-::scene\-::\-C\-Collada\-File\-Loader\-::create\-Mesh (
+\begin{DoxyParamCaption}
+\item[{io\-::\-I\-Read\-File $\ast$}]{file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_collada_file_loader_a7be8ed6cb5625e51a1970fa3582c0040}
+creates/loads an animated mesh from the file. \begin{DoxyReturn}{Returns}
+Pointer to the created mesh. Returns 0 if loading failed. If you no longer need the mesh, you should call I\-Animated\-Mesh\-::drop(). See I\-Reference\-Counted\-::drop() for more information. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_collada_file_loader_a53e45168d79f779a88c8fe4d79a444c3}{\index{irr\-::scene\-::\-C\-Collada\-File\-Loader@{irr\-::scene\-::\-C\-Collada\-File\-Loader}!is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}}
+\index{is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}!irr::scene::CColladaFileLoader@{irr\-::scene\-::\-C\-Collada\-File\-Loader}}
+\subsubsection[{is\-A\-Loadable\-File\-Extension}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool irr\-::scene\-::\-C\-Collada\-File\-Loader\-::is\-A\-Loadable\-File\-Extension (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{filename}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_collada_file_loader_a53e45168d79f779a88c8fe4d79a444c3}
+returns true if the file maybe is able to be loaded by this class based on the file extension (e.\-g. \char`\"{}.\-cob\char`\"{}) 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Collada\-File\-Loader.\-h\end{DoxyCompactItemize}

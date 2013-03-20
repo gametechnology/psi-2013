@@ -1,0 +1,193 @@
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya}{\section{irr\-:\-:scene\-:\-:C\-Scene\-Node\-Animator\-Camera\-Maya Class Reference}
+\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya}\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}}
+}
+
+
+Special scene node animator for F\-P\-S cameras.  
+
+
+
+
+{\ttfamily \#include $<$C\-Scene\-Node\-Animator\-Camera\-Maya.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Scene\-Node\-Animator\-Camera\-Maya\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_ab4ff971f6c724c956c009e7e0c18a0f3}{C\-Scene\-Node\-Animator\-Camera\-Maya} (gui\-::\-I\-Cursor\-Control $\ast$cursor, f32 rotate\-Speed=-\/1500.f, f32 zoom\-Speed=200.f, f32 translation\-Speed=1500.f, f32 distance=70.f)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+virtual \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_ae9716a265a6e235267ae2119b63eaaa6}{$\sim$\-C\-Scene\-Node\-Animator\-Camera\-Maya} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a55478b94e6ab37debff513e680e96c27}{animate\-Node} (I\-Scene\-Node $\ast$node, u32 time\-Ms)
+\begin{DoxyCompactList}\small\item\em Animates the scene node, currently only works on cameras. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_ae0e899fab90d69fdd02344ba419dcda9}{On\-Event} (const S\-Event \&event)
+\begin{DoxyCompactList}\small\item\em Event receiver. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a6911e326c8097469a4f6744261875c2a}{virtual f32 \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a6911e326c8097469a4f6744261875c2a}{get\-Move\-Speed} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a6911e326c8097469a4f6744261875c2a}
+
+\begin{DoxyCompactList}\small\item\em Returns the speed of movement in units per millisecond. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a13dec037830d892e79066db262996ae8}{set\-Move\-Speed} (f32 move\-Speed)
+\begin{DoxyCompactList}\small\item\em Sets the speed of movement in units per millisecond. \end{DoxyCompactList}\item 
+virtual f32 \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a958d577d57a9dc6566fc59eb17095ec1}{get\-Rotate\-Speed} () const 
+\begin{DoxyCompactList}\small\item\em Returns the rotation speed. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_aadedf9450e7013cc1ee959237ebc1616}{set\-Rotate\-Speed} (f32 rotate\-Speed)
+\begin{DoxyCompactList}\small\item\em Set the rotation speed. \end{DoxyCompactList}\item 
+virtual f32 \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a7eb7055eb23c1fd751304c2c9eb56c9d}{get\-Zoom\-Speed} () const 
+\begin{DoxyCompactList}\small\item\em Returns the zoom speed. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a38f299afc6344b6bfdb7d51a17e91aab}{set\-Zoom\-Speed} (f32 zoom\-Speed)
+\begin{DoxyCompactList}\small\item\em Set the zoom speed. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a26cc38ec5f56b7785882f5e8ffdbf4c8}{virtual f32 \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a26cc38ec5f56b7785882f5e8ffdbf4c8}{get\-Distance} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a26cc38ec5f56b7785882f5e8ffdbf4c8}
+
+\begin{DoxyCompactList}\small\item\em Returns the current distance, i.\-e. orbit radius. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a7d15bbcff2dd3d3ef8307db8b711da15}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a7d15bbcff2dd3d3ef8307db8b711da15}{set\-Distance} (f32 distance)}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a7d15bbcff2dd3d3ef8307db8b711da15}
+
+\begin{DoxyCompactList}\small\item\em Set the distance. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_af93f7865d7f4779ca166fd94c48467e6}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_af93f7865d7f4779ca166fd94c48467e6}{is\-Event\-Receiver\-Enabled} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_af93f7865d7f4779ca166fd94c48467e6}
+
+\begin{DoxyCompactList}\small\item\em This animator will receive events when attached to the active camera. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a423f4ee2b46b4ef5e5ea50354f9145de}{virtual E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-A\-N\-I\-M\-A\-T\-O\-R\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a423f4ee2b46b4ef5e5ea50354f9145de}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a423f4ee2b46b4ef5e5ea50354f9145de}
+
+\begin{DoxyCompactList}\small\item\em Returns type of the scene node. \end{DoxyCompactList}\item 
+virtual I\-Scene\-Node\-Animator $\ast$ \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a45c7475814dc984e663413c4f23d6e7a}{create\-Clone} (I\-Scene\-Node $\ast$node, I\-Scene\-Manager $\ast$new\-Manager=0)
+\begin{DoxyCompactList}\small\item\em Creates a clone of this animator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Special scene node animator for F\-P\-S cameras. 
+
+\begin{DoxyVerb}This scene node animator can be attached to a camera to make it act
+\end{DoxyVerb}
+ like a 3d modelling tool camera 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_ab4ff971f6c724c956c009e7e0c18a0f3}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}!C\-Scene\-Node\-Animator\-Camera\-Maya@{C\-Scene\-Node\-Animator\-Camera\-Maya}}
+\index{C\-Scene\-Node\-Animator\-Camera\-Maya@{C\-Scene\-Node\-Animator\-Camera\-Maya}!irr::scene::CSceneNodeAnimatorCameraMaya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}}
+\subsubsection[{C\-Scene\-Node\-Animator\-Camera\-Maya}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya (
+\begin{DoxyParamCaption}
+\item[{gui\-::\-I\-Cursor\-Control $\ast$}]{cursor, }
+\item[{f32}]{rotate\-Speed = {\ttfamily -\/1500.f}, }
+\item[{f32}]{zoom\-Speed = {\ttfamily 200.f}, }
+\item[{f32}]{translation\-Speed = {\ttfamily 1500.f}, }
+\item[{f32}]{distance = {\ttfamily 70.f}}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_ab4ff971f6c724c956c009e7e0c18a0f3}
+
+
+Constructor. 
+
+constructor \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_ae9716a265a6e235267ae2119b63eaaa6}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}!$\sim$\-C\-Scene\-Node\-Animator\-Camera\-Maya@{$\sim$\-C\-Scene\-Node\-Animator\-Camera\-Maya}}
+\index{$\sim$\-C\-Scene\-Node\-Animator\-Camera\-Maya@{$\sim$\-C\-Scene\-Node\-Animator\-Camera\-Maya}!irr::scene::CSceneNodeAnimatorCameraMaya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}}
+\subsubsection[{$\sim$\-C\-Scene\-Node\-Animator\-Camera\-Maya}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya\-::$\sim$\-C\-Scene\-Node\-Animator\-Camera\-Maya (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_ae9716a265a6e235267ae2119b63eaaa6}
+
+
+Destructor. 
+
+destructor 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a55478b94e6ab37debff513e680e96c27}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}!animate\-Node@{animate\-Node}}
+\index{animate\-Node@{animate\-Node}!irr::scene::CSceneNodeAnimatorCameraMaya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}}
+\subsubsection[{animate\-Node}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya\-::animate\-Node (
+\begin{DoxyParamCaption}
+\item[{I\-Scene\-Node $\ast$}]{node, }
+\item[{u32}]{time\-Ms}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a55478b94e6ab37debff513e680e96c27}
+
+
+Animates the scene node, currently only works on cameras. 
+
+On\-Animate() is called just before rendering the whole scene. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a45c7475814dc984e663413c4f23d6e7a}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}!create\-Clone@{create\-Clone}}
+\index{create\-Clone@{create\-Clone}!irr::scene::CSceneNodeAnimatorCameraMaya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}}
+\subsubsection[{create\-Clone}]{\setlength{\rightskip}{0pt plus 5cm}I\-Scene\-Node\-Animator $\ast$ irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya\-::create\-Clone (
+\begin{DoxyParamCaption}
+\item[{I\-Scene\-Node $\ast$}]{node, }
+\item[{I\-Scene\-Manager $\ast$}]{new\-Manager = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a45c7475814dc984e663413c4f23d6e7a}
+
+
+Creates a clone of this animator. 
+
+\begin{DoxyVerb}Please note that you will have to drop
+\end{DoxyVerb}
+ (I\-Reference\-Counted\-::drop()) the returned pointer after calling this. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a958d577d57a9dc6566fc59eb17095ec1}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}!get\-Rotate\-Speed@{get\-Rotate\-Speed}}
+\index{get\-Rotate\-Speed@{get\-Rotate\-Speed}!irr::scene::CSceneNodeAnimatorCameraMaya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}}
+\subsubsection[{get\-Rotate\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}f32 irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya\-::get\-Rotate\-Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a958d577d57a9dc6566fc59eb17095ec1}
+
+
+Returns the rotation speed. 
+
+Gets the rotation speed. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a7eb7055eb23c1fd751304c2c9eb56c9d}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}!get\-Zoom\-Speed@{get\-Zoom\-Speed}}
+\index{get\-Zoom\-Speed@{get\-Zoom\-Speed}!irr::scene::CSceneNodeAnimatorCameraMaya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}}
+\subsubsection[{get\-Zoom\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}f32 irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya\-::get\-Zoom\-Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a7eb7055eb23c1fd751304c2c9eb56c9d}
+
+
+Returns the zoom speed. 
+
+Gets the zoom speed. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_ae0e899fab90d69fdd02344ba419dcda9}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}!On\-Event@{On\-Event}}
+\index{On\-Event@{On\-Event}!irr::scene::CSceneNodeAnimatorCameraMaya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}}
+\subsubsection[{On\-Event}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya\-::\-On\-Event (
+\begin{DoxyParamCaption}
+\item[{const S\-Event \&}]{event}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_ae0e899fab90d69fdd02344ba419dcda9}
+
+
+Event receiver. 
+
+It is possible to send mouse and key events to the camera. Most cameras may ignore this input, but camera scene nodes which are created for example with scene\-::\-I\-Scene\-Manager\-::add\-Maya\-Camera\-Scene\-Node or scene\-::\-I\-Scene\-Manager\-::add\-Mesh\-Viewer\-Camera\-Scene\-Node, may want to get this input for changing their position, look at target or whatever. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a13dec037830d892e79066db262996ae8}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}!set\-Move\-Speed@{set\-Move\-Speed}}
+\index{set\-Move\-Speed@{set\-Move\-Speed}!irr::scene::CSceneNodeAnimatorCameraMaya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}}
+\subsubsection[{set\-Move\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya\-::set\-Move\-Speed (
+\begin{DoxyParamCaption}
+\item[{f32}]{move\-Speed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a13dec037830d892e79066db262996ae8}
+
+
+Sets the speed of movement in units per millisecond. 
+
+Sets the movement speed. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_aadedf9450e7013cc1ee959237ebc1616}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}!set\-Rotate\-Speed@{set\-Rotate\-Speed}}
+\index{set\-Rotate\-Speed@{set\-Rotate\-Speed}!irr::scene::CSceneNodeAnimatorCameraMaya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}}
+\subsubsection[{set\-Rotate\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya\-::set\-Rotate\-Speed (
+\begin{DoxyParamCaption}
+\item[{f32}]{rotate\-Speed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_aadedf9450e7013cc1ee959237ebc1616}
+
+
+Set the rotation speed. 
+
+Sets the rotation speed. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a38f299afc6344b6bfdb7d51a17e91aab}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}!set\-Zoom\-Speed@{set\-Zoom\-Speed}}
+\index{set\-Zoom\-Speed@{set\-Zoom\-Speed}!irr::scene::CSceneNodeAnimatorCameraMaya@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya}}
+\subsubsection[{set\-Zoom\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Camera\-Maya\-::set\-Zoom\-Speed (
+\begin{DoxyParamCaption}
+\item[{f32}]{zoom\-Speed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_camera_maya_a38f299afc6344b6bfdb7d51a17e91aab}
+
+
+Set the zoom speed. 
+
+Sets the zoom speed. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Scene\-Node\-Animator\-Camera\-Maya.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Scene\-Node\-Animator\-Camera\-Maya.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,178 @@
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response}{\section{irr\-:\-:scene\-:\-:C\-Scene\-Node\-Animator\-Collision\-Response Class Reference}
+\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response}\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}}
+}
+
+
+Special scene node animator for doing automatic collision detection and response.  
+
+
+
+
+{\ttfamily \#include $<$C\-Scene\-Node\-Animator\-Collision\-Response.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Scene\-Node\-Animator\-Collision\-Response\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_scene_node_animator_collision_response}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a446936ec73dc8168da51d94969998ced}{\hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a446936ec73dc8168da51d94969998ced}{C\-Scene\-Node\-Animator\-Collision\-Response} (I\-Scene\-Manager $\ast$scenemanager, I\-Triangle\-Selector $\ast$world, I\-Scene\-Node $\ast$object, const core\-::vector3df \&ellipsoid\-Radius=core\-::vector3df(30, 60, 30), const core\-::vector3df \&gravity\-Per\-Second=core\-::vector3df(0,-\/100.\-0f, 0), const core\-::vector3df \&ellipsoid\-Translation=core\-::vector3df(0, 0, 0), f32 sliding\-Speed=0.\-0005f)}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a446936ec73dc8168da51d94969998ced}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ab406360f5ecec25e336580a73f40a683}{virtual \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ab406360f5ecec25e336580a73f40a683}{$\sim$\-C\-Scene\-Node\-Animator\-Collision\-Response} ()}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ab406360f5ecec25e336580a73f40a683}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a25b06cd869b7534b1232da682ffdcc4f}{is\-Falling} () const 
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a0b5e6895dbb1d030b1647dcde368e475}{set\-Ellipsoid\-Radius} (const core\-::vector3df \&radius)
+\item 
+virtual core\-::vector3df \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a910bfc2a547e34855fa9e4ecfbc850db}{get\-Ellipsoid\-Radius} () const 
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ac52642be6e4dd5f7988fffa244f49f1e}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ac52642be6e4dd5f7988fffa244f49f1e}{set\-Gravity} (const core\-::vector3df \&gravity)}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ac52642be6e4dd5f7988fffa244f49f1e}
+
+\begin{DoxyCompactList}\small\item\em Sets the gravity of the environment. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a3f77f8e65327173bce079d3a1e668430}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a3f77f8e65327173bce079d3a1e668430}{jump} (f32 jump\-Speed)}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a3f77f8e65327173bce079d3a1e668430}
+
+\begin{DoxyCompactList}\small\item\em 'Jump' the animator, by adding a jump speed opposite to its gravity \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ab05be9b5561e2e5d2b1ab7ad290c4a95}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ab05be9b5561e2e5d2b1ab7ad290c4a95}{set\-Animate\-Target} (bool enable)}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ab05be9b5561e2e5d2b1ab7ad290c4a95}
+
+\begin{DoxyCompactList}\small\item\em Should the Target react on collision ( default = true ) \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a6ea83e7aedd4ab8041dd04338464e79d}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a6ea83e7aedd4ab8041dd04338464e79d}{get\-Animate\-Target} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a6ea83e7aedd4ab8041dd04338464e79d}
+
+\begin{DoxyCompactList}\small\item\em Should the Target react on collision ( default = true ) \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_aa5c3f45b45a4e4e61a1c4c004933927b}{virtual core\-::vector3df \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_aa5c3f45b45a4e4e61a1c4c004933927b}{get\-Gravity} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_aa5c3f45b45a4e4e61a1c4c004933927b}
+
+\begin{DoxyCompactList}\small\item\em Returns current vector of gravity. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a71f856dea3f35390381482346783d1e8}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a71f856dea3f35390381482346783d1e8}{set\-Ellipsoid\-Translation} (const core\-::vector3df \&translation)}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a71f856dea3f35390381482346783d1e8}
+
+\begin{DoxyCompactList}\small\item\em Sets the translation of the ellipsoid for collision detection. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_aad33a31bbdd80cabe9239b8a7f857762}{virtual core\-::vector3df \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_aad33a31bbdd80cabe9239b8a7f857762}{get\-Ellipsoid\-Translation} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_aad33a31bbdd80cabe9239b8a7f857762}
+
+\begin{DoxyCompactList}\small\item\em Returns the translation of the ellipsoid for collision detection. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a8839553ce54c03941ba19dad2cd53a6d}{set\-World} (I\-Triangle\-Selector $\ast$new\-World)
+\item 
+virtual I\-Triangle\-Selector $\ast$ \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ad3ffe8337b182f43589c517020c4f188}{get\-World} () const 
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a775ac33b665ef86b99fefad969e3e0e4}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a775ac33b665ef86b99fefad969e3e0e4}{animate\-Node} (I\-Scene\-Node $\ast$node, u32 time\-Ms)}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a775ac33b665ef86b99fefad969e3e0e4}
+
+\begin{DoxyCompactList}\small\item\em animates a scene node \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a53f2e2bcb261d8c35737f082c7f04d1d}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a53f2e2bcb261d8c35737f082c7f04d1d}{serialize\-Attributes} (io\-::\-I\-Attributes $\ast$out, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0) const }\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a53f2e2bcb261d8c35737f082c7f04d1d}
+
+\begin{DoxyCompactList}\small\item\em Writes attributes of the scene node animator. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a40a00608faa472c25f1c9f0a7daeeca1}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a40a00608faa472c25f1c9f0a7daeeca1}{deserialize\-Attributes} (io\-::\-I\-Attributes $\ast$in, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0)}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a40a00608faa472c25f1c9f0a7daeeca1}
+
+\begin{DoxyCompactList}\small\item\em Reads attributes of the scene node animator. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a04afba6891b21002191bc503dc81ca74}{virtual E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-A\-N\-I\-M\-A\-T\-O\-R\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a04afba6891b21002191bc503dc81ca74}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a04afba6891b21002191bc503dc81ca74}
+
+\begin{DoxyCompactList}\small\item\em Returns type of the scene node animator. \end{DoxyCompactList}\item 
+virtual I\-Scene\-Node\-Animator $\ast$ \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a4b248cf667f4f689a3e39aee510a20fb}{create\-Clone} (I\-Scene\-Node $\ast$node, I\-Scene\-Manager $\ast$new\-Manager=0)
+\begin{DoxyCompactList}\small\item\em Creates a clone of this animator. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ae2673a3071fd43a7ca9ccd93e258d7cb}{virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ae2673a3071fd43a7ca9ccd93e258d7cb}{set\-Target\-Node} (I\-Scene\-Node $\ast$node)}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ae2673a3071fd43a7ca9ccd93e258d7cb}
+
+\begin{DoxyCompactList}\small\item\em Set the single node that this animator will act on. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a86c4f06001c3601ea3f4acd027a931da}{virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a86c4f06001c3601ea3f4acd027a931da}{get\-Target\-Node} (void) const }\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a86c4f06001c3601ea3f4acd027a931da}
+
+\begin{DoxyCompactList}\small\item\em Gets the single node that this animator is acting on. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a730041f73b009d1ac72ec2b80f69b29d}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a730041f73b009d1ac72ec2b80f69b29d}{collision\-Occurred} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a730041f73b009d1ac72ec2b80f69b29d}
+
+\begin{DoxyCompactList}\small\item\em Returns true if a collision occurred during the last \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a775ac33b665ef86b99fefad969e3e0e4}{animate\-Node()} \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ad2e5811d401508146798fdf3f1340084}{virtual const core\-::vector3df \& \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ad2e5811d401508146798fdf3f1340084}{get\-Collision\-Point} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ad2e5811d401508146798fdf3f1340084}
+
+\begin{DoxyCompactList}\small\item\em Returns the last point of collision. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ae97e9b2338af7f9022fa4735502779ed}{virtual const core\-::triangle3df \& \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ae97e9b2338af7f9022fa4735502779ed}{get\-Collision\-Triangle} () const }\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ae97e9b2338af7f9022fa4735502779ed}
+
+\begin{DoxyCompactList}\small\item\em Returns the last triangle that caused a collision. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ae2cc2f559004aaf5c64b8a33413fc2da}{virtual const core\-::vector3df \& {\bfseries get\-Collision\-Result\-Position} (void) const }\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ae2cc2f559004aaf5c64b8a33413fc2da}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a6501ff6c98f8ce0c91679d0ff2e8758c}{virtual I\-Scene\-Node $\ast$ {\bfseries get\-Collision\-Node} (void) const }\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a6501ff6c98f8ce0c91679d0ff2e8758c}
+
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a21ae95443b30da766bc915654357fbf1}{set\-Collision\-Callback} (I\-Collision\-Callback $\ast$callback)
+\begin{DoxyCompactList}\small\item\em Sets a callback interface which will be called if a collision occurs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Special scene node animator for doing automatic collision detection and response. 
+
+\begin{DoxyVerb}This scene node animator can be attached to any scene node modifying it in that
+\end{DoxyVerb}
+ way, that it cannot move through walls of the world, is influenced by gravity and acceleration. This animator is useful for example for first person shooter games. Attach it for example to a first person shooter camera, and the camera will behave as the player control in a first person shooter game\-: The camera stops and slides at walls, walks up stairs, falls down if there is no floor under it, and so on. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a4b248cf667f4f689a3e39aee510a20fb}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}!create\-Clone@{create\-Clone}}
+\index{create\-Clone@{create\-Clone}!irr::scene::CSceneNodeAnimatorCollisionResponse@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}}
+\subsubsection[{create\-Clone}]{\setlength{\rightskip}{0pt plus 5cm}I\-Scene\-Node\-Animator $\ast$ irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response\-::create\-Clone (
+\begin{DoxyParamCaption}
+\item[{I\-Scene\-Node $\ast$}]{node, }
+\item[{I\-Scene\-Manager $\ast$}]{new\-Manager = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a4b248cf667f4f689a3e39aee510a20fb}
+
+
+Creates a clone of this animator. 
+
+\begin{DoxyVerb}Please note that you will have to drop
+\end{DoxyVerb}
+ (I\-Reference\-Counted\-::drop()) the returned pointer after calling this. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a910bfc2a547e34855fa9e4ecfbc850db}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}!get\-Ellipsoid\-Radius@{get\-Ellipsoid\-Radius}}
+\index{get\-Ellipsoid\-Radius@{get\-Ellipsoid\-Radius}!irr::scene::CSceneNodeAnimatorCollisionResponse@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}}
+\subsubsection[{get\-Ellipsoid\-Radius}]{\setlength{\rightskip}{0pt plus 5cm}core\-::vector3df irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response\-::get\-Ellipsoid\-Radius (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a910bfc2a547e34855fa9e4ecfbc850db}
+Returns the radius of the ellipsoid with which the collision detection and response is done.
+
+Returns the radius of the ellipsoid with wich the collision detection and response is done. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ad3ffe8337b182f43589c517020c4f188}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}!get\-World@{get\-World}}
+\index{get\-World@{get\-World}!irr::scene::CSceneNodeAnimatorCollisionResponse@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}}
+\subsubsection[{get\-World}]{\setlength{\rightskip}{0pt plus 5cm}I\-Triangle\-Selector $\ast$ irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response\-::get\-World (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_ad3ffe8337b182f43589c517020c4f188}
+Returns the current triangle selector containing all triangles for collision detection. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a25b06cd869b7534b1232da682ffdcc4f}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}!is\-Falling@{is\-Falling}}
+\index{is\-Falling@{is\-Falling}!irr::scene::CSceneNodeAnimatorCollisionResponse@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}}
+\subsubsection[{is\-Falling}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response\-::is\-Falling (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a25b06cd869b7534b1232da682ffdcc4f}
+Returns if the attached scene node is falling, which means that there is no blocking wall from the scene node in the direction of the gravity. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a21ae95443b30da766bc915654357fbf1}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}!set\-Collision\-Callback@{set\-Collision\-Callback}}
+\index{set\-Collision\-Callback@{set\-Collision\-Callback}!irr::scene::CSceneNodeAnimatorCollisionResponse@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}}
+\subsubsection[{set\-Collision\-Callback}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response\-::set\-Collision\-Callback (
+\begin{DoxyParamCaption}
+\item[{I\-Collision\-Callback $\ast$}]{callback}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a21ae95443b30da766bc915654357fbf1}
+
+
+Sets a callback interface which will be called if a collision occurs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em callback,\-:} & collision callback handler that will be called when a collision occurs. Set this to 0 to disable the callback. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a0b5e6895dbb1d030b1647dcde368e475}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}!set\-Ellipsoid\-Radius@{set\-Ellipsoid\-Radius}}
+\index{set\-Ellipsoid\-Radius@{set\-Ellipsoid\-Radius}!irr::scene::CSceneNodeAnimatorCollisionResponse@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}}
+\subsubsection[{set\-Ellipsoid\-Radius}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response\-::set\-Ellipsoid\-Radius (
+\begin{DoxyParamCaption}
+\item[{const core\-::vector3df \&}]{radius}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a0b5e6895dbb1d030b1647dcde368e475}
+Sets the radius of the ellipsoid with which collision detection and response is done. \hypertarget{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a8839553ce54c03941ba19dad2cd53a6d}{\index{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}!set\-World@{set\-World}}
+\index{set\-World@{set\-World}!irr::scene::CSceneNodeAnimatorCollisionResponse@{irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response}}
+\subsubsection[{set\-World}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Scene\-Node\-Animator\-Collision\-Response\-::set\-World (
+\begin{DoxyParamCaption}
+\item[{I\-Triangle\-Selector $\ast$}]{new\-World}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_node_animator_collision_response_a8839553ce54c03941ba19dad2cd53a6d}
+Sets a triangle selector holding all triangles of the world with which the scene node may collide. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Scene\-Node\-Animator\-Collision\-Response.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Scene\-Node\-Animator\-Collision\-Response.\-cpp\end{DoxyCompactItemize}

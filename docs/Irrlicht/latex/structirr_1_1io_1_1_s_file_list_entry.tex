@@ -1,0 +1,77 @@
+\hypertarget{structirr_1_1io_1_1_s_file_list_entry}{\section{irr\-:\-:io\-:\-:S\-File\-List\-Entry Struct Reference}
+\label{structirr_1_1io_1_1_s_file_list_entry}\index{irr\-::io\-::\-S\-File\-List\-Entry@{irr\-::io\-::\-S\-File\-List\-Entry}}
+}
+
+
+An entry in a list of files, can be a folder or a file.  
+
+
+
+
+{\ttfamily \#include $<$C\-File\-List.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{structirr_1_1io_1_1_s_file_list_entry_aeae10df6f851fade2c58562e3f77e018}{bool \hyperlink{structirr_1_1io_1_1_s_file_list_entry_aeae10df6f851fade2c58562e3f77e018}{operator==} (const struct \hyperlink{structirr_1_1io_1_1_s_file_list_entry}{S\-File\-List\-Entry} \&other) const }\label{structirr_1_1io_1_1_s_file_list_entry_aeae10df6f851fade2c58562e3f77e018}
+
+\begin{DoxyCompactList}\small\item\em The == operator is provided so that \hyperlink{classirr_1_1io_1_1_c_file_list}{C\-File\-List} can slowly search the list! \end{DoxyCompactList}\item 
+\hypertarget{structirr_1_1io_1_1_s_file_list_entry_a321e45459c9781a45fc7bc8858524e1a}{bool \hyperlink{structirr_1_1io_1_1_s_file_list_entry_a321e45459c9781a45fc7bc8858524e1a}{operator$<$} (const struct \hyperlink{structirr_1_1io_1_1_s_file_list_entry}{S\-File\-List\-Entry} \&other) const }\label{structirr_1_1io_1_1_s_file_list_entry_a321e45459c9781a45fc7bc8858524e1a}
+
+\begin{DoxyCompactList}\small\item\em The $<$ operator is provided so that \hyperlink{classirr_1_1io_1_1_c_file_list}{C\-File\-List} can sort and quickly search the list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+io\-::path \hyperlink{structirr_1_1io_1_1_s_file_list_entry_a1d997e72e517823903bd7205ba97cc8c}{Name}
+\begin{DoxyCompactList}\small\item\em The name of the file. \end{DoxyCompactList}\item 
+io\-::path \hyperlink{structirr_1_1io_1_1_s_file_list_entry_a2aaa0466388e66015138a765a1c9ecab}{Full\-Name}
+\begin{DoxyCompactList}\small\item\em The name of the file including the path. \end{DoxyCompactList}\item 
+\hypertarget{structirr_1_1io_1_1_s_file_list_entry_a4c49b5f812abf69fd0c6c7e943fed911}{u32 \hyperlink{structirr_1_1io_1_1_s_file_list_entry_a4c49b5f812abf69fd0c6c7e943fed911}{Size}}\label{structirr_1_1io_1_1_s_file_list_entry_a4c49b5f812abf69fd0c6c7e943fed911}
+
+\begin{DoxyCompactList}\small\item\em The size of the file in bytes. \end{DoxyCompactList}\item 
+u32 \hyperlink{structirr_1_1io_1_1_s_file_list_entry_ac5da2528c39734795714ea8e21c0d6ed}{I\-D}
+\begin{DoxyCompactList}\small\item\em The I\-D of the file in an archive. \end{DoxyCompactList}\item 
+\hypertarget{structirr_1_1io_1_1_s_file_list_entry_a9f9348a45b13c6360b491e079eb17c08}{u32 \hyperlink{structirr_1_1io_1_1_s_file_list_entry_a9f9348a45b13c6360b491e079eb17c08}{Offset}}\label{structirr_1_1io_1_1_s_file_list_entry_a9f9348a45b13c6360b491e079eb17c08}
+
+\begin{DoxyCompactList}\small\item\em File\-Offset inside an archive. \end{DoxyCompactList}\item 
+\hypertarget{structirr_1_1io_1_1_s_file_list_entry_a503e4206654b704f3f58e1a0badc7fa4}{bool \hyperlink{structirr_1_1io_1_1_s_file_list_entry_a503e4206654b704f3f58e1a0badc7fa4}{Is\-Directory}}\label{structirr_1_1io_1_1_s_file_list_entry_a503e4206654b704f3f58e1a0badc7fa4}
+
+\begin{DoxyCompactList}\small\item\em True if this is a folder, false if not. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+An entry in a list of files, can be a folder or a file. 
+
+\subsection{Member Data Documentation}
+\hypertarget{structirr_1_1io_1_1_s_file_list_entry_a2aaa0466388e66015138a765a1c9ecab}{\index{irr\-::io\-::\-S\-File\-List\-Entry@{irr\-::io\-::\-S\-File\-List\-Entry}!Full\-Name@{Full\-Name}}
+\index{Full\-Name@{Full\-Name}!irr::io::SFileListEntry@{irr\-::io\-::\-S\-File\-List\-Entry}}
+\subsubsection[{Full\-Name}]{\setlength{\rightskip}{0pt plus 5cm}io\-::path irr\-::io\-::\-S\-File\-List\-Entry\-::\-Full\-Name}}\label{structirr_1_1io_1_1_s_file_list_entry_a2aaa0466388e66015138a765a1c9ecab}
+
+
+The name of the file including the path. 
+
+\begin{DoxyVerb}If this is a file or folder in the virtual filesystem and the archive was
+\end{DoxyVerb}
+ created with the ignore\-Dirs flag then it will be the same as Name. \hypertarget{structirr_1_1io_1_1_s_file_list_entry_ac5da2528c39734795714ea8e21c0d6ed}{\index{irr\-::io\-::\-S\-File\-List\-Entry@{irr\-::io\-::\-S\-File\-List\-Entry}!I\-D@{I\-D}}
+\index{I\-D@{I\-D}!irr::io::SFileListEntry@{irr\-::io\-::\-S\-File\-List\-Entry}}
+\subsubsection[{I\-D}]{\setlength{\rightskip}{0pt plus 5cm}u32 irr\-::io\-::\-S\-File\-List\-Entry\-::\-I\-D}}\label{structirr_1_1io_1_1_s_file_list_entry_ac5da2528c39734795714ea8e21c0d6ed}
+
+
+The I\-D of the file in an archive. 
+
+\begin{DoxyVerb}This is used to link the FileList entry to extra info held about this
+\end{DoxyVerb}
+ file in an archive, which can hold things like data offset and C\-R\-C. \hypertarget{structirr_1_1io_1_1_s_file_list_entry_a1d997e72e517823903bd7205ba97cc8c}{\index{irr\-::io\-::\-S\-File\-List\-Entry@{irr\-::io\-::\-S\-File\-List\-Entry}!Name@{Name}}
+\index{Name@{Name}!irr::io::SFileListEntry@{irr\-::io\-::\-S\-File\-List\-Entry}}
+\subsubsection[{Name}]{\setlength{\rightskip}{0pt plus 5cm}io\-::path irr\-::io\-::\-S\-File\-List\-Entry\-::\-Name}}\label{structirr_1_1io_1_1_s_file_list_entry_a1d997e72e517823903bd7205ba97cc8c}
+
+
+The name of the file. 
+
+\begin{DoxyVerb}If this is a file or folder in the virtual filesystem and the archive
+\end{DoxyVerb}
+ was created with the ignore\-Case flag then the file name will be lower case. 
+
+The documentation for this struct was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-File\-List.\-h\end{DoxyCompactItemize}

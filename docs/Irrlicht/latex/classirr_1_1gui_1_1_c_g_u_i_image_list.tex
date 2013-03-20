@@ -1,0 +1,102 @@
+\hypertarget{classirr_1_1gui_1_1_c_g_u_i_image_list}{\section{irr\-:\-:gui\-:\-:C\-G\-U\-I\-Image\-List Class Reference}
+\label{classirr_1_1gui_1_1_c_g_u_i_image_list}\index{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List@{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List}}
+}
+Inheritance diagram for irr\-:\-:gui\-:\-:C\-G\-U\-I\-Image\-List\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1gui_1_1_c_g_u_i_image_list}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1gui_1_1_c_g_u_i_image_list_a9ec51c97c0d023b1296ddaeb09ff12b8}{\hyperlink{classirr_1_1gui_1_1_c_g_u_i_image_list_a9ec51c97c0d023b1296ddaeb09ff12b8}{C\-G\-U\-I\-Image\-List} (video\-::\-I\-Video\-Driver $\ast$Driver)}\label{classirr_1_1gui_1_1_c_g_u_i_image_list_a9ec51c97c0d023b1296ddaeb09ff12b8}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1gui_1_1_c_g_u_i_image_list_a63a5828ebbdac332b093ee56049eefa8}{virtual \hyperlink{classirr_1_1gui_1_1_c_g_u_i_image_list_a63a5828ebbdac332b093ee56049eefa8}{$\sim$\-C\-G\-U\-I\-Image\-List} ()}\label{classirr_1_1gui_1_1_c_g_u_i_image_list_a63a5828ebbdac332b093ee56049eefa8}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+bool \hyperlink{classirr_1_1gui_1_1_c_g_u_i_image_list_a3097e8d63d7f397319689f75435e8580}{create\-Image\-List} (video\-::\-I\-Texture $\ast$texture, core\-::dimension2d$<$ s32 $>$ image\-Size, bool use\-Alpha\-Channel)
+\begin{DoxyCompactList}\small\item\em Creates the image list from texture. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1gui_1_1_c_g_u_i_image_list_a8fe6b19274588e31640a6a7cf7332aac}{draw} (s32 index, const core\-::position2d$<$ s32 $>$ \&dest\-Pos, const core\-::rect$<$ s32 $>$ $\ast$clip=0)
+\begin{DoxyCompactList}\small\item\em Draws an image and clips it to the specified rectangle if wanted. \end{DoxyCompactList}\item 
+virtual s32 \hyperlink{classirr_1_1gui_1_1_c_g_u_i_image_list_a186febde541d447689c394aac19011dc}{get\-Image\-Count} () const 
+\item 
+virtual core\-::dimension2d$<$ s32 $>$ \hyperlink{classirr_1_1gui_1_1_c_g_u_i_image_list_aae82c6dad266868621ad7687a5a0d4a2}{get\-Image\-Size} () const 
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1gui_1_1_c_g_u_i_image_list_a3097e8d63d7f397319689f75435e8580}{\index{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List@{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List}!create\-Image\-List@{create\-Image\-List}}
+\index{create\-Image\-List@{create\-Image\-List}!irr::gui::CGUIImageList@{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List}}
+\subsubsection[{create\-Image\-List}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::gui\-::\-C\-G\-U\-I\-Image\-List\-::create\-Image\-List (
+\begin{DoxyParamCaption}
+\item[{video\-::\-I\-Texture $\ast$}]{texture, }
+\item[{core\-::dimension2d$<$ s32 $>$}]{image\-Size, }
+\item[{bool}]{use\-Alpha\-Channel}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1gui_1_1_c_g_u_i_image_list_a3097e8d63d7f397319689f75435e8580}
+
+
+Creates the image list from texture. 
+
+Creates the image list from texture. 
+\begin{DoxyParams}{Parameters}
+{\em texture,\-:} & The texture to use \\
+\hline
+{\em image\-Size,\-:} & Size of a single image \\
+\hline
+{\em use\-Alpha\-Channel,\-:} & true if the alpha channel from the texture should be used \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the image list was created 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1gui_1_1_c_g_u_i_image_list_a8fe6b19274588e31640a6a7cf7332aac}{\index{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List@{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List}!draw@{draw}}
+\index{draw@{draw}!irr::gui::CGUIImageList@{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List}}
+\subsubsection[{draw}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::gui\-::\-C\-G\-U\-I\-Image\-List\-::draw (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{const core\-::position2d$<$ s32 $>$ \&}]{dest\-Pos, }
+\item[{const core\-::rect$<$ s32 $>$ $\ast$}]{clip = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1gui_1_1_c_g_u_i_image_list_a8fe6b19274588e31640a6a7cf7332aac}
+
+
+Draws an image and clips it to the specified rectangle if wanted. 
+
+Draws an image and clips it to the specified rectangle if wanted 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index of the image \\
+\hline
+{\em dest\-Pos,\-:} & Position of the image to draw \\
+\hline
+{\em clip,\-:} & Optional pointer to a rectalgle against which the text will be clipped. If the pointer is null, no clipping will be done. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1gui_1_1_c_g_u_i_image_list_a186febde541d447689c394aac19011dc}{\index{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List@{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List}!get\-Image\-Count@{get\-Image\-Count}}
+\index{get\-Image\-Count@{get\-Image\-Count}!irr::gui::CGUIImageList@{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List}}
+\subsubsection[{get\-Image\-Count}]{\setlength{\rightskip}{0pt plus 5cm}virtual s32 irr\-::gui\-::\-C\-G\-U\-I\-Image\-List\-::get\-Image\-Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1gui_1_1_c_g_u_i_image_list_a186febde541d447689c394aac19011dc}
+Returns the count of Images in the list. \begin{DoxyReturn}{Returns}
+Returns the count of Images in the list. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1gui_1_1_c_g_u_i_image_list_aae82c6dad266868621ad7687a5a0d4a2}{\index{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List@{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List}!get\-Image\-Size@{get\-Image\-Size}}
+\index{get\-Image\-Size@{get\-Image\-Size}!irr::gui::CGUIImageList@{irr\-::gui\-::\-C\-G\-U\-I\-Image\-List}}
+\subsubsection[{get\-Image\-Size}]{\setlength{\rightskip}{0pt plus 5cm}virtual core\-::dimension2d$<$s32$>$ irr\-::gui\-::\-C\-G\-U\-I\-Image\-List\-::get\-Image\-Size (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1gui_1_1_c_g_u_i_image_list_aae82c6dad266868621ad7687a5a0d4a2}
+Returns the size of the images in the list. \begin{DoxyReturn}{Returns}
+Returns the size of the images in the list. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-G\-U\-I\-Image\-List.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-G\-U\-I\-Image\-List.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,42 @@
+\hypertarget{_c_irr_device_stub_8h}{\section{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-C\-Irr\-Device\-Stub.h File Reference}
+\label{_c_irr_device_stub_8h}\index{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-C\-Irr\-Device\-Stub.\-h@{C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/\-C\-Irr\-Device\-Stub.\-h}}
+}
+{\ttfamily \#include \char`\"{}Irrlicht\-Device.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}I\-Image\-Presenter.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}S\-Irr\-Creation\-Parameters.\-h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}C\-Video\-Mode\-List.\-h\char`\"{}}\\*
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classirr_1_1_c_irr_device_stub}{irr\-::\-C\-Irr\-Device\-Stub}
+\begin{DoxyCompactList}\small\item\em Stub for an Irrlicht Device implementation. \end{DoxyCompactList}\item 
+struct \hyperlink{structirr_1_1_c_irr_device_stub_1_1_s_mouse_multi_clicks}{irr\-::\-C\-Irr\-Device\-Stub\-::\-S\-Mouse\-Multi\-Clicks}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \hyperlink{namespaceirr}{irr}
+\item 
+namespace \hyperlink{namespaceirr_1_1gui}{irr\-::gui}
+\item 
+namespace \hyperlink{namespaceirr_1_1scene}{irr\-::scene}
+\item 
+namespace \hyperlink{namespaceirr_1_1io}{irr\-::io}
+\item 
+namespace \hyperlink{namespaceirr_1_1video}{irr\-::video}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+I\-G\-U\-I\-Environment $\ast$ \hyperlink{namespaceirr_1_1gui_a3a8b5d0129e27190d90dbe15aafdd5e8}{irr\-::gui\-::create\-G\-U\-I\-Environment} (io\-::\-I\-File\-System $\ast$fs, video\-::\-I\-Video\-Driver $\ast$Driver, I\-O\-S\-Operator $\ast$op)
+\item 
+I\-Scene\-Manager $\ast$ \hyperlink{namespaceirr_1_1scene_a58689a06e4e31bb0129026d0d5d5eb71}{irr\-::scene\-::create\-Scene\-Manager} (video\-::\-I\-Video\-Driver $\ast$driver, io\-::\-I\-File\-System $\ast$fs, gui\-::\-I\-Cursor\-Control $\ast$cc, gui\-::\-I\-G\-U\-I\-Environment $\ast$gui)
+\item 
+I\-File\-System $\ast$ \hyperlink{namespaceirr_1_1io_ae28f767d65b959919a72abee490dba94}{irr\-::io\-::create\-File\-System} ()
+\item 
+I\-Video\-Driver $\ast$ \hyperlink{namespaceirr_1_1video_a49663aaca888d2d9c9c2199e3b79bcf0}{irr\-::video\-::create\-Software\-Driver} (const core\-::dimension2d$<$ u32 $>$ \&window\-Size, bool fullscreen, io\-::\-I\-File\-System $\ast$io, video\-::\-I\-Image\-Presenter $\ast$presenter)
+\begin{DoxyCompactList}\small\item\em creates a video driver \end{DoxyCompactList}\item 
+I\-Video\-Driver $\ast$ \hyperlink{namespaceirr_1_1video_a9992df6286f8f8ef3ec3e891b985ef45}{irr\-::video\-::create\-Burning\-Video\-Driver} (const irr\-::\-S\-Irrlicht\-Creation\-Parameters \&\hyperlink{glext_8h_a7eca977aec48ecd8d48ebd7558c0538c}{params}, io\-::\-I\-File\-System $\ast$io, video\-::\-I\-Image\-Presenter $\ast$presenter)
+\begin{DoxyCompactList}\small\item\em creates a video driver \end{DoxyCompactList}\item 
+I\-Video\-Driver $\ast$ \hyperlink{namespaceirr_1_1video_a77ba3d610208ef2c5f976839510fdffc}{irr\-::video\-::create\-Null\-Driver} (io\-::\-I\-File\-System $\ast$io, const core\-::dimension2d$<$ u32 $>$ \&screen\-Size)
+\begin{DoxyCompactList}\small\item\em creates a video driver \end{DoxyCompactList}\end{DoxyCompactItemize}

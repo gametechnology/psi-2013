@@ -1,0 +1,290 @@
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node}{\section{irr\-:\-:scene\-:\-:C\-Animated\-Mesh\-Scene\-Node Class Reference}
+\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node}\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+}
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Animated\-Mesh\-Scene\-Node\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_animated_mesh_scene_node}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_aa5c873407001f5531850c570c335a80f}{\hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_aa5c873407001f5531850c570c335a80f}{C\-Animated\-Mesh\-Scene\-Node} (I\-Animated\-Mesh $\ast$mesh, I\-Scene\-Node $\ast$parent, I\-Scene\-Manager $\ast$mgr, s32 id, const core\-::vector3df \&position=core\-::vector3df(0, 0, 0), const core\-::vector3df \&rotation=core\-::vector3df(0, 0, 0), const core\-::vector3df \&scale=core\-::vector3df(1.\-0f, 1.\-0f, 1.\-0f))}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_aa5c873407001f5531850c570c335a80f}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a044da86462c4220581d993e645fe41fc}{virtual \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a044da86462c4220581d993e645fe41fc}{$\sim$\-C\-Animated\-Mesh\-Scene\-Node} ()}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a044da86462c4220581d993e645fe41fc}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ac2b446c5e0b2b05b0004db1626c54253}{set\-Current\-Frame} (f32 frame)
+\begin{DoxyCompactList}\small\item\em sets the current frame. from now on the animation is played from this frame. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a28eb2e5d505db33854b30e2015a3c770}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a28eb2e5d505db33854b30e2015a3c770}{On\-Register\-Scene\-Node} ()}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a28eb2e5d505db33854b30e2015a3c770}
+
+\begin{DoxyCompactList}\small\item\em frame \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_aefe19f4f65db6280d21991c37d642c70}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_aefe19f4f65db6280d21991c37d642c70}{On\-Animate} (u32 time\-Ms)}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_aefe19f4f65db6280d21991c37d642c70}
+
+\begin{DoxyCompactList}\small\item\em \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_aefe19f4f65db6280d21991c37d642c70}{On\-Animate()} is called just before rendering the whole scene. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a4d98365d165893778d83abf45ee052a7}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a4d98365d165893778d83abf45ee052a7}{render} ()}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a4d98365d165893778d83abf45ee052a7}
+
+\begin{DoxyCompactList}\small\item\em renders the node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a0cb1bce0ff3e6edca7bd34ce7dd3026a}{virtual const core\-::aabbox3d\\*
+$<$ f32 $>$ \& \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a0cb1bce0ff3e6edca7bd34ce7dd3026a}{get\-Bounding\-Box} () const }\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a0cb1bce0ff3e6edca7bd34ce7dd3026a}
+
+\begin{DoxyCompactList}\small\item\em returns the axis aligned bounding box of this node \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_aa8afed5106c72abdd88fb698148f216a}{set\-Frame\-Loop} (s32 begin, s32 end)
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a44f24131bca39e70bd84d15f8b2f880b}{set\-Loop\-Mode} (bool play\-Animation\-Looped)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ac2e44a08020b63ba0c33e745135b0f9c}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ac2e44a08020b63ba0c33e745135b0f9c}{get\-Loop\-Mode} () const }\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ac2e44a08020b63ba0c33e745135b0f9c}
+
+\begin{DoxyCompactList}\small\item\em returns the current loop mode \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a25284d330fa43e267e96dd813c64c186}{set\-Animation\-End\-Callback} (I\-Animation\-End\-Call\-Back $\ast$callback=0)
+\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_af8363de0bc0e852364d22a0f71872011}{set\-Animation\-Speed} (f32 frames\-Per\-Second)
+\begin{DoxyCompactList}\small\item\em sets the speed with which the animation is played \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a74115e490b5a8728667a41feecb257ca}{virtual f32 \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a74115e490b5a8728667a41feecb257ca}{get\-Animation\-Speed} () const }\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a74115e490b5a8728667a41feecb257ca}
+
+\begin{DoxyCompactList}\small\item\em gets the speed with which the animation is played \end{DoxyCompactList}\item 
+virtual video\-::\-S\-Material \& \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ac2e1a6e20462500a12d3306faaccfb1a}{get\-Material} (u32 i)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a42cac0c1edf7b1c9b7cc059bddbe930b}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a42cac0c1edf7b1c9b7cc059bddbe930b}{get\-Material\-Count} () const }\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a42cac0c1edf7b1c9b7cc059bddbe930b}
+
+\begin{DoxyCompactList}\small\item\em returns amount of materials used by this scene node. \end{DoxyCompactList}\item 
+virtual I\-Shadow\-Volume\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a662a23f9e9e25be16835fbaea2e93d66}{add\-Shadow\-Volume\-Scene\-Node} (const I\-Mesh $\ast$shadow\-Mesh, s32 id, bool zfailmethod=true, f32 infinity=1000.\-0f)
+\item 
+virtual I\-Bone\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a240c097183bf4593766859e0a114f930}{get\-Joint\-Node} (const c8 $\ast$joint\-Name)
+\item 
+virtual I\-Bone\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_add6d7d67a2ee09fd9da01a0077d1550f}{get\-Joint\-Node} (u32 joint\-I\-D)
+\begin{DoxyCompactList}\small\item\em same as \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a240c097183bf4593766859e0a114f930}{get\-Joint\-Node(const c8$\ast$ joint\-Name)}, but based on id \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a553c398db17d14a6a781d2b859c137d7}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a553c398db17d14a6a781d2b859c137d7}{get\-Joint\-Count} () const }\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a553c398db17d14a6a781d2b859c137d7}
+
+\begin{DoxyCompactList}\small\item\em Gets joint count. \end{DoxyCompactList}\item 
+virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_af27483f92b24280c49e23c9aa8114f9f}{get\-M\-S3\-D\-Joint\-Node} (const c8 $\ast$joint\-Name)
+\begin{DoxyCompactList}\small\item\em Deprecated command, please use get\-Joint\-Node. \end{DoxyCompactList}\item 
+virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a1b56c21746351ffa00c14033f0d32c1a}{get\-X\-Joint\-Node} (const c8 $\ast$joint\-Name)
+\begin{DoxyCompactList}\small\item\em Deprecated command, please use get\-Joint\-Node. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a671d27569a573b17018dbce14718591b}{remove\-Child} (I\-Scene\-Node $\ast$child)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a239b5a421567ecd7c7c25ca110a930d8}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a239b5a421567ecd7c7c25ca110a930d8}{set\-M\-D2\-Animation} (E\-M\-D2\-\_\-\-A\-N\-I\-M\-A\-T\-I\-O\-N\-\_\-\-T\-Y\-P\-E anim)}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a239b5a421567ecd7c7c25ca110a930d8}
+
+\begin{DoxyCompactList}\small\item\em Starts a M\-D2 animation. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a562b0394299b66c542204ea7fa9e0322}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a562b0394299b66c542204ea7fa9e0322}{set\-M\-D2\-Animation} (const c8 $\ast$animation\-Name)}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a562b0394299b66c542204ea7fa9e0322}
+
+\begin{DoxyCompactList}\small\item\em Starts a special M\-D2 animation. \end{DoxyCompactList}\item 
+virtual f32 \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a8e9cb2aa20af7292f535cee8f99c1c6b}{get\-Frame\-Nr} () const 
+\begin{DoxyCompactList}\small\item\em Returns the current displayed frame number. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_af719214d16c21a56bba384c9f6504a41}{virtual s32 \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_af719214d16c21a56bba384c9f6504a41}{get\-Start\-Frame} () const }\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_af719214d16c21a56bba384c9f6504a41}
+
+\begin{DoxyCompactList}\small\item\em Returns the current start frame number. \end{DoxyCompactList}\item 
+virtual s32 \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a26ab65228d1a1628d57ed56374743855}{get\-End\-Frame} () const 
+\begin{DoxyCompactList}\small\item\em Returns the current end frame number. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ae0ccc39f143b75e7ed9740a915cf8f40}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ae0ccc39f143b75e7ed9740a915cf8f40}{set\-Read\-Only\-Materials} (bool readonly)}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ae0ccc39f143b75e7ed9740a915cf8f40}
+
+\begin{DoxyCompactList}\small\item\em Sets if the scene node should not copy the materials of the mesh but use them in a read only style. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a28d61506c53d44f89b3a8c21508c21c1}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a28d61506c53d44f89b3a8c21508c21c1}{is\-Read\-Only\-Materials} () const }\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a28d61506c53d44f89b3a8c21508c21c1}
+
+\begin{DoxyCompactList}\small\item\em Returns if the scene node should not copy the materials of the mesh but use them in a read only style. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_aa809b5cf0ad694da32685d1289f99390}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_aa809b5cf0ad694da32685d1289f99390}{set\-Mesh} (I\-Animated\-Mesh $\ast$mesh)}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_aa809b5cf0ad694da32685d1289f99390}
+
+\begin{DoxyCompactList}\small\item\em Sets a new mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_abad88a1ad622e186208f1f48291ad25a}{virtual I\-Animated\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_abad88a1ad622e186208f1f48291ad25a}{get\-Mesh} (void)}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_abad88a1ad622e186208f1f48291ad25a}
+
+\begin{DoxyCompactList}\small\item\em Returns the current mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ada04028e7be6c0386e352abb0df81174}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ada04028e7be6c0386e352abb0df81174}{serialize\-Attributes} (io\-::\-I\-Attributes $\ast$out, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0) const }\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ada04028e7be6c0386e352abb0df81174}
+
+\begin{DoxyCompactList}\small\item\em Writes attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a00a8c7ade15c4e4760e34eefaa22bf1e}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a00a8c7ade15c4e4760e34eefaa22bf1e}{deserialize\-Attributes} (io\-::\-I\-Attributes $\ast$in, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0)}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a00a8c7ade15c4e4760e34eefaa22bf1e}
+
+\begin{DoxyCompactList}\small\item\em Reads attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a9f598a060ecf7f6b189f4c67db7e97e8}{virtual E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a9f598a060ecf7f6b189f4c67db7e97e8}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a9f598a060ecf7f6b189f4c67db7e97e8}
+
+\begin{DoxyCompactList}\small\item\em Returns type of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a3874ee494497b6b73233bfdbe3053389}{const S\-M\-D3\-Quaternion\-Tag $\ast$ {\bfseries get\-M\-D3\-Tag\-Transformation} (const core\-::stringc \&tagname)}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a3874ee494497b6b73233bfdbe3053389}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a4151c69bbb6f54d01c93ec9c873de49c}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a4151c69bbb6f54d01c93ec9c873de49c}{update\-Absolute\-Position} ()}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a4151c69bbb6f54d01c93ec9c873de49c}
+
+\begin{DoxyCompactList}\small\item\em updates the absolute position based on the relative and the parents position \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a8907f9341290947ab37d54f84bac6fca}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a8907f9341290947ab37d54f84bac6fca}{set\-Joint\-Mode} (E\-\_\-\-J\-O\-I\-N\-T\-\_\-\-U\-P\-D\-A\-T\-E\-\_\-\-O\-N\-\_\-\-R\-E\-N\-D\-E\-R mode)}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a8907f9341290947ab37d54f84bac6fca}
+
+\begin{DoxyCompactList}\small\item\em Set the joint update mode (0-\/unused, 1-\/get joints only, 2-\/set joints only, 3-\/move and set) \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a2edf54a8ebc4c572bdc521aee1f1d5c7}{set\-Transition\-Time} (f32 Time)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a4608665882faac01ba7d2c77c032bdce}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a4608665882faac01ba7d2c77c032bdce}{animate\-Joints} (bool Calculate\-Absolute\-Positions=true)}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a4608665882faac01ba7d2c77c032bdce}
+
+\begin{DoxyCompactList}\small\item\em updates the joint positions of this mesh \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ab9ed87fa09ed2eb10c6f889dc4e95458}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ab9ed87fa09ed2eb10c6f889dc4e95458}{set\-Render\-From\-Identity} (bool On)}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ab9ed87fa09ed2eb10c6f889dc4e95458}
+
+\begin{DoxyCompactList}\small\item\em render mesh ignoring its transformation. Used with ragdolls. (culling is unaffected) \end{DoxyCompactList}\item 
+virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a94c00f5fe72383465567410e6b87d736}{clone} (I\-Scene\-Node $\ast$new\-Parent=0, I\-Scene\-Manager $\ast$new\-Manager=0)
+\begin{DoxyCompactList}\small\item\em Creates a clone of this scene node and its children. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a662a23f9e9e25be16835fbaea2e93d66}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!add\-Shadow\-Volume\-Scene\-Node@{add\-Shadow\-Volume\-Scene\-Node}}
+\index{add\-Shadow\-Volume\-Scene\-Node@{add\-Shadow\-Volume\-Scene\-Node}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{add\-Shadow\-Volume\-Scene\-Node}]{\setlength{\rightskip}{0pt plus 5cm}I\-Shadow\-Volume\-Scene\-Node $\ast$ irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::add\-Shadow\-Volume\-Scene\-Node (
+\begin{DoxyParamCaption}
+\item[{const I\-Mesh $\ast$}]{shadow\-Mesh, }
+\item[{s32}]{id, }
+\item[{bool}]{zfailmethod = {\ttfamily true}, }
+\item[{f32}]{infinity = {\ttfamily 1000.0f}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a662a23f9e9e25be16835fbaea2e93d66}
+Creates shadow volume scene node as child of this node and returns a pointer to it. \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a94c00f5fe72383465567410e6b87d736}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!clone@{clone}}
+\index{clone@{clone}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}I\-Scene\-Node $\ast$ irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::clone (
+\begin{DoxyParamCaption}
+\item[{I\-Scene\-Node $\ast$}]{new\-Parent = {\ttfamily 0}, }
+\item[{I\-Scene\-Manager $\ast$}]{new\-Manager = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a94c00f5fe72383465567410e6b87d736}
+
+
+Creates a clone of this scene node and its children. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\-Parent} & An optional new parent. \\
+\hline
+{\em new\-Manager} & An optional new scene manager. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The newly created clone of this node. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a26ab65228d1a1628d57ed56374743855}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!get\-End\-Frame@{get\-End\-Frame}}
+\index{get\-End\-Frame@{get\-End\-Frame}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{get\-End\-Frame}]{\setlength{\rightskip}{0pt plus 5cm}s32 irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::get\-End\-Frame (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a26ab65228d1a1628d57ed56374743855}
+
+
+Returns the current end frame number. 
+
+Returns the current start frame number. \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a8e9cb2aa20af7292f535cee8f99c1c6b}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!get\-Frame\-Nr@{get\-Frame\-Nr}}
+\index{get\-Frame\-Nr@{get\-Frame\-Nr}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{get\-Frame\-Nr}]{\setlength{\rightskip}{0pt plus 5cm}f32 irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::get\-Frame\-Nr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a8e9cb2aa20af7292f535cee8f99c1c6b}
+
+
+Returns the current displayed frame number. 
+
+Returns the currently displayed frame number. \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a240c097183bf4593766859e0a114f930}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!get\-Joint\-Node@{get\-Joint\-Node}}
+\index{get\-Joint\-Node@{get\-Joint\-Node}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{get\-Joint\-Node}]{\setlength{\rightskip}{0pt plus 5cm}I\-Bone\-Scene\-Node $\ast$ irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::get\-Joint\-Node (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{joint\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a240c097183bf4593766859e0a114f930}
+Returns a pointer to a child node, which has the same transformation as the corrsesponding joint, if the mesh in this scene node is a skinned mesh.
+
+Returns a pointer to a child node, which has the same transformation as the corresponding joint, if the mesh in this scene node is a skinned mesh. \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_add6d7d67a2ee09fd9da01a0077d1550f}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!get\-Joint\-Node@{get\-Joint\-Node}}
+\index{get\-Joint\-Node@{get\-Joint\-Node}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{get\-Joint\-Node}]{\setlength{\rightskip}{0pt plus 5cm}I\-Bone\-Scene\-Node $\ast$ irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::get\-Joint\-Node (
+\begin{DoxyParamCaption}
+\item[{u32}]{joint\-I\-D}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_add6d7d67a2ee09fd9da01a0077d1550f}
+
+
+same as \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a240c097183bf4593766859e0a114f930}{get\-Joint\-Node(const c8$\ast$ joint\-Name)}, but based on id 
+
+Returns a pointer to a child node, which has the same transformation as the corresponding joint, if the mesh in this scene node is a skinned mesh. \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ac2e1a6e20462500a12d3306faaccfb1a}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!get\-Material@{get\-Material}}
+\index{get\-Material@{get\-Material}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{get\-Material}]{\setlength{\rightskip}{0pt plus 5cm}video\-::\-S\-Material \& irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::get\-Material (
+\begin{DoxyParamCaption}
+\item[{u32}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ac2e1a6e20462500a12d3306faaccfb1a}
+returns the material based on the zero based index i. To get the amount of materials used by this scene node, use \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a42cac0c1edf7b1c9b7cc059bddbe930b}{get\-Material\-Count()}. This function is needed for inserting the node into the scene hirachy on a optimal position for minimizing renderstate changes, but can also be used to directly modify the material of a scene node. \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_af27483f92b24280c49e23c9aa8114f9f}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!get\-M\-S3\-D\-Joint\-Node@{get\-M\-S3\-D\-Joint\-Node}}
+\index{get\-M\-S3\-D\-Joint\-Node@{get\-M\-S3\-D\-Joint\-Node}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{get\-M\-S3\-D\-Joint\-Node}]{\setlength{\rightskip}{0pt plus 5cm}I\-Scene\-Node $\ast$ irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::get\-M\-S3\-D\-Joint\-Node (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{joint\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_af27483f92b24280c49e23c9aa8114f9f}
+
+
+Deprecated command, please use get\-Joint\-Node. 
+
+Returns a pointer to a child node, which has the same transformation as the corresponding joint, if the mesh in this scene node is a ms3d mesh. \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a1b56c21746351ffa00c14033f0d32c1a}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!get\-X\-Joint\-Node@{get\-X\-Joint\-Node}}
+\index{get\-X\-Joint\-Node@{get\-X\-Joint\-Node}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{get\-X\-Joint\-Node}]{\setlength{\rightskip}{0pt plus 5cm}I\-Scene\-Node $\ast$ irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::get\-X\-Joint\-Node (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{joint\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a1b56c21746351ffa00c14033f0d32c1a}
+
+
+Deprecated command, please use get\-Joint\-Node. 
+
+Returns a pointer to a child node, which has the same transformation as the corresponding joint, if the mesh in this scene node is a .x mesh. \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a671d27569a573b17018dbce14718591b}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!remove\-Child@{remove\-Child}}
+\index{remove\-Child@{remove\-Child}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{remove\-Child}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::remove\-Child (
+\begin{DoxyParamCaption}
+\item[{I\-Scene\-Node $\ast$}]{child}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a671d27569a573b17018dbce14718591b}
+Removes a child from this scene node. Implemented here, to be able to remove the shadow properly, if there is one, or to remove attached childs. \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a25284d330fa43e267e96dd813c64c186}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!set\-Animation\-End\-Callback@{set\-Animation\-End\-Callback}}
+\index{set\-Animation\-End\-Callback@{set\-Animation\-End\-Callback}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{set\-Animation\-End\-Callback}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::set\-Animation\-End\-Callback (
+\begin{DoxyParamCaption}
+\item[{I\-Animation\-End\-Call\-Back $\ast$}]{callback = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a25284d330fa43e267e96dd813c64c186}
+Sets a callback interface which will be called if an animation playback has ended. Set this to 0 to disable the callback again. \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_af8363de0bc0e852364d22a0f71872011}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!set\-Animation\-Speed@{set\-Animation\-Speed}}
+\index{set\-Animation\-Speed@{set\-Animation\-Speed}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{set\-Animation\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::set\-Animation\-Speed (
+\begin{DoxyParamCaption}
+\item[{f32}]{frames\-Per\-Second}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_af8363de0bc0e852364d22a0f71872011}
+
+
+sets the speed with which the animation is played 
+
+sets the speed with witch the animation is played \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ac2b446c5e0b2b05b0004db1626c54253}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!set\-Current\-Frame@{set\-Current\-Frame}}
+\index{set\-Current\-Frame@{set\-Current\-Frame}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{set\-Current\-Frame}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::set\-Current\-Frame (
+\begin{DoxyParamCaption}
+\item[{f32}]{frame}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_ac2b446c5e0b2b05b0004db1626c54253}
+
+
+sets the current frame. from now on the animation is played from this frame. 
+
+Sets the current frame. From now on the animation is played from this frame. \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_aa8afed5106c72abdd88fb698148f216a}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!set\-Frame\-Loop@{set\-Frame\-Loop}}
+\index{set\-Frame\-Loop@{set\-Frame\-Loop}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{set\-Frame\-Loop}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::set\-Frame\-Loop (
+\begin{DoxyParamCaption}
+\item[{s32}]{begin, }
+\item[{s32}]{end}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_aa8afed5106c72abdd88fb698148f216a}
+sets the frames between the animation is looped. the default is 0 -\/ Maximal\-Frame\-Count of the mesh. \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a44f24131bca39e70bd84d15f8b2f880b}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!set\-Loop\-Mode@{set\-Loop\-Mode}}
+\index{set\-Loop\-Mode@{set\-Loop\-Mode}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{set\-Loop\-Mode}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::set\-Loop\-Mode (
+\begin{DoxyParamCaption}
+\item[{bool}]{play\-Animation\-Looped}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a44f24131bca39e70bd84d15f8b2f880b}
+Sets looping mode which is on by default. If set to false, animations will not be looped. \hypertarget{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a2edf54a8ebc4c572bdc521aee1f1d5c7}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}!set\-Transition\-Time@{set\-Transition\-Time}}
+\index{set\-Transition\-Time@{set\-Transition\-Time}!irr::scene::CAnimatedMeshSceneNode@{irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node}}
+\subsubsection[{set\-Transition\-Time}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Animated\-Mesh\-Scene\-Node\-::set\-Transition\-Time (
+\begin{DoxyParamCaption}
+\item[{f32}]{time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a2edf54a8ebc4c572bdc521aee1f1d5c7}
+Sets the transition time in seconds (note\-: This needs to enable joints, and set\-Jointmode maybe set to 2) you must call \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_scene_node_a4608665882faac01ba7d2c77c032bdce}{animate\-Joints()}, or the mesh will not animate 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Animated\-Mesh\-Scene\-Node.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Animated\-Mesh\-Scene\-Node.\-cpp\end{DoxyCompactItemize}

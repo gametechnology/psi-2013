@@ -1,0 +1,86 @@
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node}{\section{irr\-:\-:scene\-:\-:C\-Volume\-Light\-Scene\-Node Class Reference}
+\label{classirr_1_1scene_1_1_c_volume_light_scene_node}\index{irr\-::scene\-::\-C\-Volume\-Light\-Scene\-Node@{irr\-::scene\-::\-C\-Volume\-Light\-Scene\-Node}}
+}
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Volume\-Light\-Scene\-Node\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_volume_light_scene_node}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_a19d58f3ab2b5d6d13ef1dba7a8d1d4db}{\hyperlink{classirr_1_1scene_1_1_c_volume_light_scene_node_a19d58f3ab2b5d6d13ef1dba7a8d1d4db}{C\-Volume\-Light\-Scene\-Node} (I\-Scene\-Node $\ast$parent, I\-Scene\-Manager $\ast$mgr, s32 id, const u32 subdiv\-U=32, const u32 subdiv\-V=32, const video\-::\-S\-Color foot=video\-::\-S\-Color(51, 0, 230, 180), const video\-::\-S\-Color tail=video\-::\-S\-Color(0, 0, 0, 0), const core\-::vector3df \&position=core\-::vector3df(0, 0, 0), const core\-::vector3df \&rotation=core\-::vector3df(0, 0, 0), const core\-::vector3df \&scale=core\-::vector3df(1.\-0f, 1.\-0f, 1.\-0f))}\label{classirr_1_1scene_1_1_c_volume_light_scene_node_a19d58f3ab2b5d6d13ef1dba7a8d1d4db}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_a488be2ff4e5aa6133b5f9fa5bd407eec}{virtual void {\bfseries On\-Register\-Scene\-Node} ()}\label{classirr_1_1scene_1_1_c_volume_light_scene_node_a488be2ff4e5aa6133b5f9fa5bd407eec}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_a2b584321a653063fec37f2276ef15230}{virtual void \hyperlink{classirr_1_1scene_1_1_c_volume_light_scene_node_a2b584321a653063fec37f2276ef15230}{render} ()}\label{classirr_1_1scene_1_1_c_volume_light_scene_node_a2b584321a653063fec37f2276ef15230}
+
+\begin{DoxyCompactList}\small\item\em renders the node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_af06c6b4143179543e1fb4bfa9fd1c25f}{virtual const core\-::aabbox3d\\*
+$<$ f32 $>$ \& \hyperlink{classirr_1_1scene_1_1_c_volume_light_scene_node_af06c6b4143179543e1fb4bfa9fd1c25f}{get\-Bounding\-Box} () const }\label{classirr_1_1scene_1_1_c_volume_light_scene_node_af06c6b4143179543e1fb4bfa9fd1c25f}
+
+\begin{DoxyCompactList}\small\item\em returns the axis aligned bounding box of this node \end{DoxyCompactList}\item 
+virtual video\-::\-S\-Material \& \hyperlink{classirr_1_1scene_1_1_c_volume_light_scene_node_a945c5c6f9002f2b0d130058e327e9972}{get\-Material} (u32 i)
+\begin{DoxyCompactList}\small\item\em returns the material based on the zero based index i. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_a54e26fa3b0d2a8aeb589ee9a5d62ff0a}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_volume_light_scene_node_a54e26fa3b0d2a8aeb589ee9a5d62ff0a}{get\-Material\-Count} () const }\label{classirr_1_1scene_1_1_c_volume_light_scene_node_a54e26fa3b0d2a8aeb589ee9a5d62ff0a}
+
+\begin{DoxyCompactList}\small\item\em returns amount of materials used by this scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_aba5a5fd13ec1fc4050bc88411f73732b}{virtual E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_volume_light_scene_node_aba5a5fd13ec1fc4050bc88411f73732b}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_volume_light_scene_node_aba5a5fd13ec1fc4050bc88411f73732b}
+
+\begin{DoxyCompactList}\small\item\em Returns type of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_a93c45f5b4cef67652dc895acbed3124e}{virtual void \hyperlink{classirr_1_1scene_1_1_c_volume_light_scene_node_a93c45f5b4cef67652dc895acbed3124e}{serialize\-Attributes} (io\-::\-I\-Attributes $\ast$out, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0) const }\label{classirr_1_1scene_1_1_c_volume_light_scene_node_a93c45f5b4cef67652dc895acbed3124e}
+
+\begin{DoxyCompactList}\small\item\em Writes attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_ae2eb89bf1a93448b17df0510a863e59b}{virtual void \hyperlink{classirr_1_1scene_1_1_c_volume_light_scene_node_ae2eb89bf1a93448b17df0510a863e59b}{deserialize\-Attributes} (io\-::\-I\-Attributes $\ast$in, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0)}\label{classirr_1_1scene_1_1_c_volume_light_scene_node_ae2eb89bf1a93448b17df0510a863e59b}
+
+\begin{DoxyCompactList}\small\item\em Reads attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_a1da414a48b17c6f10c4d58868c473505}{virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_volume_light_scene_node_a1da414a48b17c6f10c4d58868c473505}{clone} (I\-Scene\-Node $\ast$new\-Parent=0, I\-Scene\-Manager $\ast$new\-Manager=0)}\label{classirr_1_1scene_1_1_c_volume_light_scene_node_a1da414a48b17c6f10c4d58868c473505}
+
+\begin{DoxyCompactList}\small\item\em Creates a clone of this scene node and its children. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_a129d0c0741329bed1b6800cc7f2d8d8f}{virtual void {\bfseries set\-Sub\-Divide\-U} (const u32 in\-U)}\label{classirr_1_1scene_1_1_c_volume_light_scene_node_a129d0c0741329bed1b6800cc7f2d8d8f}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_ad604f24310555b0b779efb5906fe6c08}{virtual void {\bfseries set\-Sub\-Divide\-V} (const u32 in\-V)}\label{classirr_1_1scene_1_1_c_volume_light_scene_node_ad604f24310555b0b779efb5906fe6c08}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_ae8a419b860beab0b64a5b325fd297bae}{virtual u32 {\bfseries get\-Sub\-Divide\-U} () const }\label{classirr_1_1scene_1_1_c_volume_light_scene_node_ae8a419b860beab0b64a5b325fd297bae}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_ab6a7295bf770712987885781b1a94635}{virtual u32 {\bfseries get\-Sub\-Divide\-V} () const }\label{classirr_1_1scene_1_1_c_volume_light_scene_node_ab6a7295bf770712987885781b1a94635}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_a412b07dec645b668033893cf4294f741}{virtual void {\bfseries set\-Foot\-Color} (const video\-::\-S\-Color in\-Color)}\label{classirr_1_1scene_1_1_c_volume_light_scene_node_a412b07dec645b668033893cf4294f741}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_ab20d10e2c056133ba5a9f65b18c5f8fd}{virtual void {\bfseries set\-Tail\-Color} (const video\-::\-S\-Color in\-Color)}\label{classirr_1_1scene_1_1_c_volume_light_scene_node_ab20d10e2c056133ba5a9f65b18c5f8fd}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_a6edd94bd5a1193fb1bed99d3b41ea6cd}{virtual video\-::\-S\-Color {\bfseries get\-Foot\-Color} () const }\label{classirr_1_1scene_1_1_c_volume_light_scene_node_a6edd94bd5a1193fb1bed99d3b41ea6cd}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_aa41c37b8c09828b4370f4d3c579bb11d}{virtual video\-::\-S\-Color {\bfseries get\-Tail\-Color} () const }\label{classirr_1_1scene_1_1_c_volume_light_scene_node_aa41c37b8c09828b4370f4d3c579bb11d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_volume_light_scene_node_a945c5c6f9002f2b0d130058e327e9972}{\index{irr\-::scene\-::\-C\-Volume\-Light\-Scene\-Node@{irr\-::scene\-::\-C\-Volume\-Light\-Scene\-Node}!get\-Material@{get\-Material}}
+\index{get\-Material@{get\-Material}!irr::scene::CVolumeLightSceneNode@{irr\-::scene\-::\-C\-Volume\-Light\-Scene\-Node}}
+\subsubsection[{get\-Material}]{\setlength{\rightskip}{0pt plus 5cm}video\-::\-S\-Material \& irr\-::scene\-::\-C\-Volume\-Light\-Scene\-Node\-::get\-Material (
+\begin{DoxyParamCaption}
+\item[{u32}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_volume_light_scene_node_a945c5c6f9002f2b0d130058e327e9972}
+
+
+returns the material based on the zero based index i. 
+
+returns the material based on the zero based index i. To get the amount of materials used by this scene node, use \hyperlink{classirr_1_1scene_1_1_c_volume_light_scene_node_a54e26fa3b0d2a8aeb589ee9a5d62ff0a}{get\-Material\-Count()}. This function is needed for inserting the node into the scene hirachy on a optimal position for minimizing renderstate changes, but can also be used to directly modify the material of a scene node. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Volume\-Light\-Scene\-Node.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Volume\-Light\-Scene\-Node.\-cpp\end{DoxyCompactItemize}

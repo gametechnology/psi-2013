@@ -1,0 +1,151 @@
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector}{\section{irr\-:\-:scene\-:\-:C\-Triangle\-Selector Class Reference}
+\label{classirr_1_1scene_1_1_c_triangle_selector}\index{irr\-::scene\-::\-C\-Triangle\-Selector@{irr\-::scene\-::\-C\-Triangle\-Selector}}
+}
+
+
+Stupid triangle selector without optimization.  
+
+
+
+
+{\ttfamily \#include $<$C\-Triangle\-Selector.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Triangle\-Selector\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classirr_1_1scene_1_1_c_triangle_selector}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classirr_1_1scene_1_1_c_triangle_selector_af9f3855903de12fc5308391fc2e32ed0}{C\-Triangle\-Selector} (I\-Scene\-Node $\ast$node)
+\begin{DoxyCompactList}\small\item\em Constructs a selector based on a mesh. \end{DoxyCompactList}\item 
+\hyperlink{classirr_1_1scene_1_1_c_triangle_selector_adea499f5dbc127472dad8004bc29809e}{C\-Triangle\-Selector} (const I\-Mesh $\ast$mesh, I\-Scene\-Node $\ast$node)
+\begin{DoxyCompactList}\small\item\em Constructs a selector based on a mesh. \end{DoxyCompactList}\item 
+\hyperlink{classirr_1_1scene_1_1_c_triangle_selector_a6b17eaa4661ca1f6224f1cfee7678562}{C\-Triangle\-Selector} (I\-Animated\-Mesh\-Scene\-Node $\ast$node)
+\item 
+\hyperlink{classirr_1_1scene_1_1_c_triangle_selector_acd0bc46a0c754e874aced3ca6638d7a9}{C\-Triangle\-Selector} (const core\-::aabbox3d$<$ f32 $>$ \&box, I\-Scene\-Node $\ast$node)
+\begin{DoxyCompactList}\small\item\em Constructs a selector based on a bounding box. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a84c55877e1fd217fef014d982d27d153}{void \hyperlink{classirr_1_1scene_1_1_c_triangle_selector_a84c55877e1fd217fef014d982d27d153}{get\-Triangles} (core\-::triangle3df $\ast$triangles, s32 array\-Size, s32 \&out\-Triangle\-Count, const core\-::matrix4 $\ast$transform=0) const }\label{classirr_1_1scene_1_1_c_triangle_selector_a84c55877e1fd217fef014d982d27d153}
+
+\begin{DoxyCompactList}\small\item\em Gets all triangles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_ae46e57d72123d74aa4e2647a92fe3c1d}{void \hyperlink{classirr_1_1scene_1_1_c_triangle_selector_ae46e57d72123d74aa4e2647a92fe3c1d}{get\-Triangles} (core\-::triangle3df $\ast$triangles, s32 array\-Size, s32 \&out\-Triangle\-Count, const core\-::aabbox3d$<$ f32 $>$ \&box, const core\-::matrix4 $\ast$transform=0) const }\label{classirr_1_1scene_1_1_c_triangle_selector_ae46e57d72123d74aa4e2647a92fe3c1d}
+
+\begin{DoxyCompactList}\small\item\em Gets all triangles which lie within a specific bounding box. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a8898113895962bb55c5eff78b83c2ae4}{virtual void \hyperlink{classirr_1_1scene_1_1_c_triangle_selector_a8898113895962bb55c5eff78b83c2ae4}{get\-Triangles} (core\-::triangle3df $\ast$triangles, s32 array\-Size, s32 \&out\-Triangle\-Count, const core\-::line3d$<$ f32 $>$ \&line, const core\-::matrix4 $\ast$transform=0) const }\label{classirr_1_1scene_1_1_c_triangle_selector_a8898113895962bb55c5eff78b83c2ae4}
+
+\begin{DoxyCompactList}\small\item\em Gets all triangles which have or may have contact with a 3d line. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a6f3a70eb8bcae3e2e6810f5978092cbc}{virtual s32 \hyperlink{classirr_1_1scene_1_1_c_triangle_selector_a6f3a70eb8bcae3e2e6810f5978092cbc}{get\-Triangle\-Count} () const }\label{classirr_1_1scene_1_1_c_triangle_selector_a6f3a70eb8bcae3e2e6810f5978092cbc}
+
+\begin{DoxyCompactList}\small\item\em Returns amount of all available triangles in this selector. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a01df72a6c8795af3eb6f2aaf9136486a}{virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_triangle_selector_a01df72a6c8795af3eb6f2aaf9136486a}{get\-Scene\-Node\-For\-Triangle} (u32 triangle\-Index) const }\label{classirr_1_1scene_1_1_c_triangle_selector_a01df72a6c8795af3eb6f2aaf9136486a}
+
+\begin{DoxyCompactList}\small\item\em Return the scene node associated with a given triangle. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a0979b357e495957dc81186c03992664a}{virtual u32 {\bfseries get\-Selector\-Count} () const }\label{classirr_1_1scene_1_1_c_triangle_selector_a0979b357e495957dc81186c03992664a}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a0b9ec26de427566426792f1d1c084b38}{virtual I\-Triangle\-Selector $\ast$ {\bfseries get\-Selector} (u32 index)}\label{classirr_1_1scene_1_1_c_triangle_selector_a0b9ec26de427566426792f1d1c084b38}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a9f45021ec9483bdad3445f45e0890b7e}{virtual const I\-Triangle\-Selector $\ast$ {\bfseries get\-Selector} (u32 index) const }\label{classirr_1_1scene_1_1_c_triangle_selector_a9f45021ec9483bdad3445f45e0890b7e}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a21f0ca19ed9d97544279196254d678eb}{virtual void \hyperlink{classirr_1_1scene_1_1_c_triangle_selector_a21f0ca19ed9d97544279196254d678eb}{create\-From\-Mesh} (const I\-Mesh $\ast$mesh)}\label{classirr_1_1scene_1_1_c_triangle_selector_a21f0ca19ed9d97544279196254d678eb}
+
+\begin{DoxyCompactList}\small\item\em Create from a mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_abc58752f7b13ad94c05fd1c1bc248abf}{virtual void \hyperlink{classirr_1_1scene_1_1_c_triangle_selector_abc58752f7b13ad94c05fd1c1bc248abf}{update\-From\-Mesh} (const I\-Mesh $\ast$mesh) const }\label{classirr_1_1scene_1_1_c_triangle_selector_abc58752f7b13ad94c05fd1c1bc248abf}
+
+\begin{DoxyCompactList}\small\item\em Update when the mesh has changed. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_triangle_selector_a76de316a9754415425740357e8c0d6f7}{update} (void) const 
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_ae2bc6e2208461973b66bcf445776bbeb}{I\-Scene\-Node $\ast$ {\bfseries Scene\-Node}}\label{classirr_1_1scene_1_1_c_triangle_selector_ae2bc6e2208461973b66bcf445776bbeb}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a56d735af33d111829ffaf8f4f1fe9ca4}{core\-::array$<$ core\-::triangle3df $>$ {\bfseries Triangles}}\label{classirr_1_1scene_1_1_c_triangle_selector_a56d735af33d111829ffaf8f4f1fe9ca4}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a79e66fc8b5825d8f6905881b1a7bcd81}{core\-::aabbox3df {\bfseries Bounding\-Box}}\label{classirr_1_1scene_1_1_c_triangle_selector_a79e66fc8b5825d8f6905881b1a7bcd81}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a915ba6efaf027919ccff228d683fa5b9}{I\-Animated\-Mesh\-Scene\-Node $\ast$ {\bfseries Animated\-Node}}\label{classirr_1_1scene_1_1_c_triangle_selector_a915ba6efaf027919ccff228d683fa5b9}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a1a4470d0cc49b7ca8b1289ffde2b26e1}{u32 {\bfseries Last\-Mesh\-Frame}}\label{classirr_1_1scene_1_1_c_triangle_selector_a1a4470d0cc49b7ca8b1289ffde2b26e1}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Stupid triangle selector without optimization. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_af9f3855903de12fc5308391fc2e32ed0}{\index{irr\-::scene\-::\-C\-Triangle\-Selector@{irr\-::scene\-::\-C\-Triangle\-Selector}!C\-Triangle\-Selector@{C\-Triangle\-Selector}}
+\index{C\-Triangle\-Selector@{C\-Triangle\-Selector}!irr::scene::CTriangleSelector@{irr\-::scene\-::\-C\-Triangle\-Selector}}
+\subsubsection[{C\-Triangle\-Selector}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::scene\-::\-C\-Triangle\-Selector\-::\-C\-Triangle\-Selector (
+\begin{DoxyParamCaption}
+\item[{I\-Scene\-Node $\ast$}]{node}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1scene_1_1_c_triangle_selector_af9f3855903de12fc5308391fc2e32ed0}
+
+
+Constructs a selector based on a mesh. 
+
+constructor \hypertarget{classirr_1_1scene_1_1_c_triangle_selector_adea499f5dbc127472dad8004bc29809e}{\index{irr\-::scene\-::\-C\-Triangle\-Selector@{irr\-::scene\-::\-C\-Triangle\-Selector}!C\-Triangle\-Selector@{C\-Triangle\-Selector}}
+\index{C\-Triangle\-Selector@{C\-Triangle\-Selector}!irr::scene::CTriangleSelector@{irr\-::scene\-::\-C\-Triangle\-Selector}}
+\subsubsection[{C\-Triangle\-Selector}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::scene\-::\-C\-Triangle\-Selector\-::\-C\-Triangle\-Selector (
+\begin{DoxyParamCaption}
+\item[{const I\-Mesh $\ast$}]{mesh, }
+\item[{I\-Scene\-Node $\ast$}]{node}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1scene_1_1_c_triangle_selector_adea499f5dbc127472dad8004bc29809e}
+
+
+Constructs a selector based on a mesh. 
+
+constructor \hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a6b17eaa4661ca1f6224f1cfee7678562}{\index{irr\-::scene\-::\-C\-Triangle\-Selector@{irr\-::scene\-::\-C\-Triangle\-Selector}!C\-Triangle\-Selector@{C\-Triangle\-Selector}}
+\index{C\-Triangle\-Selector@{C\-Triangle\-Selector}!irr::scene::CTriangleSelector@{irr\-::scene\-::\-C\-Triangle\-Selector}}
+\subsubsection[{C\-Triangle\-Selector}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::scene\-::\-C\-Triangle\-Selector\-::\-C\-Triangle\-Selector (
+\begin{DoxyParamCaption}
+\item[{I\-Animated\-Mesh\-Scene\-Node $\ast$}]{node}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1scene_1_1_c_triangle_selector_a6b17eaa4661ca1f6224f1cfee7678562}
+Constructs a selector based on an animated mesh scene node 
+\begin{DoxyParams}{Parameters}
+{\em node} & An animated mesh scene node, which must have a valid mesh \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_acd0bc46a0c754e874aced3ca6638d7a9}{\index{irr\-::scene\-::\-C\-Triangle\-Selector@{irr\-::scene\-::\-C\-Triangle\-Selector}!C\-Triangle\-Selector@{C\-Triangle\-Selector}}
+\index{C\-Triangle\-Selector@{C\-Triangle\-Selector}!irr::scene::CTriangleSelector@{irr\-::scene\-::\-C\-Triangle\-Selector}}
+\subsubsection[{C\-Triangle\-Selector}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::scene\-::\-C\-Triangle\-Selector\-::\-C\-Triangle\-Selector (
+\begin{DoxyParamCaption}
+\item[{const core\-::aabbox3d$<$ f32 $>$ \&}]{box, }
+\item[{I\-Scene\-Node $\ast$}]{node}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1scene_1_1_c_triangle_selector_acd0bc46a0c754e874aced3ca6638d7a9}
+
+
+Constructs a selector based on a bounding box. 
+
+constructor 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_triangle_selector_a76de316a9754415425740357e8c0d6f7}{\index{irr\-::scene\-::\-C\-Triangle\-Selector@{irr\-::scene\-::\-C\-Triangle\-Selector}!update@{update}}
+\index{update@{update}!irr::scene::CTriangleSelector@{irr\-::scene\-::\-C\-Triangle\-Selector}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Triangle\-Selector\-::update (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_triangle_selector_a76de316a9754415425740357e8c0d6f7}
+Update the triangle selector, which will only have an effect if it was built from an animated mesh and that mesh's frame has changed since the last time it was updated. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Triangle\-Selector.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Triangle\-Selector.\-cpp\end{DoxyCompactItemize}

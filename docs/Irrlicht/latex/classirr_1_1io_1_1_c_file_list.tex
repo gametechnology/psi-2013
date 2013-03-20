@@ -1,0 +1,146 @@
+\hypertarget{classirr_1_1io_1_1_c_file_list}{\section{irr\-:\-:io\-:\-:C\-File\-List Class Reference}
+\label{classirr_1_1io_1_1_c_file_list}\index{irr\-::io\-::\-C\-File\-List@{irr\-::io\-::\-C\-File\-List}}
+}
+
+
+Implementation of a file list.  
+
+
+
+
+{\ttfamily \#include $<$C\-File\-List.\-h$>$}
+
+Inheritance diagram for irr\-:\-:io\-:\-:C\-File\-List\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1io_1_1_c_file_list}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classirr_1_1io_1_1_c_file_list_a15d8fa324fa6eac8675c47c2bdaef896}{C\-File\-List} (const io\-::path \&path, bool ignore\-Case, bool ignore\-Paths)
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_a12ca193bc3e5a2f9639ef073f897694f}{virtual \hyperlink{classirr_1_1io_1_1_c_file_list_a12ca193bc3e5a2f9639ef073f897694f}{$\sim$\-C\-File\-List} ()}\label{classirr_1_1io_1_1_c_file_list_a12ca193bc3e5a2f9639ef073f897694f}
+
+\begin{DoxyCompactList}\small\item\em Destructor. \end{DoxyCompactList}\item 
+virtual u32 \hyperlink{classirr_1_1io_1_1_c_file_list_aa8d4016f45fdae8635ba7fb8eddb8359}{add\-Item} (const io\-::path \&full\-Path, u32 offset, u32 size, bool \hyperlink{classirr_1_1io_1_1_c_file_list_a3645565326ce02e92020ef49de271df6}{is\-Directory}, u32 id=0)
+\begin{DoxyCompactList}\small\item\em Add as a file or folder to the list. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_aef23d20075d471e461a1fdd71068bb6d}{virtual void \hyperlink{classirr_1_1io_1_1_c_file_list_aef23d20075d471e461a1fdd71068bb6d}{sort} ()}\label{classirr_1_1io_1_1_c_file_list_aef23d20075d471e461a1fdd71068bb6d}
+
+\begin{DoxyCompactList}\small\item\em Sorts the file list. You should call this after adding any items to the file list. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_af0167a1c099ac13a8829a66d5a8fae3d}{virtual u32 \hyperlink{classirr_1_1io_1_1_c_file_list_af0167a1c099ac13a8829a66d5a8fae3d}{get\-File\-Count} () const }\label{classirr_1_1io_1_1_c_file_list_af0167a1c099ac13a8829a66d5a8fae3d}
+
+\begin{DoxyCompactList}\small\item\em Returns the amount of files in the filelist. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_a65ac4be491bd0601246b0b34f698bfd2}{virtual const io\-::path \& \hyperlink{classirr_1_1io_1_1_c_file_list_a65ac4be491bd0601246b0b34f698bfd2}{get\-File\-Name} (u32 index) const }\label{classirr_1_1io_1_1_c_file_list_a65ac4be491bd0601246b0b34f698bfd2}
+
+\begin{DoxyCompactList}\small\item\em Gets the name of a file in the list, based on an index. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_aaf4de4d5112c976f573bdf74958de7e3}{virtual const io\-::path \& \hyperlink{classirr_1_1io_1_1_c_file_list_aaf4de4d5112c976f573bdf74958de7e3}{get\-Full\-File\-Name} (u32 index) const }\label{classirr_1_1io_1_1_c_file_list_aaf4de4d5112c976f573bdf74958de7e3}
+
+\begin{DoxyCompactList}\small\item\em Gets the full name of a file in the list, path included, based on an index. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_a153faf211ccc289337aa39d2dadcd2cf}{virtual u32 \hyperlink{classirr_1_1io_1_1_c_file_list_a153faf211ccc289337aa39d2dadcd2cf}{get\-I\-D} (u32 index) const }\label{classirr_1_1io_1_1_c_file_list_a153faf211ccc289337aa39d2dadcd2cf}
+
+\begin{DoxyCompactList}\small\item\em Returns the I\-D of a file in the file list, based on an index. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_a3645565326ce02e92020ef49de271df6}{virtual bool \hyperlink{classirr_1_1io_1_1_c_file_list_a3645565326ce02e92020ef49de271df6}{is\-Directory} (u32 index) const }\label{classirr_1_1io_1_1_c_file_list_a3645565326ce02e92020ef49de271df6}
+
+\begin{DoxyCompactList}\small\item\em Returns true if the file is a directory. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_a9c4c616dbf3b5fed978cdd1aa48b1a2f}{virtual u32 \hyperlink{classirr_1_1io_1_1_c_file_list_a9c4c616dbf3b5fed978cdd1aa48b1a2f}{get\-File\-Size} (u32 index) const }\label{classirr_1_1io_1_1_c_file_list_a9c4c616dbf3b5fed978cdd1aa48b1a2f}
+
+\begin{DoxyCompactList}\small\item\em Returns the size of a file. \end{DoxyCompactList}\item 
+virtual u32 \hyperlink{classirr_1_1io_1_1_c_file_list_a78881869f65a798246d0463073d45df5}{get\-File\-Offset} (u32 index) const 
+\begin{DoxyCompactList}\small\item\em Returns the offest of a file. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_a4df7b3348cd220280679338e0e55d0b5}{virtual s32 \hyperlink{classirr_1_1io_1_1_c_file_list_a4df7b3348cd220280679338e0e55d0b5}{find\-File} (const io\-::path \&filename, bool is\-Folder) const }\label{classirr_1_1io_1_1_c_file_list_a4df7b3348cd220280679338e0e55d0b5}
+
+\begin{DoxyCompactList}\small\item\em Searches for a file or folder within the list, returns the index. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_af263e13696c5872355cddc49465bbe9b}{virtual const io\-::path \& \hyperlink{classirr_1_1io_1_1_c_file_list_af263e13696c5872355cddc49465bbe9b}{get\-Path} () const }\label{classirr_1_1io_1_1_c_file_list_af263e13696c5872355cddc49465bbe9b}
+
+\begin{DoxyCompactList}\small\item\em Returns the base path of the file list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_adeea3964498194a278e775a5f97c2350}{bool \hyperlink{classirr_1_1io_1_1_c_file_list_adeea3964498194a278e775a5f97c2350}{Ignore\-Paths}}\label{classirr_1_1io_1_1_c_file_list_adeea3964498194a278e775a5f97c2350}
+
+\begin{DoxyCompactList}\small\item\em Ignore paths when adding or searching for files. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_a1650c352df0449712f00ca27f169e1cf}{bool \hyperlink{classirr_1_1io_1_1_c_file_list_a1650c352df0449712f00ca27f169e1cf}{Ignore\-Case}}\label{classirr_1_1io_1_1_c_file_list_a1650c352df0449712f00ca27f169e1cf}
+
+\begin{DoxyCompactList}\small\item\em Ignore case when adding or searching for files. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_a23ac046d24e0fe04c6286c2347ea396a}{io\-::path \hyperlink{classirr_1_1io_1_1_c_file_list_a23ac046d24e0fe04c6286c2347ea396a}{Path}}\label{classirr_1_1io_1_1_c_file_list_a23ac046d24e0fe04c6286c2347ea396a}
+
+\begin{DoxyCompactList}\small\item\em Path to the file list. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_file_list_a2666a2d090db3053a42229b4ef2c0264}{core\-::array$<$ \hyperlink{structirr_1_1io_1_1_s_file_list_entry}{S\-File\-List\-Entry} $>$ \hyperlink{classirr_1_1io_1_1_c_file_list_a2666a2d090db3053a42229b4ef2c0264}{Files}}\label{classirr_1_1io_1_1_c_file_list_a2666a2d090db3053a42229b4ef2c0264}
+
+\begin{DoxyCompactList}\small\item\em List of files. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of a file list. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classirr_1_1io_1_1_c_file_list_a15d8fa324fa6eac8675c47c2bdaef896}{\index{irr\-::io\-::\-C\-File\-List@{irr\-::io\-::\-C\-File\-List}!C\-File\-List@{C\-File\-List}}
+\index{C\-File\-List@{C\-File\-List}!irr::io::CFileList@{irr\-::io\-::\-C\-File\-List}}
+\subsubsection[{C\-File\-List}]{\setlength{\rightskip}{0pt plus 5cm}irr\-::io\-::\-C\-File\-List\-::\-C\-File\-List (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{path, }
+\item[{bool}]{ignore\-Case, }
+\item[{bool}]{ignore\-Paths}
+\end{DoxyParamCaption}
+)}}\label{classirr_1_1io_1_1_c_file_list_a15d8fa324fa6eac8675c47c2bdaef896}
+
+
+Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path of this file archive \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1io_1_1_c_file_list_aa8d4016f45fdae8635ba7fb8eddb8359}{\index{irr\-::io\-::\-C\-File\-List@{irr\-::io\-::\-C\-File\-List}!add\-Item@{add\-Item}}
+\index{add\-Item@{add\-Item}!irr::io::CFileList@{irr\-::io\-::\-C\-File\-List}}
+\subsubsection[{add\-Item}]{\setlength{\rightskip}{0pt plus 5cm}u32 irr\-::io\-::\-C\-File\-List\-::add\-Item (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{full\-Path, }
+\item[{u32}]{offset, }
+\item[{u32}]{size, }
+\item[{bool}]{is\-Directory, }
+\item[{u32}]{id = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_file_list_aa8d4016f45fdae8635ba7fb8eddb8359}
+
+
+Add as a file or folder to the list. 
+
+adds a file or folder
+
+
+\begin{DoxyParams}{Parameters}
+{\em full\-Path} & The file name including path, up to the root of the file list. \\
+\hline
+{\em is\-Directory} & True if this is a directory rather than a file. \\
+\hline
+{\em offset} & The offset where the file is stored in an archive \\
+\hline
+{\em size} & The size of the file in bytes. \\
+\hline
+{\em id} & The I\-D of the file in the archive which owns it \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_file_list_a78881869f65a798246d0463073d45df5}{\index{irr\-::io\-::\-C\-File\-List@{irr\-::io\-::\-C\-File\-List}!get\-File\-Offset@{get\-File\-Offset}}
+\index{get\-File\-Offset@{get\-File\-Offset}!irr::io::CFileList@{irr\-::io\-::\-C\-File\-List}}
+\subsubsection[{get\-File\-Offset}]{\setlength{\rightskip}{0pt plus 5cm}u32 irr\-::io\-::\-C\-File\-List\-::get\-File\-Offset (
+\begin{DoxyParamCaption}
+\item[{u32}]{index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_file_list_a78881869f65a798246d0463073d45df5}
+
+
+Returns the offest of a file. 
+
+Returns the size of a file. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-File\-List.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-File\-List.\-cpp\end{DoxyCompactItemize}

@@ -1,0 +1,166 @@
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2}{\section{irr\-:\-:scene\-:\-:C\-Animated\-Mesh\-M\-D2 Class Reference}
+\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2}\index{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2@{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2}}
+}
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Animated\-Mesh\-M\-D2\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_animated_mesh_m_d2}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structirr_1_1scene_1_1_c_animated_mesh_m_d2_1_1_s_animation_data}{S\-Animation\-Data}
+\begin{DoxyCompactList}\small\item\em named animations \end{DoxyCompactList}\item 
+struct \hyperlink{structirr_1_1scene_1_1_c_animated_mesh_m_d2_1_1_s_key_frame_transform}{S\-Key\-Frame\-Transform}
+\begin{DoxyCompactList}\small\item\em scale and translations for keyframes \end{DoxyCompactList}\item 
+struct \hyperlink{structirr_1_1scene_1_1_c_animated_mesh_m_d2_1_1_s_m_d2_vert}{S\-M\-D2\-Vert}
+\begin{DoxyCompactList}\small\item\em md2 vertex data \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a0c36f64b47f01e2699f0a91dcfd448ba}{\hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a0c36f64b47f01e2699f0a91dcfd448ba}{C\-Animated\-Mesh\-M\-D2} ()}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a0c36f64b47f01e2699f0a91dcfd448ba}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a58debceb9f1001a13ae44ecdc6f49da0}{virtual \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a58debceb9f1001a13ae44ecdc6f49da0}{$\sim$\-C\-Animated\-Mesh\-M\-D2} ()}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a58debceb9f1001a13ae44ecdc6f49da0}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_afe2a22bac05a8a80eec11fc9d7cdaa05}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_afe2a22bac05a8a80eec11fc9d7cdaa05}{get\-Frame\-Count} () const }\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_afe2a22bac05a8a80eec11fc9d7cdaa05}
+
+\begin{DoxyCompactList}\small\item\em returns the amount of frames. If the amount is 1, it is a static (=non animated) mesh. \end{DoxyCompactList}\item 
+virtual f32 \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_ab973f8cebb6d6c1809fda6c4898ba4e1}{get\-Animation\-Speed} () const 
+\begin{DoxyCompactList}\small\item\em Gets the default animation speed of the animated mesh. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_ab60b4e2a74d34717095d5bcb5bfe3441}{set\-Animation\-Speed} (f32 fps)
+\begin{DoxyCompactList}\small\item\em Gets the frame count of the animated mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aa2c0a2aba29524efc2139b75b25f30c0}{virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aa2c0a2aba29524efc2139b75b25f30c0}{get\-Mesh} (s32 frame, s32 detail\-Level=255, s32 start\-Frame\-Loop=-\/1, s32 end\-Frame\-Loop=-\/1)}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aa2c0a2aba29524efc2139b75b25f30c0}
+
+\begin{DoxyCompactList}\small\item\em returns the animated mesh based on a detail level. 0 is the lowest, 255 the highest detail. Note, that some Meshes will ignore the detail level. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a32cdd44cc53fcef6ddb26570f8faa48b}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a32cdd44cc53fcef6ddb26570f8faa48b}{get\-Mesh\-Buffer\-Count} () const }\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a32cdd44cc53fcef6ddb26570f8faa48b}
+
+\begin{DoxyCompactList}\small\item\em returns amount of mesh buffers. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a2685ccfb1ec6b1b27711ce037e9c3473}{virtual I\-Mesh\-Buffer $\ast$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a2685ccfb1ec6b1b27711ce037e9c3473}{get\-Mesh\-Buffer} (u32 nr) const }\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a2685ccfb1ec6b1b27711ce037e9c3473}
+
+\begin{DoxyCompactList}\small\item\em returns pointer to a mesh buffer \end{DoxyCompactList}\item 
+virtual I\-Mesh\-Buffer $\ast$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aca1f61f1f1719c78a3b78b87eb319aa3}{get\-Mesh\-Buffer} (const video\-::\-S\-Material \&material) const 
+\begin{DoxyCompactList}\small\item\em Returns pointer to a mesh buffer which fits a material. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a5e648e695103ace6eaed5f0f71473bda}{virtual const core\-::aabbox3d\\*
+$<$ f32 $>$ \& \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a5e648e695103ace6eaed5f0f71473bda}{get\-Bounding\-Box} () const }\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a5e648e695103ace6eaed5f0f71473bda}
+
+\begin{DoxyCompactList}\small\item\em returns an axis aligned bounding box \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_acc17ade8a81f6bf0aac081fdb0d1ead5}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_acc17ade8a81f6bf0aac081fdb0d1ead5}{set\-Bounding\-Box} (const core\-::aabbox3df \&box)}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_acc17ade8a81f6bf0aac081fdb0d1ead5}
+
+\begin{DoxyCompactList}\small\item\em set user axis aligned bounding box \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a81c1d38d3ea495242ee622e19565c1cf}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a81c1d38d3ea495242ee622e19565c1cf}{set\-Material\-Flag} (video\-::\-E\-\_\-\-M\-A\-T\-E\-R\-I\-A\-L\-\_\-\-F\-L\-A\-G flag, bool newvalue)}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a81c1d38d3ea495242ee622e19565c1cf}
+
+\begin{DoxyCompactList}\small\item\em sets a flag of all contained materials to a new value \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aa9ede736bbb70176733a10c2af42417e}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aa9ede736bbb70176733a10c2af42417e}{set\-Hardware\-Mapping\-Hint} (E\-\_\-\-H\-A\-R\-D\-W\-A\-R\-E\-\_\-\-M\-A\-P\-P\-I\-N\-G new\-Mapping\-Hint, E\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-T\-Y\-P\-E buffer=E\-B\-T\-\_\-\-V\-E\-R\-T\-E\-X\-\_\-\-A\-N\-D\-\_\-\-I\-N\-D\-E\-X)}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aa9ede736bbb70176733a10c2af42417e}
+
+\begin{DoxyCompactList}\small\item\em set the hardware mapping hint, for driver \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a7bc94633a447b59123219f3065009988}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a7bc94633a447b59123219f3065009988}{set\-Dirty} (E\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-T\-Y\-P\-E buffer=E\-B\-T\-\_\-\-V\-E\-R\-T\-E\-X\-\_\-\-A\-N\-D\-\_\-\-I\-N\-D\-E\-X)}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a7bc94633a447b59123219f3065009988}
+
+\begin{DoxyCompactList}\small\item\em flags the meshbuffer as changed, reloads hardware buffers \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aaa6bf3529f6b0cf8e9aa6acb91f56c21}{virtual E\-\_\-\-A\-N\-I\-M\-A\-T\-E\-D\-\_\-\-M\-E\-S\-H\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aaa6bf3529f6b0cf8e9aa6acb91f56c21}{get\-Mesh\-Type} () const }\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aaa6bf3529f6b0cf8e9aa6acb91f56c21}
+
+\begin{DoxyCompactList}\small\item\em Returns the type of the animated mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a9952da7a0601db45bf9177605786602b}{virtual void \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a9952da7a0601db45bf9177605786602b}{get\-Frame\-Loop} (E\-M\-D2\-\_\-\-A\-N\-I\-M\-A\-T\-I\-O\-N\-\_\-\-T\-Y\-P\-E, s32 \&out\-Begin, s32 \&out\-End, s32 \&out\-Fps) const }\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a9952da7a0601db45bf9177605786602b}
+
+\begin{DoxyCompactList}\small\item\em Returns frame loop data for a special M\-D2 animation type. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a062bef94a592ab1f1cacb6d79d04a564}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a062bef94a592ab1f1cacb6d79d04a564}{get\-Frame\-Loop} (const c8 $\ast$name, s32 \&out\-Begin, s32 \&out\-End, s32 \&out\-Fps) const }\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a062bef94a592ab1f1cacb6d79d04a564}
+
+\begin{DoxyCompactList}\small\item\em Returns frame loop data for a special M\-D2 animation type. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a1040cae5da1a40c7daf06e84facba9de}{virtual s32 \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a1040cae5da1a40c7daf06e84facba9de}{get\-Animation\-Count} () const }\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a1040cae5da1a40c7daf06e84facba9de}
+
+\begin{DoxyCompactList}\small\item\em Returns amount of md2 animations in this file. \end{DoxyCompactList}\item 
+virtual const c8 $\ast$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_ac4a3c44c157256b7caf0cf90c4f40362}{get\-Animation\-Name} (s32 nr) const 
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a9b3814e3d46594145fec9450a7de325f}{S\-Mesh\-Buffer $\ast$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a9b3814e3d46594145fec9450a7de325f}{Interpolation\-Buffer}}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a9b3814e3d46594145fec9450a7de325f}
+
+\begin{DoxyCompactList}\small\item\em the buffer that contains the most recent animation \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a9623ed9472b02940c7d241fc3c5949ce}{core\-::array$<$ \hyperlink{structirr_1_1scene_1_1_c_animated_mesh_m_d2_1_1_s_key_frame_transform}{S\-Key\-Frame\-Transform} $>$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a9623ed9472b02940c7d241fc3c5949ce}{Frame\-Transforms}}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a9623ed9472b02940c7d241fc3c5949ce}
+
+\begin{DoxyCompactList}\small\item\em keyframe transformations \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aa10502b51b0577da62cccca6781aa9d9}{core\-::array$<$ \hyperlink{structirr_1_1scene_1_1_c_animated_mesh_m_d2_1_1_s_m_d2_vert}{S\-M\-D2\-Vert} $>$ $\ast$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aa10502b51b0577da62cccca6781aa9d9}{Frame\-List}}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aa10502b51b0577da62cccca6781aa9d9}
+
+\begin{DoxyCompactList}\small\item\em keyframe vertex data \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a9ee7c815e80a44de612a25e66d4022b5}{core\-::array$<$ core\-::aabbox3d\\*
+$<$ f32 $>$ $>$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a9ee7c815e80a44de612a25e66d4022b5}{Box\-List}}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a9ee7c815e80a44de612a25e66d4022b5}
+
+\begin{DoxyCompactList}\small\item\em bounding boxes for each keyframe \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a437344cb549e59cf8cd0c1c68b0eec46}{core\-::array$<$ \hyperlink{structirr_1_1scene_1_1_c_animated_mesh_m_d2_1_1_s_animation_data}{S\-Animation\-Data} $>$ \hyperlink{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a437344cb549e59cf8cd0c1c68b0eec46}{Animation\-Data}}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_a437344cb549e59cf8cd0c1c68b0eec46}
+
+\begin{DoxyCompactList}\small\item\em named animations \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_ac8b23395823bf9f5788fdef4873e7b46}{u32 {\bfseries Frame\-Count}}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_ac8b23395823bf9f5788fdef4873e7b46}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_ac4a3c44c157256b7caf0cf90c4f40362}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2@{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2}!get\-Animation\-Name@{get\-Animation\-Name}}
+\index{get\-Animation\-Name@{get\-Animation\-Name}!irr::scene::CAnimatedMeshMD2@{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2}}
+\subsubsection[{get\-Animation\-Name}]{\setlength{\rightskip}{0pt plus 5cm}virtual const c8$\ast$ irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2\-::get\-Animation\-Name (
+\begin{DoxyParamCaption}
+\item[{s32}]{nr}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_ac4a3c44c157256b7caf0cf90c4f40362}
+Returns name of md2 animation. 
+\begin{DoxyParams}{Parameters}
+{\em nr,\-:} & Zero based index of animation. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_ab973f8cebb6d6c1809fda6c4898ba4e1}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2@{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2}!get\-Animation\-Speed@{get\-Animation\-Speed}}
+\index{get\-Animation\-Speed@{get\-Animation\-Speed}!irr::scene::CAnimatedMeshMD2@{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2}}
+\subsubsection[{get\-Animation\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}virtual f32 irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2\-::get\-Animation\-Speed (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_ab973f8cebb6d6c1809fda6c4898ba4e1}
+
+
+Gets the default animation speed of the animated mesh. 
+
+\begin{DoxyReturn}{Returns}
+Amount of frames per second. If the amount is 0, it is a static, non animated mesh. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aca1f61f1f1719c78a3b78b87eb319aa3}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2@{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2}!get\-Mesh\-Buffer@{get\-Mesh\-Buffer}}
+\index{get\-Mesh\-Buffer@{get\-Mesh\-Buffer}!irr::scene::CAnimatedMeshMD2@{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2}}
+\subsubsection[{get\-Mesh\-Buffer}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Mesh\-Buffer$\ast$ irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2\-::get\-Mesh\-Buffer (
+\begin{DoxyParamCaption}
+\item[{const video\-::\-S\-Material \&}]{material}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_aca1f61f1f1719c78a3b78b87eb319aa3}
+
+
+Returns pointer to a mesh buffer which fits a material. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em material,\-:} & material to search for \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the pointer to the mesh buffer or N\-U\-L\-L if there is no such mesh buffer. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_animated_mesh_m_d2_ab60b4e2a74d34717095d5bcb5bfe3441}{\index{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2@{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2}!set\-Animation\-Speed@{set\-Animation\-Speed}}
+\index{set\-Animation\-Speed@{set\-Animation\-Speed}!irr::scene::CAnimatedMeshMD2@{irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2}}
+\subsubsection[{set\-Animation\-Speed}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::scene\-::\-C\-Animated\-Mesh\-M\-D2\-::set\-Animation\-Speed (
+\begin{DoxyParamCaption}
+\item[{f32}]{fps}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_animated_mesh_m_d2_ab60b4e2a74d34717095d5bcb5bfe3441}
+
+
+Gets the frame count of the animated mesh. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fps} & Frames per second to play the animation with. If the amount is 0, it is not animated. The actual speed is set in the scene node the mesh is instantiated in. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Animated\-Mesh\-M\-D2.\-h\end{DoxyCompactItemize}

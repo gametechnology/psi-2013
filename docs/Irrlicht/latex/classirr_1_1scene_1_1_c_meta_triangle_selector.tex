@@ -1,0 +1,98 @@
+\hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector}{\section{irr\-:\-:scene\-:\-:C\-Meta\-Triangle\-Selector Class Reference}
+\label{classirr_1_1scene_1_1_c_meta_triangle_selector}\index{irr\-::scene\-::\-C\-Meta\-Triangle\-Selector@{irr\-::scene\-::\-C\-Meta\-Triangle\-Selector}}
+}
+
+
+Interface for making multiple triangle selectors work as one big selector.  
+
+
+
+
+{\ttfamily \#include $<$C\-Meta\-Triangle\-Selector.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Meta\-Triangle\-Selector\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_meta_triangle_selector}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector_a05990e3d607f9657d66185314f401808}{\hyperlink{classirr_1_1scene_1_1_c_meta_triangle_selector_a05990e3d607f9657d66185314f401808}{C\-Meta\-Triangle\-Selector} ()}\label{classirr_1_1scene_1_1_c_meta_triangle_selector_a05990e3d607f9657d66185314f401808}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector_ab4ed23ec84c7080a448c5f88930284f8}{virtual \hyperlink{classirr_1_1scene_1_1_c_meta_triangle_selector_ab4ed23ec84c7080a448c5f88930284f8}{$\sim$\-C\-Meta\-Triangle\-Selector} ()}\label{classirr_1_1scene_1_1_c_meta_triangle_selector_ab4ed23ec84c7080a448c5f88930284f8}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual s32 \hyperlink{classirr_1_1scene_1_1_c_meta_triangle_selector_a90e274fa42f4d060f5bb7d5102e1b7c1}{get\-Triangle\-Count} () const 
+\begin{DoxyCompactList}\small\item\em Get amount of all available triangles in this selector. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector_af9abebf77fd05e784d02b432023fa6e9}{virtual void \hyperlink{classirr_1_1scene_1_1_c_meta_triangle_selector_af9abebf77fd05e784d02b432023fa6e9}{get\-Triangles} (core\-::triangle3df $\ast$triangles, s32 array\-Size, s32 \&out\-Triangle\-Count, const core\-::matrix4 $\ast$transform=0) const }\label{classirr_1_1scene_1_1_c_meta_triangle_selector_af9abebf77fd05e784d02b432023fa6e9}
+
+\begin{DoxyCompactList}\small\item\em Gets all triangles. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector_a98dc9b3b2b10f7d2c18e56c6c66421d7}{virtual void \hyperlink{classirr_1_1scene_1_1_c_meta_triangle_selector_a98dc9b3b2b10f7d2c18e56c6c66421d7}{get\-Triangles} (core\-::triangle3df $\ast$triangles, s32 array\-Size, s32 \&out\-Triangle\-Count, const core\-::aabbox3d$<$ f32 $>$ \&box, const core\-::matrix4 $\ast$transform=0) const }\label{classirr_1_1scene_1_1_c_meta_triangle_selector_a98dc9b3b2b10f7d2c18e56c6c66421d7}
+
+\begin{DoxyCompactList}\small\item\em Gets all triangles which lie within a specific bounding box. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector_aeddba489dfa6ef55953d8499df426580}{virtual void \hyperlink{classirr_1_1scene_1_1_c_meta_triangle_selector_aeddba489dfa6ef55953d8499df426580}{get\-Triangles} (core\-::triangle3df $\ast$triangles, s32 array\-Size, s32 \&out\-Triangle\-Count, const core\-::line3d$<$ f32 $>$ \&line, const core\-::matrix4 $\ast$transform=0) const }\label{classirr_1_1scene_1_1_c_meta_triangle_selector_aeddba489dfa6ef55953d8499df426580}
+
+\begin{DoxyCompactList}\small\item\em Gets all triangles which have or may have contact with a 3d line. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1scene_1_1_c_meta_triangle_selector_a66f0a75fb1c4d98985bf6c6f4fef0bd8}{add\-Triangle\-Selector} (I\-Triangle\-Selector $\ast$to\-Add)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector_a2759dae85865ed64ad58ad0789565f4c}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_meta_triangle_selector_a2759dae85865ed64ad58ad0789565f4c}{remove\-Triangle\-Selector} (I\-Triangle\-Selector $\ast$to\-Remove)}\label{classirr_1_1scene_1_1_c_meta_triangle_selector_a2759dae85865ed64ad58ad0789565f4c}
+
+\begin{DoxyCompactList}\small\item\em Removes a specific triangle selector which was added before from the collection. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector_ac28bab23d5d522f78376e55e256a81d5}{virtual void \hyperlink{classirr_1_1scene_1_1_c_meta_triangle_selector_ac28bab23d5d522f78376e55e256a81d5}{remove\-All\-Triangle\-Selectors} ()}\label{classirr_1_1scene_1_1_c_meta_triangle_selector_ac28bab23d5d522f78376e55e256a81d5}
+
+\begin{DoxyCompactList}\small\item\em Removes all triangle selectors from the collection. \end{DoxyCompactList}\item 
+virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_meta_triangle_selector_aff8cc167cc9c6b7190b514938689268f}{get\-Scene\-Node\-For\-Triangle} (u32 triangle\-Index) const 
+\begin{DoxyCompactList}\small\item\em Get the scene node associated with a given triangle. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector_a61560cf479815a83e89db6f40f0266c4}{virtual u32 {\bfseries get\-Selector\-Count} () const }\label{classirr_1_1scene_1_1_c_meta_triangle_selector_a61560cf479815a83e89db6f40f0266c4}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector_a15b4a6b6073828afc30eba3f8311ddb6}{virtual I\-Triangle\-Selector $\ast$ {\bfseries get\-Selector} (u32 index)}\label{classirr_1_1scene_1_1_c_meta_triangle_selector_a15b4a6b6073828afc30eba3f8311ddb6}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector_abbc64a47a7e28c37fe4caa3f01b1f248}{virtual const I\-Triangle\-Selector $\ast$ {\bfseries get\-Selector} (u32 index) const }\label{classirr_1_1scene_1_1_c_meta_triangle_selector_abbc64a47a7e28c37fe4caa3f01b1f248}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface for making multiple triangle selectors work as one big selector. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector_a66f0a75fb1c4d98985bf6c6f4fef0bd8}{\index{irr\-::scene\-::\-C\-Meta\-Triangle\-Selector@{irr\-::scene\-::\-C\-Meta\-Triangle\-Selector}!add\-Triangle\-Selector@{add\-Triangle\-Selector}}
+\index{add\-Triangle\-Selector@{add\-Triangle\-Selector}!irr::scene::CMetaTriangleSelector@{irr\-::scene\-::\-C\-Meta\-Triangle\-Selector}}
+\subsubsection[{add\-Triangle\-Selector}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::scene\-::\-C\-Meta\-Triangle\-Selector\-::add\-Triangle\-Selector (
+\begin{DoxyParamCaption}
+\item[{I\-Triangle\-Selector $\ast$}]{to\-Add}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_meta_triangle_selector_a66f0a75fb1c4d98985bf6c6f4fef0bd8}
+Adds a triangle selector to the collection of triangle selectors in this meta\-Triangle\-Selector. \hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector_aff8cc167cc9c6b7190b514938689268f}{\index{irr\-::scene\-::\-C\-Meta\-Triangle\-Selector@{irr\-::scene\-::\-C\-Meta\-Triangle\-Selector}!get\-Scene\-Node\-For\-Triangle@{get\-Scene\-Node\-For\-Triangle}}
+\index{get\-Scene\-Node\-For\-Triangle@{get\-Scene\-Node\-For\-Triangle}!irr::scene::CMetaTriangleSelector@{irr\-::scene\-::\-C\-Meta\-Triangle\-Selector}}
+\subsubsection[{get\-Scene\-Node\-For\-Triangle}]{\setlength{\rightskip}{0pt plus 5cm}I\-Scene\-Node $\ast$ irr\-::scene\-::\-C\-Meta\-Triangle\-Selector\-::get\-Scene\-Node\-For\-Triangle (
+\begin{DoxyParamCaption}
+\item[{u32}]{triangle\-Index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_meta_triangle_selector_aff8cc167cc9c6b7190b514938689268f}
+
+
+Get the scene node associated with a given triangle. 
+
+Return the scene node associated with a given triangle. \hypertarget{classirr_1_1scene_1_1_c_meta_triangle_selector_a90e274fa42f4d060f5bb7d5102e1b7c1}{\index{irr\-::scene\-::\-C\-Meta\-Triangle\-Selector@{irr\-::scene\-::\-C\-Meta\-Triangle\-Selector}!get\-Triangle\-Count@{get\-Triangle\-Count}}
+\index{get\-Triangle\-Count@{get\-Triangle\-Count}!irr::scene::CMetaTriangleSelector@{irr\-::scene\-::\-C\-Meta\-Triangle\-Selector}}
+\subsubsection[{get\-Triangle\-Count}]{\setlength{\rightskip}{0pt plus 5cm}s32 irr\-::scene\-::\-C\-Meta\-Triangle\-Selector\-::get\-Triangle\-Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_meta_triangle_selector_a90e274fa42f4d060f5bb7d5102e1b7c1}
+
+
+Get amount of all available triangles in this selector. 
+
+Returns amount of all available triangles in this selector. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Meta\-Triangle\-Selector.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Meta\-Triangle\-Selector.\-cpp\end{DoxyCompactItemize}

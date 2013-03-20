@@ -1,0 +1,95 @@
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node}{\section{irr\-:\-:scene\-:\-:C\-Cube\-Scene\-Node Class Reference}
+\label{classirr_1_1scene_1_1_c_cube_scene_node}\index{irr\-::scene\-::\-C\-Cube\-Scene\-Node@{irr\-::scene\-::\-C\-Cube\-Scene\-Node}}
+}
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Cube\-Scene\-Node\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_cube_scene_node}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_aa1d497df6c18e8f2a4e406b26d5641fc}{\hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_aa1d497df6c18e8f2a4e406b26d5641fc}{C\-Cube\-Scene\-Node} (f32 size, I\-Scene\-Node $\ast$parent, I\-Scene\-Manager $\ast$mgr, s32 id, const core\-::vector3df \&position=core\-::vector3df(0, 0, 0), const core\-::vector3df \&rotation=core\-::vector3df(0, 0, 0), const core\-::vector3df \&scale=core\-::vector3df(1.\-0f, 1.\-0f, 1.\-0f))}\label{classirr_1_1scene_1_1_c_cube_scene_node_aa1d497df6c18e8f2a4e406b26d5641fc}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_a8ecd940e83f91cd31deabd1369c06a4e}{virtual void {\bfseries On\-Register\-Scene\-Node} ()}\label{classirr_1_1scene_1_1_c_cube_scene_node_a8ecd940e83f91cd31deabd1369c06a4e}
+
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_ad297aca26e44dee71f30ed267e670c00}{virtual void \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_ad297aca26e44dee71f30ed267e670c00}{render} ()}\label{classirr_1_1scene_1_1_c_cube_scene_node_ad297aca26e44dee71f30ed267e670c00}
+
+\begin{DoxyCompactList}\small\item\em renders the node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_aff5f883cbeb461e3b6eea3b3dec9d544}{virtual const core\-::aabbox3d\\*
+$<$ f32 $>$ \& \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_aff5f883cbeb461e3b6eea3b3dec9d544}{get\-Bounding\-Box} () const }\label{classirr_1_1scene_1_1_c_cube_scene_node_aff5f883cbeb461e3b6eea3b3dec9d544}
+
+\begin{DoxyCompactList}\small\item\em returns the axis aligned bounding box of this node \end{DoxyCompactList}\item 
+virtual video\-::\-S\-Material \& \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_aef58b7e99d8cb70abecea581f71afd9c}{get\-Material} (u32 i)
+\begin{DoxyCompactList}\small\item\em returns the material based on the zero based index i. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_aaeda69a1796d3047b488a8b2bf01c313}{virtual u32 \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_aaeda69a1796d3047b488a8b2bf01c313}{get\-Material\-Count} () const }\label{classirr_1_1scene_1_1_c_cube_scene_node_aaeda69a1796d3047b488a8b2bf01c313}
+
+\begin{DoxyCompactList}\small\item\em returns amount of materials used by this scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_aa7482529b9f8c1ecc61a7941ad920409}{virtual E\-S\-C\-E\-N\-E\-\_\-\-N\-O\-D\-E\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_aa7482529b9f8c1ecc61a7941ad920409}{get\-Type} () const }\label{classirr_1_1scene_1_1_c_cube_scene_node_aa7482529b9f8c1ecc61a7941ad920409}
+
+\begin{DoxyCompactList}\small\item\em Returns type of the scene node. \end{DoxyCompactList}\item 
+virtual I\-Shadow\-Volume\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_a61b5075ea4873c0aed6b57cc4c1c8b8e}{add\-Shadow\-Volume\-Scene\-Node} (const I\-Mesh $\ast$shadow\-Mesh, s32 id, bool zfailmethod=true, f32 infinity=10000.\-0f)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_ae8db14c649acdc443190c874c680ed3a}{virtual void \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_ae8db14c649acdc443190c874c680ed3a}{serialize\-Attributes} (io\-::\-I\-Attributes $\ast$out, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0) const }\label{classirr_1_1scene_1_1_c_cube_scene_node_ae8db14c649acdc443190c874c680ed3a}
+
+\begin{DoxyCompactList}\small\item\em Writes attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_a3a93ddbf0bc8af81b9680e748e8d26e9}{virtual void \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_a3a93ddbf0bc8af81b9680e748e8d26e9}{deserialize\-Attributes} (io\-::\-I\-Attributes $\ast$in, io\-::\-S\-Attribute\-Read\-Write\-Options $\ast$options=0)}\label{classirr_1_1scene_1_1_c_cube_scene_node_a3a93ddbf0bc8af81b9680e748e8d26e9}
+
+\begin{DoxyCompactList}\small\item\em Reads attributes of the scene node. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_ae22225a667cd3603f992cfa1341aa0ae}{virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_ae22225a667cd3603f992cfa1341aa0ae}{clone} (I\-Scene\-Node $\ast$new\-Parent=0, I\-Scene\-Manager $\ast$new\-Manager=0)}\label{classirr_1_1scene_1_1_c_cube_scene_node_ae22225a667cd3603f992cfa1341aa0ae}
+
+\begin{DoxyCompactList}\small\item\em Creates a clone of this scene node and its children. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_a5096b249dd7b81791ea1f9d7659344b3}{virtual void \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_a5096b249dd7b81791ea1f9d7659344b3}{set\-Mesh} (I\-Mesh $\ast$mesh)}\label{classirr_1_1scene_1_1_c_cube_scene_node_a5096b249dd7b81791ea1f9d7659344b3}
+
+\begin{DoxyCompactList}\small\item\em Sets a new mesh to display. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_a4fcfdcea9dab153b3ce458668a5f274e}{virtual I\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_a4fcfdcea9dab153b3ce458668a5f274e}{get\-Mesh} (void)}\label{classirr_1_1scene_1_1_c_cube_scene_node_a4fcfdcea9dab153b3ce458668a5f274e}
+
+\begin{DoxyCompactList}\small\item\em Returns the current mesh. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_a268aa9ee4192a816c7ca31dc04bce2cd}{virtual void \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_a268aa9ee4192a816c7ca31dc04bce2cd}{set\-Read\-Only\-Materials} (bool readonly)}\label{classirr_1_1scene_1_1_c_cube_scene_node_a268aa9ee4192a816c7ca31dc04bce2cd}
+
+\begin{DoxyCompactList}\small\item\em Sets if the scene node should not copy the materials of the mesh but use them in a read only style. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_a47ad08ae4394b3abdabd7482c6500e48}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_a47ad08ae4394b3abdabd7482c6500e48}{is\-Read\-Only\-Materials} () const }\label{classirr_1_1scene_1_1_c_cube_scene_node_a47ad08ae4394b3abdabd7482c6500e48}
+
+\begin{DoxyCompactList}\small\item\em Returns if the scene node should not copy the materials of the mesh but use them in a read only style. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_ac0af94d6c23fdc04963251ef549e0bb2}{remove\-Child} (I\-Scene\-Node $\ast$child)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_a61b5075ea4873c0aed6b57cc4c1c8b8e}{\index{irr\-::scene\-::\-C\-Cube\-Scene\-Node@{irr\-::scene\-::\-C\-Cube\-Scene\-Node}!add\-Shadow\-Volume\-Scene\-Node@{add\-Shadow\-Volume\-Scene\-Node}}
+\index{add\-Shadow\-Volume\-Scene\-Node@{add\-Shadow\-Volume\-Scene\-Node}!irr::scene::CCubeSceneNode@{irr\-::scene\-::\-C\-Cube\-Scene\-Node}}
+\subsubsection[{add\-Shadow\-Volume\-Scene\-Node}]{\setlength{\rightskip}{0pt plus 5cm}I\-Shadow\-Volume\-Scene\-Node $\ast$ irr\-::scene\-::\-C\-Cube\-Scene\-Node\-::add\-Shadow\-Volume\-Scene\-Node (
+\begin{DoxyParamCaption}
+\item[{const I\-Mesh $\ast$}]{shadow\-Mesh, }
+\item[{s32}]{id, }
+\item[{bool}]{zfailmethod = {\ttfamily true}, }
+\item[{f32}]{infinity = {\ttfamily 10000.0f}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_cube_scene_node_a61b5075ea4873c0aed6b57cc4c1c8b8e}
+Creates shadow volume scene node as child of this node and returns a pointer to it. \hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_aef58b7e99d8cb70abecea581f71afd9c}{\index{irr\-::scene\-::\-C\-Cube\-Scene\-Node@{irr\-::scene\-::\-C\-Cube\-Scene\-Node}!get\-Material@{get\-Material}}
+\index{get\-Material@{get\-Material}!irr::scene::CCubeSceneNode@{irr\-::scene\-::\-C\-Cube\-Scene\-Node}}
+\subsubsection[{get\-Material}]{\setlength{\rightskip}{0pt plus 5cm}video\-::\-S\-Material \& irr\-::scene\-::\-C\-Cube\-Scene\-Node\-::get\-Material (
+\begin{DoxyParamCaption}
+\item[{u32}]{i}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_cube_scene_node_aef58b7e99d8cb70abecea581f71afd9c}
+
+
+returns the material based on the zero based index i. 
+
+returns the material based on the zero based index i. To get the amount of materials used by this scene node, use \hyperlink{classirr_1_1scene_1_1_c_cube_scene_node_aaeda69a1796d3047b488a8b2bf01c313}{get\-Material\-Count()}. This function is needed for inserting the node into the scene hirachy on a optimal position for minimizing renderstate changes, but can also be used to directly modify the material of a scene node. \hypertarget{classirr_1_1scene_1_1_c_cube_scene_node_ac0af94d6c23fdc04963251ef549e0bb2}{\index{irr\-::scene\-::\-C\-Cube\-Scene\-Node@{irr\-::scene\-::\-C\-Cube\-Scene\-Node}!remove\-Child@{remove\-Child}}
+\index{remove\-Child@{remove\-Child}!irr::scene::CCubeSceneNode@{irr\-::scene\-::\-C\-Cube\-Scene\-Node}}
+\subsubsection[{remove\-Child}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::scene\-::\-C\-Cube\-Scene\-Node\-::remove\-Child (
+\begin{DoxyParamCaption}
+\item[{I\-Scene\-Node $\ast$}]{child}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_cube_scene_node_ac0af94d6c23fdc04963251ef549e0bb2}
+Removes a child from this scene node. Implemented here, to be able to remove the shadow properly, if there is one, or to remove attached childs. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Cube\-Scene\-Node.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Cube\-Scene\-Node.\-cpp\end{DoxyCompactItemize}

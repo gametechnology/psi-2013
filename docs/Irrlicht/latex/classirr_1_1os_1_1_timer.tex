@@ -1,0 +1,108 @@
+\hypertarget{classirr_1_1os_1_1_timer}{\section{irr\-:\-:os\-:\-:Timer Class Reference}
+\label{classirr_1_1os_1_1_timer}\index{irr\-::os\-::\-Timer@{irr\-::os\-::\-Timer}}
+}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static u32 \hyperlink{classirr_1_1os_1_1_timer_a640377de088feab25b5b83f8d4ecc50d}{get\-Time} ()
+\begin{DoxyCompactList}\small\item\em returns the current time in milliseconds \end{DoxyCompactList}\item 
+static I\-Timer\-::\-Real\-Time\-Date \hyperlink{classirr_1_1os_1_1_timer_a8b9af561cd8d4cb865c9b559b09eafb5}{get\-Real\-Time\-And\-Date} ()
+\begin{DoxyCompactList}\small\item\em get current time and date in calendar form \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1os_1_1_timer_afd3a551dbfa6d8a35dbcc37bc4ed8ebf}{static void \hyperlink{classirr_1_1os_1_1_timer_afd3a551dbfa6d8a35dbcc37bc4ed8ebf}{init\-Timer} (bool use\-Performance\-Timer=true)}\label{classirr_1_1os_1_1_timer_afd3a551dbfa6d8a35dbcc37bc4ed8ebf}
+
+\begin{DoxyCompactList}\small\item\em initializes the real timer \end{DoxyCompactList}\item 
+static void \hyperlink{classirr_1_1os_1_1_timer_aca64b292f9ea26d331684cde33e521da}{set\-Time} (u32 time)
+\begin{DoxyCompactList}\small\item\em sets the current virtual (game) time \end{DoxyCompactList}\item 
+static void \hyperlink{classirr_1_1os_1_1_timer_ad2639d4bb96c4aee882bd7770b074919}{stop\-Timer} ()
+\begin{DoxyCompactList}\small\item\em stops the virtual (game) timer \end{DoxyCompactList}\item 
+static void \hyperlink{classirr_1_1os_1_1_timer_a0b9574ae0da8b6ee743bb25f425ea745}{start\-Timer} ()
+\begin{DoxyCompactList}\small\item\em starts the game timer \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1os_1_1_timer_a99651492b15c71c904d70595df0cbdf2}{static void \hyperlink{classirr_1_1os_1_1_timer_a99651492b15c71c904d70595df0cbdf2}{set\-Speed} (f32 speed)}\label{classirr_1_1os_1_1_timer_a99651492b15c71c904d70595df0cbdf2}
+
+\begin{DoxyCompactList}\small\item\em sets the speed of the virtual timer \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1os_1_1_timer_aceb41ea1ae8146920a0a8b62332b4df7}{static f32 \hyperlink{classirr_1_1os_1_1_timer_aceb41ea1ae8146920a0a8b62332b4df7}{get\-Speed} ()}\label{classirr_1_1os_1_1_timer_aceb41ea1ae8146920a0a8b62332b4df7}
+
+\begin{DoxyCompactList}\small\item\em gets the speed of the virtual timer \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1os_1_1_timer_aad6c27db995b80c795038bb2f827dfc5}{static bool \hyperlink{classirr_1_1os_1_1_timer_aad6c27db995b80c795038bb2f827dfc5}{is\-Stopped} ()}\label{classirr_1_1os_1_1_timer_aad6c27db995b80c795038bb2f827dfc5}
+
+\begin{DoxyCompactList}\small\item\em returns if the timer currently is stopped \end{DoxyCompactList}\item 
+static void \hyperlink{classirr_1_1os_1_1_timer_a0473ceda20f46f2259020ee6e4c1aa04}{tick} ()
+\begin{DoxyCompactList}\small\item\em makes the virtual timer update the time value based on the real time \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1os_1_1_timer_aa0a73b26f4f18ac6fbc737caae2061cd}{static u32 \hyperlink{classirr_1_1os_1_1_timer_aa0a73b26f4f18ac6fbc737caae2061cd}{get\-Real\-Time} ()}\label{classirr_1_1os_1_1_timer_aa0a73b26f4f18ac6fbc737caae2061cd}
+
+\begin{DoxyCompactList}\small\item\em returns the current real time in milliseconds \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1os_1_1_timer_a8b9af561cd8d4cb865c9b559b09eafb5}{\index{irr\-::os\-::\-Timer@{irr\-::os\-::\-Timer}!get\-Real\-Time\-And\-Date@{get\-Real\-Time\-And\-Date}}
+\index{get\-Real\-Time\-And\-Date@{get\-Real\-Time\-And\-Date}!irr::os::Timer@{irr\-::os\-::\-Timer}}
+\subsubsection[{get\-Real\-Time\-And\-Date}]{\setlength{\rightskip}{0pt plus 5cm}I\-Timer\-::\-Real\-Time\-Date irr\-::os\-::\-Timer\-::get\-Real\-Time\-And\-Date (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1os_1_1_timer_a8b9af561cd8d4cb865c9b559b09eafb5}
+
+
+get current time and date in calendar form 
+
+Get real time and date in calendar form. \hypertarget{classirr_1_1os_1_1_timer_a640377de088feab25b5b83f8d4ecc50d}{\index{irr\-::os\-::\-Timer@{irr\-::os\-::\-Timer}!get\-Time@{get\-Time}}
+\index{get\-Time@{get\-Time}!irr::os::Timer@{irr\-::os\-::\-Timer}}
+\subsubsection[{get\-Time}]{\setlength{\rightskip}{0pt plus 5cm}u32 irr\-::os\-::\-Timer\-::get\-Time (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1os_1_1_timer_a640377de088feab25b5b83f8d4ecc50d}
+
+
+returns the current time in milliseconds 
+
+returns current virtual time \hypertarget{classirr_1_1os_1_1_timer_aca64b292f9ea26d331684cde33e521da}{\index{irr\-::os\-::\-Timer@{irr\-::os\-::\-Timer}!set\-Time@{set\-Time}}
+\index{set\-Time@{set\-Time}!irr::os::Timer@{irr\-::os\-::\-Timer}}
+\subsubsection[{set\-Time}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::os\-::\-Timer\-::set\-Time (
+\begin{DoxyParamCaption}
+\item[{u32}]{time}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1os_1_1_timer_aca64b292f9ea26d331684cde33e521da}
+
+
+sets the current virtual (game) time 
+
+sets the current virtual time \hypertarget{classirr_1_1os_1_1_timer_a0b9574ae0da8b6ee743bb25f425ea745}{\index{irr\-::os\-::\-Timer@{irr\-::os\-::\-Timer}!start\-Timer@{start\-Timer}}
+\index{start\-Timer@{start\-Timer}!irr::os::Timer@{irr\-::os\-::\-Timer}}
+\subsubsection[{start\-Timer}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::os\-::\-Timer\-::start\-Timer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1os_1_1_timer_a0b9574ae0da8b6ee743bb25f425ea745}
+
+
+starts the game timer 
+
+starts the virtual timer \hypertarget{classirr_1_1os_1_1_timer_ad2639d4bb96c4aee882bd7770b074919}{\index{irr\-::os\-::\-Timer@{irr\-::os\-::\-Timer}!stop\-Timer@{stop\-Timer}}
+\index{stop\-Timer@{stop\-Timer}!irr::os::Timer@{irr\-::os\-::\-Timer}}
+\subsubsection[{stop\-Timer}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::os\-::\-Timer\-::stop\-Timer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1os_1_1_timer_ad2639d4bb96c4aee882bd7770b074919}
+
+
+stops the virtual (game) timer 
+
+stops the virtual timer \hypertarget{classirr_1_1os_1_1_timer_a0473ceda20f46f2259020ee6e4c1aa04}{\index{irr\-::os\-::\-Timer@{irr\-::os\-::\-Timer}!tick@{tick}}
+\index{tick@{tick}!irr::os::Timer@{irr\-::os\-::\-Timer}}
+\subsubsection[{tick}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::os\-::\-Timer\-::tick (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classirr_1_1os_1_1_timer_a0473ceda20f46f2259020ee6e4c1aa04}
+
+
+makes the virtual timer update the time value based on the real time 
+
+ticks, advances the virtual timer 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/os.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/os.\-cpp\end{DoxyCompactItemize}

@@ -11,3 +11,7 @@
 *.lai
 *.la
 *.a
+build/ExampleSolution/ExampleSolution.sdf
+build/ExampleSolution/ipch/
+temp/ExampleSolution/ExampleProject/DEBUG/
+temp/ExampleSolution/ExampleProject2/DEBUG/

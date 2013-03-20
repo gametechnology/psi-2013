@@ -1,0 +1,59 @@
+\hypertarget{classirr_1_1scene_1_1_c_ogre_mesh_file_loader}{\section{irr\-:\-:scene\-:\-:C\-Ogre\-Mesh\-File\-Loader Class Reference}
+\label{classirr_1_1scene_1_1_c_ogre_mesh_file_loader}\index{irr\-::scene\-::\-C\-Ogre\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-Ogre\-Mesh\-File\-Loader}}
+}
+
+
+Meshloader capable of loading ogre meshes.  
+
+
+
+
+{\ttfamily \#include $<$C\-Ogre\-Mesh\-File\-Loader.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Ogre\-Mesh\-File\-Loader\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_ogre_mesh_file_loader}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_ogre_mesh_file_loader_a1a67cfd56997f1bfd47a743d7156849d}{\hyperlink{classirr_1_1scene_1_1_c_ogre_mesh_file_loader_a1a67cfd56997f1bfd47a743d7156849d}{C\-Ogre\-Mesh\-File\-Loader} (io\-::\-I\-File\-System $\ast$fs, video\-::\-I\-Video\-Driver $\ast$driver)}\label{classirr_1_1scene_1_1_c_ogre_mesh_file_loader_a1a67cfd56997f1bfd47a743d7156849d}
+
+\begin{DoxyCompactList}\small\item\em Constructor. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_ogre_mesh_file_loader_a3b1647b36895ab8553c6c7155473d16a}{virtual \hyperlink{classirr_1_1scene_1_1_c_ogre_mesh_file_loader_a3b1647b36895ab8553c6c7155473d16a}{$\sim$\-C\-Ogre\-Mesh\-File\-Loader} ()}\label{classirr_1_1scene_1_1_c_ogre_mesh_file_loader_a3b1647b36895ab8553c6c7155473d16a}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1scene_1_1_c_ogre_mesh_file_loader_a86ff8c28d4d92e28682514d0eb8ff88e}{is\-A\-Loadable\-File\-Extension} (const io\-::path \&filename) const 
+\item 
+virtual I\-Animated\-Mesh $\ast$ \hyperlink{classirr_1_1scene_1_1_c_ogre_mesh_file_loader_af344b0d7f0e94446074576fedcea344b}{create\-Mesh} (io\-::\-I\-Read\-File $\ast$file)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Meshloader capable of loading ogre meshes. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_ogre_mesh_file_loader_af344b0d7f0e94446074576fedcea344b}{\index{irr\-::scene\-::\-C\-Ogre\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-Ogre\-Mesh\-File\-Loader}!create\-Mesh@{create\-Mesh}}
+\index{create\-Mesh@{create\-Mesh}!irr::scene::COgreMeshFileLoader@{irr\-::scene\-::\-C\-Ogre\-Mesh\-File\-Loader}}
+\subsubsection[{create\-Mesh}]{\setlength{\rightskip}{0pt plus 5cm}virtual I\-Animated\-Mesh$\ast$ irr\-::scene\-::\-C\-Ogre\-Mesh\-File\-Loader\-::create\-Mesh (
+\begin{DoxyParamCaption}
+\item[{io\-::\-I\-Read\-File $\ast$}]{file}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_ogre_mesh_file_loader_af344b0d7f0e94446074576fedcea344b}
+creates/loads an animated mesh from the file. \begin{DoxyReturn}{Returns}
+Pointer to the created mesh. Returns 0 if loading failed. If you no longer need the mesh, you should call I\-Animated\-Mesh\-::drop(). See I\-Reference\-Counted\-::drop() for more information. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1scene_1_1_c_ogre_mesh_file_loader_a86ff8c28d4d92e28682514d0eb8ff88e}{\index{irr\-::scene\-::\-C\-Ogre\-Mesh\-File\-Loader@{irr\-::scene\-::\-C\-Ogre\-Mesh\-File\-Loader}!is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}}
+\index{is\-A\-Loadable\-File\-Extension@{is\-A\-Loadable\-File\-Extension}!irr::scene::COgreMeshFileLoader@{irr\-::scene\-::\-C\-Ogre\-Mesh\-File\-Loader}}
+\subsubsection[{is\-A\-Loadable\-File\-Extension}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool irr\-::scene\-::\-C\-Ogre\-Mesh\-File\-Loader\-::is\-A\-Loadable\-File\-Extension (
+\begin{DoxyParamCaption}
+\item[{const io\-::path \&}]{filename}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_ogre_mesh_file_loader_a86ff8c28d4d92e28682514d0eb8ff88e}
+returns true if the file maybe is able to be loaded by this class based on the file extension (e.\-g. \char`\"{}.\-cob\char`\"{}) 
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Ogre\-Mesh\-File\-Loader.\-h\end{DoxyCompactItemize}

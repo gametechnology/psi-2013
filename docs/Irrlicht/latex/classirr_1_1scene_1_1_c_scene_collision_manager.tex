@@ -1,0 +1,117 @@
+\hypertarget{classirr_1_1scene_1_1_c_scene_collision_manager}{\section{irr\-:\-:scene\-:\-:C\-Scene\-Collision\-Manager Class Reference}
+\label{classirr_1_1scene_1_1_c_scene_collision_manager}\index{irr\-::scene\-::\-C\-Scene\-Collision\-Manager@{irr\-::scene\-::\-C\-Scene\-Collision\-Manager}}
+}
+
+
+The Scene Collision Manager provides methods for performing collision tests and picking on scene nodes.  
+
+
+
+
+{\ttfamily \#include $<$C\-Scene\-Collision\-Manager.\-h$>$}
+
+Inheritance diagram for irr\-:\-:scene\-:\-:C\-Scene\-Collision\-Manager\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1scene_1_1_c_scene_collision_manager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_collision_manager_ab9eee0f687d745a66a8ad975f061beab}{\hyperlink{classirr_1_1scene_1_1_c_scene_collision_manager_ab9eee0f687d745a66a8ad975f061beab}{C\-Scene\-Collision\-Manager} (I\-Scene\-Manager $\ast$smanager, video\-::\-I\-Video\-Driver $\ast$driver)}\label{classirr_1_1scene_1_1_c_scene_collision_manager_ab9eee0f687d745a66a8ad975f061beab}
+
+\begin{DoxyCompactList}\small\item\em constructor \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_collision_manager_a98625afd2b96ddf5b9749ccb6135cc38}{virtual \hyperlink{classirr_1_1scene_1_1_c_scene_collision_manager_a98625afd2b96ddf5b9749ccb6135cc38}{$\sim$\-C\-Scene\-Collision\-Manager} ()}\label{classirr_1_1scene_1_1_c_scene_collision_manager_a98625afd2b96ddf5b9749ccb6135cc38}
+
+\begin{DoxyCompactList}\small\item\em destructor \end{DoxyCompactList}\item 
+virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_scene_collision_manager_a21333f7cb9dccf867276972863f0f86e}{get\-Scene\-Node\-From\-Screen\-Coordinates\-B\-B} (const core\-::position2d$<$ s32 $>$ \&pos, s32 id\-Bit\-Mask=0, bool b\-No\-Debug\-Objects=false, I\-Scene\-Node $\ast$root=0)
+\item 
+virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_scene_collision_manager_a67f6dd80095287c0e2d73579d5237862}{get\-Scene\-Node\-From\-Ray\-B\-B} (const core\-::line3d$<$ f32 $>$ \&ray, s32 id\-Bit\-Mask=0, bool b\-No\-Debug\-Objects=false, I\-Scene\-Node $\ast$root=0)
+\item 
+virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_scene_collision_manager_a43e829fa1400a6f76bc871032e04a90a}{get\-Scene\-Node\-From\-Camera\-B\-B} (I\-Camera\-Scene\-Node $\ast$camera, s32 id\-Bit\-Mask=0, bool b\-No\-Debug\-Objects=false)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_collision_manager_a94a7495473c884501b1815dcfc2f88cb}{virtual bool \hyperlink{classirr_1_1scene_1_1_c_scene_collision_manager_a94a7495473c884501b1815dcfc2f88cb}{get\-Collision\-Point} (const core\-::line3d$<$ f32 $>$ \&ray, I\-Triangle\-Selector $\ast$selector, core\-::vector3df \&out\-Collision\-Point, core\-::triangle3df \&out\-Triangle, I\-Scene\-Node $\ast$\&out\-Node)}\label{classirr_1_1scene_1_1_c_scene_collision_manager_a94a7495473c884501b1815dcfc2f88cb}
+
+\begin{DoxyCompactList}\small\item\em Finds the collision point of a line and lots of triangles, if there is one. \end{DoxyCompactList}\item 
+virtual core\-::vector3df \hyperlink{classirr_1_1scene_1_1_c_scene_collision_manager_a76c8edc535c7226f31de8bedec98fc65}{get\-Collision\-Result\-Position} (I\-Triangle\-Selector $\ast$selector, const core\-::vector3df \&ellipsoid\-Position, const core\-::vector3df \&ellipsoid\-Radius, const core\-::vector3df \&ellipsoid\-Direction\-And\-Speed, core\-::triangle3df \&triout, core\-::vector3df \&hit\-Position, bool \&out\-Falling, I\-Scene\-Node $\ast$\&out\-Node, f32 sliding\-Speed, const core\-::vector3df \&gravity\-Direction\-And\-Speed)
+\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_collision_manager_af285a613c49299d3e5a113bd2f47e6a4}{virtual core\-::line3d$<$ f32 $>$ \hyperlink{classirr_1_1scene_1_1_c_scene_collision_manager_af285a613c49299d3e5a113bd2f47e6a4}{get\-Ray\-From\-Screen\-Coordinates} (const core\-::position2d$<$ s32 $>$ \&pos, I\-Camera\-Scene\-Node $\ast$camera=0)}\label{classirr_1_1scene_1_1_c_scene_collision_manager_af285a613c49299d3e5a113bd2f47e6a4}
+
+\begin{DoxyCompactList}\small\item\em Returns a 3d ray which would go through the 2d screen coodinates. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1scene_1_1_c_scene_collision_manager_a12d8bce50b830b4b9a07f1d942a06dd7}{virtual core\-::position2d$<$ s32 $>$ \hyperlink{classirr_1_1scene_1_1_c_scene_collision_manager_a12d8bce50b830b4b9a07f1d942a06dd7}{get\-Screen\-Coordinates\-From3\-D\-Position} (const core\-::vector3df \&pos, I\-Camera\-Scene\-Node $\ast$camera=0, bool use\-View\-Port=false)}\label{classirr_1_1scene_1_1_c_scene_collision_manager_a12d8bce50b830b4b9a07f1d942a06dd7}
+
+\begin{DoxyCompactList}\small\item\em Calculates 2d screen position from a 3d position. \end{DoxyCompactList}\item 
+virtual I\-Scene\-Node $\ast$ \hyperlink{classirr_1_1scene_1_1_c_scene_collision_manager_ab3837e8e7092b4c5b1b0aa43f6787f6b}{get\-Scene\-Node\-And\-Collision\-Point\-From\-Ray} (core\-::line3df ray, core\-::vector3df \&out\-Collision\-Point, core\-::triangle3df \&out\-Triangle, s32 id\-Bit\-Mask=0, I\-Scene\-Node $\ast$collision\-Root\-Node=0, bool no\-Debug\-Objects=false)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The Scene Collision Manager provides methods for performing collision tests and picking on scene nodes. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1scene_1_1_c_scene_collision_manager_a76c8edc535c7226f31de8bedec98fc65}{\index{irr\-::scene\-::\-C\-Scene\-Collision\-Manager@{irr\-::scene\-::\-C\-Scene\-Collision\-Manager}!get\-Collision\-Result\-Position@{get\-Collision\-Result\-Position}}
+\index{get\-Collision\-Result\-Position@{get\-Collision\-Result\-Position}!irr::scene::CSceneCollisionManager@{irr\-::scene\-::\-C\-Scene\-Collision\-Manager}}
+\subsubsection[{get\-Collision\-Result\-Position}]{\setlength{\rightskip}{0pt plus 5cm}core\-::vector3df irr\-::scene\-::\-C\-Scene\-Collision\-Manager\-::get\-Collision\-Result\-Position (
+\begin{DoxyParamCaption}
+\item[{I\-Triangle\-Selector $\ast$}]{selector, }
+\item[{const core\-::vector3df \&}]{position, }
+\item[{const core\-::vector3df \&}]{radius, }
+\item[{const core\-::vector3df \&}]{direction, }
+\item[{core\-::triangle3df \&}]{triout, }
+\item[{core\-::vector3df \&}]{hit\-Position, }
+\item[{bool \&}]{out\-Falling, }
+\item[{I\-Scene\-Node $\ast$\&}]{out\-Node, }
+\item[{f32}]{sliding\-Speed, }
+\item[{const core\-::vector3df \&}]{gravity}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_collision_manager_a76c8edc535c7226f31de8bedec98fc65}
+Collides a moving ellipsoid with a 3d world with gravity and returns the resulting new position of the ellipsoid. \hypertarget{classirr_1_1scene_1_1_c_scene_collision_manager_ab3837e8e7092b4c5b1b0aa43f6787f6b}{\index{irr\-::scene\-::\-C\-Scene\-Collision\-Manager@{irr\-::scene\-::\-C\-Scene\-Collision\-Manager}!get\-Scene\-Node\-And\-Collision\-Point\-From\-Ray@{get\-Scene\-Node\-And\-Collision\-Point\-From\-Ray}}
+\index{get\-Scene\-Node\-And\-Collision\-Point\-From\-Ray@{get\-Scene\-Node\-And\-Collision\-Point\-From\-Ray}!irr::scene::CSceneCollisionManager@{irr\-::scene\-::\-C\-Scene\-Collision\-Manager}}
+\subsubsection[{get\-Scene\-Node\-And\-Collision\-Point\-From\-Ray}]{\setlength{\rightskip}{0pt plus 5cm}I\-Scene\-Node $\ast$ irr\-::scene\-::\-C\-Scene\-Collision\-Manager\-::get\-Scene\-Node\-And\-Collision\-Point\-From\-Ray (
+\begin{DoxyParamCaption}
+\item[{core\-::line3df}]{ray, }
+\item[{core\-::vector3df \&}]{out\-Collision\-Point, }
+\item[{core\-::triangle3df \&}]{out\-Triangle, }
+\item[{s32}]{id\-Bit\-Mask = {\ttfamily 0}, }
+\item[{I\-Scene\-Node $\ast$}]{collision\-Root\-Node = {\ttfamily 0}, }
+\item[{bool}]{no\-Debug\-Objects = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_collision_manager_ab3837e8e7092b4c5b1b0aa43f6787f6b}
+Gets the scene node and nearest collision point for a ray based on the nodes' id bitmasks, bounding boxes and triangle selectors. \hypertarget{classirr_1_1scene_1_1_c_scene_collision_manager_a43e829fa1400a6f76bc871032e04a90a}{\index{irr\-::scene\-::\-C\-Scene\-Collision\-Manager@{irr\-::scene\-::\-C\-Scene\-Collision\-Manager}!get\-Scene\-Node\-From\-Camera\-B\-B@{get\-Scene\-Node\-From\-Camera\-B\-B}}
+\index{get\-Scene\-Node\-From\-Camera\-B\-B@{get\-Scene\-Node\-From\-Camera\-B\-B}!irr::scene::CSceneCollisionManager@{irr\-::scene\-::\-C\-Scene\-Collision\-Manager}}
+\subsubsection[{get\-Scene\-Node\-From\-Camera\-B\-B}]{\setlength{\rightskip}{0pt plus 5cm}I\-Scene\-Node $\ast$ irr\-::scene\-::\-C\-Scene\-Collision\-Manager\-::get\-Scene\-Node\-From\-Camera\-B\-B (
+\begin{DoxyParamCaption}
+\item[{I\-Camera\-Scene\-Node $\ast$}]{camera, }
+\item[{s32}]{id\-Bit\-Mask = {\ttfamily 0}, }
+\item[{bool}]{no\-Debug\-Objects = {\ttfamily false}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_collision_manager_a43e829fa1400a6f76bc871032e04a90a}
+Returns the scene node, at which the overgiven camera is looking at and which id matches the bitmask. \hypertarget{classirr_1_1scene_1_1_c_scene_collision_manager_a67f6dd80095287c0e2d73579d5237862}{\index{irr\-::scene\-::\-C\-Scene\-Collision\-Manager@{irr\-::scene\-::\-C\-Scene\-Collision\-Manager}!get\-Scene\-Node\-From\-Ray\-B\-B@{get\-Scene\-Node\-From\-Ray\-B\-B}}
+\index{get\-Scene\-Node\-From\-Ray\-B\-B@{get\-Scene\-Node\-From\-Ray\-B\-B}!irr::scene::CSceneCollisionManager@{irr\-::scene\-::\-C\-Scene\-Collision\-Manager}}
+\subsubsection[{get\-Scene\-Node\-From\-Ray\-B\-B}]{\setlength{\rightskip}{0pt plus 5cm}I\-Scene\-Node $\ast$ irr\-::scene\-::\-C\-Scene\-Collision\-Manager\-::get\-Scene\-Node\-From\-Ray\-B\-B (
+\begin{DoxyParamCaption}
+\item[{const core\-::line3d$<$ f32 $>$ \&}]{ray, }
+\item[{s32}]{id\-Bit\-Mask = {\ttfamily 0}, }
+\item[{bool}]{b\-No\-Debug\-Objects = {\ttfamily false}, }
+\item[{I\-Scene\-Node $\ast$}]{root = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_collision_manager_a67f6dd80095287c0e2d73579d5237862}
+Returns the nearest scene node which collides with a 3d ray and whose id matches a bitmask.
+
+Returns the nearest scene node which collides with a 3d ray and which id matches a bitmask. \hypertarget{classirr_1_1scene_1_1_c_scene_collision_manager_a21333f7cb9dccf867276972863f0f86e}{\index{irr\-::scene\-::\-C\-Scene\-Collision\-Manager@{irr\-::scene\-::\-C\-Scene\-Collision\-Manager}!get\-Scene\-Node\-From\-Screen\-Coordinates\-B\-B@{get\-Scene\-Node\-From\-Screen\-Coordinates\-B\-B}}
+\index{get\-Scene\-Node\-From\-Screen\-Coordinates\-B\-B@{get\-Scene\-Node\-From\-Screen\-Coordinates\-B\-B}!irr::scene::CSceneCollisionManager@{irr\-::scene\-::\-C\-Scene\-Collision\-Manager}}
+\subsubsection[{get\-Scene\-Node\-From\-Screen\-Coordinates\-B\-B}]{\setlength{\rightskip}{0pt plus 5cm}I\-Scene\-Node $\ast$ irr\-::scene\-::\-C\-Scene\-Collision\-Manager\-::get\-Scene\-Node\-From\-Screen\-Coordinates\-B\-B (
+\begin{DoxyParamCaption}
+\item[{const core\-::position2d$<$ s32 $>$ \&}]{pos, }
+\item[{s32}]{id\-Bit\-Mask = {\ttfamily 0}, }
+\item[{bool}]{b\-No\-Debug\-Objects = {\ttfamily false}, }
+\item[{I\-Scene\-Node $\ast$}]{root = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1scene_1_1_c_scene_collision_manager_a21333f7cb9dccf867276972863f0f86e}
+Returns the scene node, which is currently visible at the given screen coordinates, viewed from the currently active camera. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Scene\-Collision\-Manager.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Scene\-Collision\-Manager.\-cpp\end{DoxyCompactItemize}

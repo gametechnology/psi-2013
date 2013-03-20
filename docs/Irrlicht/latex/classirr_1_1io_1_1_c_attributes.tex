@@ -1,0 +1,1663 @@
+\hypertarget{classirr_1_1io_1_1_c_attributes}{\section{irr\-:\-:io\-:\-:C\-Attributes Class Reference}
+\label{classirr_1_1io_1_1_c_attributes}\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}}
+}
+
+
+Implementation of the I\-Attributes interface.  
+
+
+
+
+{\ttfamily \#include $<$C\-Attributes.\-h$>$}
+
+Inheritance diagram for irr\-:\-:io\-:\-:C\-Attributes\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classirr_1_1io_1_1_c_attributes}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a7dd496d35bc183ce2910087c304c1ef7}{{\bfseries C\-Attributes} (video\-::\-I\-Video\-Driver $\ast$driver=0)}\label{classirr_1_1io_1_1_c_attributes_a7dd496d35bc183ce2910087c304c1ef7}
+
+\item 
+virtual u32 \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count} () const 
+\begin{DoxyCompactList}\small\item\em Returns amount of attributes in this collection of attributes. \end{DoxyCompactList}\item 
+virtual const c8 $\ast$ \hyperlink{classirr_1_1io_1_1_c_attributes_a6c94ed4da490d00a6612e8ea3925cdbf}{get\-Attribute\-Name} (s32 index)
+\item 
+virtual E\-\_\-\-A\-T\-T\-R\-I\-B\-U\-T\-E\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1io_1_1_c_attributes_a811d34d5b2cfba8863c8a75e5d002826}{get\-Attribute\-Type} (const c8 $\ast$attribute\-Name)
+\begin{DoxyCompactList}\small\item\em Returns the type of an attribute. \end{DoxyCompactList}\item 
+virtual E\-\_\-\-A\-T\-T\-R\-I\-B\-U\-T\-E\-\_\-\-T\-Y\-P\-E \hyperlink{classirr_1_1io_1_1_c_attributes_af59aa337ed1e86c7781ced593eacbf7c}{get\-Attribute\-Type} (s32 index)
+\item 
+virtual const wchar\-\_\-t $\ast$ \hyperlink{classirr_1_1io_1_1_c_attributes_a2570b742ad1c9a5a051179081439a545}{get\-Attribute\-Type\-String} (const c8 $\ast$attribute\-Name)
+\begin{DoxyCompactList}\small\item\em Returns the type of an attribute. \end{DoxyCompactList}\item 
+virtual const wchar\-\_\-t $\ast$ \hyperlink{classirr_1_1io_1_1_c_attributes_a43e2257da4c0ab6f8c37e30245630de7}{get\-Attribute\-Type\-String} (s32 index)
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a4c71c0d38fc12dff77b6817d522b2a03}{virtual bool \hyperlink{classirr_1_1io_1_1_c_attributes_a4c71c0d38fc12dff77b6817d522b2a03}{exists\-Attribute} (const c8 $\ast$attribute\-Name)}\label{classirr_1_1io_1_1_c_attributes_a4c71c0d38fc12dff77b6817d522b2a03}
+
+\begin{DoxyCompactList}\small\item\em Returns if an attribute with a name exists. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_af2cf75e29ae88a39ecae3e948355c736}{virtual s32 \hyperlink{classirr_1_1io_1_1_c_attributes_af2cf75e29ae88a39ecae3e948355c736}{find\-Attribute} (const c8 $\ast$attribute\-Name) const }\label{classirr_1_1io_1_1_c_attributes_af2cf75e29ae88a39ecae3e948355c736}
+
+\begin{DoxyCompactList}\small\item\em Returns attribute index from name, -\/1 if not found. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a8b372f1251a896715478f2e81456d671}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a8b372f1251a896715478f2e81456d671}{clear} ()}\label{classirr_1_1io_1_1_c_attributes_a8b372f1251a896715478f2e81456d671}
+
+\begin{DoxyCompactList}\small\item\em Removes all attributes. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1io_1_1_c_attributes_a91a69c9156f1929a24eb7ed45e11b9b1}{read} (io\-::\-I\-X\-M\-L\-Reader $\ast$reader, bool read\-Current\-Element\-Only=false, const wchar\-\_\-t $\ast$non\-Default\-Element\-Name=0)
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a572cc4c7746888ddaa69ce330f4660ff}{virtual bool \hyperlink{classirr_1_1io_1_1_c_attributes_a572cc4c7746888ddaa69ce330f4660ff}{write} (io\-::\-I\-X\-M\-L\-Writer $\ast$writer, bool write\-X\-M\-L\-Header=false, const wchar\-\_\-t $\ast$non\-Default\-Element\-Name=0)}\label{classirr_1_1io_1_1_c_attributes_a572cc4c7746888ddaa69ce330f4660ff}
+
+\begin{DoxyCompactList}\small\item\em Write these attributes into a xml file. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a5964e9a5156d42848d419052771f98fb}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a5964e9a5156d42848d419052771f98fb}{add\-Int} (const c8 $\ast$attribute\-Name, s32 value)}\label{classirr_1_1io_1_1_c_attributes_a5964e9a5156d42848d419052771f98fb}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as integer. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute} (const c8 $\ast$attribute\-Name, s32 value)
+\begin{DoxyCompactList}\small\item\em Sets an attribute as integer value. \end{DoxyCompactList}\item 
+virtual s32 \hyperlink{classirr_1_1io_1_1_c_attributes_afe7925dfeed74a736eb46ddae7feb30b}{get\-Attribute\-As\-Int} (const c8 $\ast$attribute\-Name) const 
+\item 
+virtual s32 \hyperlink{classirr_1_1io_1_1_c_attributes_aa464893bd208c9aee9c4a7b0ff52db87}{get\-Attribute\-As\-Int} (s32 index) const 
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a7d833ca87d8fa3a9a3997e0c4f9c7e7b}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a7d833ca87d8fa3a9a3997e0c4f9c7e7b}{set\-Attribute} (s32 index, s32 value)}\label{classirr_1_1io_1_1_c_attributes_a7d833ca87d8fa3a9a3997e0c4f9c7e7b}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as integer value. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_af0b2269019e815580d8334cdb3a93f1e}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_af0b2269019e815580d8334cdb3a93f1e}{add\-Float} (const c8 $\ast$attribute\-Name, f32 value)}\label{classirr_1_1io_1_1_c_attributes_af0b2269019e815580d8334cdb3a93f1e}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as float. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a13b8fef7a3cbb976a27339a67f9b86ee}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a13b8fef7a3cbb976a27339a67f9b86ee}{set\-Attribute} (const c8 $\ast$attribute\-Name, f32 value)}\label{classirr_1_1io_1_1_c_attributes_a13b8fef7a3cbb976a27339a67f9b86ee}
+
+\begin{DoxyCompactList}\small\item\em Sets a attribute as float value. \end{DoxyCompactList}\item 
+virtual f32 \hyperlink{classirr_1_1io_1_1_c_attributes_a1a79c2194792e07764ad381ea8729dba}{get\-Attribute\-As\-Float} (const c8 $\ast$attribute\-Name)
+\item 
+virtual f32 \hyperlink{classirr_1_1io_1_1_c_attributes_aacbc0a4ae761cf6156c8a08d2039870f}{get\-Attribute\-As\-Float} (s32 index)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a0063ee8c8490cd0abd4cdcda53e834ca}{set\-Attribute} (s32 index, f32 value)
+\begin{DoxyCompactList}\small\item\em Sets an attribute as float value. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a1590291112302c3dea3b26001be14344}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a1590291112302c3dea3b26001be14344}{add\-String} (const c8 $\ast$attribute\-Name, const c8 $\ast$value)}\label{classirr_1_1io_1_1_c_attributes_a1590291112302c3dea3b26001be14344}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as string. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a242304d1cde52e8248b033e2ea573b78}{set\-Attribute} (const c8 $\ast$attribute\-Name, const c8 $\ast$value)
+\item 
+virtual core\-::stringc \hyperlink{classirr_1_1io_1_1_c_attributes_aa3e151ba0dd648df674f332e65483839}{get\-Attribute\-As\-String} (const c8 $\ast$attribute\-Name)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a12799158b6cb46f92498c4292a583f11}{get\-Attribute\-As\-String} (const c8 $\ast$attribute\-Name, c8 $\ast$target)
+\item 
+virtual core\-::stringc \hyperlink{classirr_1_1io_1_1_c_attributes_a3cc6b827e5afc0056cb132bb61394d2b}{get\-Attribute\-As\-String} (s32 index)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a90fa13ebc3cff790881b857f8336de41}{set\-Attribute} (s32 index, const c8 $\ast$value)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a9767565a17a2581fc887fba4a70cbd04}{add\-String} (const c8 $\ast$attribute\-Name, const wchar\-\_\-t $\ast$value)
+\begin{DoxyCompactList}\small\item\em Adds an attribute as string. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_ad4f47a17331499d7fb3508d9f884ab2c}{set\-Attribute} (const c8 $\ast$attribute\-Name, const wchar\-\_\-t $\ast$value)
+\item 
+virtual core\-::stringw \hyperlink{classirr_1_1io_1_1_c_attributes_aa074d8dfc482e45e4a7ac278a60394a0}{get\-Attribute\-As\-String\-W} (const c8 $\ast$attribute\-Name)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_ae88db618ee4e8ef65fb176683d2a4df3}{get\-Attribute\-As\-String\-W} (const c8 $\ast$attribute\-Name, wchar\-\_\-t $\ast$target)
+\item 
+virtual core\-::stringw \hyperlink{classirr_1_1io_1_1_c_attributes_a560824bcd9a2e2fb2cd9a72812395c1e}{get\-Attribute\-As\-String\-W} (s32 index)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_aa8824e20d9467e2dbe980403cbd784df}{set\-Attribute} (s32 index, const wchar\-\_\-t $\ast$value)
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a4706474b7154cc6cd74a7a2ec057fd9c}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a4706474b7154cc6cd74a7a2ec057fd9c}{add\-Binary} (const c8 $\ast$attribute\-Name, void $\ast$data, s32 data\-Size\-In\-Bytes)}\label{classirr_1_1io_1_1_c_attributes_a4706474b7154cc6cd74a7a2ec057fd9c}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as binary data. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_ad58521310dc52a31054aacb25136f045}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_ad58521310dc52a31054aacb25136f045}{set\-Attribute} (const c8 $\ast$attribute\-Name, void $\ast$data, s32 data\-Size\-In\-Bytes)}\label{classirr_1_1io_1_1_c_attributes_ad58521310dc52a31054aacb25136f045}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as binary data. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_abed02ddc71c32114c8e37bbbf827ea9d}{get\-Attribute\-As\-Binary\-Data} (const c8 $\ast$attribute\-Name, void $\ast$out\-Data, s32 max\-Size\-In\-Bytes)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_aa8dec860c2b5a783f933182eca0cb509}{get\-Attribute\-As\-Binary\-Data} (s32 index, void $\ast$out\-Data, s32 max\-Size\-In\-Bytes)
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a7acaabdaffa7f26edbf98bdcbeba577d}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a7acaabdaffa7f26edbf98bdcbeba577d}{set\-Attribute} (s32 index, void $\ast$data, s32 data\-Size\-In\-Bytes)}\label{classirr_1_1io_1_1_c_attributes_a7acaabdaffa7f26edbf98bdcbeba577d}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as binary data. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_aef7dbf080e484c787f4b4850f84a26d2}{add\-Array} (const c8 $\ast$attribute\-Name, const core\-::array$<$ core\-::stringw $>$ \&value)
+\begin{DoxyCompactList}\small\item\em Adds an attribute as wide string array. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a9e71f0c4b6dbc67e62305df2cb29dce4}{set\-Attribute} (const c8 $\ast$attribute\-Name, const core\-::array$<$ core\-::stringw $>$ \&value)
+\begin{DoxyCompactList}\small\item\em Sets an attribute value as an array of wide strings. \end{DoxyCompactList}\item 
+virtual core\-::array\\*
+$<$ core\-::stringw $>$ \hyperlink{classirr_1_1io_1_1_c_attributes_a1f495d069f2e11ee45afcbc9d51d84a3}{get\-Attribute\-As\-Array} (const c8 $\ast$attribute\-Name)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as an array of wide strings. \end{DoxyCompactList}\item 
+virtual core\-::array\\*
+$<$ core\-::stringw $>$ \hyperlink{classirr_1_1io_1_1_c_attributes_ac48b3af8f02372323d555251260c877d}{get\-Attribute\-As\-Array} (s32 index)
+\begin{DoxyCompactList}\small\item\em Returns attribute value as an array of wide strings by index. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a456b94e50cb31044ad1895dd2e806818}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a456b94e50cb31044ad1895dd2e806818}{set\-Attribute} (s32 index, const core\-::array$<$ core\-::stringw $>$ \&value)}\label{classirr_1_1io_1_1_c_attributes_a456b94e50cb31044ad1895dd2e806818}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as an array of wide strings. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a93144d2cdf5f19a00a6eae0721b50662}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a93144d2cdf5f19a00a6eae0721b50662}{add\-Bool} (const c8 $\ast$attribute\-Name, bool value)}\label{classirr_1_1io_1_1_c_attributes_a93144d2cdf5f19a00a6eae0721b50662}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as bool. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a84007861291e5b10e581d6ff327c1d23}{set\-Attribute} (const c8 $\ast$attribute\-Name, bool value)
+\begin{DoxyCompactList}\small\item\em Sets an attribute as boolean value. \end{DoxyCompactList}\item 
+virtual bool \hyperlink{classirr_1_1io_1_1_c_attributes_a788bcbe8e9742aced56e5c718a6b52a3}{get\-Attribute\-As\-Bool} (const c8 $\ast$attribute\-Name)
+\item 
+virtual bool \hyperlink{classirr_1_1io_1_1_c_attributes_a178f0b922591bec04deb082acba7ff21}{get\-Attribute\-As\-Bool} (s32 index)
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_ab790cab5b7a8ebfa44d3d2c089bcf284}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_ab790cab5b7a8ebfa44d3d2c089bcf284}{set\-Attribute} (s32 index, bool value)}\label{classirr_1_1io_1_1_c_attributes_ab790cab5b7a8ebfa44d3d2c089bcf284}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as boolean value. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a9232b0a6bee949f43446b58183ca1e5e}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a9232b0a6bee949f43446b58183ca1e5e}{add\-Enum} (const c8 $\ast$attribute\-Name, const c8 $\ast$enum\-Value, const c8 $\ast$const $\ast$enumeration\-Literals)}\label{classirr_1_1io_1_1_c_attributes_a9232b0a6bee949f43446b58183ca1e5e}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as enum. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a0dc879b10f227f04f5348146cbb40f52}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a0dc879b10f227f04f5348146cbb40f52}{add\-Enum} (const c8 $\ast$attribute\-Name, s32 enum\-Value, const c8 $\ast$const $\ast$enumeration\-Literals)}\label{classirr_1_1io_1_1_c_attributes_a0dc879b10f227f04f5348146cbb40f52}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as enum. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_af3a753227a64622c89637dd33c89f114}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_af3a753227a64622c89637dd33c89f114}{set\-Attribute} (const c8 $\ast$attribute\-Name, const c8 $\ast$enum\-Value, const c8 $\ast$const $\ast$enumeration\-Literals)}\label{classirr_1_1io_1_1_c_attributes_af3a753227a64622c89637dd33c89f114}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as enumeration. \end{DoxyCompactList}\item 
+virtual const c8 $\ast$ \hyperlink{classirr_1_1io_1_1_c_attributes_af774f822ac2d434bdd1decd7fd747a7e}{get\-Attribute\-As\-Enumeration} (const c8 $\ast$attribute\-Name)
+\item 
+virtual s32 \hyperlink{classirr_1_1io_1_1_c_attributes_ab21438063c56f62d3ebc598d361b231e}{get\-Attribute\-As\-Enumeration} (const c8 $\ast$attribute\-Name, const c8 $\ast$const $\ast$enumeration\-Literals\-To\-Use)
+\item 
+virtual s32 \hyperlink{classirr_1_1io_1_1_c_attributes_a16818ae4592f9d9716e1fa6b00ffea3a}{get\-Attribute\-As\-Enumeration} (s32 index, const c8 $\ast$const $\ast$enumeration\-Literals\-To\-Use)
+\item 
+virtual const c8 $\ast$ \hyperlink{classirr_1_1io_1_1_c_attributes_ae5abcddc4fede12071142c547c4fa524}{get\-Attribute\-As\-Enumeration} (s32 index)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a63ca36ed2f2e5d79244baabdad8b8684}{get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration} (const c8 $\ast$attribute\-Name, core\-::array$<$ core\-::stringc $>$ \&out\-Literals)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_aa81b0b8b31e8725f6d3c5021bd45ab7d}{get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration} (s32 index, core\-::array$<$ core\-::stringc $>$ \&out\-Literals)
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_af067fbdcd90b9b8016899bac4aa99c3f}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_af067fbdcd90b9b8016899bac4aa99c3f}{set\-Attribute} (s32 index, const c8 $\ast$enum\-Value, const c8 $\ast$const $\ast$enumeration\-Literals)}\label{classirr_1_1io_1_1_c_attributes_af067fbdcd90b9b8016899bac4aa99c3f}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as enumeration. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a7b0a34fc237d6e22979d8d4b26a06b02}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a7b0a34fc237d6e22979d8d4b26a06b02}{add\-Color} (const c8 $\ast$attribute\-Name, video\-::\-S\-Color value)}\label{classirr_1_1io_1_1_c_attributes_a7b0a34fc237d6e22979d8d4b26a06b02}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as color. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a776cc316535d6d145254289af59af0d5}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a776cc316535d6d145254289af59af0d5}{set\-Attribute} (const c8 $\ast$attribute\-Name, video\-::\-S\-Color color)}\label{classirr_1_1io_1_1_c_attributes_a776cc316535d6d145254289af59af0d5}
+
+\begin{DoxyCompactList}\small\item\em Sets a attribute as color. \end{DoxyCompactList}\item 
+virtual video\-::\-S\-Color \hyperlink{classirr_1_1io_1_1_c_attributes_a6b55e30576371041628fd3fcdd2a81e6}{get\-Attribute\-As\-Color} (const c8 $\ast$attribute\-Name)
+\item 
+virtual video\-::\-S\-Color \hyperlink{classirr_1_1io_1_1_c_attributes_ac014dd88e619781e96b474475c1a6b36}{get\-Attribute\-As\-Color} (s32 index)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a7ed268a6b14261f9e5f629f4de2d084d}{set\-Attribute} (s32 index, video\-::\-S\-Color color)
+\begin{DoxyCompactList}\small\item\em Sets an attribute as color. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a4a0bdb94bce8eea68db7e1f2d9bf0a56}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a4a0bdb94bce8eea68db7e1f2d9bf0a56}{add\-Colorf} (const c8 $\ast$attribute\-Name, video\-::\-S\-Colorf value)}\label{classirr_1_1io_1_1_c_attributes_a4a0bdb94bce8eea68db7e1f2d9bf0a56}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as floating point color. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a10b3b23ba5966c6858370c6d61e0f4e1}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a10b3b23ba5966c6858370c6d61e0f4e1}{set\-Attribute} (const c8 $\ast$attribute\-Name, video\-::\-S\-Colorf color)}\label{classirr_1_1io_1_1_c_attributes_a10b3b23ba5966c6858370c6d61e0f4e1}
+
+\begin{DoxyCompactList}\small\item\em Sets a attribute as floating point color. \end{DoxyCompactList}\item 
+virtual video\-::\-S\-Colorf \hyperlink{classirr_1_1io_1_1_c_attributes_aa0c5de3c6d7cb5d752617ca972aaae4f}{get\-Attribute\-As\-Colorf} (const c8 $\ast$attribute\-Name)
+\item 
+virtual video\-::\-S\-Colorf \hyperlink{classirr_1_1io_1_1_c_attributes_afbcc628342d7d7dbf16af6b6f47cae8b}{get\-Attribute\-As\-Colorf} (s32 index)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_ad68b428220740dfa4814d563790feec8}{set\-Attribute} (s32 index, video\-::\-S\-Colorf color)
+\begin{DoxyCompactList}\small\item\em Sets an attribute as floating point color. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_aafb30fe961719043791bbf8df1b46ead}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_aafb30fe961719043791bbf8df1b46ead}{add\-Vector3d} (const c8 $\ast$attribute\-Name, core\-::vector3df value)}\label{classirr_1_1io_1_1_c_attributes_aafb30fe961719043791bbf8df1b46ead}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as 3d vector. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_aefc8f6d193a2267e61347993fb5e9a7c}{set\-Attribute} (const c8 $\ast$attribute\-Name, core\-::vector3df v)
+\begin{DoxyCompactList}\small\item\em Sets a attribute as 3d vector. \end{DoxyCompactList}\item 
+virtual core\-::vector3df \hyperlink{classirr_1_1io_1_1_c_attributes_abf2d9ef9b269e708bcd9631e6b54380e}{get\-Attribute\-As\-Vector3d} (const c8 $\ast$attribute\-Name)
+\item 
+virtual core\-::vector3df \hyperlink{classirr_1_1io_1_1_c_attributes_a3524c97469285913b43faf34f30a639c}{get\-Attribute\-As\-Vector3d} (s32 index)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_adaa284fc7bdd81fe703db9e0c8572e99}{set\-Attribute} (s32 index, core\-::vector3df v)
+\begin{DoxyCompactList}\small\item\em Sets an attribute as vector. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a8cfb99e48043c2bf205c8a43d1dc0436}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a8cfb99e48043c2bf205c8a43d1dc0436}{add\-Vector2d} (const c8 $\ast$attribute\-Name, core\-::vector2df value)}\label{classirr_1_1io_1_1_c_attributes_a8cfb99e48043c2bf205c8a43d1dc0436}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as 2d vector. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a525e249eb1a52f594b9378177d2fc6e0}{set\-Attribute} (const c8 $\ast$attribute\-Name, core\-::vector2df v)
+\begin{DoxyCompactList}\small\item\em Sets a attribute as 2d vector. \end{DoxyCompactList}\item 
+virtual core\-::vector2df \hyperlink{classirr_1_1io_1_1_c_attributes_a5bd20f337412c2fd6c6b94b5790179cd}{get\-Attribute\-As\-Vector2d} (const c8 $\ast$attribute\-Name)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as vector. \end{DoxyCompactList}\item 
+virtual core\-::vector2df \hyperlink{classirr_1_1io_1_1_c_attributes_a7855e10e87198ab03ee8422ee4ae98b4}{get\-Attribute\-As\-Vector2d} (s32 index)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as 2d vector. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a4ac7f976c6a30364fb2d21da286d0d4a}{set\-Attribute} (s32 index, core\-::vector2df v)
+\begin{DoxyCompactList}\small\item\em Sets an attribute as vector. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a9a1f72f32d8c5f83c27807c71bd1006a}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a9a1f72f32d8c5f83c27807c71bd1006a}{add\-Position2d} (const c8 $\ast$attribute\-Name, core\-::position2di value)}\label{classirr_1_1io_1_1_c_attributes_a9a1f72f32d8c5f83c27807c71bd1006a}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as 2d position. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a4ec4a47670e57b206a93d09400b7e834}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a4ec4a47670e57b206a93d09400b7e834}{set\-Attribute} (const c8 $\ast$attribute\-Name, core\-::position2di v)}\label{classirr_1_1io_1_1_c_attributes_a4ec4a47670e57b206a93d09400b7e834}
+
+\begin{DoxyCompactList}\small\item\em Sets a attribute as 2d position. \end{DoxyCompactList}\item 
+virtual core\-::position2di \hyperlink{classirr_1_1io_1_1_c_attributes_ad8ff6cbfa822159cc1f8636f0ac50051}{get\-Attribute\-As\-Position2d} (const c8 $\ast$attribute\-Name)
+\item 
+virtual core\-::position2di \hyperlink{classirr_1_1io_1_1_c_attributes_ae727f6ca5966cc0f3165de548fe18e9c}{get\-Attribute\-As\-Position2d} (s32 index)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a997ec5ad9193c9401e579c2ef842767d}{set\-Attribute} (s32 index, core\-::position2di v)
+\begin{DoxyCompactList}\small\item\em Sets an attribute as 2d position. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a93468a0f67d83992703b19e08a7657c3}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a93468a0f67d83992703b19e08a7657c3}{add\-Rect} (const c8 $\ast$attribute\-Name, core\-::rect$<$ s32 $>$ value)}\label{classirr_1_1io_1_1_c_attributes_a93468a0f67d83992703b19e08a7657c3}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as rectangle. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a19744607747c7912ff700957daeee3b3}{set\-Attribute} (const c8 $\ast$attribute\-Name, core\-::rect$<$ s32 $>$ v)
+\begin{DoxyCompactList}\small\item\em Sets an attribute as rectangle. \end{DoxyCompactList}\item 
+virtual core\-::rect$<$ s32 $>$ \hyperlink{classirr_1_1io_1_1_c_attributes_a65b4ede53ac7969ca9be11a863650887}{get\-Attribute\-As\-Rect} (const c8 $\ast$attribute\-Name)
+\item 
+virtual core\-::rect$<$ s32 $>$ \hyperlink{classirr_1_1io_1_1_c_attributes_ad42012621b1d384e80c8be1c9587bcd3}{get\-Attribute\-As\-Rect} (s32 index)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_ae099c1e083452a0e5ab566d791f3cbf0}{set\-Attribute} (s32 index, core\-::rect$<$ s32 $>$ v)
+\begin{DoxyCompactList}\small\item\em Sets an attribute as rectangle. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_adbfc479611dc9169cb91f31b2187ce6e}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_adbfc479611dc9169cb91f31b2187ce6e}{add\-Dimension2d} (const c8 $\ast$attribute\-Name, core\-::dimension2d$<$ u32 $>$ value)}\label{classirr_1_1io_1_1_c_attributes_adbfc479611dc9169cb91f31b2187ce6e}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as dimension2d. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a3e94b9eb0dbda755d1c6856b7a0df4e7}{set\-Attribute} (const c8 $\ast$attribute\-Name, core\-::dimension2d$<$ u32 $>$ v)
+\begin{DoxyCompactList}\small\item\em Sets an attribute as dimension2d. \end{DoxyCompactList}\item 
+virtual core\-::dimension2d$<$ u32 $>$ \hyperlink{classirr_1_1io_1_1_c_attributes_a2229182db5cb17d469b7a22e2f78f83c}{get\-Attribute\-As\-Dimension2d} (const c8 $\ast$attribute\-Name)
+\item 
+virtual core\-::dimension2d$<$ u32 $>$ \hyperlink{classirr_1_1io_1_1_c_attributes_aed30a4047c4e8999c60114defc8998b3}{get\-Attribute\-As\-Dimension2d} (s32 index)
+\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_abad5d5959148fa68b78d32422b1ac54a}{set\-Attribute} (s32 index, core\-::dimension2d$<$ u32 $>$ v)
+\begin{DoxyCompactList}\small\item\em Sets an attribute as dimension2d. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_aecad32b750654886061975ebfc73b272}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_aecad32b750654886061975ebfc73b272}{add\-Matrix} (const c8 $\ast$attribute\-Name, const core\-::matrix4 \&v)}\label{classirr_1_1io_1_1_c_attributes_aecad32b750654886061975ebfc73b272}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as matrix. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a1d8abcdaebe9292d35c67de6cfb8b213}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a1d8abcdaebe9292d35c67de6cfb8b213}{set\-Attribute} (const c8 $\ast$attribute\-Name, const core\-::matrix4 \&v)}\label{classirr_1_1io_1_1_c_attributes_a1d8abcdaebe9292d35c67de6cfb8b213}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as matrix. \end{DoxyCompactList}\item 
+virtual core\-::matrix4 \hyperlink{classirr_1_1io_1_1_c_attributes_a006a1a6b9cdaa2616b6fa1cb263d6d43}{get\-Attribute\-As\-Matrix} (const c8 $\ast$attribute\-Name)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as a matrix4. \end{DoxyCompactList}\item 
+virtual core\-::matrix4 \hyperlink{classirr_1_1io_1_1_c_attributes_a3d2dd614b344abebf506b70b8fbef440}{get\-Attribute\-As\-Matrix} (s32 index)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as matrix. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_ab243581d263899ec2388b7cd42b22f50}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_ab243581d263899ec2388b7cd42b22f50}{set\-Attribute} (s32 index, const core\-::matrix4 \&v)}\label{classirr_1_1io_1_1_c_attributes_ab243581d263899ec2388b7cd42b22f50}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as matrix. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a1a702eb1b4ca361e33d9d4d8a7a27483}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a1a702eb1b4ca361e33d9d4d8a7a27483}{add\-Quaternion} (const c8 $\ast$attribute\-Name, core\-::quaternion v)}\label{classirr_1_1io_1_1_c_attributes_a1a702eb1b4ca361e33d9d4d8a7a27483}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as quaternion. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a7a87594248181d6cfd145820e0e327f3}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a7a87594248181d6cfd145820e0e327f3}{set\-Attribute} (const c8 $\ast$attribute\-Name, core\-::quaternion v)}\label{classirr_1_1io_1_1_c_attributes_a7a87594248181d6cfd145820e0e327f3}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as quaternion. \end{DoxyCompactList}\item 
+virtual core\-::quaternion \hyperlink{classirr_1_1io_1_1_c_attributes_a26861254e55c9bbecc784d67d4e05588}{get\-Attribute\-As\-Quaternion} (const c8 $\ast$attribute\-Name)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as a quaternion. \end{DoxyCompactList}\item 
+virtual core\-::quaternion \hyperlink{classirr_1_1io_1_1_c_attributes_a56a665e7c5cf42f7e2ed24c6dea52843}{get\-Attribute\-As\-Quaternion} (s32 index)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as quaternion. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_ab8b6b5229743972c3416e678578d62f5}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_ab8b6b5229743972c3416e678578d62f5}{set\-Attribute} (s32 index, core\-::quaternion v)}\label{classirr_1_1io_1_1_c_attributes_ab8b6b5229743972c3416e678578d62f5}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as quaternion. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_aae1829fb3654d722af21ad92303d1a1b}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_aae1829fb3654d722af21ad92303d1a1b}{add\-Box3d} (const c8 $\ast$attribute\-Name, core\-::aabbox3df v)}\label{classirr_1_1io_1_1_c_attributes_aae1829fb3654d722af21ad92303d1a1b}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as axis aligned bounding box. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a3882e13694ac1a01ec8257feac32256c}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a3882e13694ac1a01ec8257feac32256c}{set\-Attribute} (const c8 $\ast$attribute\-Name, core\-::aabbox3df v)}\label{classirr_1_1io_1_1_c_attributes_a3882e13694ac1a01ec8257feac32256c}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as axis aligned bounding box. \end{DoxyCompactList}\item 
+virtual core\-::aabbox3df \hyperlink{classirr_1_1io_1_1_c_attributes_a24be849aa6fbc22a7607b81349379a6c}{get\-Attribute\-As\-Box3d} (const c8 $\ast$attribute\-Name)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as a axis aligned bounding box. \end{DoxyCompactList}\item 
+virtual core\-::aabbox3df \hyperlink{classirr_1_1io_1_1_c_attributes_a4856eca0669c64e19e6bd45545239ff8}{get\-Attribute\-As\-Box3d} (s32 index)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as axis aligned bounding box. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_abc6f4748afdd8865336811623098b24f}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_abc6f4748afdd8865336811623098b24f}{set\-Attribute} (s32 index, core\-::aabbox3df v)}\label{classirr_1_1io_1_1_c_attributes_abc6f4748afdd8865336811623098b24f}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as axis aligned bounding box. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a766bc2d04c4bdf29074ccf3314e6aa7f}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a766bc2d04c4bdf29074ccf3314e6aa7f}{add\-Plane3d} (const c8 $\ast$attribute\-Name, core\-::plane3df v)}\label{classirr_1_1io_1_1_c_attributes_a766bc2d04c4bdf29074ccf3314e6aa7f}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as 3d plane. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a7b194fbe486e173e6b2a4ff49186b4cf}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a7b194fbe486e173e6b2a4ff49186b4cf}{set\-Attribute} (const c8 $\ast$attribute\-Name, core\-::plane3df v)}\label{classirr_1_1io_1_1_c_attributes_a7b194fbe486e173e6b2a4ff49186b4cf}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as 3d plane. \end{DoxyCompactList}\item 
+virtual core\-::plane3df \hyperlink{classirr_1_1io_1_1_c_attributes_ac9a5b1d01501e773b74db3766737f241}{get\-Attribute\-As\-Plane3d} (const c8 $\ast$attribute\-Name)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as a 3d plane. \end{DoxyCompactList}\item 
+virtual core\-::plane3df \hyperlink{classirr_1_1io_1_1_c_attributes_a17d9f53774d756e5dc8ac4bf23670eb4}{get\-Attribute\-As\-Plane3d} (s32 index)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as 3d plane. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_aa73c65d913c680619785e1ae9d0de2c7}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_aa73c65d913c680619785e1ae9d0de2c7}{set\-Attribute} (s32 index, core\-::plane3df v)}\label{classirr_1_1io_1_1_c_attributes_aa73c65d913c680619785e1ae9d0de2c7}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as 3d plane. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_ae92fa8b33cb8aafd8e67ddfeec18ea0f}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_ae92fa8b33cb8aafd8e67ddfeec18ea0f}{add\-Triangle3d} (const c8 $\ast$attribute\-Name, core\-::triangle3df v)}\label{classirr_1_1io_1_1_c_attributes_ae92fa8b33cb8aafd8e67ddfeec18ea0f}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as 3d triangle. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a46d3d00ecd0513f1ee1e79adfd5fce97}{set\-Attribute} (const c8 $\ast$attribute\-Name, core\-::triangle3df v)
+\begin{DoxyCompactList}\small\item\em Sets an attribute as 3d trianle. \end{DoxyCompactList}\item 
+virtual core\-::triangle3df \hyperlink{classirr_1_1io_1_1_c_attributes_a457147a7a40c27094e7dcb4308144abf}{get\-Attribute\-As\-Triangle3d} (const c8 $\ast$attribute\-Name)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as a 3d triangle. \end{DoxyCompactList}\item 
+virtual core\-::triangle3df \hyperlink{classirr_1_1io_1_1_c_attributes_ada7a9f066e52fe61c836b8f2d8705e23}{get\-Attribute\-As\-Triangle3d} (s32 index)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as 3d triangle. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a99aa03ed6bd2292ed14eaf4f0d3a1db3}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a99aa03ed6bd2292ed14eaf4f0d3a1db3}{set\-Attribute} (s32 index, core\-::triangle3df v)}\label{classirr_1_1io_1_1_c_attributes_a99aa03ed6bd2292ed14eaf4f0d3a1db3}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as 3d triangle. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a23f1985c5578c936f2116c7060a2f931}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a23f1985c5578c936f2116c7060a2f931}{add\-Line2d} (const c8 $\ast$attribute\-Name, core\-::line2df v)}\label{classirr_1_1io_1_1_c_attributes_a23f1985c5578c936f2116c7060a2f931}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as a 2d line. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_aeb04f7f55a6a6beba2abcd3872f2ed7b}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_aeb04f7f55a6a6beba2abcd3872f2ed7b}{set\-Attribute} (const c8 $\ast$attribute\-Name, core\-::line2df v)}\label{classirr_1_1io_1_1_c_attributes_aeb04f7f55a6a6beba2abcd3872f2ed7b}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as a 2d line. \end{DoxyCompactList}\item 
+virtual core\-::line2df \hyperlink{classirr_1_1io_1_1_c_attributes_ab90c1609a00e40d975308bd70fa08ac2}{get\-Attribute\-As\-Line2d} (const c8 $\ast$attribute\-Name)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as a 2d line. \end{DoxyCompactList}\item 
+virtual core\-::line2df \hyperlink{classirr_1_1io_1_1_c_attributes_ae61120841da64d9259d579d3a8e7c875}{get\-Attribute\-As\-Line2d} (s32 index)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as a 2d line. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_ae9b5da78e52324a6e0a2d08457e99c10}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_ae9b5da78e52324a6e0a2d08457e99c10}{set\-Attribute} (s32 index, core\-::line2df v)}\label{classirr_1_1io_1_1_c_attributes_ae9b5da78e52324a6e0a2d08457e99c10}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as a 2d line. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_ab0bf89f535354dcecbb580b95da7be6d}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_ab0bf89f535354dcecbb580b95da7be6d}{add\-Line3d} (const c8 $\ast$attribute\-Name, core\-::line3df v)}\label{classirr_1_1io_1_1_c_attributes_ab0bf89f535354dcecbb580b95da7be6d}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as a 3d line. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_acae90a82ebea1bace1b99820d21988d7}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_acae90a82ebea1bace1b99820d21988d7}{set\-Attribute} (const c8 $\ast$attribute\-Name, core\-::line3df v)}\label{classirr_1_1io_1_1_c_attributes_acae90a82ebea1bace1b99820d21988d7}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as a 3d line. \end{DoxyCompactList}\item 
+virtual core\-::line3df \hyperlink{classirr_1_1io_1_1_c_attributes_ac2fbb1976c098ff74f114f66dbd4f2d5}{get\-Attribute\-As\-Line3d} (const c8 $\ast$attribute\-Name)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as a 3d line. \end{DoxyCompactList}\item 
+virtual core\-::line3df \hyperlink{classirr_1_1io_1_1_c_attributes_a49a7a6069ec6c9844ef2b33d9bd4ce88}{get\-Attribute\-As\-Line3d} (s32 index)
+\begin{DoxyCompactList}\small\item\em Gets an attribute as a 3d line. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a6b2813f6684f1f0aa7856420e0e3feec}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a6b2813f6684f1f0aa7856420e0e3feec}{set\-Attribute} (s32 index, core\-::line3df v)}\label{classirr_1_1io_1_1_c_attributes_a6b2813f6684f1f0aa7856420e0e3feec}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as a 3d line. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_aa3fc306fd3a958e3209fa322a089a35e}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_aa3fc306fd3a958e3209fa322a089a35e}{add\-Texture} (const c8 $\ast$attribute\-Name, video\-::\-I\-Texture $\ast$texture, const io\-::path \&filename=\char`\"{}\char`\"{})}\label{classirr_1_1io_1_1_c_attributes_aa3fc306fd3a958e3209fa322a089a35e}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as texture reference. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a961e25374fbe5a3ef38dfefcbe0c73d8}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a961e25374fbe5a3ef38dfefcbe0c73d8}{set\-Attribute} (const c8 $\ast$attribute\-Name, video\-::\-I\-Texture $\ast$texture, const io\-::path \&filename=\char`\"{}\char`\"{})}\label{classirr_1_1io_1_1_c_attributes_a961e25374fbe5a3ef38dfefcbe0c73d8}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as texture reference. \end{DoxyCompactList}\item 
+virtual video\-::\-I\-Texture $\ast$ \hyperlink{classirr_1_1io_1_1_c_attributes_a4fb19d011c409eeb79aca7d8cccfc88e}{get\-Attribute\-As\-Texture} (const c8 $\ast$attribute\-Name)
+\item 
+virtual video\-::\-I\-Texture $\ast$ \hyperlink{classirr_1_1io_1_1_c_attributes_a85903c5c27f0d1ca424bc2627dd4126a}{get\-Attribute\-As\-Texture} (s32 index)
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a743540a8b82b8e1d741571f262c25543}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a743540a8b82b8e1d741571f262c25543}{set\-Attribute} (s32 index, video\-::\-I\-Texture $\ast$texture, const io\-::path \&filename=\char`\"{}\char`\"{})}\label{classirr_1_1io_1_1_c_attributes_a743540a8b82b8e1d741571f262c25543}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as texture reference. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a9473aaaa0b1c7e3b68f6212bc19e2546}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a9473aaaa0b1c7e3b68f6212bc19e2546}{add\-User\-Pointer} (const c8 $\ast$attribute\-Name, void $\ast$user\-Pointer)}\label{classirr_1_1io_1_1_c_attributes_a9473aaaa0b1c7e3b68f6212bc19e2546}
+
+\begin{DoxyCompactList}\small\item\em Adds an attribute as user pointner. \end{DoxyCompactList}\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_ae1f3a7ed3c976d464fa024c07e0c095c}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_ae1f3a7ed3c976d464fa024c07e0c095c}{set\-Attribute} (const c8 $\ast$attribute\-Name, void $\ast$user\-Pointer)}\label{classirr_1_1io_1_1_c_attributes_ae1f3a7ed3c976d464fa024c07e0c095c}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as user pointer. \end{DoxyCompactList}\item 
+virtual void $\ast$ \hyperlink{classirr_1_1io_1_1_c_attributes_acb0280891d4f31c676f2c3bbf4d14728}{get\-Attribute\-As\-User\-Pointer} (const c8 $\ast$attribute\-Name)
+\item 
+virtual void $\ast$ \hyperlink{classirr_1_1io_1_1_c_attributes_a89ba39cf2b1a3d04c0dbbd0615609378}{get\-Attribute\-As\-User\-Pointer} (s32 index)
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a8d334ea86a307ba33e41d37431a1d500}{virtual void \hyperlink{classirr_1_1io_1_1_c_attributes_a8d334ea86a307ba33e41d37431a1d500}{set\-Attribute} (s32 index, void $\ast$user\-Pointer)}\label{classirr_1_1io_1_1_c_attributes_a8d334ea86a307ba33e41d37431a1d500}
+
+\begin{DoxyCompactList}\small\item\em Sets an attribute as user pointer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a15d4adb07fda946a23668e91f9b8dc06}{void {\bfseries read\-Attribute\-From\-X\-M\-L} (io\-::\-I\-X\-M\-L\-Reader $\ast$reader)}\label{classirr_1_1io_1_1_c_attributes_a15d4adb07fda946a23668e91f9b8dc06}
+
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_ac79bdfac127796ef6c7f1350181c891d}{\hyperlink{classirr_1_1io_1_1_i_attribute}{I\-Attribute} $\ast$ {\bfseries get\-Attribute\-P} (const c8 $\ast$attribute\-Name) const }\label{classirr_1_1io_1_1_c_attributes_ac79bdfac127796ef6c7f1350181c891d}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_a0b094d948038fb623b93ed30d9bdf6d0}{core\-::array$<$ \hyperlink{classirr_1_1io_1_1_i_attribute}{I\-Attribute} $\ast$ $>$ {\bfseries Attributes}}\label{classirr_1_1io_1_1_c_attributes_a0b094d948038fb623b93ed30d9bdf6d0}
+
+\item 
+\hypertarget{classirr_1_1io_1_1_c_attributes_ad2572d1711c06bbd7c428a7e7db25444}{video\-::\-I\-Video\-Driver $\ast$ {\bfseries Driver}}\label{classirr_1_1io_1_1_c_attributes_ad2572d1711c06bbd7c428a7e7db25444}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of the I\-Attributes interface. 
+
+\subsection{Member Function Documentation}
+\hypertarget{classirr_1_1io_1_1_c_attributes_aef7dbf080e484c787f4b4850f84a26d2}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!add\-Array@{add\-Array}}
+\index{add\-Array@{add\-Array}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{add\-Array}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::add\-Array (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{const core\-::array$<$ core\-::stringw $>$ \&}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_aef7dbf080e484c787f4b4850f84a26d2}
+
+
+Adds an attribute as wide string array. 
+
+Adds an attribute as an array of wide strings. \hypertarget{classirr_1_1io_1_1_c_attributes_a9767565a17a2581fc887fba4a70cbd04}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!add\-String@{add\-String}}
+\index{add\-String@{add\-String}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{add\-String}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::add\-String (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{const wchar\-\_\-t $\ast$}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a9767565a17a2581fc887fba4a70cbd04}
+
+
+Adds an attribute as string. 
+
+Adds an attribute as wchar string. \hypertarget{classirr_1_1io_1_1_c_attributes_a1f495d069f2e11ee45afcbc9d51d84a3}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Array@{get\-Attribute\-As\-Array}}
+\index{get\-Attribute\-As\-Array@{get\-Attribute\-As\-Array}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Array}]{\setlength{\rightskip}{0pt plus 5cm}core\-::array$<$ core\-::stringw $>$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Array (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a1f495d069f2e11ee45afcbc9d51d84a3}
+
+
+Gets an attribute as an array of wide strings. 
+
+Gets an attribute as an array of wide strings. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} or 0 if attribute is not set. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ac48b3af8f02372323d555251260c877d}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Array@{get\-Attribute\-As\-Array}}
+\index{get\-Attribute\-As\-Array@{get\-Attribute\-As\-Array}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Array}]{\setlength{\rightskip}{0pt plus 5cm}core\-::array$<$ core\-::stringw $>$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Array (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ac48b3af8f02372323d555251260c877d}
+
+
+Returns attribute value as an array of wide strings by index. 
+
+Returns attribute value as an array of wide strings by index. 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_abed02ddc71c32114c8e37bbbf827ea9d}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Binary\-Data@{get\-Attribute\-As\-Binary\-Data}}
+\index{get\-Attribute\-As\-Binary\-Data@{get\-Attribute\-As\-Binary\-Data}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Binary\-Data}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Binary\-Data (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{void $\ast$}]{out\-Data, }
+\item[{s32}]{max\-Size\-In\-Bytes}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_abed02ddc71c32114c8e37bbbf827ea9d}
+Gets an attribute as binary data 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_aa8dec860c2b5a783f933182eca0cb509}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Binary\-Data@{get\-Attribute\-As\-Binary\-Data}}
+\index{get\-Attribute\-As\-Binary\-Data@{get\-Attribute\-As\-Binary\-Data}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Binary\-Data}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Binary\-Data (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{void $\ast$}]{out\-Data, }
+\item[{s32}]{max\-Size\-In\-Bytes}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_aa8dec860c2b5a783f933182eca0cb509}
+Gets an attribute as binary data 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a788bcbe8e9742aced56e5c718a6b52a3}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Bool@{get\-Attribute\-As\-Bool}}
+\index{get\-Attribute\-As\-Bool@{get\-Attribute\-As\-Bool}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Bool}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Bool (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a788bcbe8e9742aced56e5c718a6b52a3}
+Gets an attribute as boolean value 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()}
+\end{DoxyReturn}
+Gets a attribute as boolean value 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} as bool or 0 if attribute is not set. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a178f0b922591bec04deb082acba7ff21}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Bool@{get\-Attribute\-As\-Bool}}
+\index{get\-Attribute\-As\-Bool@{get\-Attribute\-As\-Bool}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Bool}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Bool (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a178f0b922591bec04deb082acba7ff21}
+Gets an attribute as boolean value 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a24be849aa6fbc22a7607b81349379a6c}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Box3d@{get\-Attribute\-As\-Box3d}}
+\index{get\-Attribute\-As\-Box3d@{get\-Attribute\-As\-Box3d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Box3d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::aabbox3df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Box3d (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a24be849aa6fbc22a7607b81349379a6c}
+
+
+Gets an attribute as a axis aligned bounding box. 
+
+Gets an attribute as a axis aligned bounding box 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a4856eca0669c64e19e6bd45545239ff8}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Box3d@{get\-Attribute\-As\-Box3d}}
+\index{get\-Attribute\-As\-Box3d@{get\-Attribute\-As\-Box3d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Box3d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::aabbox3df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Box3d (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a4856eca0669c64e19e6bd45545239ff8}
+
+
+Gets an attribute as axis aligned bounding box. 
+
+Gets an attribute as axis aligned bounding box 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a6b55e30576371041628fd3fcdd2a81e6}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Color@{get\-Attribute\-As\-Color}}
+\index{get\-Attribute\-As\-Color@{get\-Attribute\-As\-Color}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Color}]{\setlength{\rightskip}{0pt plus 5cm}video\-::\-S\-Color irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Color (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a6b55e30576371041628fd3fcdd2a81e6}
+Gets an attribute as color 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ac014dd88e619781e96b474475c1a6b36}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Color@{get\-Attribute\-As\-Color}}
+\index{get\-Attribute\-As\-Color@{get\-Attribute\-As\-Color}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Color}]{\setlength{\rightskip}{0pt plus 5cm}video\-::\-S\-Color irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Color (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ac014dd88e619781e96b474475c1a6b36}
+Gets an attribute as color 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_aa0c5de3c6d7cb5d752617ca972aaae4f}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Colorf@{get\-Attribute\-As\-Colorf}}
+\index{get\-Attribute\-As\-Colorf@{get\-Attribute\-As\-Colorf}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Colorf}]{\setlength{\rightskip}{0pt plus 5cm}video\-::\-S\-Colorf irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Colorf (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_aa0c5de3c6d7cb5d752617ca972aaae4f}
+Gets an attribute as floating point color 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_afbcc628342d7d7dbf16af6b6f47cae8b}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Colorf@{get\-Attribute\-As\-Colorf}}
+\index{get\-Attribute\-As\-Colorf@{get\-Attribute\-As\-Colorf}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Colorf}]{\setlength{\rightskip}{0pt plus 5cm}video\-::\-S\-Colorf irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Colorf (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_afbcc628342d7d7dbf16af6b6f47cae8b}
+Gets an attribute as floating point color 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a2229182db5cb17d469b7a22e2f78f83c}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Dimension2d@{get\-Attribute\-As\-Dimension2d}}
+\index{get\-Attribute\-As\-Dimension2d@{get\-Attribute\-As\-Dimension2d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Dimension2d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::dimension2d$<$ u32 $>$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Dimension2d (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a2229182db5cb17d469b7a22e2f78f83c}
+Gets an attribute as dimension2d 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_aed30a4047c4e8999c60114defc8998b3}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Dimension2d@{get\-Attribute\-As\-Dimension2d}}
+\index{get\-Attribute\-As\-Dimension2d@{get\-Attribute\-As\-Dimension2d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Dimension2d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::dimension2d$<$ u32 $>$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Dimension2d (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_aed30a4047c4e8999c60114defc8998b3}
+Gets an attribute as dimension2d 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_af774f822ac2d434bdd1decd7fd747a7e}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Enumeration@{get\-Attribute\-As\-Enumeration}}
+\index{get\-Attribute\-As\-Enumeration@{get\-Attribute\-As\-Enumeration}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Enumeration}]{\setlength{\rightskip}{0pt plus 5cm}const char $\ast$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Enumeration (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_af774f822ac2d434bdd1decd7fd747a7e}
+Gets an attribute as enumeration 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ab21438063c56f62d3ebc598d361b231e}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Enumeration@{get\-Attribute\-As\-Enumeration}}
+\index{get\-Attribute\-As\-Enumeration@{get\-Attribute\-As\-Enumeration}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Enumeration}]{\setlength{\rightskip}{0pt plus 5cm}virtual s32 irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Enumeration (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{const c8 $\ast$const $\ast$}]{enumeration\-Literals\-To\-Use}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ab21438063c56f62d3ebc598d361b231e}
+Gets an attribute as enumeration 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+{\em enumeration\-Literals\-To\-Use,\-:} & Use these enumeration literals to get the index value instead of the set ones. This is useful when the attribute list maybe was read from an xml file, and only contains the enumeration string, but no information about its index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a16818ae4592f9d9716e1fa6b00ffea3a}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Enumeration@{get\-Attribute\-As\-Enumeration}}
+\index{get\-Attribute\-As\-Enumeration@{get\-Attribute\-As\-Enumeration}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Enumeration}]{\setlength{\rightskip}{0pt plus 5cm}virtual s32 irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Enumeration (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{const c8 $\ast$const $\ast$}]{enumeration\-Literals\-To\-Use}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a16818ae4592f9d9716e1fa6b00ffea3a}
+Gets an attribute as enumeration 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ae5abcddc4fede12071142c547c4fa524}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Enumeration@{get\-Attribute\-As\-Enumeration}}
+\index{get\-Attribute\-As\-Enumeration@{get\-Attribute\-As\-Enumeration}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Enumeration}]{\setlength{\rightskip}{0pt plus 5cm}const char $\ast$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Enumeration (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ae5abcddc4fede12071142c547c4fa524}
+Gets an attribute as enumeration 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a1a79c2194792e07764ad381ea8729dba}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Float@{get\-Attribute\-As\-Float}}
+\index{get\-Attribute\-As\-Float@{get\-Attribute\-As\-Float}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Float}]{\setlength{\rightskip}{0pt plus 5cm}f32 irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Float (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a1a79c2194792e07764ad381ea8729dba}
+Gets an attribute as float value 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()}
+\end{DoxyReturn}
+Gets a attribute as integer value 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} as float value or 0 if attribute is not set. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_aacbc0a4ae761cf6156c8a08d2039870f}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Float@{get\-Attribute\-As\-Float}}
+\index{get\-Attribute\-As\-Float@{get\-Attribute\-As\-Float}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Float}]{\setlength{\rightskip}{0pt plus 5cm}f32 irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Float (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_aacbc0a4ae761cf6156c8a08d2039870f}
+Gets an attribute as float value 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_afe7925dfeed74a736eb46ddae7feb30b}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Int@{get\-Attribute\-As\-Int}}
+\index{get\-Attribute\-As\-Int@{get\-Attribute\-As\-Int}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Int}]{\setlength{\rightskip}{0pt plus 5cm}s32 irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Int (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_afe7925dfeed74a736eb46ddae7feb30b}
+Gets an attribute as integer value 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()}
+\end{DoxyReturn}
+Gets a attribute as integer value 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} as integer or 0 if attribute is not set. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_aa464893bd208c9aee9c4a7b0ff52db87}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Int@{get\-Attribute\-As\-Int}}
+\index{get\-Attribute\-As\-Int@{get\-Attribute\-As\-Int}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Int}]{\setlength{\rightskip}{0pt plus 5cm}s32 irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Int (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_aa464893bd208c9aee9c4a7b0ff52db87}
+Gets an attribute as integer value 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ab90c1609a00e40d975308bd70fa08ac2}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Line2d@{get\-Attribute\-As\-Line2d}}
+\index{get\-Attribute\-As\-Line2d@{get\-Attribute\-As\-Line2d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Line2d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::line2df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Line2d (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ab90c1609a00e40d975308bd70fa08ac2}
+
+
+Gets an attribute as a 2d line. 
+
+Gets an attribute as a 2d line 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ae61120841da64d9259d579d3a8e7c875}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Line2d@{get\-Attribute\-As\-Line2d}}
+\index{get\-Attribute\-As\-Line2d@{get\-Attribute\-As\-Line2d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Line2d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::line2df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Line2d (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ae61120841da64d9259d579d3a8e7c875}
+
+
+Gets an attribute as a 2d line. 
+
+Gets an attribute as a 2d line 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ac2fbb1976c098ff74f114f66dbd4f2d5}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Line3d@{get\-Attribute\-As\-Line3d}}
+\index{get\-Attribute\-As\-Line3d@{get\-Attribute\-As\-Line3d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Line3d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::line3df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Line3d (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ac2fbb1976c098ff74f114f66dbd4f2d5}
+
+
+Gets an attribute as a 3d line. 
+
+Gets an attribute as a 3d line 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a49a7a6069ec6c9844ef2b33d9bd4ce88}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Line3d@{get\-Attribute\-As\-Line3d}}
+\index{get\-Attribute\-As\-Line3d@{get\-Attribute\-As\-Line3d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Line3d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::line3df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Line3d (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a49a7a6069ec6c9844ef2b33d9bd4ce88}
+
+
+Gets an attribute as a 3d line. 
+
+Gets an attribute as a 3d line 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a006a1a6b9cdaa2616b6fa1cb263d6d43}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Matrix@{get\-Attribute\-As\-Matrix}}
+\index{get\-Attribute\-As\-Matrix@{get\-Attribute\-As\-Matrix}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Matrix}]{\setlength{\rightskip}{0pt plus 5cm}core\-::matrix4 irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Matrix (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a006a1a6b9cdaa2616b6fa1cb263d6d43}
+
+
+Gets an attribute as a matrix4. 
+
+Gets an attribute as a matrix4 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a3d2dd614b344abebf506b70b8fbef440}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Matrix@{get\-Attribute\-As\-Matrix}}
+\index{get\-Attribute\-As\-Matrix@{get\-Attribute\-As\-Matrix}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Matrix}]{\setlength{\rightskip}{0pt plus 5cm}core\-::matrix4 irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Matrix (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a3d2dd614b344abebf506b70b8fbef440}
+
+
+Gets an attribute as matrix. 
+
+Gets an attribute as matrix 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ac9a5b1d01501e773b74db3766737f241}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Plane3d@{get\-Attribute\-As\-Plane3d}}
+\index{get\-Attribute\-As\-Plane3d@{get\-Attribute\-As\-Plane3d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Plane3d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::plane3df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Plane3d (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ac9a5b1d01501e773b74db3766737f241}
+
+
+Gets an attribute as a 3d plane. 
+
+Gets an attribute as a 3d plane 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a17d9f53774d756e5dc8ac4bf23670eb4}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Plane3d@{get\-Attribute\-As\-Plane3d}}
+\index{get\-Attribute\-As\-Plane3d@{get\-Attribute\-As\-Plane3d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Plane3d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::plane3df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Plane3d (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a17d9f53774d756e5dc8ac4bf23670eb4}
+
+
+Gets an attribute as 3d plane. 
+
+Gets an attribute as 3d plane 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ad8ff6cbfa822159cc1f8636f0ac50051}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Position2d@{get\-Attribute\-As\-Position2d}}
+\index{get\-Attribute\-As\-Position2d@{get\-Attribute\-As\-Position2d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Position2d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::position2di irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Position2d (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ad8ff6cbfa822159cc1f8636f0ac50051}
+Gets an attribute as position 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()}
+\end{DoxyReturn}
+Gets an attribute as 2d position 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ae727f6ca5966cc0f3165de548fe18e9c}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Position2d@{get\-Attribute\-As\-Position2d}}
+\index{get\-Attribute\-As\-Position2d@{get\-Attribute\-As\-Position2d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Position2d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::position2di irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Position2d (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ae727f6ca5966cc0f3165de548fe18e9c}
+Gets an attribute as position 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1.\\
+\hline
+\end{DoxyParams}
+Gets an attribute as position2d 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a26861254e55c9bbecc784d67d4e05588}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Quaternion@{get\-Attribute\-As\-Quaternion}}
+\index{get\-Attribute\-As\-Quaternion@{get\-Attribute\-As\-Quaternion}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Quaternion}]{\setlength{\rightskip}{0pt plus 5cm}core\-::quaternion irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Quaternion (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a26861254e55c9bbecc784d67d4e05588}
+
+
+Gets an attribute as a quaternion. 
+
+Gets an attribute as a quaternion 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a56a665e7c5cf42f7e2ed24c6dea52843}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Quaternion@{get\-Attribute\-As\-Quaternion}}
+\index{get\-Attribute\-As\-Quaternion@{get\-Attribute\-As\-Quaternion}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Quaternion}]{\setlength{\rightskip}{0pt plus 5cm}core\-::quaternion irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Quaternion (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a56a665e7c5cf42f7e2ed24c6dea52843}
+
+
+Gets an attribute as quaternion. 
+
+Gets an attribute as quaternion 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a65b4ede53ac7969ca9be11a863650887}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Rect@{get\-Attribute\-As\-Rect}}
+\index{get\-Attribute\-As\-Rect@{get\-Attribute\-As\-Rect}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Rect}]{\setlength{\rightskip}{0pt plus 5cm}core\-::rect$<$ s32 $>$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Rect (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a65b4ede53ac7969ca9be11a863650887}
+Gets an attribute as rectangle 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ad42012621b1d384e80c8be1c9587bcd3}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Rect@{get\-Attribute\-As\-Rect}}
+\index{get\-Attribute\-As\-Rect@{get\-Attribute\-As\-Rect}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Rect}]{\setlength{\rightskip}{0pt plus 5cm}core\-::rect$<$ s32 $>$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Rect (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ad42012621b1d384e80c8be1c9587bcd3}
+Gets an attribute as rectangle 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_aa3e151ba0dd648df674f332e65483839}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-String@{get\-Attribute\-As\-String}}
+\index{get\-Attribute\-As\-String@{get\-Attribute\-As\-String}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-String}]{\setlength{\rightskip}{0pt plus 5cm}core\-::stringc irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-String (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_aa3e151ba0dd648df674f332e65483839}
+Gets an attribute as string. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} or 0 if attribute is not set.
+\end{DoxyReturn}
+Gets a string attribute. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by set\-String\-Attribute() or 0 if attribute is not set. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a12799158b6cb46f92498c4292a583f11}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-String@{get\-Attribute\-As\-String}}
+\index{get\-Attribute\-As\-String@{get\-Attribute\-As\-String}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-String}]{\setlength{\rightskip}{0pt plus 5cm}virtual void irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-String (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{c8 $\ast$}]{target}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a12799158b6cb46f92498c4292a583f11}
+Gets an attribute as string. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+{\em target,\-:} & Buffer where the string is copied to. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a3cc6b827e5afc0056cb132bb61394d2b}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-String@{get\-Attribute\-As\-String}}
+\index{get\-Attribute\-As\-String@{get\-Attribute\-As\-String}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-String}]{\setlength{\rightskip}{0pt plus 5cm}core\-::stringc irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-String (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a3cc6b827e5afc0056cb132bb61394d2b}
+Returns attribute value as string by index. 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1.\\
+\hline
+\end{DoxyParams}
+Returns string attribute value by index. 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_aa074d8dfc482e45e4a7ac278a60394a0}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-String\-W@{get\-Attribute\-As\-String\-W}}
+\index{get\-Attribute\-As\-String\-W@{get\-Attribute\-As\-String\-W}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-String\-W}]{\setlength{\rightskip}{0pt plus 5cm}core\-::stringw irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-String\-W (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_aa074d8dfc482e45e4a7ac278a60394a0}
+Gets an attribute as string. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} or 0 if attribute is not set.
+\end{DoxyReturn}
+Gets a string attribute. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by set\-String\-Attribute() or 0 if attribute is not set. 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ae88db618ee4e8ef65fb176683d2a4df3}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-String\-W@{get\-Attribute\-As\-String\-W}}
+\index{get\-Attribute\-As\-String\-W@{get\-Attribute\-As\-String\-W}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-String\-W}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-String\-W (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{wchar\-\_\-t $\ast$}]{target}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ae88db618ee4e8ef65fb176683d2a4df3}
+Gets an attribute as string. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+{\em target,\-:} & Buffer where the string is copied to.\\
+\hline
+\end{DoxyParams}
+Gets a string attribute. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+{\em target,\-:} & Buffer where the string is copied to. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a560824bcd9a2e2fb2cd9a72812395c1e}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-String\-W@{get\-Attribute\-As\-String\-W}}
+\index{get\-Attribute\-As\-String\-W@{get\-Attribute\-As\-String\-W}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-String\-W}]{\setlength{\rightskip}{0pt plus 5cm}core\-::stringw irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-String\-W (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a560824bcd9a2e2fb2cd9a72812395c1e}
+Returns attribute value as string by index. 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1.\\
+\hline
+\end{DoxyParams}
+Returns string attribute value by index. 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a4fb19d011c409eeb79aca7d8cccfc88e}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Texture@{get\-Attribute\-As\-Texture}}
+\index{get\-Attribute\-As\-Texture@{get\-Attribute\-As\-Texture}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Texture}]{\setlength{\rightskip}{0pt plus 5cm}video\-::\-I\-Texture $\ast$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Texture (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a4fb19d011c409eeb79aca7d8cccfc88e}
+Gets an attribute as texture reference 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a85903c5c27f0d1ca424bc2627dd4126a}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Texture@{get\-Attribute\-As\-Texture}}
+\index{get\-Attribute\-As\-Texture@{get\-Attribute\-As\-Texture}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Texture}]{\setlength{\rightskip}{0pt plus 5cm}video\-::\-I\-Texture $\ast$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Texture (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a85903c5c27f0d1ca424bc2627dd4126a}
+Gets an attribute as texture reference 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a457147a7a40c27094e7dcb4308144abf}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Triangle3d@{get\-Attribute\-As\-Triangle3d}}
+\index{get\-Attribute\-As\-Triangle3d@{get\-Attribute\-As\-Triangle3d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Triangle3d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::triangle3df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Triangle3d (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a457147a7a40c27094e7dcb4308144abf}
+
+
+Gets an attribute as a 3d triangle. 
+
+Gets an attribute as a 3d triangle 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ada7a9f066e52fe61c836b8f2d8705e23}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Triangle3d@{get\-Attribute\-As\-Triangle3d}}
+\index{get\-Attribute\-As\-Triangle3d@{get\-Attribute\-As\-Triangle3d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Triangle3d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::triangle3df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Triangle3d (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ada7a9f066e52fe61c836b8f2d8705e23}
+
+
+Gets an attribute as 3d triangle. 
+
+Gets an attribute as 3d triangle 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_acb0280891d4f31c676f2c3bbf4d14728}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-User\-Pointer@{get\-Attribute\-As\-User\-Pointer}}
+\index{get\-Attribute\-As\-User\-Pointer@{get\-Attribute\-As\-User\-Pointer}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-User\-Pointer}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-User\-Pointer (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_acb0280891d4f31c676f2c3bbf4d14728}
+Gets an attribute as user pointer 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a89ba39cf2b1a3d04c0dbbd0615609378}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-User\-Pointer@{get\-Attribute\-As\-User\-Pointer}}
+\index{get\-Attribute\-As\-User\-Pointer@{get\-Attribute\-As\-User\-Pointer}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-User\-Pointer}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-User\-Pointer (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a89ba39cf2b1a3d04c0dbbd0615609378}
+Gets an attribute as user pointer 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a5bd20f337412c2fd6c6b94b5790179cd}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Vector2d@{get\-Attribute\-As\-Vector2d}}
+\index{get\-Attribute\-As\-Vector2d@{get\-Attribute\-As\-Vector2d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Vector2d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::vector2df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Vector2d (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a5bd20f337412c2fd6c6b94b5790179cd}
+
+
+Gets an attribute as vector. 
+
+Gets an attribute as 2d vector 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a7855e10e87198ab03ee8422ee4ae98b4}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Vector2d@{get\-Attribute\-As\-Vector2d}}
+\index{get\-Attribute\-As\-Vector2d@{get\-Attribute\-As\-Vector2d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Vector2d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::vector2df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Vector2d (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a7855e10e87198ab03ee8422ee4ae98b4}
+
+
+Gets an attribute as 2d vector. 
+
+Gets an attribute as 3d vector 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_abf2d9ef9b269e708bcd9631e6b54380e}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Vector3d@{get\-Attribute\-As\-Vector3d}}
+\index{get\-Attribute\-As\-Vector3d@{get\-Attribute\-As\-Vector3d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Vector3d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::vector3df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Vector3d (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_abf2d9ef9b269e708bcd9631e6b54380e}
+Gets an attribute as 3d vector 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()}
+\end{DoxyReturn}
+Gets an attribute as vector 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns value of the attribute previously set by \hyperlink{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{set\-Attribute()} 
+\end{DoxyReturn}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a3524c97469285913b43faf34f30a639c}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-As\-Vector3d@{get\-Attribute\-As\-Vector3d}}
+\index{get\-Attribute\-As\-Vector3d@{get\-Attribute\-As\-Vector3d}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-As\-Vector3d}]{\setlength{\rightskip}{0pt plus 5cm}core\-::vector3df irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-As\-Vector3d (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a3524c97469285913b43faf34f30a639c}
+Gets an attribute as 3d vector 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-Count@{get\-Attribute\-Count}}
+\index{get\-Attribute\-Count@{get\-Attribute\-Count}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-Count}]{\setlength{\rightskip}{0pt plus 5cm}u32 irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}
+
+
+Returns amount of attributes in this collection of attributes. 
+
+Returns amount of string attributes set in this scene manager. \hypertarget{classirr_1_1io_1_1_c_attributes_a63ca36ed2f2e5d79244baabdad8b8684}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration@{get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration}}
+\index{get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration@{get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{core\-::array$<$ core\-::stringc $>$ \&}]{out\-Literals}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a63ca36ed2f2e5d79244baabdad8b8684}
+Gets the list of enumeration literals of an enumeration attribute 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name of the attribute to get. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_aa81b0b8b31e8725f6d3c5021bd45ab7d}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration@{get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration}}
+\index{get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration@{get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-Enumeration\-Literals\-Of\-Enumeration (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{core\-::array$<$ core\-::stringc $>$ \&}]{out\-Literals}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_aa81b0b8b31e8725f6d3c5021bd45ab7d}
+Gets the list of enumeration literals of an enumeration attribute 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a6c94ed4da490d00a6612e8ea3925cdbf}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-Name@{get\-Attribute\-Name}}
+\index{get\-Attribute\-Name@{get\-Attribute\-Name}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-Name}]{\setlength{\rightskip}{0pt plus 5cm}const c8 $\ast$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-Name (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a6c94ed4da490d00a6612e8ea3925cdbf}
+Returns attribute name by index. 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1.\\
+\hline
+\end{DoxyParams}
+Returns string attribute name by index. 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and get\-String\-Attribute\-Count()-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a811d34d5b2cfba8863c8a75e5d002826}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-Type@{get\-Attribute\-Type}}
+\index{get\-Attribute\-Type@{get\-Attribute\-Type}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-Type}]{\setlength{\rightskip}{0pt plus 5cm}E\-\_\-\-A\-T\-T\-R\-I\-B\-U\-T\-E\-\_\-\-T\-Y\-P\-E irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-Type (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a811d34d5b2cfba8863c8a75e5d002826}
+
+
+Returns the type of an attribute. 
+
+Returns the type of an attribute 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name for the attribute \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_af59aa337ed1e86c7781ced593eacbf7c}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-Type@{get\-Attribute\-Type}}
+\index{get\-Attribute\-Type@{get\-Attribute\-Type}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-Type}]{\setlength{\rightskip}{0pt plus 5cm}E\-\_\-\-A\-T\-T\-R\-I\-B\-U\-T\-E\-\_\-\-T\-Y\-P\-E irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-Type (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_af59aa337ed1e86c7781ced593eacbf7c}
+Returns attribute type by index. 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a2570b742ad1c9a5a051179081439a545}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-Type\-String@{get\-Attribute\-Type\-String}}
+\index{get\-Attribute\-Type\-String@{get\-Attribute\-Type\-String}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-Type\-String}]{\setlength{\rightskip}{0pt plus 5cm}const wchar\-\_\-t $\ast$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-Type\-String (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a2570b742ad1c9a5a051179081439a545}
+
+
+Returns the type of an attribute. 
+
+Returns the type string of the attribute 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & String for the attribute type \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a43e2257da4c0ab6f8c37e30245630de7}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!get\-Attribute\-Type\-String@{get\-Attribute\-Type\-String}}
+\index{get\-Attribute\-Type\-String@{get\-Attribute\-Type\-String}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{get\-Attribute\-Type\-String}]{\setlength{\rightskip}{0pt plus 5cm}const wchar\-\_\-t $\ast$ irr\-::io\-::\-C\-Attributes\-::get\-Attribute\-Type\-String (
+\begin{DoxyParamCaption}
+\item[{s32}]{index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a43e2257da4c0ab6f8c37e30245630de7}
+Returns the type string of the attribute by index. 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1.\\
+\hline
+\end{DoxyParams}
+Returns attribute type string by index. 
+\begin{DoxyParams}{Parameters}
+{\em index,\-:} & Index value, must be between 0 and \hyperlink{classirr_1_1io_1_1_c_attributes_ae6f7505478a0a0106b44597a17c9159c}{get\-Attribute\-Count()}-\/1. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a91a69c9156f1929a24eb7ed45e11b9b1}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!read@{read}}
+\index{read@{read}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{read}]{\setlength{\rightskip}{0pt plus 5cm}bool irr\-::io\-::\-C\-Attributes\-::read (
+\begin{DoxyParamCaption}
+\item[{io\-::\-I\-X\-M\-L\-Reader $\ast$}]{reader, }
+\item[{bool}]{read\-Current\-Element\-Only = {\ttfamily false}, }
+\item[{const wchar\-\_\-t $\ast$}]{non\-Default\-Element\-Name = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a91a69c9156f1929a24eb7ed45e11b9b1}
+Reads attributes from a xml file. 
+\begin{DoxyParams}{Parameters}
+{\em read\-Current\-Element\-Only,\-:} & If set to true, reading only works if current element has the name 'attributes'. I\-F set to false, the first appearing list attributes are read. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{s32}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_aa44a7ea686530f2ec01c47b4c4cb230a}
+
+
+Sets an attribute as integer value. 
+
+Sets a attribute as integer value. \hypertarget{classirr_1_1io_1_1_c_attributes_a0063ee8c8490cd0abd4cdcda53e834ca}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{f32}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a0063ee8c8490cd0abd4cdcda53e834ca}
+
+
+Sets an attribute as float value. 
+
+Sets a attribute as float value. \hypertarget{classirr_1_1io_1_1_c_attributes_a242304d1cde52e8248b033e2ea573b78}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{const c8 $\ast$}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a242304d1cde52e8248b033e2ea573b78}
+Sets an attribute value as string. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name for the attribute \\
+\hline
+{\em value,\-:} & Value for the attribute. Set this to 0 to delete the attribute\\
+\hline
+\end{DoxyParams}
+Sets a string attribute. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name for the attribute \\
+\hline
+{\em value,\-:} & Value for the attribute. Set this to 0 to delete the attribute \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a90fa13ebc3cff790881b857f8336de41}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{const c8 $\ast$}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a90fa13ebc3cff790881b857f8336de41}
+Sets an attribute value as string. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name for the attribute \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_ad4f47a17331499d7fb3508d9f884ab2c}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{const wchar\-\_\-t $\ast$}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ad4f47a17331499d7fb3508d9f884ab2c}
+Sets an attribute value as string. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name for the attribute \\
+\hline
+{\em value,\-:} & Value for the attribute. Set this to 0 to delete the attribute\\
+\hline
+\end{DoxyParams}
+Sets a string attribute. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name for the attribute \\
+\hline
+{\em value,\-:} & Value for the attribute. Set this to 0 to delete the attribute \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_aa8824e20d9467e2dbe980403cbd784df}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{const wchar\-\_\-t $\ast$}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_aa8824e20d9467e2dbe980403cbd784df}
+Sets an attribute value as string. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name for the attribute \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a9e71f0c4b6dbc67e62305df2cb29dce4}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{const core\-::array$<$ core\-::stringw $>$ \&}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a9e71f0c4b6dbc67e62305df2cb29dce4}
+
+
+Sets an attribute value as an array of wide strings. 
+
+Sets an attribute value as a wide string array. 
+\begin{DoxyParams}{Parameters}
+{\em attribute\-Name,\-:} & Name for the attribute \\
+\hline
+{\em value,\-:} & Value for the attribute. Set this to 0 to delete the attribute \\
+\hline
+\end{DoxyParams}
+\hypertarget{classirr_1_1io_1_1_c_attributes_a84007861291e5b10e581d6ff327c1d23}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{bool}]{value}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a84007861291e5b10e581d6ff327c1d23}
+
+
+Sets an attribute as boolean value. 
+
+Sets a attribute as boolean value. \hypertarget{classirr_1_1io_1_1_c_attributes_a7ed268a6b14261f9e5f629f4de2d084d}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{video\-::\-S\-Color}]{color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a7ed268a6b14261f9e5f629f4de2d084d}
+
+
+Sets an attribute as color. 
+
+Sets a attribute as color. \hypertarget{classirr_1_1io_1_1_c_attributes_ad68b428220740dfa4814d563790feec8}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{video\-::\-S\-Colorf}]{color}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ad68b428220740dfa4814d563790feec8}
+
+
+Sets an attribute as floating point color. 
+
+Sets a attribute as floating point color. \hypertarget{classirr_1_1io_1_1_c_attributes_aefc8f6d193a2267e61347993fb5e9a7c}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{core\-::vector3df}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_aefc8f6d193a2267e61347993fb5e9a7c}
+
+
+Sets a attribute as 3d vector. 
+
+Sets a attribute as vector. \hypertarget{classirr_1_1io_1_1_c_attributes_adaa284fc7bdd81fe703db9e0c8572e99}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{core\-::vector3df}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_adaa284fc7bdd81fe703db9e0c8572e99}
+
+
+Sets an attribute as vector. 
+
+Sets a attribute as vector. \hypertarget{classirr_1_1io_1_1_c_attributes_a525e249eb1a52f594b9378177d2fc6e0}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{core\-::vector2df}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a525e249eb1a52f594b9378177d2fc6e0}
+
+
+Sets a attribute as 2d vector. 
+
+Sets a attribute as vector. \hypertarget{classirr_1_1io_1_1_c_attributes_a4ac7f976c6a30364fb2d21da286d0d4a}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{core\-::vector2df}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a4ac7f976c6a30364fb2d21da286d0d4a}
+
+
+Sets an attribute as vector. 
+
+Sets a attribute as vector. \hypertarget{classirr_1_1io_1_1_c_attributes_a997ec5ad9193c9401e579c2ef842767d}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{core\-::position2di}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a997ec5ad9193c9401e579c2ef842767d}
+
+
+Sets an attribute as 2d position. 
+
+Sets a attribute as position. \hypertarget{classirr_1_1io_1_1_c_attributes_a19744607747c7912ff700957daeee3b3}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{core\-::rect$<$ s32 $>$}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a19744607747c7912ff700957daeee3b3}
+
+
+Sets an attribute as rectangle. 
+
+Sets a attribute as rectangle. \hypertarget{classirr_1_1io_1_1_c_attributes_ae099c1e083452a0e5ab566d791f3cbf0}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{core\-::rect$<$ s32 $>$}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_ae099c1e083452a0e5ab566d791f3cbf0}
+
+
+Sets an attribute as rectangle. 
+
+Sets a attribute as rectangle. \hypertarget{classirr_1_1io_1_1_c_attributes_a3e94b9eb0dbda755d1c6856b7a0df4e7}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{core\-::dimension2d$<$ u32 $>$}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a3e94b9eb0dbda755d1c6856b7a0df4e7}
+
+
+Sets an attribute as dimension2d. 
+
+Sets a attribute as dimension2d. \hypertarget{classirr_1_1io_1_1_c_attributes_abad5d5959148fa68b78d32422b1ac54a}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{s32}]{index, }
+\item[{core\-::dimension2d$<$ u32 $>$}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_abad5d5959148fa68b78d32422b1ac54a}
+
+
+Sets an attribute as dimension2d. 
+
+Sets a attribute as dimension2d. \hypertarget{classirr_1_1io_1_1_c_attributes_a46d3d00ecd0513f1ee1e79adfd5fce97}{\index{irr\-::io\-::\-C\-Attributes@{irr\-::io\-::\-C\-Attributes}!set\-Attribute@{set\-Attribute}}
+\index{set\-Attribute@{set\-Attribute}!irr::io::CAttributes@{irr\-::io\-::\-C\-Attributes}}
+\subsubsection[{set\-Attribute}]{\setlength{\rightskip}{0pt plus 5cm}void irr\-::io\-::\-C\-Attributes\-::set\-Attribute (
+\begin{DoxyParamCaption}
+\item[{const c8 $\ast$}]{attribute\-Name, }
+\item[{core\-::triangle3df}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}}\label{classirr_1_1io_1_1_c_attributes_a46d3d00ecd0513f1ee1e79adfd5fce97}
+
+
+Sets an attribute as 3d trianle. 
+
+Sets an attribute as 3d triangle. 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Attributes.\-h\item 
+C\-:/\-Users/\-Ben/\-Documents/\-Visual Studio 2010/\-Projects/\-P\-S\-I/source/\-Irrlicht/C\-Attributes.\-cpp\end{DoxyCompactItemize}
