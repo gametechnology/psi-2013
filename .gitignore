@@ -11,16 +11,14 @@
 *.lai
 *.la
 *.a
-build/ExampleSolution/ExampleSolution.sdf
 build/ExampleSolution/ipch/
 temp/ExampleSolution/ExampleProject/DEBUG/
 temp/ExampleSolution/ExampleProject2/DEBUG/
 build/Engine/ipch/
-build/Engine/Stella Incognita Engine.sdf
-build/Stella Incognita.sdf
 *.sdf
 temp/GameRelease/DEBUG/
 temp/GameDebug/DEBUG/
 temp/EngineRelease/DEBUG/
 temp/EngineDebug/DEBUG/
 *.pdb
+*.suo
