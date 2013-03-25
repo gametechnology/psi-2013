@@ -14,8 +14,9 @@ public:
 	void SectorTemplate::update();
 	virtual ~SectorTemplate();
 private:
-	vector3df boundry;
-	vector3df *playerPosition;
+	vector3df *_boundry;
+	vector3df *_playerPosition;
+	Entity *_player;
 };
 
 #endif

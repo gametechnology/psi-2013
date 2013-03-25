@@ -2,7 +2,8 @@
 #define MESSAGES
 
 enum Messages {
-	DAMAGE
+	DAMAGE,
+	OUT_OF_BOUNDS
 };
 
 #endif

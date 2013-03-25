@@ -8,14 +8,19 @@ SectorTemplate::SectorTemplate(Composite* parent, Entity player, const io::path 
 	addComponent( skybox );
 	
 	// Setting the boundry
-	this->boundry.setLength( boundryRadius );
+	this->_boundry->setLength( boundryRadius );
 
 	// Setting the player
-	this->playerPosition = &player.position;
+	this->_playerPosition = &player.position;
+
+	// The player
+	this->_player = &player;
 }
 
 void SectorTemplate::update(){
-	this->playerPosition;
+	if(this->_playerPosition->getLength() > this->_boundry->getLength()){
+		this->_player->handleMessage(OUT_OF_BOUNDS, NULL);
+	}
 }
 
 void SectorTemplate::handleMessage(unsigned int message, void* data) {
