@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -51,22 +51,24 @@
     <ClCompile Include="..\source\Game\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="..\source\Game\ShipmapScene.cpp">
+	</ClCompile>
+    <ClCompile Include="..\source\Game\Ship.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Sprite.cpp">
       <Filter>Source Files</Filter>
-=======
-    <ClCompile Include="..\source\Game\Ship.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+	</ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Engine\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="..\source\Game\Stations\HelmStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
@@ -78,7 +80,10 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source Files\Stations</Filter>
->>>>>>> Added the basic implementation of the Stations UML Diagram
+=======
+    <ClCompile Include="MapGenerator.cpp">
+      <Filter>Source Files</Filter>
+>>>>>>> Created the start of the GalaxyMapGenerator class
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Messages.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\TestScene.h">
@@ -123,19 +134,18 @@
     <ClInclude Include="..\source\Game\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\Ship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="..\source\Game\Sprite.h">
+	</ClInclude>
+    <ClInclude Include="..\source\Game\Ship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\ShipmapScene.h">
       <Filter>Header Files</Filter>
-=======
+    </ClInclude>
     <ClInclude Include="..\source\Game\Team.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
       <Filter>Header Files\Stations</Filter>
     </ClInclude>
@@ -150,7 +160,10 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\WeaponStation.h">
       <Filter>Header Files\Stations</Filter>
->>>>>>> Added the basic implementation of the Stations UML Diagram
+=======
+    <ClInclude Include="MapGenerator.h">
+      <Filter>Header Files</Filter>
+>>>>>>> Created the start of the GalaxyMapGenerator class
     </ClInclude>
   </ItemGroup>
 </Project>
