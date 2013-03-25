@@ -16,21 +16,24 @@
     <Filter Include="Irrlicht Header Files">
       <UniqueIdentifier>{a757206d-aa06-47ae-ae75-a229e7eb4d62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\marktodel">
+      <UniqueIdentifier>{dbc11172-dc6f-4c9e-9db6-e888484a85ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\Engine\Camera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Engine\CameraMover.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClCompile Include="..\source\Game\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClInclude Include="..\..\include\Engine\Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Engine\Composite.h">
+    <ClCompile Include="..\source\Game\Boundry.cpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Engine\Entity.h">
+    <ClCompile Include="..\source\Game\SectorManager.cpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Engine\Game.h">
@@ -44,22 +47,28 @@
     <ClCompile Include="..\..\source\Engine\Camera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Engine\CameraMover.cpp">
+    <ClCompile Include="..\source\Game\SectorTemplate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Engine\Component.cpp">
+    <ClCompile Include="..\source\Game\Skybox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Engine\Composite.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\Game\HelmSceneTest.cpp">
+      <Filter>Source Files\marktodel</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Engine\Entity.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\Game\HelmStation.cpp">
+      <Filter>Source Files\marktodel</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Engine\Game.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\Game\Ship.cpp">
+      <Filter>Source Files\marktodel</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Engine\Scene.cpp">
+    <ClCompile Include="..\source\Game\Thruster.cpp">
+      <Filter>Source Files\marktodel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Player.cpp">
+      <Filter>Source Files\marktodel</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\ShipMover.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,4 +80,23 @@
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
+    <ClInclude Include="..\source\Game\Messages.h">
+    <ClInclude Include="..\source\Game\Player.h">
+    <ClInclude Include="..\source\Game\TestScene.h">
+    <ClInclude Include="..\source\Game\Boundry.h">
+    <ClInclude Include="..\source\Game\SectorManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Messages.h">
+      <Filter>Header Files\marktodel</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Player.h">
+      <Filter>Header Files\marktodel</Filter>
+      <Filter>Header Files</Filter>
+      <Filter>Header Files</Filter>
+    <ClInclude Include="..\source\Game\Ship.h">
+      <Filter>Header Files</Filter>
+    <ClInclude Include="..\source\Game\HelmStation.h">
+      <Filter>Header Files</Filter>
+    <ClInclude Include="..\source\Game\HelmSceneTest.h">
 </Project>
