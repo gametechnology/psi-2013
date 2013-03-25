@@ -60,7 +60,9 @@
       <Filter>Source Files</Filter>
 	</ClCompile>
     <ClCompile Include="MapGenerator.cpp">
-    <ClCompile Include="..\source\Game\GalaxyMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MapSector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
@@ -145,7 +147,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="MapGenerator.h">
-    <ClInclude Include="..\source\Game\GalaxyMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MapSector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
