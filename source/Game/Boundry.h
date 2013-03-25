@@ -2,4 +2,4 @@
 
 class Boundry : public Component {
 
-};
+}
