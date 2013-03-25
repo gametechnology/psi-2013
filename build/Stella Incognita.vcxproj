@@ -102,6 +102,7 @@
     <ClCompile Include="..\source\Game\Skybox.cpp" />
     <ClCompile Include="..\source\Game\TestScene.cpp" />
     <ClCompile Include="..\source\Game\Thruster.cpp" />
+    <ClCompile Include="MapGenerator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\assets\sydney.bmp" />
@@ -119,6 +120,7 @@
     <ClInclude Include="..\source\Game\Skybox.h" />
     <ClInclude Include="..\source\Game\TestScene.h" />
     <ClInclude Include="..\source\Game\Thruster.h" />
+    <ClInclude Include="MapGenerator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
