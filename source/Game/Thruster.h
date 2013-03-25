@@ -9,12 +9,9 @@ public:
 	virtual ~Thruster();
 	void Activate();
 	void init();
-	virtual void draw(){};
-	virtual void update(){};
-	virtual void handleMessage(unsigned int message, void* data = 0) {};
-
 	void draw();
-	void handleMessage(int message, void* data){};
+	void update();
+	void handleMessage(unsigned int message, void* data);
 private:
 	float force_;
 	vector3df position_;

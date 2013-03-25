@@ -105,8 +105,6 @@
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemDefinitionGroup>
-    <ClCompile Include="..\source\Game\ShipMover.cpp" />
-    <ClInclude Include="..\source\Game\ShipMover.h" />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
