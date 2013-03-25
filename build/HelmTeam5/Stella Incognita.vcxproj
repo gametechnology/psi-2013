@@ -10,8 +10,17 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\source\Game\HelmSceneTest.h" />
+    <ClInclude Include="..\..\source\Game\HelmStation.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\source\Game\HelmSceneTest.cpp" />
+    <ClCompile Include="..\..\source\Game\HelmStation.cpp" />
+    <ClCompile Include="..\..\source\Game\main.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{B0E4137C-554D-4B63-B8E4-93E93C176F9C}</ProjectGuid>
+    <ProjectGuid>{C2969B64-E6EB-44EA-BB27-EAB9FB11357A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>StellaIncognita</RootNamespace>
   </PropertyGroup>
@@ -39,9 +48,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\</OutDir>
+    <OutDir>..\..\bin\</OutDir>
     <TargetName>$(ProjectName) Debug</TargetName>
-    <IntDir>..\temp\GameDebug\DEBUG\</IntDir>
+    <IntDir>..\..\temp\GameDebug\DEBUG\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -55,14 +64,14 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ShowProgress>LinkVerbose</ShowProgress>
       <AdditionalDependencies>engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\lib\Irrlicht; ..\lib\EngineDebug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\..\lib\Irrlicht; ..\..\lib\EngineDebug</AdditionalLibraryDirectories>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
@@ -90,36 +99,6 @@
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
     </ProjectReference>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\source\Game\Boundry.cpp" />
-    <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
-    <ClCompile Include="..\source\Game\HelmStation.cpp" />
-    <ClCompile Include="..\source\Game\main.cpp" />
-    <ClCompile Include="..\source\Game\Player.cpp" />
-    <ClCompile Include="..\source\Game\SectorManager.cpp" />
-    <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
-    <ClCompile Include="..\source\Game\Ship.cpp" />
-    <ClCompile Include="..\source\Game\Skybox.cpp" />
-    <ClCompile Include="..\source\Game\TestScene.cpp" />
-    <ClCompile Include="..\source\Game\Thruster.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\assets\sydney.bmp" />
-    <None Include="..\assets\sydney.md2" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\source\Game\Boundry.h" />
-    <ClInclude Include="..\source\Game\HelmSceneTest.h" />
-    <ClInclude Include="..\source\Game\HelmStation.h" />
-    <ClInclude Include="..\source\Game\Messages.h" />
-    <ClInclude Include="..\source\Game\Player.h" />
-    <ClInclude Include="..\source\Game\SectorManager.h" />
-    <ClInclude Include="..\source\Game\SectorTemplate.h" />
-    <ClInclude Include="..\source\Game\Ship.h" />
-    <ClInclude Include="..\source\Game\Skybox.h" />
-    <ClInclude Include="..\source\Game\TestScene.h" />
-    <ClInclude Include="..\source\Game\Thruster.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

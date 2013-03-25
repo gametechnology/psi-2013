@@ -1,6 +1,3 @@
-#ifndef HELMSTATION_H
-#define HELMSTATION_H
-
 #include "Engine\Entity.h"
 #include "Irrlicht\irrlicht.h"
 
@@ -14,5 +11,3 @@ public:
 private:
 	video::ITexture* _stationTexture;
 };
-
-#endif // HELMSTATION_H

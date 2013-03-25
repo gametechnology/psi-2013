@@ -5,11 +5,14 @@ class Thruster : public Component
 {
 public:
 	Thruster(Entity *parent, vector3df position, vector3df initialDirection);
-	~Thruster(void);
+	virtual ~Thruster();
 	void Activate();
 
+	virtual void draw(){};
+	virtual void update(){};
+	virtual void handleMessage(unsigned int message, void* data = 0) {};
+
 private:
-	void update();
 	float force_;
 	vector3df position_;
 	vector3df distanceFromCenter_;
