@@ -4,16 +4,19 @@
 class Thruster : public Component
 {
 public:
-	Thruster(Composite *parent, vector3df position, vector3df initialDirection);
+	Thruster(Entity *parent, vector3df position, vector3df initialDirection);
 	~Thruster(void);
 	void Activate();
 
-	//when the ship rotates, the direction (in world space) the thruster pushes also changes
-	vector3df UpdateDirection();
-
-	vector3df pushDirection();
 private:
-	float _force;
+	void update();
+	float force_;
+	vector3df position_;
+	vector3df distanceFromCenter_;
+	vector3df direction_;
+	Entity * parent_;
 	
+	vector3df directionalForce_;
+	vector3df angularForce_;
 };
 
