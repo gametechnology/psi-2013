@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\source\Game\HelmSceneTest.h" />
     <ClInclude Include="..\..\source\Game\HelmStation.h" />
+    <ClInclude Include="..\..\source\Game\net.h" />
     <ClInclude Include="..\..\source\Game\ShipMover.h" />
     <ClInclude Include="..\..\source\Game\Skybox.h" />
     <ClInclude Include="..\..\source\Game\Thruster.h" />
@@ -21,6 +22,8 @@
     <ClCompile Include="..\..\source\Game\HelmSceneTest.cpp" />
     <ClCompile Include="..\..\source\Game\HelmStation.cpp" />
     <ClCompile Include="..\..\source\Game\main.cpp" />
+    <ClCompile Include="..\..\source\Game\net.cpp" />
+    <ClCompile Include="..\..\source\Game\Ship.cpp" />
     <ClCompile Include="..\..\source\Game\ShipMover.cpp" />
     <ClCompile Include="..\..\source\Game\Skybox.cpp" />
     <ClCompile Include="..\..\source\Game\Thruster.cpp" />
@@ -57,6 +60,8 @@
     <OutDir>..\..\bin\</OutDir>
     <TargetName>$(ProjectName) Debug</TargetName>
     <IntDir>..\..\temp\GameDebug\DEBUG\</IntDir>
+    <IncludePath>..\..\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\lib\SFML;..\..\lib\Irrlicht;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -76,7 +81,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ShowProgress>LinkVerbose</ShowProgress>
-      <AdditionalDependencies>engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>irrlicht.lib;sfml-system-d.lib;sfml-network-d.lib;engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\lib\Irrlicht; ..\..\lib\EngineDebug</AdditionalLibraryDirectories>
     </Link>
     <ProjectReference>
