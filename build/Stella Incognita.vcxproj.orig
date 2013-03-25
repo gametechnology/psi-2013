@@ -95,9 +95,12 @@
   <ItemGroup>
     <ClCompile Include="..\source\Engine\Game.cpp" />
     <ClCompile Include="..\source\Game\Boundry.cpp" />
+    <ClCompile Include="..\source\Game\GalaxyMap.cpp" />
     <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
     <ClCompile Include="..\source\Game\HelmStation.cpp" />
     <ClCompile Include="..\source\Game\main.cpp" />
+    <ClCompile Include="..\source\Game\MapGenerator.cpp" />
+    <ClCompile Include="..\source\Game\MapSector.cpp" />
     <ClCompile Include="..\source\Game\Player.cpp" />
     <ClCompile Include="..\source\Game\SectorManager.cpp" />
     <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
@@ -113,8 +116,6 @@
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp" />
     <ClCompile Include="..\source\Game\TestScene.cpp" />
     <ClCompile Include="..\source\Game\Thruster.cpp" />
-    <ClCompile Include="MapGenerator.cpp" />
-    <ClCompile Include="MapSector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\assets\sydney.bmp" />
@@ -124,11 +125,13 @@
     <ClInclude Include="..\source\Game\Boundry.h" />
 <<<<<<< HEAD
     <ClInclude Include="..\source\Game\Game.h" />
-    <ClInclude Include="..\source\Game\GalaxyMap.h" />
 =======
->>>>>>> Added MapSector class for GalaxyMap
+    <ClInclude Include="..\source\Game\GalaxyMap.h" />
+>>>>>>> Added GalaxyMap to solution;
     <ClInclude Include="..\source\Game\HelmSceneTest.h" />
     <ClInclude Include="..\source\Game\HelmStation.h" />
+    <ClInclude Include="..\source\Game\MapGenerator.h" />
+    <ClInclude Include="..\source\Game\MapSector.h" />
     <ClInclude Include="..\source\Game\Messages.h" />
     <ClInclude Include="..\source\Game\Player.h" />
     <ClInclude Include="..\source\Game\SectorManager.h" />
@@ -146,8 +149,6 @@
     <ClInclude Include="..\source\Game\Team.h" />
     <ClInclude Include="..\source\Game\TestScene.h" />
     <ClInclude Include="..\source\Game\Thruster.h" />
-    <ClInclude Include="MapGenerator.h" />
-    <ClInclude Include="MapSector.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

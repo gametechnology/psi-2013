@@ -56,9 +56,22 @@
     <ClCompile Include="..\source\Game\Ship.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="..\source\Game\Sprite.cpp">
       <Filter>Source Files</Filter>
 	</ClCompile>
+    <ClCompile Include="MapGenerator.cpp">
+=======
+    <ClCompile Include="..\source\Game\MapSector.cpp">
+>>>>>>> Added GalaxyMap to solution;
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\MapGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\GalaxyMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
@@ -68,7 +81,6 @@
     <ClCompile Include="..\source\Engine\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="..\source\Game\Stations\HelmStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
@@ -80,10 +92,6 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source Files\Stations</Filter>
-=======
-    <ClCompile Include="MapGenerator.cpp">
-      <Filter>Source Files</Filter>
->>>>>>> Created the start of the GalaxyMapGenerator class
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -145,7 +153,15 @@
     <ClInclude Include="..\source\Game\Team.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-<<<<<<< HEAD
+    <ClInclude Include="..\source\Game\MapSector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\MapGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\GalaxyMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
       <Filter>Header Files\Stations</Filter>
     </ClInclude>
@@ -160,10 +176,6 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\WeaponStation.h">
       <Filter>Header Files\Stations</Filter>
-=======
-    <ClInclude Include="MapGenerator.h">
-      <Filter>Header Files</Filter>
->>>>>>> Created the start of the GalaxyMapGenerator class
     </ClInclude>
   </ItemGroup>
 </Project>
