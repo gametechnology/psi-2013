@@ -18,16 +18,14 @@ HelmSceneTest::~HelmSceneTest(void)
 
 void HelmSceneTest::init()
 {
-	Camera* camera = new Camera(this, vector3df(0,-5, 10), vector3df(0,0,0));
-	addComponent(camera);
 	Skybox* skyBox = new Skybox(this);
 	addComponent(skyBox);
 
-	Ship* ship = new Ship(this);
+	//Ship* ship = new Ship(this);
 
-	//HelmStation* helmStation = new HelmStation(this);
-	//addComponent(helmStation);
-	addComponent(shipMover);
+	HelmStation* helmStation = new HelmStation(this);
+	addComponent(helmStation);
+	//addComponent(shipMover);
 
 	Camera* camera = new Camera(this, vector3df(0,4,-4), vector3df(0,4,0));
 	camera->angularVelocity.X += (irr::f32)0.001;

@@ -24,3 +24,8 @@ void Thruster::init(){
 void Thruster::draw(){
 
 }
+
+void Thruster::handleMessage(unsigned int message, void* data)
+{
+
+}
