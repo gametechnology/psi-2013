@@ -59,13 +59,7 @@
     <ClCompile Include="..\source\Game\Sprite.cpp">
       <Filter>Source Files</Filter>
 	</ClCompile>
-    <ClCompile Include="..\source\Game\MapSector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\MapGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\GalaxyMap.cpp">
+    <ClCompile Include="MapSector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
@@ -149,14 +143,9 @@
     <ClInclude Include="..\source\Game\Team.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\MapSector.h">
+    <ClInclude Include="MapSector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\MapGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\GalaxyMap.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
       <Filter>Header Files\Stations</Filter>
@@ -172,6 +161,5 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\WeaponStation.h">
       <Filter>Header Files\Stations</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>
