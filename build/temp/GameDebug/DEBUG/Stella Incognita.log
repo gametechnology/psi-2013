@@ -1,0 +1,40 @@
+﻿Build started 3/25/2013 3:30:45 PM.
+     1>Project "C:\projects\Project Stella Incognita\psi-2013\build\HelmTeam5\Stella Incognita.vcxproj" on node 3 (build target(s)).
+     1>PrepareForBuild:
+         Creating directory "..\bin\".
+       InitializeBuildStatus:
+         Creating "..\temp\GameDebug\DEBUG\Stella Incognita.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\include /ZI /nologo /W3 /WX- /Od /Oy- /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"..\temp\GameDebug\DEBUG\\" /Fd"..\temp\GameDebug\DEBUG\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\source\Game\Boundry.cpp ..\source\Game\HelmSceneTest.cpp ..\source\Game\HelmStation.cpp ..\source\Game\main.cpp ..\source\Game\Player.cpp ..\source\Game\SectorManager.cpp ..\source\Game\SectorTemplate.cpp ..\source\Game\Ship.cpp ..\source\Game\ShipmapScene.cpp ..\source\Game\Skybox.cpp ..\source\Game\Sprite.cpp ..\source\Game\TestScene.cpp ..\source\Game\Thruster.cpp
+         Thruster.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game\Thruster.cpp': No such file or directory
+         TestScene.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game\TestScene.cpp': No such file or directory
+         Sprite.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game\Sprite.cpp': No such file or directory
+         Skybox.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game\Skybox.cpp': No such file or directory
+         ShipmapScene.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game\ShipmapScene.cpp': No such file or directory
+         Ship.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game\Ship.cpp': No such file or directory
+         SectorTemplate.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game\SectorTemplate.cpp': No such file or directory
+         SectorManager.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game\SectorManager.cpp': No such file or directory
+         Player.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game\Player.cpp': No such file or directory
+         main.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game\main.cpp': No such file or directory
+         HelmStation.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game\HelmStation.cpp': No such file or directory
+         HelmSceneTest.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game\HelmSceneTest.cpp': No such file or directory
+         Boundry.cpp
+     1>c1xx : fatal error C1083: Cannot open source file: '..\source\Game\Boundry.cpp': No such file or directory
+         Generating Code...
+     1>Done Building Project "C:\projects\Project Stella Incognita\psi-2013\build\HelmTeam5\Stella Incognita.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.45
