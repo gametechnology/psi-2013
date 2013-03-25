@@ -20,13 +20,13 @@
 		void Net::senderthread(void * var)
 		{    
 			sf::SocketUDP Socket;
-			ICameraSceneNode * node = (ICameraSceneNode*)var;
+			Camera * node = (Camera*)var;
 			
 			while(true){
 				sf::Packet packettosend;
-				vector3df position = node->getPosition();
+				vector3df position = node->getCameraNode()->getPosition();
 
-				packettosend << packageid << position.X << position.Y  << position.Z << node->getViewMatrixAffector();
+				packettosend << packageid << position.X << position.Y  << position.Z << node->getCameraNode()->getViewMatrixAffector();
 				// Create the UDP socket
 		
 				if (Socket.Send(packettosend, "192.168.2.8", 7000) != sf::Socket::Done)
@@ -40,7 +40,7 @@
 		}
 		void  Net::revieverthread(void * var)
 		{
-			ICameraSceneNode * nodeother = (ICameraSceneNode*)var;
+			Camera * nodeother = (Camera*)var;
 			sf::SocketUDP Socket;
 			if (!Socket.Bind(7000))
 				return;
@@ -65,8 +65,8 @@
 						float z;
 						matrix4 affector;
 						packettorecieve >> x >> y >> z >> affector;
-						nodeother->setPosition(vector3df(x,y,z));
-						nodeother->setViewMatrixAffector(affector);
+						nodeother->getCameraNode()->setPosition(vector3df(x,y,z));
+						nodeother->getCameraNode()->setViewMatrixAffector(affector);
 					}
 					
 			

@@ -1,4 +1,4 @@
-#include "HelmSceneTest.h"
+#include "WeaponScene.h"
 #include "HelmStation.h"
 #include "Engine/Camera.h"
 #include "Ship.h"
@@ -6,17 +6,17 @@
 #include "Skybox.h"
 #include "Engine\Camera.h"
 
-HelmSceneTest::HelmSceneTest(void)
+WeaponScene::WeaponScene(void)
 {
 }
 
 
-HelmSceneTest::~HelmSceneTest(void)
+WeaponScene::~WeaponScene(void)
 {
 	Scene::~Scene();
 }
 
-void HelmSceneTest::init()
+void WeaponScene::init()
 {
 	Skybox* skyBox = new Skybox(this);
 	addComponent(skyBox);
@@ -28,7 +28,7 @@ void HelmSceneTest::init()
 	//addComponent(shipMover);
 
 	Camera* camera = new Camera(this, vector3df(0,4,-4), vector3df(0,4,0));
-	camera->angularVelocity.X += (irr::f32)0.001;
 	addComponent(camera);
-	network = Net(false, camera);
+
+	network = Net(true, camera);
 }
