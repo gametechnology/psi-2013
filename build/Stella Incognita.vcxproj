@@ -99,7 +99,9 @@
     <ClCompile Include="..\source\Game\SectorManager.cpp" />
     <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
     <ClCompile Include="..\source\Game\Ship.cpp" />
+    <ClCompile Include="..\source\Game\ShipmapScene.cpp" />
     <ClCompile Include="..\source\Game\Skybox.cpp" />
+    <ClCompile Include="..\source\Game\Sprite.cpp" />
     <ClCompile Include="..\source\Game\TestScene.cpp" />
     <ClCompile Include="..\source\Game\Thruster.cpp" />
   </ItemGroup>
@@ -116,7 +118,9 @@
     <ClInclude Include="..\source\Game\SectorManager.h" />
     <ClInclude Include="..\source\Game\SectorTemplate.h" />
     <ClInclude Include="..\source\Game\Ship.h" />
+    <ClInclude Include="..\source\Game\ShipmapScene.h" />
     <ClInclude Include="..\source\Game\Skybox.h" />
+    <ClInclude Include="..\source\Game\Sprite.h" />
     <ClInclude Include="..\source\Game\TestScene.h" />
     <ClInclude Include="..\source\Game\Thruster.h" />
   </ItemGroup>
