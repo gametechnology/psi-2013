@@ -10,7 +10,10 @@
 class Skybox : public Entity  {
 public:
 	Skybox(const io::path & filePath, Composite* parent);
+	void init(void);
 	virtual ~Skybox();
+private:
+	io::path & _filePath;
 };
 
 #endif
