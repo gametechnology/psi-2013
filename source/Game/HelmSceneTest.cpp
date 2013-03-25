@@ -1,7 +1,5 @@
 #include "HelmSceneTest.h"
 #include "HelmStation.h"
-#include "Engine/Camera.h"
-#include "Ship.h"
 #include "ShipMover.h"
 #include "Skybox.h"
 #include "Engine\Camera.h"
@@ -21,11 +19,11 @@ void HelmSceneTest::init()
 	Skybox* skyBox = new Skybox(this);
 	addComponent(skyBox);
 
-	//Ship* ship = new Ship(this);
-
 	HelmStation* helmStation = new HelmStation(this);
 	addComponent(helmStation);
-	//addComponent(shipMover);
+
+	ShipMover* shipMover = new ShipMover(this);
+	addComponent(shipMover);
 
 	Camera* camera = new Camera(this, vector3df(0,4,-4), vector3df(0,4,0));
 	camera->angularVelocity.X += (irr::f32)0.001;
