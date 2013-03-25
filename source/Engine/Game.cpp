@@ -46,6 +46,7 @@ void Game::run()
 		Game::getCurrentScene()->update();
 		Game::driver->beginScene(true, true, SColor(255,100,101,140));
 		(*Game::scenes->begin())->sceneManager->drawAll();
+		Game::getCurrentScene()->draw();
 		Game::driver->endScene();
 	}
 	Game::device->drop();

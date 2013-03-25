@@ -1,5 +1,5 @@
 #include "Engine/Game.h"
-#include "TestScene.h"
+#include "HelmSceneTest.h"
 
 // Include memory leak detection files.
 #ifdef _DEBUG
@@ -14,7 +14,7 @@ int main()
 	Game game = Game();
 
 	// Create test scene
-	Game::addScene(new TestScene());
+	Game::addScene(new HelmSceneTest());
 	
 	// Start the main loop
 	Game::run();

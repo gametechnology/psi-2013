@@ -22,3 +22,4 @@ temp/EngineRelease/DEBUG/
 temp/EngineDebug/DEBUG/
 *.pdb
 *.suo
+build/ipch/

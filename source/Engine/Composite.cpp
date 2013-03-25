@@ -30,6 +30,14 @@ void Composite::update()
 	}
 }
 
+void Composite::draw()
+{
+	for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
+	{
+		(*i)->draw();
+	}
+}
+
 void Composite::addComponent(Component* component)
 {
 	components.push_back(component);
