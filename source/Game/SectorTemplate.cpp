@@ -4,21 +4,22 @@
 
 SectorTemplate::SectorTemplate(Composite* parent, Entity player, const io::path & skyBoxTexture, float boundryRadius) : Entity(parent) {
 	// Creating Skybox
-	Skybox* skybox = new Skybox(skyBoxTexture, this);
-	addComponent( skybox );
+	_skybox = new Skybox(skyBoxTexture, this);
 	
 	// Setting the boundry
-	this->_boundry->setLength( boundryRadius );
-
-	// Setting the player
-	this->_playerPosition = &player.position;
+	_boundry = boundryRadius;
 
 	// The player
 	this->_player = &player;
 }
 
+void SectorTemplate::init(){
+	addComponent( this->_skybox );
+	addComponent( this->_player );
+}
+
 void SectorTemplate::update(){
-	if(this->_playerPosition->getLength() > this->_boundry->getLength()){
+	if( this->_player->position.getLength() > _boundry ){
 		this->_player->handleMessage(OUT_OF_BOUNDS, NULL);
 	}
 }
