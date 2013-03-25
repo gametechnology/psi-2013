@@ -2,7 +2,7 @@
 #include "Messages.h"
 #include "Skybox.h"
 
-SectorTemplate::SectorTemplate(Composite* parent, Entity player, const io::path & skyBoxTexture, float boundryRadius) : Entity(parent) {
+SectorTemplate::SectorTemplate(Composite* parent, const io::path & skyBoxTexture, float boundryRadius) : Entity(parent) {
 	// Creating Skybox
 	_skybox = new Skybox(skyBoxTexture, this);
 	
@@ -10,7 +10,7 @@ SectorTemplate::SectorTemplate(Composite* parent, Entity player, const io::path 
 	_boundry = boundryRadius;
 
 	// The player
-	this->_player = &player;
+	this->_player = new Entity( this->parent );
 }
 
 void SectorTemplate::init(){

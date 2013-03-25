@@ -5,7 +5,7 @@
 class SectorTemplate : public Entity  {
 public:
 
-	SectorTemplate(Composite* parent, Entity player, const io::path & skyBoxTexture, float boundry);
+	SectorTemplate(Composite* parent, const io::path & skyBoxTexture, float boundry);
 	void SectorTemplate::handleMessage(unsigned int message, void* data = 0);
 	void SectorTemplate::update();
 	void SectorTemplate::init();
