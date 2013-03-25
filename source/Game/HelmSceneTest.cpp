@@ -1,5 +1,7 @@
 #include "HelmSceneTest.h"
 #include "HelmStation.h"
+#include "Engine/Camera.h"
+#include "Ship.h"
 #include "ShipMover.h"
 #include "Skybox.h"
 #include "Engine\Camera.h"
@@ -16,13 +18,15 @@ HelmSceneTest::~HelmSceneTest(void)
 
 void HelmSceneTest::init()
 {
+	Camera* camera = new Camera(this, vector3df(0,-5, 10), vector3df(0,0,0));
+	addComponent(camera);
 	Skybox* skyBox = new Skybox(this);
 	addComponent(skyBox);
 
-	HelmStation* helmStation = new HelmStation(this);
-	addComponent(helmStation);
+	Ship* ship = new Ship(this);
 
-	ShipMover* shipMover = new ShipMover(this);
+	//HelmStation* helmStation = new HelmStation(this);
+	//addComponent(helmStation);
 	addComponent(shipMover);
 
 	Camera* camera = new Camera(this, vector3df(0,4,-4), vector3df(0,4,0));

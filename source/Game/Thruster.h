@@ -1,17 +1,20 @@
 #pragma once
 #include "Engine\Game.h"
+#include "Engine\Entity.h"
 #include "Irrlicht\irrlicht.h"
-class Thruster : public Component
+class Thruster : public Entity
 {
 public:
-	Thruster(Composite *parent, vector3df position, vector3df initialDirection);
+	Thruster(Composite* parent, vector3df position, vector3df initialDirection);
 	virtual ~Thruster();
 	void Activate();
-
+	void init();
 	virtual void draw(){};
 	virtual void update(){};
 	virtual void handleMessage(unsigned int message, void* data = 0) {};
 
+	void draw();
+	void handleMessage(int message, void* data){};
 private:
 	float force_;
 	vector3df position_;
