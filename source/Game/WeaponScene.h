@@ -1,13 +1,13 @@
 #pragma once
 #include "Engine\Scene.h"
 #include "net.h"
-class HelmSceneTest : public Scene
+class WeaponScene : public Scene
 {
 
 public:
 	
-	HelmSceneTest(void);
-	~HelmSceneTest(void);
+	WeaponScene(void);
+	~WeaponScene(void);
 	virtual void init();
 	Net network;
 	Entity* ship;

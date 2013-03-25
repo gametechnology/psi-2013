@@ -5,7 +5,7 @@
 #include <process.h>
 #include <sstream>
 #include <SFML/Network.hpp>
-
+#include "Engine\Camera.h"
 
 using namespace irr;
 
