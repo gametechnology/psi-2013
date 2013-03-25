@@ -13,12 +13,15 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Stations">
+      <UniqueIdentifier>{a89acb92-cdd8-4158-844e-d2390589ad71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Stations">
+      <UniqueIdentifier>{9fc7689d-8dc0-44cf-bd58-f544a023136d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Game\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\TestScene.cpp">
@@ -42,11 +45,32 @@
     <ClCompile Include="..\source\Game\HelmStation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\Thruster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Ship.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Thruster.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\Game\Stations\Station.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\HelmStation.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
+      <Filter>Source Files\Stations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -59,9 +83,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Messages.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\TestScene.h">
@@ -82,14 +103,38 @@
     <ClInclude Include="..\source\Game\Thruster.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\HelmSceneTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\Station.h">
+      <Filter>Header Files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\source\Game\Ship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\HelmStation.h">
+    <ClInclude Include="..\source\Game\Team.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\HelmSceneTest.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
+      <Filter>Header Files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\HelmStation.h">
+      <Filter>Header Files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\NavigationStation.h">
+      <Filter>Header Files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\PowerStation.h">
+      <Filter>Header Files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\WeaponStation.h">
+      <Filter>Header Files\Stations</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
