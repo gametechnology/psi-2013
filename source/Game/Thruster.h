@@ -4,7 +4,7 @@
 class Thruster : public Component
 {
 public:
-	Thruster(Entity *parent, vector3df position, vector3df initialDirection);
+	Thruster(Composite *parent, vector3df position, vector3df initialDirection);
 	virtual ~Thruster();
 	void Activate();
 

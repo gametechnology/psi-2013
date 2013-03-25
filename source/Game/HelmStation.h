@@ -5,9 +5,9 @@ class HelmStation : public Entity
 {
 public:
 	HelmStation(Composite* parent);
-	virtual ~HelmStation();
+	~HelmStation();
 
-	virtual void draw();
+	void draw();
 private:
 	video::ITexture* _stationTexture;
 };

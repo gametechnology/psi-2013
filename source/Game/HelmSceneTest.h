@@ -1,7 +1,6 @@
 #pragma once
 #include "Engine\Scene.h"
-class HelmSceneTest :
-	public Scene
+class HelmSceneTest : public Scene
 {
 public:
 	HelmSceneTest(void);
