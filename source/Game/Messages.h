@@ -3,7 +3,8 @@
 
 enum Messages {
 	DAMAGE,
-	OUT_OF_BOUNDS
+	OUT_OF_BOUNDS,
+	NEXT_SECTOR
 };
 
 #endif
