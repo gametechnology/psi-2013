@@ -48,13 +48,7 @@
     <ClCompile Include="..\source\Game\Thruster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\MapSector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\MapGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\GalaxyMap.cpp">
+    <ClCompile Include="MapSector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -100,13 +94,7 @@
     <ClInclude Include="..\source\Game\HelmSceneTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\MapSector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\MapGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\GalaxyMap.h">
+    <ClInclude Include="MapSector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
