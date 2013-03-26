@@ -1,13 +1,21 @@
-#ifndef STATION
-#define STATION
+#ifndef STATION_BASE
+#define STATION_BASE
+#pragma once
 
+#include "..\Player.h"
+
+#ifdef ENTITY_SHIP
 #include "..\Ship.h"
+#endif
 
-class Station {
+class Ship;
+
+class Station 
+{
 
 public:
-	Station(Ship *ship);
-	~Station();
+	Station( Ship *ship );
+	~Station( ) { }
 
 	virtual void DoCameraShake() = 0;
 
@@ -20,7 +28,7 @@ public:
 		Navigation = 4
 	};
 
-	Station::StationType GetStationType();
+	//StationType GetStationType();
 	bool HasPlayer();
 	bool SwitchTimePassed();
 	bool IsStunned();
@@ -28,7 +36,7 @@ public:
 	bool HasPower();
 	bool HasArmor();
 
-	void Update(float time);
+	void Update(float time);		
 
 protected:
 	Ship *_ship;
@@ -38,8 +46,7 @@ protected:
 	float _playerOnStationTime;
 	float _stunTimeLeft;
 	
-	Station::StationType _stationType;
+	StationType _stationType;
 };
-
+//#endif
 #endif
-

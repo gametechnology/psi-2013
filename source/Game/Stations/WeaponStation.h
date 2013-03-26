@@ -6,7 +6,7 @@
 
 class WeaponStation : public Station {
 public:
-	WeaponStation(Ship* ship);
+	WeaponStation( Ship *ship );
 	~WeaponStation(void);
 
 	void DoCameraShake();

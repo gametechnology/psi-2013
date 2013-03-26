@@ -63,6 +63,9 @@
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Engine\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\HelmStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>

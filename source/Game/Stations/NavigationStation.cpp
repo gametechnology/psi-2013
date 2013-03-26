@@ -4,7 +4,7 @@
 
 NavigationStation::NavigationStation(Ship *ship) : Station( ship )
 {
-	this->_stationType = StationType::Navigation;
+	//this->_stationType = StationType::Navigation;
 }
 
 void NavigationStation :: DoCameraShake( )

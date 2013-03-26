@@ -1,5 +1,6 @@
 #include "Engine/Game.h"
 #include "HelmSceneTest.h"
+#include "Ship.h"
 
 // Include memory leak detection files.
 #ifdef _DEBUG
@@ -11,7 +12,9 @@
 int main()
 {
 	// Create engine
-	Game game = Game();
+	Game game = Game();	
+	//TODO remove temp stuff
+	Ship ship = Ship(  );
 
 	// Create test scene
 	Game::addScene(new HelmSceneTest());
