@@ -13,6 +13,6 @@ HelmSceneTest::~HelmSceneTest(void)
 
 void HelmSceneTest::init( )
 {
-	HelmStation* helmStation = new HelmStation(this);
-	addComponent(helmStation);
+	//HelmStation* helmStation = new HelmStation(this);
+	//addComponent(helmStation);
 }

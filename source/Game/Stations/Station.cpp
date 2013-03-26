@@ -4,18 +4,18 @@
 
 Station :: Station( Ship *ship )
 {
-	this->_ship = ship;
+	//this->_ship = ship;
 	this->_switchTime = 4.0f;
 }
 
 bool Station::HasPlayer()
 {
-	return (this->_player);
+	return ( this -> _player != NULL );
 }
 
 bool Station::SwitchTimePassed()
 {
-	return this->_playerOnStationTime > this->_switchTime;
+	return this -> _playerOnStationTime > this -> _switchTime;
 }
 
 bool Station::IsStunned()

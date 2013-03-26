@@ -4,7 +4,7 @@
 
 PowerStation::PowerStation(Ship *ship) : Station( ship )
 {
-	this->_stationType = StationType::Power;
+	//this->_stationType = StationType::Power;
 }
 
 void PowerStation :: DoCameraShake( )

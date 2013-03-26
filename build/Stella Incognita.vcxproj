@@ -91,6 +91,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\source\Engine\Game.cpp" />
     <ClCompile Include="..\source\Game\Boundry.cpp" />
     <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
     <ClCompile Include="..\source\Game\HelmStation.cpp" />

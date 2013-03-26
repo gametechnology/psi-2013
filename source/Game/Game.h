@@ -9,11 +9,10 @@ private:
 	Team team2;
 
 public:
-	Game();
+	Game( ) { std :: cout << "yoyo"; }
 	~Game();
 	Team GetTeam1() { return team1; }
 	Team GetTeam2() { return team2; }
-
 };
 
 #endif

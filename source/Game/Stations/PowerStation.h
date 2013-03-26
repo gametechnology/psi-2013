@@ -9,8 +9,8 @@ public:
 	PowerStation(Ship* ship);
 	~PowerStation(void);
 
-	void DoCameraShake();
-	int GetPower(Station::StationType stationType) { return 0; }
+	void DoCameraShake();	
+	//int GetPower(Station::StationType stationType) { return 0; }
 };
 
 #endif

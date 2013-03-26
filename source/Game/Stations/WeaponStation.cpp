@@ -2,9 +2,9 @@
 #include "WeaponStation.h"
 #include "..\Ship.h"
 
-WeaponStation::WeaponStation(Ship *ship) : Station(ship)
+WeaponStation::WeaponStation( Ship *ship ) : Station( ship )
 {
-	this->_stationType = StationType::Weapon;
+	this -> _stationType = StationType::Weapon;
 }
 
 void WeaponStation :: DoCameraShake( )
