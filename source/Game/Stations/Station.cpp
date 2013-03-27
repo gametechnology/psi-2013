@@ -4,8 +4,8 @@
 
 Station :: Station( Ship *ship )
 {
-	//this->_ship = ship;
-	this->_switchTime = 4.0f;
+	this ->	_ship	= ship;
+	//this -> _switchTime = 4.0f;
 }
 
 bool Station::HasPlayer()
@@ -20,18 +20,23 @@ bool Station::SwitchTimePassed()
 
 bool Station::IsStunned()
 {
-	return this->_stunTimeLeft > 0;
+	time_t *t;
+	time( t );
+
+	//return true if the difference between the current time and the time the station was stunned is less than the defined stun time
+	return difftime( *_stunTime, *t ) <= STUN_TIME;
 }
 
 void Station::Update(float time)
 {
 	//Update Stun Time
-	this->_stunTimeLeft -= time;
-	if (this->_stunTimeLeft <= 0)
-		this->_stunTimeLeft = 0;
+	//Update player on station time	
+}
 
-	//Update player on station time
-	this->_playerOnStationTime += time;
+void Station :: OnDamage( )
+{	
+	//set the stun time to the current time (the time when it was stunned) 
+	time( _stunTime );
 }
 
 bool Station::HasPower()
@@ -42,4 +47,9 @@ bool Station::HasPower()
 bool Station::HasArmor()
 {
 	return true;//this->_ship->_defenceStation->GetArmor(this->_stationType) > 0;
+}
+
+void Station :: Init( )
+{
+
 }

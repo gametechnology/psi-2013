@@ -4,8 +4,20 @@
 
 DefenceStation :: DefenceStation( Ship* ship) : Station( ship )
 {
-	this -> _stationType	= StationType::Defence;	
+	this -> _stationType	= StationType::Defence;
+	this -> _stations		= new map<STATION_TYPE, Stats>( );
+
+	Init( );	
+}
+
+void DefenceStation :: Init( )
+{
 	std :: srand( time( NULL ) );
+
+	for ( int i = 0; i < 5; i ++ )
+	{
+		this -> _stations -> insert( ( STATION_TYPE ) i, Stats( ) );
+	}
 }
 
 void DefenceStation :: DoCameraShake( )
