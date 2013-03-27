@@ -23,6 +23,8 @@ public:
 		unsigned int health = 1);						//
 	~Enemy(void);
 
+	bool isWithinLoS(/*playership class*/);
+
 	void setState();
 	void getState();
 
@@ -54,12 +56,19 @@ public:
 protected:
 private:
 	
+	void applySpeed();
+	void steeRing();
+	void contactResolverB();
+	void contactResolverA();
+	void contactGenerator();
 	void pathFinding();
 	
 	IMesh* visual_;
 	vector3df position_;
 	vector3df rotation_;
 	vector3df destination_;
+	vector3df velocity_;
+	vector3df accelaration_;
 
 	signed int health_;
 	unsigned int maxspeed_;

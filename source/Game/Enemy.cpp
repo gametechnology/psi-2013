@@ -38,6 +38,11 @@ void Enemy::update()
 	pathFinding();
 }
 
+bool isWithinLoS(/*playership class*/)
+{
+
+}
+
 void Enemy::setState()
 {
 	//TODO
@@ -45,6 +50,45 @@ void Enemy::setState()
 void Enemy::getState()
 {
 	//TODO
+}
+
+void Enemy::applySpeed()
+{
+	if (accelaration_.getLength() > maxaccelaration_)
+	{
+		vector3df cappedacc = accelaration_.normalize();
+		cappedacc *= maxaccelaration_;
+		accelaration_ = cappedacc;
+	}
+
+	if (velocity_.getLength() > maxspeed_)
+	{
+		vector3df cappedvel = velocity_.normalize();
+		cappedvel *= maxspeed_;
+		velocity_ = cappedvel;
+	}
+	velocity_ += accelaration_;
+	position_ += velocity_;
+}
+
+void Enemy::steeRing()
+{
+
+}
+
+void Enemy::contactResolverB()
+{
+	velocity_ *= -1;
+}
+
+void Enemy::contactResolverA()
+{
+	//TODO advanced collision resolving
+}
+
+void Enemy::contactGenerator()
+{
+
 }
 
 void Enemy::setVisual(IMesh* visual, ISceneManager* smgr)
