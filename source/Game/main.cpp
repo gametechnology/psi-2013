@@ -1,6 +1,7 @@
 #include "Engine/Game.h"
 #include "HelmSceneTest.h"
 #include "Ship.h"
+#include "MapGenerator.h"
 
 // Include memory leak detection files.
 #ifdef _DEBUG
@@ -11,6 +12,9 @@
 
 int main()
 {
+	MapGenerator test;
+	test.init(5,2,4);
+	test.createNewMap();
 	// Create engine
 	Game game = Game();	
 	//TODO remove temp stuff
@@ -21,7 +25,7 @@ int main()
 	
 	// Start the main loop
 	Game::run();
-
+	
 	// Debug for memory leaks
 	#ifdef _DEBUG
 	_CrtDumpMemoryLeaks();

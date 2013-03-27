@@ -10,7 +10,7 @@ public:
 	virtual ~GalaxyMap();
 	void loadMap();
 	void saveMap();
-	std::list<MapSector*> connections;
+	std::list<MapSector*> sectors;
 };
 
 #endif

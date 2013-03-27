@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <iostream>
 
-class GalaxyMap;
+#include "GalaxyMap.h"
 
 using namespace std;
 
