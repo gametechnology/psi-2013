@@ -8,6 +8,11 @@
 #include "..\Ship.h"
 #endif
 
+#define STUN_TIME 4.0
+
+#define MAX_INT(a, b) a > b ? a : b
+#define MIN_INT(a, b) a < b ? a : b
+
 class Ship;
 
 class Station 
@@ -36,17 +41,21 @@ public:
 	bool HasPower();
 	bool HasArmor();
 
-	void Update(float time);		
+	void Update(float time);
+
+	virtual void OnDamage( );
 
 protected:
-	Ship *_ship;
+	Ship	*_ship;
+	Player	*_player;
 
-	Player *_player;
-	float _switchTime;
-	float _playerOnStationTime;
-	float _stunTimeLeft;
+	time_t *_switchTime;				//the time that the player switched to this station
+	time_t *_playerOnStationTime;	//the time that the player has spent on this station (since he switched)
+	time_t *_stunTime;				//if a station fot stunned, the time it happened will be stored here.
 	
 	StationType _stationType;
+
+	virtual void Init( );
 };
 //#endif
 #endif
