@@ -7,10 +7,10 @@ HelmStation :: HelmStation(Ship *ship) : Station( ship )
 	//this->_stationType = StationType::Helm;
 }
 
-/*HelmStation :: ~HelmStation( )
+HelmStation :: ~HelmStation( )
 {
 	
-}*/
+}
 
 void HelmStation :: DoCameraShake( )
 {
