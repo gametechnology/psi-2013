@@ -34,7 +34,7 @@ Station *Ship :: GetStation( STATION_TYPE s )
 {
 	this -> _defenceStation -> Damage( );
 
-	switch( 0 )
+	switch( s )
 	{
 	case STATION_TYPE :: Defence:
 		return this -> _defenceStation;
