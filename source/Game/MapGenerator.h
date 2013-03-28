@@ -3,6 +3,8 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <vector>
+#include <string>
 
 #include "GalaxyMap.h"
 
@@ -22,6 +24,9 @@ public:
 	void createConnections();
 
 private:
+	std::vector<std::string> nameprefix;
+	std::vector<std::string> nameaddon;
+	std::vector<std::string> nametype;
 	int sectorCount;
 	int minWormholes;
 	int maxWormholes;
