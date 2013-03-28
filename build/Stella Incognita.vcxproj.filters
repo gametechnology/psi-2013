@@ -59,7 +59,13 @@
     <ClCompile Include="..\source\Game\Sprite.cpp">
       <Filter>Source Files</Filter>
 	</ClCompile>
-    <ClCompile Include="MapSector.cpp">
+    <ClCompile Include="..\source\Game\GalaxyMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\MapGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\MapSector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
@@ -143,7 +149,13 @@
     <ClInclude Include="..\source\Game\Team.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MapSector.h">
+    <ClInclude Include="..\source\Game\GalaxyMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\MapGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\MapSector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     </ClInclude>
