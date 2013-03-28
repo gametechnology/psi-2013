@@ -1,14 +1,15 @@
 #ifndef Enemy_h
 #define Enemy_h
 
-#include "irrlicht.h"
+#include "Engine/Entity.h"
+#include "Engine/Game.h"
 
 using namespace irr;
 using namespace scene;
 using namespace video;
 using namespace core;
 
-class Enemy
+class Enemy : public Entity
 {
 public:
 	Enemy(void);
