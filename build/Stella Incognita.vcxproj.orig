@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -91,7 +91,6 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\Engine\Game.cpp" />
     <ClCompile Include="..\source\Game\Boundry.cpp" />
     <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
     <ClCompile Include="..\source\Game\HelmStation.cpp" />
@@ -102,13 +101,16 @@
     <ClCompile Include="..\source\Game\Ship.cpp" />
     <ClCompile Include="..\source\Game\ShipmapScene.cpp" />
     <ClCompile Include="..\source\Game\Skybox.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="..\source\Game\Sprite.cpp" />
+=======
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\HelmStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\PowerStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\Station.cpp" />
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp" />
+>>>>>>> Added the basic implementation of the Stations UML Diagram
     <ClCompile Include="..\source\Game\TestScene.cpp" />
     <ClCompile Include="..\source\Game\Thruster.cpp" />
   </ItemGroup>
@@ -120,8 +122,6 @@
     <ClInclude Include="..\source\Game\Boundry.h" />
     <ClInclude Include="..\source\Game\Game.h" />
     <ClInclude Include="..\source\Game\HelmSceneTest.h" />
-    <ClInclude Include="..\source\Game\HelmStation.h" />
-    <ClInclude Include="..\source\Game\HelmStation.h" />
     <ClInclude Include="..\source\Game\Messages.h" />
     <ClInclude Include="..\source\Game\Player.h" />
     <ClInclude Include="..\source\Game\SectorManager.h" />
@@ -129,7 +129,9 @@
     <ClInclude Include="..\source\Game\Ship.h" />
     <ClInclude Include="..\source\Game\ShipmapScene.h" />
     <ClInclude Include="..\source\Game\Skybox.h" />
+<<<<<<< HEAD
     <ClInclude Include="..\source\Game\Sprite.h" />
+=======
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h" />
     <ClInclude Include="..\source\Game\Stations\HelmStation.h" />
     <ClInclude Include="..\source\Game\Stations\NavigationStation.h" />
@@ -137,6 +139,7 @@
     <ClInclude Include="..\source\Game\Stations\Station.h" />
     <ClInclude Include="..\source\Game\Stations\WeaponStation.h" />
     <ClInclude Include="..\source\Game\Team.h" />
+>>>>>>> Added the basic implementation of the Stations UML Diagram
     <ClInclude Include="..\source\Game\TestScene.h" />
     <ClInclude Include="..\source\Game\Thruster.h" />
   </ItemGroup>
