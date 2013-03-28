@@ -4,7 +4,7 @@
 
 // Disable DOS window.
 #ifdef _IRR_WINDOWS_
-#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
+//#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
 
 #include "Engine\Game.h"
