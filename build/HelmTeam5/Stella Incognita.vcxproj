@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -18,6 +18,7 @@
     <ClInclude Include="..\..\source\Game\Skybox.h" />
     <ClInclude Include="..\..\source\Game\Thruster.h" />
     <ClInclude Include="..\..\source\Game\WeaponScene.h" />
+    <ClInclude Include="..\..\source\Game\WeaponStation.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\Game\HelmSceneTest.cpp" />
@@ -29,6 +30,7 @@
     <ClCompile Include="..\..\source\Game\Skybox.cpp" />
     <ClCompile Include="..\..\source\Game\Thruster.cpp" />
     <ClCompile Include="..\..\source\Game\WeaponScene.cpp" />
+    <ClCompile Include="..\..\source\Game\WeaponStation.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C2969B64-E6EB-44EA-BB27-EAB9FB11357A}</ProjectGuid>
