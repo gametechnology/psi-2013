@@ -3,7 +3,7 @@
 #pragma comment(lib, "Irrlicht.lib")
 
 // Disable DOS window.
-#ifdef _IRR_WINDOWS_
+#ifdef _DEBUG
 #pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
 
