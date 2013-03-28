@@ -1,5 +1,5 @@
 #include "WeaponScene.h"
-#include "HelmStation.h"
+#include "WeaponStation.h"
 #include "Engine/Camera.h"
 #include "Ship.h"
 #include "ShipMover.h"
@@ -23,8 +23,8 @@ void WeaponScene::init()
 
 	//Ship* ship = new Ship(this);
 
-	HelmStation* helmStation = new HelmStation(this);
-	addComponent(helmStation);
+	WeaponStation* weaponStation = new WeaponStation(this);
+	addComponent(weaponStation);
 	//addComponent(shipMover);
 
 	Camera* camera = new Camera(this, vector3df(0,4,-4), vector3df(0,4,0));

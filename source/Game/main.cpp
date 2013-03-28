@@ -6,7 +6,7 @@ bool Isweapon = true;
 
 // Include memory leak detection files.
 #ifdef _DEBUG
-	#define _CRTDBG_MAP_ALLOC
+	#define _CRTDBG_MAP_ALLOCss
 	#include <stdlib.h>
 	#include <crtdbg.h>
 #endif
