@@ -2,7 +2,7 @@
 #define ENTITY_SHIP
 
 #include "Stations\DefenceStation.h"
-#include "Stations\HelmStation.h"
+//#include "Stations\HelmStation.h"
 #include "Stations\NavigationStation.h"
 #include "Stations\PowerStation.h"
 #include "Stations\WeaponStation.h"
