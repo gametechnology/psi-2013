@@ -5,15 +5,15 @@
 #ifndef SKYBOX
 #define SKYBOX
 
-#include "Entity.h"
-#include "Game.h"
+#include "Engine/Entity.h"
+#include "Engine/Game.h"
 class Skybox : public Entity  {
 public:
 	Skybox(const io::path & filePath, Composite* parent);
 	void init(void);
 	virtual ~Skybox();
 private:
-	io::path & _filePath;
+	io::path  _filePath;
 };
 
 #endif
