@@ -19,7 +19,7 @@ public:
 	~MapGenerator(void);
 
 	void init(int sectorCount, int minWormholes, int maxWormholes);
-	GalaxyMap* createNewMap(float width = 300, float height = 300, float radiusSector = 10);
+	GalaxyMap* createNewMap(float width = 300, float height = 300, float radiusSector = 15);
 	void createSectors();
 	void createConnections();
 

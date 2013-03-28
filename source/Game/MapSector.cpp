@@ -2,12 +2,13 @@
 #include "Engine\Game.h"
 
 
-MapSector::MapSector(Composite *parent,std::string name,typeSector type):Entity(parent)
+MapSector::MapSector(Composite *parent,std::string name,typeSector type, float radius):Entity(parent)
 {
 	this->connections = new std::list<MapSector*>();
 	this->name = name;
 	this->type = type;
 	this->explored = false;
+	this->radius = radius;
 
 	switch(type){
 		case EMPTY:
@@ -15,7 +16,7 @@ MapSector::MapSector(Composite *parent,std::string name,typeSector type):Entity(
 			break;
 
 		case ASTEROID:
-			this->_mapSectorTexture = Game::driver->getTexture("../assets/Textures/MapSectors/asteroids.png");
+			this->_mapSectorTexture = Game::driver->getTexture("../assets/Textures/MapSectors/asteroid.png");
 			break;
 
 		case NEBULA:
@@ -48,12 +49,11 @@ MapSector::~MapSector(void)
 
 void MapSector::draw(){
 	
-	Game::driver->draw2DImage(
-							this->_mapSectorTexture,
-							position2d<s32>(this->position.X,this->position.Y),
-							rect<s32>(0,0,52,54),
+	Game::driver->draw2DImage(this->_mapSectorTexture,
+							rect<s32>(this->position.X - radius,this->position.Y - radius,this->position.X + radius,this->position.Y + radius),
+							rect<s32>(0,0,_mapSectorTexture->getOriginalSize().Width,_mapSectorTexture->getOriginalSize().Height),
 							0,
-							SColor(255,255,255,255),
+							0,
 							true);
 
 }

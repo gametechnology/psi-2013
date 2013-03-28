@@ -28,7 +28,8 @@ void GalaxyMap::draw()
 
 	for(std::list<MapSector*>::iterator i = sectors.begin(); i != sectors.end(); ++i)
 	{
-		if ((*i)->type == HOME_BLUE)
+		(*i)->draw();
+		/*if ((*i)->type == HOME_BLUE)
 		{
 			Game::driver->draw2DRectangle(SColor(255, 0, 0, 255), rect<s32>((*i)->position.X - radiusSector, (*i)->position.Y - radiusSector, (*i)->position.X + radiusSector, (*i)->position.Y + radiusSector));
 		} else if ((*i)->type == HOME_RED)
@@ -37,6 +38,7 @@ void GalaxyMap::draw()
 		} else
 		{
 			Game::driver->draw2DRectangle(SColor(255, 255, 255, 255), rect<s32>((*i)->position.X - radiusSector, (*i)->position.Y - radiusSector, (*i)->position.X + radiusSector, (*i)->position.Y + radiusSector));
-		}
+		}*/
 	}
+	Entity::draw();
 }
