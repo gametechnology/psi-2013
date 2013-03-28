@@ -33,7 +33,7 @@ public:
 		Navigation = 4
 	};
 
-	//StationType GetStationType();
+	StationType GetStationType();
 	bool HasPlayer();
 	bool SwitchTimePassed();
 	bool IsStunned();

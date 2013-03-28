@@ -5,6 +5,7 @@
 Station :: Station( Ship *ship )
 {
 	this ->	_ship	= ship;
+
 	//this -> _switchTime = 4.0f;
 }
 
@@ -16,6 +17,11 @@ bool Station::HasPlayer()
 bool Station::SwitchTimePassed()
 {
 	return this -> _playerOnStationTime > this -> _switchTime;
+}
+
+STATION_TYPE Station :: GetStationType( )
+{
+	return this -> _stationType;
 }
 
 bool Station::IsStunned()
@@ -39,17 +45,20 @@ void Station :: OnDamage( )
 	time( _stunTime );
 }
 
-bool Station::HasPower()
+bool Station::HasPower( )
 {
 	return true;//this->_ship->_powerStation->GetPower(this->_stationType) > 0;
 }
 
-bool Station::HasArmor()
+bool Station::HasArmor( )
 {
 	return true;//this->_ship->_defenceStation->GetArmor(this->_stationType) > 0;
 }
 
 void Station :: Init( )
 {
-
+	if ( !this -> _stationType ) return;
+	
+	this -> _ship -> _powerStation		-> SubscribeStation( this );
+	this -> _ship -> _defenceStation	-> SubscribeStation( this );
 }

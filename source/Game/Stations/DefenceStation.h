@@ -12,16 +12,16 @@ typedef struct Stats;
 class DefenceStation : public Station
 {
 private:
-	struct Stats
+	struct DefenceStats
 	{
 	public:
-		Stats( )
+		DefenceStats( )
 		{
 			this -> health	= 10;
 			this ->	armor	= 10;
 		}
 
-		Stats( float health, float armor )
+		DefenceStats( float health, float armor )
 		{
 			this -> health	= health;
 			this -> armor	= armor;
@@ -32,7 +32,7 @@ private:
 		bool HasArmor( );
 		bool IsStunned( );
 	};
-	map<Station :: StationType, DefenceStation :: Stats> *_stations;
+	map<Station :: StationType, DefenceStation :: DefenceStats> *_stations;
 	
 public:
 	DefenceStation( Ship* ship);
@@ -41,9 +41,9 @@ public:
 	void DoCameraShake();
 	int GetDamage( Station :: StationType stationType );
 	void Damage();
+	void SubscribeStation( Station *s );
 
 	Station *station;
-
 
 protected:
 	void Init( );
