@@ -2,11 +2,11 @@
 #include "HelmSceneTest.h"
 #include "WeaponScene.h"
 
-bool Isweapon = true;
+bool Isweapon = false;
 
 // Include memory leak detection files.
 #ifdef _DEBUG
-	#define _CRTDBG_MAP_ALLOCss
+	#define _CRTDBG_MAP_ALLOC
 	#include <stdlib.h>
 	#include <crtdbg.h>
 #endif
