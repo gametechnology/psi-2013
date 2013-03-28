@@ -4,7 +4,7 @@
 
 HelmStation :: HelmStation(Ship *ship) : Station( ship )
 {
-	//this->_stationType = StationType::Helm;
+	this->_stationType = StationType::Helm;
 }
 
 HelmStation :: ~HelmStation( )
