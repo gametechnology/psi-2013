@@ -3,6 +3,43 @@
 
 MapGenerator::MapGenerator(void)
 {
+	nameprefix.push_back("Dagobah");
+	nameprefix.push_back("Bespin");
+	nameprefix.push_back("Yavin 4");
+	nameprefix.push_back("Kashyyyk");
+	nameprefix.push_back("Pandora");
+	nameprefix.push_back("Prometheus");
+	nameprefix.push_back("Valhalla");
+	nameprefix.push_back("Hyperion");
+	nameprefix.push_back("Thea");
+	nameprefix.push_back("Helio");
+	nameprefix.push_back("Narvi");
+	nameprefix.push_back("Thrymr");
+	nameprefix.push_back("Cordelia");
+	nameprefix.push_back("Ixion");
+	nameprefix.push_back("X5");
+	nameprefix.push_back("X6");
+	nameprefix.push_back("X8");
+	nameprefix.push_back("085");
+	nameprefix.push_back("Echelon");
+	nameprefix.push_back("Axowholla");
+	nameprefix.push_back("Tatis");
+	nameprefix.push_back("Undefined");
+	nameprefix.push_back("urmottastinx");
+	nameprefix.push_back("Unicorn");
+	
+	nameaddon.push_back("Alpha");
+	nameaddon.push_back("Beta");
+	nameaddon.push_back("Gamma");
+	nameaddon.push_back("Delta");
+	nameaddon.push_back("Teta");
+	nameaddon.push_back("Omega");
+
+	nametype.push_back("Sector");	//Empty
+	nametype.push_back("Field");	//Asteroids		?belt?
+	nametype.push_back("Nebula");	//Nebula
+	nametype.push_back("System");	//Solar
+	nametype.push_back("");	//Home
 }
 
 MapGenerator::~MapGenerator(void)
