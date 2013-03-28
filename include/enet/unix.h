@@ -8,8 +8,9 @@
 #include <stdlib.h>
 #include "time.h"
 #include "types.h"
-#include <netinet/in.h>
-#include <unistd.h>
+#include "enet.h"
+#include "netinet/in.h"
+#include "unistd.h"
 
 typedef int ENetSocket;
 
