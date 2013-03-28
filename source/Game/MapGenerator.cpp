@@ -70,17 +70,17 @@ GalaxyMap* MapGenerator::createNewMap(float width, float height, float radiusSec
 void MapGenerator::createSectors()
 {
 	
-	MapSector* homeBlue = new MapSector(map, "Blue Base", HOME_BLUE);
+	MapSector* homeBlue = new MapSector(map, "Blue Base", HOME_BLUE,map->radiusSector);
 	homeBlue->position.set(randomPosition());
 	map->sectors.push_back(homeBlue);
 
-	MapSector* homeRed = new MapSector(map, "Red Base", HOME_RED);
+	MapSector* homeRed = new MapSector(map, "Red Base", HOME_RED,map->radiusSector);
 	homeRed->position.set(randomPosition());
 	map->sectors.push_back(homeRed);
 	
 	for(int i = 0; i < sectorCount - 2; i++)
 	{
-		MapSector* sector = new MapSector(map, "Sector " + i, (typeSector)(rand() % (TOTALTYPES - 2)));
+		MapSector* sector = new MapSector(map, "Sector " + i, (typeSector)(rand() % (TOTALTYPES - 2)),map->radiusSector);
 		sector->position.set(randomPosition());
 		map->sectors.push_back(sector);
 	}
