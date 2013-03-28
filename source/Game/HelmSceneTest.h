@@ -8,7 +8,7 @@ public:
 	~HelmSceneTest(void);
 	virtual void init();
 
-	Entity* ship;
+	//Entity* ship;
 	Entity* camera;
 };
 

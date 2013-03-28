@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
 
-Enemy::Enemy(void)
+Enemy::Enemy(void): Entity(parent)
 {
 }
 
@@ -13,7 +13,7 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 		unsigned int maxacc,
 		unsigned int damage,
 		unsigned int los,
-		unsigned int health) 
+		unsigned int health): Entity(parent)
 {
 	setVisual(mesh, smgr);
 	setPosition(position);
@@ -40,7 +40,7 @@ void Enemy::update()
 
 bool isWithinLoS(/*playership class*/)
 {
-
+	return false;
 }
 
 void Enemy::setState()
