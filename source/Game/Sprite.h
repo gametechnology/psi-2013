@@ -11,7 +11,7 @@ public:
 	virtual ~Sprite();
 
 	virtual void draw();
-	virtual void setTexture(video::ITexture* texture, rect<s32> size);
+	virtual void setTexture(video::ITexture* texture);
 	virtual void setPosition(position2d<s32> position);
 private:
 	video::ITexture* _texture;

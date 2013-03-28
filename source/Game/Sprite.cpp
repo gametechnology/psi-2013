@@ -16,17 +16,16 @@ void Sprite::draw()
 	{
 		Game::driver->draw2DImage(this->_texture,
 		_position,
-		_size,
+		rect<s32>(0, 0, _texture->getSize().Width, _texture->getSize().Height),
 		0,
 		SColor(255,255,255,255),
 		true);
 	}
 }
 
-void Sprite::setTexture(video::ITexture* texture, rect<s32> size)
+void Sprite::setTexture(video::ITexture* texture)
 {
 	this->_texture = texture;
-	this->_size = size;
 }
 
 void Sprite::setPosition(position2d<s32> position)
