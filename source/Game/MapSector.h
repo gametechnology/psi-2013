@@ -16,7 +16,10 @@ public:
 	MapSector(Composite *parent,std::string name,typeSector type);
 	~MapSector(void);
 
+	virtual void draw();
 
+private:
+	irr::video::ITexture* _mapSectorTexture;
 };
 
 #endif
