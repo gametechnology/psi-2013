@@ -1,0 +1,12 @@
+---Spheres
+Star		Yellow		Size 100
+Home planet	Green		Size 75
+Planet		Blue		Size 50
+Wormhole	Purple		Size 25
+
+---Cubes
+Drones		Orange		Size 1
+Asteroids	Gray		Size 1
+
+---Elipse
+Figher		Red		Size 1
