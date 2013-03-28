@@ -6,9 +6,9 @@ bool Isweapon = true;
 
 // Include memory leak detection files.
 #ifdef _DEBUG
-	#define _CRTDBG_MAP_ALLOCss
-	#include <stdlib.h>
-	#include <crtdbg.h>
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 #endif
 
 int main()
@@ -28,9 +28,9 @@ int main()
 	Game::run();
 
 	// Debug for memory leaks
-	#ifdef _DEBUG
+#ifdef _DEBUG
 	_CrtDumpMemoryLeaks();
-	#endif
+#endif
 
 	return 0;
 }
