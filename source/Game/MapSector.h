@@ -3,7 +3,7 @@
 #include "Engine\Entity.h"
 
 
-enum typeSector {EMPTY = 0, ASTEROID = 1, NEBULA = 2, HOME = 3, SOLAR = 4, TOTALTYPES = 5};
+enum typeSector {EMPTY = 0, ASTEROID = 1, NEBULA = 2, SOLAR = 3, HOME_BLUE = 4, HOME_RED = 5, TOTALTYPES = 6};
 class MapSector : public Entity
 {
 public:
@@ -13,7 +13,7 @@ public:
 	typeSector type;
 	bool explored;
 
-	MapSector(Composite *parent,std::string name,enum typeSector);
+	MapSector(Composite *parent,std::string name,typeSector type);
 	~MapSector(void);
 
 

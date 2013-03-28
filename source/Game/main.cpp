@@ -12,16 +12,20 @@
 
 int main()
 {
-	MapGenerator test;
-	test.init(5,2,4);
-	test.createNewMap();
 	// Create engine
 	Game game = Game();	
 	//TODO remove temp stuff
 	Ship ship = Ship(  );
 
+
+	MapGenerator test;
+	test.init(20,2,4);
+	GalaxyMap* map = test.createNewMap();
+
 	// Create test scene
 	Game::addScene(new HelmSceneTest());
+	map->position.set(vector3df(10,50,0));
+	Game::getCurrentScene()->addComponent(map);
 	
 	// Start the main loop
 	Game::run();
