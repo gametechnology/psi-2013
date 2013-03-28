@@ -3,7 +3,6 @@
 
 MapGenerator::MapGenerator(void)
 {
-	//this->map new GalaxyMap();
 }
 
 MapGenerator::~MapGenerator(void)
@@ -18,9 +17,13 @@ void MapGenerator::init(int sectorCount, int minWormholes, int maxWormholes)
 	this->maxWormholes = maxWormholes;
 }
 
-GalaxyMap* MapGenerator::createNewMap()
+GalaxyMap* MapGenerator::createNewMap(float width, float height, float radiusSector)
 {
 	map = new GalaxyMap(NULL);
+	map->widthMap = width;
+	map->heightMap = height;
+	map->radiusSector = radiusSector;
+
 	this->createSectors();
 	this->createConnections();
 
@@ -29,41 +32,35 @@ GalaxyMap* MapGenerator::createNewMap()
 
 void MapGenerator::createSectors()
 {
-	float widthMap = 300;
-	float heightMap = 300;
-	float radiusSector = 10;
-	for(int i = 0; i < sectorCount; i++)
+	
+	MapSector* homeBlue = new MapSector(map, "Blue Base", HOME_BLUE);
+	homeBlue->position.set(randomPosition());
+	map->sectors.push_back(homeBlue);
+
+	MapSector* homeRed = new MapSector(map, "Red Base", HOME_RED);
+	homeRed->position.set(randomPosition());
+	map->sectors.push_back(homeRed);
+	
+	for(int i = 0; i < sectorCount - 2; i++)
 	{
-		MapSector* sector = new MapSector(map, "Sector " + i, (typeSector)(rand() % TOTALTYPES));
+		MapSector* sector = new MapSector(map, "Sector " + i, (typeSector)(rand() % (TOTALTYPES - 2)));
+		sector->position.set(randomPosition());
 		map->sectors.push_back(sector);
-		sector->position.set(vector3df(radiusSector + rand() % ((int)(widthMap - radiusSector)), radiusSector + rand() % ((int)(heightMap - radiusSector)), 0));
 	}
-	// some bad code to check collision
-	for (std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
+}
+
+vector3df MapGenerator::randomPosition()
+{
+	vector3df randPos(map->radiusSector + rand() % ((int)(map->widthMap - (map->radiusSector * 2))), map->radiusSector + rand() % ((int)(map->heightMap - (map->radiusSector * 2))), 0);
+
+	for(std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
 	{
-		for (std::list<MapSector*>::iterator j = i; j != map->sectors.end(); ++j)
+		if ((*i)->position.getDistanceFrom(randPos) < map->radiusSector * 2)
 		{
-			if (i == j) continue;
-			if ((*i)->position.getDistanceFrom((*j)->position) < (radiusSector * 2))
-			{
-				bool goodNow = true;
-				while(goodNow)
-				{
-					goodNow = true;
-					(*j)->position.set(vector3df(radiusSector + rand() % ((int)(widthMap - radiusSector)), radiusSector + rand() % ((int)(heightMap - radiusSector)), 0));
-					for (std::list<MapSector*>::iterator k = map->sectors.begin(); k != map->sectors.end(); ++k)
-					{
-						if (k == j) continue;
-						if ((*j)->position.getDistanceFrom((*k)->position) < (radiusSector * 2))
-						{
-							goodNow = false;
-							break;
-						}
-					}
-				}
-			}
+			randPos = randomPosition();
 		}
 	}
+	return randPos;
 }
 
 void MapGenerator::createConnections()

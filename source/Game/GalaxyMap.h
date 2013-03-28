@@ -3,14 +3,21 @@
 
 #include "Engine/Entity.h"
 #include <list>
-class MapSector;
+#include <iostream>
+#include "MapSector.h"
+
 class GalaxyMap : public Entity  {
 public:
+	float widthMap;
+	float heightMap;
+	float radiusSector;
+	std::list<MapSector*> sectors;
+
 	GalaxyMap(Composite* parent);
 	virtual ~GalaxyMap();
 	void loadMap();
 	void saveMap();
-	std::list<MapSector*> sectors;
+	void draw();
 };
 
 #endif
