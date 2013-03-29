@@ -32,6 +32,7 @@ private:
 	int maxWormholes;
 
 	vector3df randomPosition();
+	MapSector* getConnection(int index);
 };
 
 #endif
