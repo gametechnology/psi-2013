@@ -8,7 +8,7 @@ class MapSector : public Entity
 {
 public:
 	
-	std::list<MapSector*>* connections;
+	std::list<MapSector*> connections;
 	std::string name;
 	typeSector type;
 	bool explored;

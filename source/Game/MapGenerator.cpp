@@ -102,8 +102,24 @@ vector3df MapGenerator::randomPosition()
 
 void MapGenerator::createConnections()
 {
-	/*for each(Sector sector in this->map.sectors)
+	map->sectors.front()->connections.push_back(map->sectors.back());
+	vector2d<irr::s32> directionVector = vector2d<irr::s32>(map->sectors.back()->position.X - map->sectors.front()->position.X, map->sectors.back()->position.Y - map->sectors.front()->position.Y);
+	vector2d<irr::s32> supportVector = vector2d<irr::s32>(map->sectors.front()->position.X, map->sectors.front()->position.Y);
+	//TODO: collisiontesting with each mapSector
+
+	map->sectors.front()->connections.push_back(getConnection(3));
+}
+
+
+MapSector* MapGenerator::getConnection(int index)
+{
+	int j = 0;
+	for(std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
 	{
-		std::cout << std::srand(this->map.sectors.length);
-	}*/
+		if (j == index)
+			return (*i);
+		j++;
+	}
+
+	return NULL;
 }

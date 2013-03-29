@@ -4,7 +4,6 @@
 
 MapSector::MapSector(Composite *parent,std::string name,typeSector type, float radius):Entity(parent)
 {
-	this->connections = new std::list<MapSector*>();
 	this->name = name;
 	this->type = type;
 	this->explored = false;
