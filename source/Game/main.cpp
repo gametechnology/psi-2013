@@ -22,7 +22,7 @@ int main()
 	// Start the main loop
 	Game::run();
 
-	// Debug for memory leaks
+	// Debug for memory leaks5
 	#ifdef _DEBUG
 	_CrtDumpMemoryLeaks();
 	#endif
