@@ -31,6 +31,7 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 void Enemy::pathFinding()
 {
 	//TODO
+	this->chase(vector3df(3000,30,30));
 }
 
 void Enemy::update()
@@ -172,6 +173,25 @@ signed int Enemy::getHealth()
 	return health_;
 }
 
+void Enemy::chase(vector3df target)
+{
+	//get the positions
+	vector3df selfPos = this->getPosition();
+
+	vector3df distancetoTarget = target - selfPos;
+
+	if(distancetoTarget.getLengthSQ() <= 4000)
+	{
+		//set state to chasing/attacking
+		this->velocity_ = distancetoTarget;
+		this->velocity_.normalize();
+		this->velocity_ *= 300;
+		this->position_ += this->velocity_;
+	}
+
+
+
+}
 Enemy::~Enemy(void)
 {
 }

@@ -8,9 +8,12 @@ public:
 	HelmSceneTest(void);
 	~HelmSceneTest(void);
 	virtual void init();
+	virtual void update();
 	irr::io::path filename;
+
 
 	//Entity* ship;
 	Entity* camera;
+	ILightSceneNode* light;
 };
 #endif
