@@ -39,10 +39,10 @@ Game::Game()
 		Game::device->setWindowCaption(L"Stella Incognita");
 	}
 
-	Game::client = new Client();
-	Game::client->setupClient("145.28.237.135");
-
 	Game::server = new Server();
+
+	Game::client = new Client();
+	Game::client->setupClient("localhost");
 }
 
 void Game::run()
