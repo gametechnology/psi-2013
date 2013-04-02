@@ -1,8 +1,8 @@
 #include "SectorManager.h"
 #include "Messages.h"
 
-SectorManager::SectorManager(Composite* parent) : Entity(parent) {
-	
+SectorManager::SectorManager() : Scene() {
+	init();
 }
 void SectorManager::init(){
 	_currentSector = new SectorTemplate(this->parent,"..\..\assets\Textures\SkyBoxes\skybox01.png",20.0);
@@ -21,6 +21,6 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 }
 
 SectorManager::~SectorManager() {
-	Entity::~Entity();
+	Scene::~Scene();
 
 }

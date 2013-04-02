@@ -11,6 +11,7 @@ SectorTemplate::SectorTemplate(Composite* parent, const io::path & skyBoxTexture
 
 	// The player
 	this->_player = new Entity( this->parent );
+	init();
 }
 
 void SectorTemplate::init(){

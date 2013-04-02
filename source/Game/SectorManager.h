@@ -5,11 +5,11 @@
 #ifndef SECTOR_MANAGER
 #define SECTOR_MANAGER
 
-#include "Engine/Entity.h"
+#include "Engine/Scene.h"
 #include "SectorTemplate.h"
-class SectorManager : public Entity  {
+class SectorManager : public Scene  {
 public:
-	SectorManager(Composite* parent);
+	SectorManager();
 	void SectorManager::handleMessage(unsigned int message, void* data = 0);
 	void SectorManager::init();
 	virtual ~SectorManager();
