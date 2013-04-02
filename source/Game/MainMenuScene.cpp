@@ -49,14 +49,14 @@ void MainMenuScene::draw()
 	guiEnv->drawAll();
 	
 	// handling button pressed events:
-	if(rv.getEventCallerByID() == MainMenuScene::CreateServer && rv.getEventCallerByElement(EGET_BUTTON_CLICKED))
+	if(rv.getEventCallerByID() == MainMenuScene::CreateServerWindow && rv.getEventCallerByElement(EGET_BUTTON_CLICKED))
 		cout << "Create server has been pressed" << endl;
 
-	if(rv.getEventCallerByID() == MainMenuScene::JoinServer && rv.getEventCallerByElement(EGET_BUTTON_CLICKED))
+	if(rv.getEventCallerByID() == MainMenuScene::JoinServerWindow && rv.getEventCallerByElement(EGET_BUTTON_CLICKED))
 		cout << "Join server has been pressed" << endl;
 
 	if(rv.getEventCallerByID() == MainMenuScene::Quit && rv.getEventCallerByElement(EGET_BUTTON_CLICKED))
-		cout << "Quit 3 has been pressed" << endl;
+		cout << "Quit has been pressed" << endl;
 			
 	// start processing the events of keyboard/mouse button presses.
 	rv.startEventProcess();
