@@ -1,5 +1,6 @@
 #include "MapGenerator.h"
 #include "MapSector.h"
+#include <math.h>
 
 MapGenerator::MapGenerator(void)
 {
@@ -69,18 +70,20 @@ GalaxyMap* MapGenerator::createNewMap(float width, float height, float radiusSec
 
 void MapGenerator::createSectors()
 {
-	
-	MapSector* homeBlue = new MapSector(map, "Blue Base", HOME_BLUE,map->radiusSector);
+	typeSector j = (typeSector)(rand() % (TOTALTYPES - 2));
+	MapSector* homeBlue = new MapSector(map, nameGenerator(j), HOME_BLUE,map->radiusSector);
 	homeBlue->position.set(randomPosition());
 	map->sectors.push_back(homeBlue);
 
-	MapSector* homeRed = new MapSector(map, "Red Base", HOME_RED,map->radiusSector);
+	j = (typeSector)(rand() % (TOTALTYPES - 2));
+	MapSector* homeRed = new MapSector(map, nameGenerator(j), HOME_RED,map->radiusSector);
 	homeRed->position.set(randomPosition());
 	map->sectors.push_back(homeRed);
 	
 	for(int i = 0; i < sectorCount - 2; i++)
 	{
-		MapSector* sector = new MapSector(map, "Sector " + i, (typeSector)(rand() % (TOTALTYPES - 2)),map->radiusSector);
+		j = (typeSector)(rand() % (TOTALTYPES - 2));
+		MapSector* sector = new MapSector(map, nameGenerator(j), j, map->radiusSector);
 		sector->position.set(randomPosition());
 		map->sectors.push_back(sector);
 	}
@@ -102,24 +105,117 @@ vector3df MapGenerator::randomPosition()
 
 void MapGenerator::createConnections()
 {
-	map->sectors.front()->connections.push_back(map->sectors.back());
-	vector2d<irr::s32> directionVector = vector2d<irr::s32>(map->sectors.back()->position.X - map->sectors.front()->position.X, map->sectors.back()->position.Y - map->sectors.front()->position.Y);
-	vector2d<irr::s32> supportVector = vector2d<irr::s32>(map->sectors.front()->position.X, map->sectors.front()->position.Y);
-	//TODO: collisiontesting with each mapSector
-
-	map->sectors.front()->connections.push_back(getConnection(3));
-}
-
-
-MapSector* MapGenerator::getConnection(int index)
-{
-	int j = 0;
 	for(std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
 	{
-		if (j == index)
-			return (*i);
-		j++;
+		for(std::list<MapSector*>::iterator j = map->sectors.begin(); j != map->sectors.end(); ++j)
+		{
+			if ((*i) == (*j))
+			{
+				continue;
+			}
+			if (!collisionLineBetweenSectors((*i), (*j)))
+			{
+				int wormholeCount = minWormholes + (rand() % (maxWormholes - minWormholes));
+				if ((*i)->connections.size() < maxWormholes - 1 && (*j)->connections.size() < maxWormholes - 1)
+				{
+					(*i)->connections.push_back((*j));
+					(*j)->connections.push_back((*i));
+				}
+			}
+		}
 	}
+	
+	for(std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
+	{
+		if ((*i)->connections.size() <= minWormholes)
+		{
+			for(std::list<MapSector*>::iterator j = map->sectors.begin(); j != map->sectors.end(); ++j)
+			{
+				if (!collisionLineBetweenSectors((*i), (*j)))
+				{
+					(*i)->connections.push_back((*j));
+					(*j)->connections.push_back((*i));
+					if ((*i)->connections.size() >= minWormholes)
+					{
+						break;
+					}
+				}
+			}
+		}
+	}
+}
 
-	return NULL;
+bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* sector2)
+{
+	float ax, ay, bx, by, cx, cy, cr;
+	ax = sector1->position.X;
+	ay = sector1->position.Y;
+	bx = sector2->position.X;
+	by = sector2->position.Y;
+	cr = map->radiusSector;
+
+	for(std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
+	{
+		if ((*i) == sector1 || (*i) == sector2)
+		{
+			continue;
+		}
+		cx = (*i)->position.X;
+		cy = (*i)->position.Y;
+
+		double vx = bx - ax;
+		double vy = by - ay;
+		double xdiff = ax - cx;
+		double ydiff = ay - cy;
+		double a = pow(vx, 2) + pow(vy, 2);
+		double b = 2 * ((vx * xdiff) + (vy * ydiff));
+		double c = pow(xdiff, 2) + pow(ydiff, 2) - pow(cr, 2);
+		double quad = pow(b, 2) - (4 * a * c);
+		if (quad >= 0)
+		{
+			// An infinite collision is happening, but let's not stop here
+			float quadsqrt = sqrt(quad);
+			for (int i = -1; i <= 1; i += 2)
+			{
+				// Returns the two coordinates of the intersection points
+				float t = (i * -b + quadsqrt) / (2 * a);
+				float x = ax + (i * vx * t);
+				float y = ay + (i * vy * t);
+				// If one of them is in the boundaries of the segment, it collides
+				if (x >= min(ax, bx) && x <= max(ax, bx) && y >= min(ay, by) && y <= max(ay, by))
+				{
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+std::string MapGenerator::nameGenerator(typeSector type)
+{
+	std::string name = nameprefix.at(rand() % nameprefix.size());
+	name += " ";
+	switch(type)
+	{
+		case EMPTY:
+			name += this->nametype.at(0);
+			break;
+		case ASTEROID:
+			name += this->nametype.at(1);
+			break;
+		case NEBULA:
+			name += this->nametype.at(2);
+			break;
+		case SOLAR:
+			name += this->nametype.at(3);
+			break;
+		case HOME_BLUE:
+		case HOME_RED:
+			name += this->nametype.at(4);
+			break;
+		default:
+			name += this->nametype.at(0);
+	}
+	return name;
 }

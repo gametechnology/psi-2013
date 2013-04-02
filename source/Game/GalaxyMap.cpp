@@ -31,8 +31,16 @@ void GalaxyMap::draw()
 		{
 			Game::driver->draw2DLine(vector2d<irr::s32>((*i)->position.X, (*i)->position.Y), vector2d<irr::s32>((*j)->position.X, (*j)->position.Y));
 		}
-
-		(*i)->draw();
 	}
+	
+	gui::IGUIFont* font = Game::device->getGUIEnvironment()->getBuiltInFont();
+	core::rect<s32> imp1(349,15,385,78);
+	
+	for(std::list<MapSector*>::iterator i = sectors.begin(); i != sectors.end(); ++i)
+	{
+		(*i)->draw();
+		font->draw(irr::core::stringw((*i)->name.c_str()).c_str(), core::rect<s32>((*i)->position.X, (*i)->position.Y - (1.5f*radiusSector), 300, 50), video::SColor(255,255,255,255));
+	}
+
 	Entity::draw();
 }
