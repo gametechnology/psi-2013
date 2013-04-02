@@ -27,9 +27,13 @@ bool PowerStation :: IsPoolEmpty( )
 
 void PowerStation :: UpdateStationPower( Station :: StationType stationType, int newValue )
 {
+<<<<<<< Updated upstream
 	if ( stationType == STATION_TYPE :: Power )	return;	//we do nothing when the power station is selected.
 	PowerUsage pu		= this -> _stationsPowerUsage -> find( stationType ) -> getKey( );
 
+=======
+	PowerUsage pu		= this -> _stationsPowerUsage -> find( stationType ) -> getKey( );
+>>>>>>> Stashed changes
 	int prevValue		= pu.powerCurrent;
 	_powerPool			+= prevValue;
 
@@ -56,4 +60,8 @@ void PowerStation :: DoCameraShake( )
 PowerStation :: PowerUsage :: PowerUsage( int powerCurrent )
 {
 	this -> powerCurrent = powerCurrent;
+<<<<<<< Updated upstream
 };
+=======
+};
+>>>>>>> Stashed changes
