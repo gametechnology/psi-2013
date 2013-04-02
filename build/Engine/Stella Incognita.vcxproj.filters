@@ -48,9 +48,6 @@
     <ClInclude Include="..\..\include\Engine\Server.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\source\Game\MainMenuScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\Engine\Camera.cpp">
@@ -78,9 +75,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Engine\Server.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Game\MainMenuScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

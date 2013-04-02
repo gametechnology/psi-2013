@@ -15,8 +15,8 @@ int main()
 	Game game = Game();
 
 	// Create test scene
-	//Game::addScene(new HelmSceneTest());
-	Game::addScene(new MainMenuScene());
+	Game::addScene(new HelmSceneTest());
+	//Game::addScene(new MainMenuScene());
 	
 	// Start the main loop
 	Game::run();

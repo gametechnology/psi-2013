@@ -33,8 +33,8 @@ public:
 
 	enum ButtonsMainMenu
 	{
-		JoinServerWindow = 100,
-		CreateServerWindow = 101,
+		CreateServerWindow = 100,
+		JoinServerWindow = 101,
 		Quit = 102
 	};
 
@@ -60,7 +60,7 @@ public:
 	//Create the different windows
 	IGUIWindow* mainMenuWindow;
 	IGUIWindow* joinServerWindow;
-	IGUIWindow* createServerwindow;
+	IGUIWindow* createServerWindow;
 	
 	//buttons in mainmenu
 	IGUIButton* createServerWindow_Button;

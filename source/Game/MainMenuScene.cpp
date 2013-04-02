@@ -14,7 +14,7 @@ MainMenuScene::MainMenuScene()
 	//////////////////////////////////////////
 	//Creat the main menu window
 	mainMenuWindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"Main menu",0,100);
-	
+
 	//Add text and button
 	guiEnv->addStaticText(L"Main menu:", rect<s32>(position2di(50,50),dimension2di(200,20)), true, false, mainMenuWindow);
 	createServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),mainMenuWindow,MainMenuScene::CreateServerWindow, L"Create server",L"Go the Create server window.");
@@ -24,18 +24,20 @@ MainMenuScene::MainMenuScene()
 	///////////////////////////////////////////
 	// Create server - window
 	/////////////////////////////////////////
-	createServerwindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"Create a server",0,101);
-
+	createServerWindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"Create a server",0,101);
+	createServerWindow->setVisible(false);
 	//Add text and buttons
-	guiEnv->addStaticText(L"Create a server with the following IP address:", rect<s32>(position2di(50,50),dimension2di(200,20)), true, false, createServerwindow);
-	fromCreateBackToMain_Button	= guiEnv->addButton(rect<s32>(position2di(300,105),dimension2di(200,25)),createServerwindow,MainMenuScene::CreateServer, L"Create server",L"Create the new server.");
-	createServer_Button			= guiEnv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),createServerwindow,MainMenuScene::fromCreateToMain, L"Back",L"Go back to the main menu");
+	guiEnv->addStaticText(L"Create a server with the following IP address:", rect<s32>(position2di(50,50),dimension2di(200,20)), true, false, createServerWindow);
+	fromCreateBackToMain_Button	= guiEnv->addButton(rect<s32>(position2di(300,105),dimension2di(200,25)),createServerWindow,MainMenuScene::CreateServer, L"Create server",L"Create the new server.");
+	createServer_Button			= guiEnv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),createServerWindow,MainMenuScene::fromCreateToMain, L"Back",L"Go back to the main menu");
 	
 
 	///////////////////////////////////////////
 	// Join server window
 	//////////////////////////////////////////
 	joinServerWindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"Join a server",0,102);
+	joinServerWindow->setVisible(false);
+	
 	joinServer_Button			= guiEnv->addButton(rect<s32>(position2di(300,105),dimension2di(200,25)),joinServerWindow,MainMenuScene::JoinServer, L"Join server",L"Join the server.");
 	fromJoinBackToMain_Button	= guiEnv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),joinServerWindow,MainMenuScene::fromJoinToMain, L"Back",L"Go back to the main menu");
 }
@@ -50,10 +52,17 @@ void MainMenuScene::draw()
 	
 	// handling button pressed events:
 	if(rv.getEventCallerByID() == MainMenuScene::CreateServerWindow && rv.getEventCallerByElement(EGET_BUTTON_CLICKED))
-		cout << "Create server has been pressed" << endl;
+	{
+		mainMenuWindow->setVisible(false);
+		createServerWindow->setVisible(true);
+	}
 
 	if(rv.getEventCallerByID() == MainMenuScene::JoinServerWindow && rv.getEventCallerByElement(EGET_BUTTON_CLICKED))
-		cout << "Join server has been pressed" << endl;
+	{
+		mainMenuWindow->setVisible(false);
+		joinServerWindow->setVisible(true);
+	}
+
 
 	if(rv.getEventCallerByID() == MainMenuScene::Quit && rv.getEventCallerByElement(EGET_BUTTON_CLICKED))
 		cout << "Quit has been pressed" << endl;

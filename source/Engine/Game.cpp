@@ -40,7 +40,7 @@ Game::Game()
 	}
 
 	Game::client = new Client();
-	Game::client->setupClient("145.28.237.135");
+	Game::client->setupClient("145.28.221.185");
 
 	Game::server = new Server();
 }
