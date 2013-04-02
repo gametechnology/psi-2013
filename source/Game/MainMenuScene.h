@@ -31,11 +31,23 @@ public:
 		Join = 2
 	};
 
-	enum Buttons
+	enum ButtonsMainMenu
 	{
-		JoinServer = 0,
-		CreateServer =1,
-		Quit = 2
+		JoinServerWindow = 100,
+		CreateServerWindow = 101,
+		Quit = 102
+	};
+
+	enum ButtonsCreateServer
+	{
+		CreateServer = 200,
+		fromCreateToMain = 201,
+	};
+
+	enum ButtonsJoinServer
+	{
+		JoinServer = 300,
+		fromJoinToMain = 301
 	};
 
 	//Keeps track of which part of the main menu we are in
@@ -43,15 +55,25 @@ public:
 
 	//Create a gui environment
 	IGUIEnvironment* guiEnv;
-	IGUIWindow* window;
 	CIrrEventReceiver rv;
 
-	//Buttons
-	IGUIButton* createServerButton;
-	IGUIButton* joinServerButton;
-	IGUIButton* quitButton;
+	//Create the different windows
+	IGUIWindow* mainMenuWindow;
+	IGUIWindow* joinServerWindow;
+	IGUIWindow* createServerwindow;
 	
+	//buttons in mainmenu
+	IGUIButton* createServerWindow_Button;
+	IGUIButton* joinServerWindow_Button;
+	IGUIButton* quit_Button;
 
+	//buttons in create server
+	IGUIButton* fromCreateBackToMain_Button;
+	IGUIButton* createServer_Button;
+	
+	//Buttons in Join server
+	IGUIButton* joinServer_Button;
+	IGUIButton* fromJoinBackToMain_Button;
 };
 
 #endif
