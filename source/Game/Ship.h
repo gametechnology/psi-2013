@@ -18,7 +18,7 @@ class NavigationStation;
 class PowerStation;
 class WeaponStation;
 
-class Ship
+class Ship : public Entity
 {
 public:
 	//Player *players;

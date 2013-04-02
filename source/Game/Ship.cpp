@@ -1,19 +1,25 @@
 #include "Ship.h"
 #include "Stations/Station.h"
 
-Ship::Ship(Composite * parent)
+Ship::Ship( Composite * parent ) : Entity ( parent )
 {
 	
 }
 
-Ship :: Ship( )
-{
+Ship :: Ship( ): Entity ( NULL )
+{ 
 	//TODO remove temp stuff
+	this -> _powerStation		= new PowerStation( this );
 	this -> _defenceStation		= new DefenceStation( this );
 	this -> _helmStation		= new HelmStation( this );
 	this -> _navigationStation	= new NavigationStation( this );
-	this -> _powerStation		= new PowerStation( this );
 	this -> _weaponStation		= new WeaponStation( this );
+
+	this -> _powerStation		-> Initialize();
+	this -> _defenceStation		-> Initialize();
+	this -> _helmStation		-> Initialize();
+	this -> _navigationStation	-> Initialize();
+	this -> _weaponStation		-> Initialize();
 
 #ifdef HELM_STATION
 	this -> _defenceStation		-> Damage( );

@@ -55,7 +55,8 @@ protected:
 	
 	StationType _stationType;
 
-	virtual void Init( );
+public:
+	void Initialize( );
 };
 //#endif
 #endif

@@ -6,13 +6,7 @@
 PowerStation::PowerStation(Ship *ship) : Station( ship )
 {
 	this -> _stationType		= StationType :: Power;
-	Init( );
-}
-
-void PowerStation :: Init( )
-{
 	this -> _stationsPowerUsage	= new map<STATION_TYPE, PowerUsage>( );
-	Station :: Init( );
 }
 
 void PowerStation :: SubscribeStation( Station *s )

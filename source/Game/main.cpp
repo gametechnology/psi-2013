@@ -14,7 +14,7 @@ int main()
 	// Create engine
 	Game game = Game();	
 	//TODO remove temp stuff
-	Ship ship = Ship(  );
+	Ship ship = Ship( );
 
 	// Create test scene
 	Game::addScene(new HelmSceneTest());

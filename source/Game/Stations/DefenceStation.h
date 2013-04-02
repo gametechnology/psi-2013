@@ -44,9 +44,6 @@ public:
 	void SubscribeStation( Station *s );
 
 	Station *station;
-
-protected:
-	void Init( );
 };
 
 #endif

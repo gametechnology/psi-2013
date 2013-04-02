@@ -48,9 +48,6 @@ public:
 
 	//gets the power for a given station
 	int GetPower(Station::StationType stationType);
-
-protected:
-	void Init( );
 };
 
 #endif

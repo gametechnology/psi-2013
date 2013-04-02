@@ -55,10 +55,13 @@ bool Station::HasArmor( )
 	return true;//this->_ship->_defenceStation->GetArmor(this->_stationType) > 0;
 }
 
-void Station :: Init( )
+void Station :: Initialize( )
 {
-	if ( !this -> _stationType ) return;
-	
-	this -> _ship -> _powerStation		-> SubscribeStation( this );
-	this -> _ship -> _defenceStation	-> SubscribeStation( this );
+	this -> _player = NULL;
+	this -> _playerOnStationTime = 0;
+	this -> _stunTime = 0;
+	this -> _switchTime = 0;
+
+	if ( this -> _stationType != StationType ::  Power )	this -> _ship -> _powerStation		-> SubscribeStation( this );
+	if ( this -> _stationType != StationType ::  Defence )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
 }
