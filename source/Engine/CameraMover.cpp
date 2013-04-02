@@ -15,7 +15,7 @@ void CameraMover::update()
 	{
 		cam->position -= oldParentPosition;
 		cam->orientation -= oldParentOrientation;
-		cam->position += cam->getEntity()->position;
+		cam->position = cam->getEntity()->position;
 		cam->orientation += cam->getEntity()->orientation;
 	}
 }

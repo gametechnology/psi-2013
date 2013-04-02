@@ -1,0 +1,67 @@
+// Get the position and rotation, so we can transform the unity vectors according to the rotation of the camera
+  core::vector3df position = camera->getPosition();
+  core::vector3df rotation = camera->getRotation();
+
+  core::vector3df forward = core::vector3df(0, 0, 1);
+  core::vector3df right = core::vector3df(1, 0, 0);
+  core::vector3df up = core::vector3df(0, 1, 0);
+  
+  core::matrix4 camRotation =
+   core::matrix4().setRotationDegrees(camera->getRotation());
+
+  camRotation.transformVect(forward);
+  camRotation.transformVect(right);
+  camRotation.transformVect(up);
+
+
+  /* Check if keys W, S, A or D are being held down, and move the
+  camera position respectively. */
+  if(receiver.IsKeyDown(irr::KEY_KEY_W))
+   position += forward * MOVEMENT_SPEED * frameDeltaTime;
+  else if(receiver.IsKeyDown(irr::KEY_KEY_S))
+   position -= forward * MOVEMENT_SPEED * frameDeltaTime;
+
+  if(receiver.IsKeyDown(irr::KEY_KEY_A))
+   position -= right * MOVEMENT_SPEED * frameDeltaTime;
+  else if(receiver.IsKeyDown(irr::KEY_KEY_D))
+   position += right * MOVEMENT_SPEED * frameDeltaTime;
+
+  f32 yawChange = 0;
+  f32 pitchChange = 0;
+  f32 rollChange = 0;
+
+  /* Check if arrow keys are being held down, and move the
+  camera rotation respectively. */
+  if(receiver.IsKeyDown(irr::KEY_UP))
+   pitchChange += ROTATION_SPEED * frameDeltaTime;
+  else if(receiver.IsKeyDown(irr::KEY_DOWN))
+   pitchChange -= ROTATION_SPEED * frameDeltaTime;
+
+  if(receiver.IsKeyDown(irr::KEY_LEFT))
+   yawChange -= ROTATION_SPEED * frameDeltaTime;
+  else if(receiver.IsKeyDown(irr::KEY_RIGHT))
+   yawChange += ROTATION_SPEED * frameDeltaTime;
+
+  // calculate the orientation from ypr
+  core::quaternion orientation (rotation * core::DEGTORAD); 
+
+  // calculate the change in orientation
+  core::quaternion newOrientation (pitchChange, yawChange, rollChange);
+
+  // apply change in orientation
+  orientation *= newOrientation;
+
+  // set new orientation
+  orientation.toEuler(rotation * core::RADTODEG);
+  core::vector3df newRotation; 
+  orientation.toEuler(newRotation);
+
+  camera->setPosition(position);
+  camera->setRotation(newRotation * core::RADTODEG);
+  
+  core::vector3df target = core::vector3df();
+  target += position;
+  target += forward;
+  
+  camera->setTarget(target);
+  camera->setUpVector(up);

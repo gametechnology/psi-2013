@@ -2,7 +2,7 @@
 #include "HelmSceneTest.h"
 #include "WeaponScene.h"
 
-bool Isweapon = false;
+
 
 // Include memory leak detection files.
 #ifdef _DEBUG
@@ -13,14 +13,15 @@ bool Isweapon = false;
 
 int main()
 {
+	bool Isweapon = false;
 	// Create engine
 	Game game = Game();
-	if(!Isweapon){
-		// Create test scene
-		Game::addScene(new HelmSceneTest());
+	if(Isweapon){
+		Game::addScene(new WeaponScene());
+		// Create test 
 	}else{
 		// Or Create The weapon Scene
-		Game::addScene(new WeaponScene());
+		Game::addScene(new HelmSceneTest());
 	}
 
 	

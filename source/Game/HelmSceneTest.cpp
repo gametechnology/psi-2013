@@ -18,17 +18,19 @@ HelmSceneTest::~HelmSceneTest(void)
 
 void HelmSceneTest::init()
 {
-	Skybox* skyBox = new Skybox(this);
-	addComponent(skyBox);
+	Entity* cube = new Entity(this);
+	cube->createNode("../../assets/Models/Cube.3ds");
+	cube->angularVelocity = vector3df(0.01, 0,0.01);
+	addComponent(cube);
 
-	//Ship* ship = new Ship(this);
+	//Skybox* skyBox = new Skybox(this);
 
-	HelmStation* helmStation = new HelmStation(this);
-	addComponent(helmStation);
-	//addComponent(shipMover);
 
-	Camera* camera = new Camera(this, vector3df(0,4,-4), vector3df(0,4,0));
-	camera->angularVelocity.X += (irr::f32)0.001;
-	addComponent(camera);
-	network = Net(false, camera);
+	//Ship* ship = new Ship(this, vector3df(0, 0.001,-0.001), vector3df(0,0,0));
+	Ship* ship = new Ship(this);
+	ship->position = vector3df(0, 5, -5);
+	addComponent(ship);
+	ship->init();
+	ship->velocity = vector3df(0.00001,0,0 );
+	//network = Net(false, camera);
 }
