@@ -20,7 +20,7 @@ int main()
 
 	MapGenerator test;
 	test.init(20,2,4);
-	GalaxyMap* map = test.createNewMap();
+	GalaxyMap* map = test.createNewMap(1280, 720, 15);
 
 	// Create test scene
 	Game::addScene(new HelmSceneTest());

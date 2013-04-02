@@ -32,7 +32,8 @@ private:
 	int maxWormholes;
 
 	vector3df randomPosition();
-	MapSector* getConnection(int index);
+	bool collisionLineBetweenSectors(MapSector* sector1, MapSector* sector2);
+	std::string nameGenerator(typeSector type);
 };
 
 #endif
