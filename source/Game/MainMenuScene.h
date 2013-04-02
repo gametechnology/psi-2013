@@ -1,5 +1,7 @@
 #include "Irrlicht\irrlicht.h"
+#include "Engine\Game.h"
 #include "Engine\Scene.h"
+#include "CIrrEventReceiver.h"
 
 #ifndef MAINMENUSCENE
 #define MAINMENUSCENE
@@ -15,39 +17,39 @@ using namespace gui;
 // standard namespace
 using namespace std;
 
-class MainMenuScene
+class MainMenuScene: public Scene
 {
 public:
 	MainMenuScene();
+	virtual void draw();
 	~MainMenuScene();
 
-	enum MainMenuWindow
+	enum MainMenuState
 	{
 		Main = 0,
 		Create =1,
 		Join = 2
 	};
 
-	MainMenuWindow currentWindow;
-	// startButton
-	// JoinButton
+	enum Buttons
+	{
+		JoinServer = 0,
+		CreateServer =1,
+		Quit = 2
+	};
 
-	IGUIEnvironment* guienv;
-	
+	//Keeps track of which part of the main menu we are in
+	MainMenuState mainMenuState;
 
-	// create the window where we want to put our controls on.
+	//Create a gui environment
+	IGUIEnvironment* guiEnv;
 	IGUIWindow* window;
-	
-	// add statictext above scrollbar.
-	guienv->addStaticText(L"Transparent Control:", rect<s32>(position2di(50,50),dimension2di(200,20)), true, false, window);
-	
+	CIrrEventReceiver rv;
 
-	//
-	// create a few buttons.
-	//
-	IGUIButton* createServerButton; = guienv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),window,104, L"Button 1",L"Button 1");
-	IGUIButton* joinServerButton; = guienv->addButton(rect<s32>(position2di(50,135),dimension2di(200,25)),window,105, L"Button 2",L"Button 2");
-	IGUIButton* quitButton; = guienv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),window,106, L"Button 3",L"Button 3");
+	//Buttons
+	IGUIButton* createServerButton;
+	IGUIButton* joinServerButton;
+	IGUIButton* quitButton;
 	
 
 };
