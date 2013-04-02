@@ -14,7 +14,6 @@ public:
 	Entity* getEntity();
 	bool parentIsEntity;
 private:
-
 };
 
 
