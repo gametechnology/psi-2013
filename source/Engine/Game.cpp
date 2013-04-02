@@ -3,7 +3,7 @@
 #pragma comment(lib, "Irrlicht.lib")
 
 // Disable DOS window.
-#ifdef _DEBUG
+#ifndef _DEBUG
 #pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
 
@@ -40,6 +40,9 @@ Game::Game()
 	}
 
 	Game::client = new Client();
+	Game::client->setupClient("145.28.237.135");
+
+	Game::server = new Server();
 }
 
 void Game::run()
