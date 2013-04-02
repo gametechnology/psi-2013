@@ -17,7 +17,11 @@ void GalaxyMap::saveMap()
 
 GalaxyMap::~GalaxyMap()
 {
-
+	for(std::list<MapSector*>::iterator i = sectors.begin(); i != sectors.end(); ++i)
+	{
+		delete (*i);
+	}
+	sectors.clear();
 }
 
 void GalaxyMap::draw()
@@ -39,7 +43,7 @@ void GalaxyMap::draw()
 	for(std::list<MapSector*>::iterator i = sectors.begin(); i != sectors.end(); ++i)
 	{
 		(*i)->draw();
-		font->draw(irr::core::stringw((*i)->name.c_str()).c_str(), core::rect<s32>((*i)->position.X, (*i)->position.Y - (1.5f*radiusSector), 300, 50), video::SColor(255,255,255,255));
+		font->draw(irr::core::stringw((*i)->name.c_str()), core::rect<s32>((*i)->position.X, (*i)->position.Y - (1.5f*radiusSector), 300, 50), video::SColor(255,255,255,255));
 	}
 
 	Entity::draw();
