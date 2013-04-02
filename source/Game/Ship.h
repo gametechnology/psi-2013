@@ -3,6 +3,7 @@
 #include "Thruster.h"
 #include "Engine\Camera.h"
 #include "HelmStation.h"
+#include "WeaponStation.h"
 #include "ShipMover.h"
 
 class Ship : public Entity
@@ -13,7 +14,7 @@ public:
 	~Ship(void);
 
 	void update();
-	void init();
+	void init(int station);
 	void handleMessage(unsigned int message, void* data);
 
 	Camera* camera;

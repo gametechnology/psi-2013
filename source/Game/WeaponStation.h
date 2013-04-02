@@ -1,3 +1,4 @@
+#pragma once
 #include "Engine\Entity.h"
 #include "Irrlicht\irrlicht.h"
 

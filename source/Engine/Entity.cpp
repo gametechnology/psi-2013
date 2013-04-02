@@ -27,6 +27,8 @@ void Entity::update()
 
 void Entity::draw()
 {
+	Composite::draw();
+
 	if (node == NULL) return;
 	if (!this->visible)
 	{

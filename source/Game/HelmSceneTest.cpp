@@ -28,9 +28,9 @@ void HelmSceneTest::init()
 
 	//Ship* ship = new Ship(this, vector3df(0, 0.001,-0.001), vector3df(0,0,0));
 	Ship* ship = new Ship(this);
-	ship->position = vector3df(0, 5, -5);
+	ship->position = vector3df(0, 0, -5);
 	addComponent(ship);
-	ship->init();
+	ship->init(0);
 	ship->velocity = vector3df(0.00001,0,0 );
 	//network = Net(false, camera);
 }

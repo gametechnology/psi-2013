@@ -17,15 +17,23 @@ Ship::~Ship(void)
 {
 }
 
-void Ship::init(){
+void Ship::init(int station){
 
 	Entity::init();
-	
-	HelmStation* helmStation = new HelmStation(this);
-	addComponent(helmStation);
+
+	if(station == 0)
+	{
+		HelmStation* helmStation = new HelmStation(this);
+		addComponent(helmStation);
+	}
+	else 
+	{
+		WeaponStation* weaponStation = new WeaponStation(this);
+		addComponent(weaponStation);
+	}
 
 	camera = new Camera(this, vector3df(0,0,0), vector3df(0,0,0));
-	this->addComponent(camera);
+	addComponent(camera);
 
 	//thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0,0, -4));
 
@@ -36,5 +44,5 @@ void Ship::update(){
 }
 
 void Ship::handleMessage(unsigned int message, void* data){
-	
+
 }

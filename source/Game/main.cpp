@@ -23,7 +23,6 @@ int main()
 		// Or Create The weapon Scene
 		Game::addScene(new HelmSceneTest());
 	}
-
 	
 	// Start the main loop
 	Game::run();
