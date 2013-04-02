@@ -42,5 +42,5 @@ StateSwitchDrone::StateSwitchDrone(StateSwitch::States startState)
 
 StateSwitchDrone::~StateSwitchDrone()
 {
-
+	StateSwitch::~StateSwitch();
 }
