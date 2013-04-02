@@ -1,14 +1,15 @@
 #ifndef Enemy_h
 #define Enemy_h
 
-#include "irrlicht.h"
+#include "Engine/Entity.h"
+#include "Engine/Game.h"
 
 using namespace irr;
 using namespace scene;
 using namespace video;
 using namespace core;
 
-class Enemy
+class Enemy : public Entity
 {
 public:
 	Enemy(void);
@@ -49,6 +50,7 @@ public:
 	unsigned int getMaxAccelaration();
 	unsigned int getDamage();
 	unsigned int getLoS();
+	void chase(vector3df target);
 
 	signed int getHealth();
 

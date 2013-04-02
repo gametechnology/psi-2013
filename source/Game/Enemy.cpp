@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
 
-Enemy::Enemy(void)
+Enemy::Enemy(void): Entity(parent)
 {
 }
 
@@ -13,7 +13,7 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 		unsigned int maxacc,
 		unsigned int damage,
 		unsigned int los,
-		unsigned int health) 
+		unsigned int health): Entity(parent)
 {
 	setVisual(mesh, smgr);
 	setPosition(position);
@@ -31,6 +31,7 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 void Enemy::pathFinding()
 {
 	//TODO
+	this->chase(vector3df(3000,30,30));
 }
 
 void Enemy::update()
@@ -40,7 +41,7 @@ void Enemy::update()
 
 bool isWithinLoS(/*playership class*/)
 {
-
+	return false;
 }
 
 void Enemy::setState()
@@ -172,6 +173,25 @@ signed int Enemy::getHealth()
 	return health_;
 }
 
+void Enemy::chase(vector3df target)
+{
+	//get the positions
+	vector3df selfPos = this->getPosition();
+
+	vector3df distancetoTarget = target - selfPos;
+
+	if(distancetoTarget.getLengthSQ() <= 4000)
+	{
+		//set state to chasing/attacking
+		this->velocity_ = distancetoTarget;
+		this->velocity_.normalize();
+		this->velocity_ *= 300;
+		this->position_ += this->velocity_;
+	}
+
+
+
+}
 Enemy::~Enemy(void)
 {
 }
