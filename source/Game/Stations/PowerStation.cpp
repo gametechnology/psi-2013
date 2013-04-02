@@ -26,17 +26,31 @@ bool PowerStation :: IsPoolEmpty( )
 
 void PowerStation :: UpdateStationPower( Station :: StationType stationType, int newValue )
 {
-	//we want a value that is equal to or larger than 0, but smaller than or equal to the total amount of power.
-	int value = MIN_INT( MAX_INT( 0, newValue ), POWER_MAX );
-
-	this -> _powerPool	= value;
-	this -> _powerUsed	= POWER_MAX - this -> _powerPool;
-
 	PowerUsage pu		= this -> _stationsPowerUsage -> find( stationType ) -> getKey( );
-	pu.powerCurrent		= value;
+	int prevValue		= pu.powerCurrent;
+	_powerPool			+= prevValue;
+
+	//we want a value that is equal to or larger than 0, but smaller than or equal to the total amount of power.
+	newValue			= MIN_INT( MAX_INT( 0, newValue ), _powerPool );
+
+	this -> _powerPool	-= newValue;
+	this -> _powerUsed	= POWER_MAX - this -> _powerPool;
+	
+	pu.powerCurrent		= newValue;
+}
+
+int PowerStation :: GetPower( Station::StationType stationType )
+{
+	PowerUsage p = this -> _stationsPowerUsage -> find( stationType ) -> getKey( );
+	return p.powerCurrent;
 }
 
 void PowerStation :: DoCameraShake( )
 {
 	
 }
+
+PowerStation :: PowerUsage :: PowerUsage( int powerCurrent )
+{
+	this -> powerCurrent = powerCurrent;
+};

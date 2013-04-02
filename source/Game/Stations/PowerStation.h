@@ -18,11 +18,8 @@ private:
 	struct PowerUsage
 	{
 	public:
-		PowerUsage( ) { };
-		PowerUsage( int powerCurrent )
-		{
-			this -> powerCurrent = powerCurrent;
-		};
+		PowerUsage( ) { powerCurrent = 0; };
+		PowerUsage( int powerCurrent );
 		//this is the current powerlevel of the given station
 		int powerCurrent;
 	};
