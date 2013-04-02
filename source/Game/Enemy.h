@@ -50,7 +50,6 @@ public:
 	unsigned int getMaxAccelaration();
 	unsigned int getDamage();
 	unsigned int getLoS();
-	void chase(vector3df target);
 
 	signed int getHealth();
 
