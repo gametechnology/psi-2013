@@ -1,7 +1,6 @@
 #ifndef COMPONENT
 #define COMPONENT
 
-
 class Composite;
 
 class Component
