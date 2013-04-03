@@ -39,17 +39,15 @@ Game::Game()
 		Game::device->setWindowCaption(L"Stella Incognita");
 	}
 
-	Game::server = new Server();
-
-	Game::client = new Client();
-	Game::client->setupClient("localhost");
+	client = new Client();
+	client->setupClient("localhost");
 }
 
 void Game::run()
 {
 	//Main loop
 	while(Game::device->run())
-	{
+	{			
 		Game::getCurrentScene()->update();
 		Game::driver->beginScene(true, true, SColor(0,0,0,0));
 		(*Game::scenes->begin())->sceneManager->drawAll();

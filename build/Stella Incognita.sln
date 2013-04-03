@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stella Incognita", "Stella Incognita.vcxproj", "{B0E4137C-554D-4B63-B8E4-93E93C176F9C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server", "Server\Server.vcxproj", "{52E75CB6-6EA7-49E3-AB3F-286EFF1EF66A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stella Incognita Engine", "Engine\Stella Incognita Engine.vcxproj", "{034C2CDA-CFB7-4A4C-BE98-628B85DA5D84}"
 EndProject
@@ -15,6 +17,10 @@ Global
 		{B0E4137C-554D-4B63-B8E4-93E93C176F9C}.Debug|Win32.Build.0 = Debug|Win32
 		{B0E4137C-554D-4B63-B8E4-93E93C176F9C}.Release|Win32.ActiveCfg = Release|Win32
 		{B0E4137C-554D-4B63-B8E4-93E93C176F9C}.Release|Win32.Build.0 = Release|Win32
+		{52E75CB6-6EA7-49E3-AB3F-286EFF1EF66A}.Debug|Win32.ActiveCfg = Debug|Win32
+		{52E75CB6-6EA7-49E3-AB3F-286EFF1EF66A}.Debug|Win32.Build.0 = Debug|Win32
+		{52E75CB6-6EA7-49E3-AB3F-286EFF1EF66A}.Release|Win32.ActiveCfg = Release|Win32
+		{52E75CB6-6EA7-49E3-AB3F-286EFF1EF66A}.Release|Win32.Build.0 = Release|Win32
 		{034C2CDA-CFB7-4A4C-BE98-628B85DA5D84}.Debug|Win32.ActiveCfg = Debug|Win32
 		{034C2CDA-CFB7-4A4C-BE98-628B85DA5D84}.Debug|Win32.Build.0 = Debug|Win32
 		{034C2CDA-CFB7-4A4C-BE98-628B85DA5D84}.Release|Win32.ActiveCfg = Release|Win32

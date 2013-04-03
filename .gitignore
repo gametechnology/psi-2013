@@ -23,3 +23,9 @@ temp/EngineDebug/DEBUG/
 *.pdb
 *.suo
 build/ipch/
+*tlog
+build/Server/Debug/
+*.ilk
+*.suo
+bin/Server/Server.exe
+*.exe

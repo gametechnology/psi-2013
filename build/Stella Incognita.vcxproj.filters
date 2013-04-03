@@ -63,9 +63,6 @@
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Engine\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\HelmStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
@@ -82,6 +79,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\ShipmapScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\GalaxyMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\MapGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\MapSector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -127,9 +133,6 @@
     <ClInclude Include="..\source\Game\Stations\Station.h">
       <Filter>Header Files\Stations</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -164,6 +167,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\GalaxyMap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\MapGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\MapSector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
