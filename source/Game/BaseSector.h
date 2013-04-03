@@ -8,7 +8,7 @@ class BaseSector : public SectorTemplate  {
 public:
 	BaseSector(Composite* parent, const io::path & skyBoxTexture, float boundry, unsigned int amountWormHoles);
 	void handleMessage(unsigned int message, void* data = 0);
-	void update();
+	virtual void update();
 	void init();
 	virtual ~BaseSector();
 };
