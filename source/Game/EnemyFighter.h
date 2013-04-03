@@ -5,7 +5,9 @@
 
 class EnemyFighter : public Enemy
 {
-
+public:
+	EnemyFighter(irr::core::vector3df position);
+	~EnemyFighter(void);
 };
 
 #endif

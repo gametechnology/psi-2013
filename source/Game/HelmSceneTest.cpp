@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include "EnemyManager.h"
 #include "EnemyDrone.h"
+#include "EnemyFighter.h"
 
 HelmSceneTest::HelmSceneTest(void)
 {
@@ -16,6 +17,7 @@ HelmSceneTest::~HelmSceneTest(void)
 }
 
 Enemy* drone1;
+Enemy* fighter1;
 
 void HelmSceneTest::init()
 {
@@ -30,6 +32,8 @@ void HelmSceneTest::init()
 
 	drone1 = new EnemyDrone(irr::core::vector3df(0,0,10));
 	addComponent(drone1);
+	fighter1 = new EnemyFighter(irr::core::vector3df(100,0,0));
+	addComponent(fighter1);
 }
 
 void HelmSceneTest::update()
