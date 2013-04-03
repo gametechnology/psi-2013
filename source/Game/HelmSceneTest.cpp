@@ -18,6 +18,8 @@ HelmSceneTest::~HelmSceneTest(void)
 
 void HelmSceneTest::init()
 {
+	bool Isweapon = true;
+
 	Entity* cube = new Entity(this);
 	cube->createNode("../../assets/Models/Cube.3ds");
 	cube->angularVelocity = vector3df(0.01, 0,0.01);
@@ -30,7 +32,10 @@ void HelmSceneTest::init()
 	Ship* ship = new Ship(this);
 	ship->position = vector3df(0, 0, -5);
 	addComponent(ship);
-	ship->init(0);
+	if(Isweapon)
+		ship->init(1);
+	else
+		ship->init(0);
 	ship->velocity = vector3df(0.00001,0,0 );
 	//network = Net(false, camera);
 }

@@ -1,8 +1,10 @@
 #include "WeaponStation.h"
 #include "Engine\Game.h"
-
+#include "Ship.h"
 WeaponStation::WeaponStation(Composite* parent) : Entity(parent)
 {
+	cameramover = new WeaponCameraMover(this);
+	
 	this->_stationTexture = Game::driver->getTexture("../../assets/Textures/Stations/weapon station.png");
 	Game::driver->makeColorKeyTexture(this->_stationTexture, position2d<s32>(0, 0));
 }

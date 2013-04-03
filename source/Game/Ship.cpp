@@ -20,20 +20,22 @@ Ship::~Ship(void)
 void Ship::init(int station){
 
 	Entity::init();
-
+	camera = new Camera(this, vector3df(0,0,0), vector3df(0,0,0));
+	addComponent(camera);
+	network = Net(false, camera);
 	if(station == 0)
 	{
-		HelmStation* helmStation = new HelmStation(this);
-		addComponent(helmStation);
+		currentstation = new HelmStation(this);
+		addComponent(currentstation);
+		
 	}
 	else 
 	{
-		WeaponStation* weaponStation = new WeaponStation(this);
-		addComponent(weaponStation);
+		currentstation = new WeaponStation(this);
+		addComponent(currentstation);
 	}
 
-	camera = new Camera(this, vector3df(0,0,0), vector3df(0,0,0));
-	addComponent(camera);
+	
 
 	//thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0,0, -4));
 

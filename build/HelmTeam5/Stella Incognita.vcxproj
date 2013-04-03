@@ -11,13 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\source\Game\Ship.h" />
+    <ClInclude Include="..\..\Source\Game\WeaponCameraMover.h" />
     <ClInclude Include="..\..\source\Game\HelmSceneTest.h" />
     <ClInclude Include="..\..\source\Game\HelmStation.h" />
     <ClInclude Include="..\..\source\Game\net.h" />
     <ClInclude Include="..\..\source\Game\ShipMover.h" />
     <ClInclude Include="..\..\source\Game\Skybox.h" />
     <ClInclude Include="..\..\source\Game\Thruster.h" />
-    <ClInclude Include="..\..\source\Game\WeaponScene.h" />
     <ClInclude Include="..\..\source\Game\WeaponStation.h" />
   </ItemGroup>
   <ItemGroup>
@@ -29,7 +30,7 @@
     <ClCompile Include="..\..\source\Game\ShipMover.cpp" />
     <ClCompile Include="..\..\source\Game\Skybox.cpp" />
     <ClCompile Include="..\..\source\Game\Thruster.cpp" />
-    <ClCompile Include="..\..\source\Game\WeaponScene.cpp" />
+    <ClCompile Include="..\..\Source\Game\WeaponCameraMover.cpp" />
     <ClCompile Include="..\..\source\Game\WeaponStation.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

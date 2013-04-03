@@ -1,5 +1,6 @@
 #include "net.h"
-		
+#include "WeaponCameraMover.h"		
+		matrix4 WeaponCameraMover::helmposition;
 		sf::Packet& operator <<(sf::Packet& Packet, const matrix4& C)
 		{
 			for(int i =0; i < 16; i++){
@@ -66,7 +67,7 @@
 						matrix4 affector;
 						packettorecieve >> x >> y >> z >> affector;
 						nodeother->getCameraNode()->setPosition(vector3df(x,y,z));
-						nodeother->getCameraNode()->setViewMatrixAffector(affector);
+						WeaponCameraMover::helmposition = affector;
 					}
 					
 			

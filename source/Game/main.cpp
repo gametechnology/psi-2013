@@ -1,6 +1,5 @@
 #include "Engine/Game.h"
 #include "HelmSceneTest.h"
-#include "WeaponScene.h"
 
 
 
@@ -13,16 +12,12 @@
 
 int main()
 {
-	bool Isweapon = false;
+	
 	// Create engine
 	Game game = Game();
-	if(Isweapon){
-		Game::addScene(new WeaponScene());
-		// Create test 
-	}else{
-		// Or Create The weapon Scene
-		Game::addScene(new HelmSceneTest());
-	}
+	
+	Game::addScene(new HelmSceneTest());
+	
 	
 	// Start the main loop
 	Game::run();
