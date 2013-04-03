@@ -7,10 +7,16 @@ EnemyAsteroid::EnemyAsteroid(irr::core::vector3df position): Enemy()
 	this->setPosition(position);
 	this->setHealth(25);
 	this->setAgility(1);
-	this->setMaxSpeed(100);
-	this->setAccelaration(20);
+	this->setMaxSpeed(100);	
 }
+
+
 EnemyAsteroid::~EnemyAsteroid(void)
 {
 
+}
+
+void EnemyAsteroid::linearpath()
+{
+	Enemy::update();
 }
