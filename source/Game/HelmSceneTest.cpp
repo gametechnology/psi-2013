@@ -37,13 +37,12 @@ void HelmSceneTest::init()
 	fighter1 = new EnemyFighter(irr::core::vector3df(100,0,0));
 	addComponent(fighter1);
 	asteroid1 = new EnemyAsteroid(irr::core::vector3df(0,0,0));
-	addComponent(asteroid1);
-	asteroid1->velocity = vector3df(0.001f,0,0);
+	addComponent(asteroid1);	
 }
 
 void HelmSceneTest::update()
 {
 	drone1->update();
-	asteroid1->linearpath();	
+	asteroid1->linearpath(vector3df(0.001f,0,0));	
 }
 

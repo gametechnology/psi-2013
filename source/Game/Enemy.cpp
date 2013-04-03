@@ -136,6 +136,11 @@ void Enemy::setHealth(signed int health)
 	health_ = health;
 }
 
+void Enemy::setVelocity(vector3df input)
+{
+ velocity = input;
+}
+
 vector3df Enemy::getPath()
 {
 	return destination_;
@@ -189,9 +194,10 @@ void Enemy::chase(vector3df target)
 		this->velocity *= 300;
 		this->position += this->velocity;
 	}
-
-
-
+}
+vector3df Enemy::getVelocity()
+{
+ return velocity;
 }
 Enemy::~Enemy(void)
 {

@@ -40,7 +40,9 @@ public:
 	void setDamage(unsigned int damage);
 	void setLoS(unsigned int los);
 	void setHealth(signed int health);
-
+	void setVelocity(vector3df input);
+	
+	vector3df getVelocity();
 	vector3df getPath();
 	vector3df getPosition();
 	vector3df getRotation();

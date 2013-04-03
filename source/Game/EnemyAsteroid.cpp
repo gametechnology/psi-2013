@@ -16,7 +16,8 @@ EnemyAsteroid::~EnemyAsteroid(void)
 
 }
 
-void EnemyAsteroid::linearpath()
+void EnemyAsteroid::linearpath(vector3df speed)
 {
+	this->setVelocity(speed);
 	Enemy::update();
 }
