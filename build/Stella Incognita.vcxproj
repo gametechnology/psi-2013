@@ -100,15 +100,6 @@
     <ClCompile Include="..\source\Game\HelmStation.cpp" />
     <ClCompile Include="..\source\Game\main.cpp" />
     <ClCompile Include="..\source\Game\MainMenuScene.cpp" />
-    <ClCompile Include="..\source\Game\Player.cpp" />
-    <ClCompile Include="..\source\Game\SectorManager.cpp" />
-    <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
-    <ClCompile Include="..\source\Game\Ship.cpp" />
-    <ClCompile Include="..\source\Game\Skybox.cpp" />
-    <ClCompile Include="..\source\Game\TestScene.cpp" />
-    <ClCompile Include="..\source\Game\Thruster.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\assets\sydney.bmp" />
     <None Include="..\assets\sydney.md2" />
   </ItemGroup>
@@ -116,6 +107,10 @@
     <ClInclude Include="..\source\Game\Boundry.h" />
     <ClInclude Include="..\source\Game\CIrrEventReceiver.h" />
     <ClInclude Include="..\source\Game\Enemy.h" />
+    <ClInclude Include="..\source\Game\Enemy.h" />
+    <ClInclude Include="..\source\Game\EnemyDrone.h" />
+    <ClInclude Include="..\source\Game\EnemyFighter.h" />
+    <ClInclude Include="..\source\Game\EnemyManager.h" />
     <ClInclude Include="..\source\Game\HelmSceneTest.h" />
     <ClInclude Include="..\source\Game\HelmStation.h" />
     <ClInclude Include="..\source\Game\MainMenuScene.h" />
@@ -125,8 +120,31 @@
     <ClInclude Include="..\source\Game\SectorTemplate.h" />
     <ClInclude Include="..\source\Game\Ship.h" />
     <ClInclude Include="..\source\Game\Skybox.h" />
+    <ClInclude Include="..\source\Game\StateSwitch.h" />
+    <ClInclude Include="..\source\Game\StateSwitchDrone.h" />
+    <ClInclude Include="..\source\Game\StateSwitchFighter.h" />
     <ClInclude Include="..\source\Game\TestScene.h" />
     <ClInclude Include="..\source\Game\Thruster.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\Game\Boundry.cpp" />
+    <ClCompile Include="..\source\Game\Enemy.cpp" />
+    <ClCompile Include="..\source\Game\EnemyDrone.cpp" />
+    <ClCompile Include="..\source\Game\EnemyFighter.cpp" />
+    <ClCompile Include="..\source\Game\EnemyManager.cpp" />
+    <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
+    <ClCompile Include="..\source\Game\HelmStation.cpp" />
+    <ClCompile Include="..\source\Game\main.cpp" />
+    <ClCompile Include="..\source\Game\Player.cpp" />
+    <ClCompile Include="..\source\Game\SectorManager.cpp" />
+    <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
+    <ClCompile Include="..\source\Game\Ship.cpp" />
+    <ClCompile Include="..\source\Game\Skybox.cpp" />
+    <ClCompile Include="..\source\Game\StateSwitch.cpp" />
+    <ClCompile Include="..\source\Game\StateSwitchDrone.cpp" />
+    <ClCompile Include="..\source\Game\StateSwitchFighter.cpp" />
+    <ClCompile Include="..\source\Game\TestScene.cpp" />
+    <ClCompile Include="..\source\Game\Thruster.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -19,5 +19,6 @@ public:
 	Enemy* drone1;
 	ISceneManager* smgr;
 	ICameraSceneNode* camera;
+	ILightSceneNode* light;
 };
 #endif

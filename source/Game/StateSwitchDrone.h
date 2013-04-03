@@ -3,11 +3,12 @@
 
 #include "Engine\Game.h"
 #include "Irrlicht\irrlicht.h"
+
 #include "StateSwitch.h"
+#include "EnemyDrone.h"
 
 class StateSwitchDrone : public StateSwitch
 {
-private:
 
 public:
 
@@ -25,9 +26,19 @@ public:
 
 	virtual void handleDeath();
 
-	StateSwitchDrone(StateSwitch::States startState);
+	void setParent(EnemyDrone* parent);
+
+	EnemyDrone* getParent();
+
+	StateSwitchDrone(StateSwitch::States startState, EnemyDrone* parent);
+
+	StateSwitchDrone(EnemyDrone* parent);
 
 	~StateSwitchDrone();
+
+private:
+
+	EnemyDrone* parent;
 };
 
 #endif

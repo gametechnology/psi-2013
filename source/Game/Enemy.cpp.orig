@@ -1,5 +1,5 @@
 #include "Enemy.h"
-#include <string>
+
 
 Enemy::Enemy(void): Entity(parent)
 {
@@ -20,7 +20,7 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 	setRotation(rotation);
 	setMaxSpeed(maxspeed);
 	setAgility(agility);
-	setAccelaration(maxacc);
+	setMaxAccelaration(maxacc);
 	setDamage(damage);
 	setLoS(los);
 	setHealth(health);
@@ -29,12 +29,12 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 void Enemy::pathFinding()
 {
 	//TODO
+	this->chase(vector3df(3000,30,30));
 }
 
 void Enemy::update()
 {
-	this->velocity = irr::core::vector3df(1,0.1,0);
-	Entity::update();
+	pathFinding();
 }
 
 bool isWithinLoS(/*playership class*/)
@@ -53,10 +53,10 @@ void Enemy::getState()
 
 void Enemy::applySpeed()
 {
-	if (accelaration.getLength() > accelaration_)
+	if (accelaration.getLength() > maxaccelaration_)
 	{
 		vector3df cappedacc = accelaration.normalize();
-		cappedacc *= accelaration_;
+		cappedacc *= maxaccelaration_;
 		accelaration = cappedacc;
 	}
 
@@ -96,11 +96,6 @@ void Enemy::setVisual(IMesh* visual, ISceneManager* smgr)
 	smgr->addMeshSceneNode(this->visual_);
 }
 
-void Enemy::setVisualWithPath(std::string path)
-{
-	this->createNode(path);
-}
-
 void Enemy::setPath(vector3df destination)
 {
 	destination_ = destination;
@@ -121,9 +116,9 @@ void Enemy::setAgility(unsigned int agility)
 {
 	agility_ = agility;
 }
-void Enemy::setAccelaration(unsigned int acc)
+void Enemy::setMaxAccelaration(unsigned int maxacc)
 {
-	accelaration_ = acc;
+	maxaccelaration_ = maxacc;
 }
 void Enemy::setDamage(unsigned int damage)
 {
@@ -158,9 +153,9 @@ unsigned int Enemy::getAgility()
 {
 	return agility_;
 }
-unsigned int Enemy::getAccelaration()
+unsigned int Enemy::getMaxAccelaration()
 {
-	return accelaration_;
+	return maxaccelaration_;
 }
 unsigned int Enemy::getDamage()
 {

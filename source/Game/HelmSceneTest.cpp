@@ -1,5 +1,9 @@
 #include "HelmSceneTest.h"
 
+#include "Skybox.h"
+#include "Enemy.h"
+#include "EnemyManager.h"
+#include "EnemyDrone.h"
 
 HelmSceneTest::HelmSceneTest(void)
 {
@@ -10,6 +14,8 @@ HelmSceneTest::~HelmSceneTest(void)
 {
 	Scene::~Scene();
 }
+
+Enemy* drone1;
 
 void HelmSceneTest::init()
 {
@@ -32,3 +38,9 @@ void HelmSceneTest::update()
 {
 	drone1->update();
 }
+
+void HelmSceneTest::update()
+{
+
+}
+
