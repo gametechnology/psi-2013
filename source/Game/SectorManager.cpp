@@ -21,45 +21,46 @@ void SectorManager::init(){
 	SectorManager::addComponent(_currentSector);
 }
 void SectorManager::handleMessage(unsigned int message, void* data) {
-	printf("Message = %f \n",(float)message);
 	switch(message) {
 		case NEXT_SECTOR: /* Switch Sector */
-			std::list<MapSector*>::iterator temp = std::find(_mapSector->connections.begin(),_mapSector->connections.end(),data);
-			
+			int* index = (int*)data;
+			//printf("index = %i \n",index);
+			std::list<MapSector*>::iterator temp = _mapSector->connections.begin();
+			std::advance(temp,0);
 			_mapSector = *temp;//change the _mapSector to the sector the data tells him to be
-
+			/*
 			switch (_mapSector->type){ 
 				case EMPTY:
-					delete _currentSector;
+					//delete _currentSector;
 					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case ASTEROID:
-					delete _currentSector;
+					//delete _currentSector;
 					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case NEBULA:
-					delete _currentSector;
+					//delete _currentSector;
 					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case SOLAR: 
-					delete _currentSector;
+					//delete _currentSector;
 					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case HOME_BLUE:
-					delete _currentSector;
+					//delete _currentSector;
 					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case HOME_RED:
-					delete _currentSector;
+					//delete _currentSector;
 					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
-			}
+			}*/
 
 			break;
 	}
