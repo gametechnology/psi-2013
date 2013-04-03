@@ -14,8 +14,9 @@ public:
 	virtual ~SectorTemplate();
 
 private:
-	std::vector<WormHole> _wormHoles;
+	std::vector<WormHole*> _wormHoles;
 	float _boundry;
+	WormHole* wormHole;
 	vector3df *_playerPosition;
 	Entity *_player;
 	Entity *_skybox;

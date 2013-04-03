@@ -28,9 +28,9 @@ void SectorTemplate::init(){
 
 void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
 	for(unsigned int i = 0; i < amountOfWormHoles; i++){
-		WormHole wormHole(this->parent, i, irr::core::vector3df( rand() % int(_boundry), rand() % int(_boundry), rand() % int(_boundry) ) );
+		wormHole = new WormHole(this->parent, i, irr::core::vector3df( rand() % int(_boundry), rand() % int(_boundry), rand() % int(_boundry) ) );
 		this->_wormHoles.push_back( wormHole );
-		addComponent( &_wormHoles[i] );
+		addComponent(wormHole );
 	}
 }
 
