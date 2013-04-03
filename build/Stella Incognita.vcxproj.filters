@@ -56,9 +56,6 @@
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Boundry.cpp">
-      <Filter>Source\Sector</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\SectorManager.cpp">
       <Filter>Source\Sector</Filter>
     </ClCompile>
@@ -115,9 +112,6 @@
     <ClInclude Include="..\source\Game\ShipmapScene.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\Skybox.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\Stations\Station.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -136,9 +130,6 @@
     <ClInclude Include="..\source\Game\Thruster.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\Boundry.h">
-      <Filter>Headers\Sector</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\SectorManager.h">
       <Filter>Headers\Sector</Filter>
     </ClInclude>
@@ -146,6 +137,9 @@
       <Filter>Headers\Sector</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\AstroidSector.h">
+      <Filter>Headers\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Skybox.h">
       <Filter>Headers\Sector</Filter>
     </ClInclude>
   </ItemGroup>

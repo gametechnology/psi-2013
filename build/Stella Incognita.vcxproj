@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -94,7 +94,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Engine\Game.cpp" />
-    <ClCompile Include="..\source\Game\Boundry.cpp" />
+    <ClCompile Include="..\source\Game\AstroidSector.cpp" />
     <ClCompile Include="..\source\Game\GalaxyMap.cpp" />
     <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
     <ClCompile Include="..\source\Game\HelmStation.cpp" />
@@ -122,7 +122,7 @@
     <None Include="..\assets\sydney.md2" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\source\Game\Boundry.h" />
+    <ClInclude Include="..\source\Game\AstroidSector.h" />
     <ClInclude Include="..\source\Game\Game.h" />
     <ClInclude Include="..\source\Game\GalaxyMap.h" />
     <ClInclude Include="..\source\Game\HelmSceneTest.h" />
