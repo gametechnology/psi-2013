@@ -24,8 +24,6 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 	setDamage(damage);
 	setLoS(los);
 	setHealth(health);
-
-
 }
 
 void Enemy::pathFinding()
@@ -55,21 +53,21 @@ void Enemy::getState()
 
 void Enemy::applySpeed()
 {
-	if (accelaration_.getLength() > maxaccelaration_)
+	if (accelaration.getLength() > maxaccelaration_)
 	{
-		vector3df cappedacc = accelaration_.normalize();
+		vector3df cappedacc = accelaration.normalize();
 		cappedacc *= maxaccelaration_;
-		accelaration_ = cappedacc;
+		accelaration = cappedacc;
 	}
 
-	if (velocity_.getLength() > maxspeed_)
+	if (velocity.getLength() > maxspeed_)
 	{
-		vector3df cappedvel = velocity_.normalize();
+		vector3df cappedvel = velocity.normalize();
 		cappedvel *= maxspeed_;
-		velocity_ = cappedvel;
+		velocity = cappedvel;
 	}
-	velocity_ += accelaration_;
-	position_ += velocity_;
+	velocity += accelaration;
+	position += velocity;
 }
 
 void Enemy::steeRing()
@@ -79,7 +77,7 @@ void Enemy::steeRing()
 
 void Enemy::contactResolverB()
 {
-	velocity_ *= -1;
+	velocity *= -1;
 }
 
 void Enemy::contactResolverA()
@@ -102,13 +100,13 @@ void Enemy::setPath(vector3df destination)
 {
 	destination_ = destination;
 }
-void Enemy::setPosition(vector3df position)
+void Enemy::setPosition(vector3df pos)
 {
-	position_ = position;
+	position = pos;
 }
 void Enemy::setRotation(vector3df rotategoal)
 {
-	rotation_ = rotategoal;
+	orientation = rotategoal;
 }
 void Enemy::setMaxSpeed(unsigned int maxspeed)
 {
@@ -141,11 +139,11 @@ vector3df Enemy::getPath()
 }
 vector3df Enemy::getPosition()
 {
-	return position_;
+	return position;
 }
 vector3df Enemy::getRotation()
 {
-	return rotation_;
+	return orientation;
 }
 unsigned int Enemy::getMaxSpeed()
 {
@@ -183,10 +181,10 @@ void Enemy::chase(vector3df target)
 	if(distancetoTarget.getLengthSQ() <= 4000)
 	{
 		//set state to chasing/attacking
-		this->velocity_ = distancetoTarget;
-		this->velocity_.normalize();
-		this->velocity_ *= 300;
-		this->position_ += this->velocity_;
+		this->velocity = distancetoTarget;
+		this->velocity.normalize();
+		this->velocity *= 300;
+		this->position += this->velocity;
 	}
 
 

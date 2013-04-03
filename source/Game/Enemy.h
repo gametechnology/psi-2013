@@ -66,13 +66,10 @@ private:
 	void pathFinding();
 	
 	IMesh* visual_;
-	vector3df position_;
-	vector3df rotation_;
 	vector3df destination_;
-	vector3df velocity_;
-	vector3df accelaration_;
 
 	signed int health_;
+	unsigned int maxrotation_;
 	unsigned int maxspeed_;
 	unsigned int agility_;
 	unsigned int maxaccelaration_;
