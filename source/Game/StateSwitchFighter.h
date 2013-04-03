@@ -33,7 +33,7 @@ public:
 
 private:
 
-	EnemyF* parent;
+	Enemy* parent;
 };
 
 #endif

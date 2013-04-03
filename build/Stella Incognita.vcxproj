@@ -94,6 +94,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Game\CIrrEventReceiver.cpp" />
+    <ClCompile Include="..\source\Game\EnemyAsteroid.cpp" />
     <ClCompile Include="..\source\Game\MainMenuScene.cpp" />
     <None Include="..\assets\sydney.bmp" />
     <None Include="..\assets\sydney.md2" />
@@ -102,6 +103,7 @@
     <ClInclude Include="..\source\Game\Boundry.h" />
     <ClInclude Include="..\source\Game\CIrrEventReceiver.h" />
     <ClInclude Include="..\source\Game\Enemy.h" />
+    <ClInclude Include="..\source\Game\EnemyAsteroid.h" />
     <ClInclude Include="..\source\Game\EnemyDrone.h" />
     <ClInclude Include="..\source\Game\EnemyFighter.h" />
     <ClInclude Include="..\source\Game\EnemyManager.h" />
