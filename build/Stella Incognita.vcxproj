@@ -104,6 +104,7 @@
     <ClInclude Include="..\source\Game\HelmStation.h" />
     <ClInclude Include="..\source\Game\Messages.h" />
     <ClInclude Include="..\source\Game\Player.h" />
+    <ClInclude Include="..\source\Game\RandomGenerator.h" />
     <ClInclude Include="..\source\Game\SectorManager.h" />
     <ClInclude Include="..\source\Game\SectorTemplate.h" />
     <ClInclude Include="..\source\Game\Ship.h" />
@@ -124,6 +125,7 @@
     <ClCompile Include="..\source\Game\HelmStation.cpp" />
     <ClCompile Include="..\source\Game\main.cpp" />
     <ClCompile Include="..\source\Game\Player.cpp" />
+    <ClCompile Include="..\source\Game\RandomGenerator.cpp" />
     <ClCompile Include="..\source\Game\SectorManager.cpp" />
     <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
     <ClCompile Include="..\source\Game\Ship.cpp" />
