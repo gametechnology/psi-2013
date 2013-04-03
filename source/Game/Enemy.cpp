@@ -104,6 +104,7 @@ void Enemy::setPath(vector3df destination)
 }
 void Enemy::setPosition(vector3df position)
 {
+	this->position = position;
 	position_ = position;
 }
 void Enemy::setRotation(vector3df rotategoal)

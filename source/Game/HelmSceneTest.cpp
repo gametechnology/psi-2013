@@ -36,12 +36,12 @@ void HelmSceneTest::init()
 	//positioning doesn't work
 	drone1->setPosition(irr::core::vector3df(100,0,0));
 	drone1->chase(irr::core::vector3df(500,0,0));
-	//drone1->position = drone1->getPosition();	//why needed?
+
 	addComponent(drone1);
 }
 
 void HelmSceneTest::update()
 {
-	
+
 }
 
