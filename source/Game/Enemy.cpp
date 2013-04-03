@@ -3,6 +3,7 @@
 
 Enemy::Enemy(void): Entity(parent)
 {
+	
 }
 
 Enemy::Enemy(ISceneManager* smgr, IMesh* mesh, 
@@ -35,7 +36,8 @@ void Enemy::pathFinding()
 
 void Enemy::update()
 {
-	pathFinding();
+	this->velocity = irr::core::vector3df(1,0.1,0);
+	Entity::update();
 }
 
 bool isWithinLoS(/*playership class*/)
@@ -103,7 +105,7 @@ void Enemy::setPath(vector3df destination)
 }
 void Enemy::setPosition(vector3df position)
 {
-	position_ = position;
+	this->position = position;
 }
 void Enemy::setRotation(vector3df rotategoal)
 {

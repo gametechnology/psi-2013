@@ -24,6 +24,7 @@ public:
 		unsigned int health = 1);						//
 	~Enemy(void);
 
+
 	bool isWithinLoS(/*playership class*/);
 
 	void setState();
@@ -53,7 +54,7 @@ public:
 
 	signed int getHealth();
 
-	void update();
+	virtual void update();
 protected:
 private:
 	

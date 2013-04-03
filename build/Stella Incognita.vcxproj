@@ -95,6 +95,7 @@
   <ItemGroup>
     <ClCompile Include="..\source\Game\Boundry.cpp" />
     <ClCompile Include="..\source\Game\CIrrEventReceiver.cpp" />
+    <ClCompile Include="..\source\Game\Enemy.cpp" />
     <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
     <ClCompile Include="..\source\Game\HelmStation.cpp" />
     <ClCompile Include="..\source\Game\main.cpp" />
@@ -114,6 +115,7 @@
   <ItemGroup>
     <ClInclude Include="..\source\Game\Boundry.h" />
     <ClInclude Include="..\source\Game\CIrrEventReceiver.h" />
+    <ClInclude Include="..\source\Game\Enemy.h" />
     <ClInclude Include="..\source\Game\HelmSceneTest.h" />
     <ClInclude Include="..\source\Game\HelmStation.h" />
     <ClInclude Include="..\source\Game\MainMenuScene.h" />
