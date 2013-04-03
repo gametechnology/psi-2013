@@ -2,7 +2,8 @@
 #include "Messages.h"
 
 Skybox::Skybox(const io::path & filePath,Composite* parent) : Entity(parent) {
-	_filePath = filePath;
+	_filePath = "../assets/Textures/SkyBoxes/";
+	_filePath += filePath;
 	printf(filePath.c_str());
 	init();
 }

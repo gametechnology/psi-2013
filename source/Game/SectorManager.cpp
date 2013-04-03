@@ -1,6 +1,7 @@
 #include "SectorManager.h"
 #include "Messages.h"
 #include <algorithm>
+#include  "AstroidSector.h"
 
 SectorManager::SectorManager(GalaxyMap* map) : Scene() {
 	_map=map;
@@ -14,7 +15,9 @@ SectorManager::SectorManager(GalaxyMap* map) : Scene() {
 	//init();
 }
 void SectorManager::init(){
-	_currentSector = new SectorTemplate(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
+	//_currentSector = new SectorTemplate(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
+	_currentSector = new AstroidSector(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
+	
 	SectorManager::addComponent(_currentSector);
 }
 void SectorManager::handleMessage(unsigned int message, void* data) {
@@ -27,32 +30,32 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 			switch (_mapSector->type){ 
 				case EMPTY:
 					delete _currentSector;
-					_currentSector = new SectorTemplate(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
+					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case ASTEROID:
 					delete _currentSector;
-					_currentSector = new SectorTemplate(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
+					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case NEBULA:
 					delete _currentSector;
-					_currentSector = new SectorTemplate(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
+					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case SOLAR: 
 					delete _currentSector;
-					_currentSector = new SectorTemplate(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
+					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case HOME_BLUE:
 					delete _currentSector;
-					_currentSector = new SectorTemplate(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
+					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case HOME_RED:
 					delete _currentSector;
-					_currentSector = new SectorTemplate(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
+					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 			}
