@@ -15,25 +15,16 @@ Ship :: Ship( ): Entity ( NULL )
 	this -> _navigationStation	= new NavigationStation( this );
 	this -> _weaponStation		= new WeaponStation( this );
 
-	this -> _powerStation		-> Initialize();
 	this -> _defenceStation		-> Initialize();
 	this -> _helmStation		-> Initialize();
 	this -> _navigationStation	-> Initialize();
 	this -> _weaponStation		-> Initialize();
-
-#ifdef HELM_STATION
-	this -> _defenceStation		-> Damage( );
-#endif
+	this -> _powerStation		-> Initialize();
 }
 
 Ship::~Ship(void)
 {
 
-}
-
-void Ship :: Blaat( )
-{
-	this -> _helmStation -> SwitchTimePassed( );
 }
 
 Station *Ship :: GetStation( STATION_TYPE s )
@@ -45,9 +36,9 @@ Station *Ship :: GetStation( STATION_TYPE s )
 	case STATION_TYPE :: Defence:
 		return this -> _defenceStation;
 		break;
-	case STATION_TYPE :: Helm:
+	/*case STATION_TYPE :: Helm:
 		return this -> _helmStation;
-		break;
+		break;*/
 	case STATION_TYPE :: Navigation:
 		return this -> _navigationStation;
 		break;

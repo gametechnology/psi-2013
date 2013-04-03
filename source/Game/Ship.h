@@ -9,7 +9,7 @@
 
 #include "Stations\Station.h"
 #include "Engine/Entity.h"
-//#include "Player.h"
+#include "Player.h"
 
 #define STATION_TYPE Station :: StationType
 class DefenceStation;
@@ -33,7 +33,6 @@ public:
 	Ship( );
 	virtual ~Ship(void);
 
-	void Blaat( );
 	Station *GetStation( Station :: StationType );	
 };
 #endif

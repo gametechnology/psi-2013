@@ -3,51 +3,54 @@
 
 #include "Station.h"
 #include "..\Ship.h"
+#include "UIData.h"
+#include "..\..\..\include\Engine\Game.h"
+#include "Irrlicht\irrlicht.h"
 #include <time.h>
-#include <map>
 #include <iostream>
 
-typedef struct PowerUsage;
-
-#define POWER_MAX	100
 #define BOOST_TIME	10
 
 class PowerStation : public Station 
 {
 private:
-	struct PowerUsage
-	{
-	public:
-		PowerUsage( ) { powerCurrent = 0; };
-		PowerUsage( int powerCurrent );
-		//this is the current powerlevel of the given station
-		int powerCurrent;
-	};
-
-	time_t _timeOfLastBoost;
-	float _powerMax;	//starts at 100
-	map<Station :: StationType, PowerUsage> *_stationsPowerUsage;
-
-	//the pool that holds the total available power, this is initially 100% power.
-	int _powerPool;
-	//this is an integer holding the currently used power supply.
-	int _powerUsed;
-
+	
 	//checks if the new value can be matched (cannot be lower than 0 or higher than the total energy in our pool) and then updates the value of the station's energy pool.
-	void UpdateStationPower( Station :: StationType, int newValue );
+	void UpdateStationPower( Station :: StationType, int newValue );	
 
 public:
-	PowerStation(Ship* ship);
-	~PowerStation(void);
+	//Power Station Impl	
+	video :: E_DRIVER_TYPE	driverType;
+	IrrlichtDevice			*device;
+	video :: IVideoDriver	*driver;
+	IGUIEnvironment			*env;
+	IGUISkin				*skin;
+	IGUIFont				*font;
+	UIData					context;
+
+	PowerStation( Ship* ship );
+	~PowerStation( void );
 	bool IsPoolEmpty( );
 
 	void SubscribeStation( Station *s );
 
 	//shakes the camera whenever the station is hurt (aaaahh)
 	void DoCameraShake( );
-
-	//gets the power for a given station
-	int GetPower(Station::StationType stationType);
+	
+	void Initialize();
+	void createUI();
+	void addImages();
+	void declareUIData();
+	void createPowerPool();
+	void createScrollbar();
+	void createButtons();
+	void createGeneralPowerTexts();
+	void createCurrentSelectedStationText();
+	stringw varToString(stringw str1, float var, stringw str2 = L"");
+	void updateAll();
+	void gameLoop( );
+	void selectedStation();
+	void changeColorAccordingToPowerStatus(IGUIStaticText &staticText, float powerAmount);
 };
 
 #endif

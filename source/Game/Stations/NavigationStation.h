@@ -2,7 +2,6 @@
 #define NAVIGATION_STATION
 #pragma once
 
-#include <iostream>
 #include "Station.h"
 #include "..\Ship.h"
 

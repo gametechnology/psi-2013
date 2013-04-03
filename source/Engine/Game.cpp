@@ -24,7 +24,7 @@ Game::Game()
 {
 	//Create a new stack to store all scenes
 	Game::scenes = new std::forward_list<Scene*>;
-
+	
 	// Create the irrlicht device 
 	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, false, 0);
 

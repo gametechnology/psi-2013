@@ -9,10 +9,6 @@
 #endif
 
 #define STUN_TIME 4.0
-
-#define MAX_INT(a, b) a > b ? a : b
-#define MIN_INT(a, b) a < b ? a : b
-
 class Ship;
 
 class Station 
