@@ -3,7 +3,10 @@
 
 #include "Engine/Entity.h"
 #include "WormHole.h"
+#include "Messages.h"
+#include "Engine/Game.h"
 #include <vector>
+
 class SectorTemplate : public Entity  {
 public:
 	SectorTemplate( Composite* parent, const io::path & skyBoxTexture, float boundry, unsigned int amountWormHoles );
@@ -13,7 +16,7 @@ public:
 	void createWormHoles( unsigned int amountOfWormHoles );
 	virtual ~SectorTemplate();
 
-private:
+protected:
 	std::vector<WormHole*> _wormHoles;
 	float _boundry;
 	WormHole* wormHole;

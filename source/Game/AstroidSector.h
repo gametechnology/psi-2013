@@ -13,11 +13,6 @@ public:
 	void AstroidSector::update();
 	void AstroidSector::init();
 	virtual ~AstroidSector();
-private:
-	float _boundry;
-	vector3df *_playerPosition;
-	Entity *_player;
-	Entity *_skybox;
 };
 
 #endif

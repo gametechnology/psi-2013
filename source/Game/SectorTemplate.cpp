@@ -1,10 +1,6 @@
-
 #include "SectorTemplate.h"
-#include "Messages.h"
 #include "Engine/Camera.h"
 #include "Skybox.h"
-#include "Engine/Game.h"
-
 
 SectorTemplate::SectorTemplate(Composite* parent, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : Entity(parent) {
 	// Creating Skybox
