@@ -24,7 +24,7 @@ int main()
 	GalaxyMap* map = test.createNewMap(300, 300, 15);
 	
 	// Create test scene
-	Game::addScene(new SectorManager());
+	Game::addScene(new SectorManager(map));
 	map->position.set(vector3df(10,50,0));
 	Game::getCurrentScene()->addComponent(map);
 	
