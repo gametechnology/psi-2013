@@ -5,7 +5,7 @@
 #include "Irrlicht\irrlicht.h"
 
 #include "StateSwitch.h"
-#include "EnemyDrone.h"
+#include "Enemy.h"
 
 class StateSwitchDrone : public StateSwitch
 {
@@ -26,19 +26,21 @@ public:
 
 	virtual void handleDeath();
 
-	void setParent(EnemyDrone* parent);
+	void setParent(Enemy* parent);
 
-	EnemyDrone* getParent();
+	Enemy* getParent();
 
-	StateSwitchDrone(StateSwitch::States startState, EnemyDrone* parent);
+	StateSwitchDrone(StateSwitch::States startState, Enemy* parent);
 
-	StateSwitchDrone(EnemyDrone* parent);
+	StateSwitchDrone(Enemy* parent);
 
 	~StateSwitchDrone();
 
 private:
 
-	EnemyDrone* parent;
+	Enemy* parent;
+	int randomInt;
+	float randomFloat;
 };
 
 #endif
