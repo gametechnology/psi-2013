@@ -22,7 +22,7 @@ int main()
 	MapGenerator test;
 	test.init(20,2,4);
 	GalaxyMap* map = test.createNewMap(300, 300, 15);
-
+	
 	// Create test scene
 	Game::addScene(new SectorManager());
 	map->position.set(vector3df(10,50,0));

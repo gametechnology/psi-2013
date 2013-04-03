@@ -15,6 +15,7 @@ public:
 	virtual ~SectorManager();
 private:
 	SectorTemplate *_currentSector;
+	GalaxyMap* _map;
 };
 
 #endif
