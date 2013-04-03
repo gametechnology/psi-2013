@@ -1,11 +1,12 @@
-#ifndef SECTOR_TEMPLATE
-#define SECTOR_TEMPLATE
+#ifndef SECTOR_ASTROID
+#define SECTOR_ASTROID
 
-#include "Engine/Entity.h"
+//#include "Engine/Entity.h"
+#include "SectorTemplate.h"
 class AstroidSector : public SectorTemplate  {
 public:
 
-	AstroidSector(Composite* parent, const io::path & skyBoxTexture, float boundry);
+	//AstroidSector(Composite* parent, const io::path & skyBoxTexture, float boundry);
 	void AstroidSector::handleMessage(unsigned int message, void* data = 0);
 	void AstroidSector::update();
 	void AstroidSector::init();
