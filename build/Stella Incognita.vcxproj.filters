@@ -68,6 +68,9 @@
     <ClCompile Include="..\source\Game\Skybox.cpp">
       <Filter>Source\Sector</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\AstroidSector.cpp">
+      <Filter>Source\Sector</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
@@ -140,6 +143,9 @@
       <Filter>Headers\Sector</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\SectorTemplate.h">
+      <Filter>Headers\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\AstroidSector.h">
       <Filter>Headers\Sector</Filter>
     </ClInclude>
   </ItemGroup>
