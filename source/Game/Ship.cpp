@@ -22,7 +22,7 @@ void Ship::init(int station){
 	Entity::init();
 	camera = new Camera(this, vector3df(0,0,0), vector3df(0,0,0));
 	addComponent(camera);
-	network = Net(false, camera);
+	//network = Net(false, camera);
 	if(station == 0)
 	{
 		currentstation = new HelmStation(this);

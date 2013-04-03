@@ -8,8 +8,10 @@ public:
 	WeaponStation(Composite* parent);
 	~WeaponStation();
 	WeaponCameraMover* cameramover;
+	void update();
 	void draw();
 private:
 	video::ITexture* _stationTexture;
-	
+	void shoot();
+	int test;
 };

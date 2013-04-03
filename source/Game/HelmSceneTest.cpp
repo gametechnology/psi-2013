@@ -22,10 +22,10 @@ void HelmSceneTest::init()
 
 	Entity* cube = new Entity(this);
 	cube->createNode("../../assets/Models/Cube.3ds");
-	cube->angularVelocity = vector3df(0.01, 0,0.01);
+	//cube->angularVelocity = vector3df(0.01, 0,0);
 	addComponent(cube);
 
-	//Skybox* skyBox = new Skybox(this);
+	Skybox* skyBox = new Skybox(this);
 
 
 	//Ship* ship = new Ship(this, vector3df(0, 0.001,-0.001), vector3df(0,0,0));
@@ -36,6 +36,6 @@ void HelmSceneTest::init()
 		ship->init(1);
 	else
 		ship->init(0);
-	ship->velocity = vector3df(0.00001,0,0 );
+	//ship->velocity = vector3df(0,0.001,0 );
 	//network = Net(false, camera);
 }
