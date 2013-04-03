@@ -10,8 +10,8 @@ SectorTemplate::SectorTemplate(Composite* parent, const io::path & skyBoxTexture
 	_boundry = boundryRadius;
 
 	// The player
-	this->_player = new Camera( this->parent );
-
+	//this->_player = new Camera( this->parent );
+	Game::getSceneManager()->addCameraSceneNodeFPS();
 	// Creating wormholes
 	createWormHoles( amountWormHoles );
 	
