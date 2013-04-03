@@ -93,12 +93,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\Game\Boundry.cpp" />
     <ClCompile Include="..\source\Game\CIrrEventReceiver.cpp" />
-    <ClCompile Include="..\source\Game\Enemy.cpp" />
-    <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
-    <ClCompile Include="..\source\Game\HelmStation.cpp" />
-    <ClCompile Include="..\source\Game\main.cpp" />
     <ClCompile Include="..\source\Game\MainMenuScene.cpp" />
     <None Include="..\assets\sydney.bmp" />
     <None Include="..\assets\sydney.md2" />
@@ -106,7 +101,6 @@
   <ItemGroup>
     <ClInclude Include="..\source\Game\Boundry.h" />
     <ClInclude Include="..\source\Game\CIrrEventReceiver.h" />
-    <ClInclude Include="..\source\Game\Enemy.h" />
     <ClInclude Include="..\source\Game\Enemy.h" />
     <ClInclude Include="..\source\Game\EnemyDrone.h" />
     <ClInclude Include="..\source\Game\EnemyFighter.h" />
