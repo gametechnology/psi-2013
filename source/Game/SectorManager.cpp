@@ -16,11 +16,12 @@ SectorManager::SectorManager(GalaxyMap* map) : Scene() {
 }
 void SectorManager::init(){
 	//_currentSector = new SectorTemplate(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
-	_currentSector = new AstroidSector(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
+	_currentSector = new AstroidSector(this->parent,"skybox02.png",10.0,_mapSector->connections.size());
 	
 	SectorManager::addComponent(_currentSector);
 }
 void SectorManager::handleMessage(unsigned int message, void* data) {
+	printf("Message = %f \n",(float)message);
 	switch(message) {
 		case NEXT_SECTOR: /* Switch Sector */
 			std::list<MapSector*>::iterator temp = std::find(_mapSector->connections.begin(),_mapSector->connections.end(),data);

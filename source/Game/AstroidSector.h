@@ -10,7 +10,7 @@ public:
 
 	AstroidSector(Composite* parent, const io::path & skyBoxTexture, float boundry, unsigned int amountWormHoles);
 	void AstroidSector::handleMessage(unsigned int message, void* data = 0);
-	void AstroidSector::update();
+	virtual void AstroidSector::update();
 	void AstroidSector::init();
 	virtual ~AstroidSector();
 };

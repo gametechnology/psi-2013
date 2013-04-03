@@ -14,8 +14,8 @@
 class SectorManager : public Scene  {
 public:
 	SectorManager(GalaxyMap* map);
-	void SectorManager::handleMessage(unsigned int message, void* data = 0);
-	void SectorManager::init();
+	void handleMessage(unsigned int message, void* data = 0);
+	void init();
 	virtual ~SectorManager();
 private:
 	SectorTemplate *_currentSector;

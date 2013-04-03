@@ -15,7 +15,7 @@ void AstroidSector::init(){
 }
 
 void AstroidSector::update(){
-	
+	SectorTemplate::update();
 }
 
 void AstroidSector::handleMessage(unsigned int message, void* data) {

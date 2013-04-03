@@ -10,7 +10,7 @@ SectorTemplate::SectorTemplate(Composite* parent, const io::path & skyBoxTexture
 	_boundry = boundryRadius;
 
 	// The player
-	//this->_player = new Camera( this->parent );
+	this->_player = new Camera( this->parent );
 	Game::getSceneManager()->addCameraSceneNodeFPS();
 	// Creating wormholes
 	createWormHoles( amountWormHoles );
@@ -37,11 +37,13 @@ void SectorTemplate::update(){
 	}
 
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
-		irr::core::vector3df deltaPos = this->_player->position - _wormHoles[i]->position;
+		irr::core::vector3df deltaPos = _wormHoles[i]->position - this->_player->position;
+		//printf("[SectorTemplate] DeltaLenght = %f",deltaPos.getLength());
 		if( deltaPos.getLength() < 10 ){
 			Game::getCurrentScene()->handleMessage(NEXT_SECTOR, new int(i));
 		}
 	}
+	Entity::update();
 }
 
 void SectorTemplate::handleMessage(unsigned int message, void* data) {
