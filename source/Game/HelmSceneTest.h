@@ -14,7 +14,6 @@ public:
 	virtual void init();
 	virtual void update();
 	irr::io::path filename;
-	ILightSceneNode* light;
 
 	Enemy* drone1;
 	ISceneManager* smgr;

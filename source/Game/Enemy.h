@@ -75,4 +75,4 @@ private:
 	unsigned int lineofsightrange_;
 
 };
-#endif Enemy_h
+#endif

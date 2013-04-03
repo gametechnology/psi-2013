@@ -39,8 +39,3 @@ void HelmSceneTest::update()
 	drone1->update();
 }
 
-void HelmSceneTest::update()
-{
-
-}
-
