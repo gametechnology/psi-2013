@@ -20,10 +20,10 @@ void HelmSceneTest::init()
 {
 	bool Isweapon = true;
 
-	Entity* cube = new Entity(this);
-	cube->createNode("../../assets/Models/Cube.3ds");
+	//Entity* cube = new Entity(this);
+	//cube->createNode("../../assets/Models/Cube.3ds");
 	//cube->angularVelocity = vector3df(0.01, 0,0);
-	addComponent(cube);
+	//addComponent(cube);
 
 	Skybox* skyBox = new Skybox(this);
 

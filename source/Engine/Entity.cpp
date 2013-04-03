@@ -47,7 +47,7 @@ void Entity::createNode(std::string modelPath)
 
 	// Create model entity
 	//Entity* tempModel = new Entity(parent);
-	this->node =  Game::getSceneManager()->addMeshSceneNode( mesh );
+	this->node = Game::getSceneManager()->addMeshSceneNode( mesh );
 	//Game::getCurrentScene()->addComponent(tempModel);
 }
 

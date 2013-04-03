@@ -3,9 +3,9 @@
 #pragma comment(lib, "Irrlicht.lib")
 
 // Disable DOS window.
-#ifdef _DEBUG
-#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
-#endif
+//#ifdef _DEBUG
+//#pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
+//#endif
 
 #include "Engine\Game.h"
 

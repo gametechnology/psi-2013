@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\source\Game\Bullet.h" />
     <ClInclude Include="..\..\source\Game\Ship.h" />
     <ClInclude Include="..\..\Source\Game\WeaponCameraMover.h" />
     <ClInclude Include="..\..\source\Game\HelmSceneTest.h" />
@@ -22,6 +23,7 @@
     <ClInclude Include="..\..\source\Game\WeaponStation.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\source\Game\Bullet.cpp" />
     <ClCompile Include="..\..\source\Game\HelmSceneTest.cpp" />
     <ClCompile Include="..\..\source\Game\HelmStation.cpp" />
     <ClCompile Include="..\..\source\Game\main.cpp" />

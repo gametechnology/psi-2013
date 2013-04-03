@@ -2,6 +2,8 @@
 #include "Engine\Entity.h"
 #include "Irrlicht\irrlicht.h"
 #include "WeaponCameraMover.h"
+#include "Bullet.h"
+
 class WeaponStation : public Entity
 {
 public:
@@ -13,5 +15,9 @@ public:
 private:
 	video::ITexture* _stationTexture;
 	void shoot();
-	int test;
+	
+	int _nrOfBullets;
+	Bullet *_ammo;
+	int _bulletNr;
+	int _shootingInterval;
 };

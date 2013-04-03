@@ -1,6 +1,7 @@
 #include "WeaponStation.h"
 #include "Engine\Game.h"
 #include "Ship.h"
+
 WeaponStation::WeaponStation(Composite* parent) : Entity(parent)
 {
 	cameramover = new WeaponCameraMover(this);
@@ -8,7 +9,15 @@ WeaponStation::WeaponStation(Composite* parent) : Entity(parent)
 	this->_stationTexture = Game::driver->getTexture("../../assets/Textures/Stations/weapon station.png");
 	Game::driver->makeColorKeyTexture(this->_stationTexture, position2d<s32>(0, 0));
 
-	test = 0;
+	_nrOfBullets = 10;
+	_ammo = new Bullet[_nrOfBullets];
+	_bulletNr = 0;
+	_shootingInterval = 0;
+
+	for (int i = 0; i < _nrOfBullets; i++)
+	{
+		Game::getCurrentScene()->addComponent(&_ammo[i]);
+	}
 }
 
 WeaponStation::~WeaponStation()
@@ -18,11 +27,11 @@ WeaponStation::~WeaponStation()
 
 void WeaponStation::update()
 {
-	test++;
-	if(test == 1000)
+	_shootingInterval++;
+	if(_shootingInterval == 1000)
 	{
 		shoot();
-		test = 0;
+		_shootingInterval = 0;
 	}
 	Entity::update();
 }
@@ -41,45 +50,13 @@ void WeaponStation::draw()
 
 void WeaponStation::shoot()
 {
-	scene::ISceneManager* sm = Game::device->getSceneManager();
-	scene::ICameraSceneNode* camera = sm->getActiveCamera();
+	core::vector3df start = Game::device->getSceneManager()->getActiveCamera()->getPosition();
+	core::vector3df end = (Game::device->getSceneManager()->getActiveCamera()->getTarget() - start);
 
-	// get line of camera
-
-	core::vector3df start = camera->getPosition();
-	core::vector3df end = (camera->getTarget() - start);
-	end.normalize();
-	start += end*8.0f;
-	end = start + (end * camera->getFarValue());
-
-	start = camera->getPosition();
-	end = (camera->getTarget() - start);
-	end.normalize();
-	start += end*8.0f;
-	end = start + (end * camera->getFarValue());
-
-	// create fire ball
-	scene::ISceneNode* node = 0;
-	node = sm->addBillboardSceneNode(0,
-		core::dimension2d<f32>(25,25), start);
-
-	node->setMaterialFlag(video::EMF_LIGHTING, false);
-	node->setMaterialTexture(0, Game::device->getVideoDriver()->getTexture("../../assets/Textures/fireball.bmp"));
-	node->setMaterialType(video::EMT_TRANSPARENT_ADD_COLOR);
-
-	f32 length = (f32)(end - start).getLength();
-	const f32 speed = 0.6f;
-	u32 time = (u32)(length / speed);
-
-	scene::ISceneNodeAnimator* anim = 0;
-
-	// set flight line
-
-	anim = sm->createFlyStraightAnimator(start, end, time);
-	node->addAnimator(anim);
-	anim->drop();
-
-	anim = sm->createDeleteAnimator(time);
-	node->addAnimator(anim);
-	anim->drop();
+	_ammo[_bulletNr].setState(Game::getCurrentScene(), start, end, 0.5f);
+	_bulletNr++;
+	if(_bulletNr >= 10)
+	{
+		_bulletNr = 0;
+	}
 }
