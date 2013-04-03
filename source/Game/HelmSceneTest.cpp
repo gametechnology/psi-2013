@@ -28,9 +28,7 @@ void HelmSceneTest::init()
 	camera = smgr->addCameraSceneNodeFPS();
 	this->light = smgr->addLightSceneNode(0,vector3df(5000,5000,5000),SColor(100,100,100,255),100000);
 
-	drone1 = new Enemy();
-	drone1->createNode("../assets/Models/Cube.3ds");
-	drone1->position = irr::core::vector3df(-100,0,0);
+	drone1 = new EnemyDrone(irr::core::vector3df(0,0,10));
 	addComponent(drone1);
 }
 
