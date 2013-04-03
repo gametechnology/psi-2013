@@ -33,7 +33,7 @@ void Enemy::pathFinding()
 
 void Enemy::update()
 {
-	this->velocity = irr::core::vector3df(1,0.1,0);
+	applySpeed();
 	Entity::update();
 }
 
@@ -66,8 +66,6 @@ void Enemy::applySpeed()
 		cappedvel *= maxspeed_;
 		velocity = cappedvel;
 	}
-	velocity += accelaration;
-	position += velocity;
 }
 
 void Enemy::steeRing()
