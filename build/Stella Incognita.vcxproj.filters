@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -51,14 +51,12 @@
     <ClCompile Include="..\source\Game\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\ShipmapScene.cpp">
-	</ClCompile>
     <ClCompile Include="..\source\Game\Ship.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Sprite.cpp">
       <Filter>Source Files</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
@@ -79,6 +77,12 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Shipmap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\ShipmapScene.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -129,8 +133,6 @@
     <ClInclude Include="..\source\Game\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\Sprite.h">
-	</ClInclude>
     <ClInclude Include="..\source\Game\Ship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -154,6 +156,15 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\WeaponStation.h">
       <Filter>Header Files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HelmStation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Shipmap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Sprite.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -28,7 +28,7 @@ Game::Game()
 	Game::scenes = new std::forward_list<Scene*>;
 
 	// Create the irrlicht device 
-	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, false, 0);
+	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, true, 0);
 
 	// If the device was not created correctly, then shut down the program
 	if(Game::device) {
@@ -51,7 +51,7 @@ void Game::run()
 	while(Game::device->run())
 	{
 		Game::getCurrentScene()->update();
-		Game::driver->beginScene(true, true, SColor(255,100,101,140));
+		Game::driver->beginScene(true, true, SColor(0,0,0,0));
 		(*Game::scenes->begin())->sceneManager->drawAll();
 		Game::getCurrentScene()->draw();
 		Game::driver->endScene();

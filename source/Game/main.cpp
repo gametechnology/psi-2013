@@ -1,5 +1,6 @@
 #include "Engine/Game.h"
 #include "HelmSceneTest.h"
+#include "ShipmapScene.h"
 #include "Ship.h"
 
 // Include memory leak detection files.
@@ -17,7 +18,7 @@ int main()
 	Ship ship = Ship(  );
 
 	// Create test scene
-	Game::addScene(new HelmSceneTest());
+	Game::addScene(new ShipmapScene());
 	
 	// Start the main loop
 	Game::run();
