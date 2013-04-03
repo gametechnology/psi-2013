@@ -49,7 +49,7 @@ void StateSwitchFighter::handleFleeing()
 
 void StateSwitchFighter::handleDeath()
 {
-
+	delete parent;
 }
 
 void StateSwitchFighter::setParent(EnemyFighter* parent)
