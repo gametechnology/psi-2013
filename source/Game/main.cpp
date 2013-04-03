@@ -2,6 +2,7 @@
 #include "HelmSceneTest.h"
 #include "Ship.h"
 #include "MapGenerator.h"
+#include "SectorManager.h"
 
 // Include memory leak detection files.
 #ifdef _DEBUG
@@ -23,7 +24,7 @@ int main()
 	GalaxyMap* map = test.createNewMap(300, 300, 15);
 
 	// Create test scene
-	Game::addScene(new HelmSceneTest());
+	Game::addScene(new SectorManager());
 	map->position.set(vector3df(10,50,0));
 	Game::getCurrentScene()->addComponent(map);
 	
