@@ -1,6 +1,10 @@
 #ifndef HELMTEST_H
 #define HELMTEST_H
 #include "Engine\Scene.h"
+#include "HelmStation.h"
+#include "Skybox.h"
+#include "Enemy.h"
+
 class HelmSceneTest :
 	public Scene
 {
@@ -11,9 +15,9 @@ public:
 	virtual void update();
 	irr::io::path filename;
 
-
-	//Entity* ship;
-	Entity* camera;
+	Enemy* drone1;
+	ISceneManager* smgr;
+	ICameraSceneNode* camera;
 	ILightSceneNode* light;
 };
 #endif

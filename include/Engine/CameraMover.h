@@ -13,6 +13,7 @@ public:
 	virtual void draw(){};
 	virtual void handleMessage(unsigned int message, void* data) {};
 private:
+	Camera* cam;
 	vector3df oldParentPosition;
 	vector3df oldParentOrientation;
 };

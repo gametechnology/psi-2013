@@ -3,7 +3,7 @@
 #pragma comment(lib, "Irrlicht.lib")
 
 // Disable DOS window.
-#ifdef _IRR_WINDOWS_
+#ifndef _DEBUG
 #pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
 
@@ -13,12 +13,14 @@ using namespace irr;
 using namespace core;
 using namespace video;
 using namespace scene;
-//using namespace io;
 
 // Predefine static variables
 IrrlichtDevice* Game::device;
 IVideoDriver* Game::driver;
 std::forward_list<Scene*>* Game::scenes;
+
+Client* Game::client;
+Server* Game::server;
 
 Game::Game()
 {
@@ -36,6 +38,11 @@ Game::Game()
 		//Set title of the window
 		Game::device->setWindowCaption(L"Stella Incognita");
 	}
+
+	Game::server = new Server();
+
+	Game::client = new Client();
+	Game::client->setupClient("localhost");
 }
 
 void Game::run()
