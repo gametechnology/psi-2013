@@ -1,5 +1,5 @@
 #include "Enemy.h"
-
+#include <string>
 
 Enemy::Enemy(void): Entity(parent)
 {
@@ -20,7 +20,7 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 	setRotation(rotation);
 	setMaxSpeed(maxspeed);
 	setAgility(agility);
-	setMaxAccelaration(maxacc);
+	setAccelaration(maxacc);
 	setDamage(damage);
 	setLoS(los);
 	setHealth(health);
@@ -53,10 +53,10 @@ void Enemy::getState()
 
 void Enemy::applySpeed()
 {
-	if (accelaration.getLength() > maxaccelaration_)
+	if (accelaration.getLength() > accelaration_)
 	{
 		vector3df cappedacc = accelaration.normalize();
-		cappedacc *= maxaccelaration_;
+		cappedacc *= accelaration_;
 		accelaration = cappedacc;
 	}
 
@@ -96,6 +96,11 @@ void Enemy::setVisual(IMesh* visual, ISceneManager* smgr)
 	smgr->addMeshSceneNode(this->visual_);
 }
 
+void Enemy::setVisualWithPath(std::string path)
+{
+	this->createNode(path);
+}
+
 void Enemy::setPath(vector3df destination)
 {
 	destination_ = destination;
@@ -116,9 +121,9 @@ void Enemy::setAgility(unsigned int agility)
 {
 	agility_ = agility;
 }
-void Enemy::setMaxAccelaration(unsigned int maxacc)
+void Enemy::setAccelaration(unsigned int acc)
 {
-	maxaccelaration_ = maxacc;
+	accelaration_ = acc;
 }
 void Enemy::setDamage(unsigned int damage)
 {
@@ -153,9 +158,9 @@ unsigned int Enemy::getAgility()
 {
 	return agility_;
 }
-unsigned int Enemy::getMaxAccelaration()
+unsigned int Enemy::getAccelaration()
 {
-	return maxaccelaration_;
+	return accelaration_;
 }
 unsigned int Enemy::getDamage()
 {
