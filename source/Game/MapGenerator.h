@@ -32,10 +32,12 @@ private:
 	int sectorCount;
 	int minWormholes;
 	int maxWormholes;
+
 	typeSector getRandomType();
 	vector3df randomPosition();
 	bool collisionLineBetweenSectors(MapSector* sector1, MapSector* sector2);
 	std::string nameGenerator(typeSector type);
+	int dijkstra();
 };
 
 #endif

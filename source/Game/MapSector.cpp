@@ -1,14 +1,23 @@
 #include "MapSector.h"
 #include "Engine\Game.h"
 
-
 MapSector::MapSector(Composite *parent,std::string name,typeSector type, float radius):Entity(parent)
 {
 	this->name = name;
 	this->type = type;
 	this->explored = false;
 	this->radius = radius;
+	this->distToBlueBase = INT_MAX;
 
+	resetTexture();
+}
+
+MapSector::~MapSector(void)
+{
+}
+
+void MapSector::resetTexture()
+{
 	switch(type){
 		case EMPTY:
 			this->_mapSectorTexture = Game::driver->getTexture("../assets/Textures/MapSectors/empty.png");
@@ -35,16 +44,8 @@ MapSector::MapSector(Composite *parent,std::string name,typeSector type, float r
 			break;
 	
 	}
-
 	Game::driver->makeColorKeyTexture(this->_mapSectorTexture, position2d<s32>(0, 0));
-
 }
-
-
-MapSector::~MapSector(void)
-{
-}
-
 
 void MapSector::draw(){
 	

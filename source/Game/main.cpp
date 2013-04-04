@@ -19,7 +19,13 @@ int main()
 
 
 	MapGenerator test;
-	test.init(20,2,4);
+	test.init(20,2,5);
+	std::vector<float> chances;
+	chances.push_back(25);
+	chances.push_back(25);
+	chances.push_back(25);
+	chances.push_back(25);
+	test.setBalanceChances(chances);
 	GalaxyMap* map = test.createNewMap(300, 300, 15);
 
 	// Create test scene

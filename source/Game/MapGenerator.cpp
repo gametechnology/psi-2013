@@ -40,7 +40,7 @@ MapGenerator::MapGenerator(void)
 	nametype.push_back("Field");	//Asteroids		?belt?
 	nametype.push_back("Nebula");	//Nebula
 	nametype.push_back("System");	//Solar
-	nametype.push_back("");	//Home
+	nametype.push_back("Sector");	//Home
 }
 
 MapGenerator::~MapGenerator(void)
@@ -94,7 +94,7 @@ void MapGenerator::createSectors()
 	
 	typeSector j;
 	for(int i = 0; i < sectorCount - 2; i++)
-	{		
+	{
 		j = getRandomType();
 		MapSector* sector = new MapSector(map, nameGenerator(j), j, map->radiusSector);
 		sector->position.set(randomPosition());
@@ -129,6 +129,10 @@ vector3df MapGenerator::randomPosition()
 
 void MapGenerator::createConnections()
 {
+	for (std::list<MapSector*>::iterator h = map->sectors.begin(); h != map->sectors.end(); ++h)
+	{
+		(*h)->connections.clear();
+	}
 	for(std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
 	{
 		for(std::list<MapSector*>::iterator j = map->sectors.begin(); j != map->sectors.end(); ++j)
@@ -167,6 +171,38 @@ void MapGenerator::createConnections()
 			}
 		}
 	}
+	//Fill in the distance to blue base for every sector
+	dijkstra();
+	
+	//Place the red base as far as possible from the blue base
+	MapSector* away = map->sectors.back();
+	MapSector* red;
+	std::string tempName;
+	typeSector tempType;
+	//Find the red base and the base furthest from blue base
+	for(std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
+	{
+		if ((*i)->type == HOME_RED)
+		{
+			red = (*i);
+		} else if ((*i)->distToBlueBase > away->distToBlueBase && (*i)->distToBlueBase != INT_MAX && (*i)->type != HOME_RED)
+		{
+			away = (*i);
+		}
+		//check if distToBlueBase != INT_MAX, else make another connection to one with low distToBlueBase;
+	}
+	//Swap HOME_RED with furthest MapSector and reset the textures;
+	tempName = away->name;
+	tempType = away->type;
+	away->name = red->name;
+	away->type = red->type;
+	red->name = tempName;
+	red->type = tempType;
+	away->resetTexture();
+	red->resetTexture();
+
+	//Redo the distance to blue base calculation
+	int j = dijkstra();
 }
 
 bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* sector2)
@@ -218,15 +254,18 @@ bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* se
 
 std::string MapGenerator::nameGenerator(typeSector type)
 {
+	//Pick a random name and remove it from the list to avoid duplicates
 	float rnd = rand() % nameprefix.size();
 	std::string name = nameprefix.at(rnd) + " ";
 	nameprefix.erase(nameprefix.begin() + rnd);
 
+	//In some cases add a middle name
 	if (rand() % 100 < 25)
 	{
 		name += nameaddon.at(rand() % nameaddon.size()) + " ";
 	}
 
+	//End the name with the name for the type of the sector
 	switch(type)
 	{
 		case EMPTY:
@@ -249,4 +288,45 @@ std::string MapGenerator::nameGenerator(typeSector type)
 			name += this->nametype.at(0);
 	}
 	return name;
+}
+
+int MapGenerator::dijkstra()
+{
+	for (std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
+	{
+		(*i)->distToBlueBase = INT_MAX;
+	}
+
+	std::list<MapSector*> openConnections;
+	std::list<MapSector*> nextConnections;
+	std::list<MapSector*> shortestPath;
+	int curDist = 0;
+	openConnections.push_back(map->sectors.front());
+
+	while(openConnections.size() > 0)
+	{
+		nextConnections.clear();
+		for (std::list<MapSector*>::iterator i = openConnections.begin(); i != openConnections.end(); ++i)
+		{
+			if ((*i)->distToBlueBase > curDist)
+			{
+				(*i)->distToBlueBase = curDist;
+				for (std::list<MapSector*>::iterator j = (*i)->connections.begin(); j != (*i)->connections.end(); ++j)
+				{
+					nextConnections.push_back((*j));
+				}
+			}
+		}
+		openConnections = nextConnections;
+
+		curDist++;
+	}
+	for (std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
+	{
+		if ((*i)->type == HOME_RED)
+		{
+			return (*i)->distToBlueBase;
+		}
+	}
+	return 0;
 }

@@ -13,11 +13,13 @@ public:
 	typeSector type;
 	bool explored;
 	float radius;
+	int distToBlueBase;
 
 	MapSector(Composite *parent,std::string name,typeSector type, float radius);
 	~MapSector(void);
 
 	virtual void draw();
+	void resetTexture();
 
 private:
 	irr::video::ITexture* _mapSectorTexture;
