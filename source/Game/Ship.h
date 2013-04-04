@@ -19,6 +19,7 @@ public:
 	void init(int station);
 	void handleMessage(unsigned int message, void* data);
 	Net network;
+	int stationnumber;
 	Entity* currentstation;
 	Input* input;
 	Camera* camera;

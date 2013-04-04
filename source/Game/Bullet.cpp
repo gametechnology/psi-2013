@@ -1,5 +1,5 @@
 #include "Bullet.h"
-
+#include "Ship.h"
 Bullet::Bullet() : Entity(NULL)
 {
 	this->visible = false;
@@ -26,8 +26,8 @@ void Bullet::update()
 	Entity::update();
 
 	this->_currentFlightTime++;
-
-	if(this->visible && this->_currentFlightTime > this->_maxFlightTime)
+	
+	if(this->visible && this->_currentFlightTime > this->_maxFlightTime &&  ((Ship*)&parent)->stationnumber == 1)
 	{
 		this->visible = false;
 		this->velocity = vector3df(0, 0, 0);

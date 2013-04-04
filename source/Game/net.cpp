@@ -41,7 +41,7 @@ void Net::senderthread(void * var)
 
 		// Create the UDP socket
 
-		if (Socket.Send(packettosend, "145.92.73.131", 7000) != sf::Socket::Done)
+		if (Socket.Send(packettosend, "145.92.76.248", 7000) != sf::Socket::Done)
 		{
 			// Error...
 
@@ -150,11 +150,12 @@ void  Net::revieverthreadWeapon(void * var)
 				for (int i = 0; i < length; i++)
 				{
 					packettorecieve >> nodeother[i];
-					nodeother->visible = true;
+					nodeother[i].visible = true;
+				
 				}
 			}
 		}
-		Sleep(5000);
+		
 	}
 	Socket.Close();
 	return;

@@ -17,6 +17,7 @@ Ship::~Ship(void)
 
 void Ship::init(int station){
 
+	stationnumber = station;
 	nrOfBullets = 10;
 	ammo = new Bullet[nrOfBullets];
 	bulletNr = 0;
