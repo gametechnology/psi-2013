@@ -7,7 +7,7 @@ MainMenuScene::MainMenuScene()
 	guiEnv = Game::device->getGUIEnvironment();
 
 	//set the first menu
-	mainMenuState = MainMenuState::Main;
+	mainMenuState = Main;
 
 	///////////////////////////////////////////
 	// MainMenu

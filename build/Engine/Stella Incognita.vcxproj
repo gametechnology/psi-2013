@@ -107,9 +107,9 @@
     <ClCompile Include="..\..\source\Engine\Composite.cpp" />
     <ClCompile Include="..\..\source\Engine\Entity.cpp" />
     <ClCompile Include="..\..\source\Engine\Game.cpp" />
+    <ClCompile Include="..\..\source\Engine\NetworkComponent.cpp" />
     <ClCompile Include="..\..\source\Engine\Scene.cpp" />
     <ClCompile Include="..\..\source\Engine\Server.cpp" />
-    <ClCompile Include="NetworkComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\assets\sydney.bmp" />

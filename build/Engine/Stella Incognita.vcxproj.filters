@@ -77,7 +77,7 @@
     <ClCompile Include="..\..\source\Engine\Server.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="NetworkComponent.cpp">
+    <ClCompile Include="..\..\source\Engine\NetworkComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
