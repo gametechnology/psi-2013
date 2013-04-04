@@ -10,7 +10,7 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 		vector3df rotation,
 		unsigned int maxspeed,
 		unsigned int agility,
-		vector3df maxacc,
+		vector3df acc,
 		unsigned int damage,
 		unsigned int los,
 		unsigned int health): Entity(parent)
@@ -20,7 +20,7 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 	setRotation(rotation);
 	setMaxSpeed(maxspeed);
 	setAgility(agility);
-	setAccelaration(maxacc);
+	setAccelaration(acc);
 	setDamage(damage);
 	setLoS(los);
 	setHealth(health);
@@ -138,11 +138,6 @@ vector3df Enemy::getVelocity()
 	return velocity;
 }
 
-void Enemy::setVelocity(vector3df input)
-{
- velocity = input;
-}
-
 vector3df Enemy::getPath()
 {
 	return destination_;
@@ -163,7 +158,7 @@ unsigned int Enemy::getAgility()
 {
 	return agility_;
 }
-unsigned int Enemy::getAccelaration()
+vector3df Enemy::getAccelaration()
 {
 	return accelaration;
 }
@@ -201,10 +196,7 @@ void Enemy::chase(vector3df target)
 		this->position += this->velocity;
 	}
 }
-vector3df Enemy::getVelocity()
-{
- return velocity;
-}
+
 Enemy::~Enemy(void)
 {
 }
