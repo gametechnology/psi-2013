@@ -137,6 +137,7 @@ vector3df Enemy::getVelocity()
 {
 	return velocity;
 }
+
 vector3df Enemy::getPath()
 {
 	return destination_;
@@ -157,7 +158,7 @@ unsigned int Enemy::getAgility()
 {
 	return agility_;
 }
-vector3df Enemy::getAccelaration()
+unsigned int Enemy::getAccelaration()
 {
 	return accelaration;
 }

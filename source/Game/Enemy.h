@@ -42,16 +42,16 @@ public:
 	void setDamage(unsigned int damage);
 	void setLoS(unsigned int los);
 	void setHealth(signed int health);
+	void setVelocity(vector3df input);
 	void setRadius(unsigned int radius);
-
+	
 	vector3df getVelocity();
-
 	vector3df getPath();
 	vector3df getPosition();
 	vector3df getRotation();
 	unsigned int getMaxSpeed();
 	unsigned int getAgility();
-	vector3df getAccelaration();
+	unsigned int getAccelaration();
 	unsigned int getDamage();
 	unsigned int getLoS();
 	unsigned int getRadius();
