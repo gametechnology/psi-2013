@@ -46,13 +46,7 @@ public:
 	IGUIStaticText	*weaponStatus;
 	IGUIStaticText	*navigationStatus;
 	IGUIScrollBar	*scrollBar;
-
-	// Power status variables.
-	float helmPowerAmount;
-	float defencePowerAmount;
-	float weaponPowerAmount;
-	float navigationPowerAmount;
-
+		
 	IrrlichtDevice *device;
 	s32			counter;
 	IGUIListBox	*listbox;

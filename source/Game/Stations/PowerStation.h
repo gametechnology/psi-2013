@@ -51,6 +51,8 @@ public:
 	void gameLoop( );
 	void selectedStation();
 	void changeColorAccordingToPowerStatus(IGUIStaticText &staticText, float powerAmount);
+
+	int GetPower(Station::StationType type);
 };
 
 #endif

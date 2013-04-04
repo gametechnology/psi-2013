@@ -16,22 +16,24 @@ PowerStation :: PowerStation( Ship *ship ) : Station( ship )
 
 void PowerStation :: SubscribeStation( Station *s )
 {
-	std :: cout << "ik ben subscribed!\n";
 	this -> context.SubscribeStation( s );
+}
+
+int PowerStation :: GetPower(Station::StationType type)
+{
+	return this->context.GetPower(type);
 }
 
 void PowerStation :: UpdateStationPower( Station :: StationType s, int newValue )
 {
 	if ( s == STATION_TYPE :: Power )	return;	//we do nothing when the power station is selected.
-	//this -> context.UpdataPowerUsage( s, newValue );
+	this -> context.UpdataPowerUsage( s, newValue );
 }
 
 void PowerStation :: DoCameraShake( )
 {
 	//here, we are going to do the Harlem Shake
-
 }
-
 // Define some values that we'll use to identify individual GUI controls.
 enum
 {
@@ -161,8 +163,8 @@ void PowerStation::Initialize()
 	
 	if (font)
 		skin->setFont(font);
-
-	skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
+	else
+		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
 	createUI();	
 }
 
@@ -180,7 +182,7 @@ void PowerStation::createUI()
 	MyEventReceiver receiver(context);
 	// And tell the device to use our custom event receiver.
 	device->setEventReceiver(&receiver);
-	gameLoop( );
+	//gameLoop( );
 }
 
 void PowerStation::declareUIData(){
