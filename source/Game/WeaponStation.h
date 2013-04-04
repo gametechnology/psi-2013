@@ -17,7 +17,6 @@ private:
 	void shoot();
 	
 	int _nrOfBullets;
-	Bullet *_ammo;
 	int _bulletNr;
 	int _shootingInterval;
 };

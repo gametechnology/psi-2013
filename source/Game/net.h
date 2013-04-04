@@ -6,6 +6,8 @@
 #include <sstream>
 #include <SFML/Network.hpp>
 #include "Engine\Camera.h"
+#include "Engine\Camera.h"
+#include "Bullet.h"
 
 using namespace irr;
 
@@ -24,9 +26,11 @@ class Net{
 	private:
 		static int packageid ;
 		static void senderthread(void * var);
-		static void  revieverthread(void * var);
+		static void revieverthread(void * var);
+		static void senderthreadWeapon(void * var);
+		static void revieverthreadWeapon(void * var);
 	public:
-		Net(bool IsWeapon, void * var);
+		Net(bool IsWeapon, void * sendervar, void * recievervar);
 		Net();
 };
 #endif

@@ -24,5 +24,6 @@ public:
 	Camera* camera;
 	float drag;
 	Thruster* thrusters[3];
+	Bullet *ammo;
 };
 

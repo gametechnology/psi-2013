@@ -10,13 +10,13 @@ WeaponStation::WeaponStation(Composite* parent) : Entity(parent)
 	Game::driver->makeColorKeyTexture(this->_stationTexture, position2d<s32>(0, 0));
 
 	_nrOfBullets = 10;
-	_ammo = new Bullet[_nrOfBullets];
+	((Ship*)this->parent)->ammo = new Bullet[_nrOfBullets];
 	_bulletNr = 0;
 	_shootingInterval = 0;
 
 	for (int i = 0; i < _nrOfBullets; i++)
 	{
-		Game::getCurrentScene()->addComponent(&_ammo[i]);
+		Game::getCurrentScene()->addComponent(&((Ship*)this->parent)->ammo[i]);
 	}
 }
 
@@ -54,7 +54,7 @@ void WeaponStation::shoot()
 	core::vector3df start = Game::device->getSceneManager()->getActiveCamera()->getPosition();
 	core::vector3df end = (Game::device->getSceneManager()->getActiveCamera()->getTarget() - start);
 
-	_ammo[_bulletNr].setState(Game::getCurrentScene(), start, end, 0.5f);
+	((Ship*)this->parent)->ammo[_bulletNr].setState(Game::getCurrentScene(), start, end, 0.5f);
 	_bulletNr++;
 	if(_bulletNr >= 10)
 	{
