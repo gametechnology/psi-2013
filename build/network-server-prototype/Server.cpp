@@ -1,6 +1,8 @@
 // Network
 #include <enet/enet.h>
 #include <stdio.h>
+#include <list>
+#include "../source/Networking_Prototype/Server/ClientInfo.h"
 
 int main(int argc, char **argv)
 {
@@ -16,6 +18,9 @@ int main(int argc, char **argv)
 	// Packet that will be send as a respond to the connected client.
 	ENetPacket *packet;
 	
+	//We keep track of connected clients
+	std::list<ClientInfo> connectedClients;
+	ClientInfo newClient;
 
 	/*
 	*
@@ -49,11 +54,8 @@ int main(int argc, char **argv)
 	}
 
 
-	/*
-	*
-	* Running the server and receive packets from connected clients.
-	*
-	*/
+	//Engine startup and loop
+	printf("The server has been started.");
 	while(true)
 	{
 		while(enet_host_service(server, &event, 1000) > 0)
@@ -63,6 +65,15 @@ int main(int argc, char **argv)
 			case ENET_EVENT_TYPE_CONNECT:
 				printf("A new client connected from %x:%u.\n", event.peer -> address.host, event.peer -> address.port);
 				event.peer -> data = "Client";
+
+				//Create a new client
+				newClient = ClientInfo(event.peer -> address.host, event.peer -> address.port, event.peer);
+				connectedClients.push_back(newClient);
+
+				//Send package back to peer to notify that he has entered the server						
+				packet = enet_packet_create("Welcome to the STELLA INCOGNITA server!", strlen("Welcome to the STELLA INCOGNITA server!") + 1, ENET_PACKET_FLAG_RELIABLE);
+				enet_peer_send(event.peer, 0, packet);
+
 				break;
 			case ENET_EVENT_TYPE_RECEIVE:
 				printf("A packet containing \"%s\" was received from %s on channel %u.\n", event.packet -> data, event.peer -> data, event.channelID);
