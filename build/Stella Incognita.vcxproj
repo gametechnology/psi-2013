@@ -105,7 +105,6 @@
     <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
     <ClCompile Include="..\source\Game\Ship.cpp" />
     <ClCompile Include="..\source\Game\Shipmap.cpp" />
-    <ClCompile Include="..\source\Game\ShipmapScene.cpp" />
     <ClCompile Include="..\source\Game\Skybox.cpp" />
     <ClCompile Include="..\source\Game\Sprite.cpp" />
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp" />
@@ -134,7 +133,6 @@
     <ClInclude Include="..\source\Game\SectorTemplate.h" />
     <ClInclude Include="..\source\Game\Ship.h" />
     <ClInclude Include="..\source\Game\Shipmap.h" />
-    <ClInclude Include="..\source\Game\ShipmapScene.h" />
     <ClInclude Include="..\source\Game\Skybox.h" />
     <ClInclude Include="..\source\Game\Sprite.h" />
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h" />
