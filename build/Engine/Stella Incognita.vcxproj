@@ -95,7 +95,7 @@
     <ClInclude Include="..\..\include\Engine\Composite.h" />
     <ClInclude Include="..\..\include\Engine\Entity.h" />
     <ClInclude Include="..\..\include\Engine\Game.h" />
-    <ClInclude Include="..\..\include\Engine\Networkable.h" />
+    <ClInclude Include="..\..\include\Engine\NetworkComponent.h" />
     <ClInclude Include="..\..\include\Engine\Scene.h" />
     <ClInclude Include="..\..\include\Engine\Server.h" />
   </ItemGroup>
@@ -109,6 +109,7 @@
     <ClCompile Include="..\..\source\Engine\Game.cpp" />
     <ClCompile Include="..\..\source\Engine\Scene.cpp" />
     <ClCompile Include="..\..\source\Engine\Server.cpp" />
+    <ClCompile Include="NetworkComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\assets\sydney.bmp" />
