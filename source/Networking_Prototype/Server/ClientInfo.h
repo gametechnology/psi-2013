@@ -9,7 +9,6 @@ public:
 	ClientInfo(UINT32 hostAddress, UINT16 port, ENetPeer* peer);
 	~ClientInfo();
 
-	std::string name;
 	UINT32 hostAddress;
 	UINT16 port;
 	ENetPeer* peer;

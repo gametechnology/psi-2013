@@ -4,6 +4,36 @@
 #include <list>
 #include "../source/Networking_Prototype/Server/ClientInfo.h"
 
+enum ClientToServerMessage
+{
+	JOIN,
+	QUIT,
+	JOIN_TEAM,
+	LEAVE_TEAM,
+	LEAVE_STATION,
+	ENTER_STATION,
+	MOVE_SHIP,
+	FIRE_WEAPON,
+	DEFENSE_MODIFIER,
+	SHIELD_ADDPOINT,
+	SHIELD_REMOVEPOINT,
+	REPAIR_ADDSTATION,
+	REPAIR_REMOVESTATION,
+	ENGINE_CHANGE,
+	NAVIGATION_USE_HYPERDRIVE
+};
+
+enum ServerToClientMessage
+{
+	WELCOMES,
+	REJECTS,
+	GAME_INFO,
+	GAME_INFO,
+	PLAYERLIST,
+	TEAMLIST,
+	GAMESTATE
+};
+
 int main(int argc, char **argv)
 {
 	// The host address.
@@ -76,9 +106,22 @@ int main(int argc, char **argv)
 
 				break;
 			case ENET_EVENT_TYPE_RECEIVE:
-				printf("A packet containing \"%s\" was received from %s on channel %u.\n", event.packet -> data, event.peer -> data, event.channelID);
-				packet = enet_packet_create("Hello", strlen("Hello") + 1, ENET_PACKET_FLAG_RELIABLE);
-				enet_peer_send(event.peer, 0, packet);
+				printf("packet: \"%s\" . Received from %s on channel %u.\n", event.packet -> data, event.peer -> data, event.channelID);
+
+				//1. Convert incoming json string to Objects or information or shjizzle
+
+				//2. Get the type of the object that has been created
+
+				//3. Use switches to narrow down the meaning and functionality of the message
+
+				//4. Send mssage to all peers that need the new information based from the message.
+
+
+
+
+
+
+
 				break;
 			case ENET_EVENT_TYPE_DISCONNECT:
 				printf("%s disconected.\n", event.peer -> data);
