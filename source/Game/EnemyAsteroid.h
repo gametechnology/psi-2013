@@ -6,13 +6,9 @@
 class EnemyAsteroid : public Enemy
 {
 public:
-	EnemyAsteroid(irr::core::vector3df _position);
-	virtual void lupdate(Enemy* enemy,vector3df speed);
+	EnemyAsteroid(irr::core::vector3df position, vector3df speed);
 	virtual void update();
 	~EnemyAsteroid(void);
-private:
-	vector3df speed;
-	unsigned int acceleration;
 };
 
 #endif
