@@ -1,13 +1,17 @@
-#ifndef SHIPMAP
-#define SHIPMAP
+#pragma once
+#include "Engine\Entity.h"
+#include "Shipmap.h"
 
-class Shipmap
+class Shipmap :
+	public Entity
 {
 private:
-	bool _map[5][10];
+	video::ITexture* bg;
+
 public:
-	Shipmap();
-	bool GetTile(int x, int y);
+	Shipmap(Composite* parent);
+	~Shipmap();
+	virtual void init();
+	void draw();
 };
 
-#endif

@@ -19,6 +19,12 @@
     <Filter Include="Source Files\Stations">
       <UniqueIdentifier>{9fc7689d-8dc0-44cf-bd58-f544a023136d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Shipmap">
+      <UniqueIdentifier>{eee304ed-c221-4bc8-8bb4-45ff85381ba6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shipmap">
+      <UniqueIdentifier>{77f85f00-a4ee-4b7a-a2df-fdd70377e28e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Game\main.cpp">
@@ -75,12 +81,6 @@
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Shipmap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\ShipmapScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\GalaxyMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -89,6 +89,9 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\MapSector.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Shipmap.cpp">
+      <Filter>Source Files\Shipmap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -139,9 +142,6 @@
     <ClInclude Include="..\source\Game\Ship.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\ShipmapScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\Team.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -163,9 +163,6 @@
     <ClInclude Include="..\source\Game\HelmStation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\Shipmap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -177,6 +174,9 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\MapSector.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Shipmap.h">
+      <Filter>Header Files\Shipmap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,21 +1,23 @@
 #include "Shipmap.h"
+#include "Sprite.h"
+#include "Engine/Game.h"
 
-Shipmap::Shipmap()
+Shipmap::Shipmap(Composite* parent):Entity(parent)
 {
-	 bool map[5][10] = {
-		{0,0,0,0,0,1,1,0,0,0},
-		{0,0,0,0,0,0,1,0,0,0},
-		{1,1,1,1,1,1,1,1,1,1},
-		{0,0,0,1,0,0,1,0,0,0},
-		{0,0,0,1,0,0,1,0,0,0}
-	 };
-
-	 for( int i = 0 ; i < 5 ; i++ )
-		     for( int j = 0 ; j < 10 ; j++ )
-		          _map[i][j] = map[i][j] ;
+	bg = Game::driver->getTexture("../assets/shipmap/map.png");
 }
 
-bool Shipmap::GetTile(int x, int y)
+Shipmap::~Shipmap()
 {
-	return _map[x, y];
+}
+
+void Shipmap::init()
+{
+}
+
+void Shipmap::draw()
+{
+	Entity::draw();
+
+	Game::driver->draw2DImage(bg, rect<s32>(0,0,1280,720), rect<s32>(0,0,bg->getOriginalSize().Width,bg->getOriginalSize().Height));
 }
