@@ -194,8 +194,15 @@ bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* se
 
 std::string MapGenerator::nameGenerator(typeSector type)
 {
-	std::string name = nameprefix.at(rand() % nameprefix.size());
-	name += " ";
+	float rnd = rand() % nameprefix.size();
+	std::string name = nameprefix.at(rnd) + " ";
+	nameprefix.erase(nameprefix.begin() + rnd);
+
+	if (rand() % 100 < 25)
+	{
+		name += nameaddon.at(rand() % nameaddon.size()) + " ";
+	}
+
 	switch(type)
 	{
 		case EMPTY:
