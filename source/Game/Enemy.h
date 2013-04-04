@@ -36,7 +36,7 @@ public:
 	void setRotation(vector3df rotategoal);
 	void setMaxSpeed(unsigned int maxspeed);
 	void setAgility(unsigned int agility);
-	void setAccelaration(unsigned int maxacc);
+	void setAccelaration(vector3df acc);
 	void setDamage(unsigned int damage);
 	void setLoS(unsigned int los);
 	void setHealth(signed int health);
@@ -49,7 +49,7 @@ public:
 	vector3df getRotation();
 	unsigned int getMaxSpeed();
 	unsigned int getAgility();
-	unsigned int getAccelaration();
+	vector3df getAccelaration();
 	unsigned int getDamage();
 	unsigned int getLoS();
 	unsigned int getRadius();
