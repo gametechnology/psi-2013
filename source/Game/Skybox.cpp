@@ -4,7 +4,7 @@
 Skybox::Skybox(const io::path & filePath,Composite* parent) : Entity(parent) {
 	_filePath = "../assets/Textures/SkyBoxes/";
 	_filePath += filePath;
-	printf(filePath.c_str());
+	//printf(filePath.c_str());
 	init();
 }
 void Skybox::init(){
