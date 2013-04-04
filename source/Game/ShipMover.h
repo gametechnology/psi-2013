@@ -9,11 +9,13 @@ public:
 	ShipMover(Composite* parent, Thruster* thrusters[]);
 	~ShipMover(void);
 	void Activate();
-	void init();
-	void update();
-	void draw();
-	void handleMessage(int message, void* data){};
+
+	virtual void init();
+	virtual void update();
+	virtual void draw();
+	virtual void handleMessage(unsigned int message, void* data = 0){};
 private:
+	Thruster** thrusters;
 	vector3df totalForce;
 };
 

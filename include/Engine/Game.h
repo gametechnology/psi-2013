@@ -1,6 +1,7 @@
 #include "..\Irrlicht\irrlicht.h"
 #include "Scene.h"
 #include <forward_list>
+#include "Input.h"
 
 #ifndef ENGINE
 #define ENGINE
@@ -9,6 +10,8 @@ using namespace irr;
 using namespace core;
 using namespace video;
 using namespace scene;
+
+static Input eventReceiver;
 
 class Game
 {
@@ -26,6 +29,7 @@ public:
 
 	static IrrlichtDevice* device;
 	static IVideoDriver* driver;
+	
 protected:
 	static std::forward_list<Scene*>* scenes; 
 };
