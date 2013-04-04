@@ -11,7 +11,7 @@
 #define STUN_TIME 4.0
 class Ship;
 
-class Station 
+class Station
 {
 
 public:

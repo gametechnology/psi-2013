@@ -11,7 +11,7 @@ void UIData :: SubscribeStation( Station *s )
 	this -> _stationsPowerUsage	-> insert( s -> GetStationType( ), PowerUsage( 0 ) );
 }
 
-void UIData :: UpdataPowerUsage( Station :: StationType s, int newValue )
+void UIData :: UpdatePowerUsage( Station :: StationType s, int newValue )
 {
 	map<Station :: StationType, PowerUsage> :: Node *n = this -> _stationsPowerUsage -> find( s );
 

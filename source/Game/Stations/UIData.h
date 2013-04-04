@@ -52,7 +52,7 @@ public:
 	IGUIListBox	*listbox;
 
 	void SubscribeStation( Station *s );
-	void UpdataPowerUsage( Station :: StationType s, int newValue );
+	void UpdatePowerUsage( Station :: StationType s, int newValue );
 	int GetPower( Station::StationType stationType );
 };
 #endif

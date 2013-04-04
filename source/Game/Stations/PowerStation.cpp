@@ -27,7 +27,7 @@ int PowerStation :: GetPower(Station::StationType type)
 void PowerStation :: UpdateStationPower( Station :: StationType s, int newValue )
 {
 	if ( s == STATION_TYPE :: Power )	return;	//we do nothing when the power station is selected.
-	this -> context.UpdataPowerUsage( s, newValue );
+	this -> context.UpdatePowerUsage( s, newValue );
 }
 
 void PowerStation :: DoCameraShake( )
@@ -75,11 +75,7 @@ public:
 
 			/*
 			If a scrollbar changed its scroll position, and it is
-			'our' scrollbar (the one with id GUI_ID_SCROLL_BAR), then we change
-			the transparency of all gui elements. This is a very
-			easy task: There is a skin object, in which all color
-			settings are stored. We simply go through all colors
-			stored in the skin and change their alpha value.
+			'our' scrollbar (the one with id GUI_ID_SCROLL_BAR), then we update the power usage of that station.
 			*/
 			case EGET_SCROLL_BAR_CHANGED:
 				s32 pos;
@@ -87,25 +83,25 @@ public:
 				if(Context.selectedStation == 1)
 				{
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();					
-					Context.UpdataPowerUsage( Station :: StationType :: Helm, POWER_MAX - pos );
+					Context.UpdatePowerUsage( Station :: StationType :: Helm, POWER_MAX - pos );
 				}
 				else if(Context.selectedStation == 2){
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-					Context.UpdataPowerUsage( Station :: StationType :: Defence, POWER_MAX - pos );
+					Context.UpdatePowerUsage( Station :: StationType :: Defence, POWER_MAX - pos );
 				}
 				else if(Context.selectedStation == 3){
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-					Context.UpdataPowerUsage( Station :: StationType :: Navigation, POWER_MAX - pos );
+					Context.UpdatePowerUsage( Station :: StationType :: Navigation, POWER_MAX - pos );
 				}
 				else if(Context.selectedStation == 4){
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
 
 					((IGUIScrollBar*)event.GUIEvent.Caller)->setPos( irr :: s32( ) );
-					Context.UpdataPowerUsage( Station :: StationType :: Weapon, POWER_MAX - pos );
+					Context.UpdatePowerUsage( Station :: StationType :: Weapon, POWER_MAX - pos );
 				}
 				break;
 
-			
+			//If the user selected a button, check to see which button was clicked.
 			case EGET_BUTTON_CLICKED:
 				switch(id)
 				{
@@ -152,7 +148,7 @@ private:
 	UIData & Context;
 };
 
-
+//Initializes the User Interface.
 void PowerStation::Initialize()
 {
 	Station :: Initialize( );
@@ -167,7 +163,7 @@ void PowerStation::Initialize()
 		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
 	createUI();	
 }
-
+//Creates the User Interface. Is a helper method. Also initializes the event receiver.
 void PowerStation::createUI()
 {
 	declareUIData();
@@ -182,22 +178,22 @@ void PowerStation::createUI()
 	MyEventReceiver receiver(context);
 	// And tell the device to use our custom event receiver.
 	device->setEventReceiver(&receiver);
-	//gameLoop( );
 }
 
+//Defines the used driver and some UI data values.
 void PowerStation::declareUIData(){
 	context.device = device;
 	context.counter = 0;
 	context.powerPool = 100;
 }
-
+//Creates the text for the power pool along with its value.
 void PowerStation::createPowerPool(){
 	stringw str = varToString("Power Pool:\n", POWER_MAX, "%");
 
 	context.powerPoolText = env->addStaticText(str.c_str(), rect<s32>(40, 40, 200, 100), false);
 	context.powerPoolText->setOverrideColor(video::SColor(255, 0, 255, 0));
 }
-
+//Variable to string converter for printing to the screen.
 stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 	stringw str = L"";
 	str += str1;
@@ -205,13 +201,13 @@ stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 	str += str2;
 	return str;
 }
-
+//Adds the background image and the spaceship image. 
 void PowerStation::addImages()
 {
 	env->addImage(driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
 	env->addImage(driver->getTexture("../assets\\Textures\\Stations\\PowerStation\\spaceship.png"), position2d<int>(190,266));
 }
-
+//Creates the power scrollbar. 
 void PowerStation::createScrollbar(){
 	context.scrollBar = env->addScrollBar(false, rect<s32>(1200, 20, 1230, 260), 0, GUI_ID_SCROLL_BAR);
 	context.scrollBar->setMax(100);
@@ -220,6 +216,7 @@ void PowerStation::createScrollbar(){
 	context.scrollBar->setPos(100);
 }
 
+//Creates the station buttons.
 void PowerStation::createButtons(){
 	IGUIButton *helmbut;
 	helmbut = env->addButton(rect<s32>(870, 460, 930, 520),0, GUI_ID_POWER_HELM,L"HLM",L"Helm Station");
@@ -233,18 +230,20 @@ void PowerStation::createButtons(){
 	IGUIButton *navigationbut;
 	navigationbut = env->addButton(rect<s32>(490, 310, 580, 410),0, GUI_ID_POWER_NAVIGATION,L"NAV",L"Navigation Station");
 
+	//Placeholder code for Communication Station.
+
 	//IGUIButton *commbut;
 	//commbut = env->addButton(rect<s32>(700, 310, 790, 410),0, GUI_ID_POWER_COMM,L"",L"Communication Station");
 
 }
 
+//Creates the power status texts for the different stations.
 void PowerStation::createGeneralPowerTexts(){
 	
 	context.helmStatus = env->addStaticText(L"Helm power status: ", rect<s32>(300, 40, 800, 60), false);
 	context.defenceStatus = env->addStaticText(L"defence power status: ", rect<s32>(300, 70, 800, 90), false);
 	context.weaponStatus = env->addStaticText(L"Weapon power status: ", rect<s32>(300, 100, 800, 120), false);
 	context.navigationStatus = env->addStaticText(L"Navigation power status: ", rect<s32>(300, 130, 800, 150), false);
-	//context.helmStatus->setText(varToString(L"Helm power status", asidfasud, "%"));
 
 	context.helmStatus->setOverrideColor(video::SColor(255, 0, 255, 0));
 	context.defenceStatus->setOverrideColor(video::SColor(255, 0, 255, 0));
@@ -252,24 +251,30 @@ void PowerStation::createGeneralPowerTexts(){
 	context.navigationStatus->setOverrideColor(video::SColor(255, 0, 255, 0));
 }
 
+//Creates the "Station selected: " text.
 void PowerStation::createCurrentSelectedStationText(){
 	context.stationSelectedText = env->addStaticText(L"Station selected: ", rect<s32>(800, 40, 1200, 120), false);
 	context.stationSelectedText->setOverrideColor(video::SColor(255, 100, 125, 255));
 }
 
+
+//This method needs to be called every frame. It displays and updates the power status numbers of the different stations.
+//TODO: FIND OUT HOW TO UPDATE ALL
 void PowerStation::updateAll(){
-	context.powerPoolText->setText((varToString("Power Pool:\n", context.powerPool, "%")).c_str());
 
 	int helm		= context.GetPower( STATION_TYPE :: Helm );
 	int defence		= context.GetPower( STATION_TYPE :: Defence );
 	int weapon		= context.GetPower( STATION_TYPE :: Weapon );
 	int navigation	= context.GetPower( STATION_TYPE :: Navigation );
 
+	context.powerPoolText->setText((varToString("Power Pool:\n", context.powerPool, "%")).c_str());
+
 	context.helmStatus->setText((varToString(		"Helm power status: ", helm, "%")).c_str());
 	context.defenceStatus->setText((varToString(	"Defence power status: ", defence, "%")).c_str());
 	context.weaponStatus->setText((varToString(		"Weapon power status: ", weapon, "%")).c_str());
 	context.navigationStatus->setText((varToString(	"Navigation power status: ", navigation, "%")).c_str());
 
+	//Checks the power percentage and assigns the text a color indicating the amount of power available to that station.
 	changeColorAccordingToPowerStatus(*context.helmStatus, helm);
 	changeColorAccordingToPowerStatus(*context.defenceStatus, defence);
 	changeColorAccordingToPowerStatus(*context.weaponStatus, weapon);
@@ -278,6 +283,8 @@ void PowerStation::updateAll(){
 	selectedStation();
 }
 
+//This method displays the selected station. We're using an integer which indicates which station is currently selected. 
+//context.selectedStation gets changed by the EventListener when the user presses of the station buttons.
 void PowerStation::selectedStation(){
 	stringw str = L"";
 	switch ( context.selectedStation )
@@ -302,27 +309,24 @@ void PowerStation::selectedStation(){
 	context.stationSelectedText->setOverrideColor(video::SColor(255, 100, 125, 255));
 }
 
+
+//This Method changes the color according to power status by looking at the amount of power a station has. 
+//changeColorAccordingToPowerStatus needs to be called once every frame. This is done by the updateAll() method.
 void PowerStation::changeColorAccordingToPowerStatus(IGUIStaticText &stcTxt, float powerAmount){
+	//if power is equal or greater than 15, make the text color green.
 	if(powerAmount >= 15.0f){
 		stcTxt.setOverrideColor(video::SColor(255, 0, 255, 0));
 	}
+	//if power is lower than 15 but higher than 5, make the text color yellow.
 	else if(powerAmount < 15.0f && powerAmount >= 5.0f){
 		stcTxt.setOverrideColor(video::SColor(255, 255, 255, 0));
 	}
-	else if(powerAmount >= 0.0f && powerAmount < 5.0f){
+	//if power is lower than 5 and equal or higher than 0, make the text color red.
+	else if(powerAmount > 0.0f && powerAmount < 5.0f){
 		stcTxt.setOverrideColor(video::SColor(255, 255, 0, 0));
-	}
-}
-
-void PowerStation::gameLoop()
-{
-	 while(device->run() && driver)
-	 if (device->isWindowActive())
-	 {
-		  driver->beginScene(true, true, SColor(0,200,200,200));
-		  updateAll();
-		  env->drawAll();
-		  driver->endScene();	  
-	 }
-	 device->drop();
+	} 
+	//if power is 0, make the text color gray.
+	else if(powerAmount == 0.0f){
+		stcTxt.setOverrideColor(video::SColor(255, 180, 180, 180));
+	} 
 }
