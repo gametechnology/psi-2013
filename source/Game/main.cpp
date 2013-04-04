@@ -22,9 +22,11 @@ int main()
 	MapGenerator test;
 	test.init(20,2,4);
 	GalaxyMap* map = test.createNewMap(300, 300, 15);
-	
-	// Create test scene
-	Game::addScene(new SectorManager(map));
+	Game::addScene(new Scene());
+	// Create sector manager
+	SectorManager sectorManager(map);
+	sectorManager.init();
+	//Game::addScene(new SectorManager(map));
 	map->position.set(vector3df(10,50,0));
 	Game::getCurrentScene()->addComponent(map);
 	

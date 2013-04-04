@@ -11,16 +11,15 @@
 #include "MapSector.h"
 
 
-class SectorManager : public Scene  {
+class SectorManager  {
 public:
 	SectorManager(GalaxyMap* map);
 	void handleMessage(unsigned int message, void* data = 0);
 	void init();
 	virtual ~SectorManager();
-private:
-	SectorTemplate *_currentSector;
-	GalaxyMap* _map;
 	MapSector* _mapSector;
+private:
+	GalaxyMap* _map;
 };
 
 #endif

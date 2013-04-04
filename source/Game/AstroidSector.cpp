@@ -2,8 +2,8 @@
 #include "Messages.h"
 
 
-AstroidSector::AstroidSector(Composite* parent, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : SectorTemplate(parent,skyBoxTexture,boundryRadius,amountWormHoles) {
-	init();
+AstroidSector::AstroidSector(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : SectorTemplate(sectormanager, skyBoxTexture,boundryRadius,amountWormHoles) {
+	//init();
 }
 void AstroidSector::init(){
 	//TODO causes memory leak should create entity's
@@ -25,5 +25,5 @@ void AstroidSector::handleMessage(unsigned int message, void* data) {
 }
 
 AstroidSector::~AstroidSector() {
-	Entity::~Entity();
+	SectorTemplate::~SectorTemplate();
 }

@@ -1,8 +1,12 @@
 #include "SectorTemplate.h"
 #include "Engine/Camera.h"
 #include "Skybox.h"
+#include "SectorManager.h"
 
-SectorTemplate::SectorTemplate(Composite* parent, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : Entity(parent) {
+
+SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : Scene() {
+	//setting sector Manager
+	_sectormanager = sectormanager;
 	// Creating Skybox
 	_skybox = new Skybox(skyBoxTexture, this);
 	
@@ -15,7 +19,7 @@ SectorTemplate::SectorTemplate(Composite* parent, const io::path & skyBoxTexture
 	// Creating wormholes
 	createWormHoles( amountWormHoles );
 	
-	init();
+	//init();
 }
 
 void SectorTemplate::init(){
@@ -34,23 +38,20 @@ void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
 }
 
 void SectorTemplate::update(){
-			printf("[SectorTemplate] -=*[Begin of Update]*=- \n");
 	if( this->_player->position.getLength() > _boundry ){
 		this->_player->handleMessage(OUT_OF_BOUNDS, NULL);
 	}
 	
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
-			printf("[SectorTemplate] i= %i WormholeSize = %i \n",i,_wormHoles.size());
 		irr::core::vector3df deltaPos = _wormHoles[i]->position - this->_player->position;
-		//printf("[SectorTemplate] DeltaLenght = %f",deltaPos.getLength());
 		if( deltaPos.getLength() < 10 ){			
-			printf("[SectorTemplate] i = %i &i = %i \n",i,&i);
-			Game::getCurrentScene()->handleMessage(NEXT_SECTOR,(void*)i );
+			printf("[SectorTemplate]i = %i &i = %i \n",i,&i);
+			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
+
 			break;
 		}
 	}
-			printf("[SectorTemplate] -=*[End of Update]*=- \n");
-	Entity::update();
+	Scene::update();
 }
 
 void SectorTemplate::handleMessage(unsigned int message, void* data) {
@@ -59,5 +60,5 @@ void SectorTemplate::handleMessage(unsigned int message, void* data) {
 }
 
 SectorTemplate::~SectorTemplate() {
-	Entity::~Entity();
+	Scene::~Scene();
 }

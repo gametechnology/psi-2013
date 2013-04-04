@@ -3,10 +3,11 @@
 
 #include "SectorTemplate.h"
 #include "Engine/Game.h"
+#include "SectorManager.h"
 
 class BaseSector : public SectorTemplate  {
 public:
-	BaseSector(Composite* parent, const io::path & skyBoxTexture, float boundry, unsigned int amountWormHoles);
+	BaseSector(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundry, unsigned int amountWormHoles);
 	void handleMessage(unsigned int message, void* data = 0);
 	virtual void update();
 	void init();
