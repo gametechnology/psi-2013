@@ -4,23 +4,23 @@
 Ship::Ship( Composite * parent ) : Entity ( parent )
 {
 	//TODO remove temp stuff
-	this -> _powerStation		= new PowerStation( this );
 	this -> _defenceStation		= new DefenceStation( this );
 	this -> _helmStation		= new HelmStation( this );
 	this -> _navigationStation	= new NavigationStation( this );
 	this -> _weaponStation		= new WeaponStation( this );
+	//this -> _powerStation		= new PowerStation( this );
 
 	this -> _defenceStation		-> Initialize();
 	this -> _helmStation		-> Initialize();
 	this -> _navigationStation	-> Initialize();
 	this -> _weaponStation		-> Initialize();
-	this -> _powerStation		-> Initialize();
+	//this -> _powerStation		-> Initialize();
 
-	addComponent(_powerStation);
 	addComponent(_defenceStation);
 	addComponent(_helmStation);
 	addComponent(_navigationStation);
 	addComponent(_weaponStation);
+	//addComponent(_powerStation);
 }
 
 Ship::~Ship(void)
@@ -43,9 +43,9 @@ Station *Ship :: GetStation( STATION_TYPE s )
 	case STATION_TYPE :: Navigation:
 		return this -> _navigationStation;
 		break;
-	case STATION_TYPE :: Power:
-		return this -> _powerStation;
-		break;
+	//case STATION_TYPE :: Power:
+	//	return this -> _powerStation;
+	//	break;
 	case STATION_TYPE :: Weapon:
 		return this -> _weaponStation;
 		break;

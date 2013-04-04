@@ -25,7 +25,7 @@ public:
 	DefenceStation		*_defenceStation;
 	HelmStation			*_helmStation;
 	NavigationStation	*_navigationStation;
-	PowerStation		*_powerStation;
+	//PowerStation		*_powerStation;
 	WeaponStation		*_weaponStation;
 	
 public:

@@ -8,5 +8,5 @@ HelmSceneTest::~HelmSceneTest(void) { Scene::~Scene(); }
 void HelmSceneTest::init()
 {
 	addComponent(new Player(this));
-	addComponent(new Ship(this));
+	//addComponent(new Ship(this));
 }
