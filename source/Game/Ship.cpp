@@ -45,10 +45,9 @@ void Ship::init(int station){
 void Ship::update(){
 	
 	Entity::update();
-	//OutputDebugString(L"update");
-	
-	if(input->IsKeyDown(KEY_DOWN)){
-		OutputDebugString(L"DOWN IS PRESSED\n");
+	//testing w key
+	if(input->IsKeyDown(KEY_KEY_W)){
+		std::cout << "W PRESSED";
 	}
 	
 }
