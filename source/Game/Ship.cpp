@@ -36,9 +36,9 @@ Station *Ship :: GetStation( STATION_TYPE s )
 	case STATION_TYPE :: Defence:
 		return this -> _defenceStation;
 		break;
-	/*case STATION_TYPE :: Helm:
+	case STATION_TYPE :: Helm:
 		return this -> _helmStation;
-		break;*/
+		break;
 	case STATION_TYPE :: Navigation:
 		return this -> _navigationStation;
 		break;
