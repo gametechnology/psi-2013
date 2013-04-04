@@ -25,6 +25,7 @@ using namespace gui;
 class Net{
 	private:
 		static int packageid ;
+		static int packageidrecieve ;
 		static void senderthread(void * var);
 		static void revieverthread(void * var);
 		static void senderthreadWeapon(void * var);

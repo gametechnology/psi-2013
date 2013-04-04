@@ -24,6 +24,7 @@ sf::Packet& operator >>(sf::Packet& Packet, Bullet& C)
 	return Packet >> C.position >> C.orientation;
 }
 int Net::packageid;
+int Net::packageidrecieve;
 
 void Net::senderthread(void * var)
 {    
@@ -40,7 +41,7 @@ void Net::senderthread(void * var)
 
 		// Create the UDP socket
 
-		if (Socket.Send(packettosend, "145.92.73.131", 7000) != sf::Socket::Done)
+		if (Socket.Send(packettosend, "145.92.76.248", 7000) != sf::Socket::Done)
 		{
 			// Error...
 
@@ -74,8 +75,8 @@ void  Net::revieverthread(void * var)
 
 			int recievedpackageid;
 			packettorecieve >> recievedpackageid ;
-			if(recievedpackageid > packageid){
-				packageid = recievedpackageid;
+			if(recievedpackageid > packageidrecieve){
+				packageidrecieve = recievedpackageid;
 				vector3df position;
 				vector3df rotation;
 				packettorecieve >> position >> rotation;
@@ -142,7 +143,8 @@ void  Net::revieverthreadWeapon(void * var)
 
 			int recievedpackageid;
 			packettorecieve >> recievedpackageid ;
-			if(recievedpackageid > packageid){
+			if(recievedpackageid > packageidrecieve){
+				packageidrecieve = recievedpackageid;
 				int length;
 				packettorecieve >> length;
 				for (int i = 0; i < length; i++)
@@ -166,13 +168,13 @@ Net::Net(bool IsWeapon, void * sendervar, void * recievervar)
 	{
 		_beginthread(senderthreadWeapon,0, sendervar);
 
-		_beginthread(revieverthreadWeapon,0, recievervar);
+		_beginthread(revieverthread,0, recievervar);
 	}
 	else
 	{
 		_beginthread(senderthread,0, sendervar);
 
-		_beginthread(revieverthread,0, recievervar);
+		_beginthread(revieverthreadWeapon,0, recievervar);
 	}
 }	
 Net::Net(){
