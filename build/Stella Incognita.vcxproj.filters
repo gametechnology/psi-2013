@@ -162,6 +162,9 @@
     <None Include="..\assets\sydney.md2">
       <Filter>assets</Filter>
     </None>
+    <None Include="..\assets\Textures\Wormholes\WormHole.png">
+      <Filter>assets</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Headers">
