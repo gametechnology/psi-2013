@@ -38,8 +38,8 @@ void WeaponCameraMover::update(){
 }
 void WeaponCameraMover::init(){
 	
-	Ship ship = (Ship*)&parent->parent;
-	camera = ship.camera;
+	//Ship ship = (Ship*)&parent->parent;
+	//camera = ship.camera;
 
 }
 

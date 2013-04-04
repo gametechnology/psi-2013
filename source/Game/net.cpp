@@ -10,7 +10,7 @@ matrix4 WeaponCameraMover::helmrotation;
 		sf::Packet& operator >>(sf::Packet& Packet, vector3df& C)
 		{
 			
-			return Packet >> C.X >> C.Y. >> C.Z;
+			return Packet >> C.X >> C.Y >> C.Z;
 		}
 		int Net::packageid;
 
@@ -62,7 +62,7 @@ matrix4 WeaponCameraMover::helmrotation;
 						packettorecieve >> position >> rotation;
 						nodeother->getCameraNode()->setPosition(position);
 						//WeaponCameraMover::helmrotation = affector;
-						nodeother->getCameraNode()->setRotation(rotation)
+						nodeother->getCameraNode()->setRotation(rotation);
 						
 					}
 					
