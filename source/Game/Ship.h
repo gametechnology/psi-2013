@@ -24,6 +24,9 @@ public:
 	Camera* camera;
 	float drag;
 	Thruster* thrusters[3];
+	int nrOfBullets;
 	Bullet *ammo;
+	int bulletNr;
+	int shootingInterval;
 };
 

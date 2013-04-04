@@ -17,6 +17,16 @@ Ship::~Ship(void)
 
 void Ship::init(int station){
 
+	nrOfBullets = 10;
+	ammo = new Bullet[nrOfBullets];
+	bulletNr = 0;
+	shootingInterval = 0;
+
+	for (int i = 0; i < nrOfBullets; i++)
+	{
+		Game::getCurrentScene()->addComponent(&ammo[i]);
+	}
+
 	Entity::init();
 	camera = new Camera(this, vector3df(0,0,0), vector3df(0,0,0));
 	addComponent(camera);

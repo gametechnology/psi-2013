@@ -15,8 +15,4 @@ public:
 private:
 	video::ITexture* _stationTexture;
 	void shoot();
-	
-	int _nrOfBullets;
-	int _bulletNr;
-	int _shootingInterval;
 };
