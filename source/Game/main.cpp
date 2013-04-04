@@ -14,9 +14,10 @@ int main()
 	// Create engine
 	Game game = Game();
 
+	Game::client->setupClient("145.92.13.97");
+
 	// Create test scene
 	Game::addScene(new HelmSceneTest());
-	//Game::addScene(new MainMenuScene());
 	
 	// Start the main loop
 	Game::run();

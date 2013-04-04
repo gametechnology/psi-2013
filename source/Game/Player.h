@@ -2,12 +2,12 @@
 #define PLAYER
 
 #include "Engine/Entity.h"
-#include "Engine/Networkable.h"
 #include "Engine/NetworkComponent.h"
 
 class Player : public Entity  {
 public:
 	int i;
+	vector3df v3f;
 	NetworkComponent* networker;
 
 	Player(Composite* parent);
