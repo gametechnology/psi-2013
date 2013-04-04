@@ -23,48 +23,60 @@ void SectorManager::init(){
 void SectorManager::handleMessage(unsigned int message, void* data) {
 	switch(message) {
 		case NEXT_SECTOR: /* Switch Sector */
-			int* index = (int*)data;
-			//printf("index = %i \n",index);
+			int index = (int)data;
+			printf("[SectorManager] data = %i &data = %i \n",data,&data);
 			std::list<MapSector*>::iterator temp = _mapSector->connections.begin();
-			std::advance(temp,0);
+			try{
+				std::advance(temp,index);
+			}catch(char * str){
+				printf("[SectorManager] Something went wrong... : %c", str);
+			}
 			_mapSector = *temp;//change the _mapSector to the sector the data tells him to be
-			/*
+			
+					//delete _currentSector;
+			SectorManager::removeComponent(_currentSector);
 			switch (_mapSector->type){ 
 				case EMPTY:
 					//delete _currentSector;
-					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
+					printf("[SectorTemplate] EMPTY \n");
+					_currentSector = new SectorTemplate(this->parent,"skybox02.png",200.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case ASTEROID:
+					printf("[SectorTemplate] ASTEROID \n");
 					//delete _currentSector;
-					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
+					_currentSector = new SectorTemplate(this->parent,"skybox02.png",200.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case NEBULA:
+					printf("[SectorTemplate] NEBULA \n");
 					//delete _currentSector;
-					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
+					_currentSector = new SectorTemplate(this->parent,"skybox02.png",200.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case SOLAR: 
+					printf("[SectorTemplate] SOLAR \n");
 					//delete _currentSector;
-					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
+					_currentSector = new SectorTemplate(this->parent,"skybox02.png",200.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case HOME_BLUE:
+					printf("[SectorTemplate] HOME_BLUE \n");
 					//delete _currentSector;
-					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
+					_currentSector = new SectorTemplate(this->parent,"skybox02.png",200.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
 				case HOME_RED:
+					printf("[SectorTemplate] HOME_RED \n");
 					//delete _currentSector;
-					_currentSector = new SectorTemplate(this->parent,"skybox02.png",20.0,_mapSector->connections.size());
+					_currentSector = new SectorTemplate(this->parent,"skybox02.png",200.0,_mapSector->connections.size());
 					SectorManager::addComponent(_currentSector);
 					break;
-			}*/
+			}
 
 			break;
 	}
-	delete data;
+	//delete data;
 }
 
 SectorManager::~SectorManager() {

@@ -6,6 +6,7 @@ AstroidSector::AstroidSector(Composite* parent, const io::path & skyBoxTexture, 
 	init();
 }
 void AstroidSector::init(){
+	//TODO causes memory leak should create entity's
 	for(int i=0;i<2500;i++){
 		//irr::scene::IMeshSceneNode* cube = Game::getSceneManager()->addCubeSceneNode(2,0,-1,irr::core::vector3df((rand()%500)-250,(rand()%250)-125,(rand()%500)-250),irr::core::vector3df(rand()%90,rand()%90,rand()%90));
 		irr::scene::IMeshSceneNode* cube = Game::getSceneManager()->addSphereSceneNode(10,8,0,-1,irr::core::vector3df((rand()%1000)-500,(rand()%1000)-500,(rand()%1000)-500),irr::core::vector3df(rand()%90,rand()%90,rand()%90));
