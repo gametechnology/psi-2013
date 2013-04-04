@@ -18,12 +18,17 @@ HelmSceneTest::~HelmSceneTest(void)
 	Scene::~Scene();
 }
 
+<<<<<<< Updated upstream
 EnemyDrone* drone1;
 EnemyFighter* fighter1;
 EnemyAsteroid* asteroid1;
-float degree = 0;
 EnemyAsteroid* asteroid2;
 Enemy* enemy1;
+=======
+Enemy* drone1;
+Enemy* fighter1;
+float degree = 0;
+>>>>>>> Stashed changes
 
 void HelmSceneTest::init()
 {
@@ -58,8 +63,13 @@ void HelmSceneTest::update()
 {
 	degree+= 0.01f;
 	drone1->update();
+<<<<<<< Updated upstream
+	asteroid1->lupdate(asteroid2,vector3df(0,-0.001f,0));
+	asteroid2->lupdate(asteroid1,vector3df(0,0.001f,0));
+	enemy1->update();	
+=======
 	drone1->setRotation(irr::core::vector3df(0 , 90, 0));
 	drone1->steeRing(true,true,true);
-	enemy1->update();	
+>>>>>>> Stashed changes
 }
 

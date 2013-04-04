@@ -40,10 +40,15 @@ public:
 	void setDamage(unsigned int damage);
 	void setLoS(unsigned int los);
 	void setHealth(signed int health);
+<<<<<<< Updated upstream
 	void setVelocity(vector3df input);
 	void setRadius(unsigned int radius);
 	
 	vector3df getVelocity();
+=======
+	void steeRing(bool xaxis, bool yaxis , bool zaxis);
+
+>>>>>>> Stashed changes
 	vector3df getPath();
 	vector3df getPosition();
 	vector3df getRotation();
@@ -66,8 +71,14 @@ protected:
 private:
 	
 	void applySpeed();
+<<<<<<< Updated upstream
 	void steeRing();
 
+=======
+	void contactResolverB();
+	void contactResolverA();
+	void contactGenerator();
+>>>>>>> Stashed changes
 	void pathFinding();
 	
 	IMesh* visual_;
@@ -77,7 +88,6 @@ private:
 	unsigned int radius_;
 	unsigned int maxspeed_;
 	unsigned int agility_;
-	unsigned int accelaration_;
 	unsigned int damage_;
 	unsigned int lineofsightrange_;
 
