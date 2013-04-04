@@ -1,8 +1,10 @@
 #include "Enemy.h"
-
+#include <string>
+#include <iostream>
 
 Enemy::Enemy(void): Entity(parent)
 {
+
 }
 
 Enemy::Enemy(ISceneManager* smgr, IMesh* mesh, 
@@ -10,7 +12,7 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 		vector3df rotation,
 		unsigned int maxspeed,
 		unsigned int agility,
-		unsigned int maxacc,
+		vector3df acc,
 		unsigned int damage,
 		unsigned int los,
 		unsigned int health): Entity(parent)
@@ -20,7 +22,7 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 	setRotation(rotation);
 	setMaxSpeed(maxspeed);
 	setAgility(agility);
-	setMaxAccelaration(maxacc);
+	setAccelaration(acc);
 	setDamage(damage);
 	setLoS(los);
 	setHealth(health);
@@ -29,12 +31,12 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 void Enemy::pathFinding()
 {
 	//TODO
-	this->chase(vector3df(3000,30,30));
 }
 
 void Enemy::update()
 {
-	pathFinding();
+	applySpeed();
+	Entity::update();
 }
 
 bool isWithinLoS(/*playership class*/)
@@ -42,52 +44,77 @@ bool isWithinLoS(/*playership class*/)
 	return false;
 }
 
-void Enemy::setState()
-{
-	//TODO
-}
-void Enemy::getState()
-{
-	//TODO
-}
-
 void Enemy::applySpeed()
 {
-	if (accelaration.getLength() > maxaccelaration_)
-	{
-		vector3df cappedacc = accelaration.normalize();
-		cappedacc *= maxaccelaration_;
-		accelaration = cappedacc;
-	}
-
 	if (velocity.getLength() > maxspeed_)
 	{
 		vector3df cappedvel = velocity.normalize();
 		cappedvel *= maxspeed_;
 		velocity = cappedvel;
 	}
-	velocity += accelaration;
-	position += velocity;
 }
 
-void Enemy::steeRing()
+void Enemy::steeRing(bool xaxis, bool yaxis , bool zaxis)
 {
+		irr::core::matrix4 matY;
+		float mData[16];
+		mData[0] = cos(DEGTORAD *  this->getRotation().Y);
+		mData[1] = 0;
+		mData[2] = -sin(DEGTORAD *  this->getRotation().Y);
+		mData[3] = 0;
 
-}
+		mData[4] = 0;
+		mData[5] = 1;
+		mData[6] = 0;
+		mData[7] = 0;
+	
+		mData[8] = sin(DEGTORAD *  this->getRotation().Y);
+		mData[9] = 0;
+		mData[10] = cos(DEGTORAD *  this->getRotation().Y);
+		mData[11] = 0;
+
+		mData[12] = 0;
+		mData[13] = 0;
+		mData[14] = 0;
+		mData[15] = 1;
+		matY.setM(mData);
+
+		irr::core::vector3df newvelocity;
+		float mData2[4];
+		mData2[0] = velocity.X;
+		mData2[1] = velocity.Y;
+		mData2[2] = velocity.Z;
+		mData2[3] = 1;
+	
+		matY.multiplyWith1x4Matrix(mData2);
+
+		newvelocity.X = mData2[0];
+		newvelocity.Y = mData2[1];
+		newvelocity.Z = mData2[2];
+
+		this->velocity = newvelocity;
+		//std::cout << newvelocity.X << " , " << newvelocity.Y << " , " << newvelocity.Z << "; ";
+		std::cout << mData2[0] << " "<< mData2[1] << " "<< mData2[2]  << ";";
+}mData2
 
 void Enemy::contactResolverB()
 {
 	velocity *= -1;
 }
 
-void Enemy::contactResolverA()
+void Enemy::contactResolverA(Enemy input)
 {
-	//TODO advanced collision resolving
+	
 }
 
-void Enemy::contactGenerator()
+void Enemy::contactGenerator(Enemy* input)
 {
-
+	float distance = position.getDistanceFrom(input->getPosition());
+	float radii = input->getRadius() + radius_;
+	if (distance < radii)
+	{
+		contactResolverB();
+	}
 }
 
 void Enemy::setVisual(IMesh* visual, ISceneManager* smgr)
@@ -96,6 +123,15 @@ void Enemy::setVisual(IMesh* visual, ISceneManager* smgr)
 	smgr->addMeshSceneNode(this->visual_);
 }
 
+void Enemy::setVisualWithPath(std::string path)
+{
+	this->createNode(path);
+}
+
+void Enemy::setVelocity(vector3df input)
+{
+	velocity = input;
+}
 void Enemy::setPath(vector3df destination)
 {
 	destination_ = destination;
@@ -116,9 +152,9 @@ void Enemy::setAgility(unsigned int agility)
 {
 	agility_ = agility;
 }
-void Enemy::setMaxAccelaration(unsigned int maxacc)
+void Enemy::setAccelaration(vector3df acc)
 {
-	maxaccelaration_ = maxacc;
+	accelaration = acc;
 }
 void Enemy::setDamage(unsigned int damage)
 {
@@ -131,6 +167,15 @@ void Enemy::setLoS(unsigned int los)
 void Enemy::setHealth(signed int health)
 {
 	health_ = health;
+}
+void Enemy::setRadius(unsigned int rad)
+{
+	radius_ = rad;
+}
+
+vector3df Enemy::getVelocity()
+{
+	return velocity;
 }
 
 vector3df Enemy::getPath()
@@ -153,9 +198,9 @@ unsigned int Enemy::getAgility()
 {
 	return agility_;
 }
-unsigned int Enemy::getMaxAccelaration()
+vector3df Enemy::getAccelaration()
 {
-	return maxaccelaration_;
+	return accelaration;
 }
 unsigned int Enemy::getDamage()
 {
@@ -164,6 +209,10 @@ unsigned int Enemy::getDamage()
 unsigned int Enemy::getLoS()
 {
 	return lineofsightrange_;
+}
+unsigned int Enemy::getRadius()
+{
+	return radius_;
 }
 
 signed int Enemy::getHealth()
@@ -186,10 +235,8 @@ void Enemy::chase(vector3df target)
 		this->velocity *= 300;
 		this->position += this->velocity;
 	}
-
-
-
 }
+
 Enemy::~Enemy(void)
 {
 }

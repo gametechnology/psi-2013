@@ -10,7 +10,6 @@ EnemyDrone::EnemyDrone(irr::core::vector3df position):Enemy()
 	this->setMaxSpeed(250);
 	this->setAccelaration(vector3df(75,0,0));
 	this->setLoS(2000);
-
 }
 EnemyDrone::~EnemyDrone(void)
 {
