@@ -59,7 +59,7 @@ void HelmSceneTest::update()
 	degree+= 0.01f;
 	drone1->update();
 	drone1->setRotation(irr::core::vector3df(0 , 90, 0));
-	drone1->steeRing(true,true,true);
+	drone1->steeRing();
 	enemy1->update();	
 }
 

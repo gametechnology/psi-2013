@@ -58,7 +58,7 @@ public:
 	void contactGenerator(Enemy* input);
 	void contactResolverA(Enemy input);
 	void contactResolverB();
-
+	void steeRing();
 	signed int getHealth();
 
 	virtual void update();
@@ -66,7 +66,6 @@ protected:
 private:
 	
 	void applySpeed();
-	void steeRing();
 
 	void pathFinding();
 	

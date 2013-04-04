@@ -54,7 +54,7 @@ void Enemy::applySpeed()
 	}
 }
 
-void Enemy::steeRing(bool xaxis, bool yaxis , bool zaxis)
+void Enemy::steeRing()
 {
 		irr::core::matrix4 matY;
 		float mData[16];
@@ -94,8 +94,8 @@ void Enemy::steeRing(bool xaxis, bool yaxis , bool zaxis)
 
 		this->velocity = newvelocity;
 		//std::cout << newvelocity.X << " , " << newvelocity.Y << " , " << newvelocity.Z << "; ";
-		std::cout << mData2[0] << " "<< mData2[1] << " "<< mData2[2]  << ";";
-}mData2
+		//std::cout << mData2[0] << " "<< mData2[1] << " "<< mData2[2]  << ";";
+}
 
 void Enemy::contactResolverB()
 {
