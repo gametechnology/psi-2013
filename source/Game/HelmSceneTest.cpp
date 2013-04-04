@@ -6,6 +6,7 @@
 #include "EnemyDrone.h"
 #include "EnemyFighter.h"
 #include "EnemyAsteroid.h"
+#include <iostream>
 
 HelmSceneTest::HelmSceneTest(void)
 {
@@ -20,6 +21,8 @@ HelmSceneTest::~HelmSceneTest(void)
 EnemyDrone* drone1;
 EnemyFighter* fighter1;
 EnemyAsteroid* asteroid1;
+EnemyAsteroid* asteroid2;
+Enemy* enemy1;
 
 void HelmSceneTest::init()
 {
@@ -37,12 +40,22 @@ void HelmSceneTest::init()
 	fighter1 = new EnemyFighter(irr::core::vector3df(100,0,0));
 	addComponent(fighter1);
 	asteroid1 = new EnemyAsteroid(irr::core::vector3df(0,0,0));
-	addComponent(asteroid1);	
+	asteroid1->setVelocity(vector3df(0,-0.001f,0));
+	addComponent(asteroid1);
+	asteroid2 = new EnemyAsteroid(irr::core::vector3df(0,10,0));
+	asteroid2->setVelocity(vector3df(0,0.001f,0));
+	addComponent(asteroid2);	
+	enemy1 = new Enemy();
+	enemy1->setPosition(vector3df(0,20,0));
+	enemy1->setVelocity(vector3df(0,0.001f,0));
+	addComponent(enemy1);
 }
 
 void HelmSceneTest::update()
 {
 	drone1->update();
-	asteroid1->linearpath(vector3df(0.001f,0,0));	
+	asteroid1->lupdate(asteroid2,vector3df(0,-0.001f,0));
+	asteroid2->lupdate(asteroid1,vector3df(0,0.001f,0));
+	enemy1->update();	
 }
 
