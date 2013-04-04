@@ -33,6 +33,7 @@ void WeaponStation::update()
 		shoot();
 		_shootingInterval = 0;
 	}
+	cameramover->update();
 	Entity::update();
 }
 

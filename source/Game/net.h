@@ -22,7 +22,7 @@ using namespace gui;
 #endif
 class Net{
 	private:
-		static int packageid;
+		static int packageid ;
 		static void senderthread(void * var);
 		static void  revieverthread(void * var);
 	public:

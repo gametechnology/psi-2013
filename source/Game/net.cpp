@@ -1,6 +1,6 @@
 #include "net.h"
 #include "WeaponCameraMover.h"		
-matrix4 WeaponCameraMover::helmrotation;
+
 		sf::Packet& operator <<(sf::Packet& Packet, const vector3df& C)
 		{
 			
@@ -16,6 +16,7 @@ matrix4 WeaponCameraMover::helmrotation;
 
 		void Net::senderthread(void * var)
 		{    
+			packageid = 0;
 			sf::SocketUDP Socket;
 			Camera * node = (Camera*)var;
 			
@@ -37,8 +38,11 @@ matrix4 WeaponCameraMover::helmrotation;
 		}
 		void  Net::revieverthread(void * var)
 		{
-			Camera * nodeother = (Camera*)var;
+			packageid = 0;
+			WeaponCameraMover * nodeother = (WeaponCameraMover*)var;
+			Camera* camera = nodeother->camera;
 			sf::SocketUDP Socket;
+		
 			if (!Socket.Bind(7000))
 				return;
 	
@@ -57,12 +61,13 @@ matrix4 WeaponCameraMover::helmrotation;
 					int recievedpackageid;
 					packettorecieve >> recievedpackageid ;
 					if(recievedpackageid > packageid){
+						packageid = recievedpackageid;
 						vector3df position;
 						vector3df rotation;
 						packettorecieve >> position >> rotation;
-						nodeother->getCameraNode()->setPosition(position);
-						//WeaponCameraMover::helmrotation = affector;
-						nodeother->getCameraNode()->setRotation(rotation);
+						camera->getCameraNode()->setPosition(position);
+						
+						nodeother->helmrotation = rotation;
 						
 					}
 					

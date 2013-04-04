@@ -32,7 +32,7 @@ void Ship::init(int station){
 	{
 		currentstation = new WeaponStation(this);
 		addComponent(currentstation);
-		network = Net(true, camera);
+		network = Net(true, ((WeaponStation*)currentstation)->cameramover);
 	}
 
 	
