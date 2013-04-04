@@ -8,7 +8,7 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	this -> _helmStation		= new HelmStation( this );
 	this -> _navigationStation	= new NavigationStation( this );
 	this -> _weaponStation		= new WeaponStation( this );
-	//this -> _powerStation		= new PowerStation( this );
+	this -> _powerStation		= new PowerStation( this );
 
 	this -> _defenceStation		-> Initialize();
 	this -> _helmStation		-> Initialize();
