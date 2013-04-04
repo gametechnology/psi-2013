@@ -7,11 +7,27 @@ class Shipmap :
 {
 private:
 	video::ITexture* bg;
+	video::ITexture* icon;
+
+	vector2d<s32> pos;
+	float iconRadius;
+	bool isMoving;
+	bool isIntersecting;
+	struct tilePos	{
+		int x;
+		int y;
+	} playerTile;
+
+	int offsetX;
+	int offsetY;
+	int tileSize;
+
+	int tiles[12][7];
 
 public:
 	Shipmap(Composite* parent);
 	~Shipmap();
-	virtual void init();
+	void init();
 	void draw();
+	void update();
 };
-

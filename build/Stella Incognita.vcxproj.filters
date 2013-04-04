@@ -93,6 +93,9 @@
     <ClCompile Include="..\source\Game\Shipmap.cpp">
       <Filter>Source Files\Shipmap</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\CIrrEventReceiver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\assets\sydney.bmp">
@@ -177,6 +180,9 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\Shipmap.h">
       <Filter>Header Files\Shipmap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\CIrrEventReceiver.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
