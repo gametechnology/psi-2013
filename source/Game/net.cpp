@@ -15,13 +15,13 @@ sf::Packet& operator >>(sf::Packet& Packet, vector3df& C)
 sf::Packet& operator <<(sf::Packet& Packet, const Bullet& C)
 {
 
-	return Packet << C.position << C.orientation;
+	return Packet << C.position << C.orientation << C.visible;
 }
 
 sf::Packet& operator >>(sf::Packet& Packet, Bullet& C)
 {
 
-	return Packet >> C.position >> C.orientation;
+	return Packet >> C.position >> C.orientation >> C.visible;
 }
 int Net::packageid;
 int Net::packageidrecieve;
@@ -150,8 +150,6 @@ void  Net::revieverthreadWeapon(void * var)
 				for (int i = 0; i < length; i++)
 				{
 					packettorecieve >> nodeother[i];
-					nodeother[i].visible = true;
-				
 				}
 			}
 		}
