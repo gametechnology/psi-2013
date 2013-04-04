@@ -20,7 +20,6 @@ private:
 
 public:
 	//Power Station Impl	
-	IrrlichtDevice			*device;
 	video :: IVideoDriver	*driver;
 	IGUIEnvironment			*env;
 	IGUISkin				*skin;

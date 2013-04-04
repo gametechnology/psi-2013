@@ -47,7 +47,6 @@ public:
 	IGUIStaticText	*navigationStatus;
 	IGUIScrollBar	*scrollBar;
 		
-	IrrlichtDevice *device;
 	s32			counter;
 	IGUIListBox	*listbox;
 

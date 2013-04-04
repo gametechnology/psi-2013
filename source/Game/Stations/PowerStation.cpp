@@ -10,9 +10,8 @@ PowerStation :: PowerStation( Ship *ship ) : Station( ship )
 {
 	this -> _stationType		= StationType :: Power;
 
-	this -> device				= Game::device;
-	this ->	driver				= device -> getVideoDriver( );
-	this -> env					= device -> getGUIEnvironment( );
+	this ->	driver				= Game::device -> getVideoDriver( );
+	this -> env					= Game::device -> getGUIEnvironment( );
 }
 
 PowerStation :: ~PowerStation()
@@ -68,14 +67,14 @@ class MyEventReceiver : public IEventReceiver
 
 public:
 
-	MyEventReceiver(UIData & context) : Context(context) { }
+	MyEventReceiver(UIData & context) : _context(context) { }
 
 	virtual bool OnEvent(const SEvent& event)
 	{
 		if (event.EventType == EET_GUI_EVENT)
 		{
 			s32 id = event.GUIEvent.Caller->getID();
-			IGUIEnvironment* env = Context.device->getGUIEnvironment();
+			IGUIEnvironment* env = Game::device->getGUIEnvironment();
 
 			switch(event.GUIEvent.EventType)
 			{
@@ -87,24 +86,24 @@ public:
 			case EGET_SCROLL_BAR_CHANGED:
 				s32 pos;
 				
-				if(Context.selectedStation == 1)
+				if(_context.selectedStation == 1)
 				{
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();					
-					Context.UpdatePowerUsage( Station :: StationType :: Helm, POWER_MAX - pos );
+					_context.UpdatePowerUsage( Station :: StationType :: Helm, POWER_MAX - pos );
 				}
-				else if(Context.selectedStation == 2){
+				else if(_context.selectedStation == 2){
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-					Context.UpdatePowerUsage( Station :: StationType :: Defence, POWER_MAX - pos );
+					_context.UpdatePowerUsage( Station :: StationType :: Defence, POWER_MAX - pos );
 				}
-				else if(Context.selectedStation == 3){
+				else if(_context.selectedStation == 3){
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-					Context.UpdatePowerUsage( Station :: StationType :: Navigation, POWER_MAX - pos );
+					_context.UpdatePowerUsage( Station :: StationType :: Navigation, POWER_MAX - pos );
 				}
-				else if(Context.selectedStation == 4){
+				else if(_context.selectedStation == 4){
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
 
 					((IGUIScrollBar*)event.GUIEvent.Caller)->setPos( irr :: s32( ) );
-					Context.UpdatePowerUsage( Station :: StationType :: Weapon, POWER_MAX - pos );
+					_context.UpdatePowerUsage( Station :: StationType :: Weapon, POWER_MAX - pos );
 				}
 				break;
 
@@ -113,35 +112,35 @@ public:
 				switch(id)
 				{
 				case GUI_ID_LEAVE_BUTTON:
-					Context.device->closeDevice();
+					Game::device->closeDevice();
 					return true;
 				case GUI_ID_POWER_HELM:
-					Context.scrollBar->setVisible(true);
-					Context.scrollBar->setPos(POWER_MAX - Context.GetPower( Station :: StationType :: Helm ) );
-					Context.selectedStation = 1;
+					_context.scrollBar->setVisible(true);
+					_context.scrollBar->setPos(POWER_MAX - _context.GetPower( Station :: StationType :: Helm ) );
+					_context.selectedStation = 1;
 
 					break;
 				case GUI_ID_POWER_DEFENCE:
-					Context.scrollBar->setVisible(true);
-					Context.scrollBar->setPos(POWER_MAX - Context.GetPower( Station :: StationType :: Defence ));
-					Context.selectedStation = 2;
+					_context.scrollBar->setVisible(true);
+					_context.scrollBar->setPos(POWER_MAX - _context.GetPower( Station :: StationType :: Defence ));
+					_context.selectedStation = 2;
 					break;
 				case GUI_ID_POWER_NAVIGATION:
-					Context.scrollBar->setVisible(true);
-					Context.scrollBar->setPos(POWER_MAX - Context.GetPower( Station :: StationType :: Navigation));
-					Context.selectedStation = 3;
+					_context.scrollBar->setVisible(true);
+					_context.scrollBar->setPos(POWER_MAX - _context.GetPower( Station :: StationType :: Navigation));
+					_context.selectedStation = 3;
 					break;
 				case GUI_ID_POWER_WEAPON:
-					Context.scrollBar->setVisible(true);
-					Context.scrollBar->setPos(POWER_MAX - Context.GetPower( Station :: StationType :: Weapon ));
-					Context.selectedStation = 4;
+					_context.scrollBar->setVisible(true);
+					_context.scrollBar->setPos(POWER_MAX - _context.GetPower( Station :: StationType :: Weapon ));
+					_context.selectedStation = 4;
 					break;
 					//TODO: change name
 				case GUI_ID_SCROLL_BAR:
 					break;
 				default:
-					Context.selectedStation = 0;
-					Context.scrollBar->setVisible(false);
+					_context.selectedStation = 0;
+					_context.scrollBar->setVisible(false);
 					break;
 				}
 				break;
@@ -152,14 +151,14 @@ public:
 	}
 
 private:
-	UIData & Context;
+	UIData & _context;
 };
 
 //Initializes the User Interface.
 void PowerStation::Initialize()
 {
 	Station :: Initialize( );
-	env = device->getGUIEnvironment();
+	env = Game::device->getGUIEnvironment();
 
 	skin = env->getSkin( );
 	font = env->getFont( "../assets/Textures/Stations/PowerStation/fontcopperplategothicbold.png" );
@@ -184,12 +183,12 @@ void PowerStation::createUI()
 	// Create the event receiver, giving it that context structure.
 	MyEventReceiver receiver(context);
 	// And tell the device to use our custom event receiver.
-	device->setEventReceiver(&receiver);
+	Game::device->setEventReceiver(&receiver);
 }
 
 //Defines the used driver and some UI data values.
-void PowerStation::declareUIData(){
-	context.device = device;
+void PowerStation::declareUIData()
+{
 	context.counter = 0;
 	context.powerPool = 100;
 }
