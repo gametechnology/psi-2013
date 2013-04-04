@@ -1,12 +1,12 @@
 #include "StateSwitchFighter.h"
 
-StateSwitchFighter::StateSwitchFighter(StateSwitch::States startState, EnemyFighter* parent)
+StateSwitchFighter::StateSwitchFighter(StateSwitch::States startState, Enemy* parent)
 {
 	StateSwitchFighter::setState(startState);
 	StateSwitchFighter::setParent(parent);
 }
 
-StateSwitchFighter::StateSwitchFighter(EnemyFighter* parent)
+StateSwitchFighter::StateSwitchFighter(Enemy* parent)
 {
 	StateSwitchFighter::setState(StateSwitch::STATE_IDLE);
 	StateSwitchFighter::setParent(parent);
@@ -52,12 +52,12 @@ void StateSwitchFighter::handleDeath()
 	delete parent;
 }
 
-void StateSwitchFighter::setParent(EnemyFighter* parent)
+void StateSwitchFighter::setParent(Enemy* parent)
 {
 	StateSwitchFighter::parent = parent;
 }
 
-EnemyFighter* StateSwitchFighter::getParent()
+Enemy* StateSwitchFighter::getParent()
 {
 	return StateSwitchFighter::parent;
 }

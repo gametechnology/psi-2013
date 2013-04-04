@@ -29,8 +29,6 @@ public:
 	void setState();
 	void getState();
 
-	void setVelocity(vector3df input);
-
 	void setVisual(IMesh* visual, ISceneManager* smgr);	// visuals are the only component which do not have a get method
 	void setVisualWithPath(std::string);
 	void setPath(vector3df destination);
@@ -38,7 +36,7 @@ public:
 	void setRotation(vector3df rotategoal);
 	void setMaxSpeed(unsigned int maxspeed);
 	void setAgility(unsigned int agility);
-	void setAccelaration(vector3df maxacc);
+	void setAccelaration(unsigned int maxacc);
 	void setDamage(unsigned int damage);
 	void setLoS(unsigned int los);
 	void setHealth(signed int health);

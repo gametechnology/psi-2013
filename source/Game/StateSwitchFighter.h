@@ -2,7 +2,7 @@
 #define STATE_SWITCH_FIGHTER_H
 
 #include "StateSwitch.h"
-#include "EnemyFighter.h"
+#include "Enemy.h"
 
 class StateSwitchFighter : public StateSwitch
 {
@@ -21,19 +21,19 @@ public:
 
 	virtual void handleDeath();
 
-	void setParent(EnemyFighter* parent);
+	void setParent(Enemy* parent);
 
-	EnemyFighter* getParent();
+	Enemy* getParent();
 
-	StateSwitchFighter(StateSwitch::States startState, EnemyFighter* parent);
+	StateSwitchFighter(StateSwitch::States startState, Enemy* parent);
 
-	StateSwitchFighter(EnemyFighter* parent);
+	StateSwitchFighter(Enemy* parent);
 
 	~StateSwitchFighter();
 
 private:
 
-	EnemyFighter* parent;
+	Enemy* parent;
 };
 
 #endif
