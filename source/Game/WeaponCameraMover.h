@@ -13,7 +13,7 @@ public:
 	void update() ;
 	void draw(){};
 	void handleMessage(unsigned int message, void* data = 0){};
-	static matrix4 helmposition;
+	 vector3df helmrotation;
 	vector3df ownrotation;
 	Camera* camera;
 };

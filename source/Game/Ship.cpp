@@ -17,20 +17,33 @@ Ship::~Ship(void)
 
 void Ship::init(int station){
 
+	stationnumber = station;
+	nrOfBullets = 10;
+	ammo = new Bullet[nrOfBullets];
+	bulletNr = 0;
+	shootingInterval = 0;
+
+	for (int i = 0; i < nrOfBullets; i++)
+	{
+		Game::getCurrentScene()->addComponent(&ammo[i]);
+	}
+
 	Entity::init();
 	camera = new Camera(this, vector3df(0,0,0), vector3df(0,0,0));
 	addComponent(camera);
-	//network = Net(false, camera);
+	
 	if(station == 0)
 	{
 		currentstation = new HelmStation(this);
 		addComponent(currentstation);
+		network = Net(false, camera, ammo);
 		
 	}
 	else 
 	{
 		currentstation = new WeaponStation(this);
 		addComponent(currentstation);
+		network = Net(true, ammo, ((WeaponStation*)currentstation)->cameramover);
 	}
 
 	
