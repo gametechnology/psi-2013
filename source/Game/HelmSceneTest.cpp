@@ -29,7 +29,7 @@ void HelmSceneTest::init()
 
 
 	//Ship* ship = new Ship(this, vector3df(0, 0.001,-0.001), vector3df(0,0,0));
-	Ship* ship = new Ship(this);
+	Ship* ship = new Ship(this, vector3df(0,0,-5), vector3df(0,0,0));
 	ship->position = vector3df(0, 0, -5);
 	addComponent(ship);
 	if(Isweapon)

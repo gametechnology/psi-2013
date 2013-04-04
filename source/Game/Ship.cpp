@@ -3,13 +3,11 @@
 
 Ship::Ship(Composite * parent, vector3df position, vector3df rotation) : Entity(parent)
 {
-	Ship::drag = 0.99;
+	Ship::drag = 0.99f;
 	Ship::position = position;
 	Ship::orientation = rotation;
-}
 
-Ship::Ship(Composite* parent) : Entity(parent){
-
+	Ship::input = &eventReceiver;
 }
 
 
@@ -36,13 +34,23 @@ void Ship::init(int station){
 	}
 
 	
+	thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0,0, -4));
+	thrusters[1] = new Thruster(this, vector3df(0,0, -4), vector3df(-4, 0, 0 ));
+	thrusters[2] = new Thruster(this, vector3df(0,0, -4), vector3df(4, 0, 0 ));
 
-	//thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0,0, -4));
-
+	ShipMover* shipMover = new ShipMover(this, thrusters);
+	this->addComponent(shipMover);
 }
 
 void Ship::update(){
+	
 	Entity::update();
+	//OutputDebugString(L"update");
+	
+	if(input->IsKeyDown(KEY_DOWN)){
+		OutputDebugString(L"DOWN IS PRESSED\n");
+	}
+	
 }
 
 void Ship::handleMessage(unsigned int message, void* data){

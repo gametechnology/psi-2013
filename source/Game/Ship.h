@@ -7,11 +7,12 @@
 #include "ShipMover.h"
 #include "net.h"
 
+#include "Engine\Input.h"
+
 class Ship : public Entity
 {
 public:
 	Ship(Composite * parent, vector3df position, vector3df rotation);
-	Ship(Composite * parent);
 	~Ship(void);
 
 	void update();
@@ -19,6 +20,7 @@ public:
 	void handleMessage(unsigned int message, void* data);
 	Net network;
 	Entity* currentstation;
+	Input* input;
 	Camera* camera;
 	float drag;
 	Thruster* thrusters[3];
