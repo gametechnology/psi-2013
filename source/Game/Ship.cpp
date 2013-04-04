@@ -60,7 +60,7 @@ void Ship::update(){
 	Entity::update();
 	//testing w key
 	if(input->IsKeyDown(KEY_KEY_W)){
-		std::cout << "W PRESSED";
+		//std::cout << "W PRESSED";
 	}
 	
 }

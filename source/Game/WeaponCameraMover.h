@@ -4,6 +4,8 @@
 #include "Engine\Component.h"
 #include "Irrlicht\irrlicht.h"
 #include "Thruster.h"
+#include "Engine\Input.h"
+
 class WeaponCameraMover : public Component
 {
 public:
@@ -16,5 +18,6 @@ public:
 	 vector3df helmrotation;
 	vector3df ownrotation;
 	Camera* camera;
+	Input* input;
 };
 

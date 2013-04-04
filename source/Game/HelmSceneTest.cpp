@@ -18,7 +18,7 @@ HelmSceneTest::~HelmSceneTest(void)
 
 void HelmSceneTest::init()
 {
-	bool Isweapon = false;
+	bool Isweapon = true;
 
 	//Entity* cube = new Entity(this);
 	//cube->createNode("../../assets/Models/Cube.3ds");
