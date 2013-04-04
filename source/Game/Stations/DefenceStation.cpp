@@ -10,6 +10,11 @@ DefenceStation :: DefenceStation( Ship* ship) : Station( ship )
 	std :: srand( time( NULL ) );
 }
 
+DefenceStation :: ~DefenceStation()
+{
+	
+}
+
 void DefenceStation :: DoCameraShake( )
 {
 	

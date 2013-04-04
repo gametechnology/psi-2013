@@ -2,7 +2,7 @@
 #include "PowerStation.h"
 #include "DefenceStation.h"
 
-Station :: Station( Ship *ship )
+Station :: Station( Ship *ship ) : Component(ship)
 {
 	this ->	_ship	= ship;
 

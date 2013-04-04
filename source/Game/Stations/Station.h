@@ -3,6 +3,7 @@
 #pragma once
 
 #include "..\Player.h"
+#include "../../../include/Engine/Component.h"
 
 #ifdef ENTITY_SHIP
 #include "..\Ship.h"
@@ -11,7 +12,7 @@
 #define STUN_TIME 4.0
 class Ship;
 
-class Station
+class Station : public Component
 {
 
 public:

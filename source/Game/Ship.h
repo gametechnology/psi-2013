@@ -30,7 +30,6 @@ public:
 	
 public:
 	Ship(Composite * parent);
-	Ship( );
 	virtual ~Ship(void);
 
 	Station *GetStation( Station :: StationType );	

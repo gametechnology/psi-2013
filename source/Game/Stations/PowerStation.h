@@ -46,7 +46,8 @@ public:
 	void createGeneralPowerTexts();
 	void createCurrentSelectedStationText();
 	stringw varToString(stringw str1, float var, stringw str2 = L"");
-	void updateAll();
+
+	void update();
 	void selectedStation();
 	void changeColorAccordingToPowerStatus(IGUIStaticText &staticText, float powerAmount);
 

@@ -15,6 +15,11 @@ PowerStation :: PowerStation( Ship *ship ) : Station( ship )
 	this -> env					= device -> getGUIEnvironment( );
 }
 
+PowerStation :: ~PowerStation()
+{
+
+}
+
 void PowerStation :: SubscribeStation( Station *s )
 {
 	this -> context.SubscribeStation( s );
@@ -262,7 +267,8 @@ void PowerStation::createCurrentSelectedStationText(){
 
 //This method needs to be called every frame. It displays and updates the power status numbers of the different stations.
 //TODO: FIND OUT HOW TO UPDATE ALL
-void PowerStation::updateAll(){
+void PowerStation::update()
+{
 
 	int helm		= context.GetPower( STATION_TYPE :: Helm );
 	int defence		= context.GetPower( STATION_TYPE :: Defence );
@@ -330,5 +336,5 @@ void PowerStation::changeColorAccordingToPowerStatus(IGUIStaticText &stcTxt, flo
 	//if power is 0, make the text color gray.
 	else if(powerAmount == 0.0f){
 		stcTxt.setOverrideColor(video::SColor(255, 180, 180, 180));
-}
+	}
 }

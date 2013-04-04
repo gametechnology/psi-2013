@@ -3,11 +3,6 @@
 
 Ship::Ship( Composite * parent ) : Entity ( parent )
 {
-	
-}
-
-Ship :: Ship( ): Entity ( NULL )
-{ 
 	//TODO remove temp stuff
 	this -> _powerStation		= new PowerStation( this );
 	this -> _defenceStation		= new DefenceStation( this );
@@ -20,6 +15,12 @@ Ship :: Ship( ): Entity ( NULL )
 	this -> _navigationStation	-> Initialize();
 	this -> _weaponStation		-> Initialize();
 	this -> _powerStation		-> Initialize();
+
+	addComponent(_powerStation);
+	addComponent(_defenceStation);
+	addComponent(_helmStation);
+	addComponent(_navigationStation);
+	addComponent(_weaponStation);
 }
 
 Ship::~Ship(void)

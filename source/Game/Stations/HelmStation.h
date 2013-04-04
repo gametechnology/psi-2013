@@ -1,6 +1,5 @@
 #ifndef HELM_STATION
 #define HELM_STATION
-#pragma once
 
 #include "Station.h"
 #include "..\Ship.h"
