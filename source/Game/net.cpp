@@ -19,19 +19,22 @@
 			packageid = 0;
 			sf::SocketUDP Socket;
 			Camera * node = (Camera*)var;
-			
+			packageid = 0;
 			while(true){
 				sf::Packet packettosend;
 				vector3df position = node->getCameraNode()->getPosition();
-
-				packettosend << packageid << node->getCameraNode()->getPosition() << node->getCameraNode()->getRotation();
+				vector3df rotation = node->getCameraNode()->getRotation();
+				packageid++;
+				packettosend << packageid << position << rotation;
+				
 				// Create the UDP socket
 		
-				if (Socket.Send(packettosend, "192.168.2.8", 7000) != sf::Socket::Done)
+				if (Socket.Send(packettosend, "145.92.73.131", 7000) != sf::Socket::Done)
 				{
 					// Error...
 			
 				}
+				Sleep(30);
 			}
 			Socket.Close();
 			return;
