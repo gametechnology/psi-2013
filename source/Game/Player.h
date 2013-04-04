@@ -6,8 +6,8 @@
 
 class Player : public Entity  {
 public:
-	int i;
-	vector3df v3f;
+	//int i;
+	//vector3df v3f;
 	NetworkComponent* networker;
 
 	Player(Composite* parent);

@@ -9,10 +9,10 @@ NetworkComponent::NetworkComponent() : Component(NULL) {
 }
 
 void NetworkComponent::update() {
-	int* i = integers.front();
+	/*int* i = integers.front();
 	(*i)++;
 	vectors.front()->X++;
-	Game::client->sendPacket("hallo allemaal"/*reinterpret_cast<char*>(i)*/);
+	Game::client->sendPacket("hallo allemaal");*/
 }
 
 NetworkComponent::~NetworkComponent() {
