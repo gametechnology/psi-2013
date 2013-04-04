@@ -9,6 +9,7 @@
 PowerStation :: PowerStation( Ship *ship ) : Station( ship )
 {
 	this -> _stationType		= StationType :: Power;
+
 	this -> device				= Game::device;
 	this ->	driver				= device -> getVideoDriver( );
 	this -> env					= device -> getGUIEnvironment( );
@@ -34,6 +35,7 @@ void PowerStation :: DoCameraShake( )
 {
 	//here, we are going to do the Harlem Shake
 }
+
 // Define some values that we'll use to identify individual GUI controls.
 enum
 {
@@ -328,5 +330,5 @@ void PowerStation::changeColorAccordingToPowerStatus(IGUIStaticText &stcTxt, flo
 	//if power is 0, make the text color gray.
 	else if(powerAmount == 0.0f){
 		stcTxt.setOverrideColor(video::SColor(255, 180, 180, 180));
-	} 
+}
 }

@@ -20,7 +20,6 @@ private:
 
 public:
 	//Power Station Impl	
-	video :: E_DRIVER_TYPE	driverType;
 	IrrlichtDevice			*device;
 	video :: IVideoDriver	*driver;
 	IGUIEnvironment			*env;
@@ -48,7 +47,6 @@ public:
 	void createCurrentSelectedStationText();
 	stringw varToString(stringw str1, float var, stringw str2 = L"");
 	void updateAll();
-	void gameLoop( );
 	void selectedStation();
 	void changeColorAccordingToPowerStatus(IGUIStaticText &staticText, float powerAmount);
 
