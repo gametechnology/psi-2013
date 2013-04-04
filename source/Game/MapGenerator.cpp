@@ -53,6 +53,15 @@ void MapGenerator::init(int sectorCount, int minWormholes, int maxWormholes)
 	this->sectorCount = sectorCount;
 	this->minWormholes = minWormholes;
 	this->maxWormholes = maxWormholes;
+	for(int i = 0; i < TOTALTYPES - 2; i++)
+	{
+		this->typeChances.push_back(100/(TOTALTYPES - 2));
+	}
+}
+
+void MapGenerator::setBalanceChances(std::vector<float> chancesType)
+{
+	this->typeChances = chancesType;
 }
 
 GalaxyMap* MapGenerator::createNewMap(float width, float height, float radiusSector)
@@ -61,7 +70,12 @@ GalaxyMap* MapGenerator::createNewMap(float width, float height, float radiusSec
 	map->widthMap = width;
 	map->heightMap = height;
 	map->radiusSector = radiusSector;
-
+	float i = 0;
+	for(std::vector<float>::iterator l = typeChances.begin(); l != typeChances.end(); ++l)
+	{
+		i += (*l);
+	}
+	if(i < 99) return NULL;
 	this->createSectors();
 	this->createConnections();
 
@@ -70,23 +84,33 @@ GalaxyMap* MapGenerator::createNewMap(float width, float height, float radiusSec
 
 void MapGenerator::createSectors()
 {
-	typeSector j = (typeSector)(rand() % (TOTALTYPES - 2));
-	MapSector* homeBlue = new MapSector(map, nameGenerator(j), HOME_BLUE,map->radiusSector);
+	MapSector* homeBlue = new MapSector(map, nameGenerator(HOME_BLUE), HOME_BLUE,map->radiusSector);
 	homeBlue->position.set(randomPosition());
 	map->sectors.push_back(homeBlue);
 
-	j = (typeSector)(rand() % (TOTALTYPES - 2));
-	MapSector* homeRed = new MapSector(map, nameGenerator(j), HOME_RED,map->radiusSector);
+	MapSector* homeRed = new MapSector(map, nameGenerator(HOME_RED), HOME_RED,map->radiusSector);
 	homeRed->position.set(randomPosition());
 	map->sectors.push_back(homeRed);
 	
+	typeSector j;
 	for(int i = 0; i < sectorCount - 2; i++)
-	{
-		j = (typeSector)(rand() % (TOTALTYPES - 2));
+	{		
+		j = getRandomType();
 		MapSector* sector = new MapSector(map, nameGenerator(j), j, map->radiusSector);
 		sector->position.set(randomPosition());
 		map->sectors.push_back(sector);
 	}
+}
+
+typeSector MapGenerator::getRandomType()
+{//(typeSector)(rand() % (TOTALTYPES - 2));
+	float i = rand() % 100;
+	for(int j = 0; j < TOTALTYPES - 2; j++)
+	{
+		i -= typeChances[j];
+		if (i <= 0) return (typeSector)(j);
+	}
+	return EMPTY;
 }
 
 vector3df MapGenerator::randomPosition()
