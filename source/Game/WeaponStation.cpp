@@ -5,7 +5,7 @@
 WeaponStation::WeaponStation(Composite* parent) : Entity(parent)
 {
 	cameramover = new WeaponCameraMover(this);
-
+	addComponent(cameramover);
 	this->_stationTexture = Game::driver->getTexture("../../assets/Textures/Stations/weapon station.png");
 	Game::driver->makeColorKeyTexture(this->_stationTexture, position2d<s32>(0, 0));
 

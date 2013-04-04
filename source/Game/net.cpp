@@ -1,20 +1,16 @@
 #include "net.h"
 #include "WeaponCameraMover.h"		
-		matrix4 WeaponCameraMover::helmposition;
-		sf::Packet& operator <<(sf::Packet& Packet, const matrix4& C)
+matrix4 WeaponCameraMover::helmrotation;
+		sf::Packet& operator <<(sf::Packet& Packet, const vector3df& C)
 		{
-			for(int i =0; i < 16; i++){
-				Packet << C[i];
-			}
-			return Packet;
+			
+			return Packet << C.X << C.Y << C.Z;
 		}
 
-		sf::Packet& operator >>(sf::Packet& Packet, matrix4& C)
+		sf::Packet& operator >>(sf::Packet& Packet, vector3df& C)
 		{
-			for(int i =0; i < 16; i++){
-				Packet >> C[i];
-			}
-			return Packet;
+			
+			return Packet >> C.X >> C.Y. >> C.Z;
 		}
 		int Net::packageid;
 
@@ -27,7 +23,7 @@
 				sf::Packet packettosend;
 				vector3df position = node->getCameraNode()->getPosition();
 
-				packettosend << packageid << position.X << position.Y  << position.Z << node->getCameraNode()->getViewMatrixAffector();
+				packettosend << packageid << node->getCameraNode()->getPosition() << node->getCameraNode()->getRotation();
 				// Create the UDP socket
 		
 				if (Socket.Send(packettosend, "192.168.2.8", 7000) != sf::Socket::Done)
@@ -61,13 +57,13 @@
 					int recievedpackageid;
 					packettorecieve >> recievedpackageid ;
 					if(recievedpackageid > packageid){
-						float x;
-						float y;
-						float z;
-						matrix4 affector;
-						packettorecieve >> x >> y >> z >> affector;
-						nodeother->getCameraNode()->setPosition(vector3df(x,y,z));
-						WeaponCameraMover::helmposition = affector;
+						vector3df position;
+						vector3df rotation;
+						packettorecieve >> position >> rotation;
+						nodeother->getCameraNode()->setPosition(position);
+						//WeaponCameraMover::helmrotation = affector;
+						nodeother->getCameraNode()->setRotation(rotation)
+						
 					}
 					
 			
