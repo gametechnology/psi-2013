@@ -56,8 +56,32 @@ void Enemy::applySpeed()
 
 void Enemy::steeRing()
 {
+		irr::core::matrix4 matX;
 		irr::core::matrix4 matY;
+		irr::core::matrix4 matZ;
 		float mData[16];
+		
+		mData[0] = 1;
+		mData[1] = 0;
+		mData[2] = 0;
+		mData[3] = 0;
+
+		mData[4] = 0;
+		mData[5] = cos(DEGTORAD *  this->getRotation().X);
+		mData[6] = -sin(DEGTORAD *  this->getRotation().X);
+		mData[7] = 0;
+
+		mData[8] = 0;
+		mData[9] = sin( DEGTORAD * this->getRotation().X);
+		mData[10] = cos(DEGTORAD * this->getRotation().X);
+		mData[11] = 0;
+
+		mData[12] = 0;
+		mData[13] = 0;
+		mData[14] = 0;
+		mData[15] = 1;
+		matX.setM(mData);
+		
 		mData[0] = cos(DEGTORAD *  this->getRotation().Y);
 		mData[1] = 0;
 		mData[2] = -sin(DEGTORAD *  this->getRotation().Y);
@@ -79,6 +103,30 @@ void Enemy::steeRing()
 		mData[15] = 1;
 		matY.setM(mData);
 
+		mData[0] = cos(DEGTORAD * this->getRotation().Z);
+		mData[1] = -sin(DEGTORAD * this->getRotation().Z);
+		mData[2] = 0;
+		mData[3] = 0;
+
+		mData[4] = sin(DEGTORAD * this->getRotation().Z);
+		mData[5] = cos(DEGTORAD * this->getRotation().Z);
+		mData[6] = 0;
+		mData[7] = 0;
+
+		mData[8] = 0;
+		mData[9] = 0;
+		mData[10] = 1;
+		mData[11] = 0;
+
+		mData[12] = 0;
+		mData[13] = 0;
+		mData[14] = 0;
+		mData[15] = 1;
+		matZ.setM(mData);
+
+		matY = matY.operator*(matZ);
+		matX = matX.operator*(matY);
+
 		irr::core::vector3df newvelocity;
 		float mData2[4];
 		mData2[0] = velocity.X;
@@ -86,15 +134,13 @@ void Enemy::steeRing()
 		mData2[2] = velocity.Z;
 		mData2[3] = 1;
 	
-		matY.multiplyWith1x4Matrix(mData2);
+		matX.multiplyWith1x4Matrix(mData2);
 
 		newvelocity.X = mData2[0];
 		newvelocity.Y = mData2[1];
 		newvelocity.Z = mData2[2];
 
 		this->velocity = newvelocity;
-		//std::cout << newvelocity.X << " , " << newvelocity.Y << " , " << newvelocity.Z << "; ";
-		//std::cout << mData2[0] << " "<< mData2[1] << " "<< mData2[2]  << ";";
 }
 
 void Enemy::contactResolverB()
