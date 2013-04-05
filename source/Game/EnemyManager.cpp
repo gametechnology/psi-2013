@@ -5,6 +5,7 @@
 #include "EnemyDrone.h"
 #include "EnemyFighter.h"
 #include "EnemyAsteroid.h"
+#include "EnemyPlayer.h"
 
 EnemyManager::EnemyManager(void) 
 {
@@ -21,6 +22,7 @@ Enemy* fighter1;
 Enemy* asteroid1;
 Enemy* asteroid2;
 Enemy* enemy1;
+Enemy* player;
 
 void EnemyManager::createEnemies()
 {
@@ -38,17 +40,22 @@ void EnemyManager::createEnemies()
 	addComponent(asteroid1);
 	asteroid2 = new EnemyAsteroid(irr::core::vector3df(0,10,0),vector3df(0,-0.005f,0));
 	addComponent(asteroid2);
+	player = new EnemyPlayer(irr::core::vector3df(0,0,10),vector3df(0,0.005f,0));
+	addComponent(player);
+
 	
 	this->_enemyList.push_back(drone1);
 	this->_enemyList.push_back(fighter1);
 	this->_enemyList.push_back(asteroid1);
 	this->_enemyList.push_back(asteroid2);
+	this->_enemyList.push_back(player);
 
 	
 }
 
 void EnemyManager::update()
 {
+	Scene::update();
 	drone1->steering();
 	fighter1->steering();
 	
