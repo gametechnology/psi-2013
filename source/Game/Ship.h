@@ -18,12 +18,17 @@ public:
 	void update();
 	void init(int station);
 	void handleMessage(unsigned int message, void* data);
+	void setInertiaMatrix(float h, float w, float d, float m);
 	Net network;
 	int stationnumber;
 	Entity* currentstation;
 	Input* input;
 	Camera* camera;
-	float drag;
+
+	matrix4 inertiaMatrix;
+	vector3df up;
+	vector3df forward;
+	vector3df right;
 	Thruster* thrusters[3];
 	int nrOfBullets;
 	Bullet *ammo;

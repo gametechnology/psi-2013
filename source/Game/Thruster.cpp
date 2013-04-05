@@ -3,8 +3,33 @@
 #include "Engine\Game.h"
 #include "Engine\Entity.h"
 
-Thruster::Thruster(Composite* parent, vector3df position, vector3df initialDirection) : Entity(parent)
+Thruster::Thruster(Composite* parent, vector3df position, vector3df initialDirection, matrix4* inertiaMatrix) : Entity(parent)
 {
+	
+	Thruster::position = position;
+	Thruster::direction = initialDirection;
+	//Normalize the vectors so I can use them to calculate the dot product and the cross product.
+	nPosition = position.normalize();
+	nDirection = direction.normalize();
+
+	//torque is the cross product of the direction and position to the objects centre.
+	//torque is the axis the force will rotate around.
+	f32 dot = nPosition.dotProduct(nDirection);
+	if(dot != -1){
+		Thruster::torque = nPosition.crossProduct(nDirection);
+	} else{
+		torque = vector3df(0,0,0);
+	}
+
+	//the angular acceleration direction this thruster provides is calculated
+	if(dot != -1){
+		inertiaMatrix->transformVect(angularAccelaration, torque);
+	} else{
+		angularAccelaration = vector3df(0,0,0);
+	}
+
+
+	//divide the force into vectors
 
 }
 
@@ -13,8 +38,11 @@ Thruster::~Thruster()
 
 
 }
+void Thruster::Activate(){
 
+}
 void Thruster::update(){
+	
 
 }
 void Thruster::init(){

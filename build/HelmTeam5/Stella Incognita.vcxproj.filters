@@ -45,6 +45,9 @@
     <ClInclude Include="..\..\source\Game\Bullet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\source\Game\CalculateRotation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\Game\HelmSceneTest.cpp">
@@ -78,6 +81,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Game\Bullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Game\CalculateRotation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

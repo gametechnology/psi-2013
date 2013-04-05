@@ -8,8 +8,8 @@ Camera::Camera(Composite* parent, vector3df position, vector3df lookAt):Entity(p
 	if (parent != NULL && dynamic_cast<Entity*>(parent) != NULL)
 		parentIsEntity = true;
 	else parentIsEntity = false; 
-	//node = Game::getSceneManager()->addCameraSceneNode();
-	node = Game::getSceneManager()->addCameraSceneNodeFPS();
+	node = Game::getSceneManager()->addCameraSceneNode(NULL, position, lookAt);
+	//node = Game::getSceneManager()->addCameraSceneNodeFPS();
 	addComponent(new CameraMover(this));
 }
 

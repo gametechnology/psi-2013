@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\source\Game\Bullet.h" />
+    <ClInclude Include="..\..\source\Game\CalculateRotation.h" />
     <ClInclude Include="..\..\source\Game\Ship.h" />
     <ClInclude Include="..\..\Source\Game\WeaponCameraMover.h" />
     <ClInclude Include="..\..\source\Game\HelmSceneTest.h" />
@@ -24,6 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\Game\Bullet.cpp" />
+    <ClCompile Include="..\..\source\Game\CalculateRotation.cpp" />
     <ClCompile Include="..\..\source\Game\HelmSceneTest.cpp" />
     <ClCompile Include="..\..\source\Game\HelmStation.cpp" />
     <ClCompile Include="..\..\source\Game\main.cpp" />

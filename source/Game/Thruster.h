@@ -5,21 +5,28 @@
 class Thruster : public Entity
 {
 public:
-	Thruster(Composite* parent, vector3df position, vector3df initialDirection);
+	Thruster(Composite* parent, vector3df position, vector3df initialDirection, matrix4* inertiaMatrix);
 	virtual ~Thruster();
 	void Activate();
 	void init();
 	void draw();
 	void update();
 	void handleMessage(unsigned int message, void* data);
-private:
+
 	float force_;
-	vector3df position_;
-	vector3df distanceFromCenter_;
-	vector3df direction_;
-	Entity * parent_;
+	vector3df position;
+	vector3df nPosition;
+	vector3df direction;
+	vector3df nDirection;
+
+	vector3df forceComponent1;
+	vector3df forceComponent2;
+
+	vector3df linearForce;
+	vector3df angularForce;
+	Entity * parent;
+	vector3df torque;
+private:
 	
-	vector3df directionalForce_;
-	vector3df angularForce_;
 };
 

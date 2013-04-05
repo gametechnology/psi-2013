@@ -3,6 +3,7 @@
 #include "Engine\Component.h"
 #include "Irrlicht\irrlicht.h"
 #include "Thruster.h"
+#include "CalculateRotation.h"
 class ShipMover : public Component
 {
 public:
@@ -14,8 +15,16 @@ public:
 	virtual void update();
 	virtual void draw();
 	virtual void handleMessage(unsigned int message, void* data = 0){};
+
+	float h, w, d, m;
+
+	CalculateRotation mathRotation;
+	vector3df rotationX;
+	vector3df rotationY;
+	vector3df linearAcceleration;
+	vector3df angularAcceleration;
 private:
 	Thruster** thrusters;
-	vector3df totalForce;
+
 };
 
