@@ -51,38 +51,18 @@ void EnemyManager::update()
 {
 	Scene::update();
 	drone1->steering();
-	//drone1->update();
 	fighter1->steering();
-	//fighter1->update();
-	//asteroid1->update();
-	//asteroid2->update();
-	asteroid1->contactGenerator(asteroid2);
-	asteroid2->contactGenerator(asteroid1);
-
-	/*for(unsigned int i=0; i<_enemyasteroids.size(); i++) //loop through all asteroids, update these and check for contact with all other asteroids
+	
+	for(unsigned int i=0; i<_enemyList.size(); i++) //loop through all asteroids, update these and check for contact with all other asteroids
 	{
-		_enemyasteroids[i].update();
+		this->_enemyList[i]->update();
 
-		for(unsigned int j=0; j<_enemyasteroids.size(); j++)
+		for(unsigned int j=0; j<_enemyList.size(); j++)
 		{
 			if(j!=i)
 			{
-				_enemyasteroids[i].contactGenerator(&_enemyasteroids[j]);	
+				this->_enemyList[i]->contactGenerator(_enemyList[j]);	
 			}
-		}
-		for(unsigned int j=0; j<_enemydrones.size(); j++)
-		{
-			if(j!=i)
-			{
-				_enemyasteroids[i].contactGenerator(&_enemydrones[j]);	
-			}
-		}
-		for(unsigned int j=0; j<_enemyfighters.size(); j++)
-		{
-			if(j!=i)
-			{
-				_enemyasteroids[i].contactGenerator(&_enemyfighters[j]);	
-			}
-		}
-	}*/
+		}		
+	}
 }
