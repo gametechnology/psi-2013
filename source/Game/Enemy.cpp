@@ -53,7 +53,7 @@ void Enemy::applySpeed()
 	}
 }
 
-void Enemy::steeRing()
+void Enemy::steering()
 {
 		irr::core::matrix4 matX;
 		irr::core::matrix4 matY;

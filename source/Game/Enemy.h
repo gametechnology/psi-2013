@@ -61,7 +61,7 @@ public:
 	void contactGenerator(Enemy* input);
 	void contactResolverA();
 	void contactResolverB();
-	void steeRing();
+	void steering();
 	signed int getHealth();
 	unsigned int getMaxHealth();
 
