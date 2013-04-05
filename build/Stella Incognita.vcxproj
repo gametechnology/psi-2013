@@ -95,6 +95,7 @@
   <ItemGroup>
     <ClCompile Include="..\source\Game\CIrrEventReceiver.cpp" />
     <ClCompile Include="..\source\Game\EnemyAsteroid.cpp" />
+    <ClCompile Include="..\source\Game\EnemyPlayer.cpp" />
     <ClCompile Include="..\source\Game\Laser.cpp" />
     <ClCompile Include="..\source\Game\MainMenuScene.cpp" />
     <None Include="..\assets\sydney.bmp" />
@@ -109,6 +110,7 @@
     <ClInclude Include="..\source\Game\EnemyDrone.h" />
     <ClInclude Include="..\source\Game\EnemyFighter.h" />
     <ClInclude Include="..\source\Game\EnemyManager.h" />
+    <ClInclude Include="..\source\Game\EnemyPlayer.h" />
     <ClInclude Include="..\source\Game\HelmSceneTest.h" />
     <ClInclude Include="..\source\Game\HelmStation.h" />
     <ClInclude Include="..\source\Game\Laser.h" />
