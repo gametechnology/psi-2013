@@ -42,6 +42,7 @@ void HelmSceneTest::init()
 
 void HelmSceneTest::update()
 {
-	enemymanager->update();
+	Scene::update();
+	//enemymanager->update();
 }
 
