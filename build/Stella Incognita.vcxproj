@@ -94,7 +94,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Engine\Game.cpp" />
-    <ClCompile Include="..\source\Game\AstroidSector.cpp" />
+    <ClCompile Include="..\source\Game\AsteroidSector.cpp" />
     <ClCompile Include="..\source\Game\BaseSector.cpp" />
     <ClCompile Include="..\source\Game\GalaxyMap.cpp" />
     <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
@@ -125,7 +125,7 @@
     <None Include="..\assets\Textures\Wormholes\WormHole.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\source\Game\AstroidSector.h" />
+    <ClInclude Include="..\source\Game\AsteroidSector.h" />
     <ClInclude Include="..\source\Game\BaseSector.h" />
     <ClInclude Include="..\source\Game\Game.h" />
     <ClInclude Include="..\source\Game\GalaxyMap.h" />

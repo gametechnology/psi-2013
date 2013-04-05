@@ -65,13 +65,13 @@
     <ClCompile Include="..\source\Game\Skybox.cpp">
       <Filter>Source\Sector</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\AstroidSector.cpp">
-      <Filter>Source\Sector</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\WormHole.cpp">
       <Filter>Source\Sector</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\BaseSector.cpp">
+      <Filter>Source\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\AsteroidSector.cpp">
       <Filter>Source\Sector</Filter>
     </ClCompile>
   </ItemGroup>
@@ -142,9 +142,6 @@
     <ClInclude Include="..\source\Game\SectorTemplate.h">
       <Filter>Headers\Sector</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\AstroidSector.h">
-      <Filter>Headers\Sector</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\Skybox.h">
       <Filter>Headers\Sector</Filter>
     </ClInclude>
@@ -152,6 +149,9 @@
       <Filter>Headers\Sector</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\BaseSector.h">
+      <Filter>Headers\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\AsteroidSector.h">
       <Filter>Headers\Sector</Filter>
     </ClInclude>
   </ItemGroup>
