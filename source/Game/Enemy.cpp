@@ -3,6 +3,7 @@
 
 Enemy::Enemy(void): Entity(parent)
 {
+
 }
 
 Enemy::Enemy(ISceneManager* smgr, IMesh* mesh, 
@@ -10,7 +11,7 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 		vector3df rotation,
 		unsigned int maxspeed,
 		unsigned int agility,
-		unsigned int maxacc,
+		vector3df acc,
 		unsigned int damage,
 		unsigned int los,
 		unsigned int health): Entity(parent)
@@ -20,10 +21,10 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 	setRotation(rotation);
 	setMaxSpeed(maxspeed);
 	setAgility(agility);
-	setAccelaration(maxacc);
+	setAccelaration(acc);
 	setDamage(damage);
 	setLoS(los);
-	setHealth(health);
+	setMaxHealth(health);
 }
 
 void Enemy::pathFinding()
@@ -44,13 +45,6 @@ bool isWithinLoS(/*playership class*/)
 
 void Enemy::applySpeed()
 {
-	if (accelaration.getLength() > accelaration_)
-	{
-		vector3df cappedacc = accelaration.normalize();
-		cappedacc *= accelaration_;
-		accelaration = cappedacc;
-	}
-
 	if (velocity.getLength() > maxspeed_)
 	{
 		vector3df cappedvel = velocity.normalize();
@@ -61,6 +55,95 @@ void Enemy::applySpeed()
 
 void Enemy::steeRing()
 {
+		irr::core::matrix4 matX;
+		irr::core::matrix4 matY;
+		irr::core::matrix4 matZ;
+		float mData[16];
+		
+		mData[0] = 1;
+		mData[1] = 0;
+		mData[2] = 0;
+		mData[3] = 0;
+
+		mData[4] = 0;
+		mData[5] = cos(DEGTORAD *  this->getRotation().X);
+		mData[6] = -sin(DEGTORAD *  this->getRotation().X);
+		mData[7] = 0;
+
+		mData[8] = 0;
+		mData[9] = sin( DEGTORAD * this->getRotation().X);
+		mData[10] = cos(DEGTORAD * this->getRotation().X);
+		mData[11] = 0;
+
+		mData[12] = 0;
+		mData[13] = 0;
+		mData[14] = 0;
+		mData[15] = 1;
+		matX.setM(mData);
+		
+		mData[0] = cos(DEGTORAD *  this->getRotation().Y);
+		mData[1] = 0;
+		mData[2] = -sin(DEGTORAD *  this->getRotation().Y);
+		mData[3] = 0;
+
+		mData[4] = 0;
+		mData[5] = 1;
+		mData[6] = 0;
+		mData[7] = 0;
+	
+		mData[8] = sin(DEGTORAD *  this->getRotation().Y);
+		mData[9] = 0;
+		mData[10] = cos(DEGTORAD *  this->getRotation().Y);
+		mData[11] = 0;
+
+		mData[12] = 0;
+		mData[13] = 0;
+		mData[14] = 0;
+		mData[15] = 1;
+		matY.setM(mData);
+
+		mData[0] = cos(DEGTORAD * this->getRotation().Z);
+		mData[1] = -sin(DEGTORAD * this->getRotation().Z);
+		mData[2] = 0;
+		mData[3] = 0;
+
+		mData[4] = sin(DEGTORAD * this->getRotation().Z);
+		mData[5] = cos(DEGTORAD * this->getRotation().Z);
+		mData[6] = 0;
+		mData[7] = 0;
+
+		mData[8] = 0;
+		mData[9] = 0;
+		mData[10] = 1;
+		mData[11] = 0;
+
+		mData[12] = 0;
+		mData[13] = 0;
+		mData[14] = 0;
+		mData[15] = 1;
+		matZ.setM(mData);
+
+		matY = matY.operator*(matZ);
+		matX = matX.operator*(matY);
+
+		irr::core::vector3df newvelocity;
+		float mData2[4];
+		mData2[0] = velocity.X;
+		mData2[1] = velocity.Y;
+		mData2[2] = velocity.Z;
+		mData2[3] = 1;
+	
+		matX.multiplyWith1x4Matrix(mData2);
+
+		newvelocity.X = mData2[0];
+		newvelocity.Y = mData2[1];
+		newvelocity.Z = mData2[2];
+
+		this->velocity = newvelocity;
+}
+
+void Enemy::contactResolverA()
+{
 
 }
 
@@ -69,14 +152,24 @@ void Enemy::contactResolverB()
 	velocity *= -1;
 }
 
-void Enemy::contactResolverA()
+void Enemy::contactGenerator(Player* input)
 {
-	//TODO advanced collision resolving
+	float distance = position.getDistanceFrom(input->position);
+	float radii = input->radius_ + radius_;
+	if (distance < radii)
+	{
+		contactResolverB();
+	}
 }
 
-void Enemy::contactGenerator()
+void Enemy::contactGenerator(Enemy* input)
 {
-
+	float distance = position.getDistanceFrom(input->getPosition());
+	float radii = input->getRadius() + radius_;
+	if (distance < radii)
+	{
+		contactResolverB();
+	}
 }
 
 void Enemy::setVisual(IMesh* visual, ISceneManager* smgr)
@@ -90,6 +183,10 @@ void Enemy::setVisualWithPath(std::string path)
 	this->createNode(path);
 }
 
+void Enemy::setVelocity(vector3df input)
+{
+	velocity = input;
+}
 void Enemy::setPath(vector3df destination)
 {
 	destination_ = destination;
@@ -100,6 +197,9 @@ void Enemy::setPosition(vector3df pos)
 }
 void Enemy::setRotation(vector3df rotategoal)
 {
+	rotategoal.X = rotategoal.X * this->getAgility();
+	rotategoal.Y = rotategoal.Y * this->getAgility();
+	rotategoal.Z = rotategoal.Z * this->getAgility();
 	orientation = rotategoal;
 }
 void Enemy::setMaxSpeed(unsigned int maxspeed)
@@ -110,9 +210,9 @@ void Enemy::setAgility(unsigned int agility)
 {
 	agility_ = agility;
 }
-void Enemy::setAccelaration(unsigned int acc)
+void Enemy::setAccelaration(vector3df acc)
 {
-	accelaration_ = acc;
+	accelaration = acc;
 }
 void Enemy::setDamage(unsigned int damage)
 {
@@ -126,10 +226,19 @@ void Enemy::setHealth(signed int health)
 {
 	health_ = health;
 }
-
-void Enemy::setVelocity(vector3df input)
+void Enemy::setMaxHealth(unsigned int maxhealth)
 {
- velocity = input;
+	maxhealth_ = maxhealth;
+	setHealth(maxhealth);
+}
+void Enemy::setRadius(unsigned int rad)
+{
+	radius_ = rad;
+}
+
+vector3df Enemy::getVelocity()
+{
+	return velocity;
 }
 
 vector3df Enemy::getPath()
@@ -152,9 +261,9 @@ unsigned int Enemy::getAgility()
 {
 	return agility_;
 }
-unsigned int Enemy::getAccelaration()
+vector3df Enemy::getAccelaration()
 {
-	return accelaration_;
+	return accelaration;
 }
 unsigned int Enemy::getDamage()
 {
@@ -164,10 +273,19 @@ unsigned int Enemy::getLoS()
 {
 	return lineofsightrange_;
 }
+unsigned int Enemy::getRadius()
+{
+	return radius_;
+}
 
 signed int Enemy::getHealth()
 {
 	return health_;
+}
+
+unsigned int Enemy::getMaxHealth()
+{
+	return maxhealth_;
 }
 
 void Enemy::chase(vector3df target)
@@ -185,10 +303,6 @@ void Enemy::chase(vector3df target)
 		this->velocity *= 300;
 		this->position += this->velocity;
 	}
-}
-vector3df Enemy::getVelocity()
-{
- return velocity;
 }
 Enemy::~Enemy(void)
 {

@@ -5,10 +5,10 @@ EnemyFighter::EnemyFighter(irr::core::vector3df position): Enemy()
 {
 	this->setVisualWithPath("../assets/Models/Space_Fighter.dae");
 	this->setPosition(position);
-	this->setHealth(50);
+	this->setMaxHealth(50);
 	this->setAgility(2);
 	this->setMaxSpeed(400);
-	this->setAccelaration(45);
+	this->setAccelaration(vector3df(45,0,0));
 	this->setLoS(4800);
 
 	EnemyFighter::arrayList = ArrayList<Entity>();

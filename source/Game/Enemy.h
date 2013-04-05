@@ -4,6 +4,7 @@
 #include "Engine/Entity.h"
 #include "Engine/Game.h"
 #include "ArrayList.h"
+#include "Player.h"
 
 using namespace irr;
 using namespace scene;
@@ -19,7 +20,7 @@ public:
 		vector3df rotation = vector3df(0,0,0),			// open or not required can still be set by using the set methods.
 		unsigned int maxspeed = 1,						// 
 		unsigned int agility = 1,						//
-		unsigned int maxacc = 1,						//
+		vector3df acc = vector3df(0,0,0),			//
 		unsigned int damage = 1,						//
 		unsigned int los = 1,							//
 		unsigned int health = 1);						//
@@ -36,11 +37,13 @@ public:
 	void setRotation(vector3df rotategoal);
 	void setMaxSpeed(unsigned int maxspeed);
 	void setAgility(unsigned int agility);
-	void setAccelaration(unsigned int maxacc);
+	void setAccelaration(vector3df acc);
 	void setDamage(unsigned int damage);
 	void setLoS(unsigned int los);
 	void setHealth(signed int health);
+	void setMaxHealth(unsigned int maxhealth);
 	void setVelocity(vector3df input);
+	void setRadius(unsigned int radius);
 	
 	vector3df getVelocity();
 	vector3df getPath();
@@ -48,12 +51,19 @@ public:
 	vector3df getRotation();
 	unsigned int getMaxSpeed();
 	unsigned int getAgility();
-	unsigned int getAccelaration();
+	vector3df getAccelaration();
 	unsigned int getDamage();
 	unsigned int getLoS();
+	unsigned int getRadius();
 	void chase(vector3df target);
 
+	void contactGenerator(Player* input);
+	void contactGenerator(Enemy* input);
+	void contactResolverA();
+	void contactResolverB();
+	void steeRing();
 	signed int getHealth();
+	unsigned int getMaxHealth();
 
 	virtual void update();
 
@@ -63,16 +73,15 @@ protected:
 private:
 	
 	void applySpeed();
-	void steeRing();
-	void contactResolverB();
-	void contactResolverA();
-	void contactGenerator();
+
 	void pathFinding();
 	
 	IMesh* visual_;
 	vector3df destination_;
 
 	signed int health_;
+	unsigned int maxhealth_;
+	unsigned int radius_;
 	unsigned int maxspeed_;
 	unsigned int agility_;
 	unsigned int accelaration_;

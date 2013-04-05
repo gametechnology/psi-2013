@@ -4,6 +4,7 @@
 Player::Player(Composite* parent) : Entity(parent)
 {
 	createNode("../assets/sydney.md2");
+	radius_ = 1;
 }
 
 void Player::handleMessage(unsigned int message, void* data) {

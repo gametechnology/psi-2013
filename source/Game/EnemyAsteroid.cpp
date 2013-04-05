@@ -1,23 +1,24 @@
 #include "EnemyAsteroid.h"
 #include "Engine/Entity.h"
+#include <iostream>
 
-EnemyAsteroid::EnemyAsteroid(irr::core::vector3df position): Enemy()
+EnemyAsteroid::EnemyAsteroid(irr::core::vector3df position, vector3df speed): Enemy()
 {
 	this->setVisualWithPath("../assets/Models/Space_Asteroid.dae");
 	this->setPosition(position);
-	this->setHealth(25);
+	this->setMaxHealth(25);
 	this->setAgility(1);
 	this->setMaxSpeed(100);	
+	this->setAccelaration(vector3df(0,0,0));	
+	this->setRadius(1);
+	this->setVelocity(speed);
 }
-
 
 EnemyAsteroid::~EnemyAsteroid(void)
 {
 
 }
-
-void EnemyAsteroid::linearpath(vector3df speed)
+void EnemyAsteroid::update()
 {
-	this->setVelocity(speed);
 	Enemy::update();
 }

@@ -5,13 +5,11 @@ EnemyDrone::EnemyDrone(irr::core::vector3df position):Enemy()
 {
 	this->setVisualWithPath("../assets/Models/Space_Drone.dae");
 	this->setPosition(position);
-	this->setHealth(25);
+	this->setMaxHealth(25);
 	this->setAgility(3);
 	this->setMaxSpeed(250);
-	this->setAccelaration(75);
+	this->setAccelaration(vector3df(75,0,0));
 	this->setLoS(2000);
-	this->setVelocity(vector3df(0.001, 0, 0));
-
 	EnemyDrone::arrayList = ArrayList<Entity>();
 	EnemyDrone::stateSwitch = new StateSwitchDrone(StateSwitch::STATE_WANDER, this);
 }
