@@ -22,5 +22,6 @@ class EnemyManager : public Scene
 		array<EnemyDrone>_enemydrones;
 		array<EnemyFighter>_enemyfighters;
 		array<EnemyAsteroid>_enemyasteroids;
+		array<Enemy*> _enemyList;
 };
 #endif

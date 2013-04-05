@@ -8,25 +8,24 @@
 
 EnemyManager::EnemyManager(void) 
 {
-	
+
 }
+
 EnemyManager::~EnemyManager(void)
 {
+
 }
 
-
-
-EnemyDrone* drone1;
-EnemyFighter* fighter1;
-EnemyAsteroid* asteroid1;
-EnemyAsteroid* asteroid2;
+Enemy* drone1;
+Enemy* fighter1;
+Enemy* asteroid1;
+Enemy* asteroid2;
 Enemy* enemy1;
 
 void EnemyManager::createEnemies()
 {
-	this->_enemydrones = array<EnemyDrone>();
-	this->_enemyfighters = array<EnemyFighter>();
-	this->_enemyasteroids = array<EnemyAsteroid>();
+	this->_enemyList = array<Enemy*>();
+
 	drone1 = new EnemyDrone(irr::core::vector3df(0,0,10));
 	drone1->setVelocity(vector3df(0.005f,0,0));
 	drone1->setRotation(irr::core::vector3df(0,1,0));
@@ -39,13 +38,11 @@ void EnemyManager::createEnemies()
 	addComponent(asteroid1);
 	asteroid2 = new EnemyAsteroid(irr::core::vector3df(0,10,0),vector3df(0,-0.005f,0));
 	addComponent(asteroid2);
-
-	/*_enemydrones.push_back(*drone1);
-
-	_enemyfighters.push_back(*fighter1);
-
-	_enemyasteroids.push_back(*asteroid1);
-	_enemyasteroids.push_back(*asteroid2);*/
+	
+	this->_enemyList.push_back(drone1);
+	this->_enemyList.push_back(fighter1);
+	this->_enemyList.push_back(asteroid1);
+	this->_enemyList.push_back(asteroid2);
 
 	
 }
