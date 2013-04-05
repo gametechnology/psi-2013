@@ -10,9 +10,19 @@ EnemyFighter::EnemyFighter(irr::core::vector3df position): Enemy()
 	this->setMaxSpeed(400);
 	this->setAccelaration(vector3df(45,0,0));
 	this->setLoS(4800);
+
+	EnemyFighter::arrayList = ArrayList<Entity>();
+	EnemyFighter::stateSwitch = new StateSwitchFighter(this);
+}
+
+void EnemyFighter::update()
+{
+	EnemyFighter::stateSwitch->updateState();
+	Enemy::update();
 }
 
 EnemyFighter::~EnemyFighter(void)
 {
+	delete EnemyFighter::stateSwitch;
 }
 

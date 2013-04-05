@@ -19,45 +19,30 @@ StateSwitchFighter::~StateSwitchFighter()
 
 void StateSwitchFighter::handleIdle()
 {
-
+	StateSwitch::handleIdle();
 }
 
 void StateSwitchFighter::handleWander()
 {
-
+	StateSwitch::handleWander();
 }
 
 void StateSwitchFighter::handleFollow()
 {
-
+	StateSwitch::handleFollow();
 }
 
 void StateSwitchFighter::handleOffensive()
 {
-
+	StateSwitch::handleOffensive();
 }
 
 void StateSwitchFighter::handleDefensive()
 {
-
+	StateSwitch::handleDefensive();
 }
 
 void StateSwitchFighter::handleFleeing()
 {
-
-}
-
-void StateSwitchFighter::handleDeath()
-{
-	delete parent;
-}
-
-void StateSwitchFighter::setParent(Enemy* parent)
-{
-	StateSwitchFighter::parent = parent;
-}
-
-Enemy* StateSwitchFighter::getParent()
-{
-	return StateSwitchFighter::parent;
+	StateSwitch::handleFleeing();
 }
