@@ -42,15 +42,6 @@ bool isWithinLoS(/*playership class*/)
 	return false;
 }
 
-void Enemy::setState()
-{
-	//TODO
-}
-void Enemy::getState()
-{
-	//TODO
-}
-
 void Enemy::applySpeed()
 {
 	if (accelaration.getLength() > accelaration_)

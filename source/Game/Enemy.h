@@ -3,6 +3,7 @@
 
 #include "Engine/Entity.h"
 #include "Engine/Game.h"
+#include "ArrayList.h"
 
 using namespace irr;
 using namespace scene;
@@ -26,8 +27,7 @@ public:
 
 	bool isWithinLoS(/*playership class*/);
 
-	void setState();
-	void getState();
+	ArrayList<Entity> arrayList;
 
 	void setVisual(IMesh* visual, ISceneManager* smgr);	// visuals are the only component which do not have a get method
 	void setVisualWithPath(std::string);
@@ -56,7 +56,10 @@ public:
 	signed int getHealth();
 
 	virtual void update();
+
 protected:
+
+
 private:
 	
 	void applySpeed();

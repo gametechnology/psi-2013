@@ -93,6 +93,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\source\Game\ArrayList.cpp" />
     <ClCompile Include="..\source\Game\CIrrEventReceiver.cpp" />
     <ClCompile Include="..\source\Game\EnemyAsteroid.cpp" />
     <ClCompile Include="..\source\Game\MainMenuScene.cpp" />
@@ -100,6 +101,7 @@
     <None Include="..\assets\sydney.md2" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\source\Game\ArrayList.h" />
     <ClInclude Include="..\source\Game\Boundry.h" />
     <ClInclude Include="..\source\Game\CIrrEventReceiver.h" />
     <ClInclude Include="..\source\Game\Enemy.h" />

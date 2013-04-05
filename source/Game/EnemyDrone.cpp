@@ -10,9 +10,18 @@ EnemyDrone::EnemyDrone(irr::core::vector3df position):Enemy()
 	this->setMaxSpeed(250);
 	this->setAccelaration(75);
 	this->setLoS(2000);
+	this->setVelocity(vector3df(0.001, 0, 0));
 
+	EnemyDrone::arrayList = ArrayList<Entity>();
+	EnemyDrone::stateSwitch = new StateSwitchDrone(StateSwitch::STATE_WANDER, this);
 }
 EnemyDrone::~EnemyDrone(void)
 {
+	EnemyDrone::stateSwitch->~StateSwitchDrone();
+}
 
+void EnemyDrone::update()
+{
+	EnemyDrone::stateSwitch->updateState();
+	Enemy::update();
 }
