@@ -21,7 +21,6 @@ HelmSceneTest::~HelmSceneTest(void)
 EnemyDrone* drone1;
 EnemyFighter* fighter1;
 EnemyAsteroid* asteroid1;
-float degree = 0;
 EnemyAsteroid* asteroid2;
 Enemy* enemy1;
 
@@ -41,6 +40,8 @@ void HelmSceneTest::init()
 	drone1->setRotation(irr::core::vector3df(0,1,0));
 	addComponent(drone1);
 	fighter1 = new EnemyFighter(irr::core::vector3df(100,0,0));
+	fighter1->setVelocity(vector3df(0.005f,0,0));
+	fighter1->setRotation(irr::core::vector3df(0,1,0));
 	addComponent(fighter1);
 	asteroid1 = new EnemyAsteroid(irr::core::vector3df(0,0,0),vector3df(0,0.005f,0));
 	addComponent(asteroid1);
@@ -52,6 +53,8 @@ void HelmSceneTest::update()
 {
 	drone1->steeRing();
 	drone1->update();
+	fighter1->steeRing();
+	fighter1->update();
 	asteroid1->update();
 	asteroid2->update();
 	asteroid1->contactGenerator(asteroid2);

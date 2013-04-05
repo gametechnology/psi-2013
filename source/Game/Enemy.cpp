@@ -197,6 +197,9 @@ void Enemy::setPosition(vector3df pos)
 }
 void Enemy::setRotation(vector3df rotategoal)
 {
+	rotategoal.X = rotategoal.X * this->getAgility();
+	rotategoal.Y = rotategoal.Y * this->getAgility();
+	rotategoal.Z = rotategoal.Z * this->getAgility();
 	orientation = rotategoal;
 }
 void Enemy::setMaxSpeed(unsigned int maxspeed)
