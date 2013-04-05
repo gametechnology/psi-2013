@@ -12,7 +12,7 @@ EnemyFighter::EnemyFighter(irr::core::vector3df position): Enemy()
 	this->setLoS(4800);
 
 	EnemyFighter::arrayList = ArrayList<Entity>();
-	EnemyFighter::stateSwitch = new StateSwitchFighter(this);
+	EnemyFighter::stateSwitch = new StateSwitchFighter(StateSwitch::STATE_WANDER,this);
 }
 
 void EnemyFighter::update()

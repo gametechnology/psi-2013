@@ -59,6 +59,7 @@ void EnemyManager::update()
 	asteroid1->update();
 	asteroid2->update();
 	asteroid1->contactGenerator(asteroid2);
+	asteroid2->contactGenerator(asteroid1);
 
 	/*for(unsigned int i=0; i<_enemyasteroids.size(); i++) //loop through all asteroids, update these and check for contact with all other asteroids
 	{
