@@ -11,9 +11,10 @@ public:
 	EnemyDrone(unsigned int health); 
 	~EnemyDrone(void);
 
+	virtual void chase(vector3df target);
 	virtual void update();
 private:
-
+	
 	StateSwitchDrone* stateSwitch;
 };
 

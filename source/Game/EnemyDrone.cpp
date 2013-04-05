@@ -19,6 +19,10 @@ EnemyDrone::~EnemyDrone(void)
 	EnemyDrone::stateSwitch->~StateSwitchDrone();
 }
 
+void EnemyDrone::chase(vector3df target)
+{
+	Enemy::chase(target);
+}
 void EnemyDrone::update()
 {
 	EnemyDrone::stateSwitch->updateState();

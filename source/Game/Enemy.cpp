@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include <string>
+#include <iostream>
 
 Enemy::Enemy(void): Entity(parent)
 {
@@ -288,19 +289,20 @@ unsigned int Enemy::getMaxHealth()
 	return maxhealth_;
 }
 
+
+
 void Enemy::chase(vector3df target)
 {
 	//get the positions
 	vector3df selfPos = this->getPosition();
 
 	vector3df distancetoTarget = target - selfPos;
-
-	if(distancetoTarget.getLengthSQ() <= 4000)
+	if(distancetoTarget.getLengthSQ() <= 8000)
 	{
 		//set state to chasing/attacking
 		this->velocity = distancetoTarget;
 		this->velocity.normalize();
-		this->velocity *= 300;
+		this->velocity *= 0.1f;
 		this->position += this->velocity;
 	}
 }

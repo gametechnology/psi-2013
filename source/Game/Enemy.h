@@ -44,6 +44,7 @@ public:
 	void setMaxHealth(unsigned int maxhealth);
 	void setVelocity(vector3df input);
 	void setRadius(unsigned int radius);
+	void setTarget(vector3df target);
 	
 	vector3df getVelocity();
 	vector3df getPath();
@@ -87,6 +88,7 @@ private:
 	unsigned int accelaration_;
 	unsigned int damage_;
 	unsigned int lineofsightrange_;
+	vector3df _target;
 
 };
 #endif

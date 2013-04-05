@@ -21,7 +21,7 @@ Enemy* drone1;
 EnemyFighter* fighter1;
 Enemy* asteroid1;
 Enemy* asteroid2;
-Enemy* enemy1;
+Enemy* kamikaze1;
 Enemy* player;
 
 void EnemyManager::createEnemies()
@@ -40,7 +40,13 @@ void EnemyManager::createEnemies()
 	addComponent(asteroid1);
 	asteroid2 = new EnemyAsteroid(irr::core::vector3df(0,10,0),vector3df(0,-0.005f,0));
 	addComponent(asteroid2);
-	player = new EnemyPlayer(irr::core::vector3df(0,0,10),vector3df(0,0.005f,0));
+	
+	//kamikaze enemy
+	kamikaze1 = new EnemyDrone(irr::core::vector3df(50,50,50));
+	addComponent(kamikaze1);
+
+	//dummyplayer
+	player = new EnemyPlayer(irr::core::vector3df(0,0,10),vector3df(0,0.05f,0));
 	addComponent(player);
 
 	
@@ -59,6 +65,8 @@ void EnemyManager::update()
 	drone1->steering();
 	fighter1->steering();
 	fighter1->SetTarget(player->getPosition());
+	//kamikaze1->setTarget(player->getPosition());
+	kamikaze1->chase(player->getPosition());
 
 	for(unsigned int i=0; i<_enemyList.size(); i++) //loop through all asteroids, update these and check for contact with all other asteroids
 	{
