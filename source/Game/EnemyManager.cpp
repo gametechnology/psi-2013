@@ -18,7 +18,7 @@ EnemyManager::~EnemyManager(void)
 }
 
 Enemy* drone1;
-Enemy* fighter1;
+EnemyFighter* fighter1;
 Enemy* asteroid1;
 Enemy* asteroid2;
 Enemy* enemy1;
@@ -49,7 +49,7 @@ void EnemyManager::createEnemies()
 	this->_enemyList.push_back(asteroid1);
 	this->_enemyList.push_back(asteroid2);
 	this->_enemyList.push_back(player);
-
+	
 	
 }
 
@@ -58,7 +58,8 @@ void EnemyManager::update()
 	Scene::update();
 	drone1->steering();
 	fighter1->steering();
-	
+	fighter1->SetTarget(player->getPosition());
+
 	for(unsigned int i=0; i<_enemyList.size(); i++) //loop through all asteroids, update these and check for contact with all other asteroids
 	{
 		this->_enemyList[i]->update();
