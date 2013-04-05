@@ -20,9 +20,9 @@ void Laser::fire(Entity* parent, vector3df target, f32 speed)
 {
 	this->isAlive = true;
 	this->position = parent->position;
-	this->orientation = vector3df(10,10,90);
 
-	//this->orientation = parent->orientation;
+	this->orientation = parent->orientation;
+	this->orientation.Y += 90;
 	this->visible = true;	
 
 	this->_direction = target - this->position;

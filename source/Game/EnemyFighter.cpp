@@ -17,6 +17,11 @@ EnemyFighter::EnemyFighter(irr::core::vector3df position): Enemy()
 	this->loadLaser();
 }
 
+void EnemyFighter::SetTarget(vector3df target)
+{
+	this->_target = target;
+}
+
 void EnemyFighter::loadLaser()
 {
 	this->_nrLasers = 5;
@@ -40,7 +45,7 @@ void EnemyFighter::update()
 	if(this->_fireTime >= 400)
 	{
 		//fire laser to target
-		this->fireLaserAt(vector3df(0,0,0));
+		this->fireLaserAt(this->_target);
 		this->_fireTime = 0;
 	}
 	this->_laser[this->_curLaser].update();

@@ -11,6 +11,8 @@ public:
 	EnemyFighter(irr::core::vector3df position);
 	~EnemyFighter(void);
 
+	void SetTarget(vector3df target);
+
 	virtual void update();
 private:
 	void		loadLaser();
