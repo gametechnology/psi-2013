@@ -18,7 +18,3 @@ EnemyAsteroid::~EnemyAsteroid(void)
 {
 
 }
-void EnemyAsteroid::update()
-{
-	Enemy::update();
-}
