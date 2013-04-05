@@ -10,7 +10,7 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 		vector3df rotation,
 		unsigned int maxspeed,
 		unsigned int agility,
-		vector3df maxacc,
+		vector3df acc,
 		unsigned int damage,
 		unsigned int los,
 		unsigned int health): Entity(parent)
@@ -20,10 +20,10 @@ Enemy::Enemy(ISceneManager* smgr, IMesh* mesh,
 	setRotation(rotation);
 	setMaxSpeed(maxspeed);
 	setAgility(agility);
-	setAccelaration(maxacc);
+	setAccelaration(acc);
 	setDamage(damage);
 	setLoS(los);
-	setHealth(health);
+	setMaxHealth(health);
 }
 
 void Enemy::pathFinding()
@@ -57,14 +57,24 @@ void Enemy::steeRing()
 
 }
 
+void Enemy::contactResolverA()
+{
+
+}
+
 void Enemy::contactResolverB()
 {
 	velocity *= -1;
 }
 
-void Enemy::contactResolverA(Enemy input)
+void Enemy::contactGenerator(Player* input)
 {
-	
+	float distance = position.getDistanceFrom(input->position);
+	float radii = input->radius_ + radius_;
+	if (distance < radii)
+	{
+		contactResolverB();
+	}
 }
 
 void Enemy::contactGenerator(Enemy* input)
@@ -128,6 +138,11 @@ void Enemy::setHealth(signed int health)
 {
 	health_ = health;
 }
+void Enemy::setMaxHealth(unsigned int maxhealth)
+{
+	maxhealth_ = maxhealth;
+	setHealth(maxhealth);
+}
 void Enemy::setRadius(unsigned int rad)
 {
 	radius_ = rad;
@@ -136,11 +151,6 @@ void Enemy::setRadius(unsigned int rad)
 vector3df Enemy::getVelocity()
 {
 	return velocity;
-}
-
-void Enemy::setVelocity(vector3df input)
-{
- velocity = input;
 }
 
 vector3df Enemy::getPath()
@@ -163,7 +173,7 @@ unsigned int Enemy::getAgility()
 {
 	return agility_;
 }
-unsigned int Enemy::getAccelaration()
+vector3df Enemy::getAccelaration()
 {
 	return accelaration;
 }
@@ -185,6 +195,11 @@ signed int Enemy::getHealth()
 	return health_;
 }
 
+unsigned int Enemy::getMaxHealth()
+{
+	return maxhealth_;
+}
+
 void Enemy::chase(vector3df target)
 {
 	//get the positions
@@ -200,10 +215,6 @@ void Enemy::chase(vector3df target)
 		this->velocity *= 300;
 		this->position += this->velocity;
 	}
-}
-vector3df Enemy::getVelocity()
-{
- return velocity;
 }
 Enemy::~Enemy(void)
 {
