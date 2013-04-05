@@ -4,21 +4,23 @@
 #include "Engine/Entity.h"
 #include "Engine/Game.h"
 #include "Enemy.h"
+#include "EnemyManager.h"
+#include "EnemyDrone.h"
+#include "EnemyFighter.h"
+#include "EnemyAsteroid.h"
 
 
-class EnemyManager : public Entity
+class EnemyManager : public Scene
 {
 	public:
 		EnemyManager(void);
 		~EnemyManager(void);
 		void createEnemies();
-		void createFighters();
-		void createKamikazes();
+		virtual void update();
 
 	private:
-		array<Enemy>	_enemies;
-		float			_posX;
-		float			_posY;
-		float			_posZ;
+		array<EnemyDrone>_enemydrones;
+		array<EnemyFighter>_enemyfighters;
+		array<EnemyAsteroid>_enemyasteroids;
 };
 #endif
