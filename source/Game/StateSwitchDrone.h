@@ -24,12 +24,6 @@ public:
 
 	virtual void handleFleeing();
 
-	virtual void handleDeath();
-
-	void setParent(Enemy* parent);
-
-	Enemy* getParent();
-
 	StateSwitchDrone(StateSwitch::States startState, Enemy* parent);
 
 	StateSwitchDrone(Enemy* parent);
@@ -37,8 +31,6 @@ public:
 	~StateSwitchDrone();
 
 private:
-
-	Enemy* parent;
 	int randomInt;
 	float randomFloat;
 };

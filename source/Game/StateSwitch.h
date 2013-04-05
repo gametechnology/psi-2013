@@ -3,6 +3,8 @@
 
 #include "Engine\Game.h"
 #include "Irrlicht\irrlicht.h"
+#include "Enemy.h"
+#include "RandomGenerator.h"
 
 class StateSwitch
 {
@@ -44,6 +46,10 @@ public:
 
 	virtual void handleDeath();
 
+	virtual void setParent(Enemy* parent);
+
+	virtual Enemy* getParent();
+
 	virtual ~StateSwitch();
 
 private:
@@ -51,6 +57,8 @@ private:
 	States currentState_;
 	States newState_;
 	States oldState_;
+
+	Enemy* parent_;
 };
 
 #endif

@@ -46,37 +46,78 @@ StateSwitch::States StateSwitch::getState()
 
 void StateSwitch::handleIdle()
 {
+	if(parent_->getHealth() <= 0)
+	{
+		StateSwitch::setState(StateSwitch::STATE_DEATH);
+	}
+	parent_->setVelocity(vector3df(0,0,0));
 
+	if(parent_->arrayList.getSize() > 0)
+	{
+		int random = RandomGenerator::getRandomInt(10, 1);
+		if(random > 5)
+		{
+			StateSwitch::setState(StateSwitch::STATE_FOLLOW);
+		}else
+		{
+			StateSwitch::setState(StateSwitch::STATE_OFFENSIVE);
+		}
+	}
 }
 
 void StateSwitch::handleWander()
 {
-
+	if(parent_->getHealth() <= 0)
+	{
+		StateSwitch::setState(StateSwitch::STATE_DEATH);
+	}
 }
 
 void StateSwitch::handleFollow()
 {
-
+	if(parent_->getHealth() <= 0)
+	{
+		StateSwitch::setState(StateSwitch::STATE_DEATH);
+	}
 }
 
 void StateSwitch::handleOffensive()
 {
-
+	if(parent_->getHealth() <= 0)
+	{
+		StateSwitch::setState(StateSwitch::STATE_DEATH);
+	}
 }
 
 void StateSwitch::handleDefensive()
 {
-
+	if(parent_->getHealth() <= 0)
+	{
+		StateSwitch::setState(StateSwitch::STATE_DEATH);
+	}
 }
 
 void StateSwitch::handleFleeing()
 {
-
+	if(parent_->getHealth() <= 0)
+	{
+		StateSwitch::setState(StateSwitch::STATE_DEATH);
+	}
 }
 
 void StateSwitch::handleDeath()
 {
-	delete this;
+	delete parent_;
+}
+
+void StateSwitch::setParent(Enemy* parent)
+{
+	StateSwitch::parent_ = parent;
+}
+
+Enemy* StateSwitch::getParent()
+{
+	return StateSwitch::parent_;
 }
 
 StateSwitch::~StateSwitch()

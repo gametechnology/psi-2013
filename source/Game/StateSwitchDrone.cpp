@@ -3,53 +3,32 @@
 
 void StateSwitchDrone::handleIdle()
 {
-	int stageSwitchWander;
-	stageSwitchWander = RandomGenerator::getRandomInt(1000, 0);
-	if(stageSwitchWander == StateSwitchDrone::randomInt)
-	{
-		StateSwitchDrone::randomInt = RandomGenerator::getRandomInt(1000, 0);
-		StateSwitchDrone::setState(StateSwitch::STATE_WANDER);
-	}
+	StateSwitch::handleIdle();
 }
 
 void StateSwitchDrone::handleWander()
 {
-
+	StateSwitch::handleWander();
 }
 
 void StateSwitchDrone::handleFollow()
 {
-
+	StateSwitch::handleFollow();
 }
 
 void StateSwitchDrone::handleOffensive()
 {
-
+	StateSwitch::handleOffensive();
 }
 
 void StateSwitchDrone::handleDefensive()
 {
-
+	StateSwitch::handleDefensive();
 }
 
 void StateSwitchDrone::handleFleeing()
 {
-
-}
-
-void StateSwitchDrone::handleDeath()
-{
-
-}
-
-void StateSwitchDrone::setParent(Enemy* parent)
-{
-	StateSwitchDrone::parent = parent;
-}
-
-Enemy* StateSwitchDrone::getParent()
-{
-	return StateSwitchDrone::parent;
+	StateSwitch::handleFleeing();
 }
 
 StateSwitchDrone::StateSwitchDrone(StateSwitch::States startState, Enemy* parent)
