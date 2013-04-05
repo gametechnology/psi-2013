@@ -93,7 +93,6 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\Game\ArrayList.cpp" />
     <ClCompile Include="..\source\Game\CIrrEventReceiver.cpp" />
     <ClCompile Include="..\source\Game\EnemyAsteroid.cpp" />
     <ClCompile Include="..\source\Game\MainMenuScene.cpp" />
