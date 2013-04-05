@@ -61,7 +61,7 @@ public:
 	void contactGenerator(Enemy* input);
 	void contactResolverA();
 	void contactResolverB();
-
+	void steeRing();
 	signed int getHealth();
 	unsigned int getMaxHealth();
 
@@ -70,7 +70,6 @@ protected:
 private:
 	
 	void applySpeed();
-	void steeRing();
 
 	void pathFinding();
 	
@@ -82,6 +81,7 @@ private:
 	unsigned int radius_;
 	unsigned int maxspeed_;
 	unsigned int agility_;
+	unsigned int accelaration_;
 	unsigned int damage_;
 	unsigned int lineofsightrange_;
 
