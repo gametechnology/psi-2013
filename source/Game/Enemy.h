@@ -28,7 +28,7 @@ public:
 
 	bool isWithinLoS(/*playership class*/);
 
-	ArrayList<Entity> arrayList;
+	array<Entity*> inRangeList;
 
 	void setVisual(IMesh* visual, ISceneManager* smgr);	// visuals are the only component which do not have a get method
 	void setVisualWithPath(std::string);

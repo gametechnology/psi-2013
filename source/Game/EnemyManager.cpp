@@ -55,6 +55,7 @@ void EnemyManager::createEnemies()
 
 void EnemyManager::update()
 {
+	Scene::update();
 	drone1->steering();
 	fighter1->steering();
 	
