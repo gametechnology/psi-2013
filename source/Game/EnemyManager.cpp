@@ -49,12 +49,13 @@ void EnemyManager::createEnemies()
 
 void EnemyManager::update()
 {
+	Scene::update();
 	drone1->steering();
-	drone1->update();
+	//drone1->update();
 	fighter1->steering();
-	fighter1->update();
-	asteroid1->update();
-	asteroid2->update();
+	//fighter1->update();
+	//asteroid1->update();
+	//asteroid2->update();
 	asteroid1->contactGenerator(asteroid2);
 	asteroid2->contactGenerator(asteroid1);
 

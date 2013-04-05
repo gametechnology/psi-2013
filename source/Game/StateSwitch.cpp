@@ -52,7 +52,7 @@ void StateSwitch::handleIdle()
 	}
 	parent_->setVelocity(vector3df(0,0,0));
 
-	if(parent_->arrayList.getSize() > 0)
+	if(parent_->inRangeList.size() > 0)
 	{
 		int random = RandomGenerator::getRandomInt(10, 1);
 		if(random > 5)

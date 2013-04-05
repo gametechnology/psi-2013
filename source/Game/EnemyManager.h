@@ -19,9 +19,6 @@ class EnemyManager : public Scene
 		virtual void update();
 
 	private:
-		array<EnemyDrone>_enemydrones;
-		array<EnemyFighter>_enemyfighters;
-		array<EnemyAsteroid>_enemyasteroids;
 		array<Enemy*> _enemyList;
 };
 #endif
