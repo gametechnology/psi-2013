@@ -46,7 +46,7 @@ void EnemyManager::createEnemies()
 	addComponent(kamikaze1);
 
 	//dummyplayer
-	player = new EnemyPlayer(irr::core::vector3df(0,0,10),vector3df(0,0.05f,0));
+	player = new EnemyPlayer(irr::core::vector3df(0,0,10),vector3df(0,0.0f,0));
 	addComponent(player);
 
 	
@@ -65,8 +65,14 @@ void EnemyManager::update()
 	//drone1->steering();
 	fighter1->steering();
 	fighter1->SetTarget(player->getPosition());
+	if((player->position - fighter1->position).getLength()>10)
+	{
+		fighter1->chase(player->getPosition());
+	}
 	//kamikaze1->setTarget(player->getPosition());
+	kamikaze1->steering();	
 	kamikaze1->chase(player->getPosition());
+	
 
 	for(unsigned int i=0; i<_enemyList.size(); i++) //loop through all asteroids, update these and check for contact with all other asteroids
 	{
