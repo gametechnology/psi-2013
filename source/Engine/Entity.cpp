@@ -47,6 +47,7 @@ void Entity::createNode(std::string modelPath)
 
 	// Create model entity
 	this->node =  Game::getSceneManager()->addMeshSceneNode( mesh );
+	this->node->setMaterialFlag(EMF_FOG_ENABLE, true);
 }
 
 Entity::~Entity()
