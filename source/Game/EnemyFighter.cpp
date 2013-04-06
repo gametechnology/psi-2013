@@ -24,7 +24,7 @@ void EnemyFighter::chase(vector3df target)
 
 void EnemyFighter::SetTarget(vector3df target)
 {
-	this->_target = target;
+	Enemy::setTarget(target);
 }
 
 void EnemyFighter::loadLaser()
