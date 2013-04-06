@@ -44,7 +44,7 @@ public:
 	void setMaxHealth(unsigned int maxhealth);
 	void setVelocity(vector3df input);
 	void setRadius(unsigned int radius);
-	void setTarget(vector3df target);
+	virtual void setTarget(vector3df target);
 	
 	vector3df getVelocity();
 	vector3df getPath();
@@ -56,6 +56,7 @@ public:
 	unsigned int getDamage();
 	unsigned int getLoS();
 	unsigned int getRadius();
+	vector3df getTarget();
 	void chase(vector3df target);
 
 	void contactGenerator(Player* input);

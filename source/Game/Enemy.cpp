@@ -237,6 +237,16 @@ void Enemy::setRadius(unsigned int rad)
 	radius_ = rad;
 }
 
+void Enemy::setTarget(vector3df targetPosition)
+{
+	Enemy::_target = targetPosition;
+}
+
+vector3df Enemy::getTarget()
+{
+	return Enemy::_target;
+}
+
 vector3df Enemy::getVelocity()
 {
 	return velocity;

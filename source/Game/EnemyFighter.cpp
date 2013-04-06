@@ -22,11 +22,6 @@ void EnemyFighter::chase(vector3df target)
 	Enemy::chase(target);
 }
 
-void EnemyFighter::SetTarget(vector3df target)
-{
-	this->_target = target;
-}
-
 void EnemyFighter::loadLaser()
 {
 	this->_nrLasers = 5;
@@ -45,16 +40,19 @@ void EnemyFighter::update()
 	EnemyFighter::stateSwitch->updateState();
 	EnemyFighter::inRangeList.clear();
 
-	//Should be activated when in current state
-	this->_fireTime++;
-
-	if(this->_fireTime >= 400)
+	if(EnemyFighter::stateSwitch->getState() == StateSwitch::STATE_OFFENSIVE)
 	{
-		//fire laser to target
-		this->fireLaserAt(this->_target);
-		this->_fireTime = 0;
+		//Should be activated when in current state
+		this->_fireTime++;
+
+		if(this->_fireTime >= 400)
+		{
+			//fire laser to target
+			this->fireLaserAt(this->getTarget());
+			this->_fireTime = 0;
+		}
+		this->_laser[this->_curLaser].update();
 	}
-	this->_laser[this->_curLaser].update();
 
 	Enemy::update();
 }
