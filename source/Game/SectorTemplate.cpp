@@ -21,12 +21,12 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	// Creating wormholes
 	createWormHoles( amountWormHoles );
 	
-	//init();
+	init();
 }
-
+//This function isn't being overriden so it needs to be called in constructor
 void SectorTemplate::init(){
 	addComponent( this->_skybox );
-	addComponent( this->_player );
+	//addComponent( this->_player );
 	addComponent( this->_fog );
 }
 
