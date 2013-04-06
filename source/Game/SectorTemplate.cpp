@@ -9,7 +9,9 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	_sectormanager = sectormanager;
 	// Creating Skybox
 	_skybox = new Skybox(skyBoxTexture, this);
-	
+	// Adding mist
+	_fog = new Mist(this);
+
 	// Setting the boundry
 	_boundry = boundryRadius;
 
@@ -25,6 +27,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 void SectorTemplate::init(){
 	addComponent( this->_skybox );
 	addComponent( this->_player );
+	addComponent( this->_fog );
 }
 
 void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
@@ -32,7 +35,7 @@ void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
 	for(unsigned int i = 0; i < amountOfWormHoles; i++){
 		wormHole = new WormHole(this->parent, i, irr::core::vector3df( rand() % int(_boundry*2) - int(_boundry), rand() % int(_boundry*2) - int(_boundry), rand() % int(_boundry*2) - int(_boundry) ) );
 		this->_wormHoles.push_back( wormHole );
-		addComponent(wormHole );
+		addComponent(wormHole);
 	}
 			printf("[SectorTemplate] -=*[End of Create WormHole]*=- \n");
 }

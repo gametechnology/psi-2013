@@ -4,18 +4,21 @@
 #include "Engine/Scene.h"
 #include "SectorManager.h"
 #include "WormHole.h"
+#include "Mist.h"
 #include "Messages.h"
 #include "Engine/Game.h"
 #include <vector>
+
 class SectorManager;
 class SectorTemplate : public Scene  {
 protected:
 	std::vector<WormHole*> _wormHoles;
 	float _boundry;
 	WormHole* wormHole;
-	vector3df *_playerPosition;
-	Entity *_player;
-	Entity *_skybox;
+	vector3df* _playerPosition;
+	Entity* _player;
+	Entity* _skybox;
+	Mist* _fog;
 public:
 	SectorManager* _sectormanager;
 	SectorTemplate(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundry, unsigned int amountWormHoles );
@@ -24,9 +27,6 @@ public:
 	void init();
 	void createWormHoles( unsigned int amountOfWormHoles );
 	virtual ~SectorTemplate();
-	
-
-
 };
 
 #endif

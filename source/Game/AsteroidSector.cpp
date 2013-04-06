@@ -29,11 +29,13 @@ AsteroidSector::~AsteroidSector() {
 }
 
 
-AstroidPlaceholder::AstroidPlaceholder(Composite* parent):Entity(parent){
-		this->node = Game::getSceneManager()->addSphereSceneNode(10,8,0,-1);
-		this->node->setMaterialFlag(EMF_LIGHTING, false);
-		this->node->setMaterialTexture(0,Game::driver->getTexture("../assets/Textures/SkyBoxes/skybox01.png"));
-	}
+AstroidPlaceholder::AstroidPlaceholder(Composite* parent):Entity(parent) {
+	this->node = Game::getSceneManager()->addSphereSceneNode(10,8,0,-1);
+	this->node->setMaterialFlag(EMF_LIGHTING, false);
+	this->node->setMaterialFlag(EMF_FOG_ENABLE, true);
+	this->node->setMaterialTexture(0,Game::driver->getTexture("../assets/Textures/SkyBoxes/skybox01.png"));
+}
+
 AstroidPlaceholder::~AstroidPlaceholder() {
 	Entity::~Entity();
 }

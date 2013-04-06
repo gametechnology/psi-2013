@@ -74,6 +74,12 @@
     <ClCompile Include="..\source\Game\AsteroidSector.cpp">
       <Filter>Source\Sector</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\Mist.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\NebulaSector.cpp">
+      <Filter>Source\Sector</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
@@ -152,6 +158,12 @@
       <Filter>Headers\Sector</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\AsteroidSector.h">
+      <Filter>Headers\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Mist.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\NebulaSector.h">
       <Filter>Headers\Sector</Filter>
     </ClInclude>
   </ItemGroup>

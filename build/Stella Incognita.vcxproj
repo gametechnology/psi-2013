@@ -102,6 +102,8 @@
     <ClCompile Include="..\source\Game\main.cpp" />
     <ClCompile Include="..\source\Game\MapGenerator.cpp" />
     <ClCompile Include="..\source\Game\MapSector.cpp" />
+    <ClCompile Include="..\source\Game\Mist.cpp" />
+    <ClCompile Include="..\source\Game\NebulaSector.cpp" />
     <ClCompile Include="..\source\Game\Player.cpp" />
     <ClCompile Include="..\source\Game\SectorManager.cpp" />
     <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
@@ -134,6 +136,8 @@
     <ClInclude Include="..\source\Game\MapGenerator.h" />
     <ClInclude Include="..\source\Game\MapSector.h" />
     <ClInclude Include="..\source\Game\Messages.h" />
+    <ClInclude Include="..\source\Game\Mist.h" />
+    <ClInclude Include="..\source\Game\NebulaSector.h" />
     <ClInclude Include="..\source\Game\Player.h" />
     <ClInclude Include="..\source\Game\SectorManager.h" />
     <ClInclude Include="..\source\Game\SectorTemplate.h" />
