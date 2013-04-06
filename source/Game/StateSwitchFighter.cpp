@@ -30,6 +30,7 @@ void StateSwitchFighter::handleWander()
 void StateSwitchFighter::handleFollow()
 {
 	StateSwitch::handleFollow();
+	StateSwitchFighter::getParent()->chase(StateSwitchFighter::getParent()->inRangeList.getLast()->position);
 }
 
 void StateSwitchFighter::handleOffensive()
