@@ -67,14 +67,14 @@ void EnemyManager::update()
 	fighter1->SetTarget(player->getPosition());
 	kamikaze1->steering();	
 
-	if((player->position - fighter1->position).getLength()>10 && (player->position - fighter1->position).getLength()<=fighter1->getLoS())
+	/*if((player->position - fighter1->position).getLength()>10 && (player->position - fighter1->position).getLength()<=fighter1->getLoS())
 	{
 		fighter1->chase(player->getPosition());
 	}	
 	if((player->position - kamikaze1->position).getLength()<kamikaze1->getLoS())
 	{
 		kamikaze1->chase(player->getPosition());
-	}
+	}*/
 	
 
 	for(unsigned int i=0; i<_enemyList.size(); i++) //loop through all asteroids, update these and check for contact with all other asteroids
