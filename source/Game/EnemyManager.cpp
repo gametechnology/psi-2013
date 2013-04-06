@@ -51,6 +51,7 @@ void EnemyManager::createEnemies()
 
 	
 	this->_enemyList.push_back(drone1);
+	this->_enemyList.push_back(kamikaze1);
 	this->_enemyList.push_back(fighter1);
 	this->_enemyList.push_back(asteroid1);
 	this->_enemyList.push_back(asteroid2);
@@ -82,7 +83,8 @@ void EnemyManager::update()
 		{
 			if(j!=i)
 			{
-				this->_enemyList[i]->contactGenerator(_enemyList[j]);	
+				if(dynamic_cast<EnemyAsteroid*>(_enemyList[i]) && dynamic_cast<EnemyAsteroid*>(_enemyList[j]))
+					this->_enemyList[i]->contactGenerator(_enemyList[j]);	
 			}
 		}
 
@@ -95,7 +97,6 @@ void EnemyManager::update()
 			}
 		}else if(dynamic_cast<EnemyFighter*>(_enemyList[i]))
 		{
-			_enemyList[i]->setTarget(player->position);
 			_enemyList[i]->steering();
 			if((player->position - _enemyList[i]->position).getLength() <= _enemyList[i]->getLoS())
 			{

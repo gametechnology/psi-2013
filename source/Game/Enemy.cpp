@@ -299,12 +299,6 @@ unsigned int Enemy::getMaxHealth()
 	return maxhealth_;
 }
 
-void Enemy::setTarget(vector3df target)
-{
-	this->_target = target;
-}
-
-
 void Enemy::chase(vector3df target)
 {
 	//get the positions
