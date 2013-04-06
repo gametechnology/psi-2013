@@ -14,6 +14,7 @@ void StateSwitchDrone::handleWander()
 void StateSwitchDrone::handleFollow()
 {
 	StateSwitch::handleFollow();
+	StateSwitchDrone::getParent()->chase(StateSwitchDrone::getParent()->inRangeList.getLast()->position);
 }
 
 void StateSwitchDrone::handleOffensive()
