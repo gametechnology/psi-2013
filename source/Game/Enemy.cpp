@@ -297,14 +297,13 @@ void Enemy::chase(vector3df target)
 	vector3df selfPos = this->getPosition();
 
 	vector3df distancetoTarget = target - selfPos;
-	if(distancetoTarget.getLengthSQ() <= 8000)
-	{
+	
 		//set state to chasing/attacking
 		this->velocity = distancetoTarget;
 		this->velocity.normalize();
 		this->velocity *= 0.1f;
 		this->position += this->velocity;
-	}
+	
 }
 Enemy::~Enemy(void)
 {
