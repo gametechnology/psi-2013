@@ -12,7 +12,7 @@ EnemyDrone::EnemyDrone(irr::core::vector3df position):Enemy()
 	this->setLoS(2000);
 
 	EnemyDrone::inRangeList = array<Entity*>();
-	EnemyDrone::stateSwitch = new StateSwitchDrone(StateSwitch::STATE_IDLE, this);
+	EnemyDrone::stateSwitch = new StateSwitchDrone(StateSwitch::STATE_WANDER, this);
 }
 EnemyDrone::~EnemyDrone(void)
 {
@@ -26,5 +26,6 @@ void EnemyDrone::chase(vector3df target)
 void EnemyDrone::update()
 {
 	EnemyDrone::stateSwitch->updateState();
+	EnemyDrone::inRangeList.clear();
 	Enemy::update();
 }

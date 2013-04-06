@@ -62,7 +62,7 @@ void EnemyManager::createEnemies()
 void EnemyManager::update()
 {
 	Scene::update();
-	drone1->steering();
+	//drone1->steering();
 	fighter1->steering();
 	fighter1->SetTarget(player->getPosition());
 	//kamikaze1->setTarget(player->getPosition());
@@ -70,7 +70,7 @@ void EnemyManager::update()
 
 	for(unsigned int i=0; i<_enemyList.size(); i++) //loop through all asteroids, update these and check for contact with all other asteroids
 	{
-		this->_enemyList[i]->update();
+		//this->_enemyList[i]->update();
 
 		for(unsigned int j=0; j<_enemyList.size(); j++)
 		{
@@ -78,6 +78,20 @@ void EnemyManager::update()
 			{
 				this->_enemyList[i]->contactGenerator(_enemyList[j]);	
 			}
-		}		
+		}
+
+		if(dynamic_cast<EnemyDrone*>(_enemyList[i]))
+		{
+			if((player->position - _enemyList[i]->position).getLength() <= _enemyList[i]->getLoS())
+			{
+				_enemyList[i]->inRangeList.push_back(player);
+			}
+		}else if(dynamic_cast<EnemyFighter*>(_enemyList[i]))
+		{
+			if((player->position - _enemyList[i]->position).getLength() <= _enemyList[i]->getLoS())
+			{
+				_enemyList[i]->inRangeList.push_back(player);
+			}
+		}
 	}
 }

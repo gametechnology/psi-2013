@@ -38,6 +38,7 @@ void EnemyFighter::loadLaser()
 void EnemyFighter::update()
 {
 	EnemyFighter::stateSwitch->updateState();
+	EnemyFighter::inRangeList.clear();
 
 	//Should be activated when in current state
 	this->_fireTime++;
