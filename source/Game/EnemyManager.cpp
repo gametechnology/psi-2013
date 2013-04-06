@@ -62,10 +62,7 @@ void EnemyManager::createEnemies()
 void EnemyManager::update()
 {
 	Scene::update();
-	//drone1->steering();
-	fighter1->steering();
 	//fighter1->SetTarget(player->getPosition());
-	kamikaze1->steering();	
 
 	/*if((player->position - fighter1->position).getLength()>10 && (player->position - fighter1->position).getLength()<=fighter1->getLoS())
 	{
@@ -91,6 +88,7 @@ void EnemyManager::update()
 
 		if(dynamic_cast<EnemyDrone*>(_enemyList[i]))
 		{
+			_enemyList[i]->steering();
 			if((player->position - _enemyList[i]->position).getLength() <= _enemyList[i]->getLoS())
 			{
 				_enemyList[i]->inRangeList.push_back(player);
@@ -98,6 +96,7 @@ void EnemyManager::update()
 		}else if(dynamic_cast<EnemyFighter*>(_enemyList[i]))
 		{
 			_enemyList[i]->setTarget(player->position);
+			_enemyList[i]->steering();
 			if((player->position - _enemyList[i]->position).getLength() <= _enemyList[i]->getLoS())
 			{
 				_enemyList[i]->inRangeList.push_back(player);
