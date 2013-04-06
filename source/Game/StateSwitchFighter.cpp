@@ -30,12 +30,21 @@ void StateSwitchFighter::handleWander()
 void StateSwitchFighter::handleFollow()
 {
 	StateSwitch::handleFollow();
-	StateSwitchFighter::getParent()->chase(StateSwitchFighter::getParent()->inRangeList.getLast()->position);
+
+	if((StateSwitchFighter::getParent()->inRangeList.getLast()->position - StateSwitchFighter::getParent()->position).getLength() > 10)
+	{
+		StateSwitchFighter::getParent()->chase(StateSwitchFighter::getParent()->inRangeList.getLast()->position);
+	}
 }
 
 void StateSwitchFighter::handleOffensive()
 {
 	StateSwitch::handleOffensive();
+
+	if((StateSwitchFighter::getParent()->inRangeList.getLast()->position - StateSwitchFighter::getParent()->position).getLength() > 10)
+	{
+		StateSwitchFighter::getParent()->chase(StateSwitchFighter::getParent()->inRangeList.getLast()->position);
+	}
 }
 
 void StateSwitchFighter::handleDefensive()
