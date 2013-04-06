@@ -12,6 +12,7 @@ public:
 	~EnemyFighter(void);
 
 	void SetTarget(vector3df target);
+	virtual void chase(vector3df target);
 
 	virtual void update();
 private:

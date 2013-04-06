@@ -17,6 +17,11 @@ EnemyFighter::EnemyFighter(irr::core::vector3df position): Enemy()
 	this->loadLaser();
 }
 
+void EnemyFighter::chase(vector3df target)
+{
+	Enemy::chase(target);
+}
+
 void EnemyFighter::SetTarget(vector3df target)
 {
 	this->_target = target;
