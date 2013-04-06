@@ -49,18 +49,28 @@ void StateSwitch::handleIdle()
 	if(parent_->getHealth() <= 0)
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEATH);
+		return;
 	}
 	parent_->setVelocity(vector3df(0,0,0));
 
 	if(parent_->inRangeList.size() > 0)
 	{
-		int random = RandomGenerator::getRandomInt(10, 1);
-		if(random > 5)
+		if(parent_->getHealth() <= (parent_->getMaxHealth() / 4))
 		{
-			StateSwitch::setState(StateSwitch::STATE_FOLLOW);
+			StateSwitch::setState(StateSwitch::STATE_FLEEING);
+		}else if(parent_->getHealth() <= (parent_->getMaxHealth() /3))
+		{
+			StateSwitch::setState(StateSwitch::STATE_DEFENSIVE);
 		}else
 		{
-			StateSwitch::setState(StateSwitch::STATE_OFFENSIVE);
+			int random = RandomGenerator::getRandomInt(10, 1);
+			if(random > 5)
+			{
+				StateSwitch::setState(StateSwitch::STATE_FOLLOW);
+			}else
+			{
+				StateSwitch::setState(StateSwitch::STATE_OFFENSIVE);
+			}
 		}
 	}
 }
@@ -70,30 +80,85 @@ void StateSwitch::handleWander()
 	if(parent_->getHealth() <= 0)
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEATH);
+		return;
+	}
+
+	if(parent_->inRangeList.size() > 0)
+	{
+		if(parent_->getHealth() <= (parent_->getMaxHealth() / 4))
+		{
+			StateSwitch::setState(StateSwitch::STATE_FLEEING);
+		}else if(parent_->getHealth() <= (parent_->getMaxHealth() /3))
+		{
+			StateSwitch::setState(StateSwitch::STATE_DEFENSIVE);
+		}else
+		{
+			int random = RandomGenerator::getRandomInt(10, 1);
+			if(random > 5)
+			{
+				StateSwitch::setState(StateSwitch::STATE_FOLLOW);
+			}else
+			{
+				StateSwitch::setState(StateSwitch::STATE_OFFENSIVE);
+			}
+		}
 	}
 }
 
 void StateSwitch::handleFollow()
 {
+	if(parent_->inRangeList.size() <= 0)
+	{
+		StateSwitch::setState(StateSwitch::STATE_IDLE);
+	}
+
 	if(parent_->getHealth() <= 0)
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEATH);
+		return;
+	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /4))
+	{
+		StateSwitch::setState(StateSwitch::STATE_FLEEING);
+	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /3))
+	{
+		StateSwitch::setState(StateSwitch::STATE_DEFENSIVE);
 	}
 }
 
 void StateSwitch::handleOffensive()
 {
+	if(parent_->inRangeList.size() <= 0)
+	{
+		StateSwitch::setState(StateSwitch::STATE_IDLE);
+	}
+
 	if(parent_->getHealth() <= 0)
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEATH);
+		return;
+	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /4))
+	{
+		StateSwitch::setState(StateSwitch::STATE_FLEEING);
+	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /3))
+	{
+		StateSwitch::setState(StateSwitch::STATE_DEFENSIVE);
 	}
 }
 
 void StateSwitch::handleDefensive()
 {
+	if(parent_->inRangeList.size() <= 0)
+	{
+		StateSwitch::setState(StateSwitch::STATE_IDLE);
+	}
+
 	if(parent_->getHealth() <= 0)
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEATH);
+		return;
+	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /4))
+	{
+		StateSwitch::setState(StateSwitch::STATE_FLEEING);
 	}
 }
 
@@ -102,6 +167,12 @@ void StateSwitch::handleFleeing()
 	if(parent_->getHealth() <= 0)
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEATH);
+		return;
+	}
+
+	if(parent_->inRangeList.size() <= 0)
+	{
+		StateSwitch::setState(StateSwitch::STATE_IDLE);
 	}
 }
 
