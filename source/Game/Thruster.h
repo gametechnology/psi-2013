@@ -13,7 +13,10 @@ public:
 	void update();
 	void handleMessage(unsigned int message, void* data);
 
+	void print();
+
 	float force_;
+
 	vector3df position;
 	vector3df nPosition;
 	vector3df direction;
@@ -26,7 +29,7 @@ public:
 	vector3df angularForce;
 	Entity * parent;
 	vector3df torque;
-private:
-	
+
+
 };
 

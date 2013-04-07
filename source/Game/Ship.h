@@ -15,7 +15,6 @@ public:
 	Ship(Composite * parent, vector3df position, vector3df rotation);
 	~Ship(void);
 
-	void update();
 	void init(int station);
 	void handleMessage(unsigned int message, void* data);
 	void setInertiaMatrix(float h, float w, float d, float m);
@@ -30,6 +29,8 @@ public:
 	vector3df forward;
 	vector3df right;
 	Thruster* thrusters[3];
+
+
 	int nrOfBullets;
 	Bullet *ammo;
 	int bulletNr;

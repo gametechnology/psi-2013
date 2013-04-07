@@ -38,30 +38,23 @@ void Ship::init(int station){
 	{
 		currentstation = new HelmStation(this);
 		addComponent(currentstation);
-		network = Net(false, camera, ammo);
+		//network = Net(false, camera, ammo);
 		
 	}
 	else 
 	{
 		currentstation = new WeaponStation(this);
 		addComponent(currentstation);
-		network = Net(true, ammo, ((WeaponStation*)currentstation)->cameramover);
+		//network = Net(true, ammo, ((WeaponStation*)currentstation)->cameramover);
 	}
 
 	
 	thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0,0, -4), &inertiaMatrix);
-	thrusters[1] = new Thruster(this, vector3df(0,0, -4), vector3df(-4, 0, 0 ),&inertiaMatrix);
-	thrusters[2] = new Thruster(this, vector3df(0,0, -4), vector3df(4, 0, 0 ),&inertiaMatrix);
+	thrusters[1] = new Thruster(this, vector3df(0,-2, -4), vector3df(0, -4, 0 ),&inertiaMatrix);
+	thrusters[2] = new Thruster(this, vector3df(0,2, -4), vector3df(0, 4, 0 ),&inertiaMatrix);
 
 	ShipMover* shipMover = new ShipMover(this, thrusters);
 	this->addComponent(shipMover);
-}
-
-void Ship::update(){
-	
-	Entity::update();
-	//testing w key
-	
 }
 
 void Ship::handleMessage(unsigned int message, void* data){

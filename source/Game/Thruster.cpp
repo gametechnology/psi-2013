@@ -27,10 +27,15 @@ Thruster::Thruster(Composite* parent, vector3df position, vector3df initialDirec
 	} else{
 		angularAccelaration = vector3df(0,0,0);
 	}
+	print();
+	//divide the force into vectors to get the
 
+}
 
-	//divide the force into vectors
-
+void Thruster::print(){
+	std::cout << "angular acceleration: [" << angularAccelaration.X << "," << angularAccelaration.Y << "," << angularAccelaration.Z << "]\n";
+	std::cout << "torque: [" << torque.X << "," << torque.Y << "," << torque.Z << "]\n";
+	std::cout << "dir: [" << direction.X << "," << direction.Y << "," << direction.Z << "]\n";
 }
 
 Thruster::~Thruster()
@@ -38,6 +43,7 @@ Thruster::~Thruster()
 
 
 }
+
 void Thruster::Activate(){
 
 }

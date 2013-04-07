@@ -23,7 +23,6 @@ public:
 	vector3df rotationY;
 	vector3df linearAcceleration;
 	vector3df angularAcceleration;
-private:
 	Thruster** thrusters;
 
 };
