@@ -29,3 +29,4 @@ build/Server/Debug/
 *.suo
 bin/Server/Server.exe
 *.exe
+*.exe
