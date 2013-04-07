@@ -309,7 +309,7 @@ void Enemy::chase(vector3df target)
 		//set state to chasing/attacking
 		this->velocity = distancetoTarget;
 		this->velocity.normalize();
-		this->velocity *= 0.001f;
+		this->velocity *= 0.005f;
 		this->position += this->velocity;
 	
 }
