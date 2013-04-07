@@ -12,8 +12,12 @@ Shipmap::Shipmap(Composite* parent):Entity(parent)
 
 	font = Game::device->getGUIEnvironment()->getBuiltInFont();
 
-	iconRadius = icon->getOriginalSize().Width/2;
+	iconRadius = icon->getOriginalSize().Height/2;
 	isMoving = isIntersecting = blockedE = onStation = false;
+
+	then = Game::device->getTimer()->getTime();
+	iconOffset = 30;
+	duration = 0;
 
 	tileSize = 64;
 
@@ -52,20 +56,19 @@ void Shipmap::init()
 
 void Shipmap::draw()
 {
+	Entity::draw();
 	/*
 	* Obscene dirty hack to stop this scene from drawing when there is a station loaded.
 	* TODO Revamp the engine so it can change scenes in a normal way.Obscene dirty hack to stop this scene from drawing when there is a station loaded.
 	*/
 	if(!blockedE)
 	{
-		Entity::draw();
-
 		Game::driver->draw2DImage(bg, core::position2d<s32>(0,0),
 			rect<s32>(0,0,bg->getOriginalSize().Width,bg->getOriginalSize().Height),
 			0, video::SColor(255,255,255,255), true);
 
 		Game::driver->draw2DImage(icon, core::position2d<s32>(position.X, position.Y),
-			rect<s32>(0, 0, icon->getOriginalSize().Width, icon->getOriginalSize().Height),
+			rect<s32>(iconOffset-30, 0, iconOffset, icon->getOriginalSize().Height),
 			0, video::SColor(255,255,255,255), true);
 
 		if(onStation)
@@ -81,6 +84,8 @@ void Shipmap::draw()
 
 void Shipmap::update()
 {
+	now = Game::device->getTimer()->getTime();
+
 	float playerSpeed = 0.7f;
 	float savedPosX = position.X;
 	float savedPosY = position.Y;
@@ -149,4 +154,17 @@ void Shipmap::update()
 	}
 
 	isMoving = isIntersecting = false;
+
+	const f32 frameDeltaTime = (f32)(now - then) / 1000.f; // Time in seconds
+
+	duration += frameDeltaTime;
+
+	if(duration > 0.5f) {
+		iconOffset += 30;
+		if(iconOffset >= 120)
+			iconOffset = 30;
+		duration = 0;
+	}
+
+	then = now;
 }

@@ -14,10 +14,13 @@ class Shipmap : public Entity
 	video::ITexture* bg;
 	video::ITexture* icon;
 
-	float iconRadius;
+	float iconRadius, duration;
+
+	u32 now, then;
+
 	bool isMoving, isIntersecting, onStation, blockedE;
 
-	int offsetX, offsetY, tileSize;
+	int offsetX, offsetY, tileSize, iconOffset;
 
 	int tiles[7][12];
 
