@@ -43,6 +43,8 @@ void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
 		this->_wormHoles.push_back( wormHole );
 		addComponent(wormHole);
 	}
+	int size = _wormHoles.size();
+			printf("[SectorTemplate] -=*[Size array %i ]*=- \n" , size);
 			printf("[SectorTemplate] -=*[End of Create WormHole]*=- \n");
 }
 
@@ -68,6 +70,7 @@ void SectorTemplate::update(){
 		printf("OUT OF BOUNDS!");
 	}
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
+		
 		irr::core::vector3df deltaPos = _wormHoles[i]->position - this->_camera->getPosition();
 		float collisionRadius = 50;
 		if( deltaPos.getLength() < collisionRadius ){			

@@ -9,6 +9,7 @@ void BaseSector::init(){
 
 void BaseSector::update(){
 	// All the update functionality here
+	SectorTemplate::update();
 }
 
 void BaseSector::handleMessage(unsigned int message, void* data) {

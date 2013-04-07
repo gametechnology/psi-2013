@@ -2,7 +2,7 @@
 #include "Messages.h"
 
 NebulaSector::NebulaSector(SectorManager* parent, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : SectorTemplate(parent,skyBoxTexture,boundryRadius,amountWormHoles) {
-	//init();
+	init();
 }
 
 void NebulaSector::init(){
