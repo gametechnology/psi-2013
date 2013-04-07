@@ -64,6 +64,7 @@ public:
 	void contactResolverA();
 	void contactResolverB();
 	void steering();
+	void wander();
 	signed int getHealth();
 	unsigned int getMaxHealth();
 
@@ -90,6 +91,7 @@ private:
 	unsigned int damage_;
 	unsigned int lineofsightrange_;
 	vector3df _target;
+	int _wanderTime;
 
 };
 #endif
