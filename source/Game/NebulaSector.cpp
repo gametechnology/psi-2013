@@ -6,9 +6,9 @@ NebulaSector::NebulaSector(SectorManager* parent, const io::path & skyBoxTexture
 }
 
 void NebulaSector::init(){
-	_fog->SetColor(SColor(255, 255, 0, 0));
-	_fog->SetNearDistance(50);
-	_fog->SetFarDistance(500);
+	_fog->SetColor(SColor(0, 50, 50, 50));
+	_fog->SetNearDistance(10);
+	_fog->SetFarDistance(1500);
 }
 
 void NebulaSector::update(){

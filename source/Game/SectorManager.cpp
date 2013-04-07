@@ -17,7 +17,7 @@ SectorManager::SectorManager(GalaxyMap* map) {
 }
 void SectorManager::init(){
 	//_currentSector = new SectorHomeBase(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
-	Game::addScene(new SectorHomeBase(this,"skybox02.png",200.0,_mapSector->connections.size()));
+	Game::addScene(new NebulaSector(this,"skybox02.png",200.0,_mapSector->connections.size()));
 }
 void SectorManager::handleMessage(unsigned int message, void* data) {
 	switch(message) {
