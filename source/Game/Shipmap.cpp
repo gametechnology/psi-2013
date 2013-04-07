@@ -9,7 +9,7 @@ Shipmap::Shipmap(Composite* parent):Entity(parent)
 	bg = Game::driver->getTexture("../assets/shipmap/map.png");
 	icon = Game::driver->getTexture("../assets/shipmap/icon.png");
 
-	iconRadius = 25;
+	iconRadius = 16;
 	isMoving = false;
 	isIntersecting = false;
 
@@ -18,8 +18,8 @@ Shipmap::Shipmap(Composite* parent):Entity(parent)
 	playerTile.x = 2;
 	playerTile.y = 3;
 
-	offsetX = 145;
-	offsetY = 80;
+	offsetX = 139;
+	offsetY = 72;
 
 	const int width = 12;
 	const int heigth = 7;
@@ -27,19 +27,21 @@ Shipmap::Shipmap(Composite* parent):Entity(parent)
 									0, 0, 1, 2, 1, 0, 0,
 									0, 0, 1, 0, 1, 0, 0,
 									0, 0, 1, 0, 1, 1, 1,
-									0, 0, 1, 0, 0, 2, 1,
+									0, 0, 1, 0, 0, 3, 1,
 									1, 1, 1, 0, 1, 1, 1,
-									1, 2, 1, 0, 1, 1, 1,
-									1, 0, 0, 0, 0, 2, 1,
+									1, 5, 1, 0, 1, 1, 1,
+									1, 0, 0, 0, 0, 4, 1,
 									1, 1, 1, 0, 1, 1, 1,
 									0, 0, 1, 0, 1, 0, 0,
-									0, 0, 1, 2, 1, 0, 0,
+									0, 0, 1, 6, 1, 0, 0,
 									0, 0, 1, 1, 1, 0, 0 };
 	for (int i = 0; i < width; i++)
 		for (int j = 0; j < heigth; j++)
 			tiles[i][j] = newtiles[i][j];
 
-	pos = vector2d<s32>((playerTile.x * tileSize) + offsetX, (playerTile.y * tileSize) + offsetY);
+	posX = (playerTile.x * tileSize) + tileSize / 4;
+	posY = (playerTile.y * tileSize) + tileSize / 4;
+	//pos = position2d<s32>((playerTile.x * tileSize) + offsetX, (playerTile.y * tileSize) + offsetY);
 }
 
 Shipmap::~Shipmap()
@@ -55,40 +57,49 @@ void Shipmap::draw()
 	Entity::draw();
 
 	Game::driver->draw2DImage(bg, rect<s32>(0,0,1060,600), rect<s32>(0,0,bg->getOriginalSize().Width,bg->getOriginalSize().Height));
-	Game::driver->draw2DImage(icon, vector2d<s32>(pos.X, pos.Y));
+	Game::driver->draw2DImage(icon, rect<s32>(posX + offsetX, posY + offsetY, posX + offsetX + iconRadius * 2, posY + offsetY + iconRadius * 2), rect<s32>(0, 0, icon->getOriginalSize().Width, icon->getOriginalSize().Height));
+
+	for (int i = 0; i < 12; i++)
+		for (int j = 0; j < 7; j++)
+			if (tiles[i][j] == 1)
+				Game::driver->draw2DImage(icon, rect<s32>((i * tileSize) + offsetX, (j * tileSize) + offsetY, (i * tileSize) + tileSize + offsetX, (j * tileSize) + tileSize + offsetY), rect<s32>(0, 0, icon->getOriginalSize().Width, icon->getOriginalSize().Height));
 }
 
 void Shipmap::update()
 {
-	float playerSpeed = 0.04f;
+	float playerSpeed = 0.25f;
+	float newPosX = posX;
+	float newPosY = posY;
 
 	Input input;
 
 	if (Input::KeyIsDown[irr::KEY_KEY_A])
 	{
 		isMoving = true;
-		pos.X -= playerSpeed;
+		newPosX -= playerSpeed;
 	}
-    if (Input::KeyIsDown[irr::KEY_KEY_D])
+    else if (Input::KeyIsDown[irr::KEY_KEY_D])
 	{
 		isMoving = true;
-		pos.X += playerSpeed;
+		newPosX += playerSpeed;
 	}
 	if (Input::KeyIsDown[irr::KEY_KEY_W])
 	{
 		isMoving = true;
-		pos.Y += playerSpeed;
+		newPosY -= playerSpeed;
 	}
-    if (Input::KeyIsDown[irr::KEY_KEY_S])
+    else if (Input::KeyIsDown[irr::KEY_KEY_S])
 	{
 		isMoving = true;
-		pos.Y -= playerSpeed;
+		newPosY += playerSpeed;
 	}
-
+	
 	if (isMoving)
 	{
-		playerTile.x = (pos.X - tileSize / 2) / tileSize;
-		playerTile.y = (pos.Y - tileSize / 2) / tileSize;
+		playerTile.x = (newPosX + iconRadius) / tileSize;
+		playerTile.y = (newPosY + iconRadius) / tileSize;
+
+		printf("%d, %d\n", playerTile.x, playerTile.y);
 
 		// check the surrounding tiles
 		for (int i = -1; i <= 1; i++)
@@ -98,13 +109,15 @@ void Shipmap::update()
 				// if free tile
 				if (tiles[playerTile.x + i][playerTile.y + j] == 0)
 					continue;
-				// if station tile
-				if (tiles[playerTile.x + i][playerTile.y + j] == 2)
+				// if station tiles
+				if (tiles[playerTile.x + i][playerTile.y + j] == 2) // || 3 || 4 || 5 || 6
 					continue; // do something
 				
 				// intersection test
-				float circleDistanceX = abs(pos.X + iconRadius - (playerTile.x + i) * tileSize);
-				float circleDistanceY = abs(pos.Y + iconRadius - (playerTile.y + j) * tileSize);
+				float circleDistanceX = abs((newPosX - offsetX) + iconRadius - (playerTile.x + i) * tileSize);
+				float circleDistanceY = abs((newPosY - offsetY) + iconRadius - (playerTile.y + j) * tileSize);
+
+				printf("%f, %f\n", circleDistanceX, circleDistanceY);
 				
 				if (circleDistanceX > (tileSize / 2) + iconRadius)
 					continue;
@@ -122,4 +135,12 @@ void Shipmap::update()
 			}
 		}
 	}
+
+	if (!isIntersecting)
+	{
+		posX = newPosX;
+		posY = newPosY;
+	}
+
+	isMoving = isIntersecting = false;
 }

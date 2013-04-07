@@ -10,7 +10,7 @@ Ship :: Ship( )
 {
 	//TODO remove temp stuff
 	this -> _defenceStation		= new DefenceStation( this );
-	this -> _helmStation		= new HelmStation( this );
+	//this -> _helmStation		= new HelmStation( this );
 	this -> _navigationStation	= new NavigationStation( this );
 	this -> _powerStation		= new PowerStation( this );
 	this -> _weaponStation		= new WeaponStation( this );

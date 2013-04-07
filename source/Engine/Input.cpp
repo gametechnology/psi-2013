@@ -9,7 +9,7 @@ bool Input::OnEvent(const SEvent& event)
 	//OutputDebugString(L"Event happened");
 	if (event.EventType == irr::EET_KEY_INPUT_EVENT){
 		KeyIsDown[event.KeyInput.Key] = event.KeyInput.PressedDown;
-		std::cout << " PRESSED" << event.KeyInput.Key;
+		//std::cout << " PRESSED" << event.KeyInput.Key;
 	}
 	return false;
 }
@@ -21,7 +21,7 @@ bool Input::IsKeyDown(EKEY_CODE keyCode) const
 
 Input::Input(void)
 {
-	OutputDebugString(L"Input made");
+	//OutputDebugString(L"Input made");
 	//std::cout << "Input made"<<std::endl;
 	//for (u32 i=0; i<KEY_KEY_CODES_COUNT; ++i)
 			//KeyIsDown[i] = false;

@@ -31,7 +31,7 @@ void DefenceStation :: Damage( )
 	int random = rand( ) % 5;
 
 	//Station *s = this -> _ship -> GetStation( ( STATION_TYPE ) random );
-	_ship ->Blaat( );
+	//_ship ->Blaat( );
 	//std :: cout << &s;
 }
 

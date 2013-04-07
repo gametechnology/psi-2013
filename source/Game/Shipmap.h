@@ -9,7 +9,8 @@ private:
 	video::ITexture* bg;
 	video::ITexture* icon;
 
-	vector2d<s32> pos;
+	float posX;
+	float posY;
 	float iconRadius;
 	bool isMoving;
 	bool isIntersecting;
