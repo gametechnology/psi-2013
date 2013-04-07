@@ -18,8 +18,8 @@ Shipmap::Shipmap(Composite* parent):Entity(parent)
 	playerTile.x = 2;
 	playerTile.y = 3;
 
-	offsetX = 145;
-	offsetY = 80;
+	offsetX = 139;
+	offsetY = 72;
 
 	const int height = 7;
 	const int width = 12;
@@ -104,25 +104,25 @@ void Shipmap::update()
 	if (isMoving)
 	{
 		int leftTile = (posX - offsetX) / tileSize;
-		int rightTile = ((posX + iconRadius * 2.2f) - offsetX) / tileSize;
+		int rightTile = ((posX + iconRadius * 2) - offsetX) / tileSize;
 		int topTile = (posY - offsetY) / tileSize;
-		int bottomTile = ((posY + iconRadius * 2.2f) - offsetY) / tileSize;
+		int bottomTile = ((posY + iconRadius * 2) - offsetY) / tileSize;
 
 		bool collision = false;
 
-		if (tiles[playerTile.y][leftTile] == 1)
+		if (tiles[topTile][leftTile] == 1 || tiles[bottomTile][leftTile] == 1)
 		{
 			collision = true;
 		}
-		if (tiles[playerTile.y][rightTile] == 1)
+		if (tiles[topTile][rightTile] == 1 || tiles[bottomTile][rightTile] == 1)
 		{
 			collision = true;
 		}
-		if (tiles[topTile][playerTile.x] == 1)
+		if (tiles[topTile][leftTile] == 1 || tiles[topTile][rightTile] == 1)
 		{
 			collision = true;
 		}
-		if (tiles[bottomTile][playerTile.x] == 1)
+		if (tiles[bottomTile][leftTile] == 1 || tiles[bottomTile][rightTile] == 1)
 		{
 			collision = true;
 		}
