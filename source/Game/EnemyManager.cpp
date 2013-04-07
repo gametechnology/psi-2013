@@ -83,7 +83,7 @@ void EnemyManager::update()
 		{
 			if(j!=i)
 			{
-				if(dynamic_cast<EnemyFighter*>(_enemyList[i]) && dynamic_cast<EnemyFighter*>(_enemyList[j]))
+				if(!dynamic_cast<EnemyFighter*>(_enemyList[i]) && !dynamic_cast<EnemyFighter*>(_enemyList[j]))
 					this->_enemyList[i]->contactGenerator(_enemyList[j]);	
 			}
 		}
