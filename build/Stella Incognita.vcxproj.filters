@@ -69,9 +69,6 @@
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\HelmStation.cpp">
-      <Filter>Source Files\Stations</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
@@ -152,9 +149,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
-      <Filter>Header Files\Stations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Stations\HelmStation.h">
       <Filter>Header Files\Stations</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\NavigationStation.h">

@@ -30,3 +30,4 @@ build/Server/Debug/
 bin/Server/Server.exe
 *.exe
 *.exe
+assets/shipmap/Thumbs.db

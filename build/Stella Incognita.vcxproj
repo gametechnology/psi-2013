@@ -110,7 +110,6 @@
     <ClCompile Include="..\source\Game\Skybox.cpp" />
     <ClCompile Include="..\source\Game\Sprite.cpp" />
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp" />
-    <ClCompile Include="..\source\Game\Stations\HelmStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\PowerStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\Station.cpp" />
@@ -140,7 +139,6 @@
     <ClInclude Include="..\source\Game\Skybox.h" />
     <ClInclude Include="..\source\Game\Sprite.h" />
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h" />
-    <ClInclude Include="..\source\Game\Stations\HelmStation.h" />
     <ClInclude Include="..\source\Game\Stations\NavigationStation.h" />
     <ClInclude Include="..\source\Game\Stations\PowerStation.h" />
     <ClInclude Include="..\source\Game\Stations\Station.h" />
