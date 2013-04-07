@@ -9,8 +9,8 @@ private:
 	video::ITexture* bg;
 	video::ITexture* icon;
 
-	float posX;
-	float posY;
+	int posX;
+	int posY;
 	float iconRadius;
 	bool isMoving;
 	bool isIntersecting;
@@ -23,7 +23,7 @@ private:
 	int offsetY;
 	int tileSize;
 
-	int tiles[12][7];
+	int tiles[7][12];
 
 public:
 	Shipmap(Composite* parent);

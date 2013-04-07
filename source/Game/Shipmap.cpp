@@ -9,7 +9,7 @@ Shipmap::Shipmap(Composite* parent):Entity(parent)
 	bg = Game::driver->getTexture("../assets/shipmap/map.png");
 	icon = Game::driver->getTexture("../assets/shipmap/icon.png");
 
-	iconRadius = 16;
+	iconRadius = 25;
 	isMoving = false;
 	isIntersecting = false;
 
@@ -18,29 +18,28 @@ Shipmap::Shipmap(Composite* parent):Entity(parent)
 	playerTile.x = 2;
 	playerTile.y = 3;
 
-	offsetX = 139;
-	offsetY = 72;
+	offsetX = 145;
+	offsetY = 80;
 
+	const int height = 7;
 	const int width = 12;
-	const int heigth = 7;
-	int newtiles[width][heigth] = { 0, 0, 1, 1, 1, 0, 0,
-									0, 0, 1, 2, 1, 0, 0,
-									0, 0, 1, 0, 1, 0, 0,
-									0, 0, 1, 0, 1, 1, 1,
-									0, 0, 1, 0, 0, 3, 1,
-									1, 1, 1, 0, 1, 1, 1,
-									1, 5, 1, 0, 1, 1, 1,
-									1, 0, 0, 0, 0, 4, 1,
-									1, 1, 1, 0, 1, 1, 1,
-									0, 0, 1, 0, 1, 0, 0,
-									0, 0, 1, 6, 1, 0, 0,
-									0, 0, 1, 1, 1, 0, 0 };
-	for (int i = 0; i < width; i++)
-		for (int j = 0; j < heigth; j++)
-			tiles[i][j] = newtiles[i][j];
+	int newMap[height][width] = { 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0,
+								  0, 0, 0, 0, 0, 1, 2, 0, 1, 0, 0, 0,
+								  1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1,
+								  1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1,
+								  1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 
+								  0, 0, 0, 1, 2, 1, 1, 2, 1, 0, 0, 0,
+								  0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0 };
 
-	posX = (playerTile.x * tileSize) + tileSize / 4;
-	posY = (playerTile.y * tileSize) + tileSize / 4;
+
+	for (int i = 0; i < height; i++)
+		for (int j = 0; j < width; j++)
+			tiles[i][j] = newMap[i][j];
+	
+	posX = (playerTile.x * tileSize) + offsetX;
+	posY = (playerTile.y * tileSize) + offsetY;
+	//posX = (playerTile.x * tileSize) + tileSize / 4;
+	//posY = (playerTile.y * tileSize) + tileSize / 4;
 	//pos = position2d<s32>((playerTile.x * tileSize) + offsetX, (playerTile.y * tileSize) + offsetY);
 }
 
@@ -57,89 +56,82 @@ void Shipmap::draw()
 	Entity::draw();
 
 	Game::driver->draw2DImage(bg, rect<s32>(0,0,1060,600), rect<s32>(0,0,bg->getOriginalSize().Width,bg->getOriginalSize().Height));
-	Game::driver->draw2DImage(icon, rect<s32>(posX + offsetX, posY + offsetY, posX + offsetX + iconRadius * 2, posY + offsetY + iconRadius * 2), rect<s32>(0, 0, icon->getOriginalSize().Width, icon->getOriginalSize().Height));
+	Game::driver->draw2DImage(icon, vector2d<s32>(posX, posY));
+	//Game::driver->draw2DImage(icon, rect<s32>(posX + offsetX, posY + offsetY, posX + offsetX + iconRadius * 2, posY + offsetY + iconRadius * 2), rect<s32>(0, 0, icon->getOriginalSize().Width, icon->getOriginalSize().Height));
 
-	for (int i = 0; i < 12; i++)
+	/*for (int i = 0; i < 12; i++)
 		for (int j = 0; j < 7; j++)
 			if (tiles[i][j] == 1)
-				Game::driver->draw2DImage(icon, rect<s32>((i * tileSize) + offsetX, (j * tileSize) + offsetY, (i * tileSize) + tileSize + offsetX, (j * tileSize) + tileSize + offsetY), rect<s32>(0, 0, icon->getOriginalSize().Width, icon->getOriginalSize().Height));
+				Game::driver->draw2DImage(icon, rect<s32>((i * tileSize) + offsetX, (j * tileSize) + offsetY, (i * tileSize) + tileSize + offsetX, (j * tileSize) + tileSize + offsetY), rect<s32>(0, 0, icon->getOriginalSize().Width, icon->getOriginalSize().Height));*/
 }
 
 void Shipmap::update()
 {
-	float playerSpeed = 0.25f;
-	float newPosX = posX;
-	float newPosY = posY;
+	float playerSpeed = 1.0f;
+	float savedPosX = posX;
+	float savedPosY = posY;
 
 	Input input;
+
+	playerTile.x = (posX - offsetX) / tileSize;
+	playerTile.y = (posY - offsetY) / tileSize;
 
 	if (Input::KeyIsDown[irr::KEY_KEY_A])
 	{
 		isMoving = true;
-		newPosX -= playerSpeed;
+		posX -= playerSpeed;
 	}
     else if (Input::KeyIsDown[irr::KEY_KEY_D])
 	{
 		isMoving = true;
-		newPosX += playerSpeed;
+		posX += playerSpeed;
 	}
 	if (Input::KeyIsDown[irr::KEY_KEY_W])
 	{
 		isMoving = true;
-		newPosY -= playerSpeed;
+		posY -= playerSpeed;
 	}
     else if (Input::KeyIsDown[irr::KEY_KEY_S])
 	{
 		isMoving = true;
-		newPosY += playerSpeed;
+		posY += playerSpeed;
+	}
+	if (Input::KeyIsDown[irr::KEY_KEY_E] || Input::KeyIsDown[irr::KEY_KEY_F])
+	{
+		// enter station routine on E or F
 	}
 	
 	if (isMoving)
 	{
-		playerTile.x = (newPosX + iconRadius) / tileSize;
-		playerTile.y = (newPosY + iconRadius) / tileSize;
+		int leftTile = (posX - offsetX) / tileSize;
+		int rightTile = ((posX + iconRadius * 2.2f) - offsetX) / tileSize;
+		int topTile = (posY - offsetY) / tileSize;
+		int bottomTile = ((posY + iconRadius * 2.2f) - offsetY) / tileSize;
 
-		printf("%d, %d\n", playerTile.x, playerTile.y);
+		bool collision = false;
 
-		// check the surrounding tiles
-		for (int i = -1; i <= 1; i++)
-		{ 
-			for (int j = -1; j <= 1; j++)
-			{
-				// if free tile
-				if (tiles[playerTile.x + i][playerTile.y + j] == 0)
-					continue;
-				// if station tiles
-				if (tiles[playerTile.x + i][playerTile.y + j] == 2) // || 3 || 4 || 5 || 6
-					continue; // do something
-				
-				// intersection test
-				float circleDistanceX = abs((newPosX - offsetX) + iconRadius - (playerTile.x + i) * tileSize);
-				float circleDistanceY = abs((newPosY - offsetY) + iconRadius - (playerTile.y + j) * tileSize);
-
-				printf("%f, %f\n", circleDistanceX, circleDistanceY);
-				
-				if (circleDistanceX > (tileSize / 2) + iconRadius)
-					continue;
-				if (circleDistanceY > (tileSize / 2) + iconRadius)
-					continue;
-				
-				if (circleDistanceX <= (tileSize / 2))
-					isIntersecting = true;
-				if (circleDistanceY <= (tileSize / 2))
-					isIntersecting = true;
-				
-				float cornerDistanceSquared = pow(circleDistanceX - tileSize / 2, 2) + pow(circleDistanceY - tileSize / 2, 2);
-				if (cornerDistanceSquared <= pow(iconRadius, 2))
-					isIntersecting = true;
-			}
+		if (tiles[playerTile.y][leftTile] == 1)
+		{
+			collision = true;
 		}
-	}
+		if (tiles[playerTile.y][rightTile] == 1)
+		{
+			collision = true;
+		}
+		if (tiles[topTile][playerTile.x] == 1)
+		{
+			collision = true;
+		}
+		if (tiles[bottomTile][playerTile.x] == 1)
+		{
+			collision = true;
+		}
 
-	if (!isIntersecting)
-	{
-		posX = newPosX;
-		posY = newPosY;
+		if (collision)
+		{
+			posX = savedPosX;
+			posY = savedPosY;
+		}
 	}
 
 	isMoving = isIntersecting = false;
