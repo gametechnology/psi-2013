@@ -321,7 +321,7 @@ void Enemy::wander()
 	float velY = rand()%20-10;
 	float velZ = rand()%20-10;
 
-	if(this->_wanderTime >= 300)
+	if(this->_wanderTime >= 10000)
 	{
 		this->velocity.X +=velX * 0.1f;
 		this->velocity.Y +=velY * 0.1f;
