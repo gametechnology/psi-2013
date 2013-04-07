@@ -2,6 +2,9 @@
 #include "Messages.h"
 #include <algorithm>
 #include  "AsteroidSector.h"
+#include  "NebulaSector.h"
+#include  "SectorHomeBase.h"
+#include  "BaseSector.h"
 SectorManager::SectorManager(GalaxyMap* map) {
 	_map=map;
 	for(std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
@@ -15,12 +18,12 @@ SectorManager::SectorManager(GalaxyMap* map) {
 void SectorManager::init(){
 	//_currentSector = new SectorTemplate(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
 	//_currentSector = new AstroidSector("skybox02.png",10.0,_mapSector->connections.size());
-	Game::addScene(new AsteroidSector(this,"skybox02.png",10.0,_mapSector->connections.size()));
+	Game::addScene(new SectorHomeBase(this,"skybox02.png",10.0,_mapSector->connections.size()));
 	//SectorManager::addComponent(_currentSector);
 }
 void SectorManager::handleMessage(unsigned int message, void* data) {
 	switch(message) {
-		case NEXT_SECTOR: /* Switch Sector */
+		case NEXT_SECTOR: //Switch Sector 
 			//Determen which is the new sector
 			int index = (int)data;
 			std::list<MapSector*>::iterator temp = _mapSector->connections.begin();
@@ -36,7 +39,7 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 				case EMPTY:
 					//delete _currentSector;
 					printf("[SectorTemplate] EMPTY \n");
-					Game::addScene(new AsteroidSector(this,"skybox02.png",200.0,_mapSector->connections.size()));
+					Game::addScene(new BaseSector(this,"skybox02.png",200.0,_mapSector->connections.size()));
 					break;
 				case ASTEROID:
 					printf("[SectorTemplate] ASTEROID \n");
@@ -46,22 +49,22 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 				case NEBULA:
 					printf("[SectorTemplate] NEBULA \n");
 					//delete _currentSector;
-					Game::addScene(new AsteroidSector(this,"skybox02.png",200.0,_mapSector->connections.size()));
+					Game::addScene(new NebulaSector(this,"skybox02.png",200.0,_mapSector->connections.size()));
 					break;
 				case SOLAR: 
 					printf("[SectorTemplate] SOLAR \n");
 					//delete _currentSector;
-					Game::addScene(new AsteroidSector(this,"skybox02.png",200.0,_mapSector->connections.size()));
+					Game::addScene(new BaseSector(this,"skybox02.png",200.0,_mapSector->connections.size()));
 					break;
 				case HOME_BLUE:
 					printf("[SectorTemplate] HOME_BLUE \n");
 					//delete _currentSector;
-					Game::addScene(new AsteroidSector(this,"skybox02.png",200.0,_mapSector->connections.size()));
+					Game::addScene(new SectorHomeBase(this,"skybox02.png",200.0,_mapSector->connections.size()));
 					break;
 				case HOME_RED:
 					printf("[SectorTemplate] HOME_RED \n");
 					//delete _currentSector;
-					Game::addScene(new AsteroidSector(this,"skybox02.png",200.0,_mapSector->connections.size()));
+					Game::addScene(new SectorHomeBase(this,"skybox02.png",200.0,_mapSector->connections.size()));
 					break;
 			}
 

@@ -80,6 +80,9 @@
     <ClCompile Include="..\source\Game\NebulaSector.cpp">
       <Filter>Source\Sector</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\SectorHomeBase.cpp">
+      <Filter>Source\Sector</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
@@ -164,6 +167,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\NebulaSector.h">
+      <Filter>Headers\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\SectorHomeBase.h">
       <Filter>Headers\Sector</Filter>
     </ClInclude>
   </ItemGroup>

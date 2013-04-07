@@ -105,6 +105,7 @@
     <ClCompile Include="..\source\Game\Mist.cpp" />
     <ClCompile Include="..\source\Game\NebulaSector.cpp" />
     <ClCompile Include="..\source\Game\Player.cpp" />
+    <ClCompile Include="..\source\Game\SectorHomeBase.cpp" />
     <ClCompile Include="..\source\Game\SectorManager.cpp" />
     <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
     <ClCompile Include="..\source\Game\Ship.cpp" />
@@ -139,6 +140,7 @@
     <ClInclude Include="..\source\Game\Mist.h" />
     <ClInclude Include="..\source\Game\NebulaSector.h" />
     <ClInclude Include="..\source\Game\Player.h" />
+    <ClInclude Include="..\source\Game\SectorHomeBase.h" />
     <ClInclude Include="..\source\Game\SectorManager.h" />
     <ClInclude Include="..\source\Game\SectorTemplate.h" />
     <ClInclude Include="..\source\Game\Ship.h" />

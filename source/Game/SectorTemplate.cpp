@@ -48,7 +48,7 @@ void SectorTemplate::update(){
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
 		irr::core::vector3df deltaPos = _wormHoles[i]->position - this->_player->position;
 		if( deltaPos.getLength() < 10 ){			
-			printf("[SectorTemplate]i = %i &i = %i \n",i,&i);
+			//printf("[SectorTemplate]i = %i &i = %i \n",i,&i);
 			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
 
 			break;
