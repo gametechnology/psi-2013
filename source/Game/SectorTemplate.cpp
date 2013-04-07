@@ -33,7 +33,9 @@ void SectorTemplate::init(){
 void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
 			printf("[SectorTemplate] -=*[Begin of Create WormHole]*=- \n");
 	for(unsigned int i = 0; i < amountOfWormHoles; i++){
+		irr::core::vector3df* placeVector = new irr::core::vector3df();
 		wormHole = new WormHole(this->parent, i, irr::core::vector3df( rand() % int(_boundry*2) - int(_boundry), rand() % int(_boundry*2) - int(_boundry), rand() % int(_boundry*2) - int(_boundry) ) );
+		wormHole->position.setLength(rand() % int(_boundry* 0.2) + int(_boundry* 0.8));
 		this->_wormHoles.push_back( wormHole );
 		addComponent(wormHole);
 	}
