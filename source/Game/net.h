@@ -24,6 +24,7 @@ using namespace gui;
 #endif
 class Net{
 	private:
+		static std::string ipAddress;
 		static int packageid ;
 		static int packageidrecieve ;
 		static void senderthread(void * var);
@@ -33,5 +34,6 @@ class Net{
 	public:
 		Net(bool IsWeapon, void * sendervar, void * recievervar);
 		Net();
+		
 };
 #endif

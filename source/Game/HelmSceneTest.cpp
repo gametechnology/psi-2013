@@ -18,7 +18,27 @@ HelmSceneTest::~HelmSceneTest(void)
 
 void HelmSceneTest::init()
 {
+	char station;
 	bool Isweapon = false;
+
+	while(true)
+	{
+		std::cout << "helm station? y is helm, n is weapon" << std::endl;
+		std::cin >> station;
+
+		if(station == 'y')
+		{
+			Isweapon = false;
+			break;
+		}
+		else if(station == 'n')
+		{
+			Isweapon = true;
+			break;
+		}
+	}
+
+	//Net::ipadress = sf::IPAddress(test);
 
 	//Entity* cube = new Entity(this);
 	//cube->createNode("../../assets/Models/Cube.3ds");

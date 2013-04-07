@@ -25,6 +25,7 @@ sf::Packet& operator >>(sf::Packet& Packet, Bullet& C)
 }
 int Net::packageid;
 int Net::packageidrecieve;
+std::string Net::ipAddress;
 
 void Net::senderthread(void * var)
 {    
@@ -41,7 +42,7 @@ void Net::senderthread(void * var)
 
 		// Create the UDP socket
 
-		if (Socket.Send(packettosend, "145.92.73.131", 7000) != sf::Socket::Done)
+		if (Socket.Send(packettosend, Net::ipAddress, 30000) != sf::Socket::Done)
 		{
 			// Error...
 
@@ -58,7 +59,7 @@ void  Net::revieverthread(void * var)
 	Camera* camera = nodeother->camera;
 	sf::SocketUDP Socket;
 
-	if (!Socket.Bind(7000))
+	if (!Socket.Bind(30000))
 		return;
 
 	while (true)
@@ -112,7 +113,7 @@ void Net::senderthreadWeapon(void * var)
 
 		// Create the UDP socket
 
-		if (Socket.Send(packettosend, "145.92.73.131", 7000) != sf::Socket::Done)
+		if (Socket.Send(packettosend, Net::ipAddress, 30000) != sf::Socket::Done)
 		{
 			// Error...
 
@@ -126,7 +127,7 @@ void  Net::revieverthreadWeapon(void * var)
 {
 	Bullet * nodeother = (Bullet*)var;
 	sf::SocketUDP Socket;
-	if (!Socket.Bind(7000))
+	if (!Socket.Bind(30000))
 		return;
 
 	while (true)
@@ -153,7 +154,7 @@ void  Net::revieverthreadWeapon(void * var)
 				}
 			}
 		}
-		
+
 	}
 	Socket.Close();
 	return;
@@ -161,6 +162,8 @@ void  Net::revieverthreadWeapon(void * var)
 
 Net::Net(bool IsWeapon, void * sendervar, void * recievervar)
 {
+	std::cout << "ip address of other pc" << std::endl;
+	std::cin >> Net::ipAddress;
 
 	if(IsWeapon)
 	{

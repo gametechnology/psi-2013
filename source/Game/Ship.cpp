@@ -38,14 +38,14 @@ void Ship::init(int station){
 	{
 		currentstation = new HelmStation(this);
 		addComponent(currentstation);
-		//network = Net(false, camera, ammo);
+		network = new Net(false, camera, ammo);
 		
 	}
 	else 
 	{
 		currentstation = new WeaponStation(this);
 		addComponent(currentstation);
-		//network = Net(true, ammo, ((WeaponStation*)currentstation)->cameramover);
+		network = new Net(true, ammo, ((WeaponStation*)currentstation)->cameramover);
 	}
 
 	

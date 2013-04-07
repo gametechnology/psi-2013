@@ -18,7 +18,7 @@ public:
 	void init(int station);
 	void handleMessage(unsigned int message, void* data);
 	void setInertiaMatrix(float h, float w, float d, float m);
-	Net network;
+	Net* network;
 	int stationnumber;
 	Entity* currentstation;
 	Input* input;
