@@ -65,7 +65,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LinkIncremental>true</LinkIncremental>
+    <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin\</OutDir>
     <TargetName>$(ProjectName) Debug</TargetName>
     <IntDir>..\temp\GameDebug\DEBUG\</IntDir>
