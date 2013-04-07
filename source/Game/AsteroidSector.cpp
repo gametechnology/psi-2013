@@ -3,7 +3,7 @@
 
 
 AsteroidSector::AsteroidSector(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : SectorTemplate(sectormanager, skyBoxTexture,boundryRadius,amountWormHoles) {
-	init();
+	//init();
 }
 void AsteroidSector::init(){
 	for(int i=0;i<1000;i++){

@@ -3,7 +3,7 @@
 
 
 SectorHomeBase::SectorHomeBase(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : SectorTemplate(sectormanager, skyBoxTexture,boundryRadius,amountWormHoles) {
-	init();
+	//init();
 }
 void SectorHomeBase::init(){
 	//TODO causes memory leak should create entity's

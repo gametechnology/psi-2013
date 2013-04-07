@@ -1,7 +1,7 @@
 #include "BaseSector.h"
 
 BaseSector::BaseSector(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : SectorTemplate(sectormanager, skyBoxTexture,boundryRadius,amountWormHoles) {
-	init();
+	//init();
 }
 void BaseSector::init(){
 	// Your code here
