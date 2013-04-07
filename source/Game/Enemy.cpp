@@ -153,7 +153,7 @@ void Enemy::contactResolverB()
 	velocity *= -1;
 }
 
-void Enemy::contactGenerator(Player* input)
+/*void Enemy::contactGenerator(Player* input)
 {
 	float distance = position.getDistanceFrom(input->position);
 	float radii = input->radius_ + radius_;
@@ -161,7 +161,7 @@ void Enemy::contactGenerator(Player* input)
 	{
 		contactResolverB();
 	}
-}
+}*/
 
 void Enemy::contactGenerator(Enemy* input)
 {
@@ -309,7 +309,7 @@ void Enemy::chase(vector3df target)
 		//set state to chasing/attacking
 		this->velocity = distancetoTarget;
 		this->velocity.normalize();
-		this->velocity *= 0.1f;
+		this->velocity *= 0.001f;
 		this->position += this->velocity;
 	
 }

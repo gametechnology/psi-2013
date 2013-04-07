@@ -28,21 +28,22 @@ void EnemyManager::createEnemies()
 {
 	this->_enemyList = array<Enemy*>();
 
-	drone1 = new EnemyDrone(irr::core::vector3df(0,0,10));
-	drone1->setVelocity(vector3df(0.005f,0,0));
+	drone1 = new EnemyDrone(irr::core::vector3df(0,0,40));
+	drone1->setVelocity(vector3df(0.0005f,0,0));
 	drone1->setRotation(irr::core::vector3df(0,1,0));
 	addComponent(drone1);
 	fighter1 = new EnemyFighter(irr::core::vector3df(100,0,0));
-	fighter1->setVelocity(vector3df(0.005f,0,0));
+	fighter1->setVelocity(vector3df(0.0005f,0,0));
 	fighter1->setRotation(irr::core::vector3df(0,1,0));
 	addComponent(fighter1);
-	asteroid1 = new EnemyAsteroid(irr::core::vector3df(0,0,0),vector3df(0,0.005f,0));
+	asteroid1 = new EnemyAsteroid(irr::core::vector3df(0,0,0),vector3df(0,0.0005f,0));
 	addComponent(asteroid1);
-	asteroid2 = new EnemyAsteroid(irr::core::vector3df(0,10,0),vector3df(0,-0.005f,0));
+	asteroid2 = new EnemyAsteroid(irr::core::vector3df(0,10,0),vector3df(0,-0.0005f,0));
 	addComponent(asteroid2);
 	
 	//kamikaze enemy
-	kamikaze1 = new EnemyDrone(irr::core::vector3df(50,50,50));
+	kamikaze1 = new EnemyDrone(irr::core::vector3df(30,30,30));
+	kamikaze1->setVelocity(vector3df(0.0005f,0,0));
 	addComponent(kamikaze1);
 
 	//dummyplayer

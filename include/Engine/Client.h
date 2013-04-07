@@ -1,5 +1,5 @@
-#ifndef NETWORKABLE
-#define NETWORKABLE
+#ifndef CLIENT
+#define CLIENT
 
 #include <enet\enet.h>
 #include <string>

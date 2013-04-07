@@ -10,7 +10,6 @@
 class Skybox : public Entity  {
 public:
 	Skybox(irr::io::IReadFile* filePath, Composite* parent);
-	Skybox(irr::io::path filePath, Composite* parent);
 	virtual ~Skybox();
 };
 

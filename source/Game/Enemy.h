@@ -59,7 +59,7 @@ public:
 	void chase(vector3df target);
 	void setTarget(vector3df target);
 
-	void contactGenerator(Player* input);
+	/*void contactGenerator(Player* input);*/
 	void contactGenerator(Enemy* input);
 	void contactResolverA();
 	void contactResolverB();
