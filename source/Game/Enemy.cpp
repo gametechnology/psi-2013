@@ -327,7 +327,7 @@ void Enemy::wander()
 		this->velocity.Y +=velY * 0.1f;
 		this->velocity.Z +=velZ * 0.1f;
 		this->velocity.normalize();
-		this->velocity *= 0.1f;
+		this->velocity *= 0.01f;
 		//std::cout <<  "----- X: " << this->velocity.X << ", Y: "<< this->velocity.Y << ", Z: "<< this->velocity.Z;
 		this->_wanderTime = 0;
 	}
