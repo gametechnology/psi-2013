@@ -11,31 +11,31 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\source\Game\Bullet.h" />
-    <ClInclude Include="..\..\source\Game\CalculateRotation.h" />
-    <ClInclude Include="..\..\source\Game\Ship.h" />
-    <ClInclude Include="..\..\Source\Game\WeaponCameraMover.h" />
-    <ClInclude Include="..\..\source\Game\HelmSceneTest.h" />
-    <ClInclude Include="..\..\source\Game\HelmStation.h" />
-    <ClInclude Include="..\..\source\Game\net.h" />
-    <ClInclude Include="..\..\source\Game\ShipMover.h" />
-    <ClInclude Include="..\..\source\Game\Skybox.h" />
-    <ClInclude Include="..\..\source\Game\Thruster.h" />
-    <ClInclude Include="..\..\source\Game\WeaponStation.h" />
+    <ClInclude Include="..\source\Game\Bullet.h" />
+    <ClInclude Include="..\source\Game\CalculateRotation.h" />
+    <ClInclude Include="..\source\Game\HelmSceneTest.h" />
+    <ClInclude Include="..\source\Game\HelmStation.h" />
+    <ClInclude Include="..\source\Game\net.h" />
+    <ClInclude Include="..\source\Game\Ship.h" />
+    <ClInclude Include="..\source\Game\ShipMover.h" />
+    <ClInclude Include="..\source\Game\Skybox.h" />
+    <ClInclude Include="..\source\Game\Thruster.h" />
+    <ClInclude Include="..\source\Game\WeaponCameraMover.h" />
+    <ClInclude Include="..\source\Game\WeaponStation.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\Game\Bullet.cpp" />
-    <ClCompile Include="..\..\source\Game\CalculateRotation.cpp" />
-    <ClCompile Include="..\..\source\Game\HelmSceneTest.cpp" />
-    <ClCompile Include="..\..\source\Game\HelmStation.cpp" />
-    <ClCompile Include="..\..\source\Game\main.cpp" />
-    <ClCompile Include="..\..\source\Game\net.cpp" />
-    <ClCompile Include="..\..\source\Game\Ship.cpp" />
-    <ClCompile Include="..\..\source\Game\ShipMover.cpp" />
-    <ClCompile Include="..\..\source\Game\Skybox.cpp" />
-    <ClCompile Include="..\..\source\Game\Thruster.cpp" />
-    <ClCompile Include="..\..\Source\Game\WeaponCameraMover.cpp" />
-    <ClCompile Include="..\..\source\Game\WeaponStation.cpp" />
+    <ClCompile Include="..\source\Game\Bullet.cpp" />
+    <ClCompile Include="..\source\Game\CalculateRotation.cpp" />
+    <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
+    <ClCompile Include="..\source\Game\HelmStation.cpp" />
+    <ClCompile Include="..\source\Game\main.cpp" />
+    <ClCompile Include="..\source\Game\net.cpp" />
+    <ClCompile Include="..\source\Game\Ship.cpp" />
+    <ClCompile Include="..\source\Game\ShipMover.cpp" />
+    <ClCompile Include="..\source\Game\Skybox.cpp" />
+    <ClCompile Include="..\source\Game\Thruster.cpp" />
+    <ClCompile Include="..\source\Game\WeaponCameraMover.cpp" />
+    <ClCompile Include="..\source\Game\WeaponStation.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C2969B64-E6EB-44EA-BB27-EAB9FB11357A}</ProjectGuid>
@@ -66,11 +66,11 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\..\bin\</OutDir>
+    <OutDir>..\bin\</OutDir>
     <TargetName>$(ProjectName) Debug</TargetName>
-    <IntDir>..\..\temp\GameDebug\DEBUG\</IntDir>
-    <IncludePath>..\..\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\lib\SFML;..\..\lib\Irrlicht;$(LibraryPath)</LibraryPath>
+    <IntDir>..\temp\GameDebug\DEBUG\</IntDir>
+    <IncludePath>..\include;$(IncludePath)</IncludePath>
+    <LibraryPath>..\lib\SFML;..\lib\Irrlicht;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -84,14 +84,14 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ShowProgress>LinkVerbose</ShowProgress>
       <AdditionalDependencies>irrlicht.lib;sfml-system-d.lib;sfml-network-d.lib;engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\..\lib\Irrlicht; ..\..\lib\EngineDebug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\lib\Irrlicht; ..\lib\EngineDebug</AdditionalLibraryDirectories>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>

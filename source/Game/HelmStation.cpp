@@ -3,7 +3,7 @@
 
 HelmStation::HelmStation(Composite* parent) : Entity(parent)
 {
-	this->_stationTexture = Game::driver->getTexture("../../assets/Textures/Stations/helmStation.png");
+	this->_stationTexture = Game::driver->getTexture("../assets/Textures/Stations/helmStation.png");
 	Game::driver->makeColorKeyTexture(this->_stationTexture, position2d<s32>(0, 0));
 }
 

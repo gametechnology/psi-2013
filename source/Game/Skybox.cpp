@@ -17,10 +17,10 @@ void Skybox::handleTextures(int curMap)
 	switch(curMap)
 	{
 	case 1:
-		this->_currentTexture =  "../../assets/Textures/SkyBoxes/skybox01.png";
+		this->_currentTexture =  "../assets/Textures/SkyBoxes/skybox01.png";
 		break;
 	case 2:
-		this->_currentTexture =  "../../assets/Textures/SkyBoxes/skybox02.png";
+		this->_currentTexture =  "../assets/Textures/SkyBoxes/skybox02.png";
 		break;
 	case 3:
 		break;

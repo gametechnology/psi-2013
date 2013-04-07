@@ -4,13 +4,13 @@ Bullet::Bullet() : Entity(NULL)
 {
 	this->visible = false;
 
-	this->createNode("../../assets/Models/Cube.3ds");
+	this->createNode("../assets/Models/Cube.3ds");
 	this->node->setMaterialFlag(EMF_LIGHTING, false);
 }
 
 Bullet::Bullet(Composite* parent, vector3df start, vector3df end, f32 speed) : Entity(parent)
 {
-	this->createNode("../../assets/Models/Cube.3ds");
+	this->createNode("../assets/Models/Cube.3ds");
 	this->node->setMaterialFlag(EMF_LIGHTING, false);
 
 	setState(NULL, start, end, speed);
