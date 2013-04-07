@@ -18,6 +18,11 @@ WormHole::WormHole(Composite* parent, unsigned int id, irr::core::vector3df posi
 	const char* filePath = "../assets/Textures/Wormholes/WormHole.png";
 	_wormhole->setMaterialTexture(0, Game::driver->getTexture( filePath ));
 }
+// Needs setPosition because else te node will not get moved
+void WormHole::setPosition(irr::core::vector3df &newPos){
+	this->position = position;
+	_wormhole->setPosition( position );
+}
 
 // Added update for possible annimations
 void WormHole::update(){

@@ -16,7 +16,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 
 	// The player
 	this->_player = new Camera( this->parent );
-	Game::getSceneManager()->addCameraSceneNodeFPS();
+	this->_camera = Game::getSceneManager()->addCameraSceneNodeFPS();
 	// Creating wormholes
 	createWormHoles( amountWormHoles );
 	
@@ -31,11 +31,14 @@ void SectorTemplate::init(){
 
 void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
 			printf("[SectorTemplate] -=*[Begin of Create WormHole]*=- \n");
+			printf("[SectorTemplate] -=*[Amount of wormholes %i]*=- \n", amountOfWormHoles);
 	for(unsigned int i = 0; i < amountOfWormHoles; i++){
-		// Creating a wormhole and giving it a random place
-		wormHole = new WormHole(this->parent, i, irr::core::vector3df( rand() % int(_boundry*2) - int(_boundry), rand() % int(_boundry*2) - int(_boundry), rand() % int(_boundry*2) - int(_boundry) ) );
+		// Calculating the pos in the sector
+		irr::core::vector3df wormHolePos( rand() % int(_boundry*2) - int(_boundry), rand() % int(_boundry*2) - int(_boundry), rand() % int(_boundry*2) - int(_boundry) );
 		// Making sure that the wormhole isn't spawned between 0% and 80% from the zero point to the radius of the sector
-		wormHole->position.setLength(rand() % int(_boundry* 0.2) + int(_boundry* 0.8));
+		wormHolePos.setLength(rand() % int(_boundry* 0.2) + int(_boundry* 0.8));
+		// Creating a wormhole and giving it the pos we just calculated
+		wormHole = new WormHole(this->parent, i, wormHolePos );
 		// Pushing to the wormhole list
 		this->_wormHoles.push_back( wormHole );
 		addComponent(wormHole);
@@ -44,11 +47,12 @@ void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
 }
 
 void SectorTemplate::update(){
+	/* Original when player is done
 	// Checking if the player isn't going out side of the radius of the sector
 	if( this->_player->position.getLength() > _boundry ){
 		this->_player->handleMessage(OUT_OF_BOUNDS, NULL);
 	}
-	
+
 	// Checking for collision with a wormhole
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
 		irr::core::vector3df deltaPos = _wormHoles[i]->position - this->_player->position;
@@ -57,6 +61,22 @@ void SectorTemplate::update(){
 			break;
 		}
 	}
+	*/
+
+	// Placeholder because there is no player yet
+	if( this->_camera->getPosition().getLength() > _boundry ){
+		printf("OUT OF BOUNDS!");
+	}
+	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
+		irr::core::vector3df deltaPos = _wormHoles[i]->position - this->_camera->getPosition();
+		float collisionRadius = 50;
+		if( deltaPos.getLength() < collisionRadius ){			
+			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
+			break;
+		}
+	}
+	
+	
 	Scene::update();
 }
 

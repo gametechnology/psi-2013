@@ -11,6 +11,7 @@ private:
 public:
 	WormHole(Composite* parent, unsigned int id, irr::core::vector3df position);
 	void handleMessage(unsigned int message, void* data = 0);
+	void setPosition(irr::core::vector3df &newPos);
 	virtual void update();
 	unsigned int getId(){ return this->id; }
 	virtual ~WormHole();
