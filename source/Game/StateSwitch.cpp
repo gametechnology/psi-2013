@@ -123,6 +123,9 @@ void StateSwitch::handleFollow()
 	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /3))
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEFENSIVE);
+	}else if(parent_->getHealth() < parent_->getMaxHealth())
+	{
+		StateSwitch::setState(StateSwitch::STATE_OFFENSIVE);
 	}
 }
 
