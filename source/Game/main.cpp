@@ -22,10 +22,5 @@ int main()
 	// Start the main loop
 	Game::run();
 
-	// Debug for memory leaks
-	#ifdef _DEBUG
-	_CrtDumpMemoryLeaks();
-	#endif
-
 	return 0;
 }

@@ -93,10 +93,10 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\source\Engine\Game.cpp" />
     <ClCompile Include="..\source\Game\Boundry.cpp" />
     <ClCompile Include="..\source\Game\CIrrEventReceiver.cpp" />
     <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
-    <ClCompile Include="..\source\Game\HelmStation.cpp" />
     <ClCompile Include="..\source\Game\main.cpp" />
     <ClCompile Include="..\source\Game\MainMenuScene.cpp" />
     <ClCompile Include="..\source\Game\Player.cpp" />
@@ -104,6 +104,13 @@
     <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
     <ClCompile Include="..\source\Game\Ship.cpp" />
     <ClCompile Include="..\source\Game\Skybox.cpp" />
+    <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp" />
+    <ClCompile Include="..\source\Game\Stations\HelmStation.cpp" />
+    <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp" />
+    <ClCompile Include="..\source\Game\Stations\PowerStation.cpp" />
+    <ClCompile Include="..\source\Game\Stations\Station.cpp" />
+    <ClCompile Include="..\source\Game\Stations\UIData.cpp" />
+    <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp" />
     <ClCompile Include="..\source\Game\TestScene.cpp" />
     <ClCompile Include="..\source\Game\Thruster.cpp" />
   </ItemGroup>
@@ -115,7 +122,6 @@
     <ClInclude Include="..\source\Game\Boundry.h" />
     <ClInclude Include="..\source\Game\CIrrEventReceiver.h" />
     <ClInclude Include="..\source\Game\HelmSceneTest.h" />
-    <ClInclude Include="..\source\Game\HelmStation.h" />
     <ClInclude Include="..\source\Game\MainMenuScene.h" />
     <ClInclude Include="..\source\Game\Messages.h" />
     <ClInclude Include="..\source\Game\Player.h" />
@@ -123,6 +129,13 @@
     <ClInclude Include="..\source\Game\SectorTemplate.h" />
     <ClInclude Include="..\source\Game\Ship.h" />
     <ClInclude Include="..\source\Game\Skybox.h" />
+    <ClInclude Include="..\source\Game\Stations\DefenceStation.h" />
+    <ClInclude Include="..\source\Game\Stations\HelmStation.h" />
+    <ClInclude Include="..\source\Game\Stations\NavigationStation.h" />
+    <ClInclude Include="..\source\Game\Stations\PowerStation.h" />
+    <ClInclude Include="..\source\Game\Stations\Station.h" />
+    <ClInclude Include="..\source\Game\Stations\UIData.h" />
+    <ClInclude Include="..\source\Game\Stations\WeaponStation.h" />
     <ClInclude Include="..\source\Game\TestScene.h" />
     <ClInclude Include="..\source\Game\Thruster.h" />
   </ItemGroup>

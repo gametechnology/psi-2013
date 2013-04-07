@@ -1,21 +1,12 @@
 #include "HelmSceneTest.h"
-#include "HelmStation.h"
 #include "Player.h"
+#include "Ship.h"
 
-HelmSceneTest::HelmSceneTest(void)
-{
-}
-
-
-HelmSceneTest::~HelmSceneTest(void)
-{
-	Scene::~Scene();
-}
+HelmSceneTest::HelmSceneTest(void) {}
+HelmSceneTest::~HelmSceneTest(void) { Scene::~Scene(); }
 
 void HelmSceneTest::init()
 {
-	HelmStation* helmStation = new HelmStation(this);
-	addComponent(helmStation);
-
 	addComponent(new Player(this));
+	addComponent(new Ship(this));
 }

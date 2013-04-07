@@ -10,8 +10,8 @@ public:
 	virtual ~Component() = 0;
 
 	virtual void init() {};
-	virtual void update() { };
-	virtual void draw() { };
+	virtual void update() {};
+	virtual void draw() {};
 	virtual void handleMessage(unsigned int message, void* data = 0) { };
 protected:
 	Composite* parent;
