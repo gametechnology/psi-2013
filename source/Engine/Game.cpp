@@ -21,6 +21,7 @@ std::forward_list<Scene*>* Game::scenes;
 
 Client* Game::client;
 Server* Game::server;
+Input Game::inputReceiver;
 
 Game::Game()
 {
@@ -28,7 +29,7 @@ Game::Game()
 	Game::scenes = new std::forward_list<Scene*>;
 
 	// Create the irrlicht device 
-	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, true, 0);
+	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, false, &inputReceiver);
 
 	// If the device was not created correctly, then shut down the program
 	if(Game::device) {

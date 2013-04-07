@@ -2,6 +2,7 @@
 #include "Engine/Game.h"
 #include <math.h>
 #include "TestScene.h"
+#include "Engine\Input.h"
 
 Shipmap::Shipmap(Composite* parent):Entity(parent)
 {
@@ -60,28 +61,29 @@ void Shipmap::draw()
 void Shipmap::update()
 {
 	float playerSpeed = 0.04f;
-	/*
-	if (input->rv.isKeyDown(irr::KEY_KEY_A))
+
+	Input input;
+
+	if (Input::KeyIsDown[irr::KEY_KEY_A])
 	{
 		isMoving = true;
-		//pos.X -= playerSpeed;
+		pos.X -= playerSpeed;
 	}
-    else if (input->IsKeyDown(irr::KEY_KEY_D))
+    if (Input::KeyIsDown[irr::KEY_KEY_D])
 	{
 		isMoving = true;
-		//pos.X += playerSpeed;
+		pos.X += playerSpeed;
 	}
-	if (input->IsKeyDown(irr::KEY_KEY_W))
+	if (Input::KeyIsDown[irr::KEY_KEY_W])
 	{
 		isMoving = true;
-		//pos.Y += playerSpeed;
+		pos.Y += playerSpeed;
 	}
-    else if (input->IsKeyDown(irr::KEY_KEY_S))
+    if (Input::KeyIsDown[irr::KEY_KEY_S])
 	{
 		isMoving = true;
-		//pos.Y -= playerSpeed;
+		pos.Y -= playerSpeed;
 	}
-	*/
 
 	if (isMoving)
 	{
@@ -90,7 +92,7 @@ void Shipmap::update()
 
 		// check the surrounding tiles
 		for (int i = -1; i <= 1; i++)
-		{
+		{ 
 			for (int j = -1; j <= 1; j++)
 			{
 				// if free tile
