@@ -14,13 +14,13 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	this -> _helmStation		-> Initialize();
 	this -> _navigationStation	-> Initialize();
 	this -> _weaponStation		-> Initialize();
-	//this -> _powerStation		-> Initialize();
+	this -> _powerStation		-> Initialize();
 
 	addComponent(_defenceStation);
 	addComponent(_helmStation);
 	addComponent(_navigationStation);
 	addComponent(_weaponStation);
-	//addComponent(_powerStation);
+	addComponent(_powerStation);
 }
 
 Ship::~Ship(void)

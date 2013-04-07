@@ -21,6 +21,7 @@ private:
 public:
 	//Power Station Impl	
 	video :: IVideoDriver	*driver;
+	IrrlichtDevice			*device;
 	IGUIEnvironment			*env;
 	IGUISkin				*skin;
 	IGUIFont				*font;
@@ -51,6 +52,8 @@ public:
 	void changeColorAccordingToPowerStatus(IGUIStaticText &staticText, float powerAmount);
 
 	int GetPower(Station::StationType type);
+
+	void gameLoop();
 };
 
 #endif

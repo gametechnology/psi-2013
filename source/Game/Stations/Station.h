@@ -23,11 +23,11 @@ public:
 
 	enum StationType
 	{
-		Power = 0,
-		Defence = 1,
-		Weapon = 2,
-		Helm = 3,
-		Navigation = 4
+		Power		= 0,
+		Defence		= 1,
+		Weapon		= 2,
+		Helm		= 3,
+		Navigation	= 4
 	};
 
 	StationType GetStationType();

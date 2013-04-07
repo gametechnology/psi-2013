@@ -48,10 +48,10 @@ Game::Game()
 void Game::run()
 {
 	//Main loop
-	while(Game::device->run())
+	while( Game :: device -> run( ) )
 	{
-		Game::getCurrentScene()->update();
-		Game::driver->beginScene(true, true, SColor(255,100,101,140));
+		Game :: getCurrentScene( ) -> update( );
+		Game :: driver -> beginScene(true, true, SColor(255,100,101,140));
 		(*Game::scenes->begin())->sceneManager->drawAll();
 		Game::getCurrentScene()->draw();
 		Game::driver->endScene();

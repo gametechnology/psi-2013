@@ -62,6 +62,6 @@ void Station :: Initialize( )
 	this -> _stunTime = 0;
 	this -> _switchTime = 0;
 
-	//if ( this -> _stationType != StationType ::  Power )	this -> _ship -> _powerStation		-> SubscribeStation( this );
+	if ( this -> _stationType != StationType ::  Power )	this -> _ship -> _powerStation		-> SubscribeStation( this );
 	if ( this -> _stationType != StationType ::  Defence )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
 }

@@ -93,6 +93,7 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\source\Engine\Game.cpp" />
     <ClCompile Include="..\source\Game\Boundry.cpp" />
     <ClCompile Include="..\source\Game\CIrrEventReceiver.cpp" />
     <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />

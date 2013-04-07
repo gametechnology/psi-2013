@@ -29,7 +29,8 @@ void UIData :: UpdatePowerUsage( Station :: StationType s, int newValue )
 
 int UIData :: GetPower( Station :: StationType s )
 {
-	return PowerUsage( this -> _stationsPowerUsage -> find( s ) -> getValue( ) ).powerCurrent;
+	PowerUsage p = PowerUsage( this -> _stationsPowerUsage -> find( s ) -> getValue( ) );
+	return p.powerCurrent;
 }
 
 UIData :: PowerUsage :: PowerUsage( int powerCurrent )

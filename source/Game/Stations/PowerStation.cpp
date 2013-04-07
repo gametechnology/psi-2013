@@ -9,9 +9,9 @@
 PowerStation :: PowerStation( Ship *ship ) : Station( ship )
 {
 	this -> _stationType		= StationType :: Power;
-
-	this ->	driver				= Game::device -> getVideoDriver( );
-	this -> env					= Game::device -> getGUIEnvironment( );
+	this -> device				= Game :: device;
+	this ->	driver				= device -> getVideoDriver( );
+	this -> env					= device -> getGUIEnvironment( );	
 }
 
 PowerStation :: ~PowerStation()
@@ -158,8 +158,7 @@ private:
 void PowerStation::Initialize()
 {
 	Station :: Initialize( );
-	env = Game::device->getGUIEnvironment();
-
+	
 	skin = env->getSkin( );
 	font = env->getFont( "../assets/Textures/Stations/PowerStation/fontcopperplategothicbold.png" );
 	
@@ -167,7 +166,8 @@ void PowerStation::Initialize()
 		skin->setFont(font);
 	else
 		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
-	createUI();	
+	createUI();
+	gameLoop( );
 }
 //Creates the User Interface. Is a helper method. Also initializes the event receiver.
 void PowerStation::createUI()
@@ -181,9 +181,9 @@ void PowerStation::createUI()
 	createCurrentSelectedStationText();
 
 	// Create the event receiver, giving it that context structure.
-	MyEventReceiver receiver(context);
+	MyEventReceiver *receiver = new MyEventReceiver(context);
 	// And tell the device to use our custom event receiver.
-	Game::device->setEventReceiver(&receiver);
+	device -> setEventReceiver( receiver );
 }
 
 //Defines the used driver and some UI data values.
@@ -268,7 +268,6 @@ void PowerStation::createCurrentSelectedStationText(){
 //TODO: FIND OUT HOW TO UPDATE ALL
 void PowerStation::update()
 {
-
 	int helm		= context.GetPower( STATION_TYPE :: Helm );
 	int defence		= context.GetPower( STATION_TYPE :: Defence );
 	int weapon		= context.GetPower( STATION_TYPE :: Weapon );
@@ -336,4 +335,17 @@ void PowerStation::changeColorAccordingToPowerStatus(IGUIStaticText &stcTxt, flo
 	else if(powerAmount == 0.0f){
 		stcTxt.setOverrideColor(video::SColor(255, 180, 180, 180));
 	}
+}
+
+void PowerStation :: gameLoop( )
+{
+	 while(Game::device->run() && driver)
+	 if (Game::device->isWindowActive())
+	 {
+		  driver->beginScene(true, true, SColor(0,200,200,200));
+		  update( );
+		  env->drawAll();
+		  driver->endScene();	  
+	 }
+	 Game::device->drop();
 }
