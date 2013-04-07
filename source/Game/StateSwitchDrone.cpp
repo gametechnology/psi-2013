@@ -39,14 +39,12 @@ StateSwitchDrone::StateSwitchDrone(StateSwitch::States startState, Enemy* parent
 {
 	StateSwitchDrone::setState(startState);
 	StateSwitchDrone::setParent(parent);
-	StateSwitchDrone::randomInt = RandomGenerator::getRandomInt(100000, 0);
 }
 
 StateSwitchDrone::StateSwitchDrone(Enemy* parent)
 {
 	StateSwitchDrone::setState(StateSwitch::STATE_IDLE);
 	StateSwitchDrone::setParent(parent);
-	StateSwitchDrone::randomInt = RandomGenerator::getRandomInt(100000, 0);
 }
 
 StateSwitchDrone::~StateSwitchDrone()
