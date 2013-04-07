@@ -18,3 +18,11 @@ public:
 };
 
 #endif
+#ifndef BASE_PLACEHOLDER
+#define BASE_PLACEHOLDER
+class BasePlaceholder : public Entity{
+	public:
+	BasePlaceholder(Composite* parent);
+	virtual ~BasePlaceholder();
+};
+#endif

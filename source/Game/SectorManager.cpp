@@ -16,10 +16,8 @@ SectorManager::SectorManager(GalaxyMap* map) {
 	}
 }
 void SectorManager::init(){
-	//_currentSector = new SectorTemplate(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
-	//_currentSector = new AstroidSector("skybox02.png",10.0,_mapSector->connections.size());
+	//_currentSector = new SectorHomeBase(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
 	Game::addScene(new SectorHomeBase(this,"skybox02.png",10.0,_mapSector->connections.size()));
-	//SectorManager::addComponent(_currentSector);
 }
 void SectorManager::handleMessage(unsigned int message, void* data) {
 	switch(message) {
@@ -33,7 +31,7 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 				printf("[SectorManager] Something went wrong... : %c", str);
 			}
 			_mapSector = *temp;//change the _mapSector to the sector the data tells him to be
-			
+			Game::removeScene();
 			//Creates new Sector
 			switch (_mapSector->type){ 
 				case EMPTY:
