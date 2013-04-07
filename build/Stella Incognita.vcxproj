@@ -115,7 +115,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>..\lib\Irrlicht; ..\lib\EngineRelease</AdditionalLibraryDirectories>
-      <AdditionalDependencies>irrlicht.lib;sfml-system-d.lib;sfml-network-d.lib;engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>irrlicht.lib;sfml-system.lib;sfml-network.lib;engine.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
