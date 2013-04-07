@@ -22,7 +22,13 @@ EnemyFighter* fighter1;
 Enemy* asteroid1;
 Enemy* asteroid2;
 EnemyDrone* kamikaze1;
+EnemyDrone* kamikaze2;
+EnemyDrone* kamikaze3;
+EnemyDrone* kamikaze4;
+EnemyDrone* kamikaze5;
 Enemy* player;
+
+EnemyDrone* test;
 
 void EnemyManager::createEnemies()
 {
@@ -44,6 +50,14 @@ void EnemyManager::createEnemies()
 	//kamikaze enemy
 	kamikaze1 = new EnemyDrone(irr::core::vector3df(50,50,50));
 	addComponent(kamikaze1);
+	kamikaze2 = new EnemyDrone(irr::core::vector3df(150,150,150));
+	addComponent(kamikaze2);
+	kamikaze3 = new EnemyDrone(irr::core::vector3df(-50,-50,-50));
+	addComponent(kamikaze3);
+	kamikaze4 = new EnemyDrone(irr::core::vector3df(-150,-150,-150));
+	addComponent(kamikaze4);
+	kamikaze5 = new EnemyDrone(irr::core::vector3df(25,25,250));
+	addComponent(kamikaze5);
 
 	//dummyplayer
 	player = new EnemyPlayer(irr::core::vector3df(0,0,10),vector3df(0,0.0f,0));
@@ -52,33 +66,22 @@ void EnemyManager::createEnemies()
 	
 	this->_enemyList.push_back(drone1);
 	this->_enemyList.push_back(kamikaze1);
+	this->_enemyList.push_back(kamikaze2);
+	this->_enemyList.push_back(kamikaze3);
+	this->_enemyList.push_back(kamikaze4);
+	this->_enemyList.push_back(kamikaze5);
 	this->_enemyList.push_back(fighter1);
 	this->_enemyList.push_back(asteroid1);
 	this->_enemyList.push_back(asteroid2);
 	this->_enemyList.push_back(player);
-	
-	
 }
 
 void EnemyManager::update()
 {
 	Scene::update();
-	//fighter1->SetTarget(player->getPosition());
-
-	/*if((player->position - fighter1->position).getLength()>10 && (player->position - fighter1->position).getLength()<=fighter1->getLoS())
-	{
-		fighter1->chase(player->getPosition());
-	}	
-	if((player->position - kamikaze1->position).getLength()<kamikaze1->getLoS())
-	{
-		kamikaze1->chase(player->getPosition());
-	}*/
-	
 
 	for(unsigned int i=0; i<_enemyList.size(); i++) //loop through all asteroids, update these and check for contact with all other asteroids
 	{
-		//this->_enemyList[i]->update();
-
 		for(unsigned int j=0; j<_enemyList.size(); j++)
 		{
 			if(j!=i)

@@ -13,6 +13,7 @@ public:
 
 	virtual void chase(vector3df target);
 	virtual void update();
+	virtual void wander();
 private:
 	
 	StateSwitchDrone* stateSwitch;

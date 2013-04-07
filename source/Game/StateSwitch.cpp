@@ -77,6 +77,7 @@ void StateSwitch::handleIdle()
 
 void StateSwitch::handleWander()
 {
+	parent_->wander();
 	if(parent_->getHealth() <= 0)
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEATH);

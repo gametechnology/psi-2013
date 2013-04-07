@@ -4,7 +4,7 @@
 
 Enemy::Enemy(void): Entity(parent)
 {
-
+	this->_wanderTime = 0;
 }
 
 Enemy::Enemy(ISceneManager* smgr, IMesh* mesh, 
@@ -313,6 +313,26 @@ void Enemy::chase(vector3df target)
 		this->position += this->velocity;
 	
 }
+
+void Enemy::wander()
+{
+	this->_wanderTime++;
+	float velX = rand()%20-10;
+	float velY = rand()%20-10;
+	float velZ = rand()%20-10;
+
+	if(this->_wanderTime >= 300)
+	{
+		this->velocity.X +=velX * 0.1f;
+		this->velocity.Y +=velY * 0.1f;
+		this->velocity.Z +=velZ * 0.1f;
+		this->velocity.normalize();
+		this->velocity *= 0.1f;
+		//std::cout <<  "----- X: " << this->velocity.X << ", Y: "<< this->velocity.Y << ", Z: "<< this->velocity.Z;
+		this->_wanderTime = 0;
+	}
+}
 Enemy::~Enemy(void)
 {
+	Entity::~Entity();
 }
