@@ -13,7 +13,7 @@ public:
 	void update();
 	void handleMessage(unsigned int message, void* data);
 
-	void print();
+	void printAng();
 
 	float force_;
 

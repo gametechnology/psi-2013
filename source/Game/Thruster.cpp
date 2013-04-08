@@ -5,7 +5,6 @@
 
 Thruster::Thruster(Composite* parent, vector3df position, vector3df initialDirection, matrix4* inertiaMatrix) : Entity(parent)
 {
-	
 	Thruster::position = position;
 	Thruster::direction = initialDirection;
 	//Normalize the vectors so I can use them to calculate the dot product and the cross product.
@@ -13,7 +12,8 @@ Thruster::Thruster(Composite* parent, vector3df position, vector3df initialDirec
 	nDirection = direction.normalize();
 
 	//torque is the cross product of the direction and position to the objects centre.
-	//torque is the axis the force will rotate around.
+	//		t = p x f
+	//torque is the axis the force will rotate the object around.
 	f32 dot = nPosition.dotProduct(nDirection);
 	if(dot != -1){
 		Thruster::torque = nPosition.crossProduct(nDirection);
@@ -22,17 +22,18 @@ Thruster::Thruster(Composite* parent, vector3df position, vector3df initialDirec
 	}
 
 	//the angular acceleration direction this thruster provides is calculated
+	// Ö = I -1 * t
 	if(dot != -1){
 		inertiaMatrix->transformVect(angularAccelaration, torque);
 	} else{
 		angularAccelaration = vector3df(0,0,0);
 	}
-	print();
-	//divide the force into vectors to get the
+	printAng();
+	//divide the force into vectors to get the linear component
 
 }
 
-void Thruster::print(){
+void Thruster::printAng(){
 	std::cout << "angular acceleration: [" << angularAccelaration.X << "," << angularAccelaration.Y << "," << angularAccelaration.Z << "]\n";
 	std::cout << "torque: [" << torque.X << "," << torque.Y << "," << torque.Z << "]\n";
 	std::cout << "dir: [" << direction.X << "," << direction.Y << "," << direction.Z << "]\n";

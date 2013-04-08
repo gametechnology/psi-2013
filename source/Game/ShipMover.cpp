@@ -22,17 +22,17 @@ void ShipMover::update(){
 	ShipMover::angularAcceleration = vector3df(0,0,0);
 	
 	if(eventReceiver.IsKeyDown(KEY_KEY_W)){
-		thrusters[0]->print();
+		//thrusters[0]->printAng();
 		ShipMover::linearAcceleration += thrusters[0]->linearForce;
 		ShipMover::angularAcceleration += (thrusters[0]->angularAccelaration * 0.0001);
 	}
 	if(eventReceiver.IsKeyDown(KEY_KEY_A)){
-		thrusters[1]->print();
+		//thrusters[1]->printAng();
 		ShipMover::linearAcceleration += thrusters[1]->linearForce;
 		ShipMover::angularAcceleration += (thrusters[1]->angularAccelaration * 0.0001);
 	}
 	if(eventReceiver.IsKeyDown(KEY_KEY_D)){
-		thrusters[2]->print();
+		//thrusters[2]->printAng();
 		ShipMover::linearAcceleration += thrusters[2]->linearForce;
 		ShipMover::angularAcceleration += (thrusters[2]->angularAccelaration * 0.0001);
 	}

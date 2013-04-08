@@ -50,7 +50,7 @@ void Ship::init(int station){
 
 	
 	thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0,0, -4), &inertiaMatrix);
-	thrusters[1] = new Thruster(this, vector3df(0,-2, -4), vector3df(0, -4, 0 ),&inertiaMatrix);
+	thrusters[1] = new Thruster(this, vector3df(0,-2, 4), vector3df(0, 4, 0 ),&inertiaMatrix);
 	thrusters[2] = new Thruster(this, vector3df(0,2, -4), vector3df(0, 4, 0 ),&inertiaMatrix);
 
 	ShipMover* shipMover = new ShipMover(this, thrusters);
