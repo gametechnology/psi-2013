@@ -18,7 +18,7 @@ WeaponStation::~WeaponStation()
 void WeaponStation::update()
 {
 	((Ship*)this->parent)->shootingInterval++;
-	if(((Ship*)this->parent)->shootingInterval == 1000)
+	if(Input::KeyIsDown[KEY_KEY_1] && ((Ship*)this->parent)->shootingInterval > 500)
 	{
 		shoot();
 		((Ship*)this->parent)->shootingInterval = 0;
