@@ -2,8 +2,6 @@
 #define ENTITY_SHIP
 #include "Thruster.h"
 #include "Engine\Camera.h"
-#include "HelmStation.h"
-#include "WeaponStation.h"
 #include "ShipMover.h"
 #include "net.h"
 
@@ -44,7 +42,7 @@ public:
 	void setInertiaMatrix(float h, float w, float d, float m);
 	Net* network;
 	int stationnumber;
-	Entity* currentstation;
+	Station* currentstation;
 	Input* input;
 	Camera* camera;
 

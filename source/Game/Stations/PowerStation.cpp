@@ -268,10 +268,10 @@ void PowerStation::createCurrentSelectedStationText(){
 //TODO: FIND OUT HOW TO UPDATE ALL
 void PowerStation::update()
 {
-	int helm		= context.GetPower( STATION_TYPE :: Helm );
-	int defence		= context.GetPower( STATION_TYPE :: Defence );
-	int weapon		= context.GetPower( STATION_TYPE :: Weapon );
-	int navigation	= context.GetPower( STATION_TYPE :: Navigation );
+	int helm		= context.GetPower( Station::StationType::Helm );
+	int defence		= context.GetPower( Station::StationType::Defence );
+	int weapon		= context.GetPower( Station::StationType::Weapon );
+	int navigation	= context.GetPower( Station::StationType::Navigation );
 
 	context.powerPoolText->setText((varToString("Power Pool:\n", context.powerPool, "%")).c_str());
 

@@ -2,7 +2,7 @@
 #define STATION_BASE
 #pragma once
 
-#include "..\Player.h"
+#include "../Player.h"
 #include "../../../include/Engine/Component.h"
 
 #ifdef ENTITY_SHIP

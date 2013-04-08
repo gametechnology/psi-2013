@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -94,6 +94,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Engine\Game.cpp" />
+    <ClCompile Include="..\source\Game\Bullet.cpp" />
     <ClCompile Include="..\source\Game\CIrrEventReceiver.cpp" />
     <ClCompile Include="..\source\Game\EnemyAsteroid.cpp" />
     <ClCompile Include="..\source\Game\GalaxyMap.cpp" />
@@ -103,6 +104,7 @@
     <ClCompile Include="..\source\Game\MainMenuScene.cpp" />
     <ClCompile Include="..\source\Game\MapGenerator.cpp" />
     <ClCompile Include="..\source\Game\MapSector.cpp" />
+    <ClCompile Include="..\source\Game\ShipMover.cpp" />
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\HelmStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp" />
@@ -116,6 +118,7 @@
   <ItemGroup>
     <ClInclude Include="..\source\Game\ArrayList.h" />
     <ClInclude Include="..\source\Game\Boundry.h" />
+    <ClInclude Include="..\source\Game\Bullet.h" />
     <ClInclude Include="..\source\Game\CIrrEventReceiver.h" />
     <ClInclude Include="..\source\Game\Enemy.h" />
     <ClInclude Include="..\source\Game\GalaxyMap.h" />
@@ -133,9 +136,8 @@
     <ClInclude Include="..\source\Game\Messages.h" />
     <ClInclude Include="..\source\Game\Player.h" />
     <ClInclude Include="..\source\Game\RandomGenerator.h" />
-    <ClInclude Include="..\source\Game\SectorManager.h" />
-    <ClInclude Include="..\source\Game\SectorTemplate.h" />
     <ClInclude Include="..\source\Game\Ship.h" />
+    <ClInclude Include="..\source\Game\ShipMover.h" />
     <ClInclude Include="..\source\Game\Skybox.h" />
     <ClInclude Include="..\source\Game\StateSwitch.h" />
     <ClInclude Include="..\source\Game\StateSwitchDrone.h" />
@@ -147,7 +149,6 @@
     <ClInclude Include="..\source\Game\Stations\Station.h" />
     <ClInclude Include="..\source\Game\Stations\UIData.h" />
     <ClInclude Include="..\source\Game\Stations\WeaponStation.h" />
-    <ClInclude Include="..\source\Game\TestScene.h" />
     <ClInclude Include="..\source\Game\Thruster.h" />
   </ItemGroup>
   <ItemGroup>
@@ -160,8 +161,6 @@
     <ClCompile Include="..\source\Game\main.cpp" />
     <ClCompile Include="..\source\Game\Player.cpp" />
     <ClCompile Include="..\source\Game\RandomGenerator.cpp" />
-    <ClCompile Include="..\source\Game\SectorManager.cpp" />
-    <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
     <ClCompile Include="..\source\Game\Ship.cpp" />
     <ClCompile Include="..\source\Game\Skybox.cpp" />
     <ClCompile Include="..\source\Game\StateSwitch.cpp" />
@@ -173,7 +172,6 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp" />
     <ClCompile Include="..\source\Game\Stations\UIData.cpp" />
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp" />
-    <ClCompile Include="..\source\Game\TestScene.cpp" />
     <ClCompile Include="..\source\Game\Thruster.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

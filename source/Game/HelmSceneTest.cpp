@@ -14,6 +14,6 @@ void HelmSceneTest::init()
 	manager = new EnemyManager();
 
 	addComponent(new Player(this));
-	addComponent(new Ship(this));
+	addComponent(new Ship(this, vector3df(0,0,0), vector3df(0,0,0)));
 	addComponent(manager);
 }

@@ -29,8 +29,12 @@ Thruster::Thruster(Composite* parent, vector3df position, vector3df initialDirec
 		angularAccelaration = vector3df(0,0,0);
 	}
 	printAng();
-	//divide the force into vectors to get the linear component
 
+	//TODO: divide the force into vectors to get the linear component and magnitude of angular component pass 
+	//the linear component to linearAcceleration. Use the angular component's length for the angular acceleration
+	//to give the angular acceleration it's lenght. 
+	//impediments:	The camera works with euler angles right now, so it'll bug. It'll have to be rewritten with
+	//quaternions.
 }
 
 void Thruster::printAng(){

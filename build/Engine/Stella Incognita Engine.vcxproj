@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -95,6 +95,7 @@
     <ClInclude Include="..\..\include\Engine\Composite.h" />
     <ClInclude Include="..\..\include\Engine\Entity.h" />
     <ClInclude Include="..\..\include\Engine\Game.h" />
+    <ClInclude Include="..\..\include\Engine\Input.h" />
     <ClInclude Include="..\..\include\Engine\NetworkComponent.h" />
     <ClInclude Include="..\..\include\Engine\Scene.h" />
     <ClInclude Include="..\..\include\Engine\Server.h" />
@@ -107,6 +108,7 @@
     <ClCompile Include="..\..\source\Engine\Composite.cpp" />
     <ClCompile Include="..\..\source\Engine\Entity.cpp" />
     <ClCompile Include="..\..\source\Engine\Game.cpp" />
+    <ClCompile Include="..\..\source\Engine\Input.cpp" />
     <ClCompile Include="..\..\source\Engine\NetworkComponent.cpp" />
     <ClCompile Include="..\..\source\Engine\Scene.cpp" />
     <ClCompile Include="..\..\source\Engine\Server.cpp" />
