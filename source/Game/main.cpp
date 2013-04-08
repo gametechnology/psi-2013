@@ -27,9 +27,9 @@ int main()
 	//Game::client->setupClient("145.92.13.97");
 
 	// Create test scene
-	//Game::addScene(new HelmSceneTest());
+	Game::addScene(new HelmSceneTest());
 	//change the scenes by commenting the other scenes and uncomment the one with the enemysceneTest for the enemies
-	Game::addScene(new EnemySceneTest());
+	//Game::addScene(new EnemySceneTest());
 
 	//Code to add the GalaxyMap to the current scene
 	//Game::getCurrentScene()->addComponent(galaxyMap);
