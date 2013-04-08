@@ -69,7 +69,6 @@ void SectorTemplate::update(){
 	if( this->_camera->getPosition().getLength() > _boundry ){
 		printf("OUT OF BOUNDS!");
 	}
-	printf("test p ");
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
 		irr::core::vector3df deltaPos = _wormHoles[i]->position - this->_camera->getPosition();
 		float collisionRadius = 50;
