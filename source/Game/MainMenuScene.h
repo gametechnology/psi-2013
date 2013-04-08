@@ -1,7 +1,6 @@
 #include "Irrlicht\irrlicht.h"
 #include "Engine\Game.h"
 #include "Engine\Scene.h"
-#include "CIrrEventReceiver.h"
 
 #ifndef MAINMENUSCENE
 #define MAINMENUSCENE
@@ -22,6 +21,7 @@ class MainMenuScene: public Scene
 public:
 	MainMenuScene();
 	virtual void draw();
+	void updateLoop();
 	~MainMenuScene();
 
 	enum MainMenuState
@@ -50,13 +50,6 @@ public:
 		fromJoinToMain = 301
 	};
 
-	//Keeps track of which part of the main menu we are in
-	MainMenuState mainMenuState;
-
-	//Create a gui environment
-	IGUIEnvironment* guiEnv;
-	CIrrEventReceiver rv;
-
 	//Create the different windows
 	IGUIWindow* mainMenuWindow;
 	IGUIWindow* joinServerWindow;
@@ -74,6 +67,12 @@ public:
 	//Buttons in Join server
 	IGUIButton* joinServer_Button;
 	IGUIButton* fromJoinBackToMain_Button;
+
+	//Keeps track of which part of the main menu we are in
+	MainMenuState mainMenuState;
+
+	//Create a gui environment
+	IGUIEnvironment* guiEnv;
 };
 
 #endif

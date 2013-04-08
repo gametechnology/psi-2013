@@ -51,7 +51,7 @@
     <ClCompile Include="..\source\Game\MainMenuScene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\CIrrEventReceiver.cpp">
+    <ClCompile Include="..\source\Game\MainMenuEventReceiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -100,7 +100,7 @@
     <ClInclude Include="..\source\Game\MainMenuScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\CIrrEventReceiver.h">
+    <ClInclude Include="..\source\Game\MainMenuEventReceiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
