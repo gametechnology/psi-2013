@@ -157,7 +157,6 @@
     <ClCompile Include="..\source\Game\EnemyFighter.cpp" />
     <ClCompile Include="..\source\Game\EnemyManager.cpp" />
     <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
-    <ClCompile Include="..\source\Game\HelmStation.cpp" />
     <ClCompile Include="..\source\Game\main.cpp" />
     <ClCompile Include="..\source\Game\Player.cpp" />
     <ClCompile Include="..\source\Game\RandomGenerator.cpp" />
@@ -169,7 +168,6 @@
     <ClCompile Include="..\source\Game\StateSwitchDrone.cpp" />
     <ClCompile Include="..\source\Game\StateSwitchFighter.cpp" />
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp" />
-    <ClCompile Include="..\source\Game\Stations\HelmStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\PowerStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\Station.cpp" />

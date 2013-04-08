@@ -59,43 +59,43 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\EnemyAsteroid.cpp">
       <Filter>Source Files</Filter>
-    </CLCompile>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Enemy.cpp">
       <Filter>Source Files</Filter>
-    </CLCompile>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\HelmStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\EnemyDrone.cpp">
       <Filter>Source Files</Filter>
-    <CLCompile>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\EnemyFighter.cpp">
       <Filter>Source Files</Filter>
-    </CLCompile>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\EnemyManager.cpp">
       <Filter>Source Files</Filter>
-    </CLCompile>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\RandomGenerator.cpp">
       <Filter>Source Files</Filter>
-    </CLCompile>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\UIData.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\StateSwitch.cpp">
       <Filter>Source Files</Filter>
-    <CLCompile>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
@@ -121,6 +121,27 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\MapGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\EnemySceneTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\Station.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -224,8 +245,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\ArrayList.h">
-      <Filter>Header Files</Filter>    
-      </ClInclude>
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\source\Game\MapGenerator.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -233,6 +254,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\EnemyPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemySceneTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
