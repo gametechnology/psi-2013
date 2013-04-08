@@ -4,7 +4,6 @@
 
 HelmSceneTest::HelmSceneTest(void) {}
 HelmSceneTest::~HelmSceneTest(void) { Scene::~Scene(); }
-
 void HelmSceneTest::init()
 {
 	addComponent(new Player(this));

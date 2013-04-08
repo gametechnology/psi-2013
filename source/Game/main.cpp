@@ -1,5 +1,6 @@
 #include "Engine/Game.h"
 #include "HelmSceneTest.h"
+#include "EnemySceneTest.h"
 #include "MapGenerator.h"
 #include "MainMenuScene.h"
 
@@ -15,6 +16,8 @@ int main()
 	// Create engine
 	Game game = Game();
 
+	//Game::client->setupClient("145.92.13.97");
+
 	//Code to create the GalaxyMap
 	/*MapGenerator mapGen;
 	mapGen.init(20, 2, 5);
@@ -24,7 +27,9 @@ int main()
 	//Game::client->setupClient("145.92.13.97");
 
 	// Create test scene
-	Game::addScene(new HelmSceneTest());
+	//Game::addScene(new HelmSceneTest());
+	//change the scenes by commenting the other scenes and uncomment the one with the enemysceneTest for the enemies
+	Game::addScene(new EnemySceneTest());
 
 	//Code to add the GalaxyMap to the current scene
 	//Game::getCurrentScene()->addComponent(galaxyMap);

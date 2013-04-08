@@ -57,37 +57,91 @@
     <ClCompile Include="..\source\Game\CIrrEventReceiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\EnemyAsteroid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
       <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Enemy.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\HelmStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\EnemyDrone.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp">
       <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\EnemyFighter.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\EnemyManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\RandomGenerator.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\UIData.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\StateSwitch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\StateSwitchDrone.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Engine\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\StateSwitchFighter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\MapSector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Laser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\GalaxyMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\EnemyPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\MapGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\EnemySceneTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\Station.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -136,34 +190,73 @@
     <ClInclude Include="..\source\Game\CIrrEventReceiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
       <Filter>Header Files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyAsteroid.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\HelmStation.h">
       <Filter>Header Files\Stations</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyDrone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\source\Game\Stations\NavigationStation.h">
       <Filter>Header Files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyFighter.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\PowerStation.h">
       <Filter>Header Files\Stations</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\source\Game\Stations\Station.h">
       <Filter>Header Files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\RandomGenerator.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\UIData.h">
       <Filter>Header Files\Stations</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\StateSwitch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\source\Game\Stations\WeaponStation.h">
       <Filter>Header Files\Stations</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\StateSwitchDrone.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\source\Game\MapSector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\StateSwitchFighter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\GalaxyMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\ArrayList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\source\Game\MapGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Laser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemySceneTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
