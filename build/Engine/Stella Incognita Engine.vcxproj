@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -64,6 +64,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\..\..\lib\Win32-visualstudio;</AdditionalLibraryDirectories>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>..\lib\Irrlicht; ..\lib\Win32-visualstudio;</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -87,22 +90,26 @@
   <ItemGroup>
     <ClInclude Include="..\..\include\Engine\Camera.h" />
     <ClInclude Include="..\..\include\Engine\CameraMover.h" />
+    <ClInclude Include="..\..\include\Engine\Client.h" />
     <ClInclude Include="..\..\include\Engine\Component.h" />
     <ClInclude Include="..\..\include\Engine\Composite.h" />
     <ClInclude Include="..\..\include\Engine\Entity.h" />
     <ClInclude Include="..\..\include\Engine\Game.h" />
-    <ClInclude Include="..\..\include\Engine\Input.h" />
+    <ClInclude Include="..\..\include\Engine\NetworkComponent.h" />
     <ClInclude Include="..\..\include\Engine\Scene.h" />
+    <ClInclude Include="..\..\include\Engine\Server.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\Engine\Camera.cpp" />
     <ClCompile Include="..\..\source\Engine\CameraMover.cpp" />
+    <ClCompile Include="..\..\source\Engine\Client.cpp" />
     <ClCompile Include="..\..\source\Engine\Component.cpp" />
     <ClCompile Include="..\..\source\Engine\Composite.cpp" />
     <ClCompile Include="..\..\source\Engine\Entity.cpp" />
     <ClCompile Include="..\..\source\Engine\Game.cpp" />
-    <ClCompile Include="..\..\source\Engine\Input.cpp" />
+    <ClCompile Include="..\..\source\Engine\NetworkComponent.cpp" />
     <ClCompile Include="..\..\source\Engine\Scene.cpp" />
+    <ClCompile Include="..\..\source\Engine\Server.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\assets\sydney.bmp" />

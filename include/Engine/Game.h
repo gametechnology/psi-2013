@@ -1,5 +1,7 @@
 #include "..\Irrlicht\irrlicht.h"
 #include "Scene.h"
+#include "Client.h"
+#include "Server.h"
 #include <forward_list>
 #include "Input.h"
 
@@ -26,6 +28,8 @@ public:
 	static void addScene(Scene* defaultScene);
 	static void removeScene();
 	
+	static Client* client;
+	static Server* server;
 
 	static IrrlichtDevice* device;
 	static IVideoDriver* driver;

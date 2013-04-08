@@ -46,9 +46,7 @@ void Entity::createNode(std::string modelPath)
 	irr::scene::IAnimatedMesh* mesh = Game::getSceneManager()->getMesh(modelPath.c_str());
 
 	// Create model entity
-	//Entity* tempModel = new Entity(parent);
-	this->node = Game::getSceneManager()->addMeshSceneNode( mesh );
-	//Game::getCurrentScene()->addComponent(tempModel);
+	this->node =  Game::getSceneManager()->addMeshSceneNode( mesh );
 }
 
 Entity::~Entity()
