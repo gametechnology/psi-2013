@@ -28,7 +28,7 @@ Game::Game()
 	Game::scenes = new std::forward_list<Scene*>;
 
 	// Create the irrlicht device 
-	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, false, 0);
+	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, true);
 
 	// If the device was not created correctly, then shut down the program
 	if(Game::device) {
@@ -39,8 +39,8 @@ Game::Game()
 		Game::device->setWindowCaption(L"Stella Incognita");
 	}
 
-	//Game::server = new Server();
-
+	client = new Client();
+	client->setupClient("localhost");
 	//Game::client = new Client();
 	//Game::client->setupClient("localhost");
 }
@@ -49,7 +49,7 @@ void Game::run()
 {
 	//Main loop
 	while( Game :: device -> run( ) )
-	{
+	{			
 		Game :: getCurrentScene( ) -> update( );
 		Game :: driver -> beginScene(true, true, SColor(255,100,101,140));
 		(*Game::scenes->begin())->sceneManager->drawAll();

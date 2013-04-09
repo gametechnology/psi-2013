@@ -103,6 +103,7 @@
     <ClCompile Include="..\source\Game\MainMenuScene.cpp" />
     <ClCompile Include="..\source\Game\MapGenerator.cpp" />
     <ClCompile Include="..\source\Game\MapSector.cpp" />
+    <ClCompile Include="..\source\Game\Shipmap.cpp" />
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\HelmStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp" />
@@ -136,6 +137,7 @@
     <ClInclude Include="..\source\Game\SectorManager.h" />
     <ClInclude Include="..\source\Game\SectorTemplate.h" />
     <ClInclude Include="..\source\Game\Ship.h" />
+    <ClInclude Include="..\source\Game\Shipmap.h" />
     <ClInclude Include="..\source\Game\Skybox.h" />
     <ClInclude Include="..\source\Game\StateSwitch.h" />
     <ClInclude Include="..\source\Game\StateSwitchDrone.h" />
