@@ -22,7 +22,7 @@ void TestScene::init()
 
 	// Create camera entity
 	Camera* camera = new Camera(this, vector3df(0,4,-4), vector3df(0,4,0));
-	camera->velocity.Z -= 0.001;
+	camera->velocity.Z -= (float)0.001;
 	addComponent(camera);
 }
 
