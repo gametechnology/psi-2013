@@ -1,7 +1,7 @@
 #include "Irrlicht\irrlicht.h"
 #include "Engine\Game.h"
 #include "Engine\Scene.h"
-#include "CIrrEventReceiver.h"
+
 
 #ifndef MAINMENUEVENTRECEIVER
 #define MAINMENUEVENTRECEIVER
@@ -17,6 +17,7 @@ using namespace gui;
 // standard namespace
 using namespace std;
 
+
 // Declare a structure to hold some context for the event receiver so that it
 // has it available inside its OnEvent() method.
 struct SAppContext
@@ -26,20 +27,21 @@ struct SAppContext
     IGUIListBox*    listbox;
 };
 
-class MainMenuEventReveiver: public IEventReceiver
+class MainMenuEventReceiver : public IEventReceiver
 {
 public:
-	MainMenuEventReceiver(SAppContext & context) : Context(context) { }
-	virtual void draw();
-	~MainMenuEventReveiver();
-
+	MainMenuEventReceiver(SAppContext & context);
+	
 	//Create the different windows
 	IGUIWindow* mainMenuWindow;
 	IGUIWindow* joinServerWindow;
 	IGUIWindow* createServerWindow;
+
+    virtual bool OnEvent(const SEvent& event);
+    
 	
-	//Create a gui environment
-	IGUIEnvironment* guiEnv;
+private:
+    SAppContext & Context;
 };
 
 #endif

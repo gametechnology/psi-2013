@@ -1,6 +1,8 @@
 #include "Irrlicht\irrlicht.h"
 #include "Engine\Game.h"
 #include "Engine\Scene.h"
+#include "MainMenuEventReceiver.h"
+
 
 #ifndef MAINMENUSCENE
 #define MAINMENUSCENE
@@ -20,14 +22,13 @@ class MainMenuScene: public Scene
 {
 public:
 	MainMenuScene();
-	virtual void draw();
 	void updateLoop();
 	~MainMenuScene();
 
 	enum MainMenuState
 	{
 		Main = 0,
-		Create =1,
+		Create = 1,
 		Join = 2
 	};
 
@@ -41,7 +42,7 @@ public:
 	enum ButtonsCreateServer
 	{
 		CreateServer = 200,
-		fromCreateToMain = 201,
+		fromCreateToMain = 201
 	};
 
 	enum ButtonsJoinServer
@@ -51,6 +52,7 @@ public:
 	};
 
 	//Create the different windows
+	MainMenuEventReceiver* eventReceiver;
 	IGUIWindow* mainMenuWindow;
 	IGUIWindow* joinServerWindow;
 	IGUIWindow* createServerWindow;

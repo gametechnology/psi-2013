@@ -11,6 +11,7 @@ using namespace irr;
 using namespace core;
 using namespace video;
 using namespace scene;
+using namespace gui;
 
 class Game
 {
@@ -30,6 +31,8 @@ public:
 
 	static IrrlichtDevice* device;
 	static IVideoDriver* driver;
+
+	static IGUIEnvironment* guiEnv;
 protected:
 	static std::forward_list<Scene*>* scenes; 
 };
