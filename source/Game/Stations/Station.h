@@ -18,7 +18,7 @@ class Station : public Component
 public:
 	Station( Ship *ship, int startHealth );
 	Station( Ship *ship );
-	~Station( ) { }
+	virtual ~Station(void);
 
 	virtual void DoCameraShake() = 0;
 

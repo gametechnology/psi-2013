@@ -16,6 +16,15 @@ Station :: Station( Ship * ship ) : Component(ship)
 	this -> _health = 50;
 }
 
+Station :: ~Station(void)
+{
+	delete _ship;
+	delete _player;
+	delete _switchTime;
+	delete _playerOnStationTime;
+	delete _stunTime;
+}
+
 bool Station::HasPlayer()
 {
 	return ( this -> _player != NULL );

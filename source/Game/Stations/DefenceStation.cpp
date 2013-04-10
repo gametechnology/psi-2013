@@ -12,7 +12,7 @@ DefenceStation :: DefenceStation( Ship* ship) : Station( ship )
 
 DefenceStation :: ~DefenceStation()
 {
-	
+	delete station;
 }
 
 void DefenceStation :: DoCameraShake( )
