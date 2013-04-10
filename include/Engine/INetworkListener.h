@@ -1,12 +1,13 @@
 #ifndef INETWORKLISTENER
 #define INETWORKLISTENER
 
-#include "Engine/NetworkPacket.h"
+// forward declare NetworkPacket
+class NetworkPacket;
 
 class INetworkListener
 {
 public:
-	virtual HandleNetworkMessage(NetworkPacket packet) = 0;
+	virtual void HandleNetworkMessage(NetworkPacket packet) = 0;
 };
 
 #endif
