@@ -29,6 +29,7 @@ public:
 	WeaponStation		*_weaponStation;
 
 	int _shipHealth;
+	bool _shipDestroyed;
 
 	void update();
 	void updateShipHealth();
@@ -39,5 +40,6 @@ public:
 	Station *GetStation( Station :: StationType );
 
 	int getShipHealth();
+	bool getShipDestroyed();
 };
 #endif

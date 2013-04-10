@@ -11,7 +11,8 @@ PowerStation :: PowerStation( Ship *ship ) : Station( ship )
 	this -> _stationType		= StationType :: Power;
 	this -> device				= Game :: device;
 	this ->	driver				= device -> getVideoDriver( );
-	this -> env					= device -> getGUIEnvironment( );	
+	this -> env					= device -> getGUIEnvironment( );
+	this -> setStationDestroyed(false);
 }
 
 PowerStation :: ~PowerStation()

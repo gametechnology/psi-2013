@@ -39,6 +39,9 @@ public:
 	bool HasPower();
 	bool HasArmor();
 
+	bool getStationDestroyed();
+	void setStationDestroyed(bool _destroyed);
+
 	int getHealth();
 
 	void update();
@@ -56,6 +59,7 @@ protected:
 	StationType _stationType;
 
 	int _health;
+	bool _stationDestroyed;
 
 public:
 	void Initialize( );

@@ -63,6 +63,16 @@ bool Station::HasArmor( )
 	return true;//this->_ship->_defenceStation->GetArmor(this->_stationType) > 0;
 }
 
+bool Station::getStationDestroyed( )
+{
+	return this -> _stationDestroyed;
+}
+
+void Station::setStationDestroyed(bool _destroyed)
+{
+	this -> _stationDestroyed = _destroyed;
+}
+
 int Station :: getHealth()
 {
 	return this -> _health;

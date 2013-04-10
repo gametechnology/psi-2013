@@ -23,6 +23,7 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	addComponent(_powerStation);
 
 	this -> updateShipHealth();
+	this -> _shipDestroyed = false;
 }
 
 Ship::~Ship(void)
@@ -58,8 +59,50 @@ Station *Ship :: GetStation( STATION_TYPE s )
 void Ship :: update()
 {
 	Entity :: update();
-
 	this -> updateShipHealth();
+
+	if(this -> _shipHealth <= 0 && this -> _shipDestroyed == false)
+	{
+		this -> _shipDestroyed == true;
+		
+		//Game ends; Ship destroyed
+		std::cout<< "Ship destroyed: " << this->getShipDestroyed() << "/n";	
+	}
+	if(this -> _helmStation -> getHealth() <= 0 && this -> _helmStation -> getStationDestroyed() == false)
+	{
+		this -> _helmStation -> setStationDestroyed(true);
+		
+		//Note players helmstation is gone
+		std::cout<< "_helmStation destroyed: " << this->_helmStation->getStationDestroyed() << "/n";
+	}
+	if(this -> _defenceStation -> getHealth() <= 0 && this -> _defenceStation -> getStationDestroyed() == false)
+	{
+		this -> _defenceStation -> setStationDestroyed(true);
+		
+		//Note players defencestation is gone
+		std::cout<< "_defenceStation destroyed: " << this->_defenceStation->getStationDestroyed() << "/n";
+	}
+	if(this -> _navigationStation -> getHealth() <= 0 && this -> _navigationStation -> getStationDestroyed() == false)
+	{
+		this -> _navigationStation -> setStationDestroyed(true);
+		
+		//Note players navigationstation is gone
+		std::cout<< "_navigationStation destroyed: " << this->_navigationStation->getStationDestroyed() << "/n";
+	}
+	if(this -> _powerStation -> getHealth() <= 0 && this -> _powerStation -> getStationDestroyed() == false)
+	{
+		this -> _powerStation -> setStationDestroyed(true);
+		
+		//Note players powerstation is gone
+		std::cout<< "_powerStation destroyed: " << this->_powerStation->getStationDestroyed() << "/n";
+	}
+	if(this -> _weaponStation -> getHealth() <= 0 && this -> _weaponStation -> getStationDestroyed() == false)
+	{
+		this -> _weaponStation -> setStationDestroyed(true);
+		
+		//Note players weaponstation is gone
+		std::cout<< "_weaponStation destroyed: " << this->_weaponStation->getStationDestroyed() << "/n";
+	}
 }
 
 void Ship :: updateShipHealth()
@@ -75,4 +118,9 @@ void Ship :: updateShipHealth()
 int Ship :: getShipHealth()
 {
 	return this -> _shipHealth;
+}
+
+bool Ship :: getShipDestroyed()
+{
+	return this -> _shipDestroyed;
 }
