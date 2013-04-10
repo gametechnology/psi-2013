@@ -56,7 +56,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -95,7 +95,10 @@
     <ClInclude Include="..\..\include\Engine\Composite.h" />
     <ClInclude Include="..\..\include\Engine\Entity.h" />
     <ClInclude Include="..\..\include\Engine\Game.h" />
+    <ClInclude Include="..\..\include\Engine\INetworkListener.h" />
+    <ClInclude Include="..\..\include\Engine\Network.h" />
     <ClInclude Include="..\..\include\Engine\NetworkComponent.h" />
+    <ClInclude Include="..\..\include\Engine\NetworkPacket.h" />
     <ClInclude Include="..\..\include\Engine\Scene.h" />
     <ClInclude Include="..\..\include\Engine\Server.h" />
   </ItemGroup>
@@ -107,7 +110,9 @@
     <ClCompile Include="..\..\source\Engine\Composite.cpp" />
     <ClCompile Include="..\..\source\Engine\Entity.cpp" />
     <ClCompile Include="..\..\source\Engine\Game.cpp" />
+    <ClCompile Include="..\..\source\Engine\Network.cpp" />
     <ClCompile Include="..\..\source\Engine\NetworkComponent.cpp" />
+    <ClCompile Include="..\..\source\Engine\NetworkPacket.cpp" />
     <ClCompile Include="..\..\source\Engine\Scene.cpp" />
     <ClCompile Include="..\..\source\Engine\Server.cpp" />
   </ItemGroup>
