@@ -6,6 +6,7 @@
 #include "Stations\NavigationStation.h"
 #include "Stations\PowerStation.h"
 #include "Stations\WeaponStation.h"
+#include "Irrlicht\irrlicht.h"
 
 #include "Stations\Station.h"
 #include "Engine/Entity.h"
@@ -28,11 +29,22 @@ public:
 	PowerStation		*_powerStation;
 	WeaponStation		*_weaponStation;
 
+	//to test the ship health and station health
+	IGUIEnvironment *env;
+	IGUIStaticText *shipHealth;
+	IGUIStaticText *defenceStationHealth;
+	IGUIStaticText *helmStationHealth;
+	IGUIStaticText *navigationStationHealth;
+	IGUIStaticText *powerStationHealth;
+	IGUIStaticText *weaponStationHealth;
+
+
 	int _shipHealth;
 	bool _shipDestroyed;
 
 	void update();
 	void updateShipHealth();
+	void draw();
 	
 	Ship(Composite * parent);
 	virtual ~Ship(void);
