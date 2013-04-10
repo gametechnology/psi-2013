@@ -21,6 +21,8 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	addComponent(_navigationStation);
 	addComponent(_weaponStation);
 	addComponent(_powerStation);
+
+	this -> updateShipHealth();
 }
 
 Ship::~Ship(void)
@@ -51,4 +53,26 @@ Station *Ship :: GetStation( STATION_TYPE s )
 		break;
 	};
 	return NULL;
+}
+
+void Ship :: update()
+{
+	Entity :: update();
+
+	this -> updateShipHealth();
+}
+
+void Ship :: updateShipHealth()
+{
+	this -> _shipHealth = 
+		this -> _defenceStation -> getHealth() +
+		this -> _helmStation -> getHealth() +
+		this -> _navigationStation -> getHealth() +
+		this -> _powerStation -> getHealth() +
+		this -> _weaponStation -> getHealth();
+}
+
+int Ship :: getShipHealth()
+{
+	return this -> _shipHealth;
 }

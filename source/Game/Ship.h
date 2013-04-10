@@ -27,11 +27,17 @@ public:
 	NavigationStation	*_navigationStation;
 	PowerStation		*_powerStation;
 	WeaponStation		*_weaponStation;
+
+	int _shipHealth;
+
+	void update();
+	void updateShipHealth();
 	
-public:
 	Ship(Composite * parent);
 	virtual ~Ship(void);
 
-	Station *GetStation( Station :: StationType );	
+	Station *GetStation( Station :: StationType );
+
+	int getShipHealth();
 };
 #endif
