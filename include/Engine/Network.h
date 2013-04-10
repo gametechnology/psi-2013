@@ -15,5 +15,13 @@ public:
 	bool isServer;
 };
 
-#endif
+enum PacketType
+{
+	CLIENT_JOIN = 0,
+	CLIENT_QUIT,
+	CLIENT_JOIN_TEAM,
+	SERVER_WELCOMES,
+	SERVER_REJECTS
+};
 
+#endif
