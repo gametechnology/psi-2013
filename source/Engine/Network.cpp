@@ -37,3 +37,8 @@ void Network::SendPacket(NetworkPacket packet, bool reliable)
 {
 
 }
+
+void Network::AddListener(INetworkListener* listener)
+{
+	_listeners.push_back(listener);
+}

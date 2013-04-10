@@ -1,6 +1,9 @@
 #ifndef NETWORK
 #define NETWORK
 
+#include "Engine\INetworkListener.h"
+#include <list>
+
 // forward declare NetworkPacket to prevent circular dependancy
 class NetworkPacket;
 
@@ -10,6 +13,8 @@ private:
 	Network();
 
 	static Network* instance;
+
+	std::list<INetworkListener*> _listeners;
 public:
 	~Network();
 	static Network* GetInstance();
@@ -19,6 +24,7 @@ public:
 	void InitializeServer();
 
 	void SendPacket(NetworkPacket packet, bool reliable = false);
+	void AddListener(INetworkListener* listener);
 
 	bool isServer;
 };
