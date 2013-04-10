@@ -33,12 +33,12 @@ void Network::InitializeServer()
 {
 }
 
-void Network::SendPacket(NetworkPacket packet, bool reliable)
+void Network::SendPacket(const NetworkPacket packet, const bool reliable)
 {
 
 }
 
-void Network::AddListener(INetworkListener* listener)
+void Network::AddListener(const INetworkListener* listener)
 {
 	_listeners.push_back(listener);
 }

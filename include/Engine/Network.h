@@ -14,7 +14,7 @@ private:
 
 	static Network* instance;
 
-	std::list<INetworkListener*> _listeners;
+	std::list<const INetworkListener*> _listeners;
 public:
 	~Network();
 	static Network* GetInstance();
@@ -23,8 +23,8 @@ public:
 	void InitializeClient();
 	void InitializeServer();
 
-	void SendPacket(NetworkPacket packet, bool reliable = false);
-	void AddListener(INetworkListener* listener);
+	void SendPacket(const NetworkPacket packet, const bool reliable = false);
+	void AddListener(const INetworkListener* listener);
 
 	bool isServer;
 };
