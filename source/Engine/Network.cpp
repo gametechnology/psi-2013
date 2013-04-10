@@ -1,4 +1,5 @@
 #include "Engine\Network.h"
+#include "Engine\NetworkPacket.h"
 
 bool Network::isInitialized = false;
 Network* Network::instance = 0;
@@ -22,4 +23,17 @@ Network* Network::GetInstance()
 	}
 
 	return instance;
+}
+
+void Network::InitializeClient()
+{
+}
+
+void Network::InitializeServer()
+{
+}
+
+void Network::SendPacket(NetworkPacket packet, bool reliable)
+{
+
 }

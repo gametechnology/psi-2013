@@ -1,6 +1,9 @@
 #ifndef NETWORK
 #define NETWORK
 
+// forward declare NetworkPacket to prevent circular dependancy
+class NetworkPacket;
+
 class Network
 {
 private:
@@ -11,6 +14,11 @@ public:
 	~Network();
 	static Network* GetInstance();
 	static bool isInitialized;
+
+	void InitializeClient();
+	void InitializeServer();
+
+	void SendPacket(NetworkPacket packet, bool reliable = false);
 
 	bool isServer;
 };
