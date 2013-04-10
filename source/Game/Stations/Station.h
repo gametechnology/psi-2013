@@ -16,6 +16,7 @@ class Station : public Component
 {
 
 public:
+	Station( Ship *ship, int startHealth );
 	Station( Ship *ship );
 	~Station( ) { }
 
@@ -38,7 +39,9 @@ public:
 	bool HasPower();
 	bool HasArmor();
 
-	void Update(float time);
+	int getHealth();
+
+	void update();
 
 	virtual void OnDamage( );
 
@@ -51,6 +54,8 @@ protected:
 	time_t *_stunTime;				//if a station fot stunned, the time it happened will be stored here.
 	
 	StationType _stationType;
+
+	int _health;
 
 public:
 	void Initialize( );

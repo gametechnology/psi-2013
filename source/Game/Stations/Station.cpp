@@ -2,11 +2,18 @@
 #include "PowerStation.h"
 #include "DefenceStation.h"
 
-Station :: Station( Ship *ship ) : Component(ship)
+Station :: Station( Ship *ship, int startHealth ) : Component(ship)
 {
 	this ->	_ship	= ship;
+	this -> _health = startHealth;
 
 	//this -> _switchTime = 4.0f;
+}
+
+Station :: Station( Ship * ship ) : Component(ship)
+{
+	this -> _ship   = ship;
+	this -> _health = 50;
 }
 
 bool Station::HasPlayer()
@@ -33,8 +40,9 @@ bool Station::IsStunned()
 	return difftime( *_stunTime, *t ) <= STUN_TIME;
 }
 
-void Station::Update(float time)
+void Station::update()
 {
+	Component::update();
 	//Update Stun Time
 	//Update player on station time	
 }
@@ -53,6 +61,11 @@ bool Station::HasPower( )
 bool Station::HasArmor( )
 {
 	return true;//this->_ship->_defenceStation->GetArmor(this->_stationType) > 0;
+}
+
+int Station :: getHealth()
+{
+	return this -> _health;
 }
 
 void Station :: Initialize( )
