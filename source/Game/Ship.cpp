@@ -104,7 +104,7 @@ void Ship :: update()
 	stringw strPowerHealth = "Power Station health: " + this -> _powerStation -> getHealth();
 	stringw strWeaponHealth = "Weapon Station health: " + this -> _weaponStation -> getHealth();
 
-	this -> shipHealth				->setText((varToString("Shipp HP : ", this -> getShipHealth())).c_str());
+	this -> shipHealth				->setText((varToString("Ship HP : ", this -> getShipHealth())).c_str());
 	this -> defenceStationHealth	->setText((varToString("Defence Station HP: ", this -> _defenceStation -> getHealth())).c_str());
 	this -> helmStationHealth		->setText((varToString("Helm Station HP: ", this -> _helmStation -> getHealth())).c_str());
 	this -> navigationStationHealth	->setText((varToString("Navigation Station HP: ", this -> _navigationStation -> getHealth())).c_str());
