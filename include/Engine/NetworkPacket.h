@@ -13,6 +13,7 @@ public:
 	const void* GetBytes();
 	const size_t GetSize();
 	sf::Packet GetPacket();
+	PacketType GetPacketType();
 private:
 	int _typee;
 	PacketType _type;

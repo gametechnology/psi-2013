@@ -33,3 +33,8 @@ sf::Packet NetworkPacket::GetPacket()
 {
 	return _packet;
 }
+
+PacketType NetworkPacket::GetPacketType()
+{
+	return _type;
+}
