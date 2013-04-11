@@ -8,9 +8,15 @@ class NetworkPacket
 {
 public:
 	NetworkPacket(const PacketType type, const sf::Packet packet);
+	NetworkPacket(ENetPacket* packet);
 	~NetworkPacket();
+	const void* GetBytes();
+	const size_t GetSize();
+	sf::Packet GetPacket();
 private:
+	int _typee;
 	PacketType _type;
+	sf::Packet _originalPacket;
 	sf::Packet _packet;
 };
 

@@ -3,6 +3,10 @@
 #include "EnemySceneTest.h"
 #include "MapGenerator.h"
 #include "MainMenuScene.h"
+#include "Engine/Network.h"
+#include "../../include/SFML/Network.hpp"
+#include "Engine/NetworkPacket.h"
+#include <enet\enet.h>
 
 // Include memory leak detection files.
 #ifdef _DEBUG
@@ -25,6 +29,25 @@ int main()
 	galaxyMap->position.set(vector3df(100, 670, 0));*/
 
 	//Game::client->setupClient("145.92.13.97");
+
+	Network::GetInstance()->InitializeServer();
+
+	unsigned int data1 = 1;
+	std::string data2 = "hello";
+	sf::Packet packet;
+	packet << data1 << data2 << 8;
+
+	NetworkPacket networkPacket(SERVER_REJECTS, packet);
+
+	ENetPacket* enetPacket = enet_packet_create(networkPacket.GetBytes(), networkPacket.GetSize(), true);
+
+	NetworkPacket receivedPacket(enetPacket);
+
+	unsigned int data11;
+	std::string data22;
+	int type;
+
+	receivedPacket.GetPacket() >> data11 >> data22;
 
 	// Create test scene
 	Game::addScene(new HelmSceneTest());

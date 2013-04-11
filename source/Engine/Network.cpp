@@ -83,14 +83,55 @@ void Network::InitializeServer()
 	}
 }
 
-void Network::SendPacket(const NetworkPacket packet, const bool reliable)
+void Network::SendPacket(NetworkPacket packet, const bool reliable)
 {
+	if(_isConnected)
+	{
+		/* Create a reliable packet of size 7 containing "packet\0" */
+		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
+		enet_peer_send(_peer, 0, enetPacket);
 
+		/* One could just use enet_host_service() instead. */
+		enet_host_flush(_host);
+	}
 }
 
 void Network::AddListener(const INetworkListener* listener)
 {
 	_listeners.push_back(listener);
+}
+
+void Network::Update()
+{
+	/* Wait up to 1000 milliseconds for an event. */
+while (enet_host_service (_host, & _event, 1000) > 0)
+{
+    switch (_event.type)
+    {
+		case ENET_EVENT_TYPE_CONNECT:
+			printf ("A new client connected from %x:%u.\n", 
+					_event.peer -> address.host,
+					_event.peer -> address.port);
+			/* Store any relevant client information here. */
+			_event.peer -> data = "Client information";
+			break;
+		case ENET_EVENT_TYPE_RECEIVE:
+			printf ("A packet of length %u containing %s was received from %s on channel %u.\n",
+					_event.packet -> dataLength,
+					_event.packet -> data,
+					_event.peer -> data,
+					_event.channelID);
+			/* Clean up the packet now that we're done using it. */
+			enet_packet_destroy (_event.packet);
+        
+			break;
+       
+		case ENET_EVENT_TYPE_DISCONNECT:
+			printf ("%s disconected.\n", _event.peer -> data);
+			/* Reset the peer's client information. */
+			_event.peer -> data = NULL;
+		}
+	}
 }
 
 bool Network::IsConnected()

@@ -35,8 +35,9 @@ public:
 	bool IsServer();
 	bool IsConnected();
 
-	void SendPacket(const NetworkPacket packet, const bool reliable = false);
+	void SendPacket(NetworkPacket packet, const bool reliable = false);
 	void AddListener(const INetworkListener* listener);
+	void Update();
 };
 
 enum PacketType
