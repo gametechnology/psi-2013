@@ -8,6 +8,7 @@
 #endif
 
 #include "Engine\Game.h"
+#include "Engine\Network.h"
 
 using namespace irr;
 using namespace core;
@@ -49,7 +50,8 @@ void Game::run()
 {
 	//Main loop
 	while( Game :: device -> run( ) )
-	{			
+	{	
+		Network::GetInstance()->Update();
 		Game :: getCurrentScene( ) -> update( );
 		Game :: driver -> beginScene(true, true, SColor(255,100,101,140));
 		(*Game::scenes->begin())->sceneManager->drawAll();
