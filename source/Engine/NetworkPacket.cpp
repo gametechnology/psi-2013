@@ -8,11 +8,12 @@ NetworkPacket::NetworkPacket(const PacketType type, const sf::Packet packet) : _
 
 NetworkPacket::NetworkPacket(ENetPacket* packet)
 {
+	_packet.clear();
 	_packet.append(packet->data, packet->dataLength);
-	const void* data = _packet.getData();
-	_typee = ntohl(*reinterpret_cast<const int*>(_packet.getData()) + _packet.getDataSize() - sizeof(PacketType)); 
-	_type = (PacketType)_typee;
 
+	int type;
+	_packet >> type;
+	_type = (PacketType)type;
 }
 
 NetworkPacket::~NetworkPacket()
@@ -21,12 +22,17 @@ NetworkPacket::~NetworkPacket()
 
 const size_t NetworkPacket::GetSize()
 {
-	return sizeof(_type) + _packet.getDataSize();
+	return _packet.getDataSize() + sizeof(_type);
 }
-
+	
 const void* NetworkPacket::GetBytes()
 {
-	return _packet.getData();	
+	sf::Packet tempPacket = _packet;
+	_packet.clear();
+	_packet << _type;
+	_packet.append(tempPacket.getData(), tempPacket.getDataSize());
+
+	return _packet.getData();
 }
 
 sf::Packet NetworkPacket::GetPacket()

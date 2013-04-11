@@ -14,7 +14,6 @@ public:
 	const size_t GetSize();
 	sf::Packet GetPacket();
 private:
-	int _typee;
 	PacketType _type;
 	sf::Packet _originalPacket;
 	sf::Packet _packet;
