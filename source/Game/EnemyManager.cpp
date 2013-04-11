@@ -9,7 +9,7 @@
 
 EnemyManager::EnemyManager(void) 
 {
-
+	createEnemies();
 }
 
 EnemyManager::~EnemyManager(void)
@@ -42,9 +42,9 @@ void EnemyManager::createEnemies()
 	fighter1->setVelocity(vector3df(0.0005f,0,0));
 	fighter1->setRotation(irr::core::vector3df(0,1,0));
 	addComponent(fighter1);
-	asteroid1 = new EnemyAsteroid(irr::core::vector3df(0,0,0),vector3df(0,0.0005f,0));
+	asteroid1 = new EnemyAsteroid(irr::core::vector3df(50,0,0),vector3df(0,0.001f,0));
 	addComponent(asteroid1);
-	asteroid2 = new EnemyAsteroid(irr::core::vector3df(0,10,0),vector3df(0,-0.0005f,0));
+	asteroid2 = new EnemyAsteroid(irr::core::vector3df(50,10,0),vector3df(0,-0.001f,0));
 	addComponent(asteroid2);
 	
 	//kamikaze enemy
@@ -80,17 +80,18 @@ void EnemyManager::createEnemies()
 void EnemyManager::update()
 {
 	Scene::update();
+	NarrowPhaseDetection(this->_enemyList);
 
 	for(unsigned int i=0; i<_enemyList.size(); i++) //loop through all asteroids, update these and check for contact with all other asteroids
 	{
-		for(unsigned int j=0; j<_enemyList.size(); j++)
-		{
-			if(j!=i)
-			{
-				if(!dynamic_cast<EnemyFighter*>(_enemyList[i]) && !dynamic_cast<EnemyFighter*>(_enemyList[j]))
-					this->_enemyList[i]->contactGenerator(_enemyList[j]);	
-			}
-		}
+		//for(unsigned int j=0; j<_enemyList.size(); j++)
+		//{
+		//	if(j!=i)
+		//	{
+		//		if(!dynamic_cast<EnemyFighter*>(_enemyList[i]) && !dynamic_cast<EnemyFighter*>(_enemyList[j]))
+		//			this->_enemyList[i]->contactGenerator(_enemyList[j]);	
+		//	}
+		//}
 
 		if(dynamic_cast<EnemyDrone*>(_enemyList[i]))
 		{
@@ -108,4 +109,107 @@ void EnemyManager::update()
 			}
 		}
 	}
+}
+
+#define UNIFORMSIZE 10
+
+/*
+void EnemyManager::BroadPhaseDetection()
+{
+	vector3df max = vector3df(0,0,0);
+	vector3df min = vector3df(0,0,0);
+
+	for (int i = 0; this->_enemyList.size(); i++)
+	{
+		if (this->_enemyList[i]->position.X > max.X)
+		{
+			max.X = this->_enemyList[i]->position.X;
+		}
+		if (this->_enemyList[i]->position.Y > max.Y)
+		{
+			max.Y = this->_enemyList[i]->position.Y;
+		}
+		if (this->_enemyList[i]->position.Z > max.Z)
+		{
+			max.Z = this->_enemyList[i]->position.Z;
+		}
+
+		if (this->_enemyList[i]->position.X < min.X)
+		{
+			min.X = this->_enemyList[i]->position.X;
+		}
+		if (this->_enemyList[i]->position.Y < min.Y)
+		{
+			min.Y = this->_enemyList[i]->position.Y;
+		}
+		if (this->_enemyList[i]->position.Z < min.Z)
+		{
+			min.Z = this->_enemyList[i]->position.Z;
+		}
+	}
+
+	min *= min;
+	max *= max;
+	
+	//TODO take root of all min max xyz's
+
+	unsigned int intervalsx = (min.X + max.X)/UNIFORMSIZE;
+	unsigned int intervalsy = (min.Y + max.Y)/UNIFORMSIZE;
+	unsigned int intervalsz = (min.Z + max.Z)/UNIFORMSIZE;
+	
+	array<Enemy*> spaces;
+
+	for (int i = 0; this->_enemyList.size(); i++)
+	{
+		for (int j = 0; j < intervalsx; j++)			//x = j
+		{
+			if (this->_enemyList[i]->position.X > (intervalsx*j) && this->_enemyList[i]->position.X < intervalsx*(j+1))
+			{
+				for (int k = 0; k < intervalsy; k++)		//y = k
+				{
+					if (this->_enemyList[i]->position.Y > (intervalsy*k) && this->_enemyList[i]->position.Y < intervalsy*(k+1))
+					{
+						for (int l = 0; l < intervalsz; l++)	//z = l
+						{
+							if (this->_enemyList[i]->position.Z > (intervalsz*l) && this->_enemyList[i]->position.Z < intervalsz*(l+1))
+							{
+
+							}
+						}
+					}
+				}
+			}	
+		}
+	}
+
+	for (int i = 0; i < 10; i++)
+	{
+		NarrowPhaseDetection();
+	}
+}
+*/
+
+void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
+{
+	for(int i = 0; i < _input.size(); i++)
+	{
+		for(int j = 0; j < _input.size(); j++)
+		{
+			if( i != j)
+			{
+				float distance = _input[i]->position.getDistanceFrom(_input[j]->getPosition());
+				unsigned int radii = _input[i]->getRadius() + _input[j]->getRadius();
+				if (distance < radii)
+				{
+					_input[i]->contactResolverB(/*_input[j]*/);
+				}
+			}
+		}
+	}
+ //float distance = position.getDistanceFrom(input->getPosition());
+ //float radii = input->getRadius() + radius_;
+ //if (distance < radii)
+ //{
+ // contactResolverB();
+ //}
 }

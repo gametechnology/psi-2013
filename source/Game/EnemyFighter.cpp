@@ -8,6 +8,7 @@ EnemyFighter::EnemyFighter(irr::core::vector3df position): Enemy()
 	this->setMaxHealth(50);
 	this->setAgility(2);
 	this->setMaxSpeed(400);
+	this->setRadius(1);
 	this->setAccelaration(vector3df(45,0,0));
 	this->setLoS(4800);
 

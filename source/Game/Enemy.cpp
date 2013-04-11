@@ -143,13 +143,27 @@ void Enemy::steering()
 		this->velocity = newvelocity;
 }
 
-void Enemy::contactResolverA()
+void Enemy::contactResolverA(Enemy* _input)
 {
-
+	if (this->position.getDistanceFromSQ(_input->getPosition()) < ((this->getRadius() + _input->getRadius() ) * (this->getRadius() + _input->getRadius())))
+    {
+		std::printf("..!..");
+        double deltamass = (this->getRadius() / _input->getRadius());
+		vector3df deltavelocity = this->getVelocity() - _input->getVelocity();
+		vector3df componentThisToBal = (_input->getPosition() - this->getPosition()) * (this->getPosition().dotProduct(_input->getPosition() - this->getPosition()) / (_input->getPosition() - this->getPosition()).getLengthSQ());
+        vector3df componentNormalToBal = deltavelocity - componentThisToBal;
+        vector3df thisMassComponent = componentThisToBal * ((deltamass- 1) / (deltamass + 1));
+		vector3df balMassComponent = componentThisToBal * (2 * deltamass / (deltamass + 1));
+        velocity = componentNormalToBal + thisMassComponent + _input->getVelocity();
+        _input->setVelocity(balMassComponent + _input->getVelocity());
+		this->setRadius(this->getRadius()*2 - this->getPosition().getDistanceFrom(_input->getPosition()));
+		_input->setRadius(this->getRadius());
+    }
 }
 
 void Enemy::contactResolverB()
 {
+	std::printf("..!..");
 	velocity *= -1;
 }
 

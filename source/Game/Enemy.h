@@ -61,7 +61,7 @@ public:
 
 	/*void contactGenerator(Player* input);*/
 	void contactGenerator(Enemy* input);
-	void contactResolverA();
+	void contactResolverA(Enemy* _input);
 	void contactResolverB();
 	void steering();
 	void wander();
