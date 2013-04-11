@@ -13,6 +13,7 @@ void HelmSceneTest::init()
 	EnemyManager* manager;
 	manager = new EnemyManager();
 
+	addComponent(new Player(this));
 	addComponent(new Ship(this));
 	addComponent(manager);
 }
