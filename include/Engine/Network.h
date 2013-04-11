@@ -27,6 +27,8 @@ private:
 	const int _port;
 
 	Network();
+	void StartThreads();
+	void StopThreads();
 	
 	bool _isServer;
 	bool _isConnected;

@@ -35,8 +35,20 @@ Network* Network::GetInstance()
 	return instance;
 }
 
+void Network::StartThreads()
+{
+	_beginthread(PackageReciever,0, NULL);
+	_beginthread(PackageSender,0, NULL);
+}
+
+void Network::StopThreads()
+{
+}
+
 void Network::InitializeClient(const char* ipAdress)
 {
+	StartThreads();
+
 	std::cout << "Initializing client at port " << _port << ".\n";
 
 	_host = enet_host_create (NULL /* create a client host */,
@@ -68,32 +80,32 @@ void Network::InitializeClient(const char* ipAdress)
 	{
 		enet_peer_reset(_peer);
 		printf("Connection to %s:%i failed.\n", ipAdress, _address.port);
+		StopThreads();
 
 	}
-	_beginthread(PackageReciever,0, NULL);
-	_beginthread(PackageSender,0, NULL);
 }
 
 void Network::InitializeServer()
 {
+	StartThreads();
 
 	std::cout << "Initializing server at port " << _port << ".\n";
 	_address.host = ENET_HOST_ANY;
 	_address.port = _port;
 
 	_host = enet_host_create(&_address, 32, 2, 0, 0);
-	_beginthread(PackageReciever,0, NULL);
-	_beginthread(PackageSender,0, NULL);
+
 	if (_host == NULL)
+	{
 		std::cout << "An error occurred while trying to create an ENet server host.\n";
+		StopThreads();
+	}
 	else
 	{
 		std::cout << "Succesfully creatinga ENet server host; server now running.\n";
 		_isServer = true;
-
-		
-	}
-	
+		_isConnected = true;
+	}	
 }
 
 void Network::SendPacket(NetworkPacket packet, const bool reliable)
