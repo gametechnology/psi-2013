@@ -24,12 +24,6 @@
     <ClCompile Include="..\source\Game\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\TestScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Boundry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -183,6 +177,24 @@
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\Station.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\assets\sydney.bmp">
@@ -194,12 +206,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Messages.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\TestScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Boundry.h">

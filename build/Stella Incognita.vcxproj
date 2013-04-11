@@ -132,7 +132,6 @@
     <ClInclude Include="..\source\Game\MapGenerator.h" />
     <ClInclude Include="..\source\Game\MapSector.h" />
     <ClInclude Include="..\source\Game\Messages.h" />
-    <ClInclude Include="..\source\Game\Player.h" />
     <ClInclude Include="..\source\Game\RandomGenerator.h" />
     <ClInclude Include="..\source\Game\SectorManager.h" />
     <ClInclude Include="..\source\Game\SectorTemplate.h" />
@@ -149,7 +148,6 @@
     <ClInclude Include="..\source\Game\Stations\Station.h" />
     <ClInclude Include="..\source\Game\Stations\UIData.h" />
     <ClInclude Include="..\source\Game\Stations\WeaponStation.h" />
-    <ClInclude Include="..\source\Game\TestScene.h" />
     <ClInclude Include="..\source\Game\Thruster.h" />
   </ItemGroup>
   <ItemGroup>
@@ -160,7 +158,6 @@
     <ClCompile Include="..\source\Game\EnemyManager.cpp" />
     <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
     <ClCompile Include="..\source\Game\main.cpp" />
-    <ClCompile Include="..\source\Game\Player.cpp" />
     <ClCompile Include="..\source\Game\RandomGenerator.cpp" />
     <ClCompile Include="..\source\Game\SectorManager.cpp" />
     <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
@@ -175,7 +172,6 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp" />
     <ClCompile Include="..\source\Game\Stations\UIData.cpp" />
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp" />
-    <ClCompile Include="..\source\Game\TestScene.cpp" />
     <ClCompile Include="..\source\Game\Thruster.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
