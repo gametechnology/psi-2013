@@ -94,6 +94,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Engine\Game.cpp" />
+    <ClCompile Include="..\source\Engine\Input.cpp" />
     <ClCompile Include="..\source\Game\AsteroidSector.cpp" />
     <ClCompile Include="..\source\Game\BaseSector.cpp" />
     <ClCompile Include="..\source\Game\Enemy.cpp" />
@@ -108,6 +109,7 @@
     <ClCompile Include="..\source\Game\Laser.cpp" />
     <ClCompile Include="..\source\Game\main.cpp" />
     <ClCompile Include="..\source\Game\MainMenuEventReceiver.cpp" />
+    <ClCompile Include="..\source\Game\MainMenuScene.cpp" />
     <ClCompile Include="..\source\Game\MapGenerator.cpp" />
     <ClCompile Include="..\source\Game\MapSector.cpp" />
     <ClCompile Include="..\source\Game\Mist.cpp" />
@@ -140,6 +142,7 @@
     <None Include="..\assets\Textures\Wormholes\WormHole.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\Engine\Input.h" />
     <ClInclude Include="..\source\Game\AsteroidSector.h" />
     <ClInclude Include="..\source\Game\BaseSector.h" />
     <ClInclude Include="..\source\Game\Enemy.h" />
@@ -155,6 +158,7 @@
     <ClInclude Include="..\source\Game\HelmStation.h" />
     <ClInclude Include="..\source\Game\MainMenuEventReceiver.h" />
     <ClInclude Include="..\source\Game\Laser.h" />
+    <ClInclude Include="..\source\Game\MainMenuScene.h" />
     <ClInclude Include="..\source\Game\MapGenerator.h" />
     <ClInclude Include="..\source\Game\MapSector.h" />
     <ClInclude Include="..\source\Game\Messages.h" />
