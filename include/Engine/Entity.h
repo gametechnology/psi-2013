@@ -1,7 +1,7 @@
-#include "Composite.h"
-#include "..\Irrlicht\irrlicht.h"
-#include "..\Irrlicht\vector3d.h"
-#include "..\Irrlicht\irrMath.h"
+#include "Engine\Composite.h"
+#include "Irrlicht\irrlicht.h"
+#include "Irrlicht\vector3d.h"
+#include "Irrlicht\irrMath.h"
 #include <string>
 
 #ifndef ENTITY
@@ -13,7 +13,7 @@ using namespace core;
 class Entity : public Composite
 {
 public:
-	Entity(Composite* parent);
+	Entity();
 	virtual ~Entity();
 
 	// Variables

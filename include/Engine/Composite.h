@@ -1,23 +1,29 @@
-#include "Component.h"
-#include <list>
+#include <vector>
+#include <array>
 
 #ifndef COMPOSITE
 #define COMPOSITE
 
-class Composite : public Component
+class Composite
 {
 public:
-	Composite(Composite* parent);
+	Composite();
 	virtual ~Composite();
-
+	
+	bool initialized;
+	bool destroyed;
+	bool enabled;
+	
+	virtual void onAdd();
+	virtual void init();
 	virtual void update();
 	virtual void draw();
-	virtual void handleMessage(unsigned int message, void* data);
 
-	virtual void addComponent(Component* component);
-	virtual void removeComponent(Component* component);
-protected:
-	std::list<Component*> components;
+	virtual void handleMessage(unsigned int message);
+
+	virtual void disable();
+	virtual void enable();
+	virtual void destroy();
 };
 
 #endif

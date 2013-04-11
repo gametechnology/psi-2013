@@ -1,20 +1,25 @@
+#include "Engine\Entity.h"
+#include "Engine\Scene.h"
+#include "Engine\Game.h"
+
 #ifndef COMPONENT
 #define COMPONENT
 
-class Composite;
-
-class Component
-{
+class Component : public Composite {
 public:
-	Component(Composite* parent);
-	virtual ~Component() = 0;
+	Component();
+	virtual ~Component();
 
-	virtual void init() {};
-	virtual void update() {};
-	virtual void draw() {};
-	virtual void handleMessage(unsigned int message, void* data = 0) { };
-protected:
-	Composite* parent;
+	Entity entity;
+
+	Game getGame();
+	Scene getScene();
+
+	virtual void init();
+	virtual void update();
+	virtual void draw();
+
+	virtual void handleMessage(unsigned int message);
 };
 
 

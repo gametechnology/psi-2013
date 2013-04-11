@@ -1,11 +1,33 @@
 #include "Engine\Component.h"
-#include "Engine\Composite.h"
 
-Component::Component(Composite* parent)
-{
-	this->parent = parent;
+Component::Component() : Composite() {
+
 }
 
-Component::~Component()
-{
+Component::~Component() {
+
+}
+
+Game Component::getGame() {
+	return entity.game;
+}
+
+Scene Component::getScene() {
+	return entity.scene;
+}
+
+void Component::init() {
+
+}
+
+void Component::update() {
+
+}
+
+void Component::draw() {
+
+}
+
+void Component::handleMessage(unsigned int message) {
+
 }

@@ -1,3 +1,4 @@
+#include ""
 #include "Engine\Entity.h"
 #include "Engine\Game.h"
 
@@ -27,8 +28,6 @@ void Entity::update()
 
 void Entity::draw()
 {
-	Composite::draw();
-
 	if (node == NULL) return;
 	if (!this->visible)
 	{
@@ -47,7 +46,6 @@ void Entity::createNode(std::string modelPath)
 
 	// Create model entity
 	this->node =  Game::getSceneManager()->addMeshSceneNode( mesh );
-	this->node->setMaterialFlag(EMF_FOG_ENABLE, true);
 }
 
 Entity::~Entity()
