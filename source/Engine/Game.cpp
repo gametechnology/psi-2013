@@ -20,8 +20,9 @@ IrrlichtDevice* Game::device;
 IVideoDriver* Game::driver;
 std::forward_list<Scene*>* Game::scenes;
 
-Client* Game::client;
-Server* Game::server;
+/*Client* Game::client;
+Server* Game::server;*/
+IGUIEnvironment* Game::guiEnv;
 
 Game::Game()
 {
@@ -35,6 +36,9 @@ Game::Game()
 	if(Game::device) {
 		// Create a driver 
 		driver = Game::device->getVideoDriver();
+
+		//Get the GUI environment
+		guiEnv = Game::device->getGUIEnvironment();
 
 		//Set title of the window
 		Game::device->setWindowCaption(L"Stella Incognita");
@@ -53,8 +57,12 @@ void Game::run()
 	{	
 		Game :: getCurrentScene( ) -> update( );
 		Game :: driver -> beginScene(true, true, SColor(255,100,101,140));
+		//Irrlicht draw all
 		(*Game::scenes->begin())->sceneManager->drawAll();
+		//Game engine draw
 		Game::getCurrentScene()->draw();
+		//Irrlicht GUI
+		Game::guiEnv->drawAll();
 		Game::driver->endScene();
 	}
 	Game::device->drop();
