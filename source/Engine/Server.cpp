@@ -22,7 +22,6 @@ Server::~Server()
 	enet_host_destroy(server);
 }
 
-void Server::setupServer()
 ENetHost* Server::getServer()
 {
 	return server;
