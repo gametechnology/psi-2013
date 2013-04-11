@@ -48,12 +48,12 @@ public:
 	stringw varToString(stringw str1, float var, stringw str2 = L"");
 
 	void update();
+	void draw();
+
 	void selectedStation();
 	void changeColorAccordingToPowerStatus(IGUIStaticText &staticText, float powerAmount);
 
 	int GetPower(Station::StationType type);
-
-	void gameLoop();
 };
 
 #endif

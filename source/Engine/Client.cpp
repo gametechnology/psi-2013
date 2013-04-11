@@ -49,13 +49,13 @@ void Client::setupClient(const char* address_name)
 	if (enet_host_service(client, &event, 1000) > 0 && event.type == ENET_EVENT_TYPE_CONNECT)
 	{
 		connected = true;
-		printf("Connection to %s:%i succeeded.", address_name, address.port);
+		printf("Connection to %s:%i succeeded.\n", address_name, address.port);
 		sendPacket("Client connected");
 	}
 	else
 	{
 		enet_peer_reset(peer);
-		printf("Connection to %s:%i failed.", address_name, address.port);
+		printf("Connection to %s:%i failed.\n", address_name, address.port);
 	}
 }
 

@@ -28,12 +28,22 @@ public:
 	Server();
 	~Server();
 
+	virtual ENetHost* getServer();
+	virtual ENetEvent* getEvent();
+
 	/*
 	*
-	* Set-up the server. This is not yet implemented.
+	* Set-up the server.
 	*
 	*/
-	virtual void setupServer();
+	virtual void setupServer(int host, int port);
+
+	/*
+	*
+	* Run the server,
+	*
+	*/
+	virtual void runServer();
 };
 
 #endif
