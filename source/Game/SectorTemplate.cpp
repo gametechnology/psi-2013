@@ -13,7 +13,8 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	_fog = new Mist(this);
 	// Setting the boundry
 	_boundry = boundryRadius;
-
+	
+	_enemyManager = new EnemyManager();
 	// The player
 	this->_player = new Camera( this->parent );
 	this->_camera = Game::getSceneManager()->addCameraSceneNodeFPS();
@@ -24,6 +25,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 }
 //This function isn't being overriden so it needs to be called in constructor
 void SectorTemplate::init(){
+	addComponent(_enemyManager);
 	addComponent( this->_skybox );
 	//addComponent( this->_player );
 	addComponent( this->_fog );

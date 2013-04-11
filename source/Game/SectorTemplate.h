@@ -7,6 +7,7 @@
 #include "Mist.h"
 #include "Messages.h"
 #include "Engine/Game.h"
+#include "EnemyManager.h"
 #include <vector>
 
 class SectorManager;
@@ -29,6 +30,9 @@ public:
 	void init();
 	void createWormHoles( unsigned int amountOfWormHoles );
 	virtual ~SectorTemplate();
+
+private:
+	EnemyManager* _enemyManager;
 };
 
 #endif
