@@ -90,7 +90,7 @@ void Station::updateHealth()
 	if(!this->getStationDestroyed())
 	{
 		this->_tempTimer++;
-		if(this->_tempTimer >= 1000)
+		if(this->_tempTimer >= 300)
 		{
 			if(rand()%10 > 5)
 			{
