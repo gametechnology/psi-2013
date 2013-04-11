@@ -96,6 +96,8 @@ void Ship :: update()
 	this -> powerStationHealth->setText(strPowerHealth.c_str());
 	this -> weaponStationHealth->setText(strWeaponHealth.c_str());
 
+	std::cout << "Ship Health: " << this->getShipHealth() << "\n";
+
 	if(this -> _shipHealth <= 0 && this -> _shipDestroyed == false)
 	{
 		this -> _shipDestroyed == true;

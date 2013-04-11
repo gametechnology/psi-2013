@@ -30,13 +30,13 @@ public:
 	WeaponStation		*_weaponStation;
 
 	//to test the ship health and station health
-	IGUIEnvironment *env;
-	IGUIStaticText *shipHealth;
-	IGUIStaticText *defenceStationHealth;
-	IGUIStaticText *helmStationHealth;
-	IGUIStaticText *navigationStationHealth;
-	IGUIStaticText *powerStationHealth;
-	IGUIStaticText *weaponStationHealth;
+	irr::gui::IGUIEnvironment *env;
+	irr::gui::IGUIStaticText *shipHealth;
+	irr::gui::IGUIStaticText *defenceStationHealth;
+	irr::gui::IGUIStaticText *helmStationHealth;
+	irr::gui::IGUIStaticText *navigationStationHealth;
+	irr::gui::IGUIStaticText *powerStationHealth;
+	irr::gui::IGUIStaticText *weaponStationHealth;
 
 
 	int _shipHealth;

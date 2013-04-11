@@ -6,7 +6,6 @@ Station :: Station( Ship *ship, int startHealth ) : Component(ship)
 {
 	this ->	_ship	= ship;
 	this -> _health = startHealth;
-
 	//this -> _switchTime = 4.0f;
 }
 
@@ -14,6 +13,9 @@ Station :: Station( Ship * ship ) : Component(ship)
 {
 	this -> _ship   = ship;
 	this -> _health = 50;
+	this -> _totalHealth = 50;
+	this -> _tempTimer = 0;
+	std::cout << "STARTTIMER: " << this->_tempTimer;
 }
 
 Station :: ~Station(void)
@@ -52,6 +54,7 @@ bool Station::IsStunned()
 void Station::update()
 {
 	Component::update();
+	updateHealth();
 	//Update Stun Time
 	//Update player on station time	
 }
@@ -82,10 +85,44 @@ void Station::setStationDestroyed(bool _destroyed)
 	this -> _stationDestroyed = _destroyed;
 }
 
+void Station::updateHealth()
+{
+	this->_tempTimer++;
+	if(this->_tempTimer >= 100)
+	{
+		if(rand()%10 > 5)
+		{
+			increaseHealth(10);
+		}
+		else
+		{
+			decreaseHealth(10);
+		}
+		this->_tempTimer=0;
+	}
+	std::cout << "TIMER: " << this->_tempTimer << " ";
+}
 int Station :: getHealth()
 {
 	return this -> _health;
 }
+void Station::decreaseHealth(int health)
+{
+	this->_health -= health;
+	if(this->_health >= this->_totalHealth)
+	{
+		this->_health = this->_totalHealth;
+	}
+}
+void Station::increaseHealth(int health)
+{
+	this->_health += health;
+	if(this->_health <= 0)
+	{
+		this->_health = 0;
+	}
+}
+
 
 void Station :: Initialize( )
 {
