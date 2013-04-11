@@ -153,7 +153,7 @@ void Network::PackageReciever( void* var)
 					Network::GetInstance()->_event.peer -> data,
 					Network::GetInstance()->_event.channelID);
 			// Distribute the package allong the listners
-			DistributePacket(NetworkPacket(_event.packet));
+			Network::GetInstance()->DistributePacket(NetworkPacket(Network::GetInstance()->_event.packet));
 			/* Clean up the packet now that we're done using it. */
 			enet_packet_destroy (Network::GetInstance()->_event.packet);
 			break;
