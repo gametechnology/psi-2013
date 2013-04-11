@@ -28,8 +28,7 @@ Network* Network::GetInstance()
 	if(!isInitialized)
 	{
 		instance = new Network();
-		_beginthread(PackageReciever,0, NULL);
-		_beginthread(PackageSender,0, NULL);
+		
 		isInitialized = true;
 	}
 
@@ -71,7 +70,8 @@ void Network::InitializeClient(const char* ipAdress)
 		printf("Connection to %s:%i failed.\n", ipAdress, _address.port);
 
 	}
-	
+	_beginthread(PackageReciever,0, NULL);
+	_beginthread(PackageSender,0, NULL);
 }
 
 void Network::InitializeServer()
@@ -82,7 +82,8 @@ void Network::InitializeServer()
 	_address.port = _port;
 
 	_host = enet_host_create(&_address, 32, 2, 0, 0);
-
+	_beginthread(PackageReciever,0, NULL);
+	_beginthread(PackageSender,0, NULL);
 	if (_host == NULL)
 		std::cout << "An error occurred while trying to create an ENet server host.\n";
 	else
@@ -90,8 +91,7 @@ void Network::InitializeServer()
 		std::cout << "Succesfully creatinga ENet server host; server now running.\n";
 		_isServer = true;
 
-		_beginthread(PackageReciever,0, NULL);
-		_beginthread(PackageSender,0, NULL);
+		
 	}
 	
 }
