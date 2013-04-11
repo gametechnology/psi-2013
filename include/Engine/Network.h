@@ -3,6 +3,7 @@
 
 #include "Engine\INetworkListener.h"
 #include <enet\enet.h>
+#include <process.h>
 #include <list>
 
 // forward declare NetworkPacket to prevent circular dependancy
@@ -19,6 +20,7 @@ private:
 	bool _isConnected;
 	static Network* instance;
 	std::list<const INetworkListener*> _listeners;
+	std::list<NetworkPacket> _packagestosend;
 	ENetAddress _address;
 	ENetHost* _host;
 	ENetEvent _event;
@@ -26,6 +28,7 @@ private:
 
 public:
 	~Network();
+
 	static Network* GetInstance();
 	static bool isInitialized;
 
@@ -37,7 +40,8 @@ public:
 
 	void SendPacket(NetworkPacket packet, const bool reliable = false);
 	void AddListener(const INetworkListener* listener);
-	void Update();
+	static void PackageReciever(void* var);
+	static void PackageSender(void* var);
 };
 
 enum PacketType
