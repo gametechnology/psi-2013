@@ -9,6 +9,7 @@ Network* Network::instance = 0;
 Network::Network() : _port(1345)
 {
 	_isServer = false;
+	_isConnected = false;
 
 	for (int i = 0; i < PacketType::LAST_TYPE; i++)
 		_listeners[i] = new std::list<INetworkListener*>();
@@ -67,7 +68,8 @@ void Network::InitializeClient(const char* ipAdress)
 		enet_peer_reset(_peer);
 		printf("Connection to %s:%i failed.\n", ipAdress, _address.port);
 	}
-
+	_beginthread(PackageReciever,0, NULL);
+	_beginthread(PackageSender,0, NULL);
 }
 
 void Network::InitializeServer()
@@ -92,11 +94,9 @@ void Network::SendPacket(NetworkPacket packet, const bool reliable)
 	if(_isConnected)
 	{
 		/* Create a reliable packet of size 7 containing "packet\0" */
-		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
-		enet_peer_send(_peer, 0, enetPacket);
-
-		/* One could just use enet_host_service() instead. */
-		enet_host_flush(_host);
+		
+		packet.reliable = reliable; 
+		_packagestosend.push_front(packet);
 	}
 }
 
@@ -115,37 +115,55 @@ void Network::RemoveListener(PacketType packetType, INetworkListener* listener)
 {
 	_listeners[packetType]->remove(listener);
 }
+void Network::PackageSender( void* var)
+{
+	while(true){
+		
+		//NetworkPacket packet;
+		if(Network::GetInstance()->_packagestosend.size() <= 0)
+			break;
+		else{
+		NetworkPacket packet = Network::GetInstance()->_packagestosend.front();
+		Network::GetInstance()->_packagestosend.pop_front();
+		
+		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), packet.reliable);
+		enet_peer_send(Network::GetInstance()->_peer, 0, enetPacket);
 
-void Network::Update()
+		/* One could just use enet_host_service() instead. */
+		enet_host_flush(Network::GetInstance()->_host);}
+		Sleep(30);
+	}
+}
+void Network::PackageReciever( void* var)
 {
 	/* Wait up to 1000 milliseconds for an event. */
-while (enet_host_service (_host, & _event, 1000) > 0)
-{
-    switch (_event.type)
+	while (true)
+	{
+    switch (Network::GetInstance()->_event.type)
     {
 		case ENET_EVENT_TYPE_CONNECT:
 			printf ("A new client connected from %x:%u.\n", 
-					_event.peer -> address.host,
-					_event.peer -> address.port);
+					Network::GetInstance()->_event.peer -> address.host,
+					Network::GetInstance()->_event.peer -> address.port);
 			/* Store any relevant client information here. */
-			_event.peer -> data = "Client information";
+			Network::GetInstance()->_event.peer -> data = "Client information";
 			break;
 		case ENET_EVENT_TYPE_RECEIVE:
 			printf ("A packet of length %u containing %s was received from %s on channel %u.\n",
-					_event.packet -> dataLength,
-					_event.packet -> data,
-					_event.peer -> data,
-					_event.channelID);
+					Network::GetInstance()->_event.packet -> dataLength,
+					Network::GetInstance()->_event.packet -> data,
+					Network::GetInstance()->_event.peer -> data,
+					Network::GetInstance()->_event.channelID);
 			// Distribute the package allong the listners
-			DistributePacket(NetworkPacket(_event.packet));
+			Network::GetInstance()->DistributePacket(NetworkPacket(Network::GetInstance()->_event.packet));
 			/* Clean up the packet now that we're done using it. */
-			enet_packet_destroy (_event.packet);
+			enet_packet_destroy (Network::GetInstance()->_event.packet);
 			break;
        
 		case ENET_EVENT_TYPE_DISCONNECT:
-			printf ("%s disconected.\n", _event.peer -> data);
+			printf ("%s disconected.\n", Network::GetInstance()->_event.peer -> data);
 			/* Reset the peer's client information. */
-			_event.peer -> data = NULL;
+			Network::GetInstance()->_event.peer -> data = NULL;
 		}
 	}
 }

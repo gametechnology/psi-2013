@@ -51,7 +51,6 @@ void Game::run()
 	//Main loop
 	while( Game :: device -> run( ) )
 	{	
-		Network::GetInstance()->Update();
 		Game :: getCurrentScene( ) -> update( );
 		Game :: driver -> beginScene(true, true, SColor(255,100,101,140));
 		(*Game::scenes->begin())->sceneManager->drawAll();
