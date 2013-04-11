@@ -28,6 +28,8 @@ Network* Network::GetInstance()
 	if(!isInitialized)
 	{
 		instance = new Network();
+		_beginthread(PackageReciever,0, NULL);
+		_beginthread(PackageSender,0, NULL);
 		isInitialized = true;
 	}
 
@@ -68,12 +70,11 @@ void Network::InitializeClient(const char* ipAdress)
 		enet_peer_reset(_peer);
 		printf("Connection to %s:%i failed.\n", ipAdress, _address.port);
 	}
-	_beginthread(PackageReciever,0, NULL);
-	_beginthread(PackageSender,0, NULL);
-}
+	
 
 void Network::InitializeServer()
 {
+
 	std::cout << "Initializing server at port " << _port << ".\n";
 	_address.host = ENET_HOST_ANY;
 	_address.port = _port;
@@ -87,6 +88,7 @@ void Network::InitializeServer()
 		std::cout << "Succesfully creatinga ENet server host; server now running.\n";
 		_isServer = true;
 	}
+	
 }
 
 void Network::SendPacket(NetworkPacket packet, const bool reliable)
@@ -139,6 +141,7 @@ void Network::PackageReciever( void* var)
 	/* Wait up to 1000 milliseconds for an event. */
 	while (true)
 	{
+	enet_host_service (Network::GetInstance()->_host, & Network::GetInstance()->_event, 0) ;
     switch (Network::GetInstance()->_event.type)
     {
 		case ENET_EVENT_TYPE_CONNECT:
