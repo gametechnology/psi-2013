@@ -69,6 +69,7 @@ void Network::InitializeClient(const char* ipAdress)
 		printf("Connection to %s:%i failed.\n", ipAdress, _address.port);
 	}
 	_beginthread(PackageReciever,0, NULL);
+	_beginthread(PackageSender,0, NULL);
 }
 
 void Network::InitializeServer()
