@@ -95,6 +95,9 @@
     <ClCompile Include="..\..\source\Engine\NetworkPacket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\source\Engine\VectorToPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\assets\sydney.bmp">
