@@ -11,7 +11,8 @@ PowerStation :: PowerStation( Ship *ship ) : Station( ship )
 	this -> _stationType		= StationType :: Power;
 	this -> device				= Game :: device;
 	this ->	driver				= device -> getVideoDriver( );
-	this -> env					= device -> getGUIEnvironment( );	
+	this -> env					= device -> getGUIEnvironment( );
+	this -> setStationDestroyed(false);
 }
 
 PowerStation :: ~PowerStation()
@@ -167,7 +168,6 @@ void PowerStation::Initialize()
 	else
 		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
 	createUI();
-	gameLoop( );
 }
 //Creates the User Interface. Is a helper method. Also initializes the event receiver.
 void PowerStation::createUI()
@@ -268,6 +268,8 @@ void PowerStation::createCurrentSelectedStationText(){
 //TODO: FIND OUT HOW TO UPDATE ALL
 void PowerStation::update()
 {
+	Station::update();
+
 	int helm		= context.GetPower( STATION_TYPE :: Helm );
 	int defence		= context.GetPower( STATION_TYPE :: Defence );
 	int weapon		= context.GetPower( STATION_TYPE :: Weapon );
@@ -287,6 +289,12 @@ void PowerStation::update()
 	changeColorAccordingToPowerStatus(*context.navigationStatus, navigation);
 
 	selectedStation();
+}
+
+void PowerStation::draw()
+{
+	Station::draw();
+	env->drawAll();
 }
 
 //This method displays the selected station. We're using an integer which indicates which station is currently selected. 
@@ -335,17 +343,4 @@ void PowerStation::changeColorAccordingToPowerStatus(IGUIStaticText &stcTxt, flo
 	else if(powerAmount == 0.0f){
 		stcTxt.setOverrideColor(video::SColor(255, 180, 180, 180));
 	}
-}
-
-void PowerStation :: gameLoop( )
-{
-	 while(Game::device->run() && driver)
-	 if (Game::device->isWindowActive())
-	 {
-		  driver->beginScene(true, true, SColor(0,200,200,200));
-		  update( );
-		  env->drawAll();
-		  driver->endScene();	  
-	 }
-	 Game::device->drop();
 }

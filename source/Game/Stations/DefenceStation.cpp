@@ -6,7 +6,7 @@ DefenceStation :: DefenceStation( Ship* ship) : Station( ship )
 {
 	this -> _stationType	= StationType::Defence;
 	this -> _stations		= new map<STATION_TYPE, DefenceStation :: DefenceStats>( );
-
+	this -> setStationDestroyed(false);
 	std :: srand( time( NULL ) );
 }
 
