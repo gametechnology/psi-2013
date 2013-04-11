@@ -67,9 +67,11 @@ void Network::InitializeClient(const char* ipAdress)
 	{
 		enet_peer_reset(_peer);
 		printf("Connection to %s:%i failed.\n", ipAdress, _address.port);
+
+		_beginthread(PackageReciever,0, NULL);
+		_beginthread(PackageSender,0, NULL);
 	}
-	_beginthread(PackageReciever,0, NULL);
-	_beginthread(PackageSender,0, NULL);
+	
 }
 
 void Network::InitializeServer()
@@ -86,15 +88,16 @@ void Network::InitializeServer()
 	{
 		std::cout << "Succesfully creatinga ENet server host; server now running.\n";
 		_isServer = true;
+
+		_beginthread(PackageReciever,0, NULL);
+		_beginthread(PackageSender,0, NULL);
 	}
 }
 
 void Network::SendPacket(NetworkPacket packet, const bool reliable)
 {
 	if(_isConnected)
-	{
-		/* Create a reliable packet of size 7 containing "packet\0" */
-		
+	{	
 		packet.reliable = reliable; 
 		_packagestosend.push_front(packet);
 	}
@@ -115,6 +118,7 @@ void Network::RemoveListener(PacketType packetType, INetworkListener* listener)
 {
 	_listeners[packetType]->remove(listener);
 }
+
 void Network::PackageSender( void* var)
 {
 	while(true){
