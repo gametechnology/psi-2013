@@ -8,6 +8,18 @@
 // forward declare NetworkPacket to prevent circular dependancy
 class NetworkPacket;
 
+enum PacketType
+{
+	CLIENT_JOIN = 0,
+	CLIENT_QUIT,
+	CLIENT_JOIN_TEAM,
+	SERVER_WELCOMES,
+	SERVER_REJECTS,
+
+	//Add new PacketTypes above
+	LAST_TYPE
+};
+
 class Network
 {
 private:
@@ -18,7 +30,7 @@ private:
 	bool _isServer;
 	bool _isConnected;
 	static Network* instance;
-	std::list<const INetworkListener*> _listeners;
+	std::list<INetworkListener*>* _listeners[PacketType :: LAST_TYPE];
 	ENetAddress _address;
 	ENetHost* _host;
 	ENetEvent _event;
@@ -36,17 +48,13 @@ public:
 	bool IsConnected();
 
 	void SendPacket(NetworkPacket packet, const bool reliable = false);
-	void AddListener(const INetworkListener* listener);
-	void Update();
-};
 
-enum PacketType
-{
-	CLIENT_JOIN = 0,
-	CLIENT_QUIT,
-	CLIENT_JOIN_TEAM,
-	SERVER_WELCOMES,
-	SERVER_REJECTS
+	void AddListener(PacketType packetType, INetworkListener* listener);
+	void RemoveListener(INetworkListener* listener);
+	void RemoveListener(PacketType packetType, INetworkListener* listener);
+
+	void Update();
+	void DistributePacket(NetworkPacket packet);
 };
 
 #endif
