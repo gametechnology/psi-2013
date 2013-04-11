@@ -1,5 +1,6 @@
 #include "Engine\Network.h"
 #include "Engine\NetworkPacket.h"
+#include "Engine\INetworkListener.h"
 #include <iostream>
 
 bool Network::isInitialized = false;
@@ -8,6 +9,9 @@ Network* Network::instance = 0;
 Network::Network() : _port(1345)
 {
 	_isServer = false;
+
+	for (int i = 0; i < PacketType::LAST_TYPE; i++)
+		_listeners[i] = new std::list<INetworkListener*>();
 
 	if (enet_initialize() != 0)
 		std::cout << "An error occurred while initializing ENet.\n";
@@ -94,9 +98,20 @@ void Network::SendPacket(NetworkPacket packet, const bool reliable)
 	}
 }
 
-void Network::AddListener(const INetworkListener* listener)
+void Network::AddListener(PacketType packetType, INetworkListener* listener)
 {
-	_listeners.push_back(listener);
+	_listeners[packetType]->push_back(listener);
+}
+
+void Network::RemoveListener(INetworkListener* listener)
+{
+	for (int i = 0; i < PacketType::LAST_TYPE; i++)
+		_listeners[i]->remove(listener);
+}
+
+void Network::RemoveListener(PacketType packetType, INetworkListener* listener)
+{
+	_listeners[packetType]->remove(listener);
 }
 void Network::PackageSender( void* var)
 {
@@ -137,9 +152,10 @@ void Network::PackageReciever( void* var)
 					Network::GetInstance()->_event.packet -> data,
 					Network::GetInstance()->_event.peer -> data,
 					Network::GetInstance()->_event.channelID);
+			// Distribute the package allong the listners
+			DistributePacket(NetworkPacket(_event.packet));
 			/* Clean up the packet now that we're done using it. */
 			enet_packet_destroy (Network::GetInstance()->_event.packet);
-        
 			break;
        
 		case ENET_EVENT_TYPE_DISCONNECT:
@@ -148,6 +164,19 @@ void Network::PackageReciever( void* var)
 			Network::GetInstance()->_event.peer -> data = NULL;
 		}
 	}
+}
+
+void Network::DistributePacket(NetworkPacket networkPacket)
+{
+	int type = networkPacket.GetPacketType();
+	if (type >= 0 && type < PacketType :: LAST_TYPE)
+	{
+		std::list<INetworkListener*>::const_iterator iterator;
+		for (iterator = _listeners[type]->begin(); iterator != _listeners[type]->end(); ++iterator)
+			(*iterator)->HandleNetworkMessage(networkPacket);
+	}
+	else
+		printf("Unknown PacketType '%s' received", type);
 }
 
 bool Network::IsConnected()
