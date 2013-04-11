@@ -49,6 +49,7 @@ public:
 
 	void update();
 	void draw();
+
 	void selectedStation();
 	void changeColorAccordingToPowerStatus(IGUIStaticText &staticText, float powerAmount);
 

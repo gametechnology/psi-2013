@@ -294,6 +294,7 @@ void PowerStation::update()
 void PowerStation::draw()
 {
 	Station::draw();
+
 	env->drawAll();
 }
 

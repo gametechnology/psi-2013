@@ -1,172 +1,274 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Header Files\Stations">
-      <UniqueIdentifier>{ad12d21c-5f1e-4716-99e9-eb6771444145}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Stations">
-      <UniqueIdentifier>{4e1649b6-6e37-4177-a0fc-8aeb4a4a938d}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\source\Game\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\TestScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Boundry.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\SectorManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\SectorTemplate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Skybox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\HelmSceneTest.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Ship.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Thruster.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\MainMenuScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\CIrrEventReceiver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\EnemyAsteroid.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
-      <Filter>Source Files\Stations</Filter>
+    <ClCompile Include="..\source\Game\AsteroidSector.cpp">
+      <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Enemy.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\HelmStation.cpp">
-      <Filter>Source Files\Stations</Filter>
+    <ClCompile Include="..\source\Game\EnemyAsteroid.cpp">
+      <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\EnemyDrone.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp">
-      <Filter>Source Files\Stations</Filter>
+      <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\EnemyFighter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
-      <Filter>Source Files\Stations</Filter>
+      <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\EnemyManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\Station.cpp">
-      <Filter>Source Files\Stations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\RandomGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
-      <Filter>Source Files\Stations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\StateSwitch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
-      <Filter>Source Files\Stations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\StateSwitchDrone.cpp">
-      <Filter>Source Files\Stations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Engine\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\StateSwitchFighter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\MapSector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Laser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\GalaxyMap.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\EnemyPlayer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\MapGenerator.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\EnemySceneTest.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\Game\GalaxyMap.cpp">
+      <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\Engine\Game.cpp">
+      <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\Game\HelmSceneTest.cpp">
+      <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\Station.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\Game\Laser.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\main.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\MainMenuEventReceiver.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\MapGenerator.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Mist.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Player.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\RandomGenerator.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Ship.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Skybox.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\StateSwitch.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Sprite.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\StateSwitchDrone.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\StateSwitchFighter.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\TestScene.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Thruster.cpp">
+      <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\UIData.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\Game\WormHole.cpp">
+      <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source files\Stations</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\Station.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\Game\Stations\HelmStation.cpp">
+      <Filter>Source files\Stations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source files\Stations</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Shipmap.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
+      <Filter>Source files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
+      <Filter>Source files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\Station.cpp">
+      <Filter>Source files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\BaseSector.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\MapSector.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\NebulaSector.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\SectorHomeBase.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\SectorManager.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\SectorTemplate.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\MainMenuScene.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Engine\Input.cpp">
+      <Filter>Source files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\source\Game\Enemy.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyAsteroid.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyDrone.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyFighter.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\GalaxyMap.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemySceneTest.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyPlayer.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyManager.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Game.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HelmSceneTest.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Laser.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\MainMenuEventReceiver.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\MapGenerator.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\MapSector.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Messages.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Mist.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Player.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\RandomGenerator.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Ship.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ShipmapScene.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Skybox.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Sprite.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\StateSwitch.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\StateSwitchDrone.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\StateSwitchFighter.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Team.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\TestScene.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Thruster.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\UIData.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\WormHole.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
+      <Filter>Header files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\HelmStation.h">
+      <Filter>Header files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\NavigationStation.h">
+      <Filter>Header files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\PowerStation.h">
+      <Filter>Header files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\WeaponStation.h">
+      <Filter>Header files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\Station.h">
+      <Filter>Header files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HelmStation.h">
+      <Filter>Header files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\AsteroidSector.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\BaseSector.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\NebulaSector.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\SectorHomeBase.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\SectorManager.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\SectorTemplate.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\MainMenuScene.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Engine\Input.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\assets\Textures\Wormholes\WormHole.png">
+      <Filter>Resource Files</Filter>
+    </None>
     <None Include="..\assets\sydney.bmp">
       <Filter>Resource Files</Filter>
     </None>
@@ -175,113 +277,26 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\source\Game\Messages.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\TestScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Boundry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\SectorManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\SectorTemplate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Skybox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Thruster.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Ship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\HelmSceneTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\MainMenuScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\CIrrEventReceiver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Enemy.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
-      <Filter>Header Files\Stations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EnemyAsteroid.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Stations\HelmStation.h">
-      <Filter>Header Files\Stations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EnemyDrone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Stations\NavigationStation.h">
-      <Filter>Header Files\Stations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EnemyFighter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Stations\PowerStation.h">
-      <Filter>Header Files\Stations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EnemyManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Stations\Station.h">
-      <Filter>Header Files\Stations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\RandomGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Stations\UIData.h">
-      <Filter>Header Files\Stations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\StateSwitch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Stations\WeaponStation.h">
-      <Filter>Header Files\Stations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\StateSwitchDrone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\MapSector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\StateSwitchFighter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\GalaxyMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\ArrayList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\MapGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Laser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EnemyPlayer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EnemySceneTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Shipmap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{961b4525-3573-4273-bb34-61d45d2d66a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{20dc75bb-46e3-42cc-8a2f-aaa5b9740732}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{b1992caa-3022-4feb-829e-c13de5e6f875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\Stations">
+      <UniqueIdentifier>{140973d4-6346-44ca-88f8-38fa5828ef90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Stations">
+      <UniqueIdentifier>{82439612-10b6-4fad-b8f2-bd84c38f31aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Sector">
+      <UniqueIdentifier>{b4669092-c79f-4a8d-8d8d-b968e3886c94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\Sector">
+      <UniqueIdentifier>{3e3a723b-5b4f-41e3-8d8d-d030934b7e86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

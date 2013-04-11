@@ -5,12 +5,21 @@
 #ifndef SECTOR_MANAGER
 #define SECTOR_MANAGER
 
-#include "Engine/Entity.h"
-class SectorManager : public Entity  {
+#include "Engine/Scene.h"
+#include "SectorTemplate.h"
+#include "GalaxyMap.h"
+#include "MapSector.h"
+
+
+class SectorManager  {
 public:
-	SectorManager(Composite* parent);
-	void SectorManager::handleMessage(unsigned int message, void* data = 0);
+	SectorManager(GalaxyMap* map);
+	void handleMessage(unsigned int message, void* data = 0);
+	void init();
 	virtual ~SectorManager();
+	MapSector* _mapSector;
+private:
+	GalaxyMap* _map;
 };
 
 #endif
