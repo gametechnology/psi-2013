@@ -9,6 +9,7 @@ Network* Network::instance = 0;
 Network::Network() : _port(1345)
 {
 	_isServer = false;
+	_isConnected = false;
 
 	for (int i = 0; i < PacketType::LAST_TYPE; i++)
 		_listeners[i] = new std::list<INetworkListener*>();
