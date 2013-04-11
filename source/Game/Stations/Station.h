@@ -16,8 +16,9 @@ class Station : public Component
 {
 
 public:
+	Station( Ship *ship, int startHealth );
 	Station( Ship *ship );
-	~Station( ) { }
+	virtual ~Station(void);
 
 	virtual void DoCameraShake() = 0;
 
@@ -38,7 +39,16 @@ public:
 	bool HasPower();
 	bool HasArmor();
 
-	void Update(float time);
+	bool getStationDestroyed();
+	void setStationDestroyed(bool _destroyed);
+
+	int getHealth();
+	void updateHealth();
+	void increaseHealth(int health);
+	void decreaseHealth(int health);
+	void repairStation(int health);
+
+	void update();
 
 	virtual void OnDamage( );
 
@@ -46,14 +56,19 @@ protected:
 	Ship	*_ship;
 	Player	*_player;
 
-	time_t *_switchTime;				//the time that the player switched to this station
+	time_t *_switchTime;			//the time that the player switched to this station
 	time_t *_playerOnStationTime;	//the time that the player has spent on this station (since he switched)
 	time_t *_stunTime;				//if a station fot stunned, the time it happened will be stored here.
 	
 	StationType _stationType;
 
+private:
+	int _tempTimer;
+	int _totalHealth;
+	int _health;
+	bool _stationDestroyed;
+
 public:
 	void Initialize( );
 };
-//#endif
 #endif
