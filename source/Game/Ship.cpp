@@ -44,11 +44,11 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 
 Ship::~Ship(void)
 {
-	delete _defenceStation;
-	delete _helmStation;
-	delete _navigationStation;
-	delete _weaponStation;
-	delete _powerStation;
+	this->removeComponent(_defenceStation);
+	this->removeComponent(_helmStation);
+	this->removeComponent(_navigationStation);
+	this->removeComponent(_weaponStation);
+	this->removeComponent(_powerStation);
 }
 
 Station *Ship :: GetStation( STATION_TYPE s )
@@ -153,7 +153,7 @@ void Ship :: updateShipHealth()
 void Ship :: draw()
 {
 	Entity :: draw();
-	env -> drawAll();
+	//env -> drawAll();
 }
 
 int Ship :: getShipHealth()
