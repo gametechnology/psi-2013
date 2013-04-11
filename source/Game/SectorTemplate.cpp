@@ -16,6 +16,8 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	
 	_enemyManager = new EnemyManager();
 	// The player
+	//Get the player/Ship via Sectormanager
+	//_sectormanager->getShip()
 	this->_player = new Camera( this->parent );
 	this->_camera = Game::getSceneManager()->addCameraSceneNodeFPS();
 	// Creating wormholes
