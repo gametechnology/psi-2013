@@ -1,6 +1,8 @@
 #ifndef INETWORKLISTENER
 #define INETWORKLISTENER
 
+#include "Network.h"
+
 // forward declare NetworkPacket
 class NetworkPacket;
 

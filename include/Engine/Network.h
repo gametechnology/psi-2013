@@ -1,12 +1,12 @@
 #ifndef NETWORK
 #define NETWORK
 
-#include "Engine\INetworkListener.h"
 #include <enet\enet.h>
 #include <list>
 
 // forward declare NetworkPacket to prevent circular dependancy
 class NetworkPacket;
+class INetworkListener;
 
 enum PacketType
 {
