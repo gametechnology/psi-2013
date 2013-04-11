@@ -3,6 +3,7 @@
 #include "EnemySceneTest.h"
 #include "MapGenerator.h"
 #include "MainMenuScene.h"
+#include "SectorManager.h"
 
 // Include memory leak detection files.
 #ifdef _DEBUG
@@ -25,6 +26,10 @@ int main()
 	galaxyMap->position.set(vector3df(100, 670, 0));*/
 
 	//Game::client->setupClient("145.92.13.97");
+	Game::addScene(new Scene());
+	// Create sector manager
+	SectorManager sectorManager(map);
+	sectorManager.init();
 
 	// Create test scene
 	Game::addScene(new HelmSceneTest());

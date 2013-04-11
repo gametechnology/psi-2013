@@ -19,8 +19,8 @@ IrrlichtDevice* Game::device;
 IVideoDriver* Game::driver;
 std::forward_list<Scene*>* Game::scenes;
 
-Client* Game::client;
-Server* Game::server;
+/*Client* Game::client;
+Server* Game::server;*/
 
 Game::Game()
 {
