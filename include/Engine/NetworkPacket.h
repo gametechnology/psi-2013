@@ -12,6 +12,7 @@ public:
 	~NetworkPacket();
 	const void* GetBytes();
 	const size_t GetSize();
+	bool reliable;
 	sf::Packet GetPacket();
 	PacketType GetPacketType();
 private:
