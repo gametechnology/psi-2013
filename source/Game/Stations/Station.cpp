@@ -114,7 +114,7 @@ void Station::decreaseHealth(int health)
 	if(this->_health <= 0)
 	{
 		this->_health = 0;
-		this->setStationDestroyed(true);
+		repairStation(this->_totalHealth/2);
 	}
 }
 void Station::increaseHealth(int health)
@@ -126,6 +126,11 @@ void Station::increaseHealth(int health)
 	}
 }
 
+void Station::repairStation(int health)
+{
+	this->setStationDestroyed(false);
+	this->_health = health;
+}
 
 void Station :: Initialize( )
 {

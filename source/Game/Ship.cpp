@@ -80,8 +80,14 @@ Station *Ship :: GetStation( STATION_TYPE s )
 stringw Ship::varToString(stringw str1, float var){
 	stringw str = L"";
 	str += str1;
+	str += (int)var;	
+	return str;
+}
+stringw Ship::varToString(stringw str1, float var, stringw str2){
+	stringw str = L"";
+	str += str1;
 	str += (int)var;
-	
+	str += str2;
 	return str;
 }
 
@@ -105,14 +111,6 @@ void Ship :: update()
 	this -> powerStationHealth		->setText((varToString("Power Station HP: ", this -> _powerStation -> getHealth())).c_str());
 	this -> weaponStationHealth		->setText((varToString("Weapon Station HP: ", this -> _weaponStation -> getHealth())).c_str());
 
-	/*this -> shipHealth->setText(strShipHealth.c_str());
-	this -> defenceStationHealth->setText(strDefenceHealth.c_str());
-	this -> helmStationHealth->setText(strHelmHealth.c_str());
-	this -> navigationStationHealth->setText(strNavigationHealth.c_str());
-	this -> powerStationHealth->setText(strPowerHealth.c_str());
-	this -> weaponStationHealth->setText(strWeaponHealth.c_str());*/
-
-	//std::cout << "Ship Health: " << this->getShipHealth() << "\n";
 	if(this -> _shipHealth <= 0 && this -> _shipDestroyed == false)
 	{
 		this -> _shipDestroyed == true;

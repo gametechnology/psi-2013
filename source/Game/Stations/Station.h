@@ -46,6 +46,7 @@ public:
 	void updateHealth();
 	void increaseHealth(int health);
 	void decreaseHealth(int health);
+	void repairStation(int health);
 
 	void update();
 
