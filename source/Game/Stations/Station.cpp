@@ -20,11 +20,11 @@ Station :: Station( Ship * ship ) : Component(ship)
 
 Station :: ~Station(void)
 {
-	delete _ship;
-	delete _player;
-	delete _switchTime;
-	delete _playerOnStationTime;
-	delete _stunTime;
+	//delete _ship;
+	//delete _player;
+	//delete _switchTime;
+	//delete _playerOnStationTime;
+	//delete _stunTime;
 }
 
 bool Station::HasPlayer()
