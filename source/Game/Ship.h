@@ -53,5 +53,8 @@ public:
 
 	int getShipHealth();
 	bool getShipDestroyed();
+private:
+	stringw varToString(stringw str1, float var, stringw str2);
+	stringw varToString(stringw str1, float var);
 };
 #endif

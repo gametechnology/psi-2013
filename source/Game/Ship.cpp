@@ -34,12 +34,13 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	stringw strPowerHealth = "Power Station health: " + this -> _powerStation -> getHealth();
 	stringw strWeaponHealth = "Weapon Station health: " + this -> _weaponStation -> getHealth();
 
-	this -> shipHealth =  env->addStaticText(strShipHealth.c_str(),rect<s32>(40, 80, 200, 100), false);
-	this -> defenceStationHealth = env->addStaticText(strDefenceHealth.c_str(),rect<s32>(40,100, 200, 100), false);
-	this -> helmStationHealth = env->addStaticText(strHelmHealth.c_str(),rect<s32>(40, 120, 200, 100), false);
-	this -> navigationStationHealth = env->addStaticText(strNavigationHealth.c_str(),rect<s32>(40, 140, 200, 100), false);
-	this -> powerStationHealth = env->addStaticText(strPowerHealth.c_str(),rect<s32>(40, 160, 200, 100), false);
-	this -> weaponStationHealth = env->addStaticText(strWeaponHealth.c_str(),rect<s32>(40, 180, 200, 100), false);
+
+	this -> shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 200, 100), false);
+	this -> defenceStationHealth	= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 200, 120), false);
+	this -> helmStationHealth		= env->addStaticText(strHelmHealth.c_str(),			rect<s32>(40, 120, 200, 140), false);
+	this -> navigationStationHealth = env->addStaticText(strNavigationHealth.c_str(),	rect<s32>(40, 140, 200, 160), false);
+	this -> powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 200, 180), false);
+	this -> weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 200, 200), false);
 }
 
 Ship::~Ship(void)
@@ -76,6 +77,14 @@ Station *Ship :: GetStation( STATION_TYPE s )
 	return NULL;
 }
 
+stringw Ship::varToString(stringw str1, float var){
+	stringw str = L"";
+	str += str1;
+	str += (int)var;
+	
+	return str;
+}
+
 void Ship :: update()
 {
 	Entity :: update();
@@ -89,15 +98,21 @@ void Ship :: update()
 	stringw strPowerHealth = "Power Station health: " + this -> _powerStation -> getHealth();
 	stringw strWeaponHealth = "Weapon Station health: " + this -> _weaponStation -> getHealth();
 
-	this -> shipHealth->setText(strShipHealth.c_str());
+	this -> shipHealth				->setText((varToString("Shipp HP : ", this -> getShipHealth())).c_str());
+	this -> defenceStationHealth	->setText((varToString("Defence Station HP: ", this -> _defenceStation -> getHealth())).c_str());
+	this -> helmStationHealth		->setText((varToString("Helm Station HP: ", this -> _helmStation -> getHealth())).c_str());
+	this -> navigationStationHealth	->setText((varToString("Navigation Station HP: ", this -> _navigationStation -> getHealth())).c_str());
+	this -> powerStationHealth		->setText((varToString("Power Station HP: ", this -> _powerStation -> getHealth())).c_str());
+	this -> weaponStationHealth		->setText((varToString("Weapon Station HP: ", this -> _weaponStation -> getHealth())).c_str());
+
+	/*this -> shipHealth->setText(strShipHealth.c_str());
 	this -> defenceStationHealth->setText(strDefenceHealth.c_str());
 	this -> helmStationHealth->setText(strHelmHealth.c_str());
 	this -> navigationStationHealth->setText(strNavigationHealth.c_str());
 	this -> powerStationHealth->setText(strPowerHealth.c_str());
-	this -> weaponStationHealth->setText(strWeaponHealth.c_str());
+	this -> weaponStationHealth->setText(strWeaponHealth.c_str());*/
 
-	std::cout << "Ship Health: " << this->getShipHealth() << "\n";
-
+	//std::cout << "Ship Health: " << this->getShipHealth() << "\n";
 	if(this -> _shipHealth <= 0 && this -> _shipDestroyed == false)
 	{
 		this -> _shipDestroyed == true;

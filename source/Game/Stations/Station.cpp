@@ -2,6 +2,7 @@
 #include "PowerStation.h"
 #include "DefenceStation.h"
 
+
 Station :: Station( Ship *ship, int startHealth ) : Component(ship)
 {
 	this ->	_ship	= ship;
@@ -12,10 +13,9 @@ Station :: Station( Ship *ship, int startHealth ) : Component(ship)
 Station :: Station( Ship * ship ) : Component(ship)
 {
 	this -> _ship   = ship;
-	this -> _health = 50;
 	this -> _totalHealth = 50;
+	this -> _health = this->_totalHealth;
 	this -> _tempTimer = 0;
-	std::cout << "STARTTIMER: " << this->_tempTimer;
 }
 
 Station :: ~Station(void)
@@ -87,20 +87,22 @@ void Station::setStationDestroyed(bool _destroyed)
 
 void Station::updateHealth()
 {
-	this->_tempTimer++;
-	if(this->_tempTimer >= 100)
+	if(!this->getStationDestroyed())
 	{
-		if(rand()%10 > 5)
+		this->_tempTimer++;
+		if(this->_tempTimer >= 1000)
 		{
-			increaseHealth(10);
+			if(rand()%10 > 5)
+			{
+				increaseHealth(10);
+			}
+			else
+			{
+				decreaseHealth(10);
+			}
+			this->_tempTimer=0;
 		}
-		else
-		{
-			decreaseHealth(10);
-		}
-		this->_tempTimer=0;
 	}
-	std::cout << "TIMER: " << this->_tempTimer << " ";
 }
 int Station :: getHealth()
 {
@@ -109,17 +111,18 @@ int Station :: getHealth()
 void Station::decreaseHealth(int health)
 {
 	this->_health -= health;
-	if(this->_health >= this->_totalHealth)
+	if(this->_health <= 0)
 	{
-		this->_health = this->_totalHealth;
+		this->_health = 0;
+		this->setStationDestroyed(true);
 	}
 }
 void Station::increaseHealth(int health)
 {
 	this->_health += health;
-	if(this->_health <= 0)
+	if(this->_health >= this->_totalHealth)
 	{
-		this->_health = 0;
+		this->_health = this->_totalHealth;
 	}
 }
 
