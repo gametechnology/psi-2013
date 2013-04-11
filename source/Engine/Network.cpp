@@ -100,9 +100,20 @@ void Network::SendPacket(NetworkPacket packet, const bool reliable)
 	}
 }
 
-void Network::AddListener(PacketType packetType, const INetworkListener* listener)
+void Network::AddListener(PacketType packetType, INetworkListener* listener)
 {
-	//_listeners.push_back(listener);
+	_listeners[packetType]->push_back(listener);
+}
+
+void Network::RemoveListener(INetworkListener* listener)
+{
+	for (int i = 0; i < PacketType::LAST_TYPE; i++)
+		_listeners[i]->remove(listener);
+}
+
+void Network::RemoveListener(PacketType packetType, INetworkListener* listener)
+{
+	_listeners[packetType]->remove(listener);
 }
 
 void Network::Update()

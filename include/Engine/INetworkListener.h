@@ -11,7 +11,7 @@ public:
 
 	~INetworkListener()
 	{
-		//TODO: add remove this from the network::instance
+		Network::GetInstance()->RemoveListener(this);
 	}
 };
 

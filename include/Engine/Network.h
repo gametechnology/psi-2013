@@ -48,7 +48,11 @@ public:
 	bool IsConnected();
 
 	void SendPacket(NetworkPacket packet, const bool reliable = false);
-	void AddListener(PacketType packetType, const INetworkListener* listener);
+
+	void AddListener(PacketType packetType, INetworkListener* listener);
+	void RemoveListener(INetworkListener* listener);
+	void RemoveListener(PacketType packetType, INetworkListener* listener);
+
 	void Update();
 	void DistributePacket(NetworkPacket packet);
 };
