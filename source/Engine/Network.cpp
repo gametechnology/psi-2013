@@ -43,6 +43,7 @@ void Network::StartThreads()
 
 void Network::StopThreads()
 {
+	// stop the two threads here
 }
 
 void Network::InitializeClient(const char* ipAdress)
@@ -135,54 +136,58 @@ void Network::RemoveListener(PacketType packetType, INetworkListener* listener)
 
 void Network::PackageSender( void* var)
 {
-	while(true){
-		
-		//NetworkPacket packet;
+	while(true)
+	{
 		if(Network::GetInstance()->_packagestosend.size() <= 0)
+		{	
 			break;
-		else{
-		NetworkPacket packet = Network::GetInstance()->_packagestosend.front();
-		Network::GetInstance()->_packagestosend.pop_front();
+		}
+		else
+		{
+			NetworkPacket packet = Network::GetInstance()->_packagestosend.front();
+			Network::GetInstance()->_packagestosend.pop_front();
 		
-		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), packet.reliable);
-		enet_peer_send(Network::GetInstance()->_peer, 0, enetPacket);
+			ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), packet.reliable);
+			enet_peer_send(Network::GetInstance()->_peer, 0, enetPacket);
 
-		/* One could just use enet_host_service() instead. */
-		enet_host_flush(Network::GetInstance()->_host);}
+			enet_host_flush(Network::GetInstance()->_host);
+		}
+		
 		Sleep(30);
 	}
 }
+
 void Network::PackageReciever( void* var)
 {
-	/* Wait up to 1000 milliseconds for an event. */
 	while (true)
 	{
-	enet_host_service (Network::GetInstance()->_host, & Network::GetInstance()->_event, 0) ;
-    switch (Network::GetInstance()->_event.type)
-    {
-		case ENET_EVENT_TYPE_CONNECT:
-			printf ("A new client connected from %x:%u.\n", 
-					Network::GetInstance()->_event.peer -> address.host,
-					Network::GetInstance()->_event.peer -> address.port);
-			/* Store any relevant client information here. */
-			Network::GetInstance()->_event.peer -> data = "Client information";
-			break;
-		case ENET_EVENT_TYPE_RECEIVE:
-			printf ("A packet of length %u containing %s was received from %s on channel %u.\n",
-					Network::GetInstance()->_event.packet -> dataLength,
-					Network::GetInstance()->_event.packet -> data,
-					Network::GetInstance()->_event.peer -> data,
-					Network::GetInstance()->_event.channelID);
-			// Distribute the package allong the listners
-			Network::GetInstance()->DistributePacket(NetworkPacket(Network::GetInstance()->_event.packet));
-			/* Clean up the packet now that we're done using it. */
-			enet_packet_destroy (Network::GetInstance()->_event.packet);
-			break;
+		enet_host_service (Network::GetInstance()->_host, & Network::GetInstance()->_event, 0);
+
+		switch (Network::GetInstance()->_event.type)
+		{
+			case ENET_EVENT_TYPE_CONNECT:
+				printf ("A new client connected from %x:%u.\n", 
+						Network::GetInstance()->_event.peer -> address.host,
+						Network::GetInstance()->_event.peer -> address.port);
+				/* Store any relevant client information here. */
+				Network::GetInstance()->_event.peer -> data = "Client information";
+				break;
+			case ENET_EVENT_TYPE_RECEIVE:
+				printf ("A packet of length %u containing %s was received from %s on channel %u.\n",
+						Network::GetInstance()->_event.packet -> dataLength,
+						Network::GetInstance()->_event.packet -> data,
+						Network::GetInstance()->_event.peer -> data,
+						Network::GetInstance()->_event.channelID);
+				// Distribute the package allong the listners
+				Network::GetInstance()->DistributePacket(NetworkPacket(Network::GetInstance()->_event.packet));
+				/* Clean up the packet now that we're done using it. */
+				enet_packet_destroy (Network::GetInstance()->_event.packet);
+				break;
        
-		case ENET_EVENT_TYPE_DISCONNECT:
-			printf ("%s disconected.\n", Network::GetInstance()->_event.peer -> data);
-			/* Reset the peer's client information. */
-			Network::GetInstance()->_event.peer -> data = NULL;
+			case ENET_EVENT_TYPE_DISCONNECT:
+				printf ("%s disconected.\n", Network::GetInstance()->_event.peer -> data);
+				/* Reset the peer's client information. */
+				Network::GetInstance()->_event.peer -> data = NULL;
 		}
 	}
 }
