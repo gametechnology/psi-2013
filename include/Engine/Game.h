@@ -3,6 +3,7 @@
 #include "Client.h"
 #include "Server.h"
 #include <forward_list>
+#include "Engine\Input.h"
 
 #ifndef ENGINE
 #define ENGINE
@@ -35,6 +36,7 @@ public:
 	static IGUIEnvironment* guiEnv;
 protected:
 	static std::forward_list<Scene*>* scenes; 
+	static Input inputReceiver;
 };
 
 #endif
