@@ -17,7 +17,7 @@ class PowerStation : public Station, public INetworkListener
 private:
 	
 	//checks if the new value can be matched (cannot be lower than 0 or higher than the total energy in our pool) and then updates the value of the station's energy pool.
-	void UpdateStationPower( Station :: StationType, int newValue );	
+	void UpdateStationPower(StationType, int newValue );	
 
 public:
 	//Power Station Impl	
@@ -48,6 +48,7 @@ public:
 	void createCurrentSelectedStationText();
 	void HandleNetworkMessage(NetworkPacket packet);
 	stringw varToString(stringw str1, float var, stringw str2 = L"");
+	stringw varToString(stringw str1, int var, stringw str2 = L"");
 
 	void update();
 	void draw();
@@ -55,7 +56,7 @@ public:
 	void selectedStation();
 	void changeColorAccordingToPowerStatus(IGUIStaticText &staticText, float powerAmount);
 
-	int GetPower(Station::StationType type);
+	int GetPower(StationType type);
 };
 
 #endif

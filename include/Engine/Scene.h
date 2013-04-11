@@ -1,6 +1,6 @@
 #include "Composite.h"
 #include "Entity.h"
-#include "..\Irrlicht\irrlicht.h"
+#include <Irrlicht\irrlicht.h>
 
 
 #ifndef SCENE

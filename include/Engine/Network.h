@@ -1,7 +1,7 @@
 #ifndef NETWORK
 #define NETWORK
 
-#include <enet\enet.h>
+#include <Enet\enet.h>
 #include <process.h>
 #include <list>
 
@@ -29,13 +29,13 @@ private:
 	Network();
 	void StartThreads();
 	void StopThreads();
-	static void PacketReciever(void* var);
+	static void PacketReceiver(void* var);
 	static void PacketSender(void* var);
 	
 	bool _isServer;
 	bool _isConnected;
 	static Network* instance;
-	std::list<INetworkListener*>* _listeners[PacketType :: LAST_TYPE];
+	std::list<INetworkListener*>* _listeners[LAST_TYPE];
 	std::list<NetworkPacket> _packetsToSend;
 	ENetAddress _address;
 	ENetHost* _host;

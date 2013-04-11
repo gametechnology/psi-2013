@@ -1,6 +1,6 @@
-#include "Engine\Network.h"
-#include "Engine\NetworkPacket.h"
-#include "Engine\INetworkListener.h"
+#include <Engine\Network.h>
+#include <Engine\NetworkPacket.h>
+#include <Engine\INetworkListener.h>
 #include <iostream>
 
 bool Network::isInitialized = false;
@@ -11,7 +11,7 @@ Network::Network() : _port(1345)
 	_isServer = false;
 	_isConnected = false;
 
-	for (int i = 0; i < PacketType::LAST_TYPE; i++)
+	for (int i = 0; i < LAST_TYPE; i++)
 		_listeners[i] = new std::list<INetworkListener*>();
 
 	if (enet_initialize() != 0)
@@ -37,8 +37,8 @@ Network* Network::GetInstance()
 
 void Network::StartThreads()
 {
-	_beginthread(PacketReciever,0, NULL);
-	_beginthread(PacketSender,0, NULL);
+	_beginthread(PacketReceiver, 0, "args");
+	_beginthread(PacketSender, 0, "args");
 }
 
 void Network::StopThreads()
@@ -133,7 +133,7 @@ void Network::RemoveListener(PacketType packetType, INetworkListener* listener)
 	_listeners[packetType]->remove(listener);
 }
 
-void Network::PacketSender( void* var)
+void Network::PacketSender(void* var)
 {
 	while(true)
 	{
@@ -156,7 +156,7 @@ void Network::PacketSender( void* var)
 	}
 }
 
-void Network::PacketReciever( void* var)
+void Network::PacketReceiver(void* var)
 {
 	while (true)
 	{
@@ -194,7 +194,7 @@ void Network::PacketReciever( void* var)
 void Network::DistributePacket(NetworkPacket networkPacket)
 {
 	int type = networkPacket.GetPacketType();
-	if (type >= 0 && type < PacketType :: LAST_TYPE)
+	if (type >= 0 && type < LAST_TYPE)
 	{
 		std::list<INetworkListener*>::const_iterator iterator;
 		for (iterator = _listeners[type]->begin(); iterator != _listeners[type]->end(); ++iterator)

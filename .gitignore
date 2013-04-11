@@ -29,13 +29,7 @@ build/Server/Debug/
 *.suo
 bin/Server/Server.exe
 *.exe
-*.exe
-assets/shipmap/Thumbs.db
-include/Engine/Client.h.orig
-include/Engine/Server.h.orig
-source/Engine/Client.cpp.orig
-source/Engine/Game.cpp.orig
-source/Engine/Server.cpp.orig
+*.orig
 
 #ignore thumbnails created by windows
 Thumbs.db
@@ -60,3 +54,4 @@ obj/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
+source/Engine/Obsolete/

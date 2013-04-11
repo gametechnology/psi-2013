@@ -1,4 +1,4 @@
-#include "Irrlicht\irrlicht.h"
+#include <Irrlicht\irrlicht.h>
 
 #pragma comment(lib, "Irrlicht.lib")
 
@@ -8,7 +8,6 @@
 #endif
 
 #include "Engine\Game.h"
-#include "Engine\Network.h"
 
 using namespace irr;
 using namespace core;
@@ -20,10 +19,7 @@ IrrlichtDevice* Game::device;
 IVideoDriver* Game::driver;
 std::forward_list<Scene*>* Game::scenes;
 
-/*Client* Game::client;
-Server* Game::server;*/
 IGUIEnvironment* Game::guiEnv;
-
 Game::Game()
 {
 	//Create a new stack to store all scenes
@@ -43,11 +39,6 @@ Game::Game()
 		//Set title of the window
 		Game::device->setWindowCaption(L"Stella Incognita");
 	}
-
-	//client = new Client();
-	//client->setupClient("localhost");
-	//Game::client = new Client();
-	//Game::client->setupClient("localhost");
 }
 
 void Game::run()
@@ -55,10 +46,8 @@ void Game::run()
 	//Main loop
 	while( Game :: device -> run( ) )
 	{	
-		Game :: getCurrentScene( ) -> update( );
-		Game :: driver -> beginScene(true, true, SColor(255,100,101,140));
-		//Irrlicht draw all
-		(*Game::scenes->begin())->sceneManager->drawAll();
+		Game::getCurrentScene( ) -> update( );
+		Game::driver -> beginScene(true, true, SColor(255,100,101,140));
 		//Game engine draw
 		Game::getCurrentScene()->draw();
 		//Irrlicht GUI

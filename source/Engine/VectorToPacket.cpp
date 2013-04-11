@@ -1,5 +1,5 @@
-#include "..\..\include\Irrlicht\irrlicht.h"
-#include "..\..\include\SFML\Network.hpp"
+#include <Irrlicht\irrlicht.h>
+#include <SFML\Network.hpp>
 
 sf::Packet& operator <<(sf::Packet &out, const irr::core::vector3df &in)
 {

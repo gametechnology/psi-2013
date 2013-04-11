@@ -1,0 +1,22 @@
+#include "HelmSceneTest.h"
+#include "Player.h"
+#include "Ship.h"
+#include "EnemyManager.h"
+
+HelmSceneTest::HelmSceneTest(void) {}
+HelmSceneTest::~HelmSceneTest(void) { Scene::~Scene(); }
+
+
+void HelmSceneTest::init()
+<<<<<<< HEAD
+{
+=======
+{	
+>>>>>>> 3ea71a4... Eerste
+	EnemyManager* manager;
+	manager = new EnemyManager();
+	//ICameraSceneNode* camera = Game::getSceneManager()->addCameraSceneNodeFPS();
+	//addComponent(new Player(this));
+	addComponent(new Ship(this));
+	addComponent(manager);
+}
