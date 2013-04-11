@@ -17,9 +17,6 @@
     <ClCompile Include="..\source\Game\Stations\HelmStation.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\HelmStation.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\MapGenerator.cpp">
       <Filter>Source</Filter>
     </ClCompile>
@@ -36,9 +33,6 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Ship.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\ShipmapScene.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Sprite.cpp">
@@ -82,6 +76,45 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\Mist.cpp">
       <Filter>Source\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\EnemyManager.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\EnemyAsteroid.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\EnemyDrone.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\EnemyFighter.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\EnemyPlayer.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\EnemySceneTest.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Enemy.cpp">
+      <Filter>Source\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\StateSwitchDrone.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\StateSwitch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\StateSwitchFighter.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Laser.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\RandomGenerator.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -171,6 +204,45 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\Mist.h">
       <Filter>Headers\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyManager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyAsteroid.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyDrone.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyFighter.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyPlayer.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemySceneTest.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Enemy.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\StateSwitchDrone.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\StateSwitch.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\StateSwitchFighter.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Laser.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\RandomGenerator.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\UIData.h">
+      <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
