@@ -282,6 +282,9 @@
     <ClInclude Include="..\include\Engine\Input.h">
       <Filter>Header files</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\NetworkInterface.h">
+      <Filter>Header files\Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\assets\Textures\Wormholes\WormHole.png">
@@ -315,6 +318,9 @@
     </Filter>
     <Filter Include="Source files\Sector">
       <UniqueIdentifier>{3e3a723b-5b4f-41e3-8d8d-d030934b7e86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Network">
+      <UniqueIdentifier>{5ee92249-8d63-4246-b8af-bbaee9d76d57}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -5,13 +5,14 @@
 #include "..\Ship.h"
 #include "UIData.h"
 #include "..\..\..\include\Engine\Game.h"
+#include "../NetworkInterface.h"
 #include "Irrlicht\irrlicht.h"
 #include <time.h>
 #include <iostream>
 
 #define BOOST_TIME	10
 
-class PowerStation : public Station 
+class PowerStation : public Station, public INetworkListener
 {
 private:
 	
@@ -45,6 +46,7 @@ public:
 	void createButtons();
 	void createGeneralPowerTexts();
 	void createCurrentSelectedStationText();
+	void HandleNetworkMessage(NetworkPacket packet);
 	stringw varToString(stringw str1, float var, stringw str2 = L"");
 
 	void update();

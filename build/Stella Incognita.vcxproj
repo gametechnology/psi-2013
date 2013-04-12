@@ -164,6 +164,7 @@
     <ClInclude Include="..\source\Game\Messages.h" />
     <ClInclude Include="..\source\Game\Mist.h" />
     <ClInclude Include="..\source\Game\NebulaSector.h" />
+    <ClInclude Include="..\source\Game\NetworkInterface.h" />
     <ClInclude Include="..\source\Game\Player.h" />
     <ClInclude Include="..\source\Game\RandomGenerator.h" />
     <ClInclude Include="..\source\Game\SectorHomeBase.h" />

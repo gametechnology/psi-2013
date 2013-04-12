@@ -20,6 +20,11 @@ PowerStation :: ~PowerStation()
 
 }
 
+void PowerStation::HandleNetworkMessage(NetworkPacket packet)
+{
+
+}
+
 void PowerStation :: SubscribeStation( Station *s )
 {
 	this -> context.SubscribeStation( s );
