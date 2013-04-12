@@ -12,6 +12,7 @@
 #include "Engine/Entity.h"
 #include "Player.h"
 
+#define STATION_TYPE Station :: StationType
 class DefenceStation;
 class HelmStation;
 class NavigationStation;
@@ -48,7 +49,7 @@ public:
 	Ship(Composite * parent);
 	virtual ~Ship(void);
 
-	Station *GetStation(StationType );	
+	Station *GetStation( Station :: StationType );
 
 	int getShipHealth();
 	bool getShipDestroyed();

@@ -29,7 +29,7 @@ private:
 		int powerCurrent;
 	};
 	
-	map<StationType, PowerUsage> *_stationsPowerUsage;
+	map<Station :: StationType, PowerUsage> *_stationsPowerUsage;
 	time_t _timeOfLastBoost;	
 	int _powerUsed;
 
@@ -51,7 +51,7 @@ public:
 	IGUIListBox	*listbox;
 
 	void SubscribeStation( Station *s );
-	void UpdatePowerUsage(StationType s, int newValue );
-	int GetPower(StationType stationType );
+	void UpdatePowerUsage( Station :: StationType s, int newValue );
+	int GetPower( Station::StationType stationType );
 };
 #endif

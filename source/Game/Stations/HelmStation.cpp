@@ -2,7 +2,7 @@
 
 HelmStation :: HelmStation(Ship *ship) : Station( ship )
 {
-	this->_stationType = ST_HELM;
+	this->_stationType = StationType::Helm;
 	this -> setStationDestroyed(false);
 }
 

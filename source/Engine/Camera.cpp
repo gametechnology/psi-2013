@@ -1,6 +1,6 @@
-#include <Engine\Camera.h>
-#include <Engine\Game.h>
-#include <Engine\CameraMover.h>
+#include "Engine\Camera.h"
+#include "Engine\Game.h"
+#include "Engine\CameraMover.h"
 
 
 Camera::Camera(Composite* parent, vector3df position, vector3df lookAt):Entity(parent)

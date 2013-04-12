@@ -2,6 +2,7 @@
 #define PLAYER
 
 #include "Engine/Entity.h"
+#include "Engine/NetworkComponent.h"
 
 class Player : public Entity  {
 public:

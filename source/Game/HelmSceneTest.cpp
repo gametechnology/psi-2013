@@ -8,7 +8,7 @@ HelmSceneTest::~HelmSceneTest(void) { Scene::~Scene(); }
 
 
 void HelmSceneTest::init()
-{	
+{
 	EnemyManager* manager;
 	manager = new EnemyManager();
 	//ICameraSceneNode* camera = Game::getSceneManager()->addCameraSceneNodeFPS();

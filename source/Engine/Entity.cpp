@@ -1,5 +1,5 @@
-#include <Engine\Entity.h>
-#include <Engine\Game.h>
+#include "Engine\Entity.h"
+#include "Engine\Game.h"
 
 
 Entity::Entity(Composite* parent):Composite(parent)

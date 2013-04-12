@@ -9,6 +9,7 @@ using namespace video;
 using namespace io;
 using namespace gui;
 using namespace std;
+
 MainMenuScene::MainMenuScene()
 {
 	//Get the device

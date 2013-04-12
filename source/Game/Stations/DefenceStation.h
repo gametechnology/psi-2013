@@ -7,6 +7,8 @@
 #include <time.h>
 #include <map>
 
+typedef struct Stats;
+
 class DefenceStation : public Station
 {
 private:
@@ -30,14 +32,14 @@ private:
 		bool HasArmor( );
 		bool IsStunned( );
 	};
-	map<StationType, DefenceStation :: DefenceStats> *_stations;
+	map<Station :: StationType, DefenceStation :: DefenceStats> *_stations;
 	
 public:
 	DefenceStation( Ship* ship);
 	~DefenceStation(void);
 	
 	void DoCameraShake();
-	int GetDamage(StationType stationType );
+	int GetDamage( Station :: StationType stationType );
 	void Damage();
 	void SubscribeStation( Station *s );
 

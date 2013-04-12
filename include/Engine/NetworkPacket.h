@@ -2,7 +2,7 @@
 #define NETWORKPACKET
 
 #include "Network.h"
-#include <SFML\Network.hpp>
+#include "SFML\Network.hpp"
 
 class NetworkPacket
 {

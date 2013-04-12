@@ -1,5 +1,4 @@
 #include "Component.h"
-
 #include <list>
 
 #ifndef COMPOSITE

@@ -1,8 +1,7 @@
 #include "Composite.h"
-
-#include <Irrlicht\irrlicht.h>
-#include <Irrlicht\vector3d.h>
-#include <Irrlicht\irrMath.h>
+#include "..\Irrlicht\irrlicht.h"
+#include "..\Irrlicht\vector3d.h"
+#include "..\Irrlicht\irrMath.h"
 #include <string>
 
 #ifndef ENTITY

@@ -37,7 +37,7 @@ bool Station::SwitchTimePassed()
 	return this -> _playerOnStationTime > this -> _switchTime;
 }
 
-StationType Station :: GetStationType( )
+STATION_TYPE Station :: GetStationType( )
 {
 	return this -> _stationType;
 }
@@ -139,6 +139,6 @@ void Station :: Initialize( )
 	this -> _stunTime = 0;
 	this -> _switchTime = 0;
 
-	if ( this -> _stationType != ST_POWER )	this -> _ship -> _powerStation		-> SubscribeStation( this );
-	if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
+	if ( this -> _stationType != StationType ::  Power )	this -> _ship -> _powerStation		-> SubscribeStation( this );
+	if ( this -> _stationType != StationType ::  Defence )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
 }

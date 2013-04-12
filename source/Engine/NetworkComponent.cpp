@@ -1,7 +1,7 @@
-#include <Engine\NetworkComponent.h>
-#include <Engine\Component.h>
-#include <Engine\Composite.h>
-#include <Engine\Game.h>
+#include "Engine\NetworkComponent.h"
+#include "Engine\Component.h"
+#include "Engine\Composite.h"
+#include "Engine\Game.h"
 
 
 NetworkComponent::NetworkComponent() : Component(NULL) {
