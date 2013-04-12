@@ -31,9 +31,6 @@
     <Filter Include="Header Files\Scenes">
       <UniqueIdentifier>{f01cd9da-eb66-4983-9106-4351db4e019d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Networking">
-      <UniqueIdentifier>{270ae941-48e3-4202-88af-198fa36c4219}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Networking">
       <UniqueIdentifier>{7ddc756e-99c4-4f8b-821e-979591bf9626}</UniqueIdentifier>
     </Filter>
@@ -87,31 +84,16 @@
     <ClCompile Include="..\source\Game\Stations\UIData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\Station.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\UIData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Shipmap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\UIData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
@@ -244,6 +226,21 @@
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\Station.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,8 +1,8 @@
 #include "Scene.h"
+#include "InputManager.h"
 
 #include <Irrlicht\irrlicht.h>
 #include <forward_list>
-#include <Engine\Input.h>
 
 #ifndef ENGINE
 #define ENGINE
@@ -28,11 +28,11 @@ public:
 
 	static IrrlichtDevice* device;
 	static IVideoDriver* driver;
+	static InputManager* input;
 
 	static IGUIEnvironment* guiEnv;
 protected:
 	static std::forward_list<Scene*>* scenes; 
-	static Input inputReceiver;
 };
 
 #endif
