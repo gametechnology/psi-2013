@@ -37,13 +37,13 @@ Network* Network::GetInstance()
 
 void Network::StartThreads()
 {
-	_beginthread(PackageReciever,0, NULL);
-	_beginthread(PackageSender,0, NULL);
+	_beginthread(PacketReciever,0, NULL);
+	_beginthread(PacketSender,0, NULL);
 }
 
 void Network::StopThreads()
 {
-	// stop the two threads here
+	_endthread();
 }
 
 void Network::InitializeClient(const char* ipAdress)
@@ -114,7 +114,7 @@ void Network::SendPacket(NetworkPacket packet, const bool reliable)
 	if(_isConnected)
 	{	
 		packet.reliable = reliable; 
-		_packagestosend.push_front(packet);
+		_packetsToSend.push_front(packet);
 	}
 }
 
@@ -134,18 +134,18 @@ void Network::RemoveListener(PacketType packetType, INetworkListener* listener)
 	_listeners[packetType]->remove(listener);
 }
 
-void Network::PackageSender( void* var)
+void Network::PacketSender( void* var)
 {
 	while(true)
 	{
-		if(Network::GetInstance()->_packagestosend.size() <= 0)
+		if(Network::GetInstance()->_packetsToSend.size() <= 0)
 		{	
 			break;
 		}
 		else
 		{
-			NetworkPacket packet = Network::GetInstance()->_packagestosend.front();
-			Network::GetInstance()->_packagestosend.pop_front();
+			NetworkPacket packet = Network::GetInstance()->_packetsToSend.front();
+			Network::GetInstance()->_packetsToSend.pop_front();
 		
 			ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), packet.reliable);
 			enet_peer_send(Network::GetInstance()->_peer, 0, enetPacket);
@@ -157,7 +157,7 @@ void Network::PackageSender( void* var)
 	}
 }
 
-void Network::PackageReciever( void* var)
+void Network::PacketReciever( void* var)
 {
 	while (true)
 	{

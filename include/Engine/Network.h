@@ -29,12 +29,14 @@ private:
 	Network();
 	void StartThreads();
 	void StopThreads();
+	void PacketReciever(void* var);
+	static void PacketSender(void* var);
 	
 	bool _isServer;
 	bool _isConnected;
 	static Network* instance;
 	std::list<INetworkListener*>* _listeners[PacketType :: LAST_TYPE];
-	std::list<NetworkPacket> _packagestosend;
+	std::list<NetworkPacket> _packetsToSend;
 	ENetAddress _address;
 	ENetHost* _host;
 	ENetEvent _event;
@@ -53,8 +55,6 @@ public:
 	bool IsConnected();
 
 	void SendPacket(NetworkPacket packet, const bool reliable = false);
-	static void PackageReciever(void* var);
-	static void PackageSender(void* var);
 
 	void AddListener(PacketType packetType, INetworkListener* listener);
 	void RemoveListener(INetworkListener* listener);
