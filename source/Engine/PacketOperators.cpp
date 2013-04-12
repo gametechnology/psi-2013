@@ -1,3 +1,6 @@
+#ifndef PACKET_OPERATORS
+#define PACKET_OPERATORS
+
 #include "..\..\include\Irrlicht\irrlicht.h"
 #include "..\..\include\SFML\Network.hpp"
 
@@ -20,3 +23,5 @@ sf::Packet& operator >>(sf::Packet& in, irr::core::vector2df& out)
 {
 	return in >> out.X >> out.Y;
 }
+
+#endif

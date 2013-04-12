@@ -115,7 +115,7 @@
     <ClCompile Include="..\..\source\Engine\NetworkPacket.cpp" />
     <ClCompile Include="..\..\source\Engine\Scene.cpp" />
     <ClCompile Include="..\..\source\Engine\Server.cpp" />
-    <ClCompile Include="..\..\source\Engine\VectorToPacket.cpp" />
+    <ClCompile Include="..\..\source\Engine\PacketOperators.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\assets\sydney.bmp" />

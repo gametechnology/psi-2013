@@ -95,7 +95,7 @@
     <ClCompile Include="..\..\source\Engine\NetworkPacket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Engine\VectorToPacket.cpp">
+    <ClCompile Include="..\..\source\Engine\PacketOperators.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
