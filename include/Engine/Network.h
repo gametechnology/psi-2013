@@ -29,7 +29,7 @@ private:
 	Network();
 	void StartThreads();
 	void StopThreads();
-	void PacketReciever(void* var);
+	static void PacketReciever(void* var);
 	static void PacketSender(void* var);
 	
 	bool _isServer;
