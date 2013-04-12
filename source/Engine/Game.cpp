@@ -28,7 +28,7 @@ Game::Game()
 	Game::input = new InputManager();
 
 	// Create the irrlicht device 
-	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, true);
+	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, true, Game::input);
 
 	// If the device was not created correctly, then shut down the program
 	if(Game::device) {
@@ -48,6 +48,7 @@ void Game::run()
 	//Main loop
 	while( Game :: device -> run( ) )
 	{	
+		Game::input->endInputProcess();
 		Game::getCurrentScene( ) -> update( );
 		Game::driver -> beginScene(true, true, SColor(255,100,101,140));
 		//Game engine draw
@@ -55,6 +56,7 @@ void Game::run()
 		//Irrlicht GUI
 		Game::guiEnv->drawAll();
 		Game::driver->endScene();
+		Game::input->startInputProcess();
 	}
 	Game::device->drop();
 }
