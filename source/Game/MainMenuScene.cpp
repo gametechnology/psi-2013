@@ -35,7 +35,7 @@ MainMenuScene::MainMenuScene()
 	eventReceiver = new MainMenuEventReceiver(context);
 
     // And tell the device to use our custom event receiver.
-    Game::device->setEventReceiver(eventReceiver);
+	Game::input->setCustomEventReceiver(eventReceiver);
 }
 
 MainMenuScene::~MainMenuScene()

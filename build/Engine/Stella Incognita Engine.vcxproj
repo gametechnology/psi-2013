@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{034C2CDA-CFB7-4A4C-BE98-628B85DA5D84}</ProjectGuid>
+    <ProjectGuid>{B0E4137C-554D-4B63-B8E4-93E93C176F9C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>StellaIncognita</RootNamespace>
     <ProjectName>Stella Incognita Engine</ProjectName>
@@ -96,7 +96,9 @@
     <ClInclude Include="..\..\include\Engine\Entity.h" />
     <ClInclude Include="..\..\include\Engine\Game.h" />
     <ClInclude Include="..\..\include\Engine\INetworkListener.h" />
+    <ClInclude Include="..\..\include\Engine\InputManager.h" />
     <ClInclude Include="..\..\include\Engine\Network.h" />
+    <ClInclude Include="..\..\include\Engine\Networkable.h" />
     <ClInclude Include="..\..\include\Engine\NetworkComponent.h" />
     <ClInclude Include="..\..\include\Engine\NetworkPacket.h" />
     <ClInclude Include="..\..\include\Engine\Scene.h" />
@@ -110,6 +112,7 @@
     <ClCompile Include="..\..\source\Engine\Composite.cpp" />
     <ClCompile Include="..\..\source\Engine\Entity.cpp" />
     <ClCompile Include="..\..\source\Engine\Game.cpp" />
+    <ClCompile Include="..\..\source\Engine\InputManager.cpp" />
     <ClCompile Include="..\..\source\Engine\Network.cpp" />
     <ClCompile Include="..\..\source\Engine\NetworkComponent.cpp" />
     <ClCompile Include="..\..\source\Engine\NetworkPacket.cpp" />
