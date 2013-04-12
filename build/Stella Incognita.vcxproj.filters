@@ -28,9 +28,6 @@
     <ClCompile Include="..\source\Game\GalaxyMap.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Engine\Game.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\HelmSceneTest.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
@@ -124,9 +121,6 @@
     <ClCompile Include="..\source\Game\MainMenuScene.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Engine\Input.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -171,9 +165,6 @@
     <ClInclude Include="..\source\Game\EnemyManager.h">
       <Filter>Header files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\Game.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\HelmSceneTest.h">
       <Filter>Header files</Filter>
     </ClInclude>
@@ -202,9 +193,6 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Ship.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\ShipmapScene.h">
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Skybox.h">
@@ -277,9 +265,6 @@
       <Filter>Header files\Sector</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\MainMenuScene.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\include\Engine\Input.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>
