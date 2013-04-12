@@ -1,5 +1,5 @@
-#include "Engine\Scene.h"
-#include "Engine\Game.h"
+#include <Engine\Scene.h>
+#include <Engine\Game.h>
 
 Scene::Scene() : Composite(NULL)
 {

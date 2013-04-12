@@ -2,7 +2,7 @@
 
 UIData :: UIData( )
 {
-	this -> _stationsPowerUsage	= new map<Station :: StationType, PowerUsage>( );
+	this -> _stationsPowerUsage	= new map<StationType, PowerUsage>( );
 	this -> powerPool	= POWER_MAX;
 }
 
@@ -11,9 +11,9 @@ void UIData :: SubscribeStation( Station *s )
 	this -> _stationsPowerUsage	-> insert( s -> GetStationType( ), PowerUsage( 0 ) );
 }
 
-void UIData :: UpdatePowerUsage( Station :: StationType s, int newValue )
+void UIData :: UpdatePowerUsage(StationType s, int newValue )
 {
-	map<Station :: StationType, PowerUsage> :: Node *n = this -> _stationsPowerUsage -> find( s );
+	map<StationType, PowerUsage> :: Node *n = this -> _stationsPowerUsage -> find( s );
 
 	int prevValue		= PowerUsage( n -> getValue( ) ).powerCurrent;
 	powerPool			+= prevValue;
@@ -27,7 +27,7 @@ void UIData :: UpdatePowerUsage( Station :: StationType s, int newValue )
 	n -> setValue( newValue );
 }
 
-int UIData :: GetPower( Station :: StationType s )
+int UIData :: GetPower(StationType s )
 {
 	PowerUsage p = PowerUsage( this -> _stationsPowerUsage -> find( s ) -> getValue( ) );
 	return p.powerCurrent;

@@ -56,14 +56,14 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;SFML_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ShowProgress>LinkVerbose</ShowProgress>
-      <AdditionalDependencies>engine.lib;Irrlicht.lib;enet.lib;ws2_32.lib;winmm.lib;sfml-network-s-d.lib;sfml-system-s-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>..\lib\EngineDebug; ..\lib\Irrlicht; ..\lib\Win32-visualstudio;</AdditionalLibraryDirectories>
+      <AdditionalDependencies>engine.lib;Irrlicht.lib;sfml-main.lib;sfml-network-s-d.lib;sfml-system-s-d.lib;enet.lib;ws2_32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\lib\EngineDebug;..\lib\Irrlicht;..\lib\SFML;..\lib\Enet</AdditionalLibraryDirectories>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
@@ -85,8 +85,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>..\lib\Irrlicht; ..\lib\EngineRelease; ..\lib\Win32-visualstudio;</AdditionalLibraryDirectories>
-      <AdditionalDependencies>engine.lib;Irrlicht.lib;enet.lib;ws2_32.lib;winmm.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\lib\Irrlicht; ..\lib\EngineRelease; ..\lib\Enet;..\lib\SFML</AdditionalLibraryDirectories>
+      <AdditionalDependencies>engine.lib;Irrlicht.lib;sfml-main.lib;sfml-network-s.lib;sfml-system-s.lib;enet.lib;ws2_32.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
@@ -105,41 +105,28 @@
     <ClCompile Include="..\source\Game\GalaxyMap.cpp" />
     <ClCompile Include="..\source\Game\HelmSceneTest.cpp" />
     <ClCompile Include="..\source\Game\Laser.cpp" />
-    <ClCompile Include="..\source\Game\main.cpp" />
     <ClCompile Include="..\source\Game\MainMenuEventReceiver.cpp" />
     <ClCompile Include="..\source\Game\MainMenuScene.cpp" />
     <ClCompile Include="..\source\Game\MapGenerator.cpp" />
     <ClCompile Include="..\source\Game\MapSector.cpp" />
     <ClCompile Include="..\source\Game\Mist.cpp" />
     <ClCompile Include="..\source\Game\NebulaSector.cpp" />
-    <ClCompile Include="..\source\Game\Player.cpp" />
-    <ClCompile Include="..\source\Game\RandomGenerator.cpp" />
     <ClCompile Include="..\source\Game\SectorHomeBase.cpp" />
-    <ClCompile Include="..\source\Game\SectorManager.cpp" />
-    <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
-    <ClCompile Include="..\source\Game\Ship.cpp" />
-    <ClCompile Include="..\source\Game\Skybox.cpp" />
+    <ClCompile Include="..\source\Game\Shipmap.cpp" />
     <ClCompile Include="..\source\Game\Sprite.cpp" />
-    <ClCompile Include="..\source\Game\StateSwitch.cpp" />
-    <ClCompile Include="..\source\Game\StateSwitchDrone.cpp" />
-    <ClCompile Include="..\source\Game\StateSwitchFighter.cpp" />
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\HelmStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\PowerStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\Station.cpp" />
     <ClCompile Include="..\source\Game\Stations\UIData.cpp" />
-    <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp" />
     <ClCompile Include="..\source\Game\TestScene.cpp" />
-    <ClCompile Include="..\source\Game\Thruster.cpp" />
     <ClCompile Include="..\source\Game\WormHole.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\assets\sydney.bmp" />
     <None Include="..\assets\sydney.md2" />
-    <None Include="..\assets\Textures\Wormholes\WormHole.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\source\Game\ArrayList.h" />
     <ClInclude Include="..\source\Game\AsteroidSector.h" />
     <ClInclude Include="..\source\Game\BaseSector.h" />
     <ClInclude Include="..\source\Game\Enemy.h" />
@@ -151,21 +138,22 @@
     <ClInclude Include="..\source\Game\EnemySceneTest.h" />
     <ClInclude Include="..\source\Game\GalaxyMap.h" />
     <ClInclude Include="..\source\Game\HelmSceneTest.h" />
-    <ClInclude Include="..\source\Game\HelmStation.h" />
-    <ClInclude Include="..\source\Game\MainMenuEventReceiver.h" />
     <ClInclude Include="..\source\Game\Laser.h" />
+    <ClInclude Include="..\source\Game\MainMenuEventReceiver.h" />
     <ClInclude Include="..\source\Game\MainMenuScene.h" />
     <ClInclude Include="..\source\Game\MapGenerator.h" />
     <ClInclude Include="..\source\Game\MapSector.h" />
     <ClInclude Include="..\source\Game\Messages.h" />
     <ClInclude Include="..\source\Game\Mist.h" />
     <ClInclude Include="..\source\Game\NebulaSector.h" />
+    <ClInclude Include="..\source\Game\NetworkInterface.h" />
     <ClInclude Include="..\source\Game\Player.h" />
     <ClInclude Include="..\source\Game\RandomGenerator.h" />
     <ClInclude Include="..\source\Game\SectorHomeBase.h" />
     <ClInclude Include="..\source\Game\SectorManager.h" />
     <ClInclude Include="..\source\Game\SectorTemplate.h" />
     <ClInclude Include="..\source\Game\Ship.h" />
+    <ClInclude Include="..\source\Game\Shipmap.h" />
     <ClInclude Include="..\source\Game\Skybox.h" />
     <ClInclude Include="..\source\Game\Sprite.h" />
     <ClInclude Include="..\source\Game\StateSwitch.h" />
@@ -182,6 +170,20 @@
     <ClInclude Include="..\source\Game\TestScene.h" />
     <ClInclude Include="..\source\Game\Thruster.h" />
     <ClInclude Include="..\source\Game\WormHole.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\Game\main.cpp" />
+    <ClCompile Include="..\source\Game\Player.cpp" />
+    <ClCompile Include="..\source\Game\RandomGenerator.cpp" />
+    <ClCompile Include="..\source\Game\SectorManager.cpp" />
+    <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
+    <ClCompile Include="..\source\Game\Ship.cpp" />
+    <ClCompile Include="..\source\Game\Skybox.cpp" />
+    <ClCompile Include="..\source\Game\StateSwitch.cpp" />
+    <ClCompile Include="..\source\Game\StateSwitchDrone.cpp" />
+    <ClCompile Include="..\source\Game\StateSwitchFighter.cpp" />
+    <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp" />
+    <ClCompile Include="..\source\Game\Thruster.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

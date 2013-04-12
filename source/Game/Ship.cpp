@@ -52,25 +52,25 @@ Ship::~Ship(void)
 	this->removeComponent(_powerStation);
 }
 
-Station *Ship :: GetStation( STATION_TYPE s )
+Station *Ship :: GetStation( StationType s )
 {
 	this -> _defenceStation -> Damage( );
 
 	switch( s )
 	{
-	case STATION_TYPE :: Defence:
+	case ST_DEFENCE:
 		return this -> _defenceStation;
 		break;
-	case STATION_TYPE :: Helm:
+	case ST_HELM:
 		return this -> _helmStation;
 		break;
-	case STATION_TYPE :: Navigation:
+	case ST_NAVIGATION:
 		return this -> _navigationStation;
 		break;
 	//case STATION_TYPE :: Power:
 	//	return this -> _powerStation;
 	//	break;
-	case STATION_TYPE :: Weapon:
+	case ST_WEAPON:
 		return this -> _weaponStation;
 		break;
 	};

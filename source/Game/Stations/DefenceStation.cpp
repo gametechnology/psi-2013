@@ -2,10 +2,10 @@
 #include "Station.h"
 #include "..\Ship.h"
 
-DefenceStation :: DefenceStation( Ship* ship) : Station( ship )
+DefenceStation::DefenceStation(Ship* ship):Station( ship )
 {
-	this -> _stationType	= StationType::Defence;
-	this -> _stations		= new map<STATION_TYPE, DefenceStation :: DefenceStats>( );
+	this -> _stationType	= ST_DEFENCE;
+	this -> _stations		= new map<StationType, DefenceStation :: DefenceStats>( );
 	this -> setStationDestroyed(false);
 	std :: srand( time( NULL ) );
 }
@@ -18,7 +18,7 @@ DefenceStation :: ~DefenceStation()
 void DefenceStation :: DoCameraShake( )
 {
 	
-}
+} 
 
 void DefenceStation :: SubscribeStation( Station *s )
 {
@@ -34,7 +34,7 @@ void DefenceStation :: Damage( )
 	//std :: cout << &s;
 }
 
-int DefenceStation :: GetDamage( Station :: StationType )
+int DefenceStation :: GetDamage(StationType)
 {
 	return 0;
 }

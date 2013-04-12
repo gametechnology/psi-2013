@@ -3,11 +3,10 @@
 
 #include "Component.h"
 #include "Composite.h"
-#include "Irrlicht\irrlicht.h"
 
 #include <list>
-
-#include <enet\enet.h>
+#include <Irrlicht\irrlicht.h>
+#include <Enet\enet.h>
 #include <string>
 
 class NetworkComponent : public Component

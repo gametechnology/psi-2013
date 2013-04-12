@@ -9,7 +9,6 @@ using namespace video;
 using namespace io;
 using namespace gui;
 using namespace std;
-
 MainMenuScene::MainMenuScene()
 {
 	//Get the device
@@ -35,7 +34,7 @@ MainMenuScene::MainMenuScene()
 	eventReceiver = new MainMenuEventReceiver(context);
 
     // And tell the device to use our custom event receiver.
-	Game::input->setCustomEventReceiver(eventReceiver);
+	Game::device->setEventReceiver(eventReceiver);
 }
 
 MainMenuScene::~MainMenuScene()
