@@ -43,13 +43,11 @@ void Network::StartThreads()
 
 void Network::StopThreads()
 {
-	_endthread();
+	//_endthread();
 }
 
 void Network::InitializeClient(const char* ipAdress)
 {
-	StartThreads();
-
 	std::cout << "Initializing client at port " << _port << ".\n";
 
 	_host = enet_host_create (NULL /* create a client host */,
@@ -76,25 +74,26 @@ void Network::InitializeClient(const char* ipAdress)
 	{
 		_isConnected = true;
 		printf("Connection to %s:%i succeeded.\n", ipAdress, _address.port);
+		StartThreads();
 	}
 	else
 	{
 		enet_peer_reset(_peer);
 		printf("Connection to %s:%i failed.\n", ipAdress, _address.port);
-		StopThreads();
 
 	}
 }
 
 void Network::InitializeServer()
 {
-	StartThreads();
 
 	std::cout << "Initializing server at port " << _port << ".\n";
 	_address.host = ENET_HOST_ANY;
 	_address.port = _port;
 
 	_host = enet_host_create(&_address, 32, 2, 0, 0);
+
+	StartThreads();
 
 	if (_host == NULL)
 	{
