@@ -27,9 +27,9 @@ int main()
 	Game game;
 
 	// Create test scene
-	Game::addScene(new MainMenuScene());
+	//Game::addScene(new MainMenuScene());
 
-	/*MapGenerator mapGen;
+	MapGenerator mapGen;
 	mapGen.init(20, 2, 5);
 	GalaxyMap* galaxyMap = mapGen.createNewMap(300, 300, 15);
 	galaxyMap->position.set(vector3df(100, 670, 0));
@@ -39,7 +39,7 @@ int main()
 	Game::addScene(new Scene());
 	// Create sector manager that creates all the Scenes/Sectors
 	SectorManager sectorManager(galaxyMap);
-	sectorManager.init();*/
+	sectorManager.init();
 
 	// Start the main loop
 	Game::run();
