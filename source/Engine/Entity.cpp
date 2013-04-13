@@ -1,58 +1,30 @@
-#include ""
 #include "Engine\Entity.h"
 #include "Engine\Game.h"
+#include "Engine\Transform.h"
 
-
-Entity::Entity(Composite* parent):Composite(parent)
-{
-	this->mass = 1;
-	node = NULL;
+Entity::Entity() : Composite() {
+	
 }
 
-void Entity::update()
-{
-	Composite::update();
-
-	this->angularVelocity += this->angularAccelaration;
-	this->orientation += this->angularVelocity;
-
-	this->accelaration = (1 / this->mass) * this->force;
-	this->velocity += this->accelaration;
-	this->position += this->velocity;
-	if (node != NULL)
-	{
-		this->node->setPosition(this->position);
-		this->node->setRotation(this->orientation);
-	}
+void Entity::update() {
+	
 }
 
-void Entity::draw()
-{
-	if (node == NULL) return;
-	if (!this->visible)
-	{
-		this->node->setVisible(false);
-		return;
-	}
-	this->node->setVisible(true);
-
-	this->node->render();
+void Entity::onAdd() {
+	addComponent(new Transform());
 }
 
-void Entity::createNode(std::string modelPath)
-{
-	// Get the mesh
-	irr::scene::IAnimatedMesh* mesh = Game::getSceneManager()->getMesh(modelPath.c_str());
+void Entity::addComponent(Component* component) {
+	components.push_back(component);
+	component->entity = this;
 
-	// Create model entity
-	this->node =  Game::getSceneManager()->addMeshSceneNode( mesh );
+	component->handleMessage(0); // Awake
+	component->handleMessage(1); // I
 }
 
-Entity::~Entity()
-{
-	Composite::~Composite();
-	if (node != NULL)
-	{
-		node->drop();
-	}
+void Entity::addChild(Entity* child) {
+	children.push_back(child);
+	child->parent = this;
+
+	child->handleMessage(0);
 }

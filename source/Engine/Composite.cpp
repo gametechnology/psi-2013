@@ -8,12 +8,20 @@ Composite::~Composite() {
 	
 }
 
+void Composite::awake() {
+
+}
+
 void Composite::init() {
 	initialized = true;
 }
 
 void Composite::update() {
 	
+}
+
+void Composite::lateUpdate() {
+
 }
 
 void Composite::draw() {

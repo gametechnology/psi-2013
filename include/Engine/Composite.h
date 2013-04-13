@@ -14,9 +14,11 @@ public:
 	bool destroyed;
 	bool enabled;
 	
-	virtual void onAdd();
+	virtual void awake();
 	virtual void init();
+
 	virtual void update();
+	virtual void lateUpdate();
 	virtual void draw();
 
 	virtual void handleMessage(unsigned int message);

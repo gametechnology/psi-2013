@@ -1,40 +1,42 @@
+#ifndef ENTITY
+#define ENTITY
+
 #include "Engine\Composite.h"
+#include "Engine\Component.h"
+#include "Engine\Game.h"
+#include "Engine\Scene.h"
+
 #include "Irrlicht\irrlicht.h"
 #include "Irrlicht\vector3d.h"
 #include "Irrlicht\irrMath.h"
 #include <string>
-
-#ifndef ENTITY
-#define ENTITY
+#include <vector>
 
 using namespace irr;
 using namespace core;
 
-class Entity : public Composite
-{
+class Entity : public Composite {
 public:
 	Entity();
 	virtual ~Entity();
 
-	// Variables
-	irr::scene::ISceneNode* node;
+	Game* game;
+	Scene* scene;
 
-	float mass;
-	vector3d<float> force;
-	vector3d<float> position;
-	vector3d<float> velocity;
-	vector3d<float> accelaration;
-	vector3d<float> orientation;
-	vector3d<float> angularVelocity;
-	vector3d<float> angularAccelaration;
+	Entity* parent;
+	std::vector<Component*> components;
+	std::vector<Entity*> children;
 
-	vector3d<float> anchorPoint;
-	bool visible;
+	virtual void addChild(Entity* child);
+	virtual void removeChild(Entity* child);
+	virtual void addComponent(Component* component);
+	virtual void removeComponent(Component* component);
 
-	// Methods
+	virtual void onAdd();
+	virtual void init();
+
 	virtual void update();
-	virtual void draw();
-	virtual void createNode(std::string modelPath);
+	virtual void lateUpdate();
 };
 
 #endif
