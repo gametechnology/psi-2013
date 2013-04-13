@@ -29,6 +29,18 @@ int main()
 	// Create test scene
 	Game::addScene(new MainMenuScene());
 
+	/*MapGenerator mapGen;
+	mapGen.init(20, 2, 5);
+	GalaxyMap* galaxyMap = mapGen.createNewMap(300, 300, 15);
+	galaxyMap->position.set(vector3df(100, 670, 0));
+
+	//Game::client->setupClient("145.92.13.97");
+	//Need to create an Scene first or else it will crash, because I first delete then create scenes in SectorManager
+	Game::addScene(new Scene());
+	// Create sector manager that creates all the Scenes/Sectors
+	SectorManager sectorManager(galaxyMap);
+	sectorManager.init();*/
+
 	// Start the main loop
 	Game::run();
 
