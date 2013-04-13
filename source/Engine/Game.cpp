@@ -17,7 +17,7 @@ using namespace scene;
 // Predefine static variables
 IrrlichtDevice* Game::device;
 IVideoDriver* Game::driver;
-std::forward_list<Scene*>* Game::scenes;
+std::vector<Scene*>* Game::scenes;
 
 /*Client* Game::client;
 Server* Game::server;*/
@@ -26,7 +26,7 @@ IGUIEnvironment* Game::guiEnv;
 Game::Game()
 {
 	//Create a new stack to store all scenes
-	Game::scenes = new std::forward_list<Scene*>;
+	Game::scenes = new std::vector<Scene*>;
 
 	// Create the irrlicht device 
 	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, true);

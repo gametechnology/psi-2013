@@ -4,8 +4,7 @@
 #ifndef COMPOSITE
 #define COMPOSITE
 
-class Composite
-{
+class Composite {
 public:
 	Composite();
 	virtual ~Composite();

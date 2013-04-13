@@ -1,19 +1,13 @@
-#include "Composite.h"
-#include "Entity.h"
-#include "..\Irrlicht\irrlicht.h"
-
-
 #ifndef SCENE
 #define SCENE
 
-using namespace core;
-using namespace scene;
+#include "Irrlicht\irrlicht.h"
+#include "Engine\Entity.h"
 
-class Scene : public Composite
-{
+class Scene : public Entity {
 public:
 	Scene();
-	~Scene(void);
+	~Scene();
 
 	enum State{
 		LOADING,

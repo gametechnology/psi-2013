@@ -12,19 +12,21 @@ void Entity::update() {
 
 void Entity::onAdd() {
 	addComponent(new Transform());
+
+	if (parent != NULL && parent->initialized)
+		handleMessage(1); // Calling init if adding something while the game already has been initialized
 }
 
 void Entity::addComponent(Component* component) {
 	components.push_back(component);
 	component->entity = this;
 
-	component->handleMessage(0); // Awake
-	component->handleMessage(1); // I
+	component->onAdd();
 }
 
 void Entity::addChild(Entity* child) {
 	children.push_back(child);
 	child->parent = this;
 
-	child->handleMessage(0);
+	child->onAdd();
 }

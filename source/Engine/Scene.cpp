@@ -1,8 +1,7 @@
 #include "Engine\Scene.h"
 #include "Engine\Game.h"
 
-Scene::Scene() : Composite(NULL)
-{
+Scene::Scene() : Entity() {
 	// Set the state
 	state = LOADING;
 
@@ -13,7 +12,6 @@ Scene::Scene() : Composite(NULL)
 	//enabled = true;
 }
 
-Scene::~Scene()
-{
-	Composite::~Composite();
+Scene::~Scene() {
+	
 }

@@ -15,6 +15,7 @@ public:
 	Game* getGame();
 	Scene* getScene();
 
+	virtual void onAdd();
 	virtual void init();
 	virtual void update();
 	virtual void draw();

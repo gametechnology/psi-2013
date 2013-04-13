@@ -16,6 +16,11 @@ Scene* Component::getScene() {
 	return entity->scene;
 }
 
+void Component::onAdd() {
+	if (entity->initialized)
+		handleMessage(1); // Calling init if adding something while the game already has been initialized
+}
+
 void Component::init() {
 
 }

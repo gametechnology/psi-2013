@@ -1,9 +1,9 @@
-#include "..\Irrlicht\irrlicht.h"
-#include "Scene.h"
-#include "Client.h"
-#include "Server.h"
-#include <forward_list>
+#include "Irrlicht\irrlicht.h"
+#include "Engine\Scene.h"
+#include "Engine\Client.h"
+#include "Engine\Server.h"
 #include "Engine\Input.h"
+#include <vector>
 
 #ifndef ENGINE
 #define ENGINE
@@ -35,7 +35,7 @@ public:
 
 	static IGUIEnvironment* guiEnv;
 protected:
-	static std::forward_list<Scene*>* scenes; 
+	static std::vector<Scene*>* scenes; 
 	static Input inputReceiver;
 };
 
