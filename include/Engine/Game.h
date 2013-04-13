@@ -1,9 +1,8 @@
-#include "..\Irrlicht\irrlicht.h"
 #include "Scene.h"
-#include "Client.h"
-#include "Server.h"
+#include "InputManager.h"
+
+#include <Irrlicht\irrlicht.h>
 #include <forward_list>
-#include "Engine\Input.h"
 
 #ifndef ENGINE
 #define ENGINE
@@ -12,6 +11,7 @@ using namespace irr;
 using namespace core;
 using namespace video;
 using namespace scene;
+using namespace gui;
 
 class Game
 {
@@ -25,15 +25,14 @@ public:
 	static ISceneManager* getSceneManager();
 	static void addScene(Scene* defaultScene);
 	static void removeScene();
-	
-	static Client* client;
-	static Server* server;
 
 	static IrrlichtDevice* device;
 	static IVideoDriver* driver;
+	static InputManager* input;
+
+	static IGUIEnvironment* guiEnv;
 protected:
 	static std::forward_list<Scene*>* scenes; 
-	static Input inputReceiver;
 };
 
 #endif

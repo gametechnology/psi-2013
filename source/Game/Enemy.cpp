@@ -166,7 +166,7 @@ void Enemy::contactResolverB()
 void Enemy::contactGenerator(Enemy* input)
 {
 	float distance = position.getDistanceFrom(input->getPosition());
-	float radii = input->getRadius() + radius_;
+	int radii = input->getRadius() + radius_;
 	if (distance < radii)
 	{
 		contactResolverB();
@@ -317,9 +317,9 @@ void Enemy::chase(vector3df target)
 void Enemy::wander()
 {
 	this->_wanderTime++;
-	float velX = rand()%20-10;
-	float velY = rand()%20-10;
-	float velZ = rand()%20-10;
+	int velX = rand()%20-10;
+	int velY = rand()%20-10;
+	int velZ = rand()%20-10;
 
 	if(this->_wanderTime >= 10000)
 	{

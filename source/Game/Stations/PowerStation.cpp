@@ -8,10 +8,11 @@
 
 PowerStation :: PowerStation( Ship *ship ) : Station( ship )
 {
-	this -> _stationType		= StationType :: Power;
+	this -> _stationType		= ST_POWER;
 	this -> device				= Game :: device;
 	this ->	driver				= device -> getVideoDriver( );
-	this -> env					= device -> getGUIEnvironment( );	
+	this -> env					= device -> getGUIEnvironment( );
+	this -> setStationDestroyed(false);
 }
 
 PowerStation :: ~PowerStation()
@@ -24,14 +25,14 @@ void PowerStation :: SubscribeStation( Station *s )
 	this -> context.SubscribeStation( s );
 }
 
-int PowerStation :: GetPower(Station::StationType type)
+int PowerStation :: GetPower(StationType type)
 {
 	return this->context.GetPower(type);
 }
 
-void PowerStation :: UpdateStationPower( Station :: StationType s, int newValue )
+void PowerStation :: UpdateStationPower(StationType s, int newValue )
 {
-	if ( s == STATION_TYPE :: Power )	return;	//we do nothing when the power station is selected.
+	if ( s == ST_POWER )	return;	//we do nothing when the power station is selected.
 	this -> context.UpdatePowerUsage( s, newValue );
 }
 
@@ -89,21 +90,21 @@ public:
 				if(_context.selectedStation == 1)
 				{
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();					
-					_context.UpdatePowerUsage( Station :: StationType :: Helm, POWER_MAX - pos );
+					_context.UpdatePowerUsage(ST_HELM, POWER_MAX - pos );
 				}
 				else if(_context.selectedStation == 2){
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-					_context.UpdatePowerUsage( Station :: StationType :: Defence, POWER_MAX - pos );
+					_context.UpdatePowerUsage(ST_DEFENCE, POWER_MAX - pos );
 				}
 				else if(_context.selectedStation == 3){
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-					_context.UpdatePowerUsage( Station :: StationType :: Navigation, POWER_MAX - pos );
+					_context.UpdatePowerUsage(ST_NAVIGATION, POWER_MAX - pos );
 				}
 				else if(_context.selectedStation == 4){
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
 
 					((IGUIScrollBar*)event.GUIEvent.Caller)->setPos( irr :: s32( ) );
-					_context.UpdatePowerUsage( Station :: StationType :: Weapon, POWER_MAX - pos );
+					_context.UpdatePowerUsage(ST_WEAPON, POWER_MAX - pos );
 				}
 				break;
 
@@ -116,23 +117,23 @@ public:
 					return true;
 				case GUI_ID_POWER_HELM:
 					_context.scrollBar->setVisible(true);
-					_context.scrollBar->setPos(POWER_MAX - _context.GetPower( Station :: StationType :: Helm ) );
+					_context.scrollBar->setPos(POWER_MAX - _context.GetPower(ST_HELM) );
 					_context.selectedStation = 1;
 
 					break;
 				case GUI_ID_POWER_DEFENCE:
 					_context.scrollBar->setVisible(true);
-					_context.scrollBar->setPos(POWER_MAX - _context.GetPower( Station :: StationType :: Defence ));
+					_context.scrollBar->setPos(POWER_MAX - _context.GetPower(ST_DEFENCE));
 					_context.selectedStation = 2;
 					break;
 				case GUI_ID_POWER_NAVIGATION:
 					_context.scrollBar->setVisible(true);
-					_context.scrollBar->setPos(POWER_MAX - _context.GetPower( Station :: StationType :: Navigation));
+					_context.scrollBar->setPos(POWER_MAX - _context.GetPower(ST_NAVIGATION));
 					_context.selectedStation = 3;
 					break;
 				case GUI_ID_POWER_WEAPON:
 					_context.scrollBar->setVisible(true);
-					_context.scrollBar->setPos(POWER_MAX - _context.GetPower( Station :: StationType :: Weapon ));
+					_context.scrollBar->setPos(POWER_MAX - _context.GetPower(ST_WEAPON));
 					_context.selectedStation = 4;
 					break;
 					//TODO: change name
@@ -182,7 +183,7 @@ void PowerStation::createUI()
 	// Create the event receiver, giving it that context structure.
 	MyEventReceiver *receiver = new MyEventReceiver(context);
 	// And tell the device to use our custom event receiver.
-	device -> setEventReceiver( receiver );
+	Game::input->setCustomEventReceiver(receiver);
 }
 
 //Defines the used driver and some UI data values.
@@ -206,6 +207,15 @@ stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 	str += str2;
 	return str;
 }
+
+stringw PowerStation::varToString(stringw str1, int var, stringw str2){
+	stringw str = L"";
+	str += str1;
+	str += (int)var;
+	str += str2;
+	return str;
+}
+
 //Adds the background image and the spaceship image. 
 void PowerStation::addImages()
 {
@@ -269,10 +279,10 @@ void PowerStation::update()
 {
 	Station::update();
 
-	int helm		= context.GetPower( STATION_TYPE :: Helm );
-	int defence		= context.GetPower( STATION_TYPE :: Defence );
-	int weapon		= context.GetPower( STATION_TYPE :: Weapon );
-	int navigation	= context.GetPower( STATION_TYPE :: Navigation );
+	int helm		= context.GetPower(ST_HELM);
+	int defence		= context.GetPower(ST_DEFENCE);
+	int weapon		= context.GetPower(ST_WEAPON);
+	int navigation	= context.GetPower(ST_NAVIGATION);
 
 	context.powerPoolText->setText((varToString("Power Pool:\n", context.powerPool, "%")).c_str());
 

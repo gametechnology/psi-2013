@@ -1,7 +1,7 @@
 #pragma once
-#include "Irrlicht\irrlicht.h"
-#include "Irrlicht\driverChoice.h"
-#include "Irrlicht\IEventReceiver.h"
+#include <Irrlicht\irrlicht.h>
+#include <Irrlicht\driverChoice.h>
+#include <Irrlicht\IEventReceiver.h>
 using namespace irr;
 
 class Input : public IEventReceiver

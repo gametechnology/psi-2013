@@ -4,7 +4,7 @@
 #include "Component.h"
 #include "Composite.h"
 
-#include <enet\enet.h>
+#include <Enet\enet.h>
 #include <string>
 
 class Networkable : public Component

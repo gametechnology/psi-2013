@@ -104,7 +104,7 @@ void MapGenerator::createSectors()
 
 typeSector MapGenerator::getRandomType()
 {//(typeSector)(rand() % (TOTALTYPES - 2));
-	float i = rand() % 100;
+	int i = rand() % 100;
 	for(int j = 0; j < TOTALTYPES - 2; j++)
 	{
 		i -= typeChances[j];
@@ -234,13 +234,13 @@ bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* se
 		if (quad >= 0)
 		{
 			// An infinite collision is happening, but let's not stop here
-			float quadsqrt = sqrt(quad);
+			double quadsqrt = sqrt(quad);
 			for (int i = -1; i <= 1; i += 2)
 			{
 				// Returns the two coordinates of the intersection points
-				float t = (i * -b + quadsqrt) / (2 * a);
-				float x = ax + (i * vx * t);
-				float y = ay + (i * vy * t);
+				double t = (i * -b + quadsqrt) / (2 * a);
+				double x = ax + (i * vx * t);
+				double y = ay + (i * vy * t);
 				// If one of them is in the boundaries of the segment, it collides
 				if (x >= min(ax, bx) && x <= max(ax, bx) && y >= min(ay, by) && y <= max(ay, by))
 				{
@@ -255,7 +255,7 @@ bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* se
 std::string MapGenerator::nameGenerator(typeSector type)
 {
 	//Pick a random name and remove it from the list to avoid duplicates
-	float rnd = rand() % nameprefix.size();
+	int rnd = rand() % nameprefix.size();
 	std::string name = nameprefix.at(rnd) + " ";
 	nameprefix.erase(nameprefix.begin() + rnd);
 
