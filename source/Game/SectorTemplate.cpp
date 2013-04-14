@@ -2,6 +2,7 @@
 #include "Engine/Camera.h"
 #include "Skybox.h"
 #include "SectorManager.h"
+#include "Ship.h"
 
 // Constructor
 SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : Scene() {
@@ -18,8 +19,9 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	// The player
 	//Get the player/Ship via Sectormanager
 	//_sectormanager->getShip()
+	_ship = new Ship(this);
 	this->_player = new Camera( this->parent );
-	this->_camera = Game::getSceneManager()->addCameraSceneNodeFPS();
+	//this->_camera = Game::getSceneManager()->addCameraSceneNodeFPS();
 	// Creating wormholes
 	createWormHoles( amountWormHoles );
 	
@@ -30,6 +32,7 @@ void SectorTemplate::init(){
 	addComponent(_enemyManager);
 	addComponent( this->_skybox );
 	//addComponent( this->_player );
+	addComponent(_ship);
 	addComponent( this->_fog );
 }
 
@@ -70,11 +73,16 @@ void SectorTemplate::update(){
 	*/
 
 	// Placeholder because there is no player yet
-	if( this->_camera->getPosition().getLength() > _boundry ){
+	/*To use Fps camera:
+	replace:
+	this->_ship->position
+	with
+	this->_camera->getPosition()*/
+	if( this->_ship->position.getLength() > _boundry ){
 		printf("OUT OF BOUNDS!");
 	}
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
-		irr::core::vector3df deltaPos = _wormHoles[i]->position - this->_camera->getPosition();
+		irr::core::vector3df deltaPos = _wormHoles[i]->position - this->_ship->position;
 		float collisionRadius = 50;
 		if( deltaPos.getLength() < collisionRadius ){			
 			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );

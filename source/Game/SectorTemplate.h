@@ -20,6 +20,7 @@ protected:
 	// Camera Placeholder instead of player
 	irr::scene::ICameraSceneNode *_camera;
 	Entity* _player;
+	Entity* _ship;
 	Entity* _skybox;
 	Mist* _fog;
 public:

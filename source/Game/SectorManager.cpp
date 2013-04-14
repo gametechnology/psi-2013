@@ -5,9 +5,8 @@
 #include  "NebulaSector.h"
 #include  "SectorHomeBase.h"
 #include  "BaseSector.h"
-SectorManager::SectorManager(GalaxyMap* map, Ship* ship) {
+SectorManager::SectorManager(GalaxyMap* map) {
 	_map=map;
-	_ship = ship;
 	for(std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
 	{
 		if((*i)->type == HOME_BLUE){
@@ -71,9 +70,7 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 	}
 	//delete data;
 }
-Ship* SectorManager::getShip(){
-	return _ship;
-}
+
 SectorManager::~SectorManager() {
 	
 }
