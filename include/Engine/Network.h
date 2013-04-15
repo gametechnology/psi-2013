@@ -55,8 +55,8 @@ public:
 	static Network* GetInstance();
 	static bool isInitialized;
 
-	void InitializeClient(const char* ipAdress);
-	void InitializeServer();
+	void InitializeClient(const char* ipAdress, unsigned int maxDownstream = 0, unsigned int maxUpstream = 0);
+	void InitializeServer(size_t maxPlayers = 16);
 
 	bool IsServer();
 	bool IsConnected();

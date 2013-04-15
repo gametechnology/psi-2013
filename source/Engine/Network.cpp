@@ -43,18 +43,14 @@ void Network::StartThreads()
 
 void Network::StopThreads()
 {
-	//_endthread();
+	
 }
 
-void Network::InitializeClient(const char* ipAdress)
+void Network::InitializeClient(const char* ipAdress, const unsigned int maxDownstream, const unsigned int maxUpstream)
 {
 	std::cout << "Initializing client at port " << _port << ".\n";
 
-	_host = enet_host_create (NULL /* create a client host */,
-            1 /* only allow 1 outgoing connection */,
-            2 /* allow up 2 channels to be used, 0 and 1 */,
-			0 /* 56K modem with 56 Kbps downstream bandwidth */,
-			0 /* 56K modem with 14 Kbps upstream bandwidth */);
+	_host = enet_host_create (NULL, 1, 2, maxDownstream, maxUpstream);
 
 	if (_host == NULL)
 		std::cout << "An error occurred while trying to create an ENet client host.\n";
@@ -84,13 +80,13 @@ void Network::InitializeClient(const char* ipAdress)
 	}
 }
 
-void Network::InitializeServer()
+void Network::InitializeServer(size_t maxPlayers)
 {
 	std::cout << "Initializing server at port " << _port << ".\n";
 	_address.host = ENET_HOST_ANY;
 	_address.port = _port;
 
-	_host = enet_host_create(&_address, 32, 2, 0, 0);
+	_host = enet_host_create(&_address, maxPlayers, 2, 0, 0);
 
 	if (_host == NULL)
 	{
