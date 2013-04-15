@@ -2,6 +2,7 @@
 #include "Engine\NetworkPacket.h"
 #include "Engine\INetworkListener.h"
 #include <iostream>
+#include "SFML\System.hpp"
 
 bool Network::isInitialized = false;
 Network* Network::instance = 0;
@@ -37,8 +38,14 @@ Network* Network::GetInstance()
 
 void Network::StartThreads()
 {
-	_beginthread(PacketReciever,0, NULL);
-	_beginthread(PacketSender,0, NULL);
+	//_beginthread(PacketReciever,0, NULL);
+	//_beginthread(PacketSender,0, NULL);
+	
+	sf::Thread thread1(&Network::PacketSender, this);
+	thread1.launch();
+
+	sf::Thread thread2(&Network::PacketReciever, this);
+	//thread2.launch();
 }
 
 void Network::StopThreads()
@@ -53,8 +60,8 @@ void Network::InitializeClient(const char* ipAdress)
 	_host = enet_host_create (NULL /* create a client host */,
             1 /* only allow 1 outgoing connection */,
             2 /* allow up 2 channels to be used, 0 and 1 */,
-            57600 / 8 /* 56K modem with 56 Kbps downstream bandwidth */,
-            14400 / 8 /* 56K modem with 14 Kbps upstream bandwidth */);
+			0 /* 56K modem with 56 Kbps downstream bandwidth */,
+			0 /* 56K modem with 14 Kbps upstream bandwidth */);
 
 	if (_host == NULL)
 		std::cout << "An error occurred while trying to create an ENet client host.\n";
@@ -74,7 +81,7 @@ void Network::InitializeClient(const char* ipAdress)
 	{
 		_isConnected = true;
 		printf("Connection to %s:%i succeeded.\n", ipAdress, _address.port);
-		StartThreads();
+		StartThreads();	
 	}
 	else
 	{
@@ -86,14 +93,11 @@ void Network::InitializeClient(const char* ipAdress)
 
 void Network::InitializeServer()
 {
-
 	std::cout << "Initializing server at port " << _port << ".\n";
 	_address.host = ENET_HOST_ANY;
 	_address.port = _port;
 
 	_host = enet_host_create(&_address, 32, 2, 0, 0);
-
-	StartThreads();
 
 	if (_host == NULL)
 	{
@@ -105,6 +109,7 @@ void Network::InitializeServer()
 		std::cout << "Succesfully creatinga ENet server host; server now running.\n";
 		_isServer = true;
 		_isConnected = true;
+		StartThreads();
 	}	
 }
 
@@ -114,6 +119,15 @@ void Network::SendPacket(NetworkPacket packet, const bool reliable)
 	{	
 		packet.reliable = reliable; 
 		_packetsToSend.push_front(packet);
+	}
+}
+
+void Network::SendServerPacket(NetworkPacket packet, const bool reliable)
+{
+	if(_isConnected && _isServer)
+	{	
+		packet.reliable = reliable; 
+		_serverPacketsToSend.push_front(packet);
 	}
 }
 
@@ -133,30 +147,39 @@ void Network::RemoveListener(PacketType packetType, INetworkListener* listener)
 	_listeners[packetType]->remove(listener);
 }
 
-void Network::PacketSender( void* var)
+void Network::PacketSender()
 {
 	while(true)
 	{
-		if(Network::GetInstance()->_packetsToSend.size() <= 0)
+		std::cout << "send thread\n";
+		std::list<NetworkPacket> packets = Network::GetInstance()->_packetsToSend;
+
+		if(Network::GetInstance()->IsConnected() && packets.size() <= 0)
 		{	
-			break;
+			continue;
 		}
 		else
 		{
-			NetworkPacket packet = Network::GetInstance()->_packetsToSend.front();
-			Network::GetInstance()->_packetsToSend.pop_front();
-		
-			ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), packet.reliable);
-			enet_peer_send(Network::GetInstance()->_peer, 0, enetPacket);
+			std::list<NetworkPacket>::const_iterator iterator;
 
-			enet_host_flush(Network::GetInstance()->_host);
-		}
+			for (iterator = packets.begin(); iterator != packets.end(); ++iterator)
+			{
+				NetworkPacket packet = (*iterator);
 		
-		Sleep(30);
+				ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), packet.reliable);
+				enet_peer_send(Network::GetInstance()->_peer, 0, enetPacket);
+			}
+
+			//enet_host_flush(Network::GetInstance()->_host);
+			
+			Network::GetInstance()->_packetsToSend.clear();
+		}
 	}
+
+	std::cout << "send thread end\n";
 }
 
-void Network::PacketReciever( void* var)
+void Network::PacketReciever()
 {
 	while (true)
 	{
