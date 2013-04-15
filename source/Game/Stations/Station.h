@@ -4,7 +4,8 @@
 
 #include "..\Player.h"
 #include "../../../include/Engine/Component.h"
-
+#include "../../../include/Engine/Game.h"
+#include "Irrlicht/irrlicht.h"
 #ifdef ENTITY_SHIP
 #include "..\Ship.h"
 #endif
@@ -52,6 +53,8 @@ public:
 	virtual void OnDamage( );
 
 protected:
+	video::IVideoDriver *driver;
+
 	Ship	*_ship;
 	Player	*_player;
 
