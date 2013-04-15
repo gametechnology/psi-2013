@@ -219,8 +219,8 @@ stringw PowerStation::varToString(stringw str1, int var, stringw str2){
 //Adds the background image and the spaceship image. 
 void PowerStation::addImages()
 {
-	env->addImage(driver->getTexture("../assets\\Textures\\Stations\\PowerStation\\black_bg.png"), position2d<int>(0,0));
-	env->addImage(driver->getTexture("../assets\\Textures\\Stations\\PowerStation\\spaceship.png"), position2d<int>(190,266));
+	env->addImage(Game::driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
+	env->addImage(Game::driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190,266));
 }
 //Creates the power scrollbar. 
 void PowerStation::createScrollbar(){
