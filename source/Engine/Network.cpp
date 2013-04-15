@@ -6,33 +6,6 @@
 bool Network::isInitialized = false;
 Network* Network::instance = 0;
 
-void Network::PacketSender()
-{
-	std::list<NetworkPacket> packets = Network::GetInstance()->_packetsToSend;
-
-	if(_isConnected && packets.size() <= 0)
-		return;
-
-	std::list<NetworkPacket>::const_iterator iterator;
-
-	for (iterator = packets.begin(); iterator != packets.end(); ++iterator)
-	{
-		NetworkPacket packet = (*iterator);
-		
-		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), packet.reliable);
-
-		if(!_isServer)
-			enet_peer_send(Network::GetInstance()->_peer, 0, enetPacket);
-		else
-			_receivedPackets.push_back(NetworkPacket(enetPacket));
-	}
-
-	//enet_host_flush(Network::GetInstance()->_host);
-			
-	_packetsToSend.clear();
-}
-
-
 Network::Network() : _port(1345)
 {
 	_isServer = false;

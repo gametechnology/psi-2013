@@ -32,7 +32,6 @@ private:
 	void StartThreads();
 	void StopThreads();
 	void PacketReciever();
-	void PacketSender();
 	void DistributePacket(NetworkPacket packet);
 
 	sf::Thread* _receiverThread;
@@ -68,6 +67,7 @@ public:
 	void AddListener(PacketType packetType, INetworkListener* listener);
 	void RemoveListener(INetworkListener* listener);
 	void RemoveListener(PacketType packetType, INetworkListener* listener);
+
 	void DistributeReceivedPackets();
 };
 
