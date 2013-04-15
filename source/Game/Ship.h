@@ -39,17 +39,14 @@ public:
 
 	void init(int station);
 	void handleMessage(unsigned int message, void* data);
-	void setInertiaMatrix(float h, float w, float d, float m);
+
 	Net* network;
 	int stationnumber;
 	Station* currentstation;
 	Input* input;
 	Camera* camera;
 
-	matrix4 inertiaMatrix;
-	vector3df up;
-	vector3df forward;
-	vector3df right;
+
 	Thruster* thrusters[3];
 
 
@@ -57,7 +54,8 @@ public:
 	Bullet *ammo;
 	int bulletNr;
 	int shootingInterval;
-
+	void setInertiaMatrix(float h, float w, float d, float m);
+	matrix4 inertiaMatrix;
 	Station *GetStation( Station :: StationType );	
 };
 #endif

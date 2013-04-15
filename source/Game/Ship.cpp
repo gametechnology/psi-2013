@@ -6,9 +6,7 @@ Ship::Ship(Composite * parent, vector3df position, vector3df rotation) : Entity(
 	setInertiaMatrix(50, 35, 100, 500);
 	Ship::position = position;
 	Ship::orientation = rotation;
-	up = vector3df(0,1,0);
-	forward = vector3df(0,0,1);
-	right = vector3df(1,0,0);
+	
 	Ship::input = &eventReceiver;
 	//TODO remove temp stuff
 	this -> _defenceStation		= new DefenceStation( this );
