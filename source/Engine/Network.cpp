@@ -136,10 +136,13 @@ void Network::InitializeServer()
 void Network::SendPacket(NetworkPacket packet, const bool reliable)
 {
 	if(_isConnected)
-	{	
-		packet.reliable = reliable; 
-		_packetsToSend.push_front(packet);
-		PacketSender();
+	{
+		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
+
+		if(!_isServer)
+			enet_peer_send(_peer, 0, enetPacket);
+		else
+			_receivedPackets.push_back(NetworkPacket(enetPacket));
 	}
 }
 
@@ -147,8 +150,9 @@ void Network::SendServerPacket(NetworkPacket packet, const bool reliable)
 {
 	if(_isConnected && _isServer)
 	{	
-		packet.reliable = reliable; 
-		_serverPacketsToSend.push_front(packet);
+		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
+
+		enet_host_broadcast(_host, 0, enetPacket);
 	}
 }
 
@@ -168,12 +172,12 @@ void Network::RemoveListener(PacketType packetType, INetworkListener* listener)
 	_listeners[packetType]->remove(listener);
 }
 
-
-
 void Network::PacketReciever()
 {
 	while (true)
 	{
+		_mutex.lock();
+
 		enet_host_service (Network::GetInstance()->_host, & Network::GetInstance()->_event, 0);
 
 		switch (Network::GetInstance()->_event.type)
@@ -204,12 +208,15 @@ void Network::PacketReciever()
 				// Reset the peer's client information.
 				Network::GetInstance()->_event.peer -> data = NULL;
 		}
+
+		_mutex.unlock();
 	}
 }
 
 void Network::DistributePacket(NetworkPacket networkPacket)
 {
 	std::cout << "received pcket\n";
+
 	int type = networkPacket.GetPacketType();
 	if (type >= 0 && type < PacketType :: LAST_TYPE)
 	{
@@ -223,9 +230,13 @@ void Network::DistributePacket(NetworkPacket networkPacket)
 
 void Network::DistributeReceivedPackets()
 {
+	_mutex.lock();
+
 	std::vector<NetworkPacket>::const_iterator iterator;
 	for (iterator = _receivedPackets.begin(); iterator != _receivedPackets.end(); ++iterator)
 		this->DistributePacket(*iterator);
+
+	_mutex.unlock();
 }
 
 bool Network::IsConnected()

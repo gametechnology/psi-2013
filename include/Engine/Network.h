@@ -36,6 +36,8 @@ private:
 	void DistributePacket(NetworkPacket packet);
 
 	sf::Thread* _receiverThread;
+	sf::Mutex _mutex;
+
 	bool _isServer;
 	bool _isConnected;
 	static Network* instance;
