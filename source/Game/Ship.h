@@ -37,14 +37,13 @@ public:
 	irr::gui::IGUIStaticText *powerStationHealth;
 	irr::gui::IGUIStaticText *weaponStationHealth;
 
-
 	int _shipHealth;
 	bool _shipDestroyed;
 
 	void update();
 	void updateShipHealth();
 	void draw();
-	
+
 	Ship(Composite * parent);
 	virtual ~Ship(void);
 
