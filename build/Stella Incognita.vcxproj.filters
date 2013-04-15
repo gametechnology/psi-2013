@@ -31,9 +31,6 @@
     <ClCompile Include="..\source\Engine\Game.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\HelmSceneTest.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Laser.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
@@ -127,6 +124,9 @@
     <ClCompile Include="..\source\Engine\Input.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\ShipScenes.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Enemy.h">
@@ -154,9 +154,6 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Game.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\HelmSceneTest.h">
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Laser.h">
@@ -262,6 +259,9 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\include\Engine\Input.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ShipScenes.h">
       <Filter>Header files</Filter>
     </ClInclude>
   </ItemGroup>

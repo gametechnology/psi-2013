@@ -10,8 +10,8 @@ PowerStation :: PowerStation( Ship *ship ) : Station( ship )
 {
 	this -> _stationType		= StationType :: Power;
 	this -> device				= Game :: device;
-	this ->	driver				= device -> getVideoDriver( );
-	this -> env					= device -> getGUIEnvironment( );	
+	//this ->	driver				= device -> getVideoDriver( );
+	this -> env					= Game::guiEnv;	
 }
 
 PowerStation :: ~PowerStation()
@@ -209,7 +209,7 @@ stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 //Adds the background image and the spaceship image. 
 void PowerStation::addImages()
 {
-	env->addImage(driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
+	env->addImage(driver->getTexture("../assets\\Textures\\Stations\\PowerStation\\black_bg.png"), position2d<int>(0,0));
 	env->addImage(driver->getTexture("../assets\\Textures\\Stations\\PowerStation\\spaceship.png"), position2d<int>(190,266));
 }
 //Creates the power scrollbar. 
@@ -268,7 +268,7 @@ void PowerStation::createCurrentSelectedStationText(){
 void PowerStation::update()
 {
 	Station::update();
-
+	
 	int helm		= context.GetPower( STATION_TYPE :: Helm );
 	int defence		= context.GetPower( STATION_TYPE :: Defence );
 	int weapon		= context.GetPower( STATION_TYPE :: Weapon );

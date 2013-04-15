@@ -4,6 +4,7 @@
 
 Station :: Station( Ship *ship ) : Component(ship)
 {
+	driver = Game::driver;
 	this ->	_ship	= ship;
 
 	//this -> _switchTime = 4.0f;
