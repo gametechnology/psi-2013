@@ -64,7 +64,10 @@ void Game::run()
 		//Irrlicht GUI
 		Game::guiEnv->drawAll();
 		Game::driver->endScene();
+		
+		Network::GetInstance()->DistributeReceivedPackets();
 	}
+
 	Game::device->drop();
 }
 
