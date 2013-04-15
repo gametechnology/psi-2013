@@ -95,6 +95,7 @@
   <ItemGroup>
     <ClCompile Include="..\source\Game\AsteroidSector.cpp" />
     <ClCompile Include="..\source\Game\BaseSector.cpp" />
+    <ClCompile Include="..\source\Game\BasicMoverComponent.cpp" />
     <ClCompile Include="..\source\Game\Enemy.cpp" />
     <ClCompile Include="..\source\Game\EnemyAsteroid.cpp" />
     <ClCompile Include="..\source\Game\EnemyDrone.cpp" />
@@ -129,6 +130,7 @@
     <ClInclude Include="..\source\Game\ArrayList.h" />
     <ClInclude Include="..\source\Game\AsteroidSector.h" />
     <ClInclude Include="..\source\Game\BaseSector.h" />
+    <ClInclude Include="..\source\Game\BasicMoverComponent.h" />
     <ClInclude Include="..\source\Game\Enemy.h" />
     <ClInclude Include="..\source\Game\EnemyAsteroid.h" />
     <ClInclude Include="..\source\Game\EnemyDrone.h" />
