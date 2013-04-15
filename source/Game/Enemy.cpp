@@ -147,7 +147,6 @@ void Enemy::contactResolverA(Enemy* _input)
 {
 	if (this->position.getDistanceFromSQ(_input->getPosition()) < ((this->getRadius() + _input->getRadius() ) * (this->getRadius() + _input->getRadius())))
     {
-		std::printf("..!..");
         double deltamass = (this->getRadius() / _input->getRadius());
 		vector3df deltavelocity = this->getVelocity() - _input->getVelocity();
 		vector3df componentThisToBal = (_input->getPosition() - this->getPosition()) * (this->getPosition().dotProduct(_input->getPosition() - this->getPosition()) / (_input->getPosition() - this->getPosition()).getLengthSQ());
