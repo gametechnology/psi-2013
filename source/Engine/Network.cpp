@@ -2,10 +2,36 @@
 #include "Engine\NetworkPacket.h"
 #include "Engine\INetworkListener.h"
 #include <iostream>
-#include "SFML\System.hpp"
 
 bool Network::isInitialized = false;
 Network* Network::instance = 0;
+
+void Network::PacketSender()
+{
+	std::list<NetworkPacket> packets = Network::GetInstance()->_packetsToSend;
+
+	if(_isConnected && packets.size() <= 0)
+		return;
+
+	std::list<NetworkPacket>::const_iterator iterator;
+
+	for (iterator = packets.begin(); iterator != packets.end(); ++iterator)
+	{
+		NetworkPacket packet = (*iterator);
+		
+		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), packet.reliable);
+
+		if(!_isServer)
+			enet_peer_send(Network::GetInstance()->_peer, 0, enetPacket);
+		else
+			_receivedPackets.push_back(NetworkPacket(enetPacket));
+	}
+
+	//enet_host_flush(Network::GetInstance()->_host);
+			
+	_packetsToSend.clear();
+}
+
 
 Network::Network() : _port(1345)
 {
@@ -38,14 +64,8 @@ Network* Network::GetInstance()
 
 void Network::StartThreads()
 {
-	//_beginthread(PacketReciever,0, NULL);
-	//_beginthread(PacketSender,0, NULL);
-	
-	sf::Thread thread1(&Network::PacketSender, this);
-	thread1.launch();
-
-	sf::Thread thread2(&Network::PacketReciever, this);
-	//thread2.launch();
+	_receiverThread = new sf::Thread(&Network::PacketReciever, this);
+	_receiverThread->launch();
 }
 
 void Network::StopThreads()
@@ -119,6 +139,7 @@ void Network::SendPacket(NetworkPacket packet, const bool reliable)
 	{	
 		packet.reliable = reliable; 
 		_packetsToSend.push_front(packet);
+		PacketSender();
 	}
 }
 
@@ -147,37 +168,7 @@ void Network::RemoveListener(PacketType packetType, INetworkListener* listener)
 	_listeners[packetType]->remove(listener);
 }
 
-void Network::PacketSender()
-{
-	while(true)
-	{
-		std::cout << "send thread\n";
-		std::list<NetworkPacket> packets = Network::GetInstance()->_packetsToSend;
 
-		if(Network::GetInstance()->IsConnected() && packets.size() <= 0)
-		{	
-			continue;
-		}
-		else
-		{
-			std::list<NetworkPacket>::const_iterator iterator;
-
-			for (iterator = packets.begin(); iterator != packets.end(); ++iterator)
-			{
-				NetworkPacket packet = (*iterator);
-		
-				ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), packet.reliable);
-				enet_peer_send(Network::GetInstance()->_peer, 0, enetPacket);
-			}
-
-			//enet_host_flush(Network::GetInstance()->_host);
-			
-			Network::GetInstance()->_packetsToSend.clear();
-		}
-	}
-
-	std::cout << "send thread end\n";
-}
 
 void Network::PacketReciever()
 {
@@ -191,7 +182,7 @@ void Network::PacketReciever()
 				printf ("A new client connected from %x:%u.\n", 
 						Network::GetInstance()->_event.peer -> address.host,
 						Network::GetInstance()->_event.peer -> address.port);
-				/* Store any relevant client information here. */
+				// Store any relevant client information here.
 				Network::GetInstance()->_event.peer -> data = "Client information";
 				break;
 			case ENET_EVENT_TYPE_RECEIVE:
@@ -200,15 +191,17 @@ void Network::PacketReciever()
 						Network::GetInstance()->_event.packet -> data,
 						Network::GetInstance()->_event.peer -> data,
 						Network::GetInstance()->_event.channelID);
-				// Distribute the package allong the listners
-				Network::GetInstance()->DistributePacket(NetworkPacket(Network::GetInstance()->_event.packet));
-				/* Clean up the packet now that we're done using it. */
-				enet_packet_destroy (Network::GetInstance()->_event.packet);
+
+				// Add to our list of received packets
+				_receivedPackets.push_back(NetworkPacket(_event.packet));
+
+				// Clean up the packet now that we're done using it
+				enet_packet_destroy (_event.packet);
 				break;
        
 			case ENET_EVENT_TYPE_DISCONNECT:
-				printf ("%s disconected.\n", Network::GetInstance()->_event.peer -> data);
-				/* Reset the peer's client information. */
+				printf ("%s disconected.\n", _event.peer -> data);
+				// Reset the peer's client information.
 				Network::GetInstance()->_event.peer -> data = NULL;
 		}
 	}
@@ -216,6 +209,7 @@ void Network::PacketReciever()
 
 void Network::DistributePacket(NetworkPacket networkPacket)
 {
+	std::cout << "received pcket\n";
 	int type = networkPacket.GetPacketType();
 	if (type >= 0 && type < PacketType :: LAST_TYPE)
 	{
@@ -225,6 +219,13 @@ void Network::DistributePacket(NetworkPacket networkPacket)
 	}
 	else
 		printf("Unknown PacketType '%s' received", type);
+}
+
+void Network::DistributeReceivedPackets()
+{
+	std::vector<NetworkPacket>::const_iterator iterator;
+	for (iterator = _receivedPackets.begin(); iterator != _receivedPackets.end(); ++iterator)
+		this->DistributePacket(*iterator);
 }
 
 bool Network::IsConnected()

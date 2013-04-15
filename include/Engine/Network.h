@@ -4,6 +4,8 @@
 #include <enet\enet.h>
 #include <process.h>
 #include <list>
+#include <vector>
+#include "SFML\System.hpp"
 
 // forward declare NetworkPacket to prevent circular dependancy
 class NetworkPacket;
@@ -31,13 +33,16 @@ private:
 	void StopThreads();
 	void PacketReciever();
 	void PacketSender();
-	
+	void DistributePacket(NetworkPacket packet);
+
+	sf::Thread* _receiverThread;
 	bool _isServer;
 	bool _isConnected;
 	static Network* instance;
 	std::list<INetworkListener*>* _listeners[PacketType :: LAST_TYPE];
 	std::list<NetworkPacket> _packetsToSend;
 	std::list<NetworkPacket> _serverPacketsToSend;
+	std::vector<NetworkPacket> _receivedPackets;
 	ENetAddress _address;
 	ENetHost* _host;
 	ENetEvent _event;
@@ -61,7 +66,7 @@ public:
 	void AddListener(PacketType packetType, INetworkListener* listener);
 	void RemoveListener(INetworkListener* listener);
 	void RemoveListener(PacketType packetType, INetworkListener* listener);
-	void DistributePacket(NetworkPacket packet);
+	void DistributeReceivedPackets();
 };
 
 #endif
