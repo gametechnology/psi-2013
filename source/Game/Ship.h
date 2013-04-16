@@ -27,6 +27,8 @@ public:
 	NavigationStation	*_navigationStation;
 	PowerStation		*_powerStation;
 	WeaponStation		*_weaponStation;
+	
+	matrix4 inertiaMatrix;
 
 	//to test the ship health and station health
 	irr::gui::IGUIEnvironment *env;
@@ -40,9 +42,13 @@ public:
 	int _shipHealth;
 	bool _shipDestroyed;
 
+	void init();
 	void update();
 	void updateShipHealth();
 	void draw();
+
+	void setInertiaMatrix(float h, float w, float d, float m);
+	void Ship::handleMessage(unsigned int message, void* data);
 
 	Ship(Composite * parent);
 	virtual ~Ship(void);

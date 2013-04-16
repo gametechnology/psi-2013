@@ -4,6 +4,10 @@
 Ship::Ship( Composite * parent ) : Entity ( parent )
 {
 	this->env = Game :: device->getGUIEnvironment();
+	
+	this->setInertiaMatrix(50, 35, 100, 500);
+	this->position =  vector3df(0,0,0);
+	this->orientation = vector3df(0,0,0);
 
 	//TODO remove temp stuff
 	this->_defenceStation		= new DefenceStation( this );
@@ -33,7 +37,6 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	stringw strNavigationHealth = "Navigation Station health: " + this->_navigationStation-> getHealth();
 	stringw strPowerHealth = "Power Station health: " + this->_powerStation->getHealth();
 	stringw strWeaponHealth = "Weapon Station health: " + this->_weaponStation->getHealth();
-
 
 	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 200, 100), false);
 	this->defenceStationHealth	= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 200, 120), false);
@@ -159,4 +162,31 @@ int Ship :: getShipHealth()
 bool Ship :: getShipDestroyed()
 {
 	return this->_shipDestroyed;
+}
+
+void Ship::init()
+{
+	Entity::init();
+}
+
+void Ship::handleMessage(unsigned int message, void* data){
+
+}
+
+void Ship::setInertiaMatrix(float h, float w, float d, float m){
+
+	//used for the momentum of inertia, currently not used, only m is used (mass)
+	float inertiaData[16];
+	for(unsigned i = 0; i < 16; i++)
+	{
+		inertiaData[i] = 0.0f;
+	}
+
+	inertiaData[0] = (((1.0f / 5.0f) * m) * (pow(w, 2) + pow(d, 2)));
+	inertiaData[5] = (((1.0f / 5.0f) * m) * (pow(h, 2) + pow(d, 2)));
+	inertiaData[10] = (((1.0f / 5.0f) * m) * (pow(h, 2) + pow(w, 2)));
+	inertiaData[15] = 1.0f;
+
+	matrix4 inertiaMatrix;
+	inertiaMatrix.setM(inertiaData);
 }
