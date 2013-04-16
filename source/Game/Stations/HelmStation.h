@@ -3,6 +3,7 @@
 
 #include "Station.h"
 #include "..\Ship.h"
+#include "Engine\Camera"
 
 class HelmStation : public Station 
 {

@@ -11,13 +11,13 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	this -> _navigationStation	= new NavigationStation( this );
 	this -> _weaponStation		= new WeaponStation( this );
 	this -> _powerStation		= new PowerStation( this );
-
+	/*
 	this -> _defenceStation		-> Initialize();
 	this -> _helmStation		-> Initialize();
 	this -> _navigationStation	-> Initialize();
 	this -> _weaponStation		-> Initialize();
 	this -> _powerStation		-> Initialize();
-
+	*/
 	addComponent(_defenceStation);
 	addComponent(_helmStation);
 	addComponent(_navigationStation);
@@ -41,6 +41,7 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	this -> navigationStationHealth = env->addStaticText(strNavigationHealth.c_str(),	rect<s32>(40, 140, 200, 160), false);
 	this -> powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 200, 180), false);
 	this -> weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 200, 200), false);
+
 }
 
 Ship::~Ship(void)
@@ -111,6 +112,29 @@ void Ship :: update()
 	this -> powerStationHealth		->setText((varToString("Power Station HP: ", this -> _powerStation -> getHealth())).c_str());
 	this -> weaponStationHealth		->setText((varToString("Weapon Station HP: ", this -> _weaponStation -> getHealth())).c_str());
 
+	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_1)){
+		this -> _defenceStation		-> Initialize();
+		_sitOnStation=true;
+	} else 
+	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_2)){
+		this -> _helmStation		-> Initialize();
+		_sitOnStation=true;
+	}else 
+	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_3)){
+		this -> _navigationStation		-> Initialize();
+		_sitOnStation=true;
+	}else 
+	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_4)){
+		this -> _weaponStation		-> Initialize();
+		_sitOnStation=true;
+	}else 
+	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_5)){
+		this -> _powerStation		-> Initialize();
+		_sitOnStation=true;
+	}
+
+
+
 	if(this -> _shipHealth <= 0 && this -> _shipDestroyed == false)
 	{
 		this -> _shipDestroyed == true;
@@ -179,4 +203,9 @@ int Ship :: getShipHealth()
 bool Ship :: getShipDestroyed()
 {
 	return this -> _shipDestroyed;
+}
+
+class eventReceiver : public IEventReceiver
+{
+
 }
