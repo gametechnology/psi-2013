@@ -11,13 +11,13 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	this->_navigationStation	= new NavigationStation( this );
 	this->_weaponStation		= new WeaponStation( this );
 	this->_powerStation		= new PowerStation( this );
-	/*
+	
 	this->_defenceStation		-> Initialize();
 	this->_helmStation		-> Initialize();
 	this->_navigationStation	-> Initialize();
 	this->_weaponStation		-> Initialize();
 	this->_powerStation		-> Initialize();
-	*/
+	
 	addComponent(_defenceStation);
 	addComponent(_helmStation);
 	addComponent(_navigationStation);
@@ -184,9 +184,4 @@ int Ship :: getShipHealth()
 bool Ship :: getShipDestroyed()
 {
 	return this->_shipDestroyed;
-}
-
-class eventReceiver : public IEventReceiver
-{
-
 }
