@@ -68,7 +68,7 @@ class MyEventReceiver : public IEventReceiver
 
 public:
 
-	MyEventReceiver(UIData & context) : _context(context) { }
+	MyEventReceiver(PowerStationData & context) : _context(context) { }
 
 	virtual bool OnEvent(const SEvent& event)
 	{
@@ -102,8 +102,6 @@ public:
 				}
 				else if(_context.selectedStation == 4){
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-
-					((IGUIScrollBar*)event.GUIEvent.Caller)->setPos( irr :: s32( ) );
 					_context.UpdatePowerUsage(ST_WEAPON, POWER_MAX - pos );
 				}
 				break;
@@ -152,7 +150,7 @@ public:
 	}
 
 private:
-	UIData & _context;
+	PowerStationData & _context;
 };
 
 //Initializes the User Interface.
@@ -172,7 +170,7 @@ void PowerStation::Initialize()
 //Creates the User Interface. Is a helper method. Also initializes the event receiver.
 void PowerStation::createUI()
 {
-	declareUIData();
+	declarePowerStationData();
 	addImages();
 	createPowerPool();
 	createScrollbar();
@@ -186,8 +184,8 @@ void PowerStation::createUI()
 	Game::input->setCustomEventReceiver(receiver);
 }
 
-//Defines the used driver and some UI data values.
-void PowerStation::declareUIData()
+//Defines the used driver and some PowerStationData values.
+void PowerStation::declarePowerStationData()
 {
 	context.counter = 0;
 	context.powerPool = 100;

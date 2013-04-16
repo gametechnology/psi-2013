@@ -3,7 +3,7 @@
 
 #include "Station.h"
 #include "..\Ship.h"
-#include "UIData.h"
+#include "PowerStationData.h"
 #include <time.h>
 #include <iostream>
 
@@ -23,7 +23,7 @@ public:
 	IGUIEnvironment			*env;
 	IGUISkin				*skin;
 	IGUIFont				*font;
-	UIData					context;
+	PowerStationData		context;
 
 	PowerStation( Ship* ship );
 	~PowerStation( void );
@@ -37,7 +37,7 @@ public:
 	void Initialize();
 	void createUI();
 	void addImages();
-	void declareUIData();
+	void declarePowerStationData();
 	void createPowerPool();
 	void createScrollbar();
 	void createButtons();
