@@ -51,6 +51,8 @@ void Game::run()
 		Game::input->endInputProcess();
 		Game::getCurrentScene( ) -> update( );
 		Game::driver -> beginScene(true, true, SColor(255,100,101,140));
+		//Irrlicht draw all
+		(*Game::scenes->begin())->sceneManager->drawAll();
 		//Game engine draw
 		Game::getCurrentScene()->draw();
 		//Irrlicht GUI

@@ -4,8 +4,6 @@
 #include "Station.h"
 #include "..\Ship.h"
 #include "UIData.h"
-#include "..\..\..\include\Engine\Game.h"
-#include "Irrlicht\irrlicht.h"
 #include <time.h>
 #include <iostream>
 
@@ -20,7 +18,7 @@ private:
 
 public:
 	//Power Station Impl	
-	video :: IVideoDriver	*driver;
+	//video :: IVideoDriver	*driver;
 	IrrlichtDevice			*device;
 	IGUIEnvironment			*env;
 	IGUISkin				*skin;
