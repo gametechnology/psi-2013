@@ -310,8 +310,16 @@ void Enemy::chase(vector3df target)
 		this->velocity = distancetoTarget;
 		this->velocity.normalize();
 		this->velocity *= 0.005f;
-		this->position += this->velocity;
-	
+		this->position += this->velocity;	
+}
+void Enemy::flee(vector3df target)
+{
+	vector3df selfPos = this->getPosition();
+	vector3df distancetoTarget = selfPos-target;
+	this->velocity = distancetoTarget;
+	this->velocity.normalize();
+	this->velocity *= 0.005f;
+	this->position += this->velocity;
 }
 
 void Enemy::wander()
