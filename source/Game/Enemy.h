@@ -43,7 +43,9 @@ public:
 	void setHealth(signed int health);
 	void setMaxHealth(unsigned int maxhealth);
 	void setVelocity(vector3df input);
-	void setRadius(unsigned int radius);
+	void setRadius(float radius);
+	void setOriginalRadius(float origradius);
+	void setOuterRadius(float outerradius);
 	
 	vector3df getVelocity();
 	vector3df getPath();
@@ -54,7 +56,9 @@ public:
 	vector3df getAccelaration();
 	unsigned int getDamage();
 	unsigned int getLoS();
-	unsigned int getRadius();
+	float getRadius();
+	float getOriginalRadius();
+	float getOuterRadius();
 	vector3df getTarget();
 	void chase(vector3df target);
 	void setTarget(vector3df target);
@@ -84,7 +88,9 @@ private:
 
 	signed int health_;
 	unsigned int maxhealth_;
-	unsigned int radius_;
+	float radius_;
+	float originalradius_;
+	float outerradius_;
 	unsigned int maxspeed_;
 	unsigned int agility_;
 	unsigned int accelaration_;
@@ -93,5 +99,6 @@ private:
 	vector3df _target;
 	int _wanderTime;
 
+	vector3df componentOnto(vector3df input, vector3df deltavelocity);
 };
 #endif

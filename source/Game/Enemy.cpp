@@ -149,7 +149,7 @@ void Enemy::contactResolverA(Enemy* _input)
     {
         double deltamass = (this->getRadius() / _input->getRadius());
 		vector3df deltavelocity = this->getVelocity() - _input->getVelocity();
-		vector3df componentThisToBal = (_input->getPosition() - this->getPosition()) * (this->getPosition().dotProduct(_input->getPosition() - this->getPosition()) / (_input->getPosition() - this->getPosition()).getLengthSQ());
+		vector3df componentThisToBal = componentOnto(_input->getPosition() - this->position, deltavelocity);
         vector3df componentNormalToBal = deltavelocity - componentThisToBal;
         vector3df thisMassComponent = componentThisToBal * ((deltamass- 1) / (deltamass + 1));
 		vector3df balMassComponent = componentThisToBal * (2 * deltamass / (deltamass + 1));
@@ -160,9 +160,13 @@ void Enemy::contactResolverA(Enemy* _input)
     }
 }
 
+vector3df Enemy::componentOnto(vector3df input, vector3df deltavelocity)
+{
+	return input * (deltavelocity.dotProduct(input) / input.getLengthSQ());
+}
+
 void Enemy::contactResolverB()
 {
-	std::printf("..!..");
 	velocity *= -1;
 }
 
@@ -245,9 +249,17 @@ void Enemy::setMaxHealth(unsigned int maxhealth)
 	maxhealth_ = maxhealth;
 	setHealth(maxhealth);
 }
-void Enemy::setRadius(unsigned int rad)
+void Enemy::setRadius(float rad)
 {
 	radius_ = rad;
+}
+void Enemy::setOriginalRadius(float origradius)
+{
+	originalradius_ = origradius;
+}
+void Enemy::setOuterRadius(float outerradius)
+{
+	outerradius_ = outerradius;
 }
 
 void Enemy::setTarget(vector3df targetPosition)
@@ -297,9 +309,17 @@ unsigned int Enemy::getLoS()
 {
 	return lineofsightrange_;
 }
-unsigned int Enemy::getRadius()
+float Enemy::getRadius()
 {
 	return radius_;
+}
+float Enemy::getOriginalRadius()
+{
+	return originalradius_;
+}
+float Enemy::getOuterRadius()
+{
+	return outerradius_;
 }
 
 signed int Enemy::getHealth()

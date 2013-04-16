@@ -193,18 +193,29 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 {
 	for(int i = 0; i < _input.size(); i++)
 	{
-		for(int j = 0; j < _input.size(); j++)
+		for(int j = i; j < _input.size(); j++)
 		{
-			if( i != j)
+			if(i != j)
 			{
 				float distance = _input[i]->position.getDistanceFrom(_input[j]->getPosition());
-				unsigned int radii = _input[i]->getRadius() + _input[j]->getRadius();
-				if (distance < radii)
+				if (distance < (_input[i]->getOuterRadius() + _input[j]->getOuterRadius()))
 				{
-					_input[i]->contactResolverB(/*_input[j]*/);
+					if (distance < (_input[i]->getRadius() + _input[j]->getRadius()))
+					{
+						_input[i]->contactResolverA(_input[j]);
+					}
+					if (distance < (_input[i]->getRadius() + _input[j]->getOuterRadius()))
+					{
+						_input[i]->contactResolverA(_input[j]);
+					}
+					if (distance < (_input[j]->getRadius() + _input[i]->getOuterRadius()))
+					{
+						_input[i]->contactResolverA(_input[j]);
+					}
 				}
 			}
 		}
+		_input[i]->setRadius(_input[i]->getOriginalRadius());
 	}
  //float distance = position.getDistanceFrom(input->getPosition());
  //float radii = input->getRadius() + radius_;
