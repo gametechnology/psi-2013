@@ -21,6 +21,9 @@ Enemy* drone1;
 EnemyFighter* fighter1;
 Enemy* asteroid1;
 Enemy* asteroid2;
+Enemy* asteroid3;
+Enemy* asteroid4;
+Enemy* asteroid5;
 EnemyDrone* kamikaze1;
 EnemyDrone* kamikaze2;
 EnemyDrone* kamikaze3;
@@ -42,11 +45,20 @@ void EnemyManager::createEnemies()
 	fighter1->setVelocity(vector3df(0.0005f,0,0));
 	fighter1->setRotation(irr::core::vector3df(0,1,0));
 	addComponent(fighter1);
-	asteroid1 = new EnemyAsteroid(irr::core::vector3df(50,0,0),vector3df(0,0.001f,0));
+
+	asteroid1 = new EnemyAsteroid(irr::core::vector3df(50,0,0),vector3df(0,0,0));
 	addComponent(asteroid1);
-	asteroid2 = new EnemyAsteroid(irr::core::vector3df(50,10,0),vector3df(0,-0.001f,0));
+	asteroid2 = new EnemyAsteroid(irr::core::vector3df(50,10,0),vector3df(0,0,0));
 	addComponent(asteroid2);
+	asteroid3 = new EnemyAsteroid(irr::core::vector3df(50,10,10),vector3df(0,-0.005f,-0.005f));
+	addComponent(asteroid3);
+	asteroid4 = new EnemyAsteroid(irr::core::vector3df(50,30,0),vector3df(0,-0.005f,0));
+	addComponent(asteroid4);
+	asteroid5 = new EnemyAsteroid(irr::core::vector3df(50,20,0),vector3df(0,0.005f,0));
+	addComponent(asteroid5);
 	
+
+
 	//kamikaze enemy
 	kamikaze1 = new EnemyDrone(irr::core::vector3df(30,30,30));
 	kamikaze1->setVelocity(vector3df(0.0005f,0,0));
@@ -74,6 +86,9 @@ void EnemyManager::createEnemies()
 	this->_enemyList.push_back(fighter1);
 	this->_enemyList.push_back(asteroid1);
 	this->_enemyList.push_back(asteroid2);
+	this->_enemyList.push_back(asteroid3);
+	this->_enemyList.push_back(asteroid4);
+	this->_enemyList.push_back(asteroid5);
 	this->_enemyList.push_back(player);
 }
 
@@ -202,8 +217,50 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 				{
 					if (distance < (_input[i]->getRadius() + _input[j]->getRadius()))
 					{
+						std::printf("lll\n");
 						_input[i]->contactResolverA(_input[j]);
+						continue;
 					}
+					vector3df box1[8];
+					vector3df box2[8];
+
+					box1[0] = vector3df(_input[i]->getPosition().X-_input[i]->getRadius(),_input[i]->getPosition().Y+_input[i]->getRadius(),_input[i]->getPosition().Z+_input[i]->getRadius());
+					box1[1] = vector3df(_input[i]->getPosition().X+_input[i]->getRadius(),_input[i]->getPosition().Y-_input[i]->getRadius(),_input[i]->getPosition().Z+_input[i]->getRadius());
+					box1[2] = vector3df(_input[i]->getPosition().X+_input[i]->getRadius(),_input[i]->getPosition().Y+_input[i]->getRadius(),_input[i]->getPosition().Z+_input[i]->getRadius());
+					box1[3] = vector3df(_input[i]->getPosition().X-_input[i]->getRadius(),_input[i]->getPosition().Y-_input[i]->getRadius(),_input[i]->getPosition().Z+_input[i]->getRadius());
+					box1[4] = vector3df(_input[i]->getPosition().X-_input[i]->getRadius(),_input[i]->getPosition().Y+_input[i]->getRadius(),_input[i]->getPosition().Z-_input[i]->getRadius());
+					box1[5] = vector3df(_input[i]->getPosition().X+_input[i]->getRadius(),_input[i]->getPosition().Y-_input[i]->getRadius(),_input[i]->getPosition().Z-_input[i]->getRadius());
+					box1[6] = vector3df(_input[i]->getPosition().X+_input[i]->getRadius(),_input[i]->getPosition().Y+_input[i]->getRadius(),_input[i]->getPosition().Z-_input[i]->getRadius());
+					box1[7] = vector3df(_input[i]->getPosition().X-_input[i]->getRadius(),_input[i]->getPosition().Y-_input[i]->getRadius(),_input[i]->getPosition().Z-_input[i]->getRadius());
+
+					box2[0] = vector3df(_input[j]->getPosition().X-_input[j]->getRadius(),_input[j]->getPosition().Y+_input[j]->getRadius(),_input[j]->getPosition().Z+_input[j]->getRadius());
+					box2[1] = vector3df(_input[j]->getPosition().X+_input[j]->getRadius(),_input[j]->getPosition().Y-_input[j]->getRadius(),_input[j]->getPosition().Z+_input[j]->getRadius());
+					box2[2] = vector3df(_input[j]->getPosition().X+_input[j]->getRadius(),_input[j]->getPosition().Y+_input[j]->getRadius(),_input[j]->getPosition().Z+_input[j]->getRadius());
+					box2[3] = vector3df(_input[j]->getPosition().X-_input[j]->getRadius(),_input[j]->getPosition().Y-_input[j]->getRadius(),_input[j]->getPosition().Z+_input[j]->getRadius());
+					box2[4] = vector3df(_input[j]->getPosition().X-_input[j]->getRadius(),_input[j]->getPosition().Y+_input[j]->getRadius(),_input[j]->getPosition().Z-_input[j]->getRadius());
+					box2[5] = vector3df(_input[j]->getPosition().X+_input[j]->getRadius(),_input[j]->getPosition().Y-_input[j]->getRadius(),_input[j]->getPosition().Z-_input[j]->getRadius());
+					box2[6] = vector3df(_input[j]->getPosition().X+_input[j]->getRadius(),_input[j]->getPosition().Y+_input[j]->getRadius(),_input[j]->getPosition().Z-_input[j]->getRadius());
+					box2[7] = vector3df(_input[j]->getPosition().X-_input[j]->getRadius(),_input[j]->getPosition().Y-_input[j]->getRadius(),_input[j]->getPosition().Z-_input[j]->getRadius());
+					
+					for (int k = 0; k < 8; k++)
+					{
+						for (int l = 0; l < 8; l++)
+						{
+							if (box1[k].X > box2[l].X - _input[i]->getRadius()||
+								box1[k].Y > box2[l].Y - _input[i]->getRadius()||
+								box1[k].Z > box2[l].Z - _input[i]->getRadius()||
+								box2[k].X > box1[l].X - _input[i]->getRadius()||
+								box2[k].Y > box1[l].Y - _input[i]->getRadius()||
+								box2[k].Z > box1[l].Z - _input[i]->getRadius() 
+								)
+							{
+								std::printf("..!..\n");
+								_input[i]->contactResolverA(_input[j]);
+							}
+						}
+					}
+
+					/*
 					if (distance < (_input[i]->getRadius() + _input[j]->getOuterRadius()))
 					{
 						_input[i]->contactResolverA(_input[j]);
@@ -212,10 +269,14 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 					{
 						_input[i]->contactResolverA(_input[j]);
 					}
+					*/
+				}
+				else
+				{
+				//	_input[i]->setRadius(_input[i]->getOriginalRadius());
 				}
 			}
 		}
-		_input[i]->setRadius(_input[i]->getOriginalRadius());
 	}
  //float distance = position.getDistanceFrom(input->getPosition());
  //float radii = input->getRadius() + radius_;
