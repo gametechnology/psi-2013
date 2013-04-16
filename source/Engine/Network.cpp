@@ -184,9 +184,7 @@ void Network::PacketReciever()
 
 void Network::DistributePacket(NetworkPacket networkPacket)
 {
-	std::cout << "received pcket\n";
-
-	int type = networkPacket.GetPacketType();
+	int type = networkPacket.GetType();
 	if (type >= 0 && type < PacketType :: LAST_TYPE)
 	{
 		std::list<INetworkListener*>::const_iterator iterator;
