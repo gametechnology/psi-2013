@@ -112,6 +112,7 @@ void Ship :: update()
 	this -> powerStationHealth		->setText((varToString("Power Station HP: ", this -> _powerStation -> getHealth())).c_str());
 	this -> weaponStationHealth		->setText((varToString("Weapon Station HP: ", this -> _weaponStation -> getHealth())).c_str());
 
+	//TODO! Stations need a way to leave. Set _sitOnStation on false. Temporary code, other team should make a better version of it someday.
 	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_1)){
 		this -> _defenceStation		-> Initialize();
 		_sitOnStation=true;
