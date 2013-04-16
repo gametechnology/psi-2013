@@ -28,6 +28,8 @@ class Network
 private:
 	const int _port;
 
+	static bool isInitialized;
+
 	Network();
 	void StartThreads();
 	void StopThreads();
@@ -52,23 +54,63 @@ private:
 public:
 	~Network();
 
+	/*
+	* Gets you an instance of the Network interface. If not initialized yet, it will then.
+	*/
 	static Network* GetInstance();
-	static bool isInitialized;
 
+	/*
+	* Initialize a client. When the connection with the server is succesfull, you will be able to send and receive messages.
+	*/
 	void InitializeClient(const char* ipAdress, unsigned int maxDownstream = 0, unsigned int maxUpstream = 0);
+
+	/* 
+	* Initialize a server. When succesfull, clients will be able to connect to you and receive your server messages.
+	*/
 	void InitializeServer(size_t maxPlayers = 16);
 
+	/*
+	* Returns true if you are the server and the server is succesfully initialized.
+	*/
 	bool IsServer();
+
+	/*
+	* Returns true if you are a client or server and the network interface is succesfully initialized.
+	*/
 	bool IsConnected();
 
+	/*
+	* Sends a packet to the server. If you are the server, this messages will be send to yourself, as if another client sends
+	* you this message.
+	*/
 	void SendPacket(NetworkPacket packet, const bool reliable = false);
+
+	/*
+	* If you are a server, sends a packet to all connected clients, including yourself, as if you are be a client.
+	*/
 	void SendServerPacket(NetworkPacket packet, const bool reliable = false);
 
+	/*
+	* Add a listener to the Network interface. If the Network interface receives a message of the specified PacketType
+	* the listener's HandleNetworkMessage() will be called.
+	*/
 	void AddListener(PacketType packetType, INetworkListener* listener);
+
+	/*
+	* Removes a listener so it won't receive any packet anymore.
+	*/
 	void RemoveListener(INetworkListener* listener);
+
+	/*
+	* Removes a listener for the specified PacketType. The listener will still receive other PacketTypes.
+	*/
 	void RemoveListener(PacketType packetType, INetworkListener* listener);
 
+	/*
+	* Distributes all buffered packets that are received by the Network interface.
+	*/
 	void DistributeReceivedPackets();
+
 };
 
 #endif
