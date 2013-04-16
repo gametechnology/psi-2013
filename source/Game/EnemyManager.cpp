@@ -57,8 +57,6 @@ void EnemyManager::createEnemies()
 	asteroid5 = new EnemyAsteroid(irr::core::vector3df(50,20,0),vector3df(0,0.005f,0));
 	addComponent(asteroid5);
 	
-
-
 	//kamikaze enemy
 	kamikaze1 = new EnemyDrone(irr::core::vector3df(30,30,30));
 	kamikaze1->setVelocity(vector3df(0.0005f,0,0));
@@ -215,7 +213,7 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 				float distance = _input[i]->position.getDistanceFrom(_input[j]->getPosition());
 				if (distance < (_input[i]->getOuterRadius() + _input[j]->getOuterRadius()))
 				{
-					if (distance < (_input[i]->getRadius() + _input[j]->getRadius()))
+					if (distance < (_input[i]->getRadius() + _input[j]->getRadius() ) )
 					{
 						std::printf("lll\n");
 						_input[i]->contactResolverA(_input[j]);
@@ -273,7 +271,7 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 				}
 				else
 				{
-				//	_input[i]->setRadius(_input[i]->getOriginalRadius());
+					_input[i]->setRadius(_input[i]->getOriginalRadius());
 				}
 			}
 		}

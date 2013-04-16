@@ -145,19 +145,16 @@ void Enemy::steering()
 
 void Enemy::contactResolverA(Enemy* _input)
 {
-	if (this->position.getDistanceFromSQ(_input->getPosition()) < ((this->getRadius() + _input->getRadius() ) * (this->getRadius() + _input->getRadius())))
-    {
-        double deltamass = (this->getRadius() / _input->getRadius());
-		vector3df deltavelocity = this->getVelocity() - _input->getVelocity();
-		vector3df componentThisToBal = componentOnto(_input->getPosition() - this->position, deltavelocity);
-        vector3df componentNormalToBal = deltavelocity - componentThisToBal;
-        vector3df thisMassComponent = componentThisToBal * ((deltamass- 1) / (deltamass + 1));
-		vector3df balMassComponent = componentThisToBal * (2 * deltamass / (deltamass + 1));
-        velocity = componentNormalToBal + thisMassComponent + _input->getVelocity();
-        _input->setVelocity(balMassComponent + _input->getVelocity());
-		this->setRadius(this->getRadius()*2 - this->getPosition().getDistanceFrom(_input->getPosition()));
-		_input->setRadius(this->getRadius());
-    }
+    double deltamass = (this->getRadius() / _input->getRadius());
+	vector3df deltavelocity = this->getVelocity() - _input->getVelocity();
+	vector3df componentThisToBal = componentOnto(_input->getPosition() - this->position, deltavelocity);
+    vector3df componentNormalToBal = deltavelocity - componentThisToBal;
+    vector3df thisMassComponent = componentThisToBal * ((deltamass- 1) / (deltamass + 1));
+	vector3df balMassComponent = componentThisToBal * (2 * deltamass / (deltamass + 1));
+    velocity = componentNormalToBal + thisMassComponent + _input->getVelocity();
+    _input->setVelocity(balMassComponent + _input->getVelocity());
+	this->setRadius(this->getRadius()*2 - this->getPosition().getDistanceFrom(_input->getPosition()));
+	_input->setRadius(this->getRadius());
 }
 
 vector3df Enemy::componentOnto(vector3df input, vector3df deltavelocity)
