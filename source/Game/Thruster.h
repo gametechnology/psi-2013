@@ -1,10 +1,10 @@
 #pragma once
 #include "Engine\Game.h"
 #include "Irrlicht\irrlicht.h"
-class Thruster : public Component
+class Thruster : public Entity
 {
 public:
-	Thruster(Composite *parent, vector3df position, vector3df initialDirection);
+	Thruster(Composite *parent, vector3df position, vector3df initialDirection, matrix4* inertiaMatrix);
 	~Thruster(void);
 	void Activate();
 
