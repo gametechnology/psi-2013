@@ -1,24 +1,16 @@
 #ifndef ENTITY
 #define ENTITY
 
-#include "Engine\Composite.h"
-#include "Engine\Component.h"
-#include "Engine\Game.h"
-#include "Engine\Scene.h"
+#include "Composite.h"
 
-#include "Irrlicht\irrlicht.h"
-#include "Irrlicht\vector3d.h"
-#include "Irrlicht\irrMath.h"
-#include <string>
-#include <vector>
-
-using namespace irr;
-using namespace core;
+class Game;
+class Scene;
+class Component;
 
 class Entity : public Composite {
 public:
 	Entity();
-	virtual ~Entity();
+	~Entity();
 
 	Game* game;
 	Scene* scene;

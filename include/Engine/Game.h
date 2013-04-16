@@ -1,21 +1,9 @@
-#include "Irrlicht\irrlicht.h"
-#include "Engine\Scene.h"
-#include "Engine\Client.h"
-#include "Engine\Server.h"
-#include "Engine\Input.h"
-#include <vector>
-
 #ifndef ENGINE
 #define ENGINE
 
-using namespace irr;
-using namespace core;
-using namespace video;
-using namespace scene;
-using namespace gui;
+#include "Scene.h"
 
-class Game
-{
+class Game {
 public:
 	Game();
 	~Game();
@@ -23,20 +11,21 @@ public:
 	static void run();
 
 	static Scene* getCurrentScene();
-	static ISceneManager* getSceneManager();
+	static irr::scene::ISceneManager* getSceneManager();
 	static void addScene(Scene* defaultScene);
 	static void removeScene();
 	
-	static Client* client;
-	static Server* server;
+	//static Client* client;
+	//static Server* server;
 
-	static IrrlichtDevice* device;
-	static IVideoDriver* driver;
+	static irr::IrrlichtDevice* device;
+	static irr::video::IVideoDriver* driver;
 
-	static IGUIEnvironment* guiEnv;
+	static irr::gui::IGUIEnvironment* guiEnv;
+
 protected:
 	static std::vector<Scene*>* scenes; 
-	static Input inputReceiver;
+	//static Input inputReceiver;
 };
 
 #endif

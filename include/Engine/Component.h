@@ -1,9 +1,11 @@
 #ifndef COMPONENT
 #define COMPONENT
 
-#include "Engine\Entity.h"
-#include "Engine\Scene.h"
-#include "Engine\Game.h"
+#include "Composite.h"
+
+class Scene;
+class Game;
+class Entity;
 
 class Component : public Composite {
 public:

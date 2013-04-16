@@ -1,4 +1,5 @@
 #include "Engine\IrrlichtNode.h"
+#include "Engine\Game.h"
 
 IrrlichtNode::IrrlichtNode(std::string modelPath) : Component() {
 

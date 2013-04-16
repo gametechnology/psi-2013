@@ -2,12 +2,12 @@
 #define IRRLICHTNODE
 
 #include "Engine\Component.h"
-#include "Engine\Entity.h"
+#include "Irrlicht\irrlicht.h"
 
 class IrrlichtNode : public Component {
 public:
 	IrrlichtNode(std::string modelPath);
-	virtual IrrlichtNode~();
+	~IrrlichtNode();
 
 	void update();
 private:

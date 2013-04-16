@@ -9,19 +9,14 @@
 
 #include "Engine\Game.h"
 
-using namespace irr;
-using namespace core;
-using namespace video;
-using namespace scene;
-
 // Predefine static variables
-IrrlichtDevice* Game::device;
-IVideoDriver* Game::driver;
+irr::IrrlichtDevice* Game::device;
+irr::video::IVideoDriver* Game::driver;
 std::vector<Scene*>* Game::scenes;
 
 /*Client* Game::client;
 Server* Game::server;*/
-IGUIEnvironment* Game::guiEnv;
+irr::gui::IGUIEnvironment* Game::guiEnv;
 
 Game::Game()
 {
@@ -29,7 +24,7 @@ Game::Game()
 	Game::scenes = new std::vector<Scene*>;
 
 	// Create the irrlicht device 
-	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, true);
+	Game::device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1280, 720), 16, false, false, true);
 
 	// If the device was not created correctly, then shut down the program
 	if(Game::device) {
@@ -55,7 +50,7 @@ void Game::run()
 	while( Game :: device -> run( ) )
 	{			
 		Game :: getCurrentScene( ) -> update( );
-		Game :: driver -> beginScene(true, true, SColor(255,100,101,140));
+		Game :: driver -> beginScene(true, true, irr::video::SColor(255,100,101,140));
 		//Irrlicht draw all
 		(*Game::scenes->begin())->sceneManager->drawAll();
 		//Game engine draw
@@ -69,23 +64,23 @@ void Game::run()
 
 Scene* Game::getCurrentScene()
 {
-	return *scenes->begin();
+	return *scenes->end();
 }
 
-ISceneManager* Game::getSceneManager()
+irr::scene::ISceneManager* Game::getSceneManager()
 {
 	return (*scenes->begin())->sceneManager;
 }
 
 void Game::addScene(Scene* scene)
 {
-	Game::scenes->push_front(scene);
+	Game::scenes->push_back(scene);
 	scene->init();
 }
 
 void Game::removeScene()
 {
-	Game::scenes->pop_front();
+	Game::scenes->pop_back();
 }
 
 Game::~Game()

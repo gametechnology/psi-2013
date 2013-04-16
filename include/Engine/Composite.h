@@ -1,19 +1,21 @@
-#include <vector>
-#include <array>
-
 #ifndef COMPOSITE
 #define COMPOSITE
+
+#include <string>
+#include <vector>
+
+using namespace std;
 
 class Composite {
 public:
 	Composite();
-	virtual ~Composite();
+	~Composite();
 	
 	bool initialized;
 	bool destroyed;
 	bool enabled;
 	
-	virtual void awake();
+	virtual void onAdd();
 	virtual void init();
 
 	virtual void update();

@@ -8,7 +8,7 @@ Composite::~Composite() {
 	
 }
 
-void Composite::awake() {
+void Composite::onAdd() {
 
 }
 

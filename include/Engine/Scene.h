@@ -1,15 +1,15 @@
 #ifndef SCENE
 #define SCENE
 
+#include "Entity.h"
 #include "Irrlicht\irrlicht.h"
-#include "Engine\Entity.h"
 
 class Scene : public Entity {
 public:
 	Scene();
 	~Scene();
 
-	enum State{
+	enum State {
 		LOADING,
 		PLAYING,
 		PAUSED,
@@ -17,7 +17,7 @@ public:
 	};
 
 	State state;
-	ISceneManager* sceneManager;
+	irr::scene::ISceneManager* sceneManager;
 };
 
 #endif

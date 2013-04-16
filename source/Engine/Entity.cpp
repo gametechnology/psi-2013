@@ -1,9 +1,9 @@
 #include "Engine\Entity.h"
-#include "Engine\Game.h"
+#include "Engine\Component.h"
 #include "Engine\Transform.h"
 
 Entity::Entity() : Composite() {
-	
+	addComponent(new Transform());
 }
 
 void Entity::update() {
@@ -11,8 +11,6 @@ void Entity::update() {
 }
 
 void Entity::onAdd() {
-	addComponent(new Transform());
-
 	if (parent != NULL && parent->initialized)
 		handleMessage(1); // Calling init if adding something while the game already has been initialized
 }
