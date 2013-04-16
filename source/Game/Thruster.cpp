@@ -48,12 +48,27 @@ Thruster::Thruster(Composite *ship, vector3df position, vector3df initialDirecti
 }
 
 void Thruster::printAng(){
-	std::cout << "angular acceleration: [" << angularForce.X << "," << angularForce.Y << "," << angularForce.Z << "]\n";
+	/*std::cout << "angular acceleration: [" << angularForce.X << "," << angularForce.Y << "," << angularForce.Z << "]\n";
 	std::cout << "torque: [" << torque.X << "," << torque.Y << "," << torque.Z << "]\n";
-	std::cout << "dir: [" << direction.X << "," << direction.Y << "," << direction.Z << "]\n";
+	std::cout << "dir: [" << direction.X << "," << direction.Y << "," << direction.Z << "]\n";*/
 }
 
 
 Thruster::~Thruster(void)
 {
+}
+
+void Thruster::init()
+{
+
+}
+
+void Thruster::update()
+{
+
+}
+
+void Thruster::draw()
+{
+
 }

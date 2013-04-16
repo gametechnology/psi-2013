@@ -1,11 +1,11 @@
 #ifndef HELM_STATION
 #define HELM_STATION
 
-#include "../Engine/Input.h"
+#include "Engine/Input.h"
+#include "Engine/Camera.h"
 #include "../Thruster.h"
 #include "../Ship.h"
 #include "Station.h"
-#include "ShipMover.h"
 
 class HelmStation : public Station 
 {
