@@ -11,6 +11,7 @@
 #include "Stations\Station.h"
 #include "Engine/Entity.h"
 #include "Player.h"
+#include "Engine/Input.h"
 
 class DefenceStation;
 class HelmStation;
@@ -28,6 +29,8 @@ public:
 	PowerStation		*_powerStation;
 	WeaponStation		*_weaponStation;
 
+	Input				*_input;
+
 	//to test the ship health and station health
 	irr::gui::IGUIEnvironment *env;
 	irr::gui::IGUIStaticText *shipHealth;
@@ -39,6 +42,8 @@ public:
 
 	int _shipHealth;
 	bool _shipDestroyed;
+
+	bool _sitOnStation;
 
 	void update();
 	void updateShipHealth();
