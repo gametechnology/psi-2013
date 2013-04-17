@@ -2,6 +2,8 @@
 #include "Engine\Game.h"
 #include "Engine\Scene.h"
 #include "MainMenuEventReceiver.h"
+#include "MapGenerator.h"
+#include "SectorManager.h"
 
 
 #ifndef MAINMENUSCENE
@@ -24,7 +26,7 @@ public:
 	MainMenuScene();
 	void updateLoop();
 	~MainMenuScene();
-
+	void StartGame();
 	enum MainMenuState
 	{
 		Main = 0,
@@ -57,11 +59,14 @@ public:
 	IGUIWindow* joinServerWindow;
 	IGUIWindow* createServerWindow;
 	
+	
 	//buttons in mainmenu
 	IGUIButton* createServerWindow_Button;
 	IGUIButton* joinServerWindow_Button;
-	IGUIButton* quit_Button;
+	IGUIButton* start_button;
 
+	IGUIEditBox* Ipadresinput;
+	IGUIWindow* messagebox;
 	//buttons in create server
 	IGUIButton* fromCreateBackToMain_Button;
 	IGUIButton* createServer_Button;
