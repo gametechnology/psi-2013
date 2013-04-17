@@ -1,6 +1,8 @@
 #pragma once
 #include "Engine\Entity.h"
 #include "Shipmap.h"
+#include "Engine/Game.h"
+#include <math.h>
 
 class Shipmap : public Entity
 {
@@ -14,13 +16,14 @@ class Shipmap : public Entity
 	video::ITexture* bg;
 	video::ITexture* icon;
 
-	float iconRadius, duration;
-
+	float iconRadius, duration, savedPosX, savedPosY, playerSpeed;
+	rect<s32> *boundingBoxes[5];
+	rect<s32> *playerBox;
 	u32 now, then;
 
 	bool isMoving, isIntersecting, onStation, blockedE;
 
-	int offsetX, offsetY, tileSize, iconOffset;
+	int offsetX, offsetY, tileSize, iconOffset, stationNumber;
 
 	int tiles[7][12];
 
