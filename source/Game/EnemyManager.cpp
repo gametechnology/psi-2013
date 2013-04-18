@@ -203,9 +203,9 @@ void EnemyManager::BroadPhaseDetection()
 
 void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 {
-	for(int i = 0; i < _input.size(); i++)
+	for(int i = 0; i < (int)(_input.size()); i++)
 	{
-		for(int j = i; j < _input.size(); j++)
+		for(int j = i; j < (int)(_input.size()); j++)
 		{
 			if(i != j)
 			{

@@ -49,7 +49,7 @@ void Enemy::applySpeed()
 	if (velocity.getLength() > maxspeed_)
 	{
 		vector3df cappedvel = velocity.normalize();
-		cappedvel *= maxspeed_;
+		cappedvel *= (float)maxspeed_;
 		velocity = cappedvel;
 	}
 }
@@ -181,8 +181,8 @@ void Enemy::contactResolverA(Enemy* _input)
 	vector3df deltavelocity = this->getVelocity() - _input->getVelocity();
 	vector3df componentThisToBal = componentOnto(_input->getPosition() - this->position, deltavelocity);
     vector3df componentNormalToBal = deltavelocity - componentThisToBal;
-    vector3df thisMassComponent = componentThisToBal * ((deltamass- 1) / (deltamass + 1));
-	vector3df balMassComponent = componentThisToBal * (2 * deltamass / (deltamass + 1));
+    vector3df thisMassComponent = componentThisToBal * (float)(((deltamass- 1) / (deltamass + 1)));
+	vector3df balMassComponent = componentThisToBal * (float)((2 * deltamass / (deltamass + 1)));
     velocity = componentNormalToBal + thisMassComponent + _input->getVelocity();
     _input->setVelocity(balMassComponent + _input->getVelocity());
 	this->setRadius(this->getRadius()*2 - this->getPosition().getDistanceFrom(_input->getPosition()));
@@ -212,7 +212,7 @@ void Enemy::contactResolverB()
 void Enemy::contactGenerator(Enemy* input)
 {
 	float distance = position.getDistanceFrom(input->getPosition());
-	int radii = input->getRadius() + radius_;
+	int radii = (int)(input->getRadius() + radius_);
 	if (distance < radii)
 	{
 		contactResolverB();

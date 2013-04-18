@@ -48,12 +48,11 @@ void MapSector::resetTexture()
 }
 
 void MapSector::draw(){
-	
 	Game::driver->draw2DImage(this->_mapSectorTexture,
-							rect<s32>(this->position.X - radius,this->position.Y - radius,this->position.X + radius,this->position.Y + radius),
-							rect<s32>(0,0,_mapSectorTexture->getOriginalSize().Width,_mapSectorTexture->getOriginalSize().Height),
-							0,
-							0,
-							true);
+		rect<s32>((int)(this->position.X - radius), (int)(this->position.Y - radius), (int)(this->position.X + radius), (int)(this->position.Y + radius)),
+		rect<s32>(0, 0, _mapSectorTexture->getOriginalSize().Width, _mapSectorTexture->getOriginalSize().Height),
+		0,
+		0,
+		true);
 
 }

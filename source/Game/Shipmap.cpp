@@ -140,10 +140,10 @@ void Shipmap::update()
 
 	if (isMoving)
 	{
-		int leftTile = (position.X - offsetX) / tileSize;
-		int rightTile = ((position.X + iconRadius * 2) - offsetX) / tileSize;
-		int topTile = (position.Y - offsetY) / tileSize;
-		int bottomTile = ((position.Y + iconRadius * 2) - offsetY) / tileSize;
+		int leftTile = (int)((position.X - offsetX) / tileSize);
+		int rightTile = (int)(((position.X + iconRadius * 2) - offsetX) / tileSize);
+		int topTile = (int)((position.Y - offsetY) / tileSize);
+		int bottomTile = (int)(((position.Y + iconRadius * 2) - offsetY) / tileSize);
 
 		if (tiles[topTile][leftTile] == 1 || tiles[bottomTile][leftTile] == 1 || tiles[topTile][rightTile] == 1 || tiles[bottomTile][rightTile] == 1)
 		{
