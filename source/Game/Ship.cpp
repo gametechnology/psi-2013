@@ -1,8 +1,13 @@
 #include "Ship.h"
 #include "Stations/Station.h"
+#include "ShipMover.h"
 
 Ship::Ship( Composite * parent ) : Entity ( parent )
 {
+	createNode("../assets/sydney.md2");
+	ShipMover* mover = new ShipMover(this);
+	addComponent(mover);
+
 	this->env = Game :: device->getGUIEnvironment();
 
 	//TODO remove temp stuff
@@ -16,13 +21,13 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	this->_helmStation		-> Initialize();
 	this->_navigationStation	-> Initialize();
 	this->_weaponStation		-> Initialize();
-	this->_powerStation		-> Initialize();
+	//this->_powerStation		-> Initialize();	//TODO: uncomment to show stations
 	
 	addComponent(_defenceStation);
 	addComponent(_helmStation);
 	addComponent(_navigationStation);
 	addComponent(_weaponStation);
-	addComponent(_powerStation);
+	//addComponent(_powerStation);	//TODO: uncomment to show stations
 
 	this->updateShipHealth();
 	this->_shipDestroyed = false;
@@ -157,8 +162,6 @@ void Ship :: update()
 	if(this->_weaponStation->getHealth() <= 0 && this->_weaponStation->getStationDestroyed() == false) {
 		this->_weaponStation->setStationDestroyed(true);
 	}
-
-
 }
 
 void Ship :: updateShipHealth()

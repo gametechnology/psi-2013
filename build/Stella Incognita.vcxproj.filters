@@ -144,9 +144,6 @@
     <ClCompile Include="..\source\Game\Stations\UIData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\HelmSceneTest.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -247,6 +244,9 @@
       <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\BasicMoverComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\ShipMover.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -352,9 +352,6 @@
     <ClInclude Include="..\source\Game\EnemySceneTest.h">
       <Filter>Header Files\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\HelmSceneTest.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\MainMenuScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
@@ -395,6 +392,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\BasicMoverComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ShipMover.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
