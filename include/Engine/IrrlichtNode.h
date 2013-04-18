@@ -13,6 +13,6 @@ public:
 private:
 	irr::scene::ISceneNode* node;
 	void createNode(std::string modelPath);
-}
+};
 
 #endif

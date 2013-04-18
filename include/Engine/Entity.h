@@ -1,11 +1,11 @@
 #ifndef ENTITY
 #define ENTITY
+#pragma once
 
 #include "Composite.h"
+#include "Component.h"
 
 class Game;
-class Scene;
-class Component;
 
 class Entity : public Composite {
 public:

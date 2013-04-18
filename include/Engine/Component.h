@@ -1,11 +1,12 @@
 #ifndef COMPONENT
 #define COMPONENT
+#pragma once
 
 #include "Composite.h"
 
+class Entity;
 class Scene;
 class Game;
-class Entity;
 
 class Component : public Composite {
 public:
@@ -27,4 +28,3 @@ public:
 
 
 #endif
-

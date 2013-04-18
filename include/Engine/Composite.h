@@ -1,5 +1,6 @@
 #ifndef COMPOSITE
 #define COMPOSITE
+#pragma once
 
 #include <string>
 #include <vector>

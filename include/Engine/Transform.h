@@ -1,5 +1,5 @@
-#ifndef TRANSFORM
-#define TRANSFORM
+#ifndef TRANSFORMCOMPONENT
+#define TRANSFORMCOMPONENT
 
 #include "Engine\Component.h"
 
