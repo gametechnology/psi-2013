@@ -1,0 +1,23 @@
+#include "Station.h"
+#include "NavigationStation.h"
+#include "..\Ship.h"
+
+NavigationStation::NavigationStation(Ship *ship) : Station( ship )
+{
+<<<<<<< HEAD
+	this->_stationType = StationType::Navigation;
+	this -> setStationDestroyed(false);
+=======
+	this->_stationType = ST_NAVIGATION;
+>>>>>>> 3974aa0... About 80 less warnings and removal of the time-out of the game loop
+}
+
+NavigationStation :: ~NavigationStation()
+{
+
+}
+
+void NavigationStation :: DoCameraShake( )
+{
+	
+}

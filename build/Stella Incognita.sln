@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stella Incognita", "Stella Incognita.vcxproj", "{B0E4137C-554D-4B63-B8E4-93E93C176F9C}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stella Incognita Engine", "Engine\Stella Incognita Engine.vcxproj", "{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +15,10 @@ Global
 		{B0E4137C-554D-4B63-B8E4-93E93C176F9C}.Debug|Win32.Build.0 = Debug|Win32
 		{B0E4137C-554D-4B63-B8E4-93E93C176F9C}.Release|Win32.ActiveCfg = Release|Win32
 		{B0E4137C-554D-4B63-B8E4-93E93C176F9C}.Release|Win32.Build.0 = Release|Win32
+		{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}.Debug|Win32.Build.0 = Debug|Win32
+		{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}.Release|Win32.ActiveCfg = Release|Win32
+		{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

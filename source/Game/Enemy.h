@@ -61,6 +61,7 @@ public:
 	float getOuterRadius();
 	vector3df getTarget();
 	void chase(vector3df target);
+	void flee(vector3df target);
 	void setTarget(vector3df target);
 
 	/*void contactGenerator(Player* input);*/

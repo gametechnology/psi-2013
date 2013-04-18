@@ -4,7 +4,8 @@
 
 WeaponStation::WeaponStation( Ship *ship ) : Station( ship )
 {
-	this -> _stationType = StationType::Weapon;
+	this -> _stationType = ST_WEAPON;
+	this -> setStationDestroyed(false);
 }
 
 WeaponStation::~WeaponStation()

@@ -1,7 +1,4 @@
 #include "Shipmap.h"
-#include "Engine/Game.h"
-#include <math.h>
-#include "TestScene.h"
 
 Shipmap::Shipmap(Composite* parent):Entity(parent)
 {
@@ -15,7 +12,7 @@ Shipmap::Shipmap(Composite* parent):Entity(parent)
 
 	then = Game::device->getTimer()->getTime();
 	iconOffset = 30;
-	duration = 0;
+	duration = savedPosX = savedPosY = stationNumber = 0;
 
 	tileSize = 64;
 
@@ -25,23 +22,32 @@ Shipmap::Shipmap(Composite* parent):Entity(parent)
 	offsetX = 139;
 	offsetY = 72;
 
-	const int height = 7;
-	const int width = 12;
-	int newMap[height][width] = { 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0,
+	const int height = 7, width = 12;
+
+	int newMap[height][width] = { 
+		0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0,
 		0, 0, 0, 0, 0, 1, 2, 0, 1, 0, 0, 0,
 		1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1,
 		1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 1,
 		1, 1, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 
 		0, 0, 0, 1, 2, 1, 1, 2, 1, 0, 0, 0,
-		0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0 };
+		0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0 
+	};
 
+	boundingBoxes[0] = new rect<s32>((6*tileSize)+offsetX, (1*tileSize)+offsetY, (7*tileSize)+offsetX, (2*tileSize)+offsetY);
+	boundingBoxes[1] = new rect<s32>((1*tileSize)+offsetX, (3*tileSize)+offsetY, (2*tileSize)+offsetX, (4*tileSize)+offsetY);
+	boundingBoxes[2] = new rect<s32>((4*tileSize)+offsetX, (5*tileSize)+offsetY, (5*tileSize)+offsetX, (6*tileSize)+offsetY);
+	boundingBoxes[3] = new rect<s32>((7*tileSize)+offsetX, (5*tileSize)+offsetY, (8*tileSize)+offsetX, (6*tileSize)+offsetY);
+	boundingBoxes[4] = new rect<s32>((10*tileSize)+offsetX, (3*tileSize)+offsetY, (11*tileSize)+offsetX, (4*tileSize)+offsetY);
+
+	playerBox = new rect<s32>();
 
 	for (int i = 0; i < height; i++)
 		for (int j = 0; j < width; j++)
 			tiles[i][j] = newMap[i][j];
 
 	position.X = (playerTile.x * tileSize) + offsetX;
-	position.Y = (playerTile.y * tileSize) + offsetY;
+	position.Y = (playerTile.y * tileSize) + offsetY + 20;
 }
 
 Shipmap::~Shipmap()
@@ -73,7 +79,7 @@ void Shipmap::draw()
 		{
 			if (font)
 				font->draw(L"Press E to enter the Station.",
-				core::rect<s32>(0,0,300,50),
+				core::rect<s32>(50,0,300,50),
 				video::SColor(255,255,0,255));
 
 		}
@@ -82,45 +88,52 @@ void Shipmap::draw()
 
 void Shipmap::update()
 {
-	/*
 	now = Game::device->getTimer()->getTime();
 
-	float playerSpeed = 0.7f;
-	float savedPosX = position.X;
-	float savedPosY = position.Y;
+	playerSpeed = 1.7f;
 
-	Input input;
+	for(int i = 0; i < 5; i++)
+		if(playerBox->isRectCollided(*boundingBoxes[i]))
+			printf("Colliding with station %i \n", i);
+
+	savedPosX = position.X;
+	savedPosY = position.Y;
+
+	playerBox->UpperLeftCorner.X = position.X;
+	playerBox->UpperLeftCorner.Y = position.Y;
+	playerBox->LowerRightCorner.X = position.X + iconRadius*2;
+	playerBox->LowerRightCorner.Y = position.Y + iconRadius*2;
 
 	playerTile.x = (position.X - offsetX) / tileSize;
 	playerTile.y = (position.Y - offsetY) / tileSize;
 
-	if (Input::KeyIsDown[irr::KEY_KEY_A])
+	if (Game::input->isKeyboardButtonDown(irr::KEY_KEY_A))
 	{
 		isMoving = true;
 		position.X -= playerSpeed;
 	}
-	else if (Input::KeyIsDown[irr::KEY_KEY_D])
+	else if (Game::input->isKeyboardButtonDown(irr::KEY_KEY_D))
 	{
 		isMoving = true;
 		position.X += playerSpeed;
 	}
-	if (Input::KeyIsDown[irr::KEY_KEY_W])
+	if (Game::input->isKeyboardButtonDown(irr::KEY_KEY_W))
 	{
 		isMoving = true;
 		position.Y -= playerSpeed;
 	}
-	else if (Input::KeyIsDown[irr::KEY_KEY_S])
+	else if (Game::input->isKeyboardButtonDown(irr::KEY_KEY_S))
 	{
 		isMoving = true;
 		position.Y += playerSpeed;
 	}
-	if (Input::KeyIsDown[irr::KEY_KEY_E] || Input::KeyIsDown[irr::KEY_KEY_F])
+	if (Game::input->isKeyboardButtonDown(irr::KEY_KEY_E) || Game::input->isKeyboardButtonDown(irr::KEY_KEY_F))
 	{
 		if(!blockedE && onStation)
 		{
-			Game::getCurrentScene()->addComponent(new HelmStation(NULL));
+			//Game::getCurrentScene()->addComponent(new HelmStation(NULL));
 			blockedE = !blockedE;
-			Game::getCurrentScene()->state = Game::getCurrentScene()->EXITING;
+			//Game::getCurrentScene()->state = Game::getCurrentScene()->EXITING;
 		}
 	}
 
@@ -166,5 +179,4 @@ void Shipmap::update()
 	}
 
 	then = now;
-	*/
 }

@@ -8,13 +8,11 @@ HelmSceneTest::~HelmSceneTest(void) { Scene::~Scene(); }
 
 
 void HelmSceneTest::init()
-{
-	
+{	
 	EnemyManager* manager;
 	manager = new EnemyManager();
-
-	ICameraSceneNode* camera = Game::getSceneManager()->addCameraSceneNodeFPS();
-	addComponent(new Player(this));
-//	addComponent(new Ship(this));
+	//ICameraSceneNode* camera = Game::getSceneManager()->addCameraSceneNodeFPS();
+	//addComponent(new Player(this));
+	addComponent(new Ship(this));
 	addComponent(manager);
 }
