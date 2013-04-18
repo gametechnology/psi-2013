@@ -42,7 +42,7 @@ private:
 	bool _isServer;
 	bool _isConnected;
 	static Network* instance;
-	std::list<INetworkListener*>* _listeners[PacketType :: LAST_TYPE];
+	std::list<INetworkListener*>* _listeners[LAST_TYPE];
 	std::list<NetworkPacket> _packetsToSend;
 	std::list<NetworkPacket> _serverPacketsToSend;
 	std::vector<NetworkPacket> _receivedPackets;

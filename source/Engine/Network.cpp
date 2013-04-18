@@ -11,7 +11,7 @@ Network::Network() : _port(1345)
 	_isServer = false;
 	_isConnected = false;
 
-	for (int i = 0; i < PacketType::LAST_TYPE; i++)
+	for (int i = 0; i < LAST_TYPE; i++)
 		_listeners[i] = new std::list<INetworkListener*>();
 
 	if (enet_initialize() != 0)
@@ -185,7 +185,7 @@ void Network::PacketReciever()
 void Network::DistributePacket(NetworkPacket networkPacket)
 {
 	int type = networkPacket.GetType();
-	if (type >= 0 && type < PacketType :: LAST_TYPE)
+	if (type >= 0 && type < LAST_TYPE)
 	{
 		std::list<INetworkListener*>::const_iterator iterator;
 		for (iterator = _listeners[type]->begin(); iterator != _listeners[type]->end(); ++iterator)

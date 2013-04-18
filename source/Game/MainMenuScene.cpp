@@ -50,12 +50,12 @@ public:
 		{
 			s32 id = event.GUIEvent.Caller->getID();
 			IGUIEnvironment* env = Context.device->getGUIEnvironment();
-			switch(event.GUIEvent.EventType)
-			{
+			//switch(event.GUIEvent.EventType)
+			//{
 			//TODO: cases when a button is pressed
-			default:
-				break;
-			}
+			//default:
+			//	break;
+			//}
 		}
 		return false;
 	}
