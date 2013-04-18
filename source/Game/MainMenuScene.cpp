@@ -1,6 +1,13 @@
 #include "Engine/Game.h"
 #include "MainMenuScene.h"
+#include "Irrlicht\irrlicht.h"
 
+struct SAppContext
+{
+    IrrlichtDevice *device;
+    s32             counter;
+    IGUIListBox*    listbox;
+};
 // irrlicht namespaces
 using namespace irr;
 using namespace core;
@@ -45,3 +52,27 @@ MainMenuScene::~MainMenuScene()
 
 
 
+
+class MyEventReceiver : public IEventReceiver
+{
+public:
+	MyEventReceiver(SAppContext & context) : Context(context) { }
+
+	virtual bool OnEvent(const SEvent& event)
+	{
+		if (event.EventType == EET_GUI_EVENT)
+		{
+			s32 id = event.GUIEvent.Caller->getID();
+			IGUIEnvironment* env = Context.device->getGUIEnvironment();
+			switch(event.GUIEvent.EventType)
+			{
+			//TODO: cases when a button is pressed
+			default:
+				break;
+			}
+		}
+		return false;
+	}
+private:
+	SAppContext &Context;
+};
