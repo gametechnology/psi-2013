@@ -16,6 +16,8 @@ Network::Network() : _port(1345)
 
 	if (enet_initialize() != 0)
 		std::cout << "An error occurred while initializing ENet.\n";
+
+	_packetTypeChecksum = GeneratePacketTypesChecksum();
 }
 
 Network::~Network()
@@ -212,7 +214,7 @@ void Network::DistributeReceivedPackets()
 	_mutex.unlock();
 }
 
-unsigned int Network::GetPacketTypesChecksum()
+unsigned int Network::GeneratePacketTypesChecksum()
 {
 	int checksum = 0;
 
@@ -228,6 +230,11 @@ unsigned int Network::GetPacketTypesChecksum()
 	}
 
 	return checksum;
+}
+
+unsigned int Network::GetPacketTypeChecksum()
+{
+	return _packetTypeChecksum;
 }
 
 bool Network::IsConnected()

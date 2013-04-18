@@ -6,6 +6,7 @@
 #include <list>
 #include <vector>
 #include "SFML\System.hpp"
+#include <exception>
 
 // forward declare NetworkPacket to prevent circular dependancy
 class NetworkPacket;
@@ -26,6 +27,7 @@ inline char* getPacketTypeName(PacketType type)
 	{
 		case CLIENT_JOIN: { return "CLIENT_JOIN"; break; }
 		case CLIENT_QUIT: { return "CLIENT_QUIT"; break; }
+		default: { throw "Tried to get string from non-existing packet type"; }
 	}
 }
 
@@ -42,6 +44,7 @@ private:
 	void StopThreads();
 	void PacketReciever();
 	void DistributePacket(NetworkPacket packet);
+	unsigned int GeneratePacketTypesChecksum();
 
 	sf::Thread* _receiverThread;
 	sf::Mutex _mutex;
@@ -55,6 +58,7 @@ private:
 	ENetHost* _host;
 	ENetEvent _event;
 	ENetPeer* _peer;
+	unsigned int _packetTypeChecksum;
 
 public:
 	~Network();
@@ -120,7 +124,9 @@ public:
 	* Generates a checksum of the packet types enum. This comes in handy when checking if the server and client
 	* have the same packet types.
 	*/
-	unsigned int GetPacketTypesChecksum();
+	unsigned int GetPacketTypeChecksum();
+
+	
 
 };
 
