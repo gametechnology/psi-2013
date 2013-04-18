@@ -59,6 +59,8 @@ public:
 	void chase(vector3df target);
 	void flee(vector3df target);
 	void setTarget(vector3df target);
+	void receiveDamage(int damage);
+	void destroy();
 
 	/*void contactGenerator(Player* input);*/
 	void contactGenerator(Enemy* input);
@@ -69,7 +71,10 @@ public:
 	signed int getHealth();
 	unsigned int getMaxHealth();
 
+	void updateHealth();
 	virtual void update();
+
+	
 
 protected:
 
@@ -83,8 +88,8 @@ private:
 	IMesh* visual_;
 	vector3df destination_;
 
-	signed int health_;
-	unsigned int maxhealth_;
+	signed int _health;
+	unsigned int _maxHealth;
 	unsigned int radius_;
 	unsigned int maxspeed_;
 	unsigned int agility_;
@@ -93,6 +98,8 @@ private:
 	unsigned int lineofsightrange_;
 	vector3df _target;
 	int _wanderTime;
+	bool isAlive;
 
+	int healthTimer;
 };
 #endif

@@ -5,27 +5,8 @@
 Enemy::Enemy(void): Entity(parent)
 {
 	this->_wanderTime = 0;
-}
-
-Enemy::Enemy(ISceneManager* smgr, IMesh* mesh, 
-		vector3df position,
-		vector3df rotation,
-		unsigned int maxspeed,
-		unsigned int agility,
-		vector3df acc,
-		unsigned int damage,
-		unsigned int los,
-		unsigned int health): Entity(parent)
-{
-	setVisual(mesh, smgr);
-	setPosition(position);
-	setRotation(rotation);
-	setMaxSpeed(maxspeed);
-	setAgility(agility);
-	setAccelaration(acc);
-	setDamage(damage);
-	setLoS(los);
-	setMaxHealth(health);
+	this->test = 0;
+	this->isAlive = true;
 }
 
 void Enemy::pathFinding()
@@ -35,8 +16,25 @@ void Enemy::pathFinding()
 
 void Enemy::update()
 {
+	//std::cout << "Health of Enemy: " << this->getHealth() << "on positionX " << this->position.X << ", positionY " << this->position.Y << ", positionZ " << this->position.Z << "\n" ;
 	applySpeed();
 	Entity::update();
+	updateHealth();
+}
+
+void Enemy::updateHealth()
+{
+	if(this->isAlive)
+	{
+		this->healthTimer++;
+		if(this->healthTimer >= 100)
+		{
+			{
+				receiveDamage(10);
+			}
+			this->healthTimer=0;
+		}
+	}
 }
 
 bool isWithinLoS(/*playership class*/)
@@ -225,11 +223,11 @@ void Enemy::setLoS(unsigned int los)
 }
 void Enemy::setHealth(signed int health)
 {
-	health_ = health;
+	this->_health = health;
 }
 void Enemy::setMaxHealth(unsigned int maxhealth)
 {
-	maxhealth_ = maxhealth;
+	this->_maxHealth = maxhealth;
 	setHealth(maxhealth);
 }
 void Enemy::setRadius(unsigned int rad)
@@ -291,12 +289,12 @@ unsigned int Enemy::getRadius()
 
 signed int Enemy::getHealth()
 {
-	return health_;
+	return this->_health;
 }
 
 unsigned int Enemy::getMaxHealth()
 {
-	return maxhealth_;
+	return this->_maxHealth;
 }
 
 void Enemy::chase(vector3df target)
@@ -322,6 +320,24 @@ void Enemy::flee(vector3df target)
 	this->position += this->velocity;
 }
 
+void Enemy::receiveDamage(int damage)
+{
+	this->_health -= damage;
+	if(this->_health <= 0)
+	{
+		this->_health = 0;
+		std::cout << this->getHealth() << " ";
+		this->isAlive = false;
+		this->destroy();
+	}
+}
+
+void Enemy::destroy()
+{
+	this->isAlive = false;
+	this->visible = false;
+}
+
 void Enemy::wander()
 {
 	this->_wanderTime++;
@@ -336,10 +352,11 @@ void Enemy::wander()
 		this->velocity.Z +=velZ * 0.1f;
 		this->velocity.normalize();
 		this->velocity *= 0.01f;
-		//std::cout <<  "----- X: " << this->velocity.X << ", Y: "<< this->velocity.Y << ", Z: "<< this->velocity.Z;
 		this->_wanderTime = 0;
 	}
 }
+
+
 Enemy::~Enemy(void)
 {
 	Entity::~Entity();
