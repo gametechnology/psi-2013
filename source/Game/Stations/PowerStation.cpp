@@ -213,14 +213,6 @@ stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 	return str;
 }
 
-stringw PowerStation::varToString(stringw str1, int var, stringw str2){
-	stringw str = L"";
-	str += str1;
-	str += (int)var;
-	str += str2;
-	return str;
-}
-
 //Adds the background image and the spaceship image. 
 void PowerStation::addImages()
 {
