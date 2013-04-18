@@ -4,13 +4,14 @@
 #include <vector>
 #include <Engine\Scene.h>
 #include <stdlib.h>
+#include <Engine\Component.h>
 
 typedef struct {
 	char* name;
 	Scene* scene;
 } NameScene;
 
-class SceneManager
+class SceneManager : public Component
 {
 	protected:
 	std::vector<NameScene> nameScenes;
