@@ -7,7 +7,7 @@ DefenceStation::DefenceStation(Ship* ship):Station(ship)
 	this->_stationType	= ST_DEFENCE;
 	this->_stations		= new map<StationType, DefenceStation::DefenceStats>();
 	this->setStationDestroyed(false);
-	std::srand(time(NULL));
+	std::srand((unsigned int)time(NULL));
 }
 
 DefenceStation::~DefenceStation()
