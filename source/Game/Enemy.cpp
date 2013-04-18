@@ -54,8 +54,39 @@ void Enemy::applySpeed()
 	}
 }
 
-void Enemy::steering()
+void Enemy::steering(irr::core::vector3df rotational)
 {
+		//fps determined?
+		if(rotational.X < 0)
+		{
+			rotational.X *= -1;
+			this->orientation.X -= rotational.X/60;
+		}
+		else
+		{
+			this->orientation.X += rotational.X/60;
+		}	
+
+		if(rotational.Y < 0)
+		{
+			rotational.Y *= -1;
+			this->orientation.Y -= rotational.Y/60;
+		}
+		else
+		{
+			this->orientation.Y += rotational.Y/60;
+		}
+		
+		if(rotational.Z < 0)
+		{
+			rotational.Z *= -1;
+			this->orientation.Z -= rotational.Z/60;
+		}
+		else
+		{
+			this->orientation.Z += rotational.Z/60;
+		}
+		
 		irr::core::matrix4 matX;
 		irr::core::matrix4 matY;
 		irr::core::matrix4 matZ;
@@ -67,13 +98,13 @@ void Enemy::steering()
 		mData[3] = 0;
 
 		mData[4] = 0;
-		mData[5] = cos(DEGTORAD *  this->getRotation().X);
-		mData[6] = -sin(DEGTORAD *  this->getRotation().X);
+		mData[5] = cos(DEGTORAD *  rotational.X);
+		mData[6] = -sin(DEGTORAD *  rotational.X);
 		mData[7] = 0;
 
 		mData[8] = 0;
-		mData[9] = sin( DEGTORAD * this->getRotation().X);
-		mData[10] = cos(DEGTORAD * this->getRotation().X);
+		mData[9] = sin( DEGTORAD * rotational.X);
+		mData[10] = cos(DEGTORAD * rotational.X);
 		mData[11] = 0;
 
 		mData[12] = 0;
@@ -82,9 +113,9 @@ void Enemy::steering()
 		mData[15] = 1;
 		matX.setM(mData);
 		
-		mData[0] = cos(DEGTORAD *  this->getRotation().Y);
+		mData[0] = cos(DEGTORAD *  rotational.Y);
 		mData[1] = 0;
-		mData[2] = -sin(DEGTORAD *  this->getRotation().Y);
+		mData[2] = -sin(DEGTORAD *  rotational.Y);
 		mData[3] = 0;
 
 		mData[4] = 0;
@@ -92,9 +123,9 @@ void Enemy::steering()
 		mData[6] = 0;
 		mData[7] = 0;
 	
-		mData[8] = sin(DEGTORAD *  this->getRotation().Y);
+		mData[8] = sin(DEGTORAD *  rotational.Y);
 		mData[9] = 0;
-		mData[10] = cos(DEGTORAD *  this->getRotation().Y);
+		mData[10] = cos(DEGTORAD *  rotational.Y);
 		mData[11] = 0;
 
 		mData[12] = 0;
@@ -103,13 +134,13 @@ void Enemy::steering()
 		mData[15] = 1;
 		matY.setM(mData);
 
-		mData[0] = cos(DEGTORAD * this->getRotation().Z);
-		mData[1] = -sin(DEGTORAD * this->getRotation().Z);
+		mData[0] = cos(DEGTORAD * rotational.Z);
+		mData[1] = -sin(DEGTORAD * rotational.Z);
 		mData[2] = 0;
 		mData[3] = 0;
 
-		mData[4] = sin(DEGTORAD * this->getRotation().Z);
-		mData[5] = cos(DEGTORAD * this->getRotation().Z);
+		mData[4] = sin(DEGTORAD * rotational.Z);
+		mData[5] = cos(DEGTORAD * rotational.Z);
 		mData[6] = 0;
 		mData[7] = 0;
 
@@ -126,6 +157,7 @@ void Enemy::steering()
 
 		matY = matY.operator*(matZ);
 		matX = matX.operator*(matY);
+
 
 		irr::core::vector3df newvelocity;
 		float mData2[4];
