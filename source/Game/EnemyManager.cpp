@@ -81,7 +81,7 @@ void EnemyManager::createEnemies()
 	this->_enemyList.push_back(kamikaze4);
 	this->_enemyList.push_back(kamikaze5);
 	this->_enemyList.push_back(fighter1);
-	this->_enemyList.push_back(asteroid1);../assets/Models/Space_Fighter.dae
+	this->_enemyList.push_back(asteroid1);
 	this->_enemyList.push_back(asteroid2);
 	this->_enemyList.push_back(asteroid3);
 	this->_enemyList.push_back(asteroid4);
