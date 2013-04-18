@@ -289,12 +289,12 @@ unsigned int Enemy::getRadius()
 	return radius_;
 }
 
-signed int Enemy::getHealth()
+int Enemy::getHealth()
 {
 	return health_;
 }
 
-unsigned int Enemy::getMaxHealth()
+int Enemy::getMaxHealth()
 {
 	return maxhealth_;
 }

@@ -66,8 +66,8 @@ public:
 	void contactResolverB();
 	void steering();
 	void wander();
-	signed int getHealth();
-	unsigned int getMaxHealth();
+	int getHealth();
+	int getMaxHealth();
 
 	virtual void update();
 
