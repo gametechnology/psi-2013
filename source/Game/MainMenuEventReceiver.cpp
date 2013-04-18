@@ -15,12 +15,13 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 		MainMenuScene* mainmenu = ((MainMenuScene*)Game::getCurrentScene());
 		char* ipadress;
 		 wchar_t* inputwchar;
+		 Player* newplayer;
         switch(event.GUIEvent.EventType)
         { 
 				case EGET_BUTTON_CLICKED:
 				switch(id)
 				{
-				case MainMenuScene::JoinServerWindow:
+				case 1:
 					inputwchar = (wchar_t*)mainmenu->Ipadresinput->getText();
 					ipadress = (char*)malloc(wcslen(inputwchar)+ 1);
 					wcstombs(ipadress, inputwchar, wcslen(inputwchar));
@@ -30,20 +31,34 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->messagebox->setDraggable(false);
 					}else{
 						Network::GetInstance()->InitializeClient(ipadress);
-						mainmenu->messagebox =  Game::guiEnv->addMessageBox(L"Messsage",L"Connecting...",true,1,mainmenu->mainMenuWindow);
-						mainmenu->messagebox->getCloseButton()->remove();
-						mainmenu->messagebox->setDraggable(false);
+						if(!Network::GetInstance()->IsConnected()){
+							mainmenu->messagebox =  Game::guiEnv->addMessageBox(L"Messsage",L"Not able to connect to server",true,1,mainmenu->mainMenuWindow);
+							mainmenu->messagebox->setDraggable(false);
+						}else{
+							mainmenu->createServerWindow_Button->setVisible(false);
+							mainmenu->joinServerWindow_Button->setVisible(false);
+							mainmenu->Clientlist->setVisible(true);
+							mainmenu->Ipadresinput->setVisible(false);
+							Game::guiEnv->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainmenu->mainMenuWindow);
+						}
+
+						
 						
 					}
 						
 					
 					return true;
-				case MainMenuScene::CreateServerWindow:
+				case 2:
 					Network::GetInstance()->InitializeServer();
 					mainmenu->createServerWindow_Button->setVisible(false);
 					mainmenu->joinServerWindow_Button->setVisible(false);
 					mainmenu->Ipadresinput->setVisible(false);
 					mainmenu->start_button->setVisible(true);
+					mainmenu->Clientlist->setVisible(true);
+					newplayer = new Player(NULL);
+					newplayer->Name = L"Player";
+					newplayer->Team = 1;
+					mainmenu->playerlist.push_back(newplayer);
 					return true;
 				default:
 					return false;

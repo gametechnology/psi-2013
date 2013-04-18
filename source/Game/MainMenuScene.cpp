@@ -7,19 +7,21 @@ MainMenuScene::MainMenuScene()
 {
 	//Get the device
 	guiEnv = Game::guiEnv;
-
+	playerlist = std::list<Player*>();
 	///////////////////////////////////////////
 	// MainMenu
 	//////////////////////////////////////////
 	//Creat the main menu window
 	mainMenuWindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"Main menu",0,100);
+	mainMenuWindow->getCloseButton()->remove();
 
 	//Add text and button
-	createServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),mainMenuWindow,MainMenuScene::CreateServerWindow, L"Create server",L"Go the Create server window.");
-	joinServerWindow_Button		= guiEnv->addButton(rect<s32>(position2di(50,135),dimension2di(200,25)),mainMenuWindow,MainMenuScene::JoinServerWindow, L"Join Server",L"Go the Join server window.");
+	createServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),mainMenuWindow,2, L"Create a game");
+	joinServerWindow_Button		= guiEnv->addButton(rect<s32>(position2di(50,135),dimension2di(200,25)),mainMenuWindow,1,L"Join a game");
 	Ipadresinput				= guiEnv->addEditBox(L"",rect<s32>(position2di(300,135),dimension2di(200,25)),true,mainMenuWindow);
-
-	start_button					= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,MainMenuScene::Quit, L"Start Game",L"Die in a fire.");
+	Clientlist					= guiEnv->addStaticText(L"",rect<s32>(position2di(300,105),dimension2di(200,200)),false,true,mainMenuWindow);
+	Clientlist->setVisible(false);
+	start_button				= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,3, L"Start Game");
 	start_button->setVisible(false);
 
 	
@@ -39,6 +41,33 @@ MainMenuScene::MainMenuScene()
 
 MainMenuScene::~MainMenuScene()
 {
+}
+void MainMenuScene::update(){
+	if(Network::GetInstance()->connectedclients.size() >= playerlist.size() && Network::GetInstance()->IsConnected())
+	{
+		Player* newplayer = new Player(NULL);
+		
+		newplayer->Name = L"Player";
+		if((playerlist.size()) % 2 != 0)
+			newplayer->Team = 2;
+		else
+			newplayer->Team = 1;
+		playerlist.push_back(newplayer);
+	}
+	std::wstringstream ssp;
+	ssp << L"Team 1              Team2\n";
+	std::list<Player*>::const_iterator iterator;
+	for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
+		ssp << (*iterator)->Name;
+		 if((*iterator)->Team == 1)
+			 ssp << L"              ";
+		 else
+			ssp << L"\n";
+	}
+	const std::wstring& tmpp = ssp.str();
+	Clientlist->setText(tmpp.c_str());
+
+
 }
 void MainMenuScene::StartGame()
 {
