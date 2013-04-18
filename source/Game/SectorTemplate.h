@@ -7,6 +7,7 @@
 #include "Mist.h"
 #include "Messages.h"
 #include "Engine/Game.h"
+#include "EnemyManager.h"
 #include <vector>
 
 class SectorManager;
@@ -19,6 +20,7 @@ protected:
 	// Camera Placeholder instead of player
 	irr::scene::ICameraSceneNode *_camera;
 	Entity* _player;
+	Entity* _ship;
 	Entity* _skybox;
 	Mist* _fog;
 public:
@@ -29,6 +31,9 @@ public:
 	void init();
 	void createWormHoles( unsigned int amountOfWormHoles );
 	virtual ~SectorTemplate();
+
+private:
+	EnemyManager* _enemyManager;
 };
 
 #endif

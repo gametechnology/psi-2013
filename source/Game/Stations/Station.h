@@ -4,32 +4,32 @@
 
 #include "..\Player.h"
 #include "../../../include/Engine/Component.h"
-
+#include "../../../include/Engine/Game.h"
+#include "Irrlicht/irrlicht.h"
 #ifdef ENTITY_SHIP
 #include "..\Ship.h"
 #endif
 
 #define STUN_TIME 4.0
 class Ship;
+	
+enum StationType
+{
+	ST_POWER		= 0,
+	ST_DEFENCE		= 1,
+	ST_WEAPON		= 2,
+	ST_HELM		= 3,
+	ST_NAVIGATION	= 4
+};
 
 class Station : public Component
 {
-
 public:
 	Station( Ship *ship, int startHealth );
 	Station( Ship *ship );
 	virtual ~Station(void);
 
 	virtual void DoCameraShake() = 0;
-
-	enum StationType
-	{
-		Power		= 0,
-		Defence		= 1,
-		Weapon		= 2,
-		Helm		= 3,
-		Navigation	= 4
-	};
 
 	StationType GetStationType();
 	bool HasPlayer();
@@ -53,6 +53,8 @@ public:
 	virtual void OnDamage( );
 
 protected:
+	video::IVideoDriver *driver;
+
 	Ship	*_ship;
 	Player	*_player;
 

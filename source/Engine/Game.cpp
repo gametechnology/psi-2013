@@ -1,4 +1,4 @@
-#include "Irrlicht\irrlicht.h"
+#include "Engine\Game.h"
 
 #pragma comment(lib, "Irrlicht.lib")
 
@@ -6,9 +6,6 @@
 #ifndef _DEBUG
 #pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
-
-#include "Engine\Game.h"
-#include "Engine\Network.h"
 
 using namespace irr;
 using namespace core;
@@ -18,19 +15,20 @@ using namespace scene;
 // Predefine static variables
 IrrlichtDevice* Game::device;
 IVideoDriver* Game::driver;
+InputManager* Game::input;
 std::forward_list<Scene*>* Game::scenes;
 
-/*Client* Game::client;
-Server* Game::server;*/
 IGUIEnvironment* Game::guiEnv;
-
 Game::Game()
 {
 	//Create a new stack to store all scenes
 	Game::scenes = new std::forward_list<Scene*>;
 
+	//Create input manager
+	Game::input = new InputManager();
+
 	// Create the irrlicht device 
-	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, true);
+	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, true, Game::input);
 
 	// If the device was not created correctly, then shut down the program
 	if(Game::device) {
@@ -43,11 +41,6 @@ Game::Game()
 		//Set title of the window
 		Game::device->setWindowCaption(L"Stella Incognita");
 	}
-
-	//client = new Client();
-	//client->setupClient("localhost");
-	//Game::client = new Client();
-	//Game::client->setupClient("localhost");
 }
 
 void Game::run()
@@ -55,8 +48,9 @@ void Game::run()
 	//Main loop
 	while( Game :: device -> run( ) )
 	{	
-		Game :: getCurrentScene( ) -> update( );
-		Game :: driver -> beginScene(true, true, SColor(255,100,101,140));
+		Game::input->endInputProcess();
+		Game::getCurrentScene( ) -> update( );
+		Game::driver -> beginScene(true, true, SColor(255,100,101,140));
 		//Irrlicht draw all
 		(*Game::scenes->begin())->sceneManager->drawAll();
 		//Game engine draw
@@ -64,7 +58,7 @@ void Game::run()
 		//Irrlicht GUI
 		Game::guiEnv->drawAll();
 		Game::driver->endScene();
-		
+		Game::input->startInputProcess();
 		Network::GetInstance()->DistributeReceivedPackets();
 	}
 
