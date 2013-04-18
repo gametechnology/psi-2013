@@ -132,7 +132,7 @@ void Network::AddListener(PacketType packetType, INetworkListener* listener)
 
 void Network::RemoveListener(INetworkListener* listener)
 {
-	for (int i = 0; i < PacketType::LAST_TYPE; i++)
+	for (int i = 0; i < LAST_TYPE; i++)
 		_listeners[i]->remove(listener);
 }
 

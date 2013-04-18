@@ -20,7 +20,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	//Get the player/Ship via Sectormanager
 	//_sectormanager->getShip()
 	_ship = new Ship(this);
-	this->_player = new Camera( this->parent );
+	this->_player = new Camera( _ship, vector3df(0, 20, -10) ); //TODO: Make the camera work correctly according to station
 	//this->_camera = Game::getSceneManager()->addCameraSceneNodeFPS();
 	// Creating wormholes
 	createWormHoles( amountWormHoles );

@@ -289,10 +289,10 @@ void PowerStation::update()
 	context.navigationStatus->setText((varToString(	"Navigation power status: ", navigation, "%")).c_str());
 
 	//Checks the power percentage and assigns the text a color indicating the amount of power available to that station.
-	changeColorAccordingToPowerStatus(*context.helmStatus, helm);
-	changeColorAccordingToPowerStatus(*context.defenceStatus, defence);
-	changeColorAccordingToPowerStatus(*context.weaponStatus, weapon);
-	changeColorAccordingToPowerStatus(*context.navigationStatus, navigation);
+	changeColorAccordingToPowerStatus(*context.helmStatus, (float)helm);
+	changeColorAccordingToPowerStatus(*context.defenceStatus, (float)defence);
+	changeColorAccordingToPowerStatus(*context.weaponStatus, (float)weapon);
+	changeColorAccordingToPowerStatus(*context.navigationStatus, (float)navigation);
 
 	selectedStation();
 }
