@@ -5,7 +5,7 @@
 Enemy::Enemy(void): Entity(parent)
 {
 	this->_wanderTime = 0;
-	this->test = 0;
+	this->healthTimer = 0;
 	this->isAlive = true;
 }
 
