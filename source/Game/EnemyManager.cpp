@@ -43,7 +43,6 @@ void EnemyManager::createEnemies()
 	addComponent(drone1);
 	fighter1 = new EnemyFighter(irr::core::vector3df(100,0,0));
 	fighter1->setVelocity(vector3df(0.0005f,0,0));
-	fighter1->setRotation(irr::core::vector3df(0,1,0));
 	addComponent(fighter1);
 
 	asteroid1 = new EnemyAsteroid(irr::core::vector3df(50,0,0),vector3df(0,0,0));
@@ -94,7 +93,7 @@ void EnemyManager::update()
 {
 	Scene::update();
 	NarrowPhaseDetection(this->_enemyList);
-
+	
 	for(unsigned int i=0; i<_enemyList.size(); i++) //loop through all asteroids, update these and check for contact with all other asteroids
 	{
 		//for(unsigned int j=0; j<_enemyList.size(); j++)
@@ -108,14 +107,14 @@ void EnemyManager::update()
 
 		if(dynamic_cast<EnemyDrone*>(_enemyList[i]))
 		{
-			_enemyList[i]->steering();
+			_enemyList[i]->steering(irr::core::vector3df(0,1,0));
 			if((player->position - _enemyList[i]->position).getLength() <= _enemyList[i]->getLoS())
 			{
 				_enemyList[i]->inRangeList.push_back(player);
 			}
 		}else if(dynamic_cast<EnemyFighter*>(_enemyList[i]))
 		{
-			_enemyList[i]->steering();
+			_enemyList[i]->steering(irr::core::vector3df(0,-1,0));
 			if((player->position - _enemyList[i]->position).getLength() <= _enemyList[i]->getLoS())
 			{
 				_enemyList[i]->inRangeList.push_back(player);
