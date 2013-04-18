@@ -46,6 +46,7 @@ public:
 	void setRadius(float radius);
 	void setOriginalRadius(float origradius);
 	void setOuterRadius(float outerradius);
+	void setOriginalVelocity(vector3df origvelocity);
 	
 	vector3df getVelocity();
 	vector3df getPath();
@@ -60,6 +61,7 @@ public:
 	float getOriginalRadius();
 	float getOuterRadius();
 	vector3df getTarget();
+	vector3df getOriginalVelocity();
 	void chase(vector3df target);
 	void flee(vector3df target);
 	void setTarget(vector3df target);
@@ -86,7 +88,7 @@ private:
 	
 	IMesh* visual_;
 	vector3df destination_;
-
+	vector3df originalvelocity_;
 	signed int health_;
 	unsigned int maxhealth_;
 	float radius_;

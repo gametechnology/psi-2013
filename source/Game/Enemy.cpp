@@ -56,37 +56,7 @@ void Enemy::applySpeed()
 
 void Enemy::steering(irr::core::vector3df rotational)
 {
-		//fps determined?
-		if(rotational.X < 0)
-		{
-			rotational.X *= -1;
-			this->orientation.X -= rotational.X/60;
-		}
-		else
-		{
-			this->orientation.X += rotational.X/60;
-		}	
 
-		if(rotational.Y < 0)
-		{
-			rotational.Y *= -1;
-			this->orientation.Y -= rotational.Y/60;
-		}
-		else
-		{
-			this->orientation.Y += rotational.Y/60;
-		}
-		
-		if(rotational.Z < 0)
-		{
-			rotational.Z *= -1;
-			this->orientation.Z -= rotational.Z/60;
-		}
-		else
-		{
-			this->orientation.Z += rotational.Z/60;
-		}
-		
 		irr::core::matrix4 matX;
 		irr::core::matrix4 matY;
 		irr::core::matrix4 matZ;
@@ -172,7 +142,50 @@ void Enemy::steering(irr::core::vector3df rotational)
 		newvelocity.Y = mData2[1];
 		newvelocity.Z = mData2[2];
 
+		this->setOriginalVelocity(velocity);
 		this->velocity = newvelocity;
+
+	    float magnitude = sqrt(pow(velocity.X,2) + pow(velocity.Y,2) + pow(velocity.Z,2));
+		vector3df normalizedvelocity = vector3df((velocity.X/magnitude),(velocity.Y/magnitude),(velocity.Z/magnitude));
+
+		magnitude = sqrt(pow(originalvelocity_.X,2) + pow(originalvelocity_.Y,2) + pow(originalvelocity_.Z,2));
+		vector3df normalizeoriginal = vector3df((originalvelocity_.X/magnitude),(originalvelocity_.Y/magnitude),(originalvelocity_.Z/magnitude));
+	
+		if(normalizeoriginal == normalizedvelocity)
+		{
+			this->setOriginalVelocity(velocity);
+			return;
+		}
+
+		if(rotational.X < 0)
+		{
+			rotational.X *= -1;
+			this->orientation.X -= rotational.X/60;
+		}
+		else
+		{
+			this->orientation.X += rotational.X/60;
+		}	
+
+		if(rotational.Y < 0)
+		{
+				rotational.Y *= -1;
+				this->orientation.Y -= rotational.Y/60;
+		}
+		else
+		{
+			this->orientation.Y += rotational.Y/60;
+		}
+		
+		if(rotational.Z < 0)
+		{
+			rotational.Z *= -1;
+			this->orientation.Z -= rotational.Z/60;
+		}
+		else
+		{
+			this->orientation.Z += rotational.Z/60;
+		}
 }
 
 void Enemy::contactResolverA(Enemy* _input)
@@ -291,6 +304,11 @@ void Enemy::setOuterRadius(float outerradius)
 	outerradius_ = outerradius;
 }
 
+void Enemy::setOriginalVelocity(vector3df origvelocity)
+{
+	originalvelocity_ = origvelocity;
+}
+
 void Enemy::setTarget(vector3df targetPosition)
 {
 	Enemy::_target = targetPosition;
@@ -349,6 +367,11 @@ float Enemy::getOriginalRadius()
 float Enemy::getOuterRadius()
 {
 	return outerradius_;
+}
+
+vector3df Enemy::getOriginalVelocity()
+{
+	return originalvelocity_;
 }
 
 int Enemy::getHealth()
