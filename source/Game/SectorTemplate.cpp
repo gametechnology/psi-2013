@@ -41,9 +41,9 @@ void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
 			printf("[SectorTemplate] -=*[Amount of wormholes %i]*=- \n", amountOfWormHoles);
 	for(unsigned int i = 0; i < amountOfWormHoles; i++){
 		// Calculating the pos in the sector
-		irr::core::vector3df wormHolePos( rand() % int(_boundry*2) - int(_boundry), rand() % int(_boundry*2) - int(_boundry), rand() % int(_boundry*2) - int(_boundry) );
+		irr::core::vector3df wormHolePos((float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)));
 		// Making sure that the wormhole isn't spawned between 0% and 80% from the zero point to the radius of the sector
-		wormHolePos.setLength(rand() % int(_boundry* 0.2) + int(_boundry* 0.8));
+		wormHolePos.setLength((float)(rand() % int(_boundry* 0.2) + int(_boundry* 0.8)));
 		// Creating a wormhole and giving it the pos we just calculated
 		wormHole = new WormHole(this->parent, i, wormHolePos );
 		// Pushing to the wormhole list

@@ -20,6 +20,11 @@ PowerStation :: ~PowerStation()
 
 }
 
+void PowerStation::HandleNetworkMessage(NetworkPacket packet)
+{
+
+}
+
 void PowerStation :: SubscribeStation( Station *s )
 {
 	this -> context.SubscribeStation( s );
@@ -201,14 +206,6 @@ void PowerStation::createPowerPool(){
 }
 //Variable to string converter for printing to the screen.
 stringw PowerStation::varToString(stringw str1, float var, stringw str2){
-	stringw str = L"";
-	str += str1;
-	str += (int)var;
-	str += str2;
-	return str;
-}
-
-stringw PowerStation::varToString(stringw str1, int var, stringw str2){
 	stringw str = L"";
 	str += str1;
 	str += (int)var;
