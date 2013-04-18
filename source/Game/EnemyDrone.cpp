@@ -8,6 +8,9 @@ EnemyDrone::EnemyDrone(irr::core::vector3df position):Enemy()
 	this->setMaxHealth(25);
 	this->setAgility(3);
 	this->setMaxSpeed(250);
+	this->setRadius(1);
+	this->setOriginalRadius(1);
+	this->setOuterRadius(sqrt((this->getRadius()*this->getRadius())+(this->getRadius()*this->getRadius())));
 	this->setAccelaration(vector3df(75,0,0));
 	this->setLoS(200);
 
