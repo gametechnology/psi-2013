@@ -1,21 +1,7 @@
 #include "Engine/Game.h"
 #include "MainMenuScene.h"
-#include "Irrlicht\irrlicht.h"
 
-struct SAppContext
-{
-    IrrlichtDevice *device;
-    s32             counter;
-    IGUIListBox*    listbox;
-};
-// irrlicht namespaces
-using namespace irr;
-using namespace core;
-using namespace scene;
-using namespace video;
-using namespace io;
-using namespace gui;
-using namespace std;
+
 
 MainMenuScene::MainMenuScene()
 {
