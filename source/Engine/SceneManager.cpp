@@ -64,6 +64,8 @@ Scene* SceneManager::getScene(char* name){
 	return namesc.scene;
 
 }
+Scene* SceneManager::getCurrentScene(){
+}
 //Destroys Scene, Deletes the scene properly
 void SceneManager::destroyScene(char* name){
 	if (exists(name)) {
@@ -85,7 +87,10 @@ bool SceneManager::exists(char* name){
 	return false;
 	
 }
-
+void SceneManager::SetOnTop(){
+}
+void SceneManager::ReorderList(){
+}
 SceneManager::~SceneManager(){
 	for(int i = 0; i< nameScenes.size(); i++){
 		delete &nameScenes[i].name;
