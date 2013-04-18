@@ -1,6 +1,5 @@
 #include <Engine/Game.h>
 #include <Irrlicht/driverChoice.h>
-#include "HelmSceneTest.h"
 #include "EnemySceneTest.h"
 #include "MapGenerator.h"
 #include "MainMenuScene.h"
@@ -27,7 +26,7 @@ int main()
 	Game game;
 
 	// Create test scene
-	//Game::addScene(new MainMenuScene());
+	Game::addScene(new EnemySceneTest());
 
 	MapGenerator mapGen;
 	mapGen.init(20, 2, 5);
@@ -36,10 +35,10 @@ int main()
 	
 	//Game::client->setupClient("145.92.13.97");
 	//Need to create an Scene first or else it will crash, because I first delete then create scenes in SectorManager
-	Game::addScene(new Scene());
+	//Game::addScene(new MainMenuScene());
 	// Create sector manager that creates all the Scenes/Sectors
 	SectorManager sectorManager(galaxyMap);
-	sectorManager.init();
+	//sectorManager.init();
 
 	// Start the main loop
 	Game::run();
