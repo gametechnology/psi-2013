@@ -15,17 +15,24 @@ enum PacketType
 {
 	CLIENT_JOIN = 0,
 	CLIENT_QUIT,
-	CLIENT_JOIN_TEAM,
-	SERVER_WELCOMES,
-	SERVER_REJECTS,
 
 	//Add new PacketTypes above
 	LAST_TYPE
 };
 
+inline char* getPacketTypeName(PacketType type)
+{
+	switch(type)
+	{
+		case CLIENT_JOIN: { return "CLIENT_JOIN"; break; }
+		case CLIENT_QUIT: { return "CLIENT_QUIT"; break; }
+	}
+}
+
 class Network
 {
 private:
+
 	const int _port;
 
 	static bool isInitialized;
@@ -43,8 +50,6 @@ private:
 	bool _isConnected;
 	static Network* instance;
 	std::list<INetworkListener*>* _listeners[LAST_TYPE];
-	std::list<NetworkPacket> _packetsToSend;
-	std::list<NetworkPacket> _serverPacketsToSend;
 	std::vector<NetworkPacket> _receivedPackets;
 	ENetAddress _address;
 	ENetHost* _host;
@@ -110,6 +115,12 @@ public:
 	* Distributes all buffered packets that are received by the Network interface.
 	*/
 	void DistributeReceivedPackets();
+
+	/*
+	* Generates a checksum of the packet types enum. This comes in handy when checking if the server and client
+	* have the same packet types.
+	*/
+	unsigned int GetPacketTypesChecksum();
 
 };
 

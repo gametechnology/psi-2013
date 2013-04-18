@@ -122,6 +122,12 @@ void Network::SendServerPacket(NetworkPacket packet, const bool reliable)
 		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
 
 		enet_host_broadcast(_host, 0, enetPacket);
+
+		_mutex.lock();
+
+		//_receivedPackets.push_back(NetworkPacket(packet));
+
+		_mutex.unlock();
 	}
 }
 
@@ -204,6 +210,24 @@ void Network::DistributeReceivedPackets()
 		this->DistributePacket(*iterator);
 
 	_mutex.unlock();
+}
+
+unsigned int Network::GetPacketTypesChecksum()
+{
+	int checksum = 0;
+
+	for(int i = 0; i < LAST_TYPE; i++)
+	{
+		char* name = getPacketTypeName((PacketType)i);
+		int length = strlen(name);
+		
+		for(int j = 0; j < length; j++)
+		{
+			checksum += name[j];
+		}
+	}
+
+	return checksum;
 }
 
 bool Network::IsConnected()
