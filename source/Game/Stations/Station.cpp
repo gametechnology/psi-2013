@@ -1,9 +1,10 @@
 #include "Station.h"
 #include "PowerStation.h"
 #include "DefenceStation.h"
+#include "../HealthBar.h"
 
 
-Station :: Station( Ship *ship, int startHealth ) : Component(ship)
+Station :: Station( Ship *ship, int startHealth ) : Composite(ship)
 {
 	driver = Game::driver;
 	this ->	_ship	= ship;
@@ -11,7 +12,7 @@ Station :: Station( Ship *ship, int startHealth ) : Component(ship)
 	//this -> _switchTime = 4.0f;
 }
 
-Station :: Station( Ship * ship ) : Component(ship)
+Station :: Station( Ship * ship ) : Composite(ship)
 {
 	this -> _ship   = ship;
 	this -> _totalHealth = 50;

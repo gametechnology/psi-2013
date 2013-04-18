@@ -17,6 +17,6 @@ private:
 	int* stat_;
 	vector2df position_;
 	irr::video::ITexture* pipTexture_;
-	SColor color;	//is not used yet. But imagine the fun you could have~!
+	SColor color;	
 };
 
