@@ -28,7 +28,7 @@ using namespace gui;
 int main()
 {
 	// Create engine
-	Game game;
+	Game* game = new Game();
 
 	//Game::client->setupClient("145.92.13.97");
 
@@ -48,7 +48,7 @@ int main()
 	// Create test scene
 	//Game::addScene(new HelmSceneTest());
 	//change the scenes by commenting the other scenes and uncomment the one with the enemysceneTest for the enemies
-	Game::addScene(new MainMenuScene());
+	game->addScene(new MainMenuScene());
 	//Game::addScene(new EnemySceneTest());
 
 	//Code to add the GalaxyMap to the current scene
@@ -56,7 +56,7 @@ int main()
 	
 	
 	// Start the main loop
-	Game::run();
+	game->run();
 
 	// Debug for memory leaks
 	#ifdef _DEBUG

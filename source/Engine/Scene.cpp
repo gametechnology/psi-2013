@@ -6,7 +6,7 @@ Scene::Scene() : Entity() {
 	state = LOADING;
 
 	// Create a scene manager
-	sceneManager = Game::device->getSceneManager();
+	sceneManager = Entity::game->device->getSceneManager();
 
 	// Scene is enabled
 	//enabled = true;

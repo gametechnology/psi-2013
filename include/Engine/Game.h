@@ -1,31 +1,34 @@
 #ifndef ENGINE
 #define ENGINE
 
+#include "Irrlicht\irrlicht.h"
 #include "Scene.h"
+#include "SceneManager.h"
+
+class Entity;
 
 class Game {
 public:
 	Game();
 	~Game();
 	
-	static void run();
+	void run();
 
-	static Scene* getCurrentScene();
-	static irr::scene::ISceneManager* getSceneManager();
-	static void addScene(Scene* defaultScene);
-	static void removeScene();
-	
-	//static Client* client;
-	//static Server* server;
+	Scene* getCurrentScene();
+	irr::scene::ISceneManager* getSceneManager();
+	void addScene(Scene* defaultScene);
+	void removeScene();
 
-	static irr::IrrlichtDevice* device;
-	static irr::video::IVideoDriver* driver;
+	irr::IrrlichtDevice* device;
+	irr::video::IVideoDriver* driver;
+	irr::gui::IGUIEnvironment* guiEnv;
 
-	static irr::gui::IGUIEnvironment* guiEnv;
+	Entity* game;
+	SceneManager* sceneManager;
 
 protected:
-	static std::vector<Scene*>* scenes; 
-	//static Input inputReceiver;
+	std::vector<Scene*>* scenes;
+	//Input inputReceiver;
 };
 
 #endif

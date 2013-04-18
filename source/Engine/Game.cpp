@@ -9,15 +9,6 @@
 
 #include "Engine\Game.h"
 
-// Predefine static variables
-irr::IrrlichtDevice* Game::device;
-irr::video::IVideoDriver* Game::driver;
-std::vector<Scene*>* Game::scenes;
-
-/*Client* Game::client;
-Server* Game::server;*/
-irr::gui::IGUIEnvironment* Game::guiEnv;
-
 Game::Game()
 {
 	//Create a new stack to store all scenes
@@ -38,27 +29,35 @@ Game::Game()
 		Game::device->setWindowCaption(L"Stella Incognita");
 	}
 
-	//client = new Client();
-	//client->setupClient("localhost");
-	//Game::client = new Client();
-	//Game::client->setupClient("localhost");
+	// Create the topmost node
+	game = new Entity();
 }
 
 void Game::run()
 {
 	//Main loop
 	while( Game :: device -> run( ) )
-	{			
-		Game :: getCurrentScene( ) -> update( );
+	{		
+		//Game :: getCurrentScene( ) -> update( );
+		game->update();
+
+		// Clearing the screen
 		Game :: driver -> beginScene(true, true, irr::video::SColor(255,100,101,140));
+
 		//Irrlicht draw all
-		(*Game::scenes->begin())->sceneManager->drawAll();
+		//(*Game::scenes->begin())->sceneManager->drawAll();
+		sceneManager->drawAll();
+
 		//Game engine draw
-		Game::getCurrentScene()->draw();
+		game->draw();
+
 		//Irrlicht GUI
 		Game::guiEnv->drawAll();
+
+		// End the scene
 		Game::driver->endScene();
 	}
+
 	Game::device->drop();
 }
 
@@ -90,6 +89,6 @@ Game::~Game()
 	//{
 	//	delete (*i);
 	//}
-	scenes->clear();
+
 	delete scenes;
 }

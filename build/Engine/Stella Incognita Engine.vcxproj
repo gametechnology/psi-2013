@@ -94,6 +94,7 @@
     <ClInclude Include="..\..\include\Engine\Game.h" />
     <ClInclude Include="..\..\include\Engine\IrrlichtNode.h" />
     <ClInclude Include="..\..\include\Engine\Scene.h" />
+    <ClInclude Include="..\..\include\Engine\SceneManager.h" />
     <ClInclude Include="..\..\include\Engine\Transform.h" />
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +104,7 @@
     <ClCompile Include="..\..\source\Engine\Game.cpp" />
     <ClCompile Include="..\..\source\Engine\IrrlichtNode.cpp" />
     <ClCompile Include="..\..\source\Engine\Scene.cpp" />
+    <ClCompile Include="..\..\source\Engine\SceneManager.cpp" />
     <ClCompile Include="..\..\source\Engine\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
