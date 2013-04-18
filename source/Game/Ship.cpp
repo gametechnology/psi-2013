@@ -1,8 +1,13 @@
 #include "Ship.h"
 #include "Stations/Station.h"
+#include "ShipMover.h"
 
 Ship::Ship( Composite * parent ) : Entity ( parent )
 {
+	createNode("../assets/sydney.md2");
+	ShipMover* mover = new ShipMover(this);
+	addComponent(mover);
+
 	this->env = Game :: device->getGUIEnvironment();
 
 	//TODO remove temp stuff
@@ -16,13 +21,13 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	this->_helmStation		-> Initialize();
 	this->_navigationStation	-> Initialize();
 	this->_weaponStation		-> Initialize();
-	this->_powerStation		-> Initialize();
+	this->_powerStation		-> Initialize();	//TODO: uncomment to show stations
 	
 	addComponent(_defenceStation);
 	addComponent(_helmStation);
 	addComponent(_navigationStation);
 	addComponent(_weaponStation);
-	addComponent(_powerStation);
+	addComponent(_powerStation);	//TODO: uncomment to show stations
 
 	this->updateShipHealth();
 	this->_shipDestroyed = false;
@@ -105,12 +110,12 @@ void Ship :: update()
 	stringw strPowerHealth = "Power Station health: " + this->_powerStation->getHealth();
 	stringw strWeaponHealth = "Weapon Station health: " + this->_weaponStation->getHealth();
 
-	this->shipHealth->setText(				(varToString("Ship HP : ",		this->getShipHealth())					).c_str());
-	this->defenceStationHealth->setText(	(varToString("Defence HP: ",	this->_defenceStation->getHealth())		).c_str());
-	this->helmStationHealth->setText(		(varToString("Helm HP: ",		this->_helmStation->getHealth())		).c_str());
-	this->navigationStationHealth->setText(	(varToString("Navigation HP: ",	this->_navigationStation->getHealth())	).c_str());
-	this->powerStationHealth->setText(		(varToString("Power HP: ",		this->_powerStation->getHealth())		).c_str());
-	this->weaponStationHealth->setText(		(varToString("Weapon HP: ",		this->_weaponStation->getHealth())		).c_str());
+	this->shipHealth->setText(				(varToString("Ship HP : ",		(float)this->getShipHealth())					).c_str());
+	this->defenceStationHealth->setText(	(varToString("Defence HP: ",	(float)this->_defenceStation->getHealth())		).c_str());
+	this->helmStationHealth->setText(		(varToString("Helm HP: ",		(float)this->_helmStation->getHealth())		).c_str());
+	this->navigationStationHealth->setText(	(varToString("Navigation HP: ",	(float)this->_navigationStation->getHealth())	).c_str());
+	this->powerStationHealth->setText(		(varToString("Power HP: ",		(float)this->_powerStation->getHealth())		).c_str());
+	this->weaponStationHealth->setText(		(varToString("Weapon HP: ",		(float)this->_weaponStation->getHealth())		).c_str());
 
 	//TODO! Stations need a way to leave. Set _sitOnStation on false. Temporary code, other team should make a better version of it someday.
 	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_1)){
@@ -135,7 +140,7 @@ void Ship :: update()
 	}
 
 	if(this->_shipHealth <= 0 && this->_shipDestroyed == false) {
-		this->_shipDestroyed == true;
+		this->_shipDestroyed = true;
 	}
 
 	if(this->_helmStation->getHealth() <= 0 && this->_helmStation->getStationDestroyed() == false) {
@@ -157,8 +162,6 @@ void Ship :: update()
 	if(this->_weaponStation->getHealth() <= 0 && this->_weaponStation->getStationDestroyed() == false) {
 		this->_weaponStation->setStationDestroyed(true);
 	}
-
-
 }
 
 void Ship :: updateShipHealth()

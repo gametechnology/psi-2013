@@ -22,7 +22,7 @@ enum StationType
 	ST_NAVIGATION	= 4
 };
 
-class Station : public Component
+class Station : public Composite
 {
 public:
 	Station( Ship *ship, int startHealth );

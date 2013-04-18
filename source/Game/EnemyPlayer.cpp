@@ -11,6 +11,8 @@ EnemyPlayer::EnemyPlayer(irr::core::vector3df position, vector3df speed): Enemy(
 	this->setMaxSpeed(400);	
 	this->setAccelaration(vector3df(0,0,0));	
 	this->setRadius(1);
+	this->setOriginalRadius(1);
+	this->setOuterRadius(1);
 	this->setVelocity(speed);
 }
 
