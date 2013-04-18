@@ -17,8 +17,14 @@ MainMenuScene::MainMenuScene()
 	//Add text and button
 	createServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),mainMenuWindow,MainMenuScene::CreateServerWindow, L"Create server",L"Go the Create server window.");
 	joinServerWindow_Button		= guiEnv->addButton(rect<s32>(position2di(50,135),dimension2di(200,25)),mainMenuWindow,MainMenuScene::JoinServerWindow, L"Join Server",L"Go the Join server window.");
-	quit_Button					= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,MainMenuScene::Quit, L"Quit",L"Die in a fire.");
+	Ipadresinput				= guiEnv->addEditBox(L"",rect<s32>(position2di(300,135),dimension2di(200,25)),true,mainMenuWindow);
 
+	start_button					= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,MainMenuScene::Quit, L"Start Game",L"Die in a fire.");
+	start_button->setVisible(false);
+
+	
+
+	
 	 // Store the appropriate data in a context structure.
     SAppContext context;
 	context.device = Game::device;
@@ -34,31 +40,15 @@ MainMenuScene::MainMenuScene()
 MainMenuScene::~MainMenuScene()
 {
 }
-
-
-
-
-
-class MyEventReceiver : public IEventReceiver
+void MainMenuScene::StartGame()
 {
-public:
-	MyEventReceiver(SAppContext & context) : Context(context) { }
+	MapGenerator mapGen;
+	mapGen.init(20, 2, 5);
+	GalaxyMap* galaxyMap = mapGen.createNewMap(300, 300, 15);
+	galaxyMap->position.set(vector3df(100, 670, 0));
+	SectorManager sectorManager(galaxyMap);
+	sectorManager.init();
+}
 
-	virtual bool OnEvent(const SEvent& event)
-	{
-		if (event.EventType == EET_GUI_EVENT)
-		{
-			s32 id = event.GUIEvent.Caller->getID();
-			IGUIEnvironment* env = Context.device->getGUIEnvironment();
-			switch(event.GUIEvent.EventType)
-			{
-			//TODO: cases when a button is pressed
-			default:
-				break;
-			}
-		}
-		return false;
-	}
-private:
-	SAppContext &Context;
-};
+
+
