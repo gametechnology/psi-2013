@@ -21,6 +21,7 @@ enum PacketType
 	LAST_TYPE
 };
 
+
 inline char* getPacketTypeName(PacketType type)
 {
 	switch(type)
@@ -48,7 +49,7 @@ private:
 
 	sf::Thread* _receiverThread;
 	sf::Mutex _mutex;
-
+	
 	bool _isServer;
 	bool _isConnected;
 	static Network* instance;
@@ -62,7 +63,10 @@ private:
 
 public:
 	~Network();
-
+	/*
+		List of clients connected used to fill the lobby.
+	*/
+	std::list<enet_uint32> connectedclients;
 	/*
 	* Gets you an instance of the Network interface. If not initialized yet, it will then.
 	*/

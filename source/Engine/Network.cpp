@@ -10,7 +10,7 @@ Network::Network() : _port(1345)
 {
 	_isServer = false;
 	_isConnected = false;
-
+	connectedclients = std::list<enet_uint32>();
 	for (int i = 0; i < LAST_TYPE; i++)
 		_listeners[i] = new std::list<INetworkListener*>();
 
@@ -163,7 +163,9 @@ void Network::PacketReciever()
 				printf ("A new client connected from %x:%u.\n", 
 						Network::GetInstance()->_event.peer -> address.host,
 						Network::GetInstance()->_event.peer -> address.port);
+				
 				// Store any relevant client information here.
+				connectedclients.push_back(Network::GetInstance()->_event.peer -> address.host);
 				Network::GetInstance()->_event.peer -> data = "Client information";
 				break;
 			case ENET_EVENT_TYPE_RECEIVE:

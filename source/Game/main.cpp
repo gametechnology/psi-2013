@@ -31,7 +31,7 @@ int main()
 	/////////////////////////////////////////
 	//temporary until main menu works
 	//Server 
-	Network::GetInstance()->InitializeServer(16);
+	//Network::GetInstance()->InitializeServer(16);
 	
 	//Client 
 	//Network::GetInstance()->InitializeClient("192.168.12.89");
