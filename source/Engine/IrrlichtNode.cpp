@@ -14,7 +14,8 @@ void IrrlichtNode::createNode(std::string modelPath) {
 }
 
 void IrrlichtNode::update() {
-
+	node->setPosition(*Component::entity->transform->position);
+	node->setRotation(*Component::entity->transform->rotation);
 }
 
 IrrlichtNode::~IrrlichtNode() {

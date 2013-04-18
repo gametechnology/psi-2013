@@ -3,7 +3,8 @@
 #include "Engine\Transform.h"
 
 Entity::Entity() : Composite() {
-	addComponent(new Transform());
+	transform = new Transform();
+	addComponent(transform);
 }
 
 void Entity::update() {

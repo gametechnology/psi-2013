@@ -4,6 +4,7 @@
 
 #include "Composite.h"
 #include "Component.h"
+#include "Transform.h"
 
 class Game;
 
@@ -14,6 +15,8 @@ public:
 
 	Game* game;
 	Scene* scene;
+
+	Transform* transform;
 
 	Entity* parent;
 	std::vector<Component*> components;
