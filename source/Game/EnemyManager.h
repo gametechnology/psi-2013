@@ -17,7 +17,8 @@ class EnemyManager : public Scene
 		~EnemyManager(void);
 		void createEnemies();
 		virtual void update();
-
+	//	void BroadPhaseDetection();
+		void NarrowPhaseDetection(array<Enemy*> _input);
 	private:
 		array<Enemy*> _enemyList;
 };
