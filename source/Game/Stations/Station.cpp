@@ -46,7 +46,7 @@ StationType Station :: GetStationType( )
 
 bool Station::IsStunned()
 {
-	time_t *t;
+	time_t *t = new time_t();
 	time( t );
 
 	//return true if the difference between the current time and the time the station was stunned is less than the defined stun time

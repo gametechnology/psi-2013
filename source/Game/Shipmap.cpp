@@ -7,12 +7,13 @@ Shipmap::Shipmap(Composite* parent):Entity(parent)
 
 	font = Game::device->getGUIEnvironment()->getBuiltInFont();
 
-	iconRadius = icon->getOriginalSize().Height/2;
+	iconRadius = (float)icon->getOriginalSize().Height/2;
 	isMoving = isIntersecting = blockedE = onStation = false;
 
 	then = Game::device->getTimer()->getTime();
 	iconOffset = 30;
-	duration = savedPosX = savedPosY = stationNumber = 0;
+	stationNumber = 0;
+	duration = savedPosX = savedPosY = 0.f;
 
 	tileSize = 64;
 
@@ -46,8 +47,8 @@ Shipmap::Shipmap(Composite* parent):Entity(parent)
 		for (int j = 0; j < width; j++)
 			tiles[i][j] = newMap[i][j];
 
-	position.X = (playerTile.x * tileSize) + offsetX;
-	position.Y = (playerTile.y * tileSize) + offsetY + 20;
+	position.X = (float)((playerTile.x * tileSize) + offsetX);
+	position.Y = (float)((playerTile.y * tileSize) + offsetY + 20);
 }
 
 Shipmap::~Shipmap()
@@ -71,7 +72,7 @@ void Shipmap::draw()
 			rect<s32>(0,0,bg->getOriginalSize().Width,bg->getOriginalSize().Height),
 			0, video::SColor(255,255,255,255), true);
 
-		Game::driver->draw2DImage(icon, core::position2d<s32>(position.X, position.Y),
+		Game::driver->draw2DImage(icon, core::position2d<s32>((int)position.X, (int)position.Y),
 			rect<s32>(iconOffset-30, 0, iconOffset, icon->getOriginalSize().Height),
 			0, video::SColor(255,255,255,255), true);
 
@@ -99,13 +100,13 @@ void Shipmap::update()
 	savedPosX = position.X;
 	savedPosY = position.Y;
 
-	playerBox->UpperLeftCorner.X = position.X;
-	playerBox->UpperLeftCorner.Y = position.Y;
-	playerBox->LowerRightCorner.X = position.X + iconRadius*2;
-	playerBox->LowerRightCorner.Y = position.Y + iconRadius*2;
+	playerBox->UpperLeftCorner.X = (int)position.X;
+	playerBox->UpperLeftCorner.Y = (int)position.Y;
+	playerBox->LowerRightCorner.X = (int)(position.X + iconRadius*2);
+	playerBox->LowerRightCorner.Y = (int)(position.Y + iconRadius*2);
 
-	playerTile.x = (position.X - offsetX) / tileSize;
-	playerTile.y = (position.Y - offsetY) / tileSize;
+	playerTile.x = (int)((position.X - offsetX) / tileSize);
+	playerTile.y = (int)((position.Y - offsetY) / tileSize);
 
 	if (Game::input->isKeyboardButtonDown(irr::KEY_KEY_A))
 	{
