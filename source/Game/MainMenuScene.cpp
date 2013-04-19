@@ -26,6 +26,7 @@ MainMenuScene::MainMenuScene()
 	start_button->setVisible(false);
 	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 
+
 	
 
 	
@@ -47,8 +48,10 @@ MainMenuScene::~MainMenuScene()
 void MainMenuScene::update(){
 	if(Network::GetInstance()->connectedclients.size() >= playerlist.size() && Network::GetInstance()->IsConnected() && Network::GetInstance()->IsServer())
 	{
+		std::list<enet_uint32>::const_iterator ipi;
+		ipi = Network::GetInstance()->connectedclients.begin();
 		Player* newplayer = new Player(NULL);
-		
+		newplayer->Ipadres = (*ipi);
 		newplayer->Name = L"Player";
 		if((playerlist.size()) % 2 != 0)
 			newplayer->Team = 2;
@@ -59,7 +62,8 @@ void MainMenuScene::update(){
 	}
 
 	NetworkPacket packet(ClIENT_IN_LOBBY);
-	packet << playerlist.size();
+	int a = playerlist.size();
+	packet << a;
 	std::wstringstream ssp;
 	ssp << L"Team 1              Team2\n";
 	std::list<Player*>::const_iterator iterator;
