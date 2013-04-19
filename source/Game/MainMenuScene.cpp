@@ -3,11 +3,12 @@
 
 
 
-MainMenuScene::MainMenuScene()
+MainMenuScene::MainMenuScene() 
 {
 	//Get the device
 	guiEnv = Game::guiEnv;
 	playerlist = std::list<Player*>();
+
 	///////////////////////////////////////////
 	// MainMenu
 	//////////////////////////////////////////
@@ -23,6 +24,7 @@ MainMenuScene::MainMenuScene()
 	Clientlist->setVisible(false);
 	start_button				= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,3, L"Start Game");
 	start_button->setVisible(false);
+	Network::GetInstance()->AddListener(SERVER_GAME_INFO, this);
 
 	
 
@@ -43,7 +45,7 @@ MainMenuScene::~MainMenuScene()
 {
 }
 void MainMenuScene::update(){
-	if(Network::GetInstance()->connectedclients.size() >= playerlist.size() && Network::GetInstance()->IsConnected())
+	if(Network::GetInstance()->connectedclients.size() >= playerlist.size() && Network::GetInstance()->IsConnected() && Network::GetInstance()->IsServer())
 	{
 		Player* newplayer = new Player(NULL);
 		
@@ -53,6 +55,9 @@ void MainMenuScene::update(){
 		else
 			newplayer->Team = 1;
 		playerlist.push_back(newplayer);
+		NetworkPacket packet(SERVER_GAME_INFO);
+		packet << *newplayer;
+		Network::GetInstance()->SendPacket(packet, true);
 	}
 	std::wstringstream ssp;
 	ssp << L"Team 1              Team2\n";
@@ -78,6 +83,19 @@ void MainMenuScene::StartGame()
 	SectorManager sectorManager(galaxyMap);
 	sectorManager.init();
 }
-
+void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
+{
+	Player newplayer(NULL);
+	switch(packet.GetType())
+	{
+		case SERVER_GAME_INFO:
+			newplayer = new Player(NULL);
+			packet >> newplayer;
+			playerlist.push_back(&newplayer);
+			break;
+		default:
+			break;
+	}
+}
 
 

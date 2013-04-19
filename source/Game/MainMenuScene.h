@@ -6,7 +6,9 @@
 #include "SectorManager.h"
 #include "Player.h"
 #include "Engine\Network.h"
+#include "Engine\NetworkPacket.h"
  #include <sstream>
+#include "Engine\INetworkListener.h"
 
 #ifndef MAINMENUSCENE
 #define MAINMENUSCENE
@@ -22,14 +24,14 @@ using namespace gui;
 // standard namespace
 using namespace std;
 
-class MainMenuScene: public Scene
+class MainMenuScene: public Scene, public INetworkListener
 {
 public:
 	MainMenuScene();
 	void update();
 	~MainMenuScene();
 	void StartGame();
-	 
+	void HandleNetworkMessage(NetworkPacket packet); 
 
 	//Create the different windows
 	MainMenuEventReceiver* eventReceiver;
