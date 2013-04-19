@@ -21,10 +21,10 @@ Player::~Player()
 }
 sf::Packet& operator >>(sf::Packet& in, Player * out)
 {
-	return in >> out->Name >> out->Team;
+	return in >> out->Name >> out->Team >> out->Ipadres;
 }
 
 sf::Packet& operator <<(sf::Packet& out, const Player * in)
 {
-	return out << in->Name << in->Team;
+	return out << in->Name << in->Team << in->Ipadres;
 }

@@ -9,6 +9,7 @@ public:
 	~Player();
 	wchar_t* Name;
 	int Team;
+	enet_uint32 Ipadres;
 	void handleMessage(unsigned int message, void* data = 0);	
 };
 sf::Packet& operator >>(sf::Packet& in, Player * out);
