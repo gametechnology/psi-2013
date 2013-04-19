@@ -73,7 +73,7 @@ void MainMenuScene::update(){
 			ssp << L"\n";
 
 		
-		packet << *play;
+		packet << play;
 		
 	}
 	Network::GetInstance()->SendPacket(packet, true);
@@ -104,7 +104,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 				for (int i = 0;i < lenght;i++){
 					Player * newplayer;
 					newplayer = new Player(NULL);
-					packet >> *newplayer;
+					packet >> newplayer;
 					playerlist.push_back(newplayer);
 				}
 			}

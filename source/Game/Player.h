@@ -11,8 +11,8 @@ public:
 	int Team;
 	void handleMessage(unsigned int message, void* data = 0);	
 };
-sf::Packet& operator >>(sf::Packet& in, Player& out);
+sf::Packet& operator >>(sf::Packet& in, Player * out);
 
-sf::Packet& operator <<(sf::Packet& out, const Player& in);
+sf::Packet& operator <<(sf::Packet& out, const Player * in);
 
 #endif
