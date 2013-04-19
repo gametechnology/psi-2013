@@ -80,7 +80,7 @@ void MainMenuScene::update(){
 		packet << play;
 		
 	}
-	Network::GetInstance()->SendPacket(packet, true);
+	Network::GetInstance()->SendServerPacket(packet, true);
 	const std::wstring& tmpp = ssp.str();
 	Clientlist->setText(tmpp.c_str());
 
