@@ -24,7 +24,7 @@ MainMenuScene::MainMenuScene()
 	Clientlist->setVisible(false);
 	start_button				= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,3, L"Start Game");
 	start_button->setVisible(false);
-	Network::GetInstance()->AddListener(SERVER_GAME_INFO, this);
+	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 
 	
 
@@ -57,20 +57,23 @@ void MainMenuScene::update(){
 		playerlist.push_back(newplayer);
 		
 	}
-	NetworkPacket packet(SERVER_GAME_INFO);
+
+	NetworkPacket packet(ClIENT_IN_LOBBY);
 	packet << playerlist.size();
 	std::wstringstream ssp;
 	ssp << L"Team 1              Team2\n";
 	std::list<Player*>::const_iterator iterator;
 	for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-		ssp << (*iterator)->Name;
-		 if((*iterator)->Team == 1)
+		Player *play = (*iterator);
+
+		ssp << play->Name;
+		 if(play->Team == 1)
 			 ssp << L"              ";
 		 else
 			ssp << L"\n";
 
 		
-		packet << *(*iterator);
+		packet << *play;
 		
 	}
 	Network::GetInstance()->SendServerPacket(packet, false);
@@ -90,15 +93,16 @@ void MainMenuScene::StartGame()
 }
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 {
-	Player * newplayer;
+	
 	int lenght;
 	switch(packet.GetType())
 	{
-		case SERVER_GAME_INFO:
+		case ClIENT_IN_LOBBY:
 		if(!Network::GetInstance()->IsServer()){
 				playerlist.clear();
 				packet >> lenght;
 				for (int i = 0;i < lenght;i++){
+					Player * newplayer;
 					newplayer = new Player(NULL);
 					packet >> *newplayer;
 					playerlist.push_back(newplayer);
