@@ -60,13 +60,15 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					newplayer->Team = 1;
 					mainmenu->playerlist.push_back(newplayer);
 					return true;
-				default:
-					return false;
-				}
 				case 3:
 					mainmenu->StartGame();
 					NetworkPacket packet(START_GAME);
 					Network::GetInstance()->SendServerPacket(packet, true);
+					return true;
+				default:
+					return false;
+				}
+				
             break;
         }
     }
