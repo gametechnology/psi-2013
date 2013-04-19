@@ -3,7 +3,7 @@
 
 Player::Player(Composite* parent) : Entity(parent)
 {
-
+	Name = new wchar_t[500];
 }
 
 void Player::handleMessage(unsigned int message, void* data) {

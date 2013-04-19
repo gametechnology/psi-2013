@@ -63,6 +63,10 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 				default:
 					return false;
 				}
+				case 3:
+					mainmenu->StartGame();
+					NetworkPacket packet(START_GAME);
+					Network::GetInstance()->SendServerPacket(packet, true);
             break;
         }
     }

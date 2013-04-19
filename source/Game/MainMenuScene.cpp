@@ -25,6 +25,7 @@ MainMenuScene::MainMenuScene()
 	start_button				= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,3, L"Start Game");
 	start_button->setVisible(false);
 	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
+	Network::GetInstance()->AddListener(START_GAME, this);
 
 
 	
@@ -112,6 +113,10 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 					playerlist.push_back(newplayer);
 				}
 			}
+		case START_GAME:
+		{
+			StartGame();
+		}
 		default:
 			break;
 	}
