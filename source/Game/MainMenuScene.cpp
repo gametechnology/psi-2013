@@ -113,10 +113,10 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 					playerlist.push_back(newplayer);
 				}
 			}
+		break;
 		case START_GAME:
-		{
 			StartGame();
-		}
+		break;
 		default:
 			break;
 	}

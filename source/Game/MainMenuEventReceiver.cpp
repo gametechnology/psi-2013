@@ -63,7 +63,6 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					return true;
 				case 3:
 					mainmenu->StartGame();
-					
 					Network::GetInstance()->SendServerPacket(packet, true);
 					return true;
 				default:
