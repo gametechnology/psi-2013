@@ -2,14 +2,17 @@
 #define PLAYER
 
 #include "Engine/Entity.h"
-
+#include "Engine/NetworkPacket.h"
 class Player : public Entity  {
 public:
 	Player(Composite* parent);
 	~Player();
-	const wchar_t* Name;
+	wchar_t* Name;
 	int Team;
 	void handleMessage(unsigned int message, void* data = 0);	
 };
+sf::Packet& operator >>(sf::Packet& in, Player& out);
+
+sf::Packet& operator <<(sf::Packet& out, const Player& in);
 
 #endif
