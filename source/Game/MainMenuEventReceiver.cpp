@@ -16,6 +16,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 		char* ipadress;
 		 wchar_t* inputwchar;
 		 Player* newplayer;
+		 NetworkPacket packet(START_GAME);
         switch(event.GUIEvent.EventType)
         { 
 				case EGET_BUTTON_CLICKED:
@@ -62,7 +63,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					return true;
 				case 3:
 					mainmenu->StartGame();
-					NetworkPacket packet(START_GAME);
+					
 					Network::GetInstance()->SendServerPacket(packet, true);
 					return true;
 				default:
