@@ -47,13 +47,14 @@ void Enemy::applySpeed()
 	if (velocity.getLength() > maxspeed_)
 	{
 		vector3df cappedvel = velocity.normalize();
-		cappedvel *= maxspeed_;
+		cappedvel *= (float)maxspeed_;
 		velocity = cappedvel;
 	}
 }
 
-void Enemy::steering()
+void Enemy::steering(irr::core::vector3df rotational)
 {
+
 		irr::core::matrix4 matX;
 		irr::core::matrix4 matY;
 		irr::core::matrix4 matZ;
@@ -65,13 +66,13 @@ void Enemy::steering()
 		mData[3] = 0;
 
 		mData[4] = 0;
-		mData[5] = cos(DEGTORAD *  this->getRotation().X);
-		mData[6] = -sin(DEGTORAD *  this->getRotation().X);
+		mData[5] = cos(DEGTORAD *  rotational.X);
+		mData[6] = -sin(DEGTORAD *  rotational.X);
 		mData[7] = 0;
 
 		mData[8] = 0;
-		mData[9] = sin( DEGTORAD * this->getRotation().X);
-		mData[10] = cos(DEGTORAD * this->getRotation().X);
+		mData[9] = sin( DEGTORAD * rotational.X);
+		mData[10] = cos(DEGTORAD * rotational.X);
 		mData[11] = 0;
 
 		mData[12] = 0;
@@ -80,9 +81,9 @@ void Enemy::steering()
 		mData[15] = 1;
 		matX.setM(mData);
 		
-		mData[0] = cos(DEGTORAD *  this->getRotation().Y);
+		mData[0] = cos(DEGTORAD *  rotational.Y);
 		mData[1] = 0;
-		mData[2] = -sin(DEGTORAD *  this->getRotation().Y);
+		mData[2] = -sin(DEGTORAD *  rotational.Y);
 		mData[3] = 0;
 
 		mData[4] = 0;
@@ -90,9 +91,9 @@ void Enemy::steering()
 		mData[6] = 0;
 		mData[7] = 0;
 	
-		mData[8] = sin(DEGTORAD *  this->getRotation().Y);
+		mData[8] = sin(DEGTORAD *  rotational.Y);
 		mData[9] = 0;
-		mData[10] = cos(DEGTORAD *  this->getRotation().Y);
+		mData[10] = cos(DEGTORAD *  rotational.Y);
 		mData[11] = 0;
 
 		mData[12] = 0;
@@ -101,13 +102,13 @@ void Enemy::steering()
 		mData[15] = 1;
 		matY.setM(mData);
 
-		mData[0] = cos(DEGTORAD * this->getRotation().Z);
-		mData[1] = -sin(DEGTORAD * this->getRotation().Z);
+		mData[0] = cos(DEGTORAD * rotational.Z);
+		mData[1] = -sin(DEGTORAD * rotational.Z);
 		mData[2] = 0;
 		mData[3] = 0;
 
-		mData[4] = sin(DEGTORAD * this->getRotation().Z);
-		mData[5] = cos(DEGTORAD * this->getRotation().Z);
+		mData[4] = sin(DEGTORAD * rotational.Z);
+		mData[5] = cos(DEGTORAD * rotational.Z);
 		mData[6] = 0;
 		mData[7] = 0;
 
@@ -125,6 +126,7 @@ void Enemy::steering()
 		matY = matY.operator*(matZ);
 		matX = matX.operator*(matY);
 
+
 		irr::core::vector3df newvelocity;
 		float mData2[4];
 		mData2[0] = velocity.X;
@@ -138,12 +140,69 @@ void Enemy::steering()
 		newvelocity.Y = mData2[1];
 		newvelocity.Z = mData2[2];
 
+		this->setOriginalVelocity(velocity);
 		this->velocity = newvelocity;
+
+	    float magnitude = sqrt(pow(velocity.X,2) + pow(velocity.Y,2) + pow(velocity.Z,2));
+		vector3df normalizedvelocity = vector3df((velocity.X/magnitude),(velocity.Y/magnitude),(velocity.Z/magnitude));
+
+		magnitude = sqrt(pow(originalvelocity_.X,2) + pow(originalvelocity_.Y,2) + pow(originalvelocity_.Z,2));
+		vector3df normalizeoriginal = vector3df((originalvelocity_.X/magnitude),(originalvelocity_.Y/magnitude),(originalvelocity_.Z/magnitude));
+	
+		if(normalizeoriginal == normalizedvelocity)
+		{
+			this->setOriginalVelocity(velocity);
+			return;
+		}
+
+		if(rotational.X < 0)
+		{
+			rotational.X *= -1;
+			this->orientation.X -= rotational.X/60;
+		}
+		else
+		{
+			this->orientation.X += rotational.X/60;
+		}	
+
+		if(rotational.Y < 0)
+		{
+				rotational.Y *= -1;
+				this->orientation.Y -= rotational.Y/60;
+		}
+		else
+		{
+			this->orientation.Y += rotational.Y/60;
+		}
+		
+		if(rotational.Z < 0)
+		{
+			rotational.Z *= -1;
+			this->orientation.Z -= rotational.Z/60;
+		}
+		else
+		{
+			this->orientation.Z += rotational.Z/60;
+		}
 }
 
-void Enemy::contactResolverA()
+void Enemy::contactResolverA(Enemy* _input)
 {
+    double deltamass = (this->getRadius() / _input->getRadius());
+	vector3df deltavelocity = this->getVelocity() - _input->getVelocity();
+	vector3df componentThisToBal = componentOnto(_input->getPosition() - this->position, deltavelocity);
+    vector3df componentNormalToBal = deltavelocity - componentThisToBal;
+    vector3df thisMassComponent = componentThisToBal * (float)(((deltamass- 1) / (deltamass + 1)));
+	vector3df balMassComponent = componentThisToBal * (float)((2 * deltamass / (deltamass + 1)));
+    velocity = componentNormalToBal + thisMassComponent + _input->getVelocity();
+    _input->setVelocity(balMassComponent + _input->getVelocity());
+	this->setRadius(this->getRadius()*2 - this->getPosition().getDistanceFrom(_input->getPosition()));
+	_input->setRadius(this->getRadius());
+}
 
+vector3df Enemy::componentOnto(vector3df input, vector3df deltavelocity)
+{
+	return input * (deltavelocity.dotProduct(input) / input.getLengthSQ());
 }
 
 void Enemy::contactResolverB()
@@ -164,7 +223,7 @@ void Enemy::contactResolverB()
 void Enemy::contactGenerator(Enemy* input)
 {
 	float distance = position.getDistanceFrom(input->getPosition());
-	int radii = input->getRadius() + radius_;
+	int radii = (int)(input->getRadius() + radius_);
 	if (distance < radii)
 	{
 		contactResolverB();
@@ -230,9 +289,22 @@ void Enemy::setMaxHealth(unsigned int maxhealth)
 	this->_maxHealth = maxhealth;
 	setHealth(maxhealth);
 }
-void Enemy::setRadius(unsigned int rad)
+void Enemy::setRadius(float rad)
 {
 	radius_ = rad;
+}
+void Enemy::setOriginalRadius(float origradius)
+{
+	originalradius_ = origradius;
+}
+void Enemy::setOuterRadius(float outerradius)
+{
+	outerradius_ = outerradius;
+}
+
+void Enemy::setOriginalVelocity(vector3df origvelocity)
+{
+	originalvelocity_ = origvelocity;
 }
 
 void Enemy::setTarget(vector3df targetPosition)
@@ -282,17 +354,30 @@ unsigned int Enemy::getLoS()
 {
 	return lineofsightrange_;
 }
-unsigned int Enemy::getRadius()
+float Enemy::getRadius()
 {
 	return radius_;
 }
+float Enemy::getOriginalRadius()
+{
+	return originalradius_;
+}
+float Enemy::getOuterRadius()
+{
+	return outerradius_;
+}
 
-signed int Enemy::getHealth()
+vector3df Enemy::getOriginalVelocity()
+{
+	return originalvelocity_;
+}
+
+int Enemy::getHealth()
 {
 	return this->_health;
 }
 
-unsigned int Enemy::getMaxHealth()
+int Enemy::getMaxHealth()
 {
 	return this->_maxHealth;
 }

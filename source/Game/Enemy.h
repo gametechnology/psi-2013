@@ -43,7 +43,10 @@ public:
 	void setHealth(signed int health);
 	void setMaxHealth(unsigned int maxhealth);
 	void setVelocity(vector3df input);
-	void setRadius(unsigned int radius);
+	void setRadius(float radius);
+	void setOriginalRadius(float origradius);
+	void setOuterRadius(float outerradius);
+	void setOriginalVelocity(vector3df origvelocity);
 	
 	vector3df getVelocity();
 	vector3df getPath();
@@ -54,8 +57,11 @@ public:
 	vector3df getAccelaration();
 	unsigned int getDamage();
 	unsigned int getLoS();
-	unsigned int getRadius();
+	float getRadius();
+	float getOriginalRadius();
+	float getOuterRadius();
 	vector3df getTarget();
+	vector3df getOriginalVelocity();
 	void chase(vector3df target);
 	void flee(vector3df target);
 	void setTarget(vector3df target);
@@ -64,12 +70,12 @@ public:
 
 	/*void contactGenerator(Player* input);*/
 	void contactGenerator(Enemy* input);
-	void contactResolverA();
+	void contactResolverA(Enemy* _input);
 	void contactResolverB();
-	void steering();
+	void steering(irr::core::vector3df rotational);
 	void wander();
-	signed int getHealth();
-	unsigned int getMaxHealth();
+	int getHealth();
+	int getMaxHealth();
 
 	void updateHealth();
 	virtual void update();
@@ -87,10 +93,12 @@ private:
 	
 	IMesh* visual_;
 	vector3df destination_;
-
+	vector3df originalvelocity_;
 	signed int _health;
 	unsigned int _maxHealth;
-	unsigned int radius_;
+	float radius_;
+	float originalradius_;
+	float outerradius_;
 	unsigned int maxspeed_;
 	unsigned int agility_;
 	unsigned int accelaration_;
@@ -101,5 +109,6 @@ private:
 	bool isAlive;
 
 	int healthTimer;
+	vector3df componentOnto(vector3df input, vector3df deltavelocity);
 };
 #endif

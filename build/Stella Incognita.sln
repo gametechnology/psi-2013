@@ -1,7 +1,10 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
+﻿Microsoft Visual Studio Solution File, Format Version 11.00
+
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stella Incognita", "Stella Incognita.vcxproj", "{B0E4137C-554D-4B63-B8E4-93E93C176F9C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0} = {449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Stella Incognita Engine", "Engine\Stella Incognita Engine.vcxproj", "{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}"
 EndProject

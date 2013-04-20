@@ -28,8 +28,8 @@ void HealthBar::draw(){
 			Game::driver->draw2DImage(
 				this->pipTexture_,		//image texture
 				rect<s32>(				//draw size and position
-					position_.X + (i / 10) * 32,		//xPosition, every 10 pips it moves 1 to the side.
-					position_.Y + (i % 10) * 8,			//yPosition, every 10 pips it starts back at the top
+					(int)(position_.X + (i / 10) * 32),		//xPosition, every 10 pips it moves 1 to the side.
+					(int)(position_.Y + (i % 10) * 8),			//yPosition, every 10 pips it starts back at the top
 					32,									//width
 					8									//lenght
 				),

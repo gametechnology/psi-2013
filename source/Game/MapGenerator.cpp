@@ -107,7 +107,7 @@ typeSector MapGenerator::getRandomType()
 	int i = rand() % 100;
 	for(int j = 0; j < TOTALTYPES - 2; j++)
 	{
-		i -= typeChances[j];
+		i -= (int)typeChances[j];
 		if (i <= 0) return (typeSector)(j);
 	}
 	return EMPTY;
@@ -144,7 +144,7 @@ void MapGenerator::createConnections()
 			if (!collisionLineBetweenSectors((*i), (*j)))
 			{
 				int wormholeCount = minWormholes + (rand() % (maxWormholes - minWormholes));
-				if ((*i)->connections.size() < maxWormholes - 1 && (*j)->connections.size() < maxWormholes - 1)
+				if ((int)((*i)->connections.size()) < maxWormholes - 1 && (int)((*j)->connections.size()) < maxWormholes - 1)
 				{
 					(*i)->connections.push_back((*j));
 					(*j)->connections.push_back((*i));
@@ -155,7 +155,7 @@ void MapGenerator::createConnections()
 	
 	for(std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
 	{
-		if ((*i)->connections.size() <= minWormholes)
+		if ((int)((*i)->connections.size()) <= minWormholes)
 		{
 			for(std::list<MapSector*>::iterator j = map->sectors.begin(); j != map->sectors.end(); ++j)
 			{
@@ -163,7 +163,7 @@ void MapGenerator::createConnections()
 				{
 					(*i)->connections.push_back((*j));
 					(*j)->connections.push_back((*i));
-					if ((*i)->connections.size() >= minWormholes)
+					if ((int)((*i)->connections.size()) >= minWormholes)
 					{
 						break;
 					}

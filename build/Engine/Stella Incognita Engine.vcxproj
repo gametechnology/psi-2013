@@ -100,6 +100,7 @@
     <ClInclude Include="..\..\include\Engine\NetworkComponent.h" />
     <ClInclude Include="..\..\include\Engine\NetworkPacket.h" />
     <ClInclude Include="..\..\include\Engine\Scene.h" />
+   
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\Engine\Camera.cpp" />

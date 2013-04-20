@@ -1,4 +1,5 @@
 #include "Engine\Game.h"
+#include "../source/Game/NetworkInterface.h"
 
 #pragma comment(lib, "Irrlicht.lib")
 
@@ -59,7 +60,9 @@ void Game::run()
 		Game::guiEnv->drawAll();
 		Game::driver->endScene();
 		Game::input->startInputProcess();
+		Network::GetInstance()->DistributeReceivedPackets();
 	}
+
 	Game::device->drop();
 }
 

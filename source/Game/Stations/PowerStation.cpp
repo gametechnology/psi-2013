@@ -20,6 +20,11 @@ PowerStation :: ~PowerStation()
 
 }
 
+void PowerStation::HandleNetworkMessage(NetworkPacket packet)
+{
+
+}
+
 void PowerStation :: SubscribeStation( Station *s )
 {
 	this -> context.SubscribeStation( s );
@@ -208,14 +213,6 @@ stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 	return str;
 }
 
-stringw PowerStation::varToString(stringw str1, int var, stringw str2){
-	stringw str = L"";
-	str += str1;
-	str += (int)var;
-	str += str2;
-	return str;
-}
-
 //Adds the background image and the spaceship image. 
 void PowerStation::addImages()
 {
@@ -284,18 +281,18 @@ void PowerStation::update()
 	int weapon		= context.GetPower(ST_WEAPON);
 	int navigation	= context.GetPower(ST_NAVIGATION);
 
-	context.powerPoolText->setText((varToString("Power Pool:\n", context.powerPool, "%")).c_str());
+	context.powerPoolText->setText((varToString("Power Pool:\n", (float)context.powerPool, "%")).c_str());
 
-	context.helmStatus->setText((varToString(		"Helm power status: ", helm, "%")).c_str());
-	context.defenceStatus->setText((varToString(	"Defence power status: ", defence, "%")).c_str());
-	context.weaponStatus->setText((varToString(		"Weapon power status: ", weapon, "%")).c_str());
-	context.navigationStatus->setText((varToString(	"Navigation power status: ", navigation, "%")).c_str());
+	context.helmStatus->setText((varToString(		"Helm power status: ", (float)helm, "%")).c_str());
+	context.defenceStatus->setText((varToString(	"Defence power status: ", (float)defence, "%")).c_str());
+	context.weaponStatus->setText((varToString(		"Weapon power status: ", (float)weapon, "%")).c_str());
+	context.navigationStatus->setText((varToString(	"Navigation power status: ", (float)navigation, "%")).c_str());
 
 	//Checks the power percentage and assigns the text a color indicating the amount of power available to that station.
-	changeColorAccordingToPowerStatus(*context.helmStatus, helm);
-	changeColorAccordingToPowerStatus(*context.defenceStatus, defence);
-	changeColorAccordingToPowerStatus(*context.weaponStatus, weapon);
-	changeColorAccordingToPowerStatus(*context.navigationStatus, navigation);
+	changeColorAccordingToPowerStatus(*context.helmStatus, (float)helm);
+	changeColorAccordingToPowerStatus(*context.defenceStatus, (float)defence);
+	changeColorAccordingToPowerStatus(*context.weaponStatus, (float)weapon);
+	changeColorAccordingToPowerStatus(*context.navigationStatus, (float)navigation);
 
 	selectedStation();
 }

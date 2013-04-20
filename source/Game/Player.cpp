@@ -7,9 +7,11 @@ Player::Player(Composite* parent) : Entity(parent)
 }
 
 void Player::handleMessage(unsigned int message, void* data) {
-	switch(message) {
+	//switch(message) {
 		/* Do something */
-	}
+		//default:
+			//break;
+	//}
 	delete data;
 }
 
