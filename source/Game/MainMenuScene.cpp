@@ -55,10 +55,10 @@ void MainMenuScene::update(){
 		else
 			newplayer->Team = 1;
 		playerlist.push_back(newplayer);
-		NetworkPacket packet(SERVER_GAME_INFO);
-		packet << *newplayer;
-		Network::GetInstance()->SendPacket(packet, true);
+		
 	}
+	NetworkPacket packet(SERVER_GAME_INFO);
+	packet << playerlist.size();
 	std::wstringstream ssp;
 	ssp << L"Team 1              Team2\n";
 	std::list<Player*>::const_iterator iterator;
@@ -68,7 +68,12 @@ void MainMenuScene::update(){
 			 ssp << L"              ";
 		 else
 			ssp << L"\n";
+
+		
+		packet << *(*iterator);
+		
 	}
+	Network::GetInstance()->SendPacket(packet, true);
 	const std::wstring& tmpp = ssp.str();
 	Clientlist->setText(tmpp.c_str());
 
@@ -85,14 +90,20 @@ void MainMenuScene::StartGame()
 }
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 {
-	Player newplayer(NULL);
+	Player * newplayer;
+	int lenght;
 	switch(packet.GetType())
 	{
 		case SERVER_GAME_INFO:
-			newplayer = new Player(NULL);
-			packet >> newplayer;
-			playerlist.push_back(&newplayer);
-			break;
+		if(!Network::GetInstance()->IsServer()){
+				playerlist.clear();
+				packet >> lenght;
+				for (int i = 0;i < lenght;i++){
+					newplayer = new Player(NULL);
+					packet >> *newplayer;
+					playerlist.push_back(newplayer);
+				}
+			}
 		default:
 			break;
 	}
