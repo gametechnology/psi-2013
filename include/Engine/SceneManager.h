@@ -28,10 +28,6 @@ public:
 	Scene* getScene(char* name);
 	void destroyScene(char* name);
 	bool exists(char* name);
-	Scene* getCurrentScene();
-private:
-	void SetOnTop();
-	void ReorderList();
 };
 
 
