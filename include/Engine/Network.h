@@ -16,10 +16,12 @@ enum PacketType
 {
 	CLIENT_JOIN = 0,
 	CLIENT_QUIT,
-
+	ClIENT_IN_LOBBY,
+	START_GAME,
 	//Add new PacketTypes above
 	LAST_TYPE
 };
+
 
 inline char* getPacketTypeName(PacketType type)
 {
@@ -27,6 +29,8 @@ inline char* getPacketTypeName(PacketType type)
 	{
 		case CLIENT_JOIN: { return "CLIENT_JOIN"; break; }
 		case CLIENT_QUIT: { return "CLIENT_QUIT"; break; }
+		case ClIENT_IN_LOBBY: { return "ClIENT_IN_LOBBY"; break; }
+		case START_GAME: { return "START_GAME"; break; }
 		default: { throw "Tried to get string from non-existing packet type"; }
 	}
 }
@@ -48,7 +52,7 @@ private:
 
 	sf::Thread* _receiverThread;
 	sf::Mutex _mutex;
-
+	
 	bool _isServer;
 	bool _isConnected;
 	static Network* instance;
@@ -62,7 +66,10 @@ private:
 
 public:
 	~Network();
-
+	/*
+		List of clients connected used to fill the lobby.
+	*/
+	std::list<enet_uint32> connectedclients;
 	/*
 	* Gets you an instance of the Network interface. If not initialized yet, it will then.
 	*/

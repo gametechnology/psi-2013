@@ -3,22 +3,34 @@
 
 
 
-MainMenuScene::MainMenuScene()
+MainMenuScene::MainMenuScene() 
 {
 	//Get the device
 	guiEnv = Game::guiEnv;
+	playerlist = std::list<Player*>();
 
 	///////////////////////////////////////////
 	// MainMenu
 	//////////////////////////////////////////
 	//Creat the main menu window
 	mainMenuWindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"Main menu",0,100);
+	mainMenuWindow->getCloseButton()->remove();
 
 	//Add text and button
-	createServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),mainMenuWindow,MainMenuScene::CreateServerWindow, L"Create server",L"Go the Create server window.");
-	joinServerWindow_Button		= guiEnv->addButton(rect<s32>(position2di(50,135),dimension2di(200,25)),mainMenuWindow,MainMenuScene::JoinServerWindow, L"Join Server",L"Go the Join server window.");
-	quit_Button					= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,MainMenuScene::Quit, L"Quit",L"Die in a fire.");
+	createServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),mainMenuWindow,2, L"Create a game");
+	joinServerWindow_Button		= guiEnv->addButton(rect<s32>(position2di(50,135),dimension2di(200,25)),mainMenuWindow,1,L"Join a game");
+	Ipadresinput				= guiEnv->addEditBox(L"",rect<s32>(position2di(300,135),dimension2di(200,25)),true,mainMenuWindow);
+	Clientlist					= guiEnv->addStaticText(L"",rect<s32>(position2di(300,105),dimension2di(200,200)),false,true,mainMenuWindow);
+	Clientlist->setVisible(false);
+	start_button				= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,3, L"Start Game");
+	start_button->setVisible(false);
+	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
+	Network::GetInstance()->AddListener(START_GAME, this);
 
+
+	
+
+	
 	 // Store the appropriate data in a context structure.
     SAppContext context;
 	context.device = Game::device;
@@ -34,31 +46,80 @@ MainMenuScene::MainMenuScene()
 MainMenuScene::~MainMenuScene()
 {
 }
-
-
-
-
-
-class MyEventReceiver : public IEventReceiver
-{
-public:
-	MyEventReceiver(SAppContext & context) : Context(context) { }
-
-	virtual bool OnEvent(const SEvent& event)
+void MainMenuScene::update(){
+	if(Network::GetInstance()->connectedclients.size() >= playerlist.size() && Network::GetInstance()->IsConnected() && Network::GetInstance()->IsServer())
 	{
-		if (event.EventType == EET_GUI_EVENT)
-		{
-			s32 id = event.GUIEvent.Caller->getID();
-			IGUIEnvironment* env = Context.device->getGUIEnvironment();
-			//switch(event.GUIEvent.EventType)
-			//{
-			//TODO: cases when a button is pressed
-			//default:
-			//	break;
-			//}
-		}
-		return false;
+		std::list<enet_uint32>::const_iterator ipi;
+		ipi = Network::GetInstance()->connectedclients.begin();
+		Player* newplayer = new Player(NULL);
+		newplayer->Ipadres = (*ipi);
+		newplayer->Name = L"Player";
+		if((playerlist.size()) % 2 != 0)
+			newplayer->Team = 2;
+		else
+			newplayer->Team = 1;
+		playerlist.push_back(newplayer);
+		
 	}
-private:
-	SAppContext &Context;
-};
+
+	NetworkPacket packet(ClIENT_IN_LOBBY);
+	int a = playerlist.size();
+	packet << a;
+	std::wstringstream ssp;
+	ssp << L"Team 1              Team2\n";
+	std::list<Player*>::const_iterator iterator;
+	for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
+		Player *play = (*iterator);
+
+		ssp << play->Name;
+		 if(play->Team == 1)
+			 ssp << L"              ";
+		 else
+			ssp << L"\n";
+
+		
+		packet << play;
+		
+	}
+	Network::GetInstance()->SendServerPacket(packet, false);
+	const std::wstring& tmpp = ssp.str();
+	Clientlist->setText(tmpp.c_str());
+
+
+}
+void MainMenuScene::StartGame()
+{
+	MapGenerator mapGen;
+	mapGen.init(20, 2, 5);
+	GalaxyMap* galaxyMap = mapGen.createNewMap(300, 300, 15);
+	galaxyMap->position.set(vector3df(100, 670, 0));
+	SectorManager sectorManager(galaxyMap);
+	sectorManager.init();
+}
+void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
+{
+	
+	int lenght;
+	switch(packet.GetType())
+	{
+		case ClIENT_IN_LOBBY:
+		if(!Network::GetInstance()->IsServer()){
+				playerlist.clear();
+				packet >> lenght;
+				for (int i = 0;i < lenght;i++){
+					Player * newplayer;
+					newplayer = new Player(NULL);
+					packet >> newplayer;
+					playerlist.push_back(newplayer);
+				}
+			}
+		break;
+		case START_GAME:
+			StartGame();
+		break;
+		default:
+			break;
+	}
+}
+
+
