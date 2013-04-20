@@ -27,7 +27,7 @@ const size_t NetworkPacket::GetSize()
 	
 const void* NetworkPacket::GetBytes()
 {
-	sf::Packet tempPacket = _packet;
+	sf::Packet tempPacket = *this;
 	clear();
 	*this << _type;
 	append(tempPacket.getData(), tempPacket.getDataSize());
