@@ -1,13 +1,15 @@
 #include "Mist.h"
 
-Mist::Mist(Composite* parent, video::SColor color, float nearDistance, float farDistance, video::E_FOG_TYPE fogType) : Entity(parent)
+Mist::Mist(video::SColor color, float nearDistance, float farDistance, video::E_FOG_TYPE fogType) : Entity()
 {
 	_color = color;
 	_nearDistance = nearDistance;
 	_farDistance = farDistance;
 	_fogType = fogType;
+}
 
-	Game::driver->setFog(_color, _fogType, _nearDistance, _farDistance);
+void Mist::init() {
+	game->driver->setFog(_color, _fogType, _nearDistance, _farDistance);
 }
 
 void Mist::update()
@@ -15,11 +17,11 @@ void Mist::update()
 	if (_valueChanged) 
 	{
 		_valueChanged = false;
-		Game::driver->setFog(_color, _fogType, _nearDistance, _farDistance);
+		game->driver->setFog(_color, _fogType, _nearDistance, _farDistance);
 	}
 }
 
-void Mist::SetColor(SColor color) 
+void Mist::SetColor(video::SColor color) 
 {
 	_valueChanged = true;
 	_color = color;
@@ -45,5 +47,5 @@ void Mist::SetFogType(video::E_FOG_TYPE fogType)
 
 Mist::~Mist(void)
 {
-	Game::driver->setFog();
+	game->driver->setFog();
 }

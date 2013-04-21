@@ -5,7 +5,7 @@
 #include "Engine/NetworkPacket.h"
 class Player : public Entity  {
 public:
-	Player(Composite* parent);
+	Player();
 	~Player();
 	wchar_t* Name;
 	int Team;
