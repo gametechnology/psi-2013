@@ -8,9 +8,9 @@ Skybox::Skybox(const io::path & filePath,Composite* parent) : Entity(parent) {
 	init();
 }
 void Skybox::init(){
-	irr::scene::ISceneNode * skydome = Game::getSceneManager()->addSkyDomeSceneNode(Game::driver->getTexture(_filePath),128,128,0.99999f,10.0f,1000.0f);
-	skydome->setMaterialFlag(EMF_FOG_ENABLE, true);
-	skydome->setMaterialType(EMT_TRANSPARENT_ALPHA_CHANNEL);
+	irr::scene::ISceneNode * skydome = game->getSceneManager()->addSkyDomeSceneNode(game->driver->getTexture(_filePath),128,128,0.99999f,10.0f,1000.0f);
+	skydome->setMaterialFlag(video::EMF_FOG_ENABLE, true);
+	skydome->setMaterialType(video::EMT_TRANSPARENT_ALPHA_CHANNEL);
 }
 Skybox::~Skybox() {
 	Entity::~Entity();
