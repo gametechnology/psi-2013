@@ -82,7 +82,7 @@ void SectorTemplate::update(){
 		printf("OUT OF BOUNDS!");
 	}
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
-		irr::core::vector3df deltaPos = _wormHoles[i]->transform->position - this->_ship->transform->position;
+		irr::core::vector3df deltaPos = *_wormHoles[i]->transform->position - *this->_ship->transform->position;
 		float collisionRadius = 50;
 		if( deltaPos.getLength() < collisionRadius ){			
 			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
