@@ -26,7 +26,7 @@ SectorHomeBase::~SectorHomeBase() {
 	SectorTemplate::~SectorTemplate();
 }
 
-BasePlaceholder::BasePlaceholder(Composite* parent):Entity(parent) {
+BasePlaceholder::BasePlaceholder(Composite* parent):Entity() {
 	irr::scene::IMeshSceneNode *node = scene->sceneManager->addCubeSceneNode(100, 0, -1,
 		irr::core::vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250)),
 		irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90))
