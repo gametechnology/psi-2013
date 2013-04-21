@@ -42,15 +42,6 @@
     <ClCompile Include="..\source\Game\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\SectorManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\SectorTemplate.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Skybox.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Ship.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -144,9 +135,6 @@
     <ClCompile Include="..\source\Game\Stations\UIData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\HelmSceneTest.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -157,30 +145,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\UIData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\AsteroidSector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\BaseSector.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\MainMenuEventReceiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Mist.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\NebulaSector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\SectorHomeBase.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\WormHole.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
@@ -255,6 +225,33 @@
     <ClCompile Include="..\source\Game\HealthBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\NebulaSector.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\SectorHomeBase.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\SectorManager.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\SectorTemplate.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Mist.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\WormHole.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\AsteroidSector.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\BaseSector.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Skybox.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Enemy.h">
@@ -276,15 +273,6 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\SectorManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\SectorTemplate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Skybox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Thruster.h">
@@ -368,31 +356,13 @@
     <ClInclude Include="..\source\Game\MainMenuScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\AsteroidSector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\BaseSector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\MainMenuEventReceiver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Mist.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\NebulaSector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\SectorHomeBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Sprite.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Team.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\WormHole.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\NetworkInterface.h">
@@ -416,11 +386,38 @@
     <ClInclude Include="..\source\Game\NetworkInterface.h">
       <Filter>Header files\Network</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\Messages.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\AsteroidSector.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\BaseSector.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Mist.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\NebulaSector.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\SectorTemplate.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\SectorHomeBase.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\SectorManager.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Skybox.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\WormHole.h">
+      <Filter>Header files\Sector</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\assets\Textures\Wormholes\WormHole.png">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="..\assets\sydney.bmp">
       <Filter>Resource Files</Filter>
     </None>
