@@ -40,9 +40,14 @@ void EnemySceneTest::HandleNetworkMessage(NetworkPacket packet)
 			{
 				for(unsigned int i = 0; i < _enemyList.size(); i++)
 				{
-					if(!enemyIds.binary_search(_enemyList[i]->getId()))
+					if(enemyIds.binary_search(_enemyList[i]->getId()) == -1)
 					{
 						_enemyList[i]->destroy();
+					}else
+					{
+						int arrayLocation = enemyIds.binary_search(_enemyList[i]->getId());
+						_enemyList[i]->setPosition(enemyPositions[arrayLocation]);
+						_enemyList[i]->setVelocity(enemyVelocities[arrayLocation]);
 					}
 				}
 
@@ -143,13 +148,9 @@ void EnemySceneTest::createEnemies()
 {
 	this->_enemyList = array<Enemy*>();
 
-	for(unsigned int i = 0; i < 20; i++)
+	for(int i = 0; i < 20; i++)
 	{
-		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,RandomGenerator::getRandomInt(100, 1))));
-	}
-
-	for(unsigned int j = 0; j < _enemyList.size(); j++)
-	{
-		addComponent(_enemyList[j]);
+		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,i + (i * i))));
+		addComponent(_enemyList.getLast());
 	}
 }

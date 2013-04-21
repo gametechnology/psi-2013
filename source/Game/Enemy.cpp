@@ -477,7 +477,7 @@ void Enemy::wander()
 	int velY = rand()%20-10;
 	int velZ = rand()%20-10;
 
-	std::cout << this->_wanderTime << std::endl;
+	//std::cout << this->_wanderTime << std::endl;
 	if(this->_wanderTime >= 1000)
 	{
 		this->velocity.X +=velX * 0.1f;
