@@ -82,3 +82,95 @@ sf::Packet& operator >>(sf::Packet& in, irr::core::array<irr::core::vector3df>& 
 	}
 	return in;
 }
+
+sf::Packet& operator <<(sf::Packet& out, const irr::core::array<irr::core::vector2df>& in)
+{
+	out << in.size();
+	for(int i = 0; i < in.size(); i++)
+	{
+		out << in[i];
+	}
+	return out;
+}
+
+sf::Packet& operator >>(sf::Packet& in, irr::core::array<irr::core::vector2df>& out)
+{
+	int size;
+	in >> size;
+	for(int i = 0; i < size; i++)
+	{
+		irr::core::vector2df vector2;
+		in >> vector2;
+		out.push_back(vector2);
+	}
+	return in;
+}
+
+sf::Packet& operator <<(sf::Packet& out, const irr::core::array<bool>& in)
+{
+	out << in.size();
+	for(int i = 0; i < in.size(); i++)
+	{
+		out << in[i];
+	}
+	return out;
+}
+
+sf::Packet& operator >>(sf::Packet& in, irr::core::array<bool>& out)
+{
+	int size;
+	in >> size;
+	for(int i = 0; i < size; i++)
+	{
+		bool tempBool;
+		in >> tempBool;
+		out.push_back(tempBool);
+	}
+	return in;
+}
+
+sf::Packet& operator <<(sf::Packet& out, const irr::core::array<int>& in)
+{
+	out << in.size();
+	for(int i = 0; i < in.size(); i++)
+	{
+		out << in[i];
+	}
+	return out;
+}
+
+sf::Packet& operator >>(sf::Packet& in, irr::core::array<int>& out)
+{
+	int size;
+	in >> size;
+	for(int i = 0; i < size; i++)
+	{
+		int j;
+		in >> j;
+		out.push_back(j);
+	}
+	return in;
+}
+
+sf::Packet& operator <<(sf::Packet& out, const irr::core::array<float>& in)
+{
+	out << in.size();
+	for(int i = 0; i < in.size(); i++)
+	{
+		out << in[i];
+	}
+	return out;
+}
+
+sf::Packet& operator >>(sf::Packet& in, irr::core::array<float>& out)
+{
+	int size;
+	in >> size;
+	for(int i = 0; i < size; i++)
+	{
+		float j;
+		in >> j;
+		out.push_back(j);
+	}
+	return in;
+}
