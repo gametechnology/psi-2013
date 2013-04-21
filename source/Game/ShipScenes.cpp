@@ -13,7 +13,7 @@ void ShipScenes::init()
 	EnemyManager* manager;
 	manager = new EnemyManager();
 
-	addChild(new Player(this));
-	addChild(new Ship(this));
-	addChild(manager);
+	addComponent(new Player(this));
+	addComponent(new Ship(this));
+	addComponent(manager);
 }
