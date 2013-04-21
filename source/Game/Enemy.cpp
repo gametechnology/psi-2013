@@ -47,11 +47,11 @@ bool isWithinLoS(/*playership class*/)
 
 void Enemy::applySpeed()
 {
-	if (this->transform->velocity.getLength() > maxspeed_)
+	if (this->transform->velocity->getLength() > maxspeed_)
 	{
-		vector3df cappedvel = this->transform->velocity.normalize();
+		vector3df cappedvel = this->transform->velocity->normalize();
 		cappedvel *= (float)maxspeed_;
-		this->transform->velocity = cappedvel;
+		this->transform->velocity = &cappedvel;
 	}
 }
 
@@ -143,8 +143,8 @@ void Enemy::steering(irr::core::vector3df rotational)
 		newvelocity.Y = mData2[1];
 		newvelocity.Z = mData2[2];
 
-		this->setOriginalVelocity(this->transform->velocity);
-		this->transform->velocity = newvelocity;
+		this->setOriginalVelocity(*this->transform->velocity);
+		this->transform->velocity = &newvelocity;
 
 	    float magnitude = sqrt(pow(this->transform->velocity->X,2) + pow(this->transform->velocity->Y,2) + pow(this->transform->velocity->Z,2));
 		vector3df normalizedvelocity = vector3df((this->transform->velocity->X/magnitude),(this->transform->velocity->Y/magnitude),(this->transform->velocity->Z/magnitude));
@@ -154,7 +154,7 @@ void Enemy::steering(irr::core::vector3df rotational)
 	
 		if(normalizeoriginal == normalizedvelocity)
 		{
-			this->setOriginalVelocity(this->transform->velocity);
+			this->setOriginalVelocity(*this->transform->velocity);
 			return;
 		}
 
@@ -197,7 +197,7 @@ void Enemy::contactResolverA(Enemy* _input)
     vector3df componentNormalToBal = deltavelocity - componentThisToBal;
     vector3df thisMassComponent = componentThisToBal * (float)(((deltamass- 1) / (deltamass + 1)));
 	vector3df balMassComponent = componentThisToBal * (float)((2 * deltamass / (deltamass + 1)));
-    this->transform->velocity = componentNormalToBal + thisMassComponent + _input->getVelocity();
+    this->transform->velocity = &(componentNormalToBal + thisMassComponent + _input->getVelocity());
     _input->setVelocity(balMassComponent + _input->getVelocity());
 	this->setRadius(this->getRadius()*2 - this->getPosition().getDistanceFrom(_input->getPosition()));
 	_input->setRadius(this->getRadius());
@@ -210,7 +210,7 @@ vector3df Enemy::componentOnto(vector3df input, vector3df deltavelocity)
 
 void Enemy::contactResolverB()
 {
-	velocity *= -1;
+	*this->transform->velocity *= -1;
 }
 
 /*void Enemy::contactGenerator(Player* input)
@@ -247,7 +247,7 @@ void Enemy::setVisualWithPath(std::string path)
 
 void Enemy::setVelocity(vector3df input)
 {
-	this->transform->velocity = input;
+	this->transform->velocity = &input;
 }
 void Enemy::setPath(vector3df destination)
 {
@@ -255,14 +255,14 @@ void Enemy::setPath(vector3df destination)
 }
 void Enemy::setPosition(vector3df pos)
 {
-	position = pos;
+	this->transform->position = &pos;
 }
 void Enemy::setRotation(vector3df rotategoal)
 {
 	rotategoal.X = rotategoal.X * this->getAgility();
 	rotategoal.Y = rotategoal.Y * this->getAgility();
 	rotategoal.Z = rotategoal.Z * this->getAgility();
-	orientation = rotategoal;
+	this->transform->rotation = &rotategoal;
 }
 void Enemy::setMaxSpeed(unsigned int maxspeed)
 {
@@ -274,7 +274,7 @@ void Enemy::setAgility(unsigned int agility)
 }
 void Enemy::setAccelaration(vector3df acc)
 {
-	accelaration = acc;
+	this->transform->accelaration = acc;
 }
 void Enemy::setDamage(unsigned int damage)
 {
@@ -323,7 +323,7 @@ vector3df Enemy::getTarget()
 
 vector3df Enemy::getVelocity()
 {
-	return velocity;
+	return *this->transform->velocity;
 }
 
 vector3df Enemy::getPath()
@@ -332,11 +332,11 @@ vector3df Enemy::getPath()
 }
 vector3df Enemy::getPosition()
 {
-	return position;
+	return *this->transform->position;
 }
 vector3df Enemy::getRotation()
 {
-	return orientation;
+	return *this->transform->rotation;
 }
 unsigned int Enemy::getMaxSpeed()
 {
@@ -348,7 +348,7 @@ unsigned int Enemy::getAgility()
 }
 vector3df Enemy::getAccelaration()
 {
-	return accelaration;
+	return this->transform->accelaration;
 }
 unsigned int Enemy::getDamage()
 {
@@ -394,19 +394,19 @@ void Enemy::chase(vector3df target)
 	vector3df distancetoTarget = target - selfPos;
 	
 		//set state to chasing/attacking
-		this->transform->velocity = distancetoTarget;
+		*this->transform->velocity = distancetoTarget;
 		this->transform->velocity->normalize();
-		this->transform->velocity *= 0.005f;
-		this->transform->position += this->transform->velocity;	
+		*this->transform->velocity *= 0.005f;
+		*this->transform->position += *this->transform->velocity;	
 }
 void Enemy::flee(vector3df target)
 {
 	vector3df selfPos = this->getPosition();
 	vector3df distancetoTarget = selfPos-target;
-	this->transform->velocity = distancetoTarget;
+	*this->transform->velocity = distancetoTarget;
 	this->transform->velocity->normalize();
-	this->transform->velocity *= 0.005f;
-	this->transform->position += this->transform->velocity;
+	*this->transform->velocity *= 0.005f;
+	*this->transform->position += *this->transform->velocity;
 }
 
 void Enemy::wander()
@@ -418,11 +418,11 @@ void Enemy::wander()
 
 	if(this->_wanderTime >= 10000)
 	{
-		this->transform->velocity.X +=velX * 0.1f;
-		this->transform->velocity.Y +=velY * 0.1f;
-		this->transform->velocity.Z +=velZ * 0.1f;
-		this->transform->velocity.normalize();
-		this->transform->velocity *= 0.01f;
+		this->transform->velocity->X +=velX * 0.1f;
+		this->transform->velocity->Y +=velY * 0.1f;
+		this->transform->velocity->Z +=velZ * 0.1f;
+		this->transform->velocity->normalize();
+		*this->transform->velocity *= 0.01f;
 		//std::cout <<  "----- X: " << this->velocity.X << ", Y: "<< this->velocity.Y << ", Z: "<< this->velocity.Z;
 		this->_wanderTime = 0;
 	}
