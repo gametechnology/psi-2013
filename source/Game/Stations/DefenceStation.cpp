@@ -5,7 +5,7 @@
 DefenceStation::DefenceStation(Ship* ship):Station(ship)
 {
 	this->_stationType	= ST_DEFENCE;
-	this->_stations		= new map<StationType, DefenceStation::DefenceStats>();
+	this->_stations		= new irr::core::map<StationType, DefenceStation::DefenceStats>();
 	this->setStationDestroyed(false);
 	std::srand((unsigned int)time(NULL));
 }
@@ -22,7 +22,7 @@ void DefenceStation::DoCameraShake()
 
 void DefenceStation :: SubscribeStation( Station *s )
 {
-	this -> _stations -> insert( s -> GetStationType( ), DefenceStats( ) );
+	this ->_stations -> insert( s -> GetStationType( ), DefenceStats( ) );
 }
 
 void DefenceStation :: Damage( )
