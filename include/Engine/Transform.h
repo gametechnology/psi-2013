@@ -8,6 +8,7 @@ class Transform : public Component {
 public:
 	irr::core::vector3df* position;
 	irr::core::vector3df* rotation;
+	irr::core::vector3df* velocity;
 
 	Transform();
 	virtual ~Transform();
