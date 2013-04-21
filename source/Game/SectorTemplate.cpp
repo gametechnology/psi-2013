@@ -19,7 +19,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	// The player
 	//Get the player/Ship via Sectormanager
 	//_sectormanager->getShip()
-	_ship = new Ship(this);
+	_ship = new Ship();
 	this->_player = new Camera( _ship, vector3df(0, 20, -10) ); //TODO: Make the camera work correctly according to station
 	//this->_camera = Game::getSceneManager()->addCameraSceneNodeFPS();
 	// Creating wormholes
@@ -29,11 +29,11 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 }
 //This function isn't being overriden so it needs to be called in constructor
 void SectorTemplate::init(){
-	addComponent(_enemyManager);
-	addComponent( this->_skybox );
+	addChild(_enemyManager);
+	addChild( this->_skybox );
 	//addComponent( this->_player );
-	addComponent(_ship);
-	addComponent( this->_fog );
+	addChild(_ship);
+	addChild( this->_fog );
 }
 
 void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
@@ -48,7 +48,7 @@ void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
 		wormHole = new WormHole(this->parent, i, wormHolePos );
 		// Pushing to the wormhole list
 		this->_wormHoles.push_back( wormHole );
-		addComponent(wormHole);
+		addChild(wormHole);
 	}
 	int size = _wormHoles.size();
 			printf("[SectorTemplate] -=*[Size array %i ]*=- \n" , size);
@@ -78,11 +78,11 @@ void SectorTemplate::update(){
 	this->_ship->position
 	with
 	this->_camera->getPosition()*/
-	if( this->_ship->position.getLength() > _boundry ){
+	if( this->_ship->transform->position->getLength() > _boundry ){
 		printf("OUT OF BOUNDS!");
 	}
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
-		irr::core::vector3df deltaPos = _wormHoles[i]->position - this->_ship->position;
+		irr::core::vector3df deltaPos = *_wormHoles[i]->transform->position - *this->_ship->transform->position;
 		float collisionRadius = 50;
 		if( deltaPos.getLength() < collisionRadius ){			
 			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
