@@ -1,12 +1,11 @@
-#include "InputManager.h"
-
 #include <Irrlicht\irrlicht.h>
 #ifndef ENGINE
 #define ENGINE
 
 #include "Irrlicht\irrlicht.h"
-#include "Scene.h"
-#include "SceneManager.h"
+#include "Engine\Scene.h"
+#include "Engine\SceneManager.h"
+#include "Engine\InputManager.h"
 
 class Entity;
 
@@ -31,8 +30,7 @@ public:
 	static InputManager* input;
 
 protected:
-	std::vector<Scene*>* scenes;
-	//Input inputReceiver;
+	
 };
 
 #endif

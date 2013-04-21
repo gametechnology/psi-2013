@@ -11,9 +11,6 @@
 InputManager* Game::input;
 Game::Game()
 {
-	//Create a new stack to store all scenes
-	Game::scenes = new std::vector<Scene*>;
-
 	//Create input manager
 	Game::input = new InputManager();
 
@@ -43,13 +40,13 @@ Game::Game()
 void Game::run()
 {
 	//Main loop
-	while( Game :: device -> run( ) )
+	while(device -> run( ) )
 	{		
 		//Game :: getCurrentScene( ) -> update( );
 		game->update();
 
 		// Clearing the screen
-		Game :: driver -> beginScene(true, true, irr::video::SColor(255,100,101,140));
+		driver -> beginScene(true, true, irr::video::SColor(255,100,101,140));
 
 		//Irrlicht draw all
 		sceneManager->drawAll();
@@ -58,10 +55,12 @@ void Game::run()
 		game->draw();
 
 		//Irrlicht GUI
-		Game::guiEnv->drawAll();
+		guiEnv->drawAll();
 
 		// End the scene
-		Game::driver->endScene();
+		driver->endScene();
+
+		// Other shit
 		Game::input->startInputProcess();
 		Network::GetInstance()->DistributeReceivedPackets();
 	}
@@ -69,34 +68,7 @@ void Game::run()
 	Game::device->drop();
 }
 
-Scene* Game::getCurrentScene()
-{
-	return *scenes->end();
-}
-
-irr::scene::ISceneManager* Game::getSceneManager()
-{
-	return (*scenes->begin())->sceneManager;
-}
-
-void Game::addScene(Scene* scene)
-{
-	Game::scenes->push_back(scene);
-	scene->init();
-}
-
-void Game::removeScene()
-{
-	Game::scenes->pop_back();
-}
-
 Game::~Game()
 {
-	//delete messages;
-	//for (std::forward_list<Scene*>::iterator i = scenes->begin(); i != scenes->end(); ++i)
-	//{
-	//	delete (*i);
-	//}
-
-	delete scenes;
+	
 }
