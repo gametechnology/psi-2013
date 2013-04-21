@@ -1,7 +1,7 @@
 #include "Thruster.h"
 #include "Engine\Component.h"
 
-Thruster::Thruster(Composite * parent, vector3df position, vector3df initialDirection) : Component(parent)
+Thruster::Thruster(Composite * parent, irr::core::vector3df position, irr::core::vector3df initialDirection) : Component()
 {
 
 }
