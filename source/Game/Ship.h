@@ -10,6 +10,7 @@
 
 #include "Stations\Station.h"
 #include "Engine/Entity.h"
+#include "Engine/IrrlichtNode.h"
 #include "Player.h"
 #include "Engine/Input.h"
 
@@ -49,7 +50,7 @@ public:
 	void updateShipHealth();
 	void draw();
 
-	Ship(Composite * parent);
+	Ship();
 	virtual ~Ship(void);
 
 	Station *GetStation(StationType );	
@@ -57,7 +58,7 @@ public:
 	int getShipHealth();
 	bool getShipDestroyed();
 private:
-	stringw varToString(stringw str1, float var, stringw str2);
-	stringw varToString(stringw str1, float var);
+	irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::core::stringw str2);
+	irr::core::stringw Ship::varToString(irr::core::stringw str1, float var);
 };
 #endif

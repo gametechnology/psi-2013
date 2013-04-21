@@ -3,7 +3,7 @@
 #pragma once
 
 #include "..\Player.h"
-#include "../../../include/Engine/Component.h"
+#include "../../../include/Engine/Entity.h"
 #include "../../../include/Engine/Game.h"
 #include "Irrlicht/irrlicht.h"
 #ifdef ENTITY_SHIP
@@ -22,7 +22,7 @@ enum StationType
 	ST_NAVIGATION	= 4
 };
 
-class Station : public Composite
+class Station : public Entity
 {
 public:
 	Station( Ship *ship, int startHealth );

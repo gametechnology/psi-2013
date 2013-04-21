@@ -2,13 +2,16 @@
 #include "Stations/Station.h"
 #include "ShipMover.h"
 
-Ship::Ship( Composite * parent ) : Entity ( parent )
+Ship::Ship( ) : Entity ( )
 {
-	createNode("../assets/sydney.md2");
+	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/sydney.md2"));
+	addComponent(model);
+	// TODO Create a node
+	//createNode("../assets/sydney.md2");
 	ShipMover* mover = new ShipMover(this);
 	addComponent(mover);
 
-	this->env = Game :: device->getGUIEnvironment();
+	//this->env = Game :: device->getGUIEnvironment();
 
 	//TODO remove temp stuff
 	this->_defenceStation		= new DefenceStation( this );
@@ -23,11 +26,11 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	this->_weaponStation		-> Initialize();
 	this->_powerStation		-> Initialize();	//TODO: uncomment to show stations
 	
-	addComponent(_defenceStation);
-	addComponent(_helmStation);
-	addComponent(_navigationStation);
-	addComponent(_weaponStation);
-	addComponent(_powerStation);	//TODO: uncomment to show stations
+	addChild(_defenceStation);
+	addChild(_helmStation);
+	addChild(_navigationStation);
+	addChild(_weaponStation);
+	addChild(_powerStation);	//TODO: uncomment to show stations
 
 	this->updateShipHealth();
 	this->_shipDestroyed = false;
@@ -51,11 +54,11 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 
 Ship::~Ship(void)
 {
-	this->removeComponent(_defenceStation);
-	this->removeComponent(_helmStation);
-	this->removeComponent(_navigationStation);
-	this->removeComponent(_weaponStation);
-	this->removeComponent(_powerStation);
+	this->removeChild(_defenceStation);
+	this->removeChild(_helmStation);
+	this->removeChild(_navigationStation);
+	this->removeChild(_weaponStation);
+	this->removeChild(_powerStation);
 }
 
 Station *Ship :: GetStation( StationType s )
@@ -83,13 +86,13 @@ Station *Ship :: GetStation( StationType s )
 	return NULL;
 }
 
-stringw Ship::varToString(stringw str1, float var){
+irr::core::stringw Ship::varToString(irr::core::stringw str1, float var){
 	stringw str = L"";
 	str += str1;
 	str += (int)var;	
 	return str;
 }
-stringw Ship::varToString(stringw str1, float var, stringw str2){
+irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::core::stringw str2){
 	stringw str = L"";
 	str += str1;
 	str += (int)var;

@@ -4,15 +4,15 @@
 #include "../HealthBar.h"
 
 
-Station :: Station( Ship *ship, int startHealth ) : Composite(ship)
+Station :: Station( Ship *ship, int startHealth ) : Entity()
 {
-	driver = Game::driver;
+	driver = this->game->driver;
 	this ->	_ship	= ship;
 	this -> _health = startHealth;
 	//this -> _switchTime = 4.0f;
 }
 
-Station :: Station( Ship * ship ) : Composite(ship)
+Station :: Station( Ship * ship ) : Entity()
 {
 	this -> _ship   = ship;
 	this -> _totalHealth = 50;
@@ -55,7 +55,9 @@ bool Station::IsStunned()
 
 void Station::update()
 {
-	Component::update();
+	// NOTE Component update goes automatic
+	//Component::update();
+
 	updateHealth();
 	//Update Stun Time
 	//Update player on station time	
