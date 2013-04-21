@@ -23,8 +23,8 @@ class Shipmap : public Entity
 	video::ITexture* icon_engine;
 
 	float iconRadius, duration, savedPosX, savedPosY, playerSpeed;
-	rect<s32> *boundingBoxes[5];
-	rect<s32> *playerBox;
+	irr::core::rect<s32> *boundingBoxes[5];
+	irr::core::rect<s32> *playerBox;
 	u32 now, then;
 
 	bool isMoving, isIntersecting, onStation, blockedE, onOccupiedStation, stationOccupied[5];
