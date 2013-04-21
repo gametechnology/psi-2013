@@ -39,7 +39,7 @@ void GalaxyMap::draw()
 			{
 				//if ((*i)->explored && (*j)->explored)
 				//{
-					game->driver->draw2DLine(irr::core::vector2d<irr::s32>((int)((*i)->transform->position.X), (int)((*i)->transform->position.Y)), core::vector2d<irr::s32>((int)((*j)->transform->position.X), (int)((*j)->transform->position.Y)));
+					game->driver->draw2DLine(irr::core::vector2d<irr::s32>((int)((*i)->transform->position->X), (int)((*i)->transform->position->Y)), core::vector2d<irr::s32>((int)((*j)->transform->position->X), (int)((*j)->transform->position->Y)));
 				//}
 			}
 		//}
@@ -53,7 +53,7 @@ void GalaxyMap::draw()
 		//if ((*i)->explored)
 		//{
 			(*i)->draw();
-			font->draw(irr::core::stringw((*i)->name.c_str()), core::rect<s32>((int)((*i)->transform->position.X), (int)((*i)->transform->position.Y - (1.5f*radiusSector)), 300, 50), video::SColor(255,255,255,255));
+			font->draw(irr::core::stringw((*i)->name.c_str()), core::rect<s32>((int)((*i)->transform->position->X), (int)((*i)->transform->position->Y - (1.5f*radiusSector)), 300, 50), video::SColor(255,255,255,255));
 		//}
 	}
 
