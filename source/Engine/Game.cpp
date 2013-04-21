@@ -34,6 +34,10 @@ Game::Game()
 
 	// Create the topmost node
 	game = new Entity();
+	game->addComponent(sceneManager = new SceneManager());
+
+	// Then initialize it
+	game->init();
 }
 
 void Game::run()
@@ -48,7 +52,6 @@ void Game::run()
 		Game :: driver -> beginScene(true, true, irr::video::SColor(255,100,101,140));
 
 		//Irrlicht draw all
-		//(*Game::scenes->begin())->sceneManager->drawAll();
 		sceneManager->drawAll();
 
 		//Game engine draw

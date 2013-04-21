@@ -88,6 +88,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\Engine\Camera.h" />
+    <ClInclude Include="..\..\include\Engine\CameraMover.h" />
     <ClInclude Include="..\..\include\Engine\Component.h" />
     <ClInclude Include="..\..\include\Engine\Composite.h" />
     <ClInclude Include="..\..\include\Engine\Entity.h" />

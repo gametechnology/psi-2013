@@ -1,11 +1,18 @@
 #include "Engine\SceneManager.h"
 
-SceneManager::SceneManager():Component(){
+SceneManager::SceneManager() : Component() {
 	//sceneList = new std::vector<Scene*>();
 }
 
 void SceneManager::init(){
 	//add scenes here
+}
+
+void SceneManager::drawAll() {
+	for(int i = 0; i < nameScenes.size(); i++) {
+		if (nameScenes[i].scene->enabled)
+			nameScenes[i].scene->sceneManager->drawAll();
+	}
 }
 
 void SceneManager::addScene(char* name,Scene* scene){
@@ -38,6 +45,7 @@ void SceneManager::activateScene(char* name){
 		scene->enable();
 	}
 }
+
 //Deactivates Scene so it won't update & won't be drawed
 void SceneManager::deactivateScene(char* name){
 	if (exists(name)) {
@@ -46,6 +54,7 @@ void SceneManager::deactivateScene(char* name){
 		scene->disable();
 	}
 }
+
 //Returns The NameScene of a scene, So you'll can get the name & scene object
 NameScene SceneManager::getNameScene(char* name){
 	if (exists(name)) {

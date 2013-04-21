@@ -48,7 +48,7 @@ int main()
 	
 	//Game::client->setupClient("145.92.13.97");
 	//Need to create an Scene first or else it will crash, because I first delete then create scenes in SectorManager
-	Game::addScene(new MainMenuScene());
+	game->addScene(new MainMenuScene());
 	// Create sector manager that creates all the Scenes/Sectors
 	//SectorManager sectorManager(galaxyMap);
 	//sectorManager.init();

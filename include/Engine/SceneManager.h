@@ -20,6 +20,7 @@ public:
 	SceneManager();
 	~SceneManager(void);
 	void init();
+	void drawAll();
 	void addScene(char* name,Scene* scene);
 	void removeScene(char* name);
 	void activateScene(char* name);
