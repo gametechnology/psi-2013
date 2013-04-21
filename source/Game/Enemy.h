@@ -14,6 +14,8 @@ using namespace core;
 class Enemy : public Entity
 {
 public:
+	static int newEnemyId;
+
 	Enemy(void);
 	Enemy(ISceneManager* smgr, IMesh* mesh,				// using default parameters allows 
 		vector3df position = vector3df(0,0,0),			// maximum flexibility with the constructor but everything left 
@@ -76,6 +78,7 @@ public:
 	void wander();
 	int getHealth();
 	int getMaxHealth();
+	int getId();
 
 	void updateHealth();
 	virtual void update();
@@ -107,6 +110,8 @@ private:
 	vector3df _target;
 	int _wanderTime;
 	bool isAlive;
+
+	int _id;
 
 	int healthTimer;
 	vector3df componentOnto(vector3df input, vector3df deltavelocity);

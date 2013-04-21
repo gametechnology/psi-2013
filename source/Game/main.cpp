@@ -25,12 +25,12 @@ int main()
 {
 	// Create engine
 	Game game;
-
+	//Enemy::newEnemyId = 0;
 	
 	/////////////////////////////////////////
 	//temporary until main menu works
 	//Server 
-	//Network::GetInstance()->InitializeServer(16);
+	Network::GetInstance()->InitializeServer(16);
 	
 	//Client 
 	//Network::GetInstance()->InitializeClient("192.168.12.89");
@@ -47,7 +47,7 @@ int main()
 	
 	//Game::client->setupClient("145.92.13.97");
 	//Need to create an Scene first or else it will crash, because I first delete then create scenes in SectorManager
-	Game::addScene(new MainMenuScene());
+	//Game::addScene(new MainMenuScene());
 	// Create sector manager that creates all the Scenes/Sectors
 	//SectorManager sectorManager(galaxyMap);
 	//sectorManager.init();

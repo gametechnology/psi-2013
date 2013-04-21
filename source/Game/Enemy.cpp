@@ -2,11 +2,19 @@
 #include <string>
 #include <iostream>
 
+int Enemy::newEnemyId;
+
 Enemy::Enemy(void): Entity(parent)
 {
 	this->_wanderTime = 0;
 	this->healthTimer = 0;
 	this->isAlive = true;
+	this->_id = this->newEnemyId++;
+}
+
+int Enemy::getId()
+{
+	return this->_id;
 }
 
 void Enemy::pathFinding()

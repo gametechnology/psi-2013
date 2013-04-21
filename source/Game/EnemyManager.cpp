@@ -9,7 +9,6 @@
 
 EnemyManager::EnemyManager(void) 
 {
-	createEnemies();
 }
 
 EnemyManager::~EnemyManager(void)
