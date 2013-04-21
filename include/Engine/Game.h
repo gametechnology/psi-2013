@@ -1,38 +1,38 @@
-#include "Scene.h"
 #include "InputManager.h"
 
 #include <Irrlicht\irrlicht.h>
-#include <forward_list>
-
 #ifndef ENGINE
 #define ENGINE
 
-using namespace irr;
-using namespace core;
-using namespace video;
-using namespace scene;
-using namespace gui;
+#include "Irrlicht\irrlicht.h"
+#include "Scene.h"
+#include "SceneManager.h"
 
-class Game
-{
+class Entity;
+
+class Game {
 public:
 	Game();
 	~Game();
 	
-	static void run();
+	void run();
 
-	static Scene* getCurrentScene();
-	static ISceneManager* getSceneManager();
-	static void addScene(Scene* defaultScene);
-	static void removeScene();
+	Scene* getCurrentScene();
+	irr::scene::ISceneManager* getSceneManager();
+	void addScene(Scene* defaultScene);
+	void removeScene();
 
-	static IrrlichtDevice* device;
-	static IVideoDriver* driver;
+	irr::IrrlichtDevice* device;
+	irr::video::IVideoDriver* driver;
+	irr::gui::IGUIEnvironment* guiEnv;
+
+	Entity* game;
+	SceneManager* sceneManager;
 	static InputManager* input;
 
-	static IGUIEnvironment* guiEnv;
 protected:
-	static std::forward_list<Scene*>* scenes; 
+	std::vector<Scene*>* scenes;
+	//Input inputReceiver;
 };
 
 #endif

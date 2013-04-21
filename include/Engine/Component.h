@@ -1,22 +1,30 @@
 #ifndef COMPONENT
 #define COMPONENT
+#pragma once
 
-class Composite;
+#include "Composite.h"
 
-class Component
-{
+class Entity;
+class Scene;
+class Game;
+
+class Component : public Composite {
 public:
-	Component(Composite* parent);
-	virtual ~Component() = 0;
+	Component();
+	virtual ~Component();
 
-	virtual void init() {};
-	virtual void update() {};
-	virtual void draw() {};
-	virtual void handleMessage(unsigned int message, void* data = 0) { };
-protected:
-	Composite* parent;
+	Entity* entity;
+
+	Game* getGame();
+	Scene* getScene();
+
+	virtual void onAdd();
+	virtual void init();
+	virtual void update();
+	virtual void draw();
+
+	virtual void handleMessage(unsigned int message);
 };
 
 
 #endif
-

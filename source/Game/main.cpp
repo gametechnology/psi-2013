@@ -25,7 +25,7 @@ using namespace gui;
 int main()
 {
 	// Create engine
-	Game game;
+	Game* game = new Game();
 
 	
 	/////////////////////////////////////////
@@ -39,6 +39,7 @@ int main()
 
 	// Create test scene
 	//Game::addScene(new MainMenuScene());
+	game->addScene(new MainMenuScene());
 
 	//MapGenerator mapGen;
 	//mapGen.init(20, 2, 5);
@@ -53,7 +54,7 @@ int main()
 	//sectorManager.init();
 
 	// Start the main loop
-	Game::run();
+	game->run();
 
 	// Debug for memory leaks
 	#ifdef _DEBUG

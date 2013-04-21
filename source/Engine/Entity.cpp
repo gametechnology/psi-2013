@@ -1,60 +1,31 @@
 #include <Engine\Entity.h>
-#include <Engine\Game.h>
+#include "Engine\Component.h"
+#include "Engine\Transform.h"
 
-
-Entity::Entity(Composite* parent):Composite(parent)
-{
-	this->mass = 1;
-	node = NULL;
+Entity::Entity() : Composite() {
+	transform = new Transform();
+	addComponent(transform);
 }
 
-void Entity::update()
-{
-	Composite::update();
-
-	this->angularVelocity += this->angularAccelaration;
-	this->orientation += this->angularVelocity;
-
-	this->accelaration = (1 / this->mass) * this->force;
-	this->velocity += this->accelaration;
-	this->position += this->velocity;
-	if (node != NULL)
-	{
-		this->node->setPosition(this->position);
-		this->node->setRotation(this->orientation);
-	}
+void Entity::update() {
+	
 }
 
-void Entity::draw()
-{
-	Composite::draw();
-
-	if (node == NULL) return;
-	if (!this->visible)
-	{
-		this->node->setVisible(false);
-		return;
-	}
-	this->node->setVisible(true);
-
-	this->node->render();
+void Entity::onAdd() {
+	if (parent != NULL && parent->initialized)
+		handleMessage(1); // Calling init if adding something while the game already has been initialized
 }
 
-void Entity::createNode(std::string modelPath)
-{
-	// Get the mesh
-	irr::scene::IAnimatedMesh* mesh = Game::getSceneManager()->getMesh(modelPath.c_str());
+void Entity::addComponent(Component* component) {
+	components.push_back(component);
+	component->entity = this;
 
-	// Create model entity
-	this->node =  Game::getSceneManager()->addMeshSceneNode( mesh );
-	this->node->setMaterialFlag(EMF_FOG_ENABLE, true);
+	component->onAdd();
 }
 
-Entity::~Entity()
-{
-	Composite::~Composite();
-	if (node != NULL)
-	{
-		node->drop();
-	}
+void Entity::addChild(Entity* child) {
+	children.push_back(child);
+	child->parent = this;
+
+	child->onAdd();
 }

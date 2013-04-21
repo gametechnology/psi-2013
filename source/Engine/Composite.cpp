@@ -1,51 +1,41 @@
 #include <Engine\Composite.h>
 
-Composite::Composite(Composite* parent):Component(parent)
-{
+Composite::Composite() {
+
 }
 
-
-Composite::~Composite()
-{
-	for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
-	{
-		delete (*i);
-	}
-	components.clear();
+Composite::~Composite() {
+	
 }
 
-void Composite::handleMessage(unsigned int message, void* data)
-{
-	for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
-	{
-		(*i)->handleMessage(message, data);
-	}
+void Composite::onAdd() {
+
 }
 
-void Composite::update()
-{
-	for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
-	{
-		(*i)->update();
-	}
+void Composite::init() {
+	initialized = true;
 }
 
-void Composite::draw()
-{
-	for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
-	{
-		(*i)->draw();
-	}
+void Composite::update() {
+	
 }
 
-void Composite::addComponent(Component* component)
-{
-	components.push_back(component);
+void Composite::lateUpdate() {
+
 }
 
-void Composite::removeComponent(Component* component)
-{
-	components.remove(component);
-	delete component;
+void Composite::draw() {
+	
 }
 
+void Composite::handleMessage(unsigned int message) {
+	
+}
+
+void Composite::disable() {
+	enabled = false;
+}
+
+void Composite::enable() {
+	enabled = true;
+}

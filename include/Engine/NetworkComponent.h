@@ -1,16 +1,16 @@
 #ifndef NETWORKCOMPONENT
 #define NETWORKCOMPONENT
 
-#include "Component.h"
-#include "Composite.h"
+#include "Engine\Component.h"
+#include "Engine\Composite.h"
+#include "Irrlicht\irrlicht.h"
 
 #include <list>
 #include <Irrlicht\irrlicht.h>
 #include <Enet\enet.h>
 #include <string>
 
-class NetworkComponent : public Component
-{
+class NetworkComponent : public Component {
 private:
 	std::list<Component*> components;
 	std::list<irr::core::vector3df*> vectors;
