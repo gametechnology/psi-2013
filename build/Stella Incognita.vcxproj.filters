@@ -249,18 +249,31 @@
     <ClCompile Include="..\source\Game\BasicMoverComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\ShipMover.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\HealthBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\assets\sydney.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="..\assets\sydney.md2">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\source\Game\Messages.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\source\Game\Enemy.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyAsteroid.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyDrone.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyFighter.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\GalaxyMap.h">
+      <Filter>Header files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemySceneTest.h">
+      <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Player.h">
       <Filter>Header Files</Filter>
@@ -352,9 +365,6 @@
     <ClInclude Include="..\source\Game\EnemySceneTest.h">
       <Filter>Header Files\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\HelmSceneTest.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\MainMenuScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
@@ -397,5 +407,51 @@
     <ClInclude Include="..\source\Game\BasicMoverComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\ShipMover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HealthBar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\NetworkInterface.h">
+      <Filter>Header files\Network</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\assets\Textures\Wormholes\WormHole.png">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\assets\sydney.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\assets\sydney.md2">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{961b4525-3573-4273-bb34-61d45d2d66a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{20dc75bb-46e3-42cc-8a2f-aaa5b9740732}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{b1992caa-3022-4feb-829e-c13de5e6f875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\Stations">
+      <UniqueIdentifier>{140973d4-6346-44ca-88f8-38fa5828ef90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Stations">
+      <UniqueIdentifier>{82439612-10b6-4fad-b8f2-bd84c38f31aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Sector">
+      <UniqueIdentifier>{b4669092-c79f-4a8d-8d8d-b968e3886c94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\Sector">
+      <UniqueIdentifier>{3e3a723b-5b4f-41e3-8d8d-d030934b7e86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header files\Network">
+      <UniqueIdentifier>{5ee92249-8d63-4246-b8af-bbaee9d76d57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

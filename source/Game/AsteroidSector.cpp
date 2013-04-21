@@ -6,11 +6,11 @@ AsteroidSector::AsteroidSector(SectorManager* sectormanager, const io::path & sk
 	//init();
 }
 void AsteroidSector::init(){
-	for(int i=0;i<1000;i++){
+	for(int i = 0; i < 1000; i++){
 		//irr::scene::IMeshSceneNode* cube = Game::getSceneManager()->addCubeSceneNode(2,0,-1,irr::core::vector3df((rand()%500)-250,(rand()%250)-125,(rand()%500)-250),irr::core::vector3df(rand()%90,rand()%90,rand()%90));
 		AstroidPlaceholder* ass = new AstroidPlaceholder(this->parent);
-		ass->position = irr::core::vector3df((rand()%1500)-750,(rand()%1500)-750,(rand()%1500)-750);
-		ass->orientation = irr::core::vector3df(rand()%90,rand()%90,rand()%90);
+		ass->position = irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
+		ass->orientation = irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90));
 		addComponent(ass);
 	}
 }
@@ -30,10 +30,10 @@ AsteroidSector::~AsteroidSector() {
 
 
 AstroidPlaceholder::AstroidPlaceholder(Composite* parent):Entity(parent) {
-	this->node = Game::getSceneManager()->addSphereSceneNode(10,8,0,-1);
+	this->node = Game::getSceneManager()->addSphereSceneNode(10, 8, 0, -1);
 	this->node->setMaterialFlag(EMF_LIGHTING, false);
 	this->node->setMaterialFlag(EMF_FOG_ENABLE, true);
-	this->node->setMaterialTexture(0,Game::driver->getTexture("../assets/Textures/SkyBoxes/skybox01.png"));
+	this->node->setMaterialTexture(0, Game::driver->getTexture("../assets/Textures/SkyBoxes/skybox01.png"));
 }
 
 AstroidPlaceholder::~AstroidPlaceholder() {

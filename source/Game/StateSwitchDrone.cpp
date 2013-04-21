@@ -28,6 +28,8 @@ void StateSwitchDrone::handleOffensive()
 void StateSwitchDrone::handleDefensive()
 {
 	StateSwitch::handleDefensive();
+	if(!StateSwitchDrone::getParent()->inRangeList.empty())
+		StateSwitchDrone::getParent()->flee(StateSwitchDrone::getParent()->inRangeList.getLast()->position);
 }
 
 void StateSwitchDrone::handleFleeing()

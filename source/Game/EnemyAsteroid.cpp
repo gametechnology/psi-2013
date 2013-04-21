@@ -11,6 +11,8 @@ EnemyAsteroid::EnemyAsteroid(irr::core::vector3df position, vector3df speed): En
 	this->setMaxSpeed(100);	
 	this->setAccelaration(vector3df(0,0,0));	
 	this->setRadius(1);
+	this->setOriginalRadius(1);
+	this->setOuterRadius(sqrt((this->getRadius()*this->getRadius())+(this->getRadius()*this->getRadius())));
 	this->setVelocity(speed);
 }
 

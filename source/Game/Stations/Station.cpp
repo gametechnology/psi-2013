@@ -1,9 +1,10 @@
 #include "Station.h"
 #include "PowerStation.h"
 #include "DefenceStation.h"
+#include "../HealthBar.h"
 
 
-Station :: Station( Ship *ship, int startHealth ) : Component(ship)
+Station :: Station( Ship *ship, int startHealth ) : Composite(ship)
 {
 	driver = Game::driver;
 	this ->	_ship	= ship;
@@ -11,7 +12,7 @@ Station :: Station( Ship *ship, int startHealth ) : Component(ship)
 	//this -> _switchTime = 4.0f;
 }
 
-Station :: Station( Ship * ship ) : Component(ship)
+Station :: Station( Ship * ship ) : Composite(ship)
 {
 	this -> _ship   = ship;
 	this -> _totalHealth = 50;
@@ -45,7 +46,7 @@ StationType Station :: GetStationType( )
 
 bool Station::IsStunned()
 {
-	time_t *t;
+	time_t *t = new time_t();
 	time( t );
 
 	//return true if the difference between the current time and the time the station was stunned is less than the defined stun time
