@@ -5,13 +5,14 @@
 #include "Engine/Game.h"
 #include "ArrayList.h"
 #include "Player.h"
+#include "NetworkInterface.h"
 
 using namespace irr;
 using namespace scene;
 using namespace video;
 using namespace core;
 
-class Enemy : public Entity
+class Enemy : public Entity, public INetworkListener
 {
 public:
 	static int newEnemyId;
@@ -31,6 +32,8 @@ public:
 	bool isWithinLoS(/*playership class*/);
 
 	array<Entity*> inRangeList;
+
+	void HandleNetworkMessage(NetworkPacket packet);
 
 	void setVisual(IMesh* visual, ISceneManager* smgr);	// visuals are the only component which do not have a get method
 	void setVisualWithPath(std::string);
@@ -86,7 +89,6 @@ public:
 	
 
 protected:
-
 
 private:
 	

@@ -18,6 +18,7 @@ enum PacketType
 	CLIENT_QUIT,
 	ClIENT_IN_LOBBY,
 	START_GAME,
+	ENEMY,
 	//Add new PacketTypes above
 	LAST_TYPE
 };
@@ -31,6 +32,7 @@ inline char* getPacketTypeName(PacketType type)
 		case CLIENT_QUIT: { return "CLIENT_QUIT"; break; }
 		case ClIENT_IN_LOBBY: { return "ClIENT_IN_LOBBY"; break; }
 		case START_GAME: { return "START_GAME"; break; }
+		case ENEMY: { return "ENEMY"; break; }
 		default: { throw "Tried to get string from non-existing packet type"; }
 	}
 }

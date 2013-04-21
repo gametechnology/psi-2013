@@ -3,6 +3,7 @@
 #include <iostream>
 
 int Enemy::newEnemyId;
+NetworkPacket myPacket(ENEMY);
 
 Enemy::Enemy(void): Entity(parent)
 {
@@ -10,6 +11,25 @@ Enemy::Enemy(void): Entity(parent)
 	this->healthTimer = 0;
 	this->isAlive = true;
 	this->_id = this->newEnemyId++;
+
+	array<vector3df> vector3Array = array<vector3df>();
+	vector3Array.push_back(vector3df(5,5,2));
+	myPacket << vector3Array;
+	if(!Network::GetInstance()->IsServer())
+	{
+		Network::GetInstance()->SendPacket(myPacket);
+	}
+	Network::GetInstance()->AddListener(PacketType::ENEMY, this);
+}
+
+void Enemy::HandleNetworkMessage(NetworkPacket packet)
+{
+	if(packet.GetType() == PacketType::ENEMY)
+	{
+		array<vector3df> vector3Array = array<vector3df>();
+		packet >> vector3Array;
+		std::cout << vector3Array.size() << vector3Array[0].X << vector3Array[0].Y << vector3Array[0].Z << std::endl;
+	}
 }
 
 int Enemy::getId()
