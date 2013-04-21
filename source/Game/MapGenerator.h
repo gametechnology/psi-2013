@@ -34,7 +34,7 @@ private:
 	int maxWormholes;
 
 	typeSector getRandomType();
-	vector3df randomPosition();
+	irr::core::vector3df randomPosition();
 	bool collisionLineBetweenSectors(MapSector* sector1, MapSector* sector2);
 	std::string nameGenerator(typeSector type);
 	int dijkstra();

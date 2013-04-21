@@ -85,11 +85,11 @@ GalaxyMap* MapGenerator::createNewMap(float width, float height, float radiusSec
 void MapGenerator::createSectors()
 {
 	MapSector* homeBlue = new MapSector(map, nameGenerator(HOME_BLUE), HOME_BLUE,map->radiusSector);
-	homeBlue->position.set(randomPosition());
+	homeBlue->transform->position->set(randomPosition());
 	map->sectors.push_back(homeBlue);
 
 	MapSector* homeRed = new MapSector(map, nameGenerator(HOME_RED), HOME_RED,map->radiusSector);
-	homeRed->position.set(randomPosition());
+	homeRed->transform->position->set(randomPosition());
 	map->sectors.push_back(homeRed);
 	
 	typeSector j;
@@ -97,7 +97,7 @@ void MapGenerator::createSectors()
 	{
 		j = getRandomType();
 		MapSector* sector = new MapSector(map, nameGenerator(j), j, map->radiusSector);
-		sector->position.set(randomPosition());
+		sector->transform->position->set(randomPosition());
 		map->sectors.push_back(sector);
 	}
 }
@@ -113,13 +113,13 @@ typeSector MapGenerator::getRandomType()
 	return EMPTY;
 }
 
-vector3df MapGenerator::randomPosition()
+irr::core::vector3df MapGenerator::randomPosition()
 {
-	vector3df randPos(map->radiusSector + rand() % ((int)(map->widthMap - (map->radiusSector * 2))), map->radiusSector + rand() % ((int)(map->heightMap - (map->radiusSector * 2))), 0);
+	irr::core::vector3df randPos(map->radiusSector + rand() % ((int)(map->widthMap - (map->radiusSector * 2))), map->radiusSector + rand() % ((int)(map->heightMap - (map->radiusSector * 2))), 0);
 
 	for(std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
 	{
-		if ((*i)->position.getDistanceFrom(randPos) < map->radiusSector * 2)
+		if ((*i)->transform->position->getDistanceFrom(randPos) < map->radiusSector * 2)
 		{
 			randPos = randomPosition();
 		}
@@ -208,10 +208,10 @@ void MapGenerator::createConnections()
 bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* sector2)
 {
 	float ax, ay, bx, by, cx, cy, cr;
-	ax = sector1->position.X;
-	ay = sector1->position.Y;
-	bx = sector2->position.X;
-	by = sector2->position.Y;
+	ax = sector1->transform->position->X;
+	ay = sector1->transform->position->Y;
+	bx = sector2->transform->position->X;
+	by = sector2->transform->position->Y;
 	cr = map->radiusSector;
 
 	for(std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
@@ -220,8 +220,8 @@ bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* se
 		{
 			continue;
 		}
-		cx = (*i)->position.X;
-		cy = (*i)->position.Y;
+		cx = (*i)->transform->position->X;
+		cy = (*i)->transform->position->Y;
 
 		double vx = bx - ax;
 		double vy = by - ay;
