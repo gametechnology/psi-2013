@@ -3,23 +3,19 @@
 #include "DefenceStation.h"
 
 
-Station :: Station( Ship *ship, int startHealth ) : Component(ship)
+Station :: Station( Ship *ship, int startHealth ) : Component( ship )
 {
-	driver = Game::driver;
+	driver = Game :: driver;
 	this ->	_ship	= ship;
-	this -> _health = startHealth;
-	//this -> _switchTime = 4.0f;
+	
 }
 
 Station :: Station( Ship * ship ) : Component(ship)
 {
-	this -> _ship   = ship;
-	this -> _totalHealth = 50;
-	this -> _health = this->_totalHealth;
-	this -> _tempTimer = 0;
+	this -> _ship   = ship;	
 }
 
-Station :: ~Station(void)
+Station :: ~Station( void )
 {
 	//delete _ship;
 	//delete _player;
@@ -28,9 +24,17 @@ Station :: ~Station(void)
 	//delete _stunTime;
 }
 
-bool Station::HasPlayer()
+bool Station :: HasPlayer( )
 {
-	return ( this -> _player != NULL );
+	return this -> _playerID > -1;
+}
+
+//when we receive a packet, we only want to update the 
+bool Station :: IsPlayerPacketSender( NetworkPacket *p )
+{
+	int playerID;
+	p -> GetPacket( ) >> playerID;
+	return HasPlayer( ) || playerID != this -> _playerID;
 }
 
 bool Station::SwitchTimePassed()
@@ -43,37 +47,12 @@ StationType Station :: GetStationType( )
 	return this -> _stationType;
 }
 
-bool Station::IsStunned()
+void Station :: update( )
 {
-	time_t *t;
-	time( t );
-
-	//return true if the difference between the current time and the time the station was stunned is less than the defined stun time
-	return difftime( *_stunTime, *t ) <= STUN_TIME;
-}
-
-void Station::update()
-{
-	Component::update();
-	updateHealth();
+	Component :: update( );
+	
 	//Update Stun Time
 	//Update player on station time	
-}
-
-void Station :: OnDamage( )
-{	
-	//set the stun time to the current time (the time when it was stunned) 
-	time( _stunTime );
-}
-
-bool Station::HasPower( )
-{
-	return true;//this->_ship->_powerStation->GetPower(this->_stationType) > 0;
-}
-
-bool Station::HasArmor( )
-{
-	return true;//this->_ship->_defenceStation->GetArmor(this->_stationType) > 0;
 }
 
 bool Station::getStationDestroyed( )
@@ -81,65 +60,86 @@ bool Station::getStationDestroyed( )
 	return this -> _stationDestroyed;
 }
 
-void Station::setStationDestroyed(bool _destroyed)
+void Station :: setStationDestroyed(bool _destroyed)
 {
 	this -> _stationDestroyed = _destroyed;
 }
 
-void Station::updateHealth()
+/**
+	when a player enters a station, that station will be initialized and the updated
+*/
+void Station :: Initialize( int playerID )
 {
-	if(!this->getStationDestroyed())
-	{
-		this->_tempTimer++;
-		if(this->_tempTimer >= 300)
-		{
-			if(rand()%10 > 5)
-			{
-				increaseHealth(10);
-			}
-			else
-			{
-				decreaseHealth(10);
-			}
-			this->_tempTimer=0;
-		}
-	}
-}
-int Station :: getHealth()
-{
-	return this -> _health;
-}
-void Station::decreaseHealth(int health)
-{
-	this->_health -= health;
-	if(this->_health <= 0)
-	{
-		this->_health = 0;
-		repairStation(this->_totalHealth/2);
-	}
-}
-void Station::increaseHealth(int health)
-{
-	this->_health += health;
-	if(this->_health >= this->_totalHealth)
-	{
-		this->_health = this->_totalHealth;
-	}
-}
-
-void Station::repairStation(int health)
-{
-	this->setStationDestroyed(false);
-	this->_health = health;
-}
-
-void Station :: Initialize( )
-{
-	this -> _player = NULL;
-	this -> _playerOnStationTime = 0;
-	this -> _stunTime = 0;
-	this -> _switchTime = 0;
-
-	if ( this -> _stationType != ST_POWER )	this -> _ship -> _powerStation		-> SubscribeStation( this );
+	this -> _switchTime = new time_t( );
+	this -> _playerID					= playerID;		 
+	
+	if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
 	if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
+
+	//subscribe to the Networking protocol, that we want to subscribe to the player status changes packet type
+	SubscribeForPacketType( PacketType :: CLIENT_STATION_PLAYER_STATUS_CHANGED );
+
+	OnPlayerEntersOrLeaves( );
 }
+
+
+void Station :: DeInitialize( )
+{
+	this -> _playerID					= -1;
+
+	OnPlayerEntersOrLeaves( );
+}
+
+void Station :: OnPlayerEntersOrLeaves( )
+{
+	
+}
+
+/**
+	Creates and returns a packet thast should be sent when a player enters the station
+*/
+NetworkPacket *Station :: PlayerEntersOrLeavesPacket( )
+{
+	//we create a new packet to store our data in.
+	sf :: Packet	packet	= sf :: Packet( );
+		
+	//then enter our information (player ID, station ID, ship ID and the time the player entered the ship)
+	packet << this -> _ship -> shipID << ( int ) this -> _stationType << this -> _playerID << this -> _switchTime;
+
+	//next, we create a network packet to store the packet inside.  
+	NetworkPacket	*np		= new NetworkPacket( PacketType :: CLIENT_STATION_PLAYER_STATUS_CHANGED, packet );
+
+	//and return it
+	return np;
+}
+
+bool Station :: IsPacketForThisStation( sf :: Packet p )
+{
+	int shipID;
+	int stationType;
+	p >> shipID >> stationType;
+
+	return stationType == ( int ) this -> _stationType && shipID == this -> _ship -> shipID;
+}
+
+void Station :: HandleNetworkMessage( NetworkPacket p )
+{
+	sf :: Packet packet = p.GetPacket( );
+
+	switch( p.GetPacketType( ) )
+	{
+	case PacketType :: CLIENT_STATION_PLAYER_STATUS_CHANGED:
+		//first, we are creating a temporary int for the stationID, because we need to remove it from the 
+		int stationID;
+		int shipID;
+		packet >> shipID >> stationID >> this -> _playerID;
+		packet >> ( int )( this -> _switchTime );
+		break;	
+	}
+}
+
+void Station :: SubscribeForPacketType( PacketType t )
+{
+	Network :: GetInstance( ) -> AddListener( t, this );
+}
+

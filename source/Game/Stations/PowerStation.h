@@ -34,7 +34,7 @@ public:
 	//shakes the camera whenever the station is hurt (aaaahh)
 	void DoCameraShake( );
 	
-	void Initialize();
+	void Initialize( int playerID );
 	void createUI();
 	void addImages();
 	void declareUIData();

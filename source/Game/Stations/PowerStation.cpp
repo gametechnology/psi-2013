@@ -156,9 +156,9 @@ private:
 };
 
 //Initializes the User Interface.
-void PowerStation::Initialize()
+void PowerStation :: Initialize( int playerID )
 {
-	Station :: Initialize( );
+	Station :: Initialize ( playerID );
 	
 	skin = env->getSkin( );
 	font = env->getFont( "../assets/Textures/Stations/PowerStation/fontcopperplategothicbold.png" );

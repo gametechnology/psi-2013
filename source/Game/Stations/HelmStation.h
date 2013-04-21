@@ -10,6 +10,8 @@ public:
 	HelmStation(Ship* ship);
 	~HelmStation(void);	
 	void DoCameraShake( );
+
+	virtual void HandleNetworkMessage( NetworkPacket packet ); // implement the interface method
 };
 
 #endif

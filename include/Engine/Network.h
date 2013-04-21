@@ -17,6 +17,12 @@ enum PacketType
 	SERVER_WELCOMES,
 	SERVER_REJECTS,
 
+	//when a player enters a ship, he will send a message containing all the information of the ship (the time player went in their, ship/station/PlayerID, etc.)
+	CLIENT_STATION_PLAYER_STATUS_CHANGED,
+		
+	CLIENT_HELM_STATION_USER_INPUT,
+	
+
 	//Add new PacketTypes above
 	LAST_TYPE
 };

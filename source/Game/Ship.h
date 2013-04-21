@@ -21,12 +21,15 @@ class WeaponStation;
 class Ship : public Entity
 {
 public:
+	int shipID;
+	
 	//Player *players;
 	DefenceStation		*_defenceStation;
 	HelmStation			*_helmStation;
 	NavigationStation	*_navigationStation;
 	PowerStation		*_powerStation;
 	WeaponStation		*_weaponStation;
+
 
 	//to test the ship health and station health
 	irr::gui::IGUIEnvironment *env;
