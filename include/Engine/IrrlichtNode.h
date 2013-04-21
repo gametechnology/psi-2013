@@ -6,13 +6,13 @@
 
 class IrrlichtNode : public Component {
 public:
-	IrrlichtNode(irr::io::path* modelPath);
+	IrrlichtNode(const irr::io::path& modelPath);
 	~IrrlichtNode();
 
 	void init();
 	void update();
 private:
-	irr::io::path* modelPath;
+	irr::io::path *modelPath;
 	irr::scene::ISceneNode* node;
 	void createNode();
 };

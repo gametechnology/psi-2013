@@ -4,8 +4,8 @@
 
 Ship::Ship( ) : Entity ( )
 {
-	//IrrlichtNode *model = new IrrlichtNode("../assets/sydney.md2");
-	//addComponent(new IrrlichtNode("../assets/sydney.md2"));
+	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/sydney.md2"));
+	addComponent(model);
 	// TODO Create a node
 	//createNode("../assets/sydney.md2");
 	ShipMover* mover = new ShipMover(this);
