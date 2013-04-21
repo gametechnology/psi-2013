@@ -1,34 +1,37 @@
 #include "Laser.h"
-#include <iostream>
+#include "Engine\IrrlichtNode.h"
 
-Laser::Laser() : Entity(parent)
+Laser::Laser() : Entity()
 {
-	this->visible = false;
-	this->isAlive = false;
-	this->createNode("../assets/Models/laser.3ds");
 	this->_currentLife = 0;
 	this->_timeofLife = 100;
 }
 
-Laser::~Laser()
-{
+void Laser::onAdd() {
+	addComponent(new IrrlichtNode(new irr::io::path("../assets/Models/laser.3ds")));
+}
+
+void Laser::init() {
+	disable();
+}
+
+Laser::~Laser() {
 	Entity::~Entity();
 }
 
 
 void Laser::fire(Entity* parent, vector3df target, f32 speed)
 {
-	this->isAlive = true;
-	this->position = parent->position;
-
-	this->orientation = parent->orientation;
-	this->orientation.Y += 90;
-	this->visible = true;	
-
-	this->_direction = target - this->position;
+	Composite::enable();
+	
+	transform->position = *parent->position;
+	transform->rotation = *parent->rotation;
+	transform->rotation += 90;
+	
+	this->_direction = target - *transform->position;
 	this->_direction.normalize();
 
-	this->velocity = this->_direction * speed;
+	transform->velocity = _direction * speed;
 }
 
 void Laser::update()
@@ -38,10 +41,10 @@ void Laser::update()
 		this->_currentLife++;
 		if(this->_currentLife >= this->_timeofLife)
 		{
-			this->velocity = vector3df(0,0,0);
-			this->visible = false;
-			this->_currentLife = 0;
-			this->isAlive = false;
+			transform->velocity = new vector3df(0,0,0);
+			disable();
+
+			_currentLife = 0;
 		}
 	}
 
