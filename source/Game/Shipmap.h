@@ -27,7 +27,7 @@ class Shipmap : public Entity
 	rect<s32> *playerBox;
 	u32 now, then;
 
-	bool isMoving, isIntersecting, onStation, blockedE;
+	bool isMoving, isIntersecting, onStation, blockedE, onOccupiedStation, stationOccupied[5];
 
 	int offsetX, offsetY, tileSize, iconOffset, stationNumber;
 	int stationIconOffset[5];
