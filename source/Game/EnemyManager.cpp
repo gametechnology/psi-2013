@@ -9,11 +9,20 @@
 
 EnemyManager::EnemyManager(void) 
 {
+	Network::GetInstance()->AddListener(PacketType::ENEMY, this);
 }
 
 EnemyManager::~EnemyManager(void)
 {
 
+}
+
+void EnemyManager::HandleNetworkMessage(NetworkPacket packet)
+{
+	if(packet.GetType() == PacketType::ENEMY)
+	{
+
+	}
 }
 
 Enemy* drone1;
@@ -95,14 +104,7 @@ void EnemyManager::update()
 	
 	for(unsigned int i=0; i<_enemyList.size(); i++) //loop through all asteroids, update these and check for contact with all other asteroids
 	{
-		//for(unsigned int j=0; j<_enemyList.size(); j++)
-		//{
-		//	if(j!=i)
-		//	{
-		//		if(!dynamic_cast<EnemyFighter*>(_enemyList[i]) && !dynamic_cast<EnemyFighter*>(_enemyList[j]))
-		//			this->_enemyList[i]->contactGenerator(_enemyList[j]);	
-		//	}
-		//}
+		
 
 		if(dynamic_cast<EnemyDrone*>(_enemyList[i]))
 		{

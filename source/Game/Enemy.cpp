@@ -9,8 +9,11 @@ Enemy::Enemy(void): Entity(parent)
 {
 	this->_wanderTime = 0;
 	this->healthTimer = 0;
-	this->isAlive = true;
-	this->_id = this->newEnemyId++;
+	this->_isAlive = true;
+	if(Network::GetInstance()->IsServer())
+	{
+		this->_id = this->newEnemyId++;
+	}
 
 	array<vector3df> vector3Array = array<vector3df>();
 	vector3Array.push_back(vector3df(5,5,2));
@@ -19,22 +22,38 @@ Enemy::Enemy(void): Entity(parent)
 	{
 		Network::GetInstance()->SendPacket(myPacket);
 	}
-	Network::GetInstance()->AddListener(PacketType::ENEMY, this);
+	Network::GetInstance()->AddListener(ENEMY, this);
 }
 
 void Enemy::HandleNetworkMessage(NetworkPacket packet)
 {
-	if(packet.GetType() == PacketType::ENEMY)
+	if(packet.GetType() == ENEMY)
 	{
-		array<vector3df> vector3Array = array<vector3df>();
-		packet >> vector3Array;
-		std::cout << vector3Array.size() << vector3Array[0].X << vector3Array[0].Y << vector3Array[0].Z << std::endl;
+
 	}
 }
 
 int Enemy::getId()
 {
 	return this->_id;
+}
+
+bool Enemy::isAlive()
+{
+	return this->_isAlive;
+}
+
+Enemy::EnemyType Enemy::getType()
+{
+	return this->_type;
+}
+
+void Enemy::setId(int id)
+{
+	if(!Network::GetInstance()->IsServer())
+	{
+		this->_id = id;
+	}
 }
 
 void Enemy::pathFinding()
@@ -47,12 +66,12 @@ void Enemy::update()
 	//std::cout << "Health of Enemy: " << this->getHealth() << "on positionX " << this->position.X << ", positionY " << this->position.Y << ", positionZ " << this->position.Z << "\n" ;
 	applySpeed();
 	Entity::update();
-	updateHealth();
+	//updateHealth();
 }
 
 void Enemy::updateHealth()
 {
-	if(this->isAlive)
+	if(this->_isAlive)
 	{
 		this->healthTimer++;
 		if(this->healthTimer >= 100)
@@ -440,14 +459,14 @@ void Enemy::receiveDamage(int damage)
 	{
 		this->_health = 0;
 		std::cout << this->getHealth() << " ";
-		this->isAlive = false;
+		this->_isAlive = false;
 		this->destroy();
 	}
 }
 
 void Enemy::destroy()
 {
-	this->isAlive = false;
+	this->_isAlive = false;
 	this->visible = false;
 }
 
@@ -458,7 +477,8 @@ void Enemy::wander()
 	int velY = rand()%20-10;
 	int velZ = rand()%20-10;
 
-	if(this->_wanderTime >= 10000)
+	std::cout << this->_wanderTime << std::endl;
+	if(this->_wanderTime >= 1000)
 	{
 		this->velocity.X +=velX * 0.1f;
 		this->velocity.Y +=velY * 0.1f;

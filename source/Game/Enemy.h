@@ -29,6 +29,14 @@ public:
 		unsigned int health = 1);						//
 	~Enemy(void);
 
+	typedef enum {
+		ASTROID = 0,
+
+		DRONE = 1,
+
+		FIGHTER = 2
+	} EnemyType;
+
 	bool isWithinLoS(/*playership class*/);
 
 	array<Entity*> inRangeList;
@@ -52,6 +60,9 @@ public:
 	void setOriginalRadius(float origradius);
 	void setOuterRadius(float outerradius);
 	void setOriginalVelocity(vector3df origvelocity);
+
+	//it can only be set as a client, the server makes their own id.
+	void setId(int id);
 	
 	vector3df getVelocity();
 	vector3df getPath();
@@ -82,6 +93,8 @@ public:
 	int getHealth();
 	int getMaxHealth();
 	int getId();
+	bool isAlive();
+	EnemyType getType();
 
 	void updateHealth();
 	virtual void update();
@@ -89,6 +102,7 @@ public:
 	
 
 protected:
+	EnemyType _type;
 
 private:
 	
@@ -111,7 +125,7 @@ private:
 	unsigned int lineofsightrange_;
 	vector3df _target;
 	int _wanderTime;
-	bool isAlive;
+	bool _isAlive;
 
 	int _id;
 
