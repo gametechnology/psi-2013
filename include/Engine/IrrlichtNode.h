@@ -12,7 +12,7 @@ public:
 	void init();
 	void update();
 private:
-	irr::io::path *modelPath;
+	irr::io::path modelPath;
 	irr::scene::ISceneNode* node;
 	void createNode();
 };

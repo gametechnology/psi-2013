@@ -15,5 +15,5 @@ void ShipScenes::init()
 
 	addChild(new Player());
 	addChild(new Ship());
-	addChild(manager);
+	addComponent(manager);
 }

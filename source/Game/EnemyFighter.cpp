@@ -16,7 +16,9 @@ EnemyFighter::EnemyFighter(irr::core::vector3df position): Enemy()
 
 	EnemyFighter::inRangeList = array<Entity*>();
 	EnemyFighter::stateSwitch = new StateSwitchFighter(StateSwitch::STATE_WANDER,this);
+}
 
+void EnemyFighter::onAdd() {
 	this->loadLaser();
 }
 

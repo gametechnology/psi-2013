@@ -7,6 +7,8 @@ Scene::Scene() : Entity() {
 }
 
 void Scene::init() {
+	Entity::init();
+
 	// Create a scene manager
 	sceneManager = this->game->device->getSceneManager();
 }

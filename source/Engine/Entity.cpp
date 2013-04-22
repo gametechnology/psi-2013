@@ -1,6 +1,7 @@
 #include <Engine\Entity.h>
 #include "Engine\Component.h"
 #include "Engine\Transform.h"
+#include "Engine\Scene.h"
 
 Entity::Entity() : Composite() {
  transform = new Transform();
@@ -26,6 +27,8 @@ void Entity::onAdd() {
 }
 
 void Entity::init() {
+	Composite::init();
+
  for (unsigned int i = 0; i < components.size(); i++) {
   components[i]->init();
  }
@@ -116,6 +119,12 @@ bool Entity::removeComponent(Component* component) {
 void Entity::addChild(Entity* child) {
  children.push_back(child);
  child->parent = this;
+ child->game = game;
+ 
+ if (dynamic_cast<Scene*>(this) != NULL)
+	 child->scene = dynamic_cast<Scene*>(this);
+ else if (child->scene != NULL)
+	 child->scene = scene;
 
  child->onAdd();
 }

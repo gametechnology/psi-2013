@@ -29,7 +29,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 }
 //This function isn't being overriden so it needs to be called in constructor
 void SectorTemplate::init(){
-	addChild(_enemyManager);
+	addComponent(_enemyManager);
 	addChild( this->_skybox );
 	//addComponent( this->_player );
 	addChild(_ship);

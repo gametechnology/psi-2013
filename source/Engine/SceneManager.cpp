@@ -16,14 +16,13 @@ void SceneManager::drawAll() {
 }
 
 void SceneManager::addScene(char* name,Scene* scene){
-	if (exists(name)) {
+	if (!exists(name)) {
 		NameScene namescene;
 		namescene.name = name;
 		namescene.scene = scene;
 		nameScenes.push_back(namescene);
 		this->entity->addChild(scene);
 	}
-
 }
 
 void SceneManager::removeScene(char* name) {

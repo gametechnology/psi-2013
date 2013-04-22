@@ -1,8 +1,8 @@
 #include <Engine/Game.h>
 #include <Irrlicht/driverChoice.h>
+
 #include "HelmSceneTest.h"
 #include "EnemySceneTest.h"
-
 #include "MainMenuScene.h"
 
 #include "NetworkInterface.h"
@@ -39,8 +39,8 @@ int main()
 
 	// Create test scene
 	//Game::addScene(new MainMenuScene());
-	MainMenuScene* mainMenuScene = new MainMenuScene();
-	game->sceneManager->addScene("MainMenuScene", mainMenuScene);
+	EnemySceneTest* scene = new EnemySceneTest();
+	game->sceneManager->addScene("EnemySceneTest", scene);
 
 	//MapGenerator mapGen;
 	//mapGen.init(20, 2, 5);

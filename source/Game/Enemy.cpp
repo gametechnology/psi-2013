@@ -330,42 +330,52 @@ vector3df Enemy::getPath()
 {
 	return destination_;
 }
+
 vector3df Enemy::getPosition()
 {
 	return *this->transform->position;
 }
+
 vector3df Enemy::getRotation()
 {
 	return *this->transform->rotation;
 }
+
 unsigned int Enemy::getMaxSpeed()
 {
 	return maxspeed_;
 }
+
 unsigned int Enemy::getAgility()
 {
 	return agility_;
 }
+
 vector3df Enemy::getAccelaration()
 {
 	return *this->transform->acceleration;
 }
+
 unsigned int Enemy::getDamage()
 {
 	return damage_;
 }
+
 unsigned int Enemy::getLoS()
 {
 	return lineofsightrange_;
 }
+
 float Enemy::getRadius()
 {
 	return radius_;
 }
+
 float Enemy::getOriginalRadius()
 {
 	return originalradius_;
 }
+
 float Enemy::getOuterRadius()
 {
 	return outerradius_;

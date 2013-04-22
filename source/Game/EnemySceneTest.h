@@ -12,6 +12,7 @@ public:
 	EnemySceneTest(void);
 	~EnemySceneTest(void);
 	virtual void init();
+	virtual void update();
 
 	irr::scene::ICameraSceneNode* camera;
 	irr::scene::ILightSceneNode* light;
