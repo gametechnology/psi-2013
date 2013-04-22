@@ -7,10 +7,11 @@ Player::Player(Composite* parent) : Entity(parent)
 	Name = new wchar_t[500];
 }
 
-Player::Player(Composite* parent, wchar_t namec, enet_uint32 ipadressc,int teamc ) : Entity(parent)
+Player::Player(Composite* parent, wchar_t *namec, enet_uint32 ipadressc,int teamc ) : Entity(parent)
 {
 	Name = new wchar_t[500];
-	*Name = namec;
+	wcsncpy(Name, namec, wcslen(namec));
+	Name[wcslen(namec)] = 0;
 	Ipadres = ipadressc;
 	Team = teamc;
 }

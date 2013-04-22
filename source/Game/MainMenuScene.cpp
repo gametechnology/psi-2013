@@ -84,7 +84,7 @@ void MainMenuScene::StartGame()
 }
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 {
-	wchar_t *  name;
+	wchar_t *  name ;
 	int lenght;
 	int team;
 	unsigned int checksum;
@@ -105,22 +105,27 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 				}
 			}
 		break;
-		break;
 		case START_GAME:
 			StartGame();
 			break;
 		case CLIENT_JOIN:
-			
+			name = new wchar_t[500];
 			packet >> name;
 			packet >> checksum;
 			
 			if(checksum != Network::GetInstance()->GetPacketTypeChecksum())
 				return;
+
+			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
+				if((*iterator)->Ipadres == packet.ipadress)
+					return;
+					
+			}
 			if((playerlist.size()) % 2 != 0)
 				team = 2;
 			else
 				team = 1;
-			newplayer = new Player(NULL, *name,  packet.ipadress, team);
+			newplayer = new Player(NULL, name,  packet.ipadress, team);
 			playerlist.push_back(newplayer);
 			
 			lenght = playerlist.size();
@@ -131,6 +136,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 				packetsend << (*iterator);
 			}
 			Network::GetInstance()->SendServerPacket(packetsend, true);
+			delete name;
 			break;
 		case CLIENT_QUIT:
 			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
