@@ -20,6 +20,8 @@ MainMenuScene::MainMenuScene()
 	createServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),mainMenuWindow,2, L"Create a game");
 	joinServerWindow_Button		= guiEnv->addButton(rect<s32>(position2di(50,135),dimension2di(200,25)),mainMenuWindow,1,L"Join a game");
 	Ipadresinput				= guiEnv->addEditBox(L"",rect<s32>(position2di(300,135),dimension2di(200,25)),true,mainMenuWindow);
+	Namelabel					= guiEnv->addStaticText(L"Name:",rect<s32>(position2di(250,165),dimension2di(200,25)),false,true,mainMenuWindow);
+	Nameinput					= guiEnv->addEditBox(L"",rect<s32>(position2di(300,165),dimension2di(200,25)),true,mainMenuWindow);
 	Clientlist					= guiEnv->addStaticText(L"",rect<s32>(position2di(300,105),dimension2di(200,200)),false,true,mainMenuWindow);
 	Clientlist->setVisible(false);
 	start_button				= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,3, L"Start Game");
