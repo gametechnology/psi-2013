@@ -41,7 +41,7 @@ PacketType NetworkPacket::GetType()
 	return _type;
 }
 
-sf::Packet& operator >>(sf::Packet &out, const irr::core::vector3df &in)
+sf::Packet& operator <<(sf::Packet &out, const irr::core::vector3df &in)
 {
 	return out << in.X << in.Y << in.Z;
 }
