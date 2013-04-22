@@ -33,7 +33,7 @@ MainMenuScene::MainMenuScene()
 	
 	 // Store the appropriate data in a context structure.
     SAppContext context;
-	context.device = game->device;
+	context.game = game;
     context.counter = 0;
 
 	// Then create the event receiver, giving it that context structure.

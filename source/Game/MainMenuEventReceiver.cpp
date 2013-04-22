@@ -4,6 +4,7 @@
 
 MainMenuEventReceiver::MainMenuEventReceiver(SAppContext & context) : Context(context)
 {
+	this->Context = context;
 }
 
 bool MainMenuEventReceiver::OnEvent(const SEvent& event)
@@ -11,8 +12,8 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
     if (event.EventType == EET_GUI_EVENT)
     {
         s32 id = event.GUIEvent.Caller->getID();
-        IGUIEnvironment* env = Game::device->getGUIEnvironment();
-		MainMenuScene* mainmenu = ((MainMenuScene*)Game::getCurrentScene());
+		IGUIEnvironment* env = this->Context.game->device->getGUIEnvironment();
+		MainMenuScene* mainmenu = ((MainMenuScene*)this->Context.game->getCurrentScene());
 		char* ipadress;
 		 wchar_t* inputwchar;
 		 Player* newplayer;
@@ -28,19 +29,19 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					wcstombs(ipadress, inputwchar, wcslen(inputwchar));
 					ipadress[wcslen(inputwchar)] = 0;
 					if(*ipadress == ' ' || *ipadress == NULL){
-						mainmenu->messagebox =  Game::guiEnv->addMessageBox(L"Messsage",L"Fill in an Ipadress",true,1,mainmenu->mainMenuWindow);
+						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Fill in an Ipadress",true,1,mainmenu->mainMenuWindow);
 						mainmenu->messagebox->setDraggable(false);
 					}else{
 						Network::GetInstance()->InitializeClient(ipadress);
 						if(!Network::GetInstance()->IsConnected()){
-							mainmenu->messagebox =  Game::guiEnv->addMessageBox(L"Messsage",L"Not able to connect to server",true,1,mainmenu->mainMenuWindow);
+							mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Not able to connect to server",true,1,mainmenu->mainMenuWindow);
 							mainmenu->messagebox->setDraggable(false);
 						}else{
 							mainmenu->createServerWindow_Button->setVisible(false);
 							mainmenu->joinServerWindow_Button->setVisible(false);
 							mainmenu->Clientlist->setVisible(true);
 							mainmenu->Ipadresinput->setVisible(false);
-							Game::guiEnv->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainmenu->mainMenuWindow);
+							env->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainmenu->mainMenuWindow);
 						}
 
 						
