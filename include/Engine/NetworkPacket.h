@@ -9,12 +9,14 @@ class NetworkPacket : public sf::Packet
 {
 public:
 	NetworkPacket(const PacketType type);
-	NetworkPacket(ENetPacket* packet);
+	NetworkPacket(ENetPacket* packet, enet_uint32);
 	~NetworkPacket();
 	const void* GetBytes();
 	const size_t GetSize();
 	bool reliable;
 	PacketType GetType();
+
+	enet_uint32 ipadress;
 
 	friend sf::Packet& operator <<(sf::Packet &out, const irr::core::vector3df &in);
 	friend sf::Packet& operator >>(sf::Packet& in, irr::core::vector3df& out);
