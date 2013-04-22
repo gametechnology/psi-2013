@@ -12,6 +12,10 @@
 class NetworkPacket;
 class INetworkListener;
 
+/* IMPORTANT: before adding PacketTypes, read the following two pages:
+* https://github.com/gametechnology/psi-2013/wiki/Packet-types-101
+* https://github.com/gametechnology/psi-2013/wiki/PacketType-overview
+*/
 enum PacketType
 {
 	CLIENT_JOIN = 0,
