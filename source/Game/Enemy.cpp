@@ -242,7 +242,7 @@ void Enemy::setVisual(IMesh* visual, ISceneManager* smgr)
 void Enemy::setVisualWithPath(std::string path)
 {
 	//this->createNode(path);
-	this->addComponent(new IrrlichtNode(&path));
+	this->addComponent(new IrrlichtNode(irr::io::path(&path)));
 }
 
 void Enemy::setVelocity(vector3df input)
@@ -274,7 +274,7 @@ void Enemy::setAgility(unsigned int agility)
 }
 void Enemy::setAccelaration(vector3df acc)
 {
-	this->transform->accelaration = acc;
+	this->transform->acceleration = &acc;
 }
 void Enemy::setDamage(unsigned int damage)
 {
@@ -348,7 +348,7 @@ unsigned int Enemy::getAgility()
 }
 vector3df Enemy::getAccelaration()
 {
-	return this->transform->accelaration;
+	return *this->transform->acceleration;
 }
 unsigned int Enemy::getDamage()
 {
