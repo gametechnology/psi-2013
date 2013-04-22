@@ -1,7 +1,9 @@
 #include <Engine\Composite.h>
 
 Composite::Composite() {
-
+	initialized = false;
+	destroyed = false;
+	enabled = true;
 }
 
 Composite::~Composite() {

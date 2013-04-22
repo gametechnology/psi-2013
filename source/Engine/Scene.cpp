@@ -4,12 +4,11 @@
 Scene::Scene() : Entity() {
 	// Set the state
 	state = LOADING;
+}
 
+void Scene::init() {
 	// Create a scene manager
-	sceneManager = Entity::game->device->getSceneManager();
-
-	// Scene is enabled
-	//enabled = true;
+	sceneManager = this->game->device->getSceneManager();
 }
 
 Scene::~Scene() {

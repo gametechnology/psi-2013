@@ -15,7 +15,7 @@ Game::Game()
 	Game::input = new InputManager();
 
 	// Create the irrlicht device 
-	Game::device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1280, 720), 16, false, false, true);
+	Game::device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1280, 720), 16, false, false, true, Game::input);
 
 	// If the device was not created correctly, then shut down the program
 	if(Game::device) {
@@ -31,9 +31,12 @@ Game::Game()
 
 	// Create the topmost node
 	game = new Entity();
+	game->game = this;
 	game->addComponent(sceneManager = new SceneManager());
+}
 
-	// Then initialize it
+void Game::init() {
+	// Initialize the game entity
 	game->init();
 }
 

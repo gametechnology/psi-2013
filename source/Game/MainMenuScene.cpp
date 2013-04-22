@@ -1,10 +1,15 @@
 #include "Engine/Game.h"
 #include "MainMenuScene.h"
 
+MainMenuScene::MainMenuScene() : Scene() {
+	
+}
 
+MainMenuScene::~MainMenuScene() {
 
-MainMenuScene::MainMenuScene() 
-{
+}
+
+void MainMenuScene::init() {
 	//Get the device
 	guiEnv = game->guiEnv;
 	playerlist = std::list<Player*>();
@@ -27,10 +32,6 @@ MainMenuScene::MainMenuScene()
 	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	Network::GetInstance()->AddListener(START_GAME, this);
 
-
-	
-
-	
 	 // Store the appropriate data in a context structure.
     SAppContext context;
 	context.game = game;
@@ -43,9 +44,6 @@ MainMenuScene::MainMenuScene()
 	Game::input->setCustomEventReceiver(eventReceiver);
 }
 
-MainMenuScene::~MainMenuScene()
-{
-}
 void MainMenuScene::update(){
 	if(Network::GetInstance()->connectedclients.size() >= playerlist.size() && Network::GetInstance()->IsConnected() && Network::GetInstance()->IsServer())
 	{
@@ -87,6 +85,7 @@ void MainMenuScene::update(){
 
 
 }
+
 void MainMenuScene::StartGame()
 {
 	MapGenerator mapGen;
@@ -96,6 +95,7 @@ void MainMenuScene::StartGame()
 	SectorManager sectorManager(galaxyMap);
 	sectorManager.init();
 }
+
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 {
 	

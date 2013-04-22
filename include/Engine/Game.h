@@ -14,6 +14,7 @@ public:
 	Game();
 	~Game();
 	
+	void init();
 	void run();
 
 	irr::IrrlichtDevice* device;

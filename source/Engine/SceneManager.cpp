@@ -87,7 +87,8 @@ void SceneManager::destroyScene(char* name){
 }
 
 bool SceneManager::exists(char* name){
-	NameScene namesc = getNameScene(name);
+	//NameScene namesc = getNameScene(name);
+	printf("[SceneManager]Size: %i",nameScenes.size());
 	for(int i = 0; i<nameScenes.size(); i++){
 		if (&nameScenes[i].name == &name)
 			return true;

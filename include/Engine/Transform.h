@@ -17,6 +17,7 @@ public:
 	irr::core::vector3df force;
 
 	Transform();
+	virtual void init();
 	virtual void update();
 	virtual ~Transform();
 };

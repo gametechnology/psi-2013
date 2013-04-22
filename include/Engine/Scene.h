@@ -7,7 +7,9 @@
 class Scene : public Entity {
 public:
 	Scene();
-	~Scene();
+	virtual ~Scene();
+
+	void init();
 
 	enum State {
 		LOADING,

@@ -39,7 +39,8 @@ int main()
 
 	// Create test scene
 	//Game::addScene(new MainMenuScene());
-	game->sceneManager->addScene("MainMenuScene",new MainMenuScene());
+	MainMenuScene* mainMenuScene = new MainMenuScene();
+	game->sceneManager->addScene("MainMenuScene", mainMenuScene);
 
 	//MapGenerator mapGen;
 	//mapGen.init(20, 2, 5);
@@ -52,6 +53,9 @@ int main()
 	// Create sector manager that creates all the Scenes/Sectors
 	//SectorManager sectorManager(galaxyMap);
 	//sectorManager.init();
+
+	// Initialize game
+	game->init();
 
 	// Start the main loop
 	game->run();
