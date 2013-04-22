@@ -58,7 +58,7 @@ void StateSwitch::handleIdle()
 		if(parent_->getHealth() <= (parent_->getMaxHealth() / 4))
 		{
 			StateSwitch::setState(StateSwitch::STATE_FLEEING);
-		}else if(parent_->getHealth() <= (parent_->getMaxHealth() /3))
+		}else if(parent_->getHealth() <= (parent_->getMaxHealth() /2))
 		{
 			StateSwitch::setState(StateSwitch::STATE_DEFENSIVE);
 		}else
@@ -89,7 +89,7 @@ void StateSwitch::handleWander()
 		if(parent_->getHealth() <= (parent_->getMaxHealth() / 4))
 		{
 			StateSwitch::setState(StateSwitch::STATE_FLEEING);
-		}else if(parent_->getHealth() <= (parent_->getMaxHealth() /3))
+		}else if(parent_->getHealth() <= (parent_->getMaxHealth() /2))
 		{
 			StateSwitch::setState(StateSwitch::STATE_DEFENSIVE);
 		}else
@@ -120,7 +120,7 @@ void StateSwitch::handleFollow()
 	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /4))
 	{
 		StateSwitch::setState(StateSwitch::STATE_FLEEING);
-	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /3))
+	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /2))
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEFENSIVE);
 	}else if(parent_->getHealth() < parent_->getMaxHealth())
@@ -143,7 +143,7 @@ void StateSwitch::handleOffensive()
 	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /4))
 	{
 		StateSwitch::setState(StateSwitch::STATE_FLEEING);
-	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /3))
+	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /2))
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEFENSIVE);
 	}
