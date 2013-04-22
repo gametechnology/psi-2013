@@ -113,7 +113,11 @@ void Network::SendPacket(NetworkPacket packet, const bool reliable)
 		if(!_isServer)
 			enet_peer_send(_peer, 0, enetPacket);
 		else
+		{
+			_mutex.lock();
 			_receivedPackets.push_back(NetworkPacket(enetPacket,0));
+			_mutex.unlock();
+		}
 	}
 }
 
