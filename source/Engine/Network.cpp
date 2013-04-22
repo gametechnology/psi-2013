@@ -1,6 +1,6 @@
-#include <Engine\Network.h>
-#include <Engine\NetworkPacket.h>
-#include <Engine\INetworkListener.h>
+#include "Engine\Network.h"
+#include "Engine\NetworkPacket.h"
+#include "Engine\INetworkListener.h"
 #include <iostream>
 
 bool Network::isInitialized = false;
@@ -10,12 +10,14 @@ Network::Network() : _port(1345)
 {
 	_isServer = false;
 	_isConnected = false;
-
+	connectedclients = std::list<enet_uint32>();
 	for (int i = 0; i < LAST_TYPE; i++)
 		_listeners[i] = new std::list<INetworkListener*>();
 
 	if (enet_initialize() != 0)
 		std::cout << "An error occurred while initializing ENet.\n";
+
+	_packetTypeChecksum = GeneratePacketTypesChecksum();
 }
 
 Network::~Network()
@@ -37,26 +39,20 @@ Network* Network::GetInstance()
 
 void Network::StartThreads()
 {
-	_beginthread(PacketReceiver, 0, "args");
-	_beginthread(PacketSender, 0, "args");
+	_receiverThread = new sf::Thread(&Network::PacketReciever, this);
+	_receiverThread->launch();
 }
 
 void Network::StopThreads()
 {
-	_endthread();
+	
 }
 
-void Network::InitializeClient(const char* ipAdress)
+void Network::InitializeClient(const char* ipAdress, const unsigned int maxDownstream, const unsigned int maxUpstream)
 {
-	StartThreads();
-
 	std::cout << "Initializing client at port " << _port << ".\n";
 
-	_host = enet_host_create (NULL /* create a client host */,
-            1 /* only allow 1 outgoing connection */,
-            2 /* allow up 2 channels to be used, 0 and 1 */,
-            57600 / 8 /* 56K modem with 56 Kbps downstream bandwidth */,
-            14400 / 8 /* 56K modem with 14 Kbps upstream bandwidth */);
+	_host = enet_host_create (NULL, 1, 2, maxDownstream, maxUpstream);
 
 	if (_host == NULL)
 		std::cout << "An error occurred while trying to create an ENet client host.\n";
@@ -76,25 +72,23 @@ void Network::InitializeClient(const char* ipAdress)
 	{
 		_isConnected = true;
 		printf("Connection to %s:%i succeeded.\n", ipAdress, _address.port);
+		StartThreads();	
 	}
 	else
 	{
 		enet_peer_reset(_peer);
 		printf("Connection to %s:%i failed.\n", ipAdress, _address.port);
-		StopThreads();
 
 	}
 }
 
-void Network::InitializeServer()
+void Network::InitializeServer(size_t maxPlayers)
 {
-	StartThreads();
-
 	std::cout << "Initializing server at port " << _port << ".\n";
 	_address.host = ENET_HOST_ANY;
 	_address.port = _port;
 
-	_host = enet_host_create(&_address, 32, 2, 0, 0);
+	_host = enet_host_create(&_address, maxPlayers, 2, 0, 0);
 
 	if (_host == NULL)
 	{
@@ -106,15 +100,36 @@ void Network::InitializeServer()
 		std::cout << "Succesfully creatinga ENet server host; server now running.\n";
 		_isServer = true;
 		_isConnected = true;
+		StartThreads();
 	}	
 }
 
 void Network::SendPacket(NetworkPacket packet, const bool reliable)
 {
 	if(_isConnected)
+	{
+		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
+
+		if(!_isServer)
+			enet_peer_send(_peer, 0, enetPacket);
+		else
+			_receivedPackets.push_back(NetworkPacket(enetPacket));
+	}
+}
+
+void Network::SendServerPacket(NetworkPacket packet, const bool reliable)
+{
+	if(_isConnected && _isServer)
 	{	
-		packet.reliable = reliable; 
-		_packetsToSend.push_front(packet);
+		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
+
+		enet_host_broadcast(_host, 0, enetPacket);
+
+		_mutex.lock();
+
+		//_receivedPackets.push_back(NetworkPacket(packet));
+
+		_mutex.unlock();
 	}
 }
 
@@ -125,7 +140,7 @@ void Network::AddListener(PacketType packetType, INetworkListener* listener)
 
 void Network::RemoveListener(INetworkListener* listener)
 {
-	for (int i = 0; i < PacketType::LAST_TYPE; i++)
+	for (int i = 0; i < LAST_TYPE; i++)
 		_listeners[i]->remove(listener);
 }
 
@@ -134,33 +149,12 @@ void Network::RemoveListener(PacketType packetType, INetworkListener* listener)
 	_listeners[packetType]->remove(listener);
 }
 
-void Network::PacketSender(void* var)
-{
-	while(true)
-	{
-		if(Network::GetInstance()->_packetsToSend.size() <= 0)
-		{	
-			break;
-		}
-		else
-		{
-			NetworkPacket packet = Network::GetInstance()->_packetsToSend.front();
-			Network::GetInstance()->_packetsToSend.pop_front();
-		
-			ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), packet.reliable);
-			enet_peer_send(Network::GetInstance()->_peer, 0, enetPacket);
-
-			enet_host_flush(Network::GetInstance()->_host);
-		}
-		
-		Sleep(30);
-	}
-}
-
-void Network::PacketReceiver(void* var)
+void Network::PacketReciever()
 {
 	while (true)
 	{
+		_mutex.lock();
+
 		enet_host_service (Network::GetInstance()->_host, & Network::GetInstance()->_event, 0);
 
 		switch (Network::GetInstance()->_event.type)
@@ -169,7 +163,9 @@ void Network::PacketReceiver(void* var)
 				printf ("A new client connected from %x:%u.\n", 
 						Network::GetInstance()->_event.peer -> address.host,
 						Network::GetInstance()->_event.peer -> address.port);
-				/* Store any relevant client information here. */
+				
+				// Store any relevant client information here.
+				connectedclients.push_back(Network::GetInstance()->_event.peer -> address.host);
 				Network::GetInstance()->_event.peer -> data = "Client information";
 				break;
 			case ENET_EVENT_TYPE_RECEIVE:
@@ -178,23 +174,27 @@ void Network::PacketReceiver(void* var)
 						Network::GetInstance()->_event.packet -> data,
 						Network::GetInstance()->_event.peer -> data,
 						Network::GetInstance()->_event.channelID);
-				// Distribute the package allong the listners
-				Network::GetInstance()->DistributePacket(NetworkPacket(Network::GetInstance()->_event.packet));
-				/* Clean up the packet now that we're done using it. */
-				enet_packet_destroy (Network::GetInstance()->_event.packet);
+
+				// Add to our list of received packets
+				_receivedPackets.push_back(NetworkPacket(_event.packet));
+
+				// Clean up the packet now that we're done using it
+				enet_packet_destroy (_event.packet);
 				break;
        
 			case ENET_EVENT_TYPE_DISCONNECT:
-				printf ("%s disconected.\n", Network::GetInstance()->_event.peer -> data);
-				/* Reset the peer's client information. */
+				printf ("%s disconected.\n", _event.peer -> data);
+				// Reset the peer's client information.
 				Network::GetInstance()->_event.peer -> data = NULL;
 		}
+
+		_mutex.unlock();
 	}
 }
 
 void Network::DistributePacket(NetworkPacket networkPacket)
 {
-	int type = networkPacket.GetPacketType();
+	int type = networkPacket.GetType();
 	if (type >= 0 && type < LAST_TYPE)
 	{
 		std::list<INetworkListener*>::const_iterator iterator;
@@ -203,6 +203,40 @@ void Network::DistributePacket(NetworkPacket networkPacket)
 	}
 	else
 		printf("Unknown PacketType '%s' received", type);
+}
+
+void Network::DistributeReceivedPackets()
+{
+	_mutex.lock();
+
+	std::vector<NetworkPacket>::const_iterator iterator;
+	for (iterator = _receivedPackets.begin(); iterator != _receivedPackets.end(); ++iterator)
+		this->DistributePacket(*iterator);
+
+	_mutex.unlock();
+}
+
+unsigned int Network::GeneratePacketTypesChecksum()
+{
+	int checksum = 0;
+
+	for(int i = 0; i < LAST_TYPE; i++)
+	{
+		char* name = getPacketTypeName((PacketType)i);
+		int length = strlen(name);
+		
+		for(int j = 0; j < length; j++)
+		{
+			checksum += name[j];
+		}
+	}
+
+	return checksum;
+}
+
+unsigned int Network::GetPacketTypeChecksum()
+{
+	return _packetTypeChecksum;
 }
 
 bool Network::IsConnected()

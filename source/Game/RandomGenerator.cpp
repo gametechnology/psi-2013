@@ -3,10 +3,7 @@
 
 int RandomGenerator::getRandomInt(int range, int startInt)
 {
-	time_t rawtime;
-	time(&rawtime);
-
-	srand(localtime(&rawtime)->tm_sec);
+	srand((unsigned int)time(NULL));
 
 	int random = rand() % range + startInt;
 	return random;
@@ -14,10 +11,7 @@ int RandomGenerator::getRandomInt(int range, int startInt)
 
 float RandomGenerator::getRandomFloat(float range, float startFloat)
 {
-	time_t rawtime;
-	time(&rawtime);
-
-	srand(localtime(&rawtime)->tm_sec);
+	srand((unsigned int)time(NULL));
 
 	float random = startFloat + (rand() % ((int)range - 1) + (rand() / (float)RAND_MAX));
 	return random;

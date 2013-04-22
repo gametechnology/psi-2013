@@ -46,11 +46,11 @@ StateSwitch::States StateSwitch::getState()
 
 void StateSwitch::handleIdle()
 {
-	if(parent_->getHealth() <= 0)
+	/*if(parent_->getHealth() <= 0)
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEATH);
 		return;
-	}
+	}*/
 	parent_->setVelocity(vector3df(0,0,0));
 
 	if(parent_->inRangeList.size() > 0)
@@ -78,11 +78,11 @@ void StateSwitch::handleIdle()
 void StateSwitch::handleWander()
 {
 	parent_->wander();
-	if(parent_->getHealth() <= 0)
+	/*if(parent_->getHealth() <= 0)
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEATH);
 		return;
-	}
+	}*/
 
 	if(parent_->inRangeList.size() > 0)
 	{
@@ -113,11 +113,11 @@ void StateSwitch::handleFollow()
 		StateSwitch::setState(StateSwitch::STATE_IDLE);
 	}
 
-	if(parent_->getHealth() <= 0)
+	/*if(parent_->getHealth() <= 0)
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEATH);
 		return;
-	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /4))
+	}*/else if(parent_->getHealth() <= (parent_->getMaxHealth() /4))
 	{
 		StateSwitch::setState(StateSwitch::STATE_FLEEING);
 	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /2))
@@ -136,11 +136,11 @@ void StateSwitch::handleOffensive()
 		StateSwitch::setState(StateSwitch::STATE_IDLE);
 	}
 
-	if(parent_->getHealth() <= 0)
+	/*if(parent_->getHealth() <= 0)
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEATH);
 		return;
-	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /4))
+	}*/else if(parent_->getHealth() <= (parent_->getMaxHealth() /4))
 	{
 		StateSwitch::setState(StateSwitch::STATE_FLEEING);
 	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /2))
@@ -156,11 +156,11 @@ void StateSwitch::handleDefensive()
 		StateSwitch::setState(StateSwitch::STATE_IDLE);
 	}
 
-	if(parent_->getHealth() <= 0)
+	/*if(parent_->getHealth() <= 0)
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEATH);
 		return;
-	}else if(parent_->getHealth() <= (parent_->getMaxHealth() /4))
+	}*/else if(parent_->getHealth() <= (parent_->getMaxHealth() /4))
 	{
 		StateSwitch::setState(StateSwitch::STATE_FLEEING);
 	}
@@ -168,11 +168,11 @@ void StateSwitch::handleDefensive()
 
 void StateSwitch::handleFleeing()
 {
-	if(parent_->getHealth() <= 0)
+	/*if(parent_->getHealth() <= 0)
 	{
 		StateSwitch::setState(StateSwitch::STATE_DEATH);
 		return;
-	}
+	}*/
 
 	if(parent_->inRangeList.size() <= 0)
 	{

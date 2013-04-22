@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-static class RandomGenerator
+class RandomGenerator
 {
 public:
 	static int getRandomInt(int range, int startInt);

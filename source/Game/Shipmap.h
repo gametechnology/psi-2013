@@ -16,6 +16,12 @@ class Shipmap : public Entity
 	video::ITexture* bg;
 	video::ITexture* icon;
 
+	video::ITexture* icon_helm;
+	video::ITexture* icon_defense;
+	video::ITexture* icon_weapons;
+	video::ITexture* icon_navigation;
+	video::ITexture* icon_engine;
+
 	float iconRadius, duration, savedPosX, savedPosY, playerSpeed;
 	rect<s32> *boundingBoxes[5];
 	rect<s32> *playerBox;
@@ -24,6 +30,8 @@ class Shipmap : public Entity
 	bool isMoving, isIntersecting, onStation, blockedE;
 
 	int offsetX, offsetY, tileSize, iconOffset, stationNumber;
+	int stationIconOffset[5];
+	int stationIconDrawOffset;
 
 	int tiles[7][12];
 

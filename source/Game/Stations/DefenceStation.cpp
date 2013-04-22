@@ -2,20 +2,20 @@
 #include "Station.h"
 #include "..\Ship.h"
 
-DefenceStation::DefenceStation(Ship* ship):Station( ship )
+DefenceStation::DefenceStation(Ship* ship):Station(ship)
 {
-	this -> _stationType	= ST_DEFENCE;
-	this -> _stations		= new map<StationType, DefenceStation :: DefenceStats>( );
-	this -> setStationDestroyed(false);
-	std :: srand( time( NULL ) );
+	this->_stationType	= ST_DEFENCE;
+	this->_stations		= new map<StationType, DefenceStation::DefenceStats>();
+	this->setStationDestroyed(false);
+	std::srand((unsigned int)time(NULL));
 }
 
-DefenceStation :: ~DefenceStation()
+DefenceStation::~DefenceStation()
 {
 	
 }
 
-void DefenceStation :: DoCameraShake( )
+void DefenceStation::DoCameraShake()
 {
 	
 } 
