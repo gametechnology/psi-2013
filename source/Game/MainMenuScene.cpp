@@ -135,7 +135,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		case CLIENT_QUIT:
 			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
 				if((*iterator)->Ipadres == packet.ipadress)
-					newplayer == (*iterator);
+					newplayer = (*iterator);
 					
 			}
 			playerlist.remove(newplayer);
