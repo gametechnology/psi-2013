@@ -13,6 +13,7 @@ public:
 	void AsteroidSector::handleMessage(unsigned int message, void* data = 0);
 	virtual void AsteroidSector::update();
 	void AsteroidSector::init();
+	void destroy();
 	virtual ~AsteroidSector();
 };
 #endif

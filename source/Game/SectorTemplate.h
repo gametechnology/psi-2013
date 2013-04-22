@@ -29,6 +29,7 @@ public:
 	void handleMessage( unsigned int message, void* data = 0 );
 	virtual void update();
 	void init();
+	virtual void destroy();
 	void createWormHoles( unsigned int amountOfWormHoles );
 	virtual ~SectorTemplate();
 
