@@ -124,12 +124,6 @@ void Network::SendServerPacket(NetworkPacket packet, const bool reliable)
 		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
 
 		enet_host_broadcast(_host, 0, enetPacket);
-
-		_mutex.lock();
-
-		//_receivedPackets.push_back(NetworkPacket(packet));
-
-		_mutex.unlock();
 	}
 }
 
