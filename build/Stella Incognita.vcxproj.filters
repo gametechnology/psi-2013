@@ -252,24 +252,12 @@
     <ClCompile Include="..\source\Game\Skybox.cpp">
       <Filter>Source files\Sector</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\GameScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\source\Game\Enemy.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EnemyAsteroid.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EnemyDrone.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EnemyFighter.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\GalaxyMap.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EnemySceneTest.h">
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Player.h">
@@ -415,6 +403,24 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\WormHole.h">
       <Filter>Header files\Sector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyAsteroid.h">
+      <Filter>Header Files\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyDrone.h">
+      <Filter>Header Files\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemyFighter.h">
+      <Filter>Header Files\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Enemy.h">
+      <Filter>Header Files\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemySceneTest.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\GameScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

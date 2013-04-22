@@ -5,32 +5,37 @@
 #include  "NebulaSector.h"
 #include  "SectorHomeBase.h"
 #include  "BaseSector.h"
+
 SectorManager::SectorManager(GalaxyMap* map) : Component() {
 	_map=map;
-	for(std::list<MapSector*>::iterator i = map->sectors.begin(); i != map->sectors.end(); ++i)
-	{
-		if((*i)->type == HOME_BLUE){
+
+	for (int i = 0; i < map->sectors.size(); i++) {
+		if(map->sectors[i]->type == HOME_BLUE){
 			//delete _mapSector;
-			_mapSector = (*i);
+			_mapSector = map->sectors[i];
 		}
 	}
 }
+
 void SectorManager::init(){
 	//_currentSector = new SectorHomeBase(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
 	this->getGame()->sceneManager->addScene("SectorHomeBase",new SectorHomeBase(this,"skybox02.png",2000.0,_mapSector->connections.size()));
 	activeSceneName = "SectorHomeBase";
 }
+
 void SectorManager::handleMessage(unsigned int message, void* data) {
 	switch(message) {
 		case NEXT_SECTOR: //Switch Sector 
 			//Determen which is the new sector
 			int index = (int)data;
-			std::list<MapSector*>::iterator temp = _mapSector->connections.begin();
+			std::vector<MapSector*>::iterator temp = _mapSector->connections.begin();
+			
 			try{
 				std::advance(temp,index);
 			}catch(char * str){
 				printf("[SectorManager] Something went wrong... : %c", str);
 			}
+			
 			_mapSector = *temp;//change the _mapSector to the sector the data tells him to be
 			this->getGame()->sceneManager->removeScene(activeSceneName);
 			//Creates new Sector

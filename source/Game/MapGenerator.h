@@ -10,17 +10,14 @@
 
 using namespace std;
 
-class MapGenerator
-{
+class MapGenerator {
 public:
-	GalaxyMap* map;
+	MapGenerator(int sectorCount, int minWormholes, int maxWormholes);
+	virtual ~MapGenerator();
 
-	MapGenerator(void);
-	~MapGenerator(void);
-
-	void init(int sectorCount, int minWormholes, int maxWormholes);
+	void init();
 	void setBalanceChances(std::vector<float> chancesType);
-	GalaxyMap* createNewMap(float width = 300, float height = 300, float radiusSector = 15);
+	std::vector<MapSector*>* createNewMap(float width = 300, float height = 300, float sectorRadius = 15);
 	void createSectors();
 	void createConnections();
 
@@ -29,9 +26,15 @@ private:
 	std::vector<std::string> nameaddon;
 	std::vector<std::string> nametype;
 	std::vector<float> typeChances;
+	std::vector<MapSector*> sectors;
+
 	int sectorCount;
 	int minWormholes;
 	int maxWormholes;
+
+	float _width;
+	float _height;
+	float _sectorRadius;
 
 	typeSector getRandomType();
 	irr::core::vector3df randomPosition();

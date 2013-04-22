@@ -1,19 +1,22 @@
 #include "MapSector.h"
 #include "Engine\Game.h"
 
-MapSector::MapSector(Composite *parent,std::string name,typeSector type, float radius):Entity()
+MapSector::MapSector(std::string name,typeSector type, float radius) : Entity()
 {
 	this->name = name;
 	this->type = type;
 	this->explored = false;
 	this->radius = radius;
 	this->distToBlueBase = INT_MAX;
+}
 
+void MapSector::onAdd() {
 	resetTexture();
 }
 
 MapSector::~MapSector(void)
 {
+
 }
 
 void MapSector::resetTexture()

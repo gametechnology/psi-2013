@@ -7,7 +7,7 @@
 #include "MapSector.h"
 
 
-class SectorManager : Component {
+class SectorManager : public Component {
 public:
 	SectorManager(GalaxyMap* map);
 	void handleMessage(unsigned int message, void* data = 0);

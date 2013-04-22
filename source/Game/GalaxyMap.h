@@ -2,21 +2,24 @@
 #define GALAXYMAP
 
 #include "Engine/Entity.h"
-#include <list>
+#include <vector>
 #include <iostream>
 #include "MapSector.h"
 
 class GalaxyMap : public Entity  {
 public:
-	float widthMap;
-	float heightMap;
-	float radiusSector;
-	std::list<MapSector*> sectors;
+	irr::f32 width;
+	irr::f32 height;
+	irr::f32 radius;
 
-	GalaxyMap(Composite* parent);
+	std::vector<MapSector*> sectors;
+	GalaxyMap(irr::f32 width, irr::f32 height, irr::f32 radiusSector);
 	virtual ~GalaxyMap();
+
+	void createMap(int sectorCount, int minWormholes, int maxWormholes);
 	void loadMap();
 	void saveMap();
+	
 	void draw();
 };
 

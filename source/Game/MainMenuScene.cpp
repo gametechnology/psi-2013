@@ -88,12 +88,12 @@ void MainMenuScene::update(){
 
 void MainMenuScene::StartGame()
 {
-	MapGenerator mapGen;
+	/*MapGenerator mapGen;
 	mapGen.init(20, 2, 5);
 	GalaxyMap* galaxyMap = mapGen.createNewMap(300, 300, 15);
 	galaxyMap->transform->position->set(vector3df(100, 670, 0));
 	SectorManager sectorManager(galaxyMap);
-	sectorManager.init();
+	sectorManager.init();*/
 }
 
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
