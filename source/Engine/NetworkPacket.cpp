@@ -6,11 +6,12 @@ NetworkPacket::NetworkPacket(const PacketType type) : _type(type)
 {
 }
 
-NetworkPacket::NetworkPacket(ENetPacket* packet)
+NetworkPacket::NetworkPacket(ENetPacket* packet, enet_uint32 ipadressrec)
 {
+	ipadress = ipadressrec;
 	clear();
 	append(packet->data, packet->dataLength);
-
+	
 	int type;
 	*this >> type;
 	_type = (PacketType)type;

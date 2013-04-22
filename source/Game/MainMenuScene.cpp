@@ -28,7 +28,8 @@ MainMenuScene::MainMenuScene()
 	start_button->setVisible(false);
 	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	Network::GetInstance()->AddListener(START_GAME, this);
-
+	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
+	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
 
 	
 
@@ -49,24 +50,7 @@ MainMenuScene::~MainMenuScene()
 {
 }
 void MainMenuScene::update(){
-	if(Network::GetInstance()->connectedclients.size() >= playerlist.size() && Network::GetInstance()->IsConnected() && Network::GetInstance()->IsServer())
-	{
-		std::list<enet_uint32>::const_iterator ipi;
-		ipi = Network::GetInstance()->connectedclients.begin();
-		Player* newplayer = new Player(NULL);
-		newplayer->Ipadres = (*ipi);
-		newplayer->Name = L"Player";
-		if((playerlist.size()) % 2 != 0)
-			newplayer->Team = 2;
-		else
-			newplayer->Team = 1;
-		playerlist.push_back(newplayer);
-		
-	}
-
-	NetworkPacket packet(ClIENT_IN_LOBBY);
-	int a = playerlist.size();
-	packet << a;
+	
 	std::wstringstream ssp;
 	ssp << L"Team 1              Team2\n";
 	std::list<Player*>::const_iterator iterator;
@@ -80,10 +64,10 @@ void MainMenuScene::update(){
 			ssp << L"\n";
 
 		
-		packet << play;
+		
 		
 	}
-	Network::GetInstance()->SendServerPacket(packet, false);
+
 	const std::wstring& tmpp = ssp.str();
 	Clientlist->setText(tmpp.c_str());
 
@@ -100,12 +84,17 @@ void MainMenuScene::StartGame()
 }
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 {
-	
+	wchar_t *  name;
 	int lenght;
+	int team;
+	unsigned int checksum;
+	Player* newplayer;
+	std::list<Player*>::const_iterator iterator;
+	NetworkPacket packetsend(ClIENT_IN_LOBBY);
 	switch(packet.GetType())
 	{
 		case ClIENT_IN_LOBBY:
-		if(!Network::GetInstance()->IsServer()){
+			if(!Network::GetInstance()->IsServer()){
 				playerlist.clear();
 				packet >> lenght;
 				for (int i = 0;i < lenght;i++){
@@ -116,8 +105,48 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 				}
 			}
 		break;
+		break;
 		case START_GAME:
 			StartGame();
+			break;
+		case CLIENT_JOIN:
+			
+			packet >> name;
+			packet >> checksum;
+			
+			if(checksum != Network::GetInstance()->GetPacketTypeChecksum())
+				return;
+			if((playerlist.size()) % 2 != 0)
+				team = 2;
+			else
+				team = 1;
+			newplayer = new Player(NULL, *name,  packet.ipadress, team);
+			playerlist.push_back(newplayer);
+			
+			lenght = playerlist.size();
+			packetsend << lenght;
+			
+			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
+				 
+				packetsend << (*iterator);
+			}
+			Network::GetInstance()->SendServerPacket(packetsend, true);
+			break;
+		case CLIENT_QUIT:
+			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
+				if((*iterator)->Ipadres == packet.ipadress)
+					newplayer == (*iterator);
+					
+			}
+			playerlist.remove(newplayer);
+			lenght = playerlist.size();
+			packetsend << lenght;
+			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
+				 
+				packetsend << (*iterator);
+			}
+			Network::GetInstance()->SendServerPacket(packetsend, true);
+			break;
 		break;
 		default:
 			break;
