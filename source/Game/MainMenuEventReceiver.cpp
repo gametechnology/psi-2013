@@ -30,7 +30,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 				switch(id)
 				{
 				case 1:
-					inputwchar = mainmenu->Ipadresinput->getText();
+					inputwchar = (wchar_t*)mainmenu->Ipadresinput->getText();
 					ipadress = (char*)malloc(wcslen(inputwchar)+ 1);
 					wcstombs(ipadress, inputwchar, wcslen(inputwchar));
 					ipadress[wcslen(inputwchar)] = 0;
