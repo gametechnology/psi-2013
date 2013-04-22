@@ -10,28 +10,31 @@ class Game;
 
 class Entity : public Composite {
 public:
-	Entity();
-	~Entity();
+ Entity();
+ ~Entity();
 
-	Game* game;
-	Scene* scene;
+ Game* game;
+ Scene* scene;
 
-	Transform* transform;
+ Transform* transform;
 
-	Entity* parent;
-	std::vector<Component*> components;
-	std::vector<Entity*> children;
+ Entity* parent;
+ std::vector<Component*> components;
+ std::vector<Entity*> children;
 
-	virtual void addChild(Entity* child);
-	virtual void removeChild(Entity* child);
-	virtual void addComponent(Component* component);
-	virtual void removeComponent(Component* component);
+ void addChild(Entity* child);
+ bool removeChild(Entity* child);
+ void addComponent(Component* component);
+ bool removeComponent(Component* component);
 
-	virtual void onAdd();
-	virtual void init();
+ virtual void onAdd();
+ virtual void init();
 
-	virtual void update();
-	virtual void lateUpdate();
+ virtual void handleMessage(unsigned int message);
+
+ virtual void update();
+ virtual void lateUpdate();
+ virtual void draw();
 };
 
 #endif
