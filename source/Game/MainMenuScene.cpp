@@ -144,6 +144,8 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 					newplayer = (*iterator);
 					
 			}
+			if(newplayer == NULL)
+				return;
 			playerlist.remove(newplayer);
 			lenght = playerlist.size();
 			packetsend << lenght;
