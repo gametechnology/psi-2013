@@ -10,8 +10,14 @@ public:
 	irr::core::vector3df* rotation;
 	irr::core::vector3df* velocity;
 	irr::core::vector3df* acceleration;
+	irr::core::vector3df* angularVelocity;
+	irr::core::vector3df* angularAccelaration;
+
+	float mass;
+	irr::core::vector3df force;
 
 	Transform();
+	virtual void update();
 	virtual ~Transform();
 };
 
