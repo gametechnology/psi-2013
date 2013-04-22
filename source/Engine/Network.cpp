@@ -10,7 +10,7 @@ Network::Network() : _port(1345)
 {
 	_isServer = false;
 	_isConnected = false;
-	
+
 	for (int i = 0; i < LAST_TYPE; i++)
 		_listeners[i] = new std::list<INetworkListener*>();
 
@@ -30,7 +30,7 @@ Network* Network::GetInstance()
 	if(!isInitialized)
 	{
 		instance = new Network();
-		
+
 		isInitialized = true;
 	}
 
@@ -45,7 +45,7 @@ void Network::StartThreads()
 
 void Network::StopThreads()
 {
-	
+
 }
 
 void Network::InitializeClient(const char* ipAdress, const unsigned int maxDownstream, const unsigned int maxUpstream)
@@ -153,34 +153,34 @@ void Network::PacketReciever()
 
 		switch (Network::GetInstance()->_event.type)
 		{
-			case ENET_EVENT_TYPE_CONNECT:
-				printf ("A new client connected from %x:%u.\n", 
-						Network::GetInstance()->_event.peer -> address.host,
-						Network::GetInstance()->_event.peer -> address.port);
-				
-				// Store any relevant client information here.
-				
-				Network::GetInstance()->_event.peer -> data = "Client information";
-				break;
-			case ENET_EVENT_TYPE_RECEIVE:
-				printf ("A packet of length %u containing %s was received from %s on channel %u.\n",
-						Network::GetInstance()->_event.packet -> dataLength,
-						Network::GetInstance()->_event.packet -> data,
-						Network::GetInstance()->_event.peer -> data,
-						Network::GetInstance()->_event.channelID);
+		case ENET_EVENT_TYPE_CONNECT:
+			printf ("A new client connected from %x:%u.\n", 
+				Network::GetInstance()->_event.peer -> address.host,
+				Network::GetInstance()->_event.peer -> address.port);
 
-				// Add to our list of received packets
+			// Store any relevant client information here.
 
-				_receivedPackets.push_back(NetworkPacket(_event.packet, Network::GetInstance()->_event.peer -> address.host));
+			Network::GetInstance()->_event.peer -> data = "Client information";
+			break;
+		case ENET_EVENT_TYPE_RECEIVE:
+			printf ("A packet of length %u containing %s was received from %s on channel %u.\n",
+				Network::GetInstance()->_event.packet -> dataLength,
+				Network::GetInstance()->_event.packet -> data,
+				Network::GetInstance()->_event.peer -> data,
+				Network::GetInstance()->_event.channelID);
 
-				// Clean up the packet now that we're done using it
-				enet_packet_destroy (_event.packet);
-				break;
-       
-			case ENET_EVENT_TYPE_DISCONNECT:
-				printf ("%s disconected.\n", _event.peer -> data);
-				// Reset the peer's client information.
-				Network::GetInstance()->_event.peer -> data = NULL;
+			// Add to our list of received packets
+
+			_receivedPackets.push_back(NetworkPacket(_event.packet, Network::GetInstance()->_event.peer -> address.host));
+
+			// Clean up the packet now that we're done using it
+			enet_packet_destroy (_event.packet);
+			break;
+
+		case ENET_EVENT_TYPE_DISCONNECT:
+			printf ("%s disconected.\n", _event.peer -> data);
+			// Reset the peer's client information.
+			Network::GetInstance()->_event.peer -> data = NULL;
 		}
 
 		_mutex.unlock();
@@ -205,8 +205,10 @@ void Network::DistributeReceivedPackets()
 	_mutex.lock();
 
 	std::vector<NetworkPacket>::const_iterator iterator;
-	for (iterator = _receivedPackets.begin(); iterator != _receivedPackets.end(); ++iterator)
+	for (iterator = _receivedPackets.begin(); iterator != _receivedPackets.end(); ++iterator) {
 		this->DistributePacket(*iterator);
+	}
+	_receivedPackets.clear();
 
 	_mutex.unlock();
 }
@@ -219,7 +221,7 @@ unsigned int Network::GeneratePacketTypesChecksum()
 	{
 		char* name = getPacketTypeName((PacketType)i);
 		int length = strlen(name);
-		
+
 		for(int j = 0; j < length; j++)
 		{
 			checksum += name[j];
