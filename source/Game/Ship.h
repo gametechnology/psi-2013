@@ -1,5 +1,6 @@
 #ifndef ENTITY_SHIP
 #define ENTITY_SHIP
+#pragma once
 
 #include "Stations\DefenceStation.h"
 #include "Stations\HelmStation.h"
