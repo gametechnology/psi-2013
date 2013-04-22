@@ -10,7 +10,7 @@ Network::Network() : _port(1345)
 {
 	_isServer = false;
 	_isConnected = false;
-	connectedclients = std::list<enet_uint32>();
+	
 	for (int i = 0; i < LAST_TYPE; i++)
 		_listeners[i] = new std::list<INetworkListener*>();
 
@@ -113,7 +113,7 @@ void Network::SendPacket(NetworkPacket packet, const bool reliable)
 		if(!_isServer)
 			enet_peer_send(_peer, 0, enetPacket);
 		else
-			_receivedPackets.push_back(NetworkPacket(enetPacket));
+			_receivedPackets.push_back(NetworkPacket(enetPacket,0));
 	}
 }
 
@@ -165,7 +165,7 @@ void Network::PacketReciever()
 						Network::GetInstance()->_event.peer -> address.port);
 				
 				// Store any relevant client information here.
-				connectedclients.push_back(Network::GetInstance()->_event.peer -> address.host);
+				
 				Network::GetInstance()->_event.peer -> data = "Client information";
 				break;
 			case ENET_EVENT_TYPE_RECEIVE:
@@ -176,7 +176,8 @@ void Network::PacketReciever()
 						Network::GetInstance()->_event.channelID);
 
 				// Add to our list of received packets
-				_receivedPackets.push_back(NetworkPacket(_event.packet));
+
+				_receivedPackets.push_back(NetworkPacket(_event.packet, Network::GetInstance()->_event.peer -> address.host));
 
 				// Clean up the packet now that we're done using it
 				enet_packet_destroy (_event.packet);

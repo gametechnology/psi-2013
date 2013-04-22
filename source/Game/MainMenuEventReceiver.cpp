@@ -33,6 +33,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					}else{
 						Network::GetInstance()->InitializeClient(ipadress);
 						if(!Network::GetInstance()->IsConnected()){
+
 							mainmenu->messagebox =  Game::guiEnv->addMessageBox(L"Messsage",L"Not able to connect to server",true,1,mainmenu->mainMenuWindow);
 							mainmenu->messagebox->setDraggable(false);
 						}else{

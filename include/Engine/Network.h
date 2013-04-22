@@ -66,10 +66,7 @@ private:
 
 public:
 	~Network();
-	/*
-		List of clients connected used to fill the lobby.
-	*/
-	std::list<enet_uint32> connectedclients;
+	
 	/*
 	* Gets you an instance of the Network interface. If not initialized yet, it will then.
 	*/
