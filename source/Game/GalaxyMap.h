@@ -15,7 +15,6 @@ public:
 
 	GalaxyMap(Composite* parent);
 	virtual ~GalaxyMap();
-	void init();
 	void loadMap();
 	void saveMap();
 	void draw();

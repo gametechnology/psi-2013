@@ -11,7 +11,6 @@ public:
 	void handleMessage(unsigned int message, void* data = 0);
 	virtual void update();
 	void init();
-	void destroy();
 	virtual ~BaseSector();
 };
 

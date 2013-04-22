@@ -11,7 +11,7 @@ using namespace std;
 class Composite {
 public:
 	Composite();
-	~Composite();
+	virtual ~Composite() = 0;
 	
 	bool initialized;
 	bool destroyed;
@@ -24,7 +24,7 @@ public:
 	virtual void lateUpdate();
 	virtual void draw();
 
-	virtual void handleMessage(unsigned int message);
+	virtual void handleMessage(unsigned int message)=0;
 
 	virtual void disable();
 	virtual void enable();

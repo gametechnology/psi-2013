@@ -9,17 +9,17 @@ Component::~Component() {
 
 }
 
-//Game* Component::getGame() {
-//	return entity->game;
-//}
+Game* Component::getGame() {
+	return entity->game;
+}
 
-//Scene* Component::getScene() {
-//	return entity->scene;
-//}
+Scene* Component::getScene() {
+	return entity->scene;
+}
 
 void Component::onAdd() {
 	if (entity->initialized)
-		handleMessage(1); // Calling init if adding something while the game already has been initialized
+		init();
 }
 
 void Component::init() {

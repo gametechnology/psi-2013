@@ -11,7 +11,7 @@ class Game;
 class Entity : public Composite {
 public:
  Entity();
- ~Entity();
+ virtual ~Entity();
 
  Game* game;
  Scene* scene;
@@ -31,7 +31,8 @@ public:
  virtual void init();
 
  virtual void handleMessage(unsigned int message);
-
+ 
+ virtual void destroy(){};
  virtual void update();
  virtual void lateUpdate();
  virtual void draw();

@@ -29,7 +29,7 @@ public:
 	bool isWithinLoS(/*playership class*/);
 
 	array<Entity*> inRangeList;
-
+	virtual void destroy(){};
 	void setVisual(IMesh* visual, ISceneManager* smgr);	// visuals are the only component which do not have a get method
 	void setVisualWithPath(const irr::io::path& path);
 	void setPath(vector3df destination);

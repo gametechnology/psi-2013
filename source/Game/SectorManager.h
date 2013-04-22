@@ -14,6 +14,7 @@ public:
 	void init();
 	virtual ~SectorManager();
 	MapSector* _mapSector;
+	char* activeSceneName;
 private:
 	GalaxyMap* _map;
 };

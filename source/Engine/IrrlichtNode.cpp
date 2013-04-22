@@ -11,10 +11,10 @@ void IrrlichtNode::init() {
 
 void IrrlichtNode::createNode() {
 	// Get the mesh
-	irr::scene::IAnimatedMesh* mesh = Component::getGame()->getSceneManager()->getMesh( &modelPath );
+	irr::scene::IAnimatedMesh* mesh = Component::getScene()->sceneManager->getMesh( &modelPath );
 
 	// Create model entity
-	node = Component::getGame()->getSceneManager()->addMeshSceneNode( mesh );
+	node = Component::getScene()->sceneManager->addMeshSceneNode( mesh );
 }
 
 void IrrlichtNode::update() {

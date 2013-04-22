@@ -16,11 +16,6 @@ public:
 	
 	void run();
 
-	Scene* getCurrentScene();
-	irr::scene::ISceneManager* getSceneManager();
-	void addScene(Scene* defaultScene);
-	void removeScene();
-
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver* driver;
 	irr::gui::IGUIEnvironment* guiEnv;

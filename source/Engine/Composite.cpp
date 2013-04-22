@@ -39,3 +39,6 @@ void Composite::disable() {
 void Composite::enable() {
 	enabled = true;
 }
+void Composite::destroy(){
+	destroyed = true;
+}

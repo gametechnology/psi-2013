@@ -13,7 +13,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
     {
         s32 id = event.GUIEvent.Caller->getID();
 		IGUIEnvironment* env = this->Context.game->device->getGUIEnvironment();
-		MainMenuScene* mainmenu = ((MainMenuScene*)this->Context.game->getCurrentScene());
+		MainMenuScene* mainmenu = ((MainMenuScene*)this->Context.game->sceneManager->getScene("MainMenuScene"));
 		char* ipadress;
 		 wchar_t* inputwchar;
 		 Player* newplayer;

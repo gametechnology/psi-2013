@@ -6,7 +6,9 @@ Entity::Entity() : Composite() {
  transform = new Transform();
  addComponent(transform);
 }
+Entity::~Entity(){
 
+}
 void Entity::onAdd() {
  for (unsigned int i = 0; i < components.size(); i++) {
   components[i]->onAdd();
