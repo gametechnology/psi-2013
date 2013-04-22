@@ -31,7 +31,7 @@ public:
 	array<Entity*> inRangeList;
 
 	void setVisual(IMesh* visual, ISceneManager* smgr);	// visuals are the only component which do not have a get method
-	void setVisualWithPath(std::string);
+	void setVisualWithPath(const irr::io::path& path);
 	void setPath(vector3df destination);
 	void setPosition(vector3df position);
 	void setRotation(vector3df rotategoal);

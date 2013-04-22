@@ -239,10 +239,10 @@ void Enemy::setVisual(IMesh* visual, ISceneManager* smgr)
 	smgr->addMeshSceneNode(this->visual_);
 }
 
-void Enemy::setVisualWithPath(std::string path)
+void Enemy::setVisualWithPath(const irr::io::path& path)
 {
 	//this->createNode(path);
-	this->addComponent(new IrrlichtNode(irr::io::path(&path)));
+	this->addComponent(new IrrlichtNode(path));
 }
 
 void Enemy::setVelocity(vector3df input)
