@@ -96,27 +96,27 @@ void Shipmap::draw()
 
 		// helm station icon
 		Game::driver->draw2DImage(icon_helm, core::position2d<s32>(boundingBoxes[4]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[4]->UpperLeftCorner.Y+stationIconDrawOffset),
-			rect<s32>(stationIconOffset[0]-55, 0, stationIconOffset[0], icon_helm->getOriginalSize().Height),
+			rect<s32>(stationIconOffset[0] + (stationOccupied[4] ? 0 : -55), 0, stationIconOffset[0] + (stationOccupied[4] ? 55 : 0), icon_helm->getOriginalSize().Height),
 			0, video::SColor(255,255,255,255), true);
 
 		// defense station icon
 		Game::driver->draw2DImage(icon_defense, core::position2d<s32>(boundingBoxes[2]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[2]->UpperLeftCorner.Y+stationIconDrawOffset),
-			rect<s32>(stationIconOffset[1]-55, 0, stationIconOffset[1], icon_defense->getOriginalSize().Height),
+			rect<s32>(stationIconOffset[1] + (stationOccupied[2] ? 0 : -55), 0, stationIconOffset[1] + (stationOccupied[2] ? 55 : 0), icon_defense->getOriginalSize().Height),
 			0, video::SColor(255,255,255,255), true);
 
 		// weapons station icon
 		Game::driver->draw2DImage(icon_weapons, core::position2d<s32>(boundingBoxes[0]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[0]->UpperLeftCorner.Y+stationIconDrawOffset),
-			rect<s32>(stationIconOffset[2]-55, 0, stationIconOffset[2], icon_weapons->getOriginalSize().Height),
+			rect<s32>(stationIconOffset[2] + (stationOccupied[0] ? 0 : -55), 0, stationIconOffset[2] + (stationOccupied[0] ? 55 : 0), icon_weapons->getOriginalSize().Height),
 			0, video::SColor(255,255,255,255), true);
 
 		// navigation station icon
 		Game::driver->draw2DImage(icon_navigation, core::position2d<s32>(boundingBoxes[3]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[3]->UpperLeftCorner.Y+stationIconDrawOffset),
-			rect<s32>(stationIconOffset[3]-55, 0, stationIconOffset[3], icon_navigation->getOriginalSize().Height),
+			rect<s32>(stationIconOffset[3] + (stationOccupied[3] ? 0 : -55), 0, stationIconOffset[3] + (stationOccupied[3] ? 55 : 0), icon_navigation->getOriginalSize().Height),
 			0, video::SColor(255,255,255,255), true);
 
 		// engine station icon
 		Game::driver->draw2DImage(icon_engine, core::position2d<s32>(boundingBoxes[1]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[1]->UpperLeftCorner.Y+stationIconDrawOffset),
-			rect<s32>(stationIconOffset[4]-55, 0, stationIconOffset[4], icon_engine->getOriginalSize().Height),
+			rect<s32>(stationIconOffset[4] + (stationOccupied[1] ? 0 : -55), 0, stationIconOffset[4] + (stationOccupied[1] ? 55 : 0), icon_engine->getOriginalSize().Height),
 			0, video::SColor(255,255,255,255), true);
 
 		// player icon
