@@ -16,14 +16,14 @@ TestScene::TestScene(void)
 void TestScene::init()
 {
 	// Create model entity
-	Player* player = new Player(this);
-	addComponent(player);
+	Player* player = new Player();
+	addChild(player);
 	player->handleMessage(DAMAGE, new int(789));	// Send a message to player and components.
 
 	// Create camera entity
 	Camera* camera = new Camera(this, vector3df(0,4,-4), vector3df(0,4,0));
-	camera->velocity.Z -= (float)0.001;
-	addComponent(camera);
+	camera->transform->velocity->Z -= (float)0.001;
+	addChild(camera);
 }
 
 TestScene::~TestScene(void)

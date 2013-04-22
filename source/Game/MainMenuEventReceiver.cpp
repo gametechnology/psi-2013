@@ -56,7 +56,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					mainmenu->Ipadresinput->setVisible(false);
 					mainmenu->start_button->setVisible(true);
 					mainmenu->Clientlist->setVisible(true);
-					newplayer = new Player(NULL);
+					newplayer = new Player();
 					newplayer->Name = L"Player";
 					newplayer->Team = 1;
 					mainmenu->playerlist.push_back(newplayer);

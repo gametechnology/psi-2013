@@ -6,7 +6,7 @@
 MainMenuScene::MainMenuScene() 
 {
 	//Get the device
-	guiEnv = Game::guiEnv;
+	guiEnv = game->guiEnv;
 	playerlist = std::list<Player*>();
 
 	///////////////////////////////////////////
@@ -33,7 +33,7 @@ MainMenuScene::MainMenuScene()
 	
 	 // Store the appropriate data in a context structure.
     SAppContext context;
-	context.device = Game::device;
+	context.device = game->device;
     context.counter = 0;
 
 	// Then create the event receiver, giving it that context structure.
@@ -51,7 +51,7 @@ void MainMenuScene::update(){
 	{
 		std::list<enet_uint32>::const_iterator ipi;
 		ipi = Network::GetInstance()->connectedclients.begin();
-		Player* newplayer = new Player(NULL);
+		Player* newplayer = new Player();
 		newplayer->Ipadres = (*ipi);
 		newplayer->Name = L"Player";
 		if((playerlist.size()) % 2 != 0)
@@ -92,7 +92,7 @@ void MainMenuScene::StartGame()
 	MapGenerator mapGen;
 	mapGen.init(20, 2, 5);
 	GalaxyMap* galaxyMap = mapGen.createNewMap(300, 300, 15);
-	galaxyMap->position.set(vector3df(100, 670, 0));
+	galaxyMap->transform->position->set(vector3df(100, 670, 0));
 	SectorManager sectorManager(galaxyMap);
 	sectorManager.init();
 }
@@ -108,7 +108,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 				packet >> lenght;
 				for (int i = 0;i < lenght;i++){
 					Player * newplayer;
-					newplayer = new Player(NULL);
+					newplayer = new Player();
 					packet >> newplayer;
 					playerlist.push_back(newplayer);
 				}

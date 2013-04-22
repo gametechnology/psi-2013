@@ -11,7 +11,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	// Creating Skybox
 	_skybox = new Skybox(skyBoxTexture, this);
 	// Adding mist
-	_fog = new Mist(this);
+	_fog = new Mist();
 	// Setting the boundry
 	_boundry = boundryRadius;
 	

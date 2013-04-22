@@ -44,7 +44,7 @@ void MapSector::resetTexture()
 			break;
 	
 	}
-	game->driver->makeColorKeyTexture(this->_mapSectorTexture, position2d<s32>(0, 0));
+	game->driver->makeColorKeyTexture(this->_mapSectorTexture, core::position2d<s32>(0, 0));
 }
 
 void MapSector::draw(){
