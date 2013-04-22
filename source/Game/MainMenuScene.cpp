@@ -75,6 +75,7 @@ void MainMenuScene::update(){
 }
 void MainMenuScene::StartGame()
 {
+	mainMenuWindow->remove();
 	MapGenerator mapGen;
 	mapGen.init(20, 2, 5);
 	GalaxyMap* galaxyMap = mapGen.createNewMap(300, 300, 15);
