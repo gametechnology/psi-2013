@@ -124,9 +124,8 @@ void EnemyManager::update()
 	}
 }
 
-#define UNIFORMSIZE 10
-
 /*
+#define UNIFORMSIZE 10
 void EnemyManager::BroadPhaseDetection()
 {
 	vector3df max = vector3df(0,0,0);
@@ -201,9 +200,24 @@ void EnemyManager::BroadPhaseDetection()
 	}
 }
 */
+void EnemyManager::LaserNarrowPhase(array<Enemy*> _enput, array<Laser*> _laput)
+{
+	for (int i = 0; i < (int)(_laput.size()); i++)
+	{
+		for(int j = i; j < (int)(_enput.size()); j++)
+		{
+			float distance = _laput[i]->position.getDistanceFrom(_enput[j]->position);
+			if (distance < (_enput[j]->getRadius()))
+			{
+				_laput[j]->contactResolver(_enput[i]);
+			}
+		}
+	}
+}
 
 void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 {
+	array<Laser*> laserlist;
 	for(int i = 0; i < (int)(_input.size()); i++)
 	{
 		for(int j = i; j < (int)(_input.size()); j++)
@@ -215,7 +229,6 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 				{
 					if (distance < (_input[i]->getRadius() + _input[j]->getRadius() ) )
 					{
-						std::printf("lll\n");
 						_input[i]->contactResolverA(_input[j]);
 						continue;
 					}
@@ -252,7 +265,6 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 								box2[k].Z > box1[l].Z - _input[i]->getRadius() 
 								)
 							{
-								std::printf("..!..\n");
 								_input[i]->contactResolverA(_input[j]);
 							}
 						}
@@ -275,6 +287,15 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 				}
 			}
 		}
+		if(dynamic_cast<EnemyFighter*>(_input[i]))
+		{
+			EnemyFighter* temp = (EnemyFighter*) _input[i];
+			laserlist.push_back(temp->GetLasers());
+		}
+	}
+	if (!laserlist.empty())
+	{
+		LaserNarrowPhase(_input, laserlist);
 	}
  //float distance = position.getDistanceFrom(input->getPosition());
  //float radii = input->getRadius() + radius_;

@@ -21,6 +21,7 @@ class EnemyManager : public Scene, INetworkListener
 		void HandleNetworkMessage(NetworkPacket packet);
 	//	void BroadPhaseDetection();
 		void NarrowPhaseDetection(array<Enemy*> _input);
+		void LaserNarrowPhase(array<Enemy*> _enput, array<Laser*> _laput);
 
 	private:
 		array<Enemy*> _enemyList;
