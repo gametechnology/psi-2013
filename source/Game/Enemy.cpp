@@ -361,7 +361,7 @@ void Enemy::setOriginalVelocity(vector3df origvelocity)
 
 void Enemy::setTarget(vector3df targetPosition)
 {
-	Enemy::_target = targetPosition;
+	_target = targetPosition;
 }
 
 vector3df Enemy::getTarget()
