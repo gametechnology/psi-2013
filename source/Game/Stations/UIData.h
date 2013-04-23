@@ -29,7 +29,7 @@ private:
 		int powerCurrent;
 	};
 	
-	map<StationType, PowerUsage> *_stationsPowerUsage;
+	irr::core::map<StationType, PowerUsage> *_stationsPowerUsage;
 	time_t _timeOfLastBoost;	
 	int _powerUsed;
 

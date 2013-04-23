@@ -463,9 +463,6 @@ void Enemy::receiveDamage(int damage)
 	if(this->_health <= 0)
 	{
 		this->_health = 0;
-		std::cout << this->getHealth() << " ";
-		this->_isAlive = false;
-		this->destroy();
 	}
 }
 

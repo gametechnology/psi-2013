@@ -155,6 +155,7 @@ void EnemySceneTest::update()
 		if(Network::GetInstance()->IsServer())
 		{
 			packet << _enemyList;
+				_enemyList[i]->updateHealth();
 
 			Network::GetInstance()->SendServerPacket(packet);
 		}
