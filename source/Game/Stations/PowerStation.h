@@ -56,6 +56,8 @@ public:
 	void changeColorAccordingToPowerStatus(IGUIStaticText &staticText, float powerAmount);
 
 	int GetPower(StationType type);
+	void OnEnabled();
+	void OnDisabled();
 };
 
 #endif
