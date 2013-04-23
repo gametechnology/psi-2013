@@ -62,7 +62,7 @@ protected:
 	//Player	*_player;
 	int		_playerID;
 
-	time_t *_switchTime;			//the time that the player switched to this station
+	time_t *_switchTime;			//the time that the player switched to this station.
 	time_t *_playerOnStationTime;	//the time that the player has spent on this station (since he switched)
 	//time_t *_stunTime;				//if a station fot stunned, the time it happened will be stored here.
 	
@@ -74,11 +74,15 @@ protected:
 	void SendPacket( NetworkPacket *p, bool isReliable = true );
 	//we also want to be able to subscribe all the stations to the information they need to receive. This is protected so all the individual stations can access it.
 	void SubscribeForPacketType( PacketType t );
+	//finally, we need to be able to unsubscribe for packets as well.
+	void UnsubscribeForPacketType( PacketType t );
 
-	NetworkPacket *PlayerEntersOrLeavesPacket( );
+	NetworkPacket *PlayerEntersPacket( );
+	NetworkPacket *PlayerLeavesPacket( );
 
 private:	
-	void OnPlayerEntersOrLeaves( );
+	void OnPlayerEnters( );
+	void OnPlayerLeaves( );
 	bool _stationDestroyed;
 
 public:

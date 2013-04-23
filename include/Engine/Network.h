@@ -18,8 +18,9 @@ enum PacketType
 	SERVER_REJECTS,
 
 	//when a player enters a ship, he will send a message containing all the information of the ship (the time player went in their, ship/station/PlayerID, etc.)
-	CLIENT_STATION_PLAYER_STATUS_CHANGED,
-		
+	CLIENT_STATION_PLAYER_ENTERS,
+	CLIENT_STATION_PLAYER_LEAVES,
+
 	CLIENT_HELM_STATION_USER_INPUT,
 	
 

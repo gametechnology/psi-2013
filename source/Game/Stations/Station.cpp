@@ -37,7 +37,7 @@ bool Station :: IsPlayerPacketSender( NetworkPacket *p )
 	return HasPlayer( ) || playerID != this -> _playerID;
 }
 
-bool Station::SwitchTimePassed()
+bool Station :: SwitchTimePassed()
 {
 	return this -> _playerOnStationTime > this -> _switchTime;
 }
@@ -66,20 +66,19 @@ void Station :: setStationDestroyed(bool _destroyed)
 }
 
 /**
-	when a player enters a station, that station will be initialized and the updated
+	when a player enters a station, that station will be initialized and updated
 */
 void Station :: Initialize( int playerID )
 {
-	this -> _switchTime = new time_t( );
-	this -> _playerID					= playerID;		 
+	this -> _playerID					= playerID;
 	
 	if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
 	if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
 
 	//subscribe to the Networking protocol, that we want to subscribe to the player status changes packet type
-	SubscribeForPacketType( PacketType :: CLIENT_STATION_PLAYER_STATUS_CHANGED );
+	SubscribeForPacketType( PacketType :: CLIENT_STATION_PLAYER_ENTERS );
 
-	OnPlayerEntersOrLeaves( );
+	OnPlayerEnters( );
 }
 
 
@@ -87,10 +86,19 @@ void Station :: DeInitialize( )
 {
 	this -> _playerID					= -1;
 
-	OnPlayerEntersOrLeaves( );
+	OnPlayerLeaves( );	
 }
 
-void Station :: OnPlayerEntersOrLeaves( )
+void Station :: OnPlayerEnters( )
+{
+	//set the time that the player entered the station ( or left )
+	time( this -> _switchTime );
+
+	//send a message to the server that the player entered of left.
+	Network :: GetInstance( ) -> SendPacket( *PlayerEntersPacket( ) );
+}
+
+void Station :: OnPlayerLeaves( )
 {
 	
 }
@@ -98,19 +106,26 @@ void Station :: OnPlayerEntersOrLeaves( )
 /**
 	Creates and returns a packet thast should be sent when a player enters the station
 */
-NetworkPacket *Station :: PlayerEntersOrLeavesPacket( )
+NetworkPacket *Station :: PlayerEntersPacket( )
 {
+	
 	//we create a new packet to store our data in.
 	sf :: Packet	packet	= sf :: Packet( );
 		
-	//then enter our information (player ID, station ID, ship ID and the time the player entered the ship)
-	packet << this -> _ship -> shipID << ( int ) this -> _stationType << this -> _playerID << this -> _switchTime;
+	//then enter our information (player ID, station ID, ship ID and the time the player entered the ship). 
+	//We cannot send a time_t, but we can convert it to an int
+	packet << this -> _ship -> shipID << ( int ) this -> _stationType << this -> _playerID << ( int ) this -> _switchTime;
 
 	//next, we create a network packet to store the packet inside.  
-	NetworkPacket	*np		= new NetworkPacket( PacketType :: CLIENT_STATION_PLAYER_STATUS_CHANGED, packet );
+	NetworkPacket	*np		= new NetworkPacket( PacketType :: CLIENT_STATION_PLAYER_ENTERS, packet );
 
 	//and return it
 	return np;
+}
+
+NetworkPacket *Station :: PlayerLeavesPacket( )
+{
+	
 }
 
 bool Station :: IsPacketForThisStation( sf :: Packet p )
@@ -125,16 +140,22 @@ bool Station :: IsPacketForThisStation( sf :: Packet p )
 void Station :: HandleNetworkMessage( NetworkPacket p )
 {
 	sf :: Packet packet = p.GetPacket( );
-
+	
 	switch( p.GetPacketType( ) )
 	{
-	case PacketType :: CLIENT_STATION_PLAYER_STATUS_CHANGED:
-		//first, we are creating a temporary int for the stationID, because we need to remove it from the 
+	case PacketType :: CLIENT_STATION_PLAYER_ENTERS:
+		//first, we are creating a temporary int for the stationID and shipID, because we need to take it from the packet
 		int stationID;
 		int shipID;
-		packet >> shipID >> stationID >> this -> _playerID;
-		packet >> ( int )( this -> _switchTime );
-		break;	
+		int time;
+
+		packet >> shipID >> stationID >> _playerID >> time;
+		//we then take the time that the player entered the station and convert it back to a time_t object
+		*this -> _switchTime = ( time_t ) time;
+		break;
+	case PacketType :: CLIENT_STATION_PLAYER_LEAVES:
+		
+		break;
 	}
 }
 
@@ -143,3 +164,7 @@ void Station :: SubscribeForPacketType( PacketType t )
 	Network :: GetInstance( ) -> AddListener( t, this );
 }
 
+void Station :: UnsubscribeForPacketType( PacketType t )
+{
+	Network :: GetInstance( ) -> RemoveListener( t, this );
+}
