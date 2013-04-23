@@ -79,3 +79,8 @@ void EnemyFighter::fireLaserAt(vector3df target)
 	}
 }
 
+Laser* EnemyFighter::GetLasers()
+{
+	return _laser;
+}
+

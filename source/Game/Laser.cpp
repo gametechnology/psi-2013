@@ -8,6 +8,7 @@ Laser::Laser() : Entity(parent)
 	this->createNode("../assets/Models/laser.3ds");
 	this->_currentLife = 0;
 	this->_timeofLife = 100;
+	this->_damage = 1;
 }
 
 Laser::~Laser()
@@ -46,4 +47,18 @@ void Laser::update()
 	}
 
 	Entity::update();
+}
+
+void Laser::contactResolver(Enemy* input)
+{
+	input->setHealth(input->getHealth() - this->_damage);
+	std::printf("HIT on Enemy!");
+//	delete(this); //'kill' this projectile
+}
+
+void Laser::contactResolver(DefenceStation* input)
+{
+	input->Damage();
+	std::printf("HIT on Defence station!");
+//	delete(this); //'kill' this projectile
 }

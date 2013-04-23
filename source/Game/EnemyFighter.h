@@ -11,6 +11,7 @@ public:
 	EnemyFighter(irr::core::vector3df position);
 	~EnemyFighter(void);
 
+	Laser* GetLasers();
 	void SetTarget(vector3df target);
 	virtual void chase(vector3df target);
 
