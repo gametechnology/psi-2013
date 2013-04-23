@@ -73,7 +73,7 @@ class MyEventReceiver : public IEventReceiver
 
 public:
 
-	MyEventReceiver(UIData & context) : _context(context) { }
+	MyEventReceiver(PowerStationData & context) : _context(context) { }
 
 	virtual bool OnEvent(const SEvent& event)
 	{
@@ -157,7 +157,7 @@ public:
 	}
 
 private:
-	UIData & _context;
+	PowerStationData & _context;
 };
 
 //Initializes the User Interface.

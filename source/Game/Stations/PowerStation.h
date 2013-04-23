@@ -3,7 +3,7 @@
 
 #include "Station.h"
 #include "..\Ship.h"
-#include "UIData.h"
+#include "PowerStationData.h"
 #include "..\..\..\include\Engine\Game.h"
 #include "../NetworkInterface.h"
 #include "Irrlicht\irrlicht.h"
@@ -26,7 +26,7 @@ public:
 	IGUIEnvironment			*env;
 	IGUISkin				*skin;
 	IGUIFont				*font;
-	UIData					context;
+	PowerStationData		context;
 
 	PowerStation( Ship* ship );
 	~PowerStation( void );

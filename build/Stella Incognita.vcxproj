@@ -122,7 +122,7 @@
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\PowerStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\Station.cpp" />
-    <ClCompile Include="..\source\Game\Stations\UIData.cpp" />
+    <ClCompile Include="..\source\Game\Stations\PowerStationData.cpp" />
     <ClCompile Include="..\source\Game\TestScene.cpp" />
     <ClCompile Include="..\source\Game\WormHole.cpp" />
     <None Include="..\assets\sydney.bmp" />
@@ -170,7 +170,7 @@
     <ClInclude Include="..\source\Game\Stations\NavigationStation.h" />
     <ClInclude Include="..\source\Game\Stations\PowerStation.h" />
     <ClInclude Include="..\source\Game\Stations\Station.h" />
-    <ClInclude Include="..\source\Game\Stations\UIData.h" />
+    <ClInclude Include="..\source\Game\Stations\PowerStationData.h" />
     <ClInclude Include="..\source\Game\Stations\WeaponStation.h" />
     <ClInclude Include="..\source\Game\Team.h" />
     <ClInclude Include="..\source\Game\TestScene.h" />
