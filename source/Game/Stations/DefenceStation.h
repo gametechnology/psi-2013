@@ -1,6 +1,5 @@
 #ifndef DEFENCE_STATION
 #define DEFENCE_STATION
-#pragma once
 
 #include "Station.h"
 #include "..\Ship.h"

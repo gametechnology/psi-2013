@@ -131,6 +131,7 @@ void EnemySceneTest::update()
 				enemyRotations.push_back(_enemyList[i]->getRotation());
 				enemiesAreAlive.push_back(_enemyList[i]->isAlive());
 				enemiesHealth.push_back(_enemyList[i]->getHealth());
+				_enemyList[i]->updateHealth();
 			}
 
 			packet << _enemyList.size() << enemyIds << enemyType << enemyPositions << enemyVelocities << 
