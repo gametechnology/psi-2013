@@ -60,6 +60,7 @@ public:
 	void setOriginalRadius(float origradius);
 	void setOuterRadius(float outerradius);
 	void setOriginalVelocity(vector3df origvelocity);
+	void setType(EnemyType type);
 
 	//it can only be set as a client, the server makes their own id.
 	void setId(int id);

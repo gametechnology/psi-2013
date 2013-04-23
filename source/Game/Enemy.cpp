@@ -20,7 +20,7 @@ Enemy::Enemy(void): Entity(parent)
 	myPacket << vector3Array;
 	if(!Network::GetInstance()->IsServer())
 	{
-		Network::GetInstance()->SendPacket(myPacket);
+		//Network::GetInstance()->SendPacket(myPacket);
 	}
 	Network::GetInstance()->AddListener(ENEMY, this);
 }
@@ -54,6 +54,11 @@ void Enemy::setId(int id)
 	{
 		this->_id = id;
 	}
+}
+
+void Enemy::setType(Enemy::EnemyType type)
+{
+	this->_type = type;
 }
 
 void Enemy::pathFinding()

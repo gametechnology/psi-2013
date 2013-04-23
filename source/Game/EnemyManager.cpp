@@ -9,7 +9,7 @@
 
 EnemyManager::EnemyManager(void) 
 {
-	Network::GetInstance()->AddListener(PacketType::ENEMY, this);
+	Network::GetInstance()->AddListener(ENEMY, this);
 }
 
 EnemyManager::~EnemyManager(void)
