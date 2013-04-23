@@ -2,7 +2,7 @@
 #include "Station.h"
 #include "..\Ship.h"
 
-DefenceStation::DefenceStation(Ship* ship):Station(ship)
+DefenceStation::DefenceStation(Ship* ship) : Station(ship)
 {
 	this->_stationType	= ST_DEFENCE;
 	this->_stations		= new irr::core::map<StationType, DefenceStation::DefenceStats>();

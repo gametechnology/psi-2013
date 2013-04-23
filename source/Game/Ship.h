@@ -46,6 +46,9 @@ public:
 
 	bool _sitOnStation;
 
+	void onAdd();
+	void init();
+
 	void update();
 	void updateShipHealth();
 	void draw();

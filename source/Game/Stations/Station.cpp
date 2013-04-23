@@ -6,7 +6,6 @@
 
 Station :: Station( Ship *ship, int startHealth ) : Entity()
 {
-	driver = this->game->driver;
 	this ->	_ship	= ship;
 	this -> _health = startHealth;
 	//this -> _switchTime = 4.0f;
@@ -18,6 +17,10 @@ Station :: Station( Ship * ship ) : Entity()
 	this -> _totalHealth = 50;
 	this -> _health = this->_totalHealth;
 	this -> _tempTimer = 0;
+}
+
+void Station :: init() {
+	driver = this->game->driver;
 }
 
 Station :: ~Station(void)
@@ -108,10 +111,12 @@ void Station::updateHealth()
 		}
 	}
 }
+
 int Station :: getHealth()
 {
 	return this -> _health;
 }
+
 void Station::decreaseHealth(int health)
 {
 	this->_health -= health;
@@ -121,6 +126,7 @@ void Station::decreaseHealth(int health)
 		repairStation(this->_totalHealth/2);
 	}
 }
+
 void Station::increaseHealth(int health)
 {
 	this->_health += health;

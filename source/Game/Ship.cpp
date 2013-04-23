@@ -4,8 +4,18 @@
 
 Ship::Ship( ) : Entity ( )
 {
+	
+}
+
+Ship::~Ship(void)
+{
+	
+}
+
+void Ship::onAdd() {
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/sydney.md2"));
 	addComponent(model);
+
 	// TODO Create a node
 	//createNode("../assets/sydney.md2");
 	ShipMover* mover = new ShipMover(this);
@@ -14,34 +24,20 @@ Ship::Ship( ) : Entity ( )
 	//this->env = Game :: device->getGUIEnvironment();
 
 	//TODO remove temp stuff
-	this->_defenceStation		= new DefenceStation( this );
-	this->_helmStation		= new HelmStation( this );
-	this->_navigationStation	= new NavigationStation( this );
-	this->_weaponStation		= new WeaponStation( this );
-	this->_powerStation		= new PowerStation( this );
-	
-	this->_defenceStation		-> Initialize();
-	this->_helmStation		-> Initialize();
-	this->_navigationStation	-> Initialize();
-	this->_weaponStation		-> Initialize();
-	this->_powerStation		-> Initialize();	//TODO: uncomment to show stations
-	
-	addChild(_defenceStation);
-	addChild(_helmStation);
-	addChild(_navigationStation);
-	addChild(_weaponStation);
-	addChild(_powerStation);	//TODO: uncomment to show stations
+	addChild(_defenceStation	= new DefenceStation(this));
+	addChild(_helmStation		= new HelmStation(this));
+	addChild(_navigationStation = new NavigationStation(this));
+	addChild(_weaponStation		= new WeaponStation(this));
+	addChild(_powerStation		= new PowerStation(this));
+}
 
-	this->updateShipHealth();
-	this->_shipDestroyed = false;
-
+void Ship::init() {
 	stringw strShipHealth = "ship health: " + this->getShipHealth();
 	stringw strDefenceHealth = "Defence Station health: " + this->_defenceStation->getHealth();
 	stringw strHelmHealth = "Helm Station health: " + this->_helmStation->getHealth();
 	stringw strNavigationHealth = "Navigation Station health: " + this->_navigationStation-> getHealth();
 	stringw strPowerHealth = "Power Station health: " + this->_powerStation->getHealth();
 	stringw strWeaponHealth = "Weapon Station health: " + this->_weaponStation->getHealth();
-
 
 	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
@@ -50,15 +46,7 @@ Ship::Ship( ) : Entity ( )
 	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 
-}
-
-Ship::~Ship(void)
-{
-	this->removeChild(_defenceStation);
-	this->removeChild(_helmStation);
-	this->removeChild(_navigationStation);
-	this->removeChild(_weaponStation);
-	this->removeChild(_powerStation);
+	this->updateShipHealth();
 }
 
 Station *Ship :: GetStation( StationType s )

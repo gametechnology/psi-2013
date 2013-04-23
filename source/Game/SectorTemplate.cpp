@@ -8,10 +8,13 @@
 SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : Scene() {
 	//setting sector Manager
 	_sectormanager = sectormanager;
+	
 	// Creating Skybox
 	_skybox = new Skybox(skyBoxTexture, this);
+
 	// Adding mist
 	_fog = new Mist();
+	
 	// Setting the boundry
 	_boundry = boundryRadius;
 	
@@ -20,39 +23,69 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	//Get the player/Ship via Sectormanager
 	//_sectormanager->getShip()
 	_ship = new Ship();
-	this->_player = new Camera( _ship, vector3df(0, 20, -10) ); //TODO: Make the camera work correctly according to station
+	_player = new Camera( _ship, vector3df(0, 20, -10) ); //TODO: Make the camera work correctly according to station
+
 	//this->_camera = Game::getSceneManager()->addCameraSceneNodeFPS();
+	
 	// Creating wormholes
 	createWormHoles( amountWormHoles );
-	
-	init();
 }
-//This function isn't being overriden so it needs to be called in constructor
-void SectorTemplate::init(){
+
+void SectorTemplate::onAdd() {
 	addComponent(_enemyManager);
-	addChild( this->_skybox );
+	addChild(_skybox );
 	//addComponent( this->_player );
 	addChild(_ship);
-	addChild( this->_fog );
+	addChild(_fog );
+
+	// adding the wormholes
+	addWormHoles();
+}
+
+//This function isn't being overriden so it needs to be called in constructor
+void SectorTemplate::init(){
+	
 }
 
 void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
-			printf("[SectorTemplate] -=*[Begin of Create WormHole]*=- \n");
-			printf("[SectorTemplate] -=*[Amount of wormholes %i]*=- \n", amountOfWormHoles);
-	for(unsigned int i = 0; i < amountOfWormHoles; i++){
+
+	printf("[SectorTemplate] -=*[Begin of Create WormHole]*=- \n");
+	printf("[SectorTemplate] -=*[Amount of wormholes %i]*=- \n", amountOfWormHoles);
+	
+	for(unsigned int i = 0; i < amountOfWormHoles; i++) {
 		// Calculating the pos in the sector
 		irr::core::vector3df wormHolePos((float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)));
+		
 		// Making sure that the wormhole isn't spawned between 0% and 80% from the zero point to the radius of the sector
 		wormHolePos.setLength((float)(rand() % int(_boundry* 0.2) + int(_boundry* 0.8)));
+		
 		// Creating a wormhole and giving it the pos we just calculated
-		wormHole = new WormHole(this->parent, i, wormHolePos );
+		wormHole = new WormHole(i);
+		
 		// Pushing to the wormhole list
 		this->_wormHoles.push_back( wormHole );
-		addChild(wormHole);
 	}
+
 	int size = _wormHoles.size();
-			printf("[SectorTemplate] -=*[Size array %i ]*=- \n" , size);
-			printf("[SectorTemplate] -=*[End of Create WormHole]*=- \n");
+	
+	printf("[SectorTemplate] -=*[Size array %i ]*=- \n" , size);
+	printf("[SectorTemplate] -=*[End of Create WormHole]*=- \n");
+}
+
+void SectorTemplate::addWormHoles() {
+	for(unsigned int i = 0; i < _wormHoles.size(); i++) {
+		// Calculating the pos in the sector
+		irr::core::vector3df wormHolePos((float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)));
+		
+		// Making sure that the wormhole isn't spawned between 0% and 80% from the zero point to the radius of the sector
+		wormHolePos.setLength((float)(rand() % int(_boundry* 0.2) + int(_boundry* 0.8)));
+
+		// Adding the worm holes to the scene
+		addChild(_wormHoles[i]);
+
+		// And give it their position
+		_wormHoles[i]->transform->position = &wormHolePos;
+	}
 }
 
 void SectorTemplate::update(){

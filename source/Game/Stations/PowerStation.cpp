@@ -8,11 +8,24 @@
 
 PowerStation :: PowerStation( Ship *ship ) : Station( ship )
 {
+	
+}
+
+void PowerStation :: init() {
 	this -> _stationType		= ST_POWER;
 	this -> device				= this->game->device;
 	//this ->	driver				= device -> getVideoDriver( );
 	this -> env					= this->game->guiEnv;	
 	this -> setStationDestroyed(false);
+
+	skin = env->getSkin( );
+	font = env->getFont( "../assets/Textures/Stations/PowerStation/fontcopperplategothicbold.png" );
+	
+	if (font)
+		skin->setFont(font);
+	else
+		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
+	createUI();
 }
 
 PowerStation :: ~PowerStation()
@@ -161,20 +174,6 @@ private:
 	UIData & _context;
 };
 
-//Initializes the User Interface.
-void PowerStation::Initialize()
-{
-	Station :: Initialize( );
-	
-	skin = env->getSkin( );
-	font = env->getFont( "../assets/Textures/Stations/PowerStation/fontcopperplategothicbold.png" );
-	
-	if (font)
-		skin->setFont(font);
-	else
-		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
-	createUI();
-}
 //Creates the User Interface. Is a helper method. Also initializes the event receiver.
 void PowerStation::createUI()
 {

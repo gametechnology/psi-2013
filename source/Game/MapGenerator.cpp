@@ -187,8 +187,6 @@ void MapGenerator::createConnections()
 	away->type = red->type;
 	red->name = tempName;
 	red->type = tempType;
-	away->resetTexture();
-	red->resetTexture();
 
 	//Redo the distance to blue base calculation
 	int j = dijkstra();
@@ -197,10 +195,12 @@ void MapGenerator::createConnections()
 bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* sector2)
 {
 	float ax, ay, bx, by, cx, cy, cr;
+
 	ax = sector1->transform->position->X;
 	ay = sector1->transform->position->Y;
 	bx = sector2->transform->position->X;
 	by = sector2->transform->position->Y;
+	
 	cr = _sectorRadius;
 
 	for(int i=0;i<sectors.size();i++)
@@ -286,21 +286,21 @@ int MapGenerator::dijkstra()
 		sectors[i]->distToBlueBase = INT_MAX;
 	}
 
-	std::list<MapSector*> openConnections;
-	std::list<MapSector*> nextConnections;
-	std::list<MapSector*> shortestPath;
+	std::vector<MapSector*> openConnections;
+	std::vector<MapSector*> nextConnections;
+	std::vector<MapSector*> shortestPath;
 	int curDist = 0;
 	openConnections.push_back(sectors.front());
 
 	while(openConnections.size() > 0)
 	{
 		nextConnections.clear();
-		for (std::list<MapSector*>::iterator i = openConnections.begin(); i != openConnections.end(); ++i)
+		for (std::vector<MapSector*>::iterator i = openConnections.begin(); i != openConnections.end(); ++i)
 		{
 			if ((*i)->distToBlueBase > curDist)
 			{
 				(*i)->distToBlueBase = curDist;
-				for (std::list<MapSector*>::iterator j = (*i)->connections.begin(); j != (*i)->connections.end(); ++j)
+				for (std::vector<MapSector*>::iterator j = (*i)->connections.begin(); j != (*i)->connections.end(); ++j)
 				{
 					nextConnections.push_back((*j));
 				}

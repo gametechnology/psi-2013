@@ -11,7 +11,7 @@ class SectorManager : public Component {
 public:
 	SectorManager(GalaxyMap* map);
 	void handleMessage(unsigned int message, void* data = 0);
-	void init();
+	void onAdd();
 	virtual ~SectorManager();
 	MapSector* _mapSector;
 	char* activeSceneName;

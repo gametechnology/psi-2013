@@ -6,6 +6,7 @@
 #include "../../../include/Engine/Entity.h"
 #include "../../../include/Engine/Game.h"
 #include "Irrlicht/irrlicht.h"
+
 #ifdef ENTITY_SHIP
 #include "..\Ship.h"
 #endif
@@ -48,7 +49,8 @@ public:
 	void decreaseHealth(int health);
 	void repairStation(int health);
 
-	void update();
+	virtual void init();
+	virtual void update();
 
 	virtual void OnDamage( );
 

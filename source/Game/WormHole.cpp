@@ -1,13 +1,14 @@
 #include "WormHole.h"
 #include "Engine/Game.h"
 
-WormHole::WormHole(Composite* parent, unsigned int id, irr::core::vector3df position) : Entity() {
+WormHole::WormHole(unsigned int id) : Entity() {
 	// Setting id and position
 	this->id = id;
-	this->transform->position = &position;
-	
+}
+
+void WormHole::onAdd() {
 	// Creating a 2d Node in 3d space that always looks straight to the camera, irlicht functionalitie.
-	_wormhole = scene->sceneManager->addBillboardSceneNode(0, irr::core::dimension2df(80.0f,100.0f), position );
+	_wormhole = scene->sceneManager->addBillboardSceneNode(0, irr::core::dimension2df(80.0f,100.0f), *transform->position );
 	
 	// Setting materials
 	_wormhole->setMaterialFlag(video::EMF_LIGHTING, false);
@@ -17,12 +18,6 @@ WormHole::WormHole(Composite* parent, unsigned int id, irr::core::vector3df posi
 	// Setting Texture
 	const char* filePath = "../assets/Textures/Wormholes/WormHole.png";
 	_wormhole->setMaterialTexture(0, game->driver->getTexture( filePath ));
-}
-
-// Needs setPosition because else te node will not get moved
-void WormHole::setPosition(irr::core::vector3df &newPos){
-	this->transform->position = &newPos;
-	_wormhole->setPosition( newPos );
 }
 
 // Added update for possible annimations
