@@ -20,13 +20,16 @@ MainMenuScene::MainMenuScene()
 	createServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),mainMenuWindow,2, L"Create a game");
 	joinServerWindow_Button		= guiEnv->addButton(rect<s32>(position2di(50,135),dimension2di(200,25)),mainMenuWindow,1,L"Join a game");
 	Ipadresinput				= guiEnv->addEditBox(L"",rect<s32>(position2di(300,135),dimension2di(200,25)),true,mainMenuWindow);
+	Namelabel					= guiEnv->addStaticText(L"Name:",rect<s32>(position2di(250,165),dimension2di(200,25)),false,true,mainMenuWindow);
+	Nameinput					= guiEnv->addEditBox(L"",rect<s32>(position2di(300,165),dimension2di(200,25)),true,mainMenuWindow);
 	Clientlist					= guiEnv->addStaticText(L"",rect<s32>(position2di(300,105),dimension2di(200,200)),false,true,mainMenuWindow);
 	Clientlist->setVisible(false);
 	start_button				= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,3, L"Start Game");
 	start_button->setVisible(false);
 	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	Network::GetInstance()->AddListener(START_GAME, this);
-
+	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
+	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
 
 	
 
@@ -47,24 +50,7 @@ MainMenuScene::~MainMenuScene()
 {
 }
 void MainMenuScene::update(){
-	if(Network::GetInstance()->connectedclients.size() >= playerlist.size() && Network::GetInstance()->IsConnected() && Network::GetInstance()->IsServer())
-	{
-		std::list<enet_uint32>::const_iterator ipi;
-		ipi = Network::GetInstance()->connectedclients.begin();
-		Player* newplayer = new Player(NULL);
-		newplayer->Ipadres = (*ipi);
-		newplayer->Name = L"Player";
-		if((playerlist.size()) % 2 != 0)
-			newplayer->Team = 2;
-		else
-			newplayer->Team = 1;
-		playerlist.push_back(newplayer);
-		
-	}
-
-	NetworkPacket packet(ClIENT_IN_LOBBY);
-	int a = playerlist.size();
-	packet << a;
+	
 	std::wstringstream ssp;
 	ssp << L"Team 1              Team2\n";
 	std::list<Player*>::const_iterator iterator;
@@ -78,10 +64,10 @@ void MainMenuScene::update(){
 			ssp << L"\n";
 
 		
-		packet << play;
+		
 		
 	}
-	Network::GetInstance()->SendServerPacket(packet, false);
+
 	const std::wstring& tmpp = ssp.str();
 	Clientlist->setText(tmpp.c_str());
 
@@ -89,6 +75,7 @@ void MainMenuScene::update(){
 }
 void MainMenuScene::StartGame()
 {
+	mainMenuWindow->remove();
 	MapGenerator mapGen;
 	mapGen.init(20, 2, 5);
 	GalaxyMap* galaxyMap = mapGen.createNewMap(300, 300, 15);
@@ -98,12 +85,17 @@ void MainMenuScene::StartGame()
 }
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 {
-	
+	wchar_t *  name ;
 	int lenght;
+	int team;
+	unsigned int checksum;
+	Player* newplayer;
+	std::list<Player*>::const_iterator iterator;
+	NetworkPacket packetsend(ClIENT_IN_LOBBY);
 	switch(packet.GetType())
 	{
 		case ClIENT_IN_LOBBY:
-		if(!Network::GetInstance()->IsServer()){
+			if(!Network::GetInstance()->IsServer()){
 				playerlist.clear();
 				packet >> lenght;
 				for (int i = 0;i < lenght;i++){
@@ -116,6 +108,54 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		break;
 		case START_GAME:
 			StartGame();
+			break;
+		case CLIENT_JOIN:
+			name = new wchar_t[500];
+			packet >> name;
+			packet >> checksum;
+			
+			if(checksum != Network::GetInstance()->GetPacketTypeChecksum())
+				return;
+
+			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
+				if((*iterator)->Ipadres == packet.ipadress)
+					return;
+					
+			}
+			if((playerlist.size()) % 2 != 0)
+				team = 2;
+			else
+				team = 1;
+			newplayer = new Player(NULL, name,  packet.ipadress, team);
+			playerlist.push_back(newplayer);
+			
+			lenght = playerlist.size();
+			packetsend << lenght;
+			
+			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
+				 
+				packetsend << (*iterator);
+			}
+			Network::GetInstance()->SendServerPacket(packetsend, true);
+			delete name;
+			break;
+		case CLIENT_QUIT:
+			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
+				if((*iterator)->Ipadres == packet.ipadress)
+					newplayer = (*iterator);
+					
+			}
+			if(newplayer == NULL)
+				return;
+			playerlist.remove(newplayer);
+			lenght = playerlist.size();
+			packetsend << lenght;
+			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
+				 
+				packetsend << (*iterator);
+			}
+			Network::GetInstance()->SendServerPacket(packetsend, true);
+			break;
 		break;
 		default:
 			break;

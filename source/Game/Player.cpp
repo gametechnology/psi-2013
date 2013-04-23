@@ -1,10 +1,21 @@
 #include "Player.h"
 #include "Messages.h"
 
+
 Player::Player(Composite* parent) : Entity(parent)
 {
 	Name = new wchar_t[500];
 }
+
+Player::Player(Composite* parent, wchar_t *namec, enet_uint32 ipadressc,int teamc ) : Entity(parent)
+{
+	Name = new wchar_t[500];
+	wcsncpy(Name, namec, wcslen(namec));
+	Name[wcslen(namec)] = 0;
+	Ipadres = ipadressc;
+	Team = teamc;
+}
+
 
 void Player::handleMessage(unsigned int message, void* data) {
 	//switch(message) {

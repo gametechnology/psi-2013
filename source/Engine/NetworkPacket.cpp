@@ -6,11 +6,12 @@ NetworkPacket::NetworkPacket(const PacketType type) : _type(type)
 {
 }
 
-NetworkPacket::NetworkPacket(ENetPacket* packet)
+NetworkPacket::NetworkPacket(ENetPacket* packet, enet_uint32 ipadressrec)
 {
+	ipadress = ipadressrec;
 	clear();
 	append(packet->data, packet->dataLength);
-
+	
 	int type;
 	*this >> type;
 	_type = (PacketType)type;
@@ -40,7 +41,7 @@ PacketType NetworkPacket::GetType()
 	return _type;
 }
 
-sf::Packet& operator >>(sf::Packet &out, const irr::core::vector3df &in)
+sf::Packet& operator <<(sf::Packet &out, const irr::core::vector3df &in)
 {
 	return out << in.X << in.Y << in.Z;
 }

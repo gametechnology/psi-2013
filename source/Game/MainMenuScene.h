@@ -44,7 +44,9 @@ public:
 	IGUIButton* start_button;
 	// other items in menu
 	IGUIStaticText* Clientlist;
+	IGUIStaticText* Namelabel;
 	IGUIEditBox* Ipadresinput;
+	IGUIEditBox* Nameinput;
 	IGUIWindow* messagebox;
 
 	//Create a gui environment
