@@ -23,7 +23,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	//Get the player/Ship via Sectormanager
 	//_sectormanager->getShip()
 	_ship = new Ship();
-	_player = new Camera( _ship, vector3df(0, 20, -10) ); //TODO: Make the camera work correctly according to station
+	_player = new Camera(); //TODO: Make the camera work correctly according to station
 
 	//this->_camera = Game::getSceneManager()->addCameraSceneNodeFPS();
 	
@@ -32,6 +32,8 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 }
 
 void SectorTemplate::onAdd() {
+	Scene::onAdd();
+
 	addComponent(_enemyManager);
 	addChild(_skybox );
 	//addComponent( this->_player );

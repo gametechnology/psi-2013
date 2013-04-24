@@ -21,7 +21,7 @@ void TestScene::init()
 	player->handleMessage(DAMAGE, new int(789));	// Send a message to player and components.
 
 	// Create camera entity
-	Camera* camera = new Camera(this, vector3df(0,4,-4), vector3df(0,4,0));
+	Camera* camera = new Camera();
 	camera->transform->velocity->Z -= (float)0.001;
 	addChild(camera);
 }

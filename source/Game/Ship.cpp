@@ -32,12 +32,12 @@ void Ship::onAdd() {
 }
 
 void Ship::init() {
-	stringw strShipHealth = "ship health: " + this->getShipHealth();
-	stringw strDefenceHealth = "Defence Station health: " + this->_defenceStation->getHealth();
-	stringw strHelmHealth = "Helm Station health: " + this->_helmStation->getHealth();
+	stringw strShipHealth		= "ship health: "				+ this->getShipHealth();
+	stringw strDefenceHealth	= "Defence Station health: "	+ this->_defenceStation->getHealth();
+	stringw strHelmHealth		= "Helm Station health: "		+ this->_helmStation->getHealth();
 	stringw strNavigationHealth = "Navigation Station health: " + this->_navigationStation-> getHealth();
-	stringw strPowerHealth = "Power Station health: " + this->_powerStation->getHealth();
-	stringw strWeaponHealth = "Weapon Station health: " + this->_weaponStation->getHealth();
+	stringw strPowerHealth		= "Power Station health: "		+ this->_powerStation->getHealth();
+	stringw strWeaponHealth		= "Weapon Station health: "		+ this->_weaponStation->getHealth();
 
 	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));

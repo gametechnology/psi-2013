@@ -9,7 +9,7 @@ public:
 	Scene();
 	virtual ~Scene();
 
-	void init();
+	void onAdd();
 
 	enum State {
 		LOADING,

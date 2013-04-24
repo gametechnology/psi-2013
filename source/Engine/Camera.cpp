@@ -3,8 +3,8 @@
 #include <Engine\CameraMover.h>
 
 
-Camera::Camera(Composite* parent, vector3df position, vector3df lookAt) : Entity() {
-	node = Entity::scene->sceneManager->addCameraSceneNode(NULL, position, lookAt);
+Camera::Camera() : Entity() {
+	//node = Entity::scene->sceneManager->addCameraSceneNode(NULL, position, lookAt);
 }
 
 void Camera::onAdd() {

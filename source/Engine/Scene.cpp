@@ -6,8 +6,8 @@ Scene::Scene() : Entity() {
 	state = LOADING;
 }
 
-void Scene::init() {
-	Entity::init();
+void Scene::onAdd() {
+	Entity::onAdd();
 
 	// Create a scene manager
 	sceneManager = this->game->device->getSceneManager();

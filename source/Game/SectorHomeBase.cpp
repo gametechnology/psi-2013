@@ -6,6 +6,8 @@ SectorHomeBase::SectorHomeBase(SectorManager* sectormanager, const io::path & sk
 	//init();
 }
 void SectorHomeBase::init(){
+	Scene::init();
+
 	//TODO causes memory leak should create entity's
 		BasePlaceholder* base = new BasePlaceholder(this->parent);
 		base->transform->position = new irr::core::vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250));
