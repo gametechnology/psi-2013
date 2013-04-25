@@ -84,9 +84,6 @@
     <ClCompile Include="..\source\Game\Stations\UIData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Shipmap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -143,9 +140,6 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\UIData.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\HelmSceneTest.cpp">
-      <Filter>Source files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
@@ -255,6 +249,9 @@
     <ClCompile Include="..\source\Game\HealthBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\PowerStationData.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Enemy.h">
@@ -310,9 +307,6 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\RandomGenerator.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Stations\UIData.h">
-      <Filter>Header Files\Stations</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\StateSwitch.h">
       <Filter>Header Files</Filter>
@@ -416,11 +410,14 @@
     <ClInclude Include="..\source\Game\NetworkInterface.h">
       <Filter>Header files\Network</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\Messages.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\PowerStationData.h">
+      <Filter>Header Files\Stations</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\assets\Textures\Wormholes\WormHole.png">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="..\assets\sydney.bmp">
       <Filter>Resource Files</Filter>
     </None>
