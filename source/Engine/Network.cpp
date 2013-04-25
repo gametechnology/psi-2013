@@ -105,7 +105,10 @@ void Network::InitializeServer(size_t maxPlayers)
 }
 void Network::DeInitialize(){
 	_mutex.lock();
-	enet_deinitialize();
+	if (IsServer())
+		enet_host_destroy(_host);
+	else
+		enet_peer_disconnect(_peer,0);
 	_isConnected = false;
 	StopThreads();
 	_mutex.unlock();
