@@ -18,7 +18,7 @@ class INetworkListener;
 */
 enum PacketType
 {
-	CLIENT_JOIN = 0,
+	CLIENT_JOIN,
 	CLIENT_QUIT,
 	ClIENT_IN_LOBBY,
 	CLIENT_JOIN_DENIED,
