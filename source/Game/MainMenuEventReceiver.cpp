@@ -116,9 +116,9 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					{
 						hostquitpacket << L"The host got disconnected";
 						Network::GetInstance()->SendServerPacket(hostquitpacket, true);
-						mainmenu->playerlist.clear();
+					
 					}
-
+					mainmenu->playerlist.clear();
 					Network::GetInstance()->DeInitialize();
 					mainmenu->BackToMainMenu();
 					return true;

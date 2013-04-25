@@ -197,6 +197,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		case HOST_DISCONNECT:
 			name = new wchar_t[500];
 			packet >> name;
+			playerlist.clear();
 			messagebox =  Game::guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
 			Network::GetInstance()->DeInitialize();
 			BackToMainMenu();
