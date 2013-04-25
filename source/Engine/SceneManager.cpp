@@ -1,17 +1,17 @@
 #include "Engine\SceneManager.h"
 
 SceneManager::SceneManager() : Component() {
-	//sceneList = new std::vector<Scene*>();
+	
 }
 
 void SceneManager::init(){
-	//add scenes here
+	Component::init();
 }
 
 void SceneManager::drawAll() {
 	for(int i = 0; i < nameScenes.size(); i++) {
 		if (nameScenes[i].scene->enabled)
-			nameScenes[i].scene->sceneManager->drawAll();
+			nameScenes[i].scene->getIrrlichtSceneManager()->drawAll();
 	}
 }
 

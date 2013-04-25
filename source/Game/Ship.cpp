@@ -13,8 +13,6 @@ Ship::~Ship(void)
 }
 
 void Ship::onAdd() {
-	Entity::onAdd();
-
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/sydney.md2"));
 	addComponent(model);
 
@@ -31,11 +29,11 @@ void Ship::onAdd() {
 	addChild(_navigationStation		= new NavigationStation(this));
 	addChild(_weaponStation			= new WeaponStation(this));
 	addChild(_powerStation			= new PowerStation(this));
+	
+	Entity::onAdd();
 }
 
 void Ship::init() {
-	Entity::init();
-
 	irr::core::stringw strShipHealth			= varToString("ship health: ", this->getShipHealth()); 
 	//strShipHealth +	irr::core::stringw();
 
@@ -53,6 +51,8 @@ void Ship::init() {
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 
 	this->updateShipHealth();
+
+	Entity::init();
 }
 
 Station *Ship :: GetStation( StationType s )

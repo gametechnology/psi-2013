@@ -26,8 +26,8 @@ void EnemySceneTest::init()
 	
 	EnemyManager* enemymanager;
 
-	camera = sceneManager->addCameraSceneNodeFPS();
-	this->light = sceneManager->addLightSceneNode(0,vector3df(5000,5000,5000),SColor(100,100,100,255),100000);
+	camera = getIrrlichtSceneManager()->addCameraSceneNodeFPS();
+	this->light = getIrrlichtSceneManager()->addLightSceneNode(0,vector3df(5000,5000,5000),SColor(100,100,100,255),100000);
 	
 	enemymanager = new EnemyManager();
 	addComponent(enemymanager);

@@ -18,13 +18,13 @@ Scene* Component::getScene() {
 }
 
 void Component::onAdd() {
-	if (entity->initialized)
-		init();
+	Composite::onAdd();
 }
 
-void Component::init() { }
-void Component::update() { }
-void Component::draw() { }
+void Component::init() { Composite::init(); }
+void Component::update() { Composite::update(); }
+void Component::draw() { Composite::draw(); }
+
 void Component::onEnabled() { }
 void Component::onDisabled() { }
 

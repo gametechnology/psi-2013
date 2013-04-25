@@ -16,6 +16,7 @@ public:
 	GalaxyMap(irr::f32 width, irr::f32 height, irr::f32 radiusSector);
 	virtual ~GalaxyMap();
 
+	virtual void onAdd();
 	void createMap(int sectorCount, int minWormholes, int maxWormholes);
 	void loadMap();
 	void saveMap();

@@ -7,10 +7,13 @@ Scene::Scene() : Entity() {
 }
 
 void Scene::onAdd() {
-	// Create a scene manager
-	sceneManager = this->game->device->getSceneManager();
+
 
 	Entity::onAdd();
+}
+
+irr::scene::ISceneManager* Scene::getIrrlichtSceneManager() {
+	return game->device->getSceneManager();
 }
 
 Scene::~Scene() {

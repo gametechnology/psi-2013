@@ -32,8 +32,6 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 }
 
 void SectorTemplate::onAdd() {
-	Scene::onAdd();
-
 	addComponent(_enemyManager);
 	addChild(_skybox );
 	//addComponent( this->_player );
@@ -42,6 +40,8 @@ void SectorTemplate::onAdd() {
 
 	// adding the wormholes
 	addWormHoles();
+
+	Scene::onAdd();
 }
 
 //This function isn't being overriden so it needs to be called in constructor
@@ -49,18 +49,11 @@ void SectorTemplate::init(){
 	Scene::init();
 }
 
-void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
-
+void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ) {
 	printf("[SectorTemplate] -=*[Begin of Create WormHole]*=- \n");
 	printf("[SectorTemplate] -=*[Amount of wormholes %i]*=- \n", amountOfWormHoles);
 	
 	for(unsigned int i = 0; i < amountOfWormHoles; i++) {
-		// Calculating the pos in the sector
-		irr::core::vector3df wormHolePos((float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)));
-		
-		// Making sure that the wormhole isn't spawned between 0% and 80% from the zero point to the radius of the sector
-		wormHolePos.setLength((float)(rand() % int(_boundry* 0.2) + int(_boundry* 0.8)));
-		
 		// Creating a wormhole and giving it the pos we just calculated
 		wormHole = new WormHole(i);
 		
@@ -120,7 +113,7 @@ void SectorTemplate::update(){
 		irr::core::vector3df deltaPos = *_wormHoles[i]->transform->position - *this->_ship->transform->position;
 		float collisionRadius = 50;
 		if( deltaPos.getLength() < collisionRadius ){			
-			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
+			//_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
 			break;
 		}
 	}

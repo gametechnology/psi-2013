@@ -11,6 +11,8 @@ public:
 
 	void onAdd();
 
+	irr::scene::ISceneManager* getIrrlichtSceneManager();
+
 	enum State {
 		LOADING,
 		PLAYING,
@@ -19,7 +21,6 @@ public:
 	};
 
 	State state;
-	irr::scene::ISceneManager* sceneManager;
 };
 
 #endif

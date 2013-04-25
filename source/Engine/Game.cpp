@@ -15,18 +15,18 @@ Game::Game()
 	Game::input = new InputManager();
 
 	// Create the irrlicht device 
-	Game::device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1280, 720), 16, false, false, true, Game::input);
+	device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1280, 720), 16, false, false, true, Game::input);
 
 	// If the device was not created correctly, then shut down the program
-	if(Game::device) {
+	if(device != NULL) {
 		// Create a driver 
-		driver = Game::device->getVideoDriver();
+		driver = device->getVideoDriver();
 
 		//Get the GUI environment
-		guiEnv = Game::device->getGUIEnvironment();
+		guiEnv = device->getGUIEnvironment();
 
 		//Set title of the window
-		Game::device->setWindowCaption(L"Stella Incognita");
+		device->setWindowCaption(L"Stella Incognita");
 	}
 
 	// Create the topmost node

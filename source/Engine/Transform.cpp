@@ -12,16 +12,18 @@ Transform::Transform() : Component() {
 }
 
 void Transform::init() {
-	
+	Component::init();
 }
 
-void Transform::update(){
+void Transform::update() {
 	*angularVelocity += *angularAccelaration;
 	*rotation += *angularVelocity;
 
 	*acceleration = (1 / this->mass) * this->force;
 	*velocity += *acceleration;
 	*position += *velocity;
+
+	Component::update();
 }
 
 Transform::~Transform() {

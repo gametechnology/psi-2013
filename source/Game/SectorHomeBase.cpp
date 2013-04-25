@@ -6,13 +6,13 @@ SectorHomeBase::SectorHomeBase(SectorManager* sectormanager, const io::path & sk
 	//init();
 }
 void SectorHomeBase::onAdd(){
-	Scene::onAdd();
-
 	//TODO causes memory leak should create entity's
 	BasePlaceholder* base = new BasePlaceholder();
+	addChild(base);
 	base->transform->position = new irr::core::vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250));
 	base->transform->rotation = new irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90));
-	addChild(base);
+	
+	Scene::onAdd();
 }
 
 void SectorHomeBase::update() {
@@ -33,9 +33,7 @@ BasePlaceholder::BasePlaceholder() : Entity() {
 }
 
 void BasePlaceholder::onAdd() {
-	Entity::onAdd();
-
-	irr::scene::IMeshSceneNode *node = scene->sceneManager->addCubeSceneNode(100, 0, -1,
+	irr::scene::IMeshSceneNode *node = scene->getIrrlichtSceneManager()->addCubeSceneNode(100, 0, -1,
 		irr::core::vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250)),
 		irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90))
 	);
@@ -43,6 +41,8 @@ void BasePlaceholder::onAdd() {
 	node->setMaterialFlag(EMF_LIGHTING, false);
 	node->setMaterialFlag(EMF_FOG_ENABLE, true);
 	node->setMaterialTexture(0, game->driver->getTexture("../assets/Textures/sand.jpg"));
+
+	Entity::onAdd();
 }
 
 BasePlaceholder::~BasePlaceholder() {

@@ -8,7 +8,7 @@ WormHole::WormHole(unsigned int id) : Entity() {
 
 void WormHole::onAdd() {
 	// Creating a 2d Node in 3d space that always looks straight to the camera, irlicht functionalitie.
-	_wormhole = scene->sceneManager->addBillboardSceneNode(0, irr::core::dimension2df(80.0f,100.0f), *transform->position );
+	_wormhole = scene->getIrrlichtSceneManager()->addBillboardSceneNode(0, irr::core::dimension2df(80.0f,100.0f), *transform->position );
 	
 	// Setting materials
 	_wormhole->setMaterialFlag(video::EMF_LIGHTING, false);

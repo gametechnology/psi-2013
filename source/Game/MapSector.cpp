@@ -57,5 +57,4 @@ void MapSector::draw(){
 		0,
 		0,
 		true);
-
 }

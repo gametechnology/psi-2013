@@ -28,6 +28,7 @@ MapGenerator::MapGenerator(int sectorCount, int minWormholes, int maxWormholes)
 	nameprefix.push_back("Undefined");
 	nameprefix.push_back("Urmottastinx");
 	nameprefix.push_back("Unicorn");
+	nameprefix.push_back("Yousougly");
 	
 	nameaddon.push_back("Alpha");
 	nameaddon.push_back("Beta");

@@ -9,6 +9,13 @@ GalaxyMap::GalaxyMap(irr::f32 width, irr::f32 height, irr::f32 radius) : Entity(
 	this->radius = radius;
 }
 
+void GalaxyMap::onAdd(){
+	for(unsigned int i = 0; i < sectors.size(); i++) {
+		addChild(sectors[i]);
+	}
+	Entity::onAdd();
+}
+
 void GalaxyMap::loadMap()
 {
 
@@ -24,10 +31,8 @@ void GalaxyMap::createMap(int sectorCount, int minWormholes, int maxWormholes) {
 	sectors = *mapGenerator.createNewMap(width, height, radius);
 }
 
-GalaxyMap::~GalaxyMap()
-{
-	for(int i =0;i<sectors.size();i++)
-	{
+GalaxyMap::~GalaxyMap() {
+	for(int i =0;i<sectors.size();i++) {
 		delete sectors[i];
 	}
 	sectors.clear();
@@ -50,7 +55,6 @@ void GalaxyMap::draw()
 	core::rect<s32> imp1(349,15,385,78);
 	
 	for(unsigned int i = 0; i < sectors.size(); i++) {
-		sectors[i]->draw();
 		font->draw(irr::core::stringw(sectors[i]->name.c_str()), core::rect<s32>((int)(sectors[i]->transform->position->X), (int)(sectors[i]->transform->position->Y - (1.5f*radius)), 300, 50), video::SColor(255,255,255,255));
 	}
 

@@ -19,7 +19,7 @@ SectorManager::SectorManager(GalaxyMap* map) : Component() {
 
 void SectorManager::onAdd() {
 	//_currentSector = new SectorHomeBase(this->parent,"../assets/Textures/SkyBoxes/skybox02.png",20.0,_mapSector->connections.size());
-	this->getGame()->sceneManager->addScene("SectorHomeBase",new SectorHomeBase(this,"skybox02.png",2000.0,_mapSector->connections.size()));
+	this->getGame()->sceneManager->addScene("SectorHomeBase", new SectorHomeBase(this,"skybox02.png",2000.0,_mapSector->connections.size()));
 	activeSceneName = "SectorHomeBase";
 }
 
