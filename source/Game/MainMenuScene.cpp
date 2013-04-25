@@ -126,6 +126,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 				Network::GetInstance()->DeInitialize();
 				messagebox =  Game::guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
 			}
+			delete name;
 			break;
 		case START_GAME:
 			StartGame();
@@ -192,6 +193,14 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			Network::GetInstance()->SendServerPacket(packetsend, true);
 			break;
 		break;
+		case HOST_DISCONNECT:
+			name = new wchar_t[500];
+			packet >> name;
+			messagebox =  Game::guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
+			Network::GetInstance()->DeInitialize();
+			BackToMainMenu();
+			delete name;
+			break;
 		default:
 			break;
 	}
