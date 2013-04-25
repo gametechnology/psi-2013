@@ -15,8 +15,8 @@ void EmptyTestScene::init(){
 	a = 100;
 	b = 25;
 	
-	hud = new HudComposite(this, &a, &b);
-	addComponent(hud);
+	hud = new HudComposite( &a, &b);
+	addChild(hud);
 }
 
 void EmptyTestScene::update(){

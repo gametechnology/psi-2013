@@ -127,7 +127,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			if (ipclientaffect == checksum){
 				BackToMainMenu();
 				Network::GetInstance()->DeInitialize();
-				messagebox =  Game::guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
+				messagebox =  game->guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
 			}
 			delete name;
 			break;
@@ -160,7 +160,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 				team = 2;
 			else
 				team = 1;
-			newplayer = new Player(NULL, name,  packet.ipadress, team);
+			newplayer = new Player( name,  packet.ipadress, team);
 			playerlist.push_back(newplayer);
 			
 			lenght = playerlist.size();
@@ -200,7 +200,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			name = new wchar_t[500];
 			packet >> name;
 			playerlist.clear();
-			messagebox =  Game::guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
+			messagebox =  game->guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
 			Network::GetInstance()->DeInitialize();
 			BackToMainMenu();
 			delete name;
@@ -212,15 +212,15 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 
 void MainMenuScene::BackToMainMenu()
 {
-					createServerWindow_Button->setVisible(true);
-					joinServerWindow_Button->setVisible(true);
-					Ipadresinput->setVisible(true);
-					Namelabel->setVisible(true);
-					Nameinput->setVisible(true);
-					Clientlist->setVisible(false);
-					start_button->setVisible(false);
-					quit_button->setVisible(false);
-					waitinglabel->setVisible(false);
+	createServerWindow_Button->setVisible(true);
+	joinServerWindow_Button->setVisible(true);
+	Ipadresinput->setVisible(true);
+	Namelabel->setVisible(true);
+	Nameinput->setVisible(true);
+	Clientlist->setVisible(false);
+	start_button->setVisible(false);
+	quit_button->setVisible(false);
+	waitinglabel->setVisible(false);
 }
 
 

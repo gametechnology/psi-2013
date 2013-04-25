@@ -48,7 +48,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Fill in an Ipadress",true,1,mainmenu->mainMenuWindow);
 							mainmenu->messagebox->setDraggable(false);
 						}else{
-							mainmenu->messagebox =  Game::guiEnv->addMessageBox(L"Message",L"Fill in an Name",true,1,mainmenu->mainMenuWindow);
+							mainmenu->messagebox =  Context.game->guiEnv->addMessageBox(L"Message",L"Fill in an Name",true,1,mainmenu->mainMenuWindow);
 							mainmenu->messagebox->setDraggable(false);
 						}
 					}else{
@@ -86,7 +86,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					playername[wcslen(namewchar)] = 0;
 
 					if(*playername == ' ' || *playername == NULL){
-							mainmenu->messagebox =  Game::guiEnv->addMessageBox(L"Message",L"Fill in a name",true,1,mainmenu->mainMenuWindow);
+						mainmenu->messagebox =  Context.game->guiEnv->addMessageBox(L"Message",L"Fill in a name",true,1,mainmenu->mainMenuWindow);
 							mainmenu->messagebox->setDraggable(false);
 							return false;
 					}else{

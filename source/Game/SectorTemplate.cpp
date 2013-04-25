@@ -28,17 +28,17 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	
 	//TODO MERGE CONFLICT
 	// ----------------NEW-------------
-	this->_player = new Camera(_ship, vector3df(0, 0, -100), _ship->position ); //TODO: Make the camera work correctly according to station
-	ShipMover* mover = new ShipMover((Ship*)_ship);
+	//this->_player = new Camera(_ship, vector3df(0, 0, -100), _ship->transform->position ); //TODO: Make the camera work correctly according to station
+	//ShipMover* mover = new ShipMover((Ship*)_ship);
 	_player = new Camera(); //TODO: Make the camera work correctly according to station
 
-	_ship->addComponent(mover);
+	//_ship->addComponent(mover);
 
-	_ship2 = new Ship(this);
-	_ship2->orientation.X = 180;
-	BasicMoverComponent* movComp = new BasicMoverComponent(_ship2);
-	movComp->thrust = 0.0001f;
-	_ship2->addComponent(movComp);
+	//_ship2 = new Ship();
+	//_ship2->transform->rotation->X = 180;
+	//BasicMoverComponent* movComp = new BasicMoverComponent();
+	//movComp->thrust = 0.0001f;
+	//_ship2->addComponent(movComp);
 	
 	// ----------NEW--------------------
 	
@@ -55,7 +55,7 @@ void SectorTemplate::onAdd() {
 	addChild(_ship);
 	addChild(_fog );
 	// TODO CHECK MERGE!
-	addComponent(_ship2);
+	addChild(_ship2);
 
 	// adding the wormholes
 	addWormHoles();
