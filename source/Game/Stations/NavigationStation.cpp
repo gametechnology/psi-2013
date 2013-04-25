@@ -17,3 +17,11 @@ void NavigationStation :: DoCameraShake( )
 {
 	
 }
+
+void NavigationStation :: OnEnabled(){
+
+}
+
+void NavigationStation :: OnDisabled(){
+
+}

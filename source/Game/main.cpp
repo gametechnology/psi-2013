@@ -7,6 +7,7 @@
 #include "GameScene.h"
 
 #include "NetworkInterface.h"
+#include "EmptyTestScene.h"
 
 
 // Include memory leak detection files.
@@ -28,23 +29,12 @@ int main()
 	// Create engine
 	Game* game = new Game();
 
-	
-	/////////////////////////////////////////
-	//temporary until main menu works
-	//Server 
-	//Network::GetInstance()->InitializeServer(16);
-	
-	//Client 
-	//Network::GetInstance()->InitializeClient("192.168.12.89");
-	/////////////////////////////////////////
-
-	// Create test scene
+	//Add the MainMenu
 	Scene* scene = new GameScene();
 	game->sceneManager->addScene("MainMenuScene", scene);
 
-	//Game::client->setupClient("145.92.13.97");
 	// Need to create an Scene first or else it will crash, because I first delete then create scenes in SectorManager
-	// Create sector manager that creates all the Scenes/Sectors
+
 	
 
 	// Initialize game

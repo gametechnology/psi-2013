@@ -41,6 +41,9 @@ public:
 	void SubscribeStation( Station *s );
 
 	Station *station;
+
+	void OnEnabled();
+	void OnDisabled();
 };
 
 #endif

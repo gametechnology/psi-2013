@@ -38,3 +38,11 @@ int DefenceStation :: GetDamage(StationType)
 {
 	return 0;
 }
+
+void DefenceStation::OnEnabled(){
+
+}
+
+void DefenceStation::OnDisabled(){
+
+}

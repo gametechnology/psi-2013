@@ -21,6 +21,7 @@ protected:
 	irr::scene::ICameraSceneNode *_camera;
 	Entity* _player;
 	Entity* _ship;
+	Entity* _ship2;
 	Entity* _skybox;
 	Mist* _fog;
 public:

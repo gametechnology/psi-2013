@@ -6,6 +6,7 @@
 class Player : public Entity  {
 public:
 	Player();
+	Player( wchar_t * name, enet_uint32 ipadres, int team);
 	~Player();
 	wchar_t* Name;
 	int Team;

@@ -1,12 +1,29 @@
 #include "HealthBar.h"
-#include "Engine\Game.h"
-
+#include <iostream>
 
 HealthBar::HealthBar(vector2df position, int* stat) : Entity()
 {
+	//make the pip background invisible
+	Game::driver->makeColorKeyTexture(pipTexture_, position2d<s32>(0, 0));
+
 	//position of the healthbar and the stat it's following
 	HealthBar::position_ = position;
 	HealthBar::stat_ = stat;
+	HealthBar::visible = true;
+	HealthBar::size_ = vector2df(32, 8);
+	HealthBar::barHeight_ = 8;
+	HealthBar::color = SColor(255, 255, 255, 255);
+}
+HealthBar::HealthBar(Composite* parent, vector2df position, int* stat, vector2df size, int barHeight, SColor colour) : Component(parent)
+{
+	//load the texture of the pip. Pip is a really tiny little bar.
+	this->pipTexture_ = Game::driver->getTexture("../assets/Textures/Stations/HealthPip32.png");
+	//position of the healthbar and the stat it's following
+	HealthBar::position_ = position;
+	HealthBar::stat_ = stat;
+	HealthBar::size_ = size;
+	HealthBar::barHeight_ = barHeight;
+	HealthBar::color = colour;
 }
 
 void HealthBar::init() {
@@ -18,7 +35,7 @@ void HealthBar::init() {
 }
 
 void HealthBar::draw(){
-	
+		std::cout << "stat = " << *stat_ << "\n";
 	for(int i = 0; i < *stat_; i++){
 		color = SColor(255, 255, 255, 255);
 		game->driver->draw2DImage(
@@ -35,6 +52,7 @@ void HealthBar::draw(){
 			true
 		);
 	}
+		
 }
 
 void HealthBar::update(){

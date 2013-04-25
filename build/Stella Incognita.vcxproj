@@ -96,6 +96,7 @@
     <ClCompile Include="..\source\Game\AsteroidSector.cpp" />
     <ClCompile Include="..\source\Game\BaseSector.cpp" />
     <ClCompile Include="..\source\Game\BasicMoverComponent.cpp" />
+    <ClCompile Include="..\source\Game\EmptyTestScene.cpp" />
     <ClCompile Include="..\source\Game\Enemy.cpp" />
     <ClCompile Include="..\source\Game\EnemyAsteroid.cpp" />
     <ClCompile Include="..\source\Game\EnemyDrone.cpp" />
@@ -106,6 +107,7 @@
     <ClCompile Include="..\source\Game\GalaxyMap.cpp" />
     <ClCompile Include="..\source\Game\GameScene.cpp" />
     <ClCompile Include="..\source\Game\HealthBar.cpp" />
+    <ClCompile Include="..\source\Game\HudComposite.cpp" />
     <ClCompile Include="..\source\Game\ShipMover.cpp" />
     <ClCompile Include="..\source\Game\ShipScenes.cpp" />
     <ClCompile Include="..\source\Game\Laser.cpp" />
@@ -123,7 +125,7 @@
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\PowerStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\Station.cpp" />
-    <ClCompile Include="..\source\Game\Stations\UIData.cpp" />
+    <ClCompile Include="..\source\Game\Stations\PowerStationData.cpp" />
     <ClCompile Include="..\source\Game\TestScene.cpp" />
     <ClCompile Include="..\source\Game\WormHole.cpp" />
     <None Include="..\assets\sydney.bmp" />
@@ -134,16 +136,17 @@
     <ClInclude Include="..\source\Game\AsteroidSector.h" />
     <ClInclude Include="..\source\Game\BaseSector.h" />
     <ClInclude Include="..\source\Game\BasicMoverComponent.h" />
+    <ClInclude Include="..\source\Game\EmptyTestScene.h" />
     <ClInclude Include="..\source\Game\Enemy.h" />
     <ClInclude Include="..\source\Game\EnemyAsteroid.h" />
     <ClInclude Include="..\source\Game\EnemyDrone.h" />
     <ClInclude Include="..\source\Game\EnemyFighter.h" />
     <ClInclude Include="..\source\Game\EnemyManager.h" />
     <ClInclude Include="..\source\Game\EnemyPlayer.h" />
-    <ClInclude Include="..\source\Game\EnemySceneTest.h" />
     <ClInclude Include="..\source\Game\GalaxyMap.h" />
     <ClInclude Include="..\source\Game\GameScene.h" />
     <ClInclude Include="..\source\Game\HealthBar.h" />
+    <ClInclude Include="..\source\Game\HudComposite.h" />
     <ClInclude Include="..\source\Game\ShipMover.h" />
     <ClInclude Include="..\source\Game\ShipScenes.h" />
     <ClInclude Include="..\source\Game\Laser.h" />
@@ -172,7 +175,7 @@
     <ClInclude Include="..\source\Game\Stations\NavigationStation.h" />
     <ClInclude Include="..\source\Game\Stations\PowerStation.h" />
     <ClInclude Include="..\source\Game\Stations\Station.h" />
-    <ClInclude Include="..\source\Game\Stations\UIData.h" />
+    <ClInclude Include="..\source\Game\Stations\PowerStationData.h" />
     <ClInclude Include="..\source\Game\Stations\WeaponStation.h" />
     <ClInclude Include="..\source\Game\Team.h" />
     <ClInclude Include="..\source\Game\TestScene.h" />

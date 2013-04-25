@@ -17,3 +17,11 @@ void WeaponStation :: DoCameraShake( )
 {
 	
 }
+
+void WeaponStation :: OnEnabled(){
+
+}
+
+void WeaponStation :: OnDisabled(){
+
+}

@@ -15,3 +15,10 @@ void HelmStation :: DoCameraShake( )
 {
 	
 }
+
+void HelmStation :: OnEnabled(){
+
+}
+
+void HelmStation ::OnDisabled(){
+}

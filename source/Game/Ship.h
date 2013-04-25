@@ -1,5 +1,6 @@
 #ifndef ENTITY_SHIP
 #define ENTITY_SHIP
+#pragma once
 
 #include "Stations\DefenceStation.h"
 #include "Stations\HelmStation.h"
@@ -54,14 +55,19 @@ public:
 	void draw();
 
 	Ship();
+	void CheckChangeInput();
+
 	virtual ~Ship(void);
 
 	Station *GetStation(StationType );	
 
 	int getShipHealth();
 	bool getShipDestroyed();
+
+	void SwitchToStation(StationType stationType);
 private:
 	irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::core::stringw str2);
 	irr::core::stringw Ship::varToString(irr::core::stringw str1, float var);
+	Station *_currentStation;
 };
 #endif

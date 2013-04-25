@@ -3,6 +3,8 @@
 #include "Skybox.h"
 #include "SectorManager.h"
 #include "Ship.h"
+#include "ShipMover.h"
+#include "BasicMoverComponent.h"
 
 // Constructor
 SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : Scene() {
@@ -23,8 +25,23 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	//Get the player/Ship via Sectormanager
 	//_sectormanager->getShip()
 	_ship = new Ship();
+	
+	//TODO MERGE CONFLICT
+	// ----------------NEW-------------
+	this->_player = new Camera(_ship, vector3df(0, 0, -100), _ship->position ); //TODO: Make the camera work correctly according to station
+	ShipMover* mover = new ShipMover((Ship*)_ship);
 	_player = new Camera(); //TODO: Make the camera work correctly according to station
 
+	_ship->addComponent(mover);
+
+	_ship2 = new Ship(this);
+	_ship2->orientation.X = 180;
+	BasicMoverComponent* movComp = new BasicMoverComponent(_ship2);
+	movComp->thrust = 0.0001f;
+	_ship2->addComponent(movComp);
+	
+	// ----------NEW--------------------
+	
 	//this->_camera = Game::getSceneManager()->addCameraSceneNodeFPS();
 	
 	// Creating wormholes
@@ -37,6 +54,8 @@ void SectorTemplate::onAdd() {
 	//addComponent( this->_player );
 	addChild(_ship);
 	addChild(_fog );
+	// TODO CHECK MERGE!
+	addComponent(_ship2);
 
 	// adding the wormholes
 	addWormHoles();

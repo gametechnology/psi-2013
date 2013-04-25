@@ -87,7 +87,7 @@ class MyEventReceiver : public IEventReceiver
 public:
 	irr::IrrlichtDevice *device;
 
-	MyEventReceiver(UIData & context, irr::IrrlichtDevice *device) : _context(context) { this->device = device; }
+	MyEventReceiver(PowerStationData & context, irr::IrrlichtDevice *device) : _context(context) { this->device = device; }
 
 	virtual bool OnEvent(const SEvent& event)
 	{
@@ -171,8 +171,19 @@ public:
 	}
 
 private:
-	UIData & _context;
+	PowerStationData & _context;
 };
+
+
+
+void PowerStation::OnEnabled(){
+	createUI();
+}
+
+void PowerStation::OnDisabled(){
+	//TODO: Make a remove UI.
+	//removeUI();
+}
 
 //Creates the User Interface. Is a helper method. Also initializes the event receiver.
 void PowerStation::createUI()

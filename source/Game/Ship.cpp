@@ -13,15 +13,11 @@ Ship::~Ship(void)
 }
 
 void Ship::onAdd() {
-	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/sydney.md2"));
+	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addComponent(model);
 
-	// TODO Create a node
-	//createNode("../assets/sydney.md2");
-	ShipMover* mover = new ShipMover(this);
-	addComponent(mover);
-
 	this->env = game->device->getGUIEnvironment();
+	this->_currentStation = NULL;
 
 	//TODO remove temp stuff
 	addChild(_defenceStation		= new DefenceStation(this));
@@ -32,16 +28,18 @@ void Ship::onAdd() {
 	
 	Entity::onAdd();
 }
+	
+	
 
 void Ship::init() {
-	irr::core::stringw strShipHealth			= varToString("ship health: ", this->getShipHealth()); 
-	//strShipHealth +	irr::core::stringw();
+	irr::core::stringw strShipHealth			= "ship health: "; 
+	strShipHealth +	irr::core::stringw();
 
-	irr::core::stringw strDefenceHealth			= "Defence Station health: %i"		+ this->_defenceStation->getHealth();
-	irr::core::stringw strHelmHealth			= "Helm Station health: %i"			+ this->_helmStation->getHealth();
-	irr::core::stringw strNavigationHealth		= "Navigation Station health: %i"	+ this->_navigationStation-> getHealth();
-	irr::core::stringw strPowerHealth			= "Power Station health: %i"		+ this->_powerStation->getHealth();
-	irr::core::stringw strWeaponHealth			= "Weapon Station health: %i"		+ this->_weaponStation->getHealth();
+	irr::core::stringw strDefenceHealth			= "Defence Station health: "		+ this->_defenceStation->getHealth();
+	irr::core::stringw strHelmHealth			= "Helm Station health: "			+ this->_helmStation->getHealth();
+	irr::core::stringw strNavigationHealth		= "Navigation Station health: "	+ this->_navigationStation-> getHealth();
+	irr::core::stringw strPowerHealth			= "Power Station health: "		+ this->_powerStation->getHealth();
+	irr::core::stringw strWeaponHealth			= "Weapon Station health: "		+ this->_weaponStation->getHealth();
 
 	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
@@ -70,9 +68,9 @@ Station *Ship :: GetStation( StationType s )
 	case ST_NAVIGATION:
 		return this->_navigationStation;
 		break;
-	//case STATION_TYPE :: Power:
-	//	return this->_powerStation;
-	//	break;
+	case ST_POWER:
+		return this->_powerStation;
+		break;
 	case ST_WEAPON:
 		return this->_weaponStation;
 		break;
@@ -98,6 +96,7 @@ void Ship :: update()
 {
 	Entity :: update();
 	this->updateShipHealth();
+	CheckChangeInput();
 
 	//updating the text for testing the health
 	stringw strShipHealth = "ship health: " + this->getShipHealth();
@@ -113,28 +112,6 @@ void Ship :: update()
 	this->navigationStationHealth->setText(	(varToString("Navigation HP: ",	(float)this->_navigationStation->getHealth())	).c_str());
 	this->powerStationHealth->setText(		(varToString("Power HP: ",		(float)this->_powerStation->getHealth())		).c_str());
 	this->weaponStationHealth->setText(		(varToString("Weapon HP: ",		(float)this->_weaponStation->getHealth())		).c_str());
-
-	//TODO! Stations need a way to leave. Set _sitOnStation on false. Temporary code, other team should make a better version of it someday.
-	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_1)){
-		this -> _defenceStation		-> Initialize();
-		_sitOnStation=true;
-	} else 
-	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_2)){
-		this -> _helmStation		-> Initialize();
-		_sitOnStation=true;
-	}else 
-	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_3)){
-		this -> _navigationStation		-> Initialize();
-		_sitOnStation=true;
-	}else 
-	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_4)){
-		this -> _weaponStation		-> Initialize();
-		_sitOnStation=true;
-	}else 
-	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_5)){
-		this -> _powerStation		-> Initialize();
-		_sitOnStation=true;
-	}
 
 	if(this->_shipHealth <= 0 && this->_shipDestroyed == false) {
 		this->_shipDestroyed = true;
@@ -159,6 +136,48 @@ void Ship :: update()
 	if(this->_weaponStation->getHealth() <= 0 && this->_weaponStation->getStationDestroyed() == false) {
 		this->_weaponStation->setStationDestroyed(true);
 	}
+}
+
+void Ship :: CheckChangeInput()
+{
+	if (Game::input->isKeyboardButtonPressed(KEY_KEY_1))
+		SwitchToStation(ST_DEFENCE);
+
+	if (Game::input->isKeyboardButtonPressed(KEY_KEY_2))
+		SwitchToStation(ST_HELM);
+
+	if (Game::input->isKeyboardButtonPressed(KEY_KEY_3))
+		SwitchToStation(ST_WEAPON);
+
+	if (Game::input->isKeyboardButtonPressed(KEY_KEY_4))
+		SwitchToStation(ST_NAVIGATION);
+
+	if (Game::input->isKeyboardButtonPressed(KEY_KEY_5))
+		SwitchToStation(ST_POWER);
+}
+
+//Swith to a specific station
+void Ship :: SwitchToStation(StationType stationType)
+{
+	//Check if we are already on this station
+	if (_currentStation != NULL)
+	{
+		if (_currentStation->GetStationType() == stationType)
+			return;
+
+		//First remove the currentStation from the shipComponents
+		_currentStation->OnDisabled();
+		removeComponent(_currentStation);
+		//_currentStation->Disable();
+	}
+
+	//Find the new station
+	_currentStation = this->GetStation(stationType);
+
+	//Init and add the new station
+	_currentStation->OnEnabled();
+	addComponent(_currentStation);
+	//_currentStation->Enable();
 }
 
 void Ship :: updateShipHealth()
