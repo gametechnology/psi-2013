@@ -31,6 +31,7 @@ public:
 	void update();
 	~MainMenuScene();
 	void StartGame();
+	void BackToMainMenu();
 	void HandleNetworkMessage(NetworkPacket packet); 
 
 	//Create the different windows
@@ -42,6 +43,7 @@ public:
 	IGUIButton* createServerWindow_Button;
 	IGUIButton* joinServerWindow_Button;
 	IGUIButton* start_button;
+	IGUIButton* quit_button;
 	// other items in menu
 	IGUIStaticText* Clientlist;
 	IGUIStaticText* Namelabel;

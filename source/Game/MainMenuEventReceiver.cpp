@@ -23,6 +23,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 		 Player* newplayer;
 		 NetworkPacket packet(START_GAME);
 		 NetworkPacket namepacket(CLIENT_JOIN);
+		 NetworkPacket quitpacket(CLIENT_QUIT);
 
         switch(event.GUIEvent.EventType)
         { 
@@ -101,6 +102,10 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 				case 3:
 					mainmenu->StartGame();
 					Network::GetInstance()->SendServerPacket(packet, true);
+					return true;
+				case 4:
+					Network::GetInstance()->SendServerPacket(quitpacket, true);
+					mainmenu->BackToMainMenu();
 					return true;
 				default:
 					return false;

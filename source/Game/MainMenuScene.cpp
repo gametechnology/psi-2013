@@ -25,6 +25,9 @@ MainMenuScene::MainMenuScene()
 	Clientlist->setVisible(false);
 	start_button				= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,3, L"Start Game");
 	start_button->setVisible(false);
+	quit_button					= guiEnv->addButton(rect<s32>(position2di(50,195),dimension2di(200,25)),mainMenuWindow,3, L"Quit game");
+	quit_button->setVisible(false);
+
 	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	Network::GetInstance()->AddListener(START_GAME, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
@@ -174,6 +177,18 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		default:
 			break;
 	}
+}
+
+void MainMenuScene::BackToMainMenu()
+{
+					createServerWindow_Button->setVisible(true);
+					joinServerWindow_Button->setVisible(true);
+					Ipadresinput->setVisible(true);
+					Namelabel->setVisible(true);
+					Nameinput->setVisible(true);
+					Clientlist->setVisible(false);
+					start_button->setVisible(false);
+					quit_button->setVisible(false);
 }
 
 
