@@ -44,14 +44,17 @@ void ShipMover::update()
 	
 	BasicMoverComponent::update();
 
-	//Vec3 position, Vec3 orientation, Vec3 acceleration, Vec3 angularAcceleration
+	//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
 	NetworkPacket movementPacket = NetworkPacket(PacketType::CLIENT_SHIP_MOVEMENT);
 	movementPacket << vector3df(entityParent->position);
 	movementPacket << vector3df(entityParent->orientation);
+	movementPacket << vector3df(entityParent->velocity);
 	movementPacket << vector3df(entityParent->accelaration);
 	movementPacket << vector3df(entityParent->angularAccelaration);
+	movementPacket << vector3df(entityParent->angularVelocity);
 
 	//Send packet to server
-	Network::GetInstance()->SendServerPacket(movementPacket, false);
+	if(Network::GetInstance()->IsServer())
+		Network::GetInstance()->SendServerPacket(movementPacket, false);
 }
 

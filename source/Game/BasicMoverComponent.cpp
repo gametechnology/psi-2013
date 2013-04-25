@@ -23,22 +23,28 @@ void BasicMoverComponent::HandleNetworkMessage(NetworkPacket packet)
 {
 	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
     {
-		//Vec3 position, Vec3 orientation, Vec3 acceleration, Vec3 angularAcceleration
+		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
         vector3df position;
 		vector3df orientation;
+		vector3df velocity;
 		vector3df acceleration;
 		vector3df angularAcceleration;
+		vector3df angularVelocity;
 
 		//Read the information from the network packet
 		packet >> position;
 		packet >> orientation;
+		packet >> velocity;
 		packet >> acceleration;
 		packet >> angularAcceleration;
+		packet >> angularVelocity;
 
-		//Apply updates
+		//Apply updates 
 		entityParent->position = position;
 		entityParent->orientation = orientation;
+		entityParent->velocity = velocity;
 		entityParent->accelaration = acceleration;
 		entityParent->angularAccelaration = angularAcceleration;
+		entityParent->angularVelocity = angularVelocity;
     }
 }
