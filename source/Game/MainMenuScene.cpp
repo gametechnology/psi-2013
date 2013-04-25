@@ -34,9 +34,9 @@ MainMenuScene::MainMenuScene()
 	Network::GetInstance()->AddListener(START_GAME, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
 	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
-
+	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
 	
-
+	
 	
 	 // Store the appropriate data in a context structure.
     SAppContext context;
@@ -92,6 +92,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 	wchar_t *  name ;
 	int lenght;
 	int team;
+	unsigned int ipclientaffect;
 	unsigned int checksum;
 	Player* newplayer;
 	std::list<Player*>::const_iterator iterator;
@@ -112,6 +113,11 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 				}
 			}
 		break;
+		case CLIENT_JOIN_DENIED:
+			packet >> name;
+			packet >> ipclientaffect;
+			if (packet.ipadress == sf::IpAddress::getLocalAddress().toInteger())
+				BackToMainMenu();
 		case START_GAME:
 			StartGame();
 			break;
@@ -122,13 +128,14 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			
 			if(checksum != Network::GetInstance()->GetPacketTypeChecksum())
 			{
-				deniedpack << "Your version is out of date, please get the latest version";
+				deniedpack << L"Your version is out of date, please get the latest version";
+				deniedpack << packet.ipadress;
 				Network::GetInstance()->SendServerPacket(deniedpack, true);
 				return;
 			}
 			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
 				if((*iterator)->Ipadres == packet.ipadress){
-					deniedpack << "You are already in the lobby";
+					deniedpack << L"You are already in the lobby";
 					Network::GetInstance()->SendServerPacket(deniedpack, true);
 
 					return;
