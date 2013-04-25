@@ -23,6 +23,8 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 		 Player* newplayer;
 		 NetworkPacket packet(START_GAME);
 		 NetworkPacket namepacket(CLIENT_JOIN);
+		 NetworkPacket quitpacket(CLIENT_QUIT);
+		 NetworkPacket hostquitpacket(HOST_DISCONNECT);
 
         switch(event.GUIEvent.EventType)
         { 
@@ -64,7 +66,9 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 							mainmenu->Ipadresinput->setVisible(false);
 							mainmenu->Namelabel->setVisible(false);
 							mainmenu->Nameinput->setVisible(false);
-							Game::guiEnv->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainmenu->mainMenuWindow);
+							mainmenu->quit_button->setVisible(true);
+							mainmenu->waitinglabel->setVisible(true);
+							
 						}
 
 						
@@ -91,6 +95,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					mainmenu->Namelabel->setVisible(false);
 					mainmenu->Nameinput->setVisible(false);
 					mainmenu->start_button->setVisible(true);
+					mainmenu->quit_button->setVisible(true);
 					mainmenu->Clientlist->setVisible(true);
 					newplayer = new Player(NULL);
 					newplayer->Name = namewchar;
@@ -101,6 +106,21 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 				case 3:
 					mainmenu->StartGame();
 					Network::GetInstance()->SendServerPacket(packet, true);
+					return true;
+				case 4:
+					if(!Network::GetInstance()->IsServer())
+					{
+						Network::GetInstance()->SendPacket(quitpacket, true);
+					}
+					else
+					{
+						hostquitpacket << L"The host got disconnected";
+						Network::GetInstance()->SendServerPacket(hostquitpacket, true);
+					
+					}
+					mainmenu->playerlist.clear();
+					Network::GetInstance()->DeInitialize();
+					mainmenu->BackToMainMenu();
 					return true;
 				default:
 					return false;

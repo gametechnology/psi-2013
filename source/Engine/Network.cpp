@@ -10,10 +10,10 @@ Network::Network() : _port(1345)
 {
 	_isServer = false;
 	_isConnected = false;
-
+	
 	for (int i = 0; i < LAST_TYPE; i++)
 		_listeners[i] = new std::list<INetworkListener*>();
-
+	
 	if (enet_initialize() != 0)
 		std::cout << "An error occurred while initializing ENet.\n";
 
@@ -45,7 +45,7 @@ void Network::StartThreads()
 
 void Network::StopThreads()
 {
-
+	_receiverThread->terminate();
 }
 
 void Network::InitializeClient(const char* ipAdress, const unsigned int maxDownstream, const unsigned int maxUpstream)
@@ -68,7 +68,7 @@ void Network::InitializeClient(const char* ipAdress, const unsigned int maxDowns
 		std::cout << "No available peers for initiating an ENet connection.\n";
 
 	// If connect send packages
-	if (enet_host_service(_host, &_event, 1000) > 0 && _event.type == ENET_EVENT_TYPE_CONNECT)
+	if (enet_host_service(_host, &_event, 1500) > 0 && _event.type == ENET_EVENT_TYPE_CONNECT)
 	{
 		_isConnected = true;
 		printf("Connection to %s:%i succeeded.\n", ipAdress, _address.port);
@@ -87,7 +87,7 @@ void Network::InitializeServer(size_t maxPlayers)
 	std::cout << "Initializing server at port " << _port << ".\n";
 	_address.host = ENET_HOST_ANY;
 	_address.port = _port;
-
+	
 	_host = enet_host_create(&_address, maxPlayers, 2, 0, 0);
 
 	if (_host == NULL)
@@ -101,9 +101,21 @@ void Network::InitializeServer(size_t maxPlayers)
 		_isServer = true;
 		_isConnected = true;
 		StartThreads();
+		
 	}	
 }
+void Network::DeInitialize(){
+	_mutex.lock();
+	if (IsServer())
+		enet_host_destroy(_host);
+	else
+		enet_peer_disconnect_later(_peer,0);
+	_isConnected = false;
+	_isServer = false;
+	StopThreads();
+	_mutex.unlock();
 
+}
 void Network::SendPacket(NetworkPacket packet, const bool reliable)
 {
 	if(_isConnected)

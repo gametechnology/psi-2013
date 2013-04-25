@@ -25,13 +25,19 @@ MainMenuScene::MainMenuScene()
 	Clientlist->setVisible(false);
 	start_button				= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,3, L"Start Game");
 	start_button->setVisible(false);
+	quit_button					= guiEnv->addButton(rect<s32>(position2di(50,195),dimension2di(200,25)),mainMenuWindow,4, L"Quit game");
+	quit_button->setVisible(false);
+	waitinglabel				= guiEnv->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainMenuWindow);
+	waitinglabel->setVisible(false);
+
 	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	Network::GetInstance()->AddListener(START_GAME, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
 	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
-
+	Network::GetInstance()->AddListener(HOST_DISCONNECT, this);
+	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
 	
-
+	
 	
 	 // Store the appropriate data in a context structure.
     SAppContext context;
@@ -87,7 +93,9 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 	wchar_t *  name ;
 	int lenght;
 	int team;
+	unsigned int ipclientaffect;
 	unsigned int checksum;
+	sf::IpAddress localip;
 	Player* newplayer;
 	std::list<Player*>::const_iterator iterator;
 	
@@ -107,6 +115,20 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 				}
 			}
 		break;
+		case CLIENT_JOIN_DENIED:
+			name = new wchar_t[500];
+			packet >> name;
+			packet >> ipclientaffect;
+			localip = sf::IpAddress::getLocalAddress();
+			checksum = localip.m_address;
+			
+			if (ipclientaffect == checksum){
+				BackToMainMenu();
+				Network::GetInstance()->DeInitialize();
+				messagebox =  Game::guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
+			}
+			delete name;
+			break;
 		case START_GAME:
 			StartGame();
 			break;
@@ -117,13 +139,15 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			
 			if(checksum != Network::GetInstance()->GetPacketTypeChecksum())
 			{
-				deniedpack << "Your version is out of date, please get the latest version";
+				deniedpack << L"Your version does not match with the version of the host";
+				deniedpack << packet.ipadress;
 				Network::GetInstance()->SendServerPacket(deniedpack, true);
 				return;
 			}
 			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
 				if((*iterator)->Ipadres == packet.ipadress){
-					deniedpack << "You are already in the lobby";
+					deniedpack << L"Your pc is already connected to the host";
+					deniedpack << packet.ipadress;
 					Network::GetInstance()->SendServerPacket(deniedpack, true);
 
 					return;
@@ -158,22 +182,43 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			playerlist.remove(newplayer);
 			lenght = playerlist.size();
 			packetsend << lenght;
-			int i;
+			lenght = 0;
 			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-				
-				
-				if(i != 0 && (playerlist.size()) % 2 != 0)
+				if(lenght != 0 && (lenght) % 2 != 0)
 					(*iterator)->Team = 2;
 				else
 					(*iterator)->Team = 1;
 				packetsend << (*iterator);
+				lenght++;
 			}
 			Network::GetInstance()->SendServerPacket(packetsend, true);
 			break;
 		break;
+		case HOST_DISCONNECT:
+			name = new wchar_t[500];
+			packet >> name;
+			playerlist.clear();
+			messagebox =  Game::guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
+			Network::GetInstance()->DeInitialize();
+			BackToMainMenu();
+			delete name;
+			break;
 		default:
 			break;
 	}
+}
+
+void MainMenuScene::BackToMainMenu()
+{
+					createServerWindow_Button->setVisible(true);
+					joinServerWindow_Button->setVisible(true);
+					Ipadresinput->setVisible(true);
+					Namelabel->setVisible(true);
+					Nameinput->setVisible(true);
+					Clientlist->setVisible(false);
+					start_button->setVisible(false);
+					quit_button->setVisible(false);
+					waitinglabel->setVisible(false);
 }
 
 
