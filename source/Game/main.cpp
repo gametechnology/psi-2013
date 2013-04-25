@@ -39,11 +39,11 @@ int main()
 	/////////////////////////////////////////
 
 	// Create test scene
-	Game::addScene(new Scene());
-	//Game::addScene(new MainMenuScene());
+	//Game::addScene(new Scene());
+	Game::addScene(new MainMenuScene());
 			//Silvan's test scene for HUD stuff. Enable it if you want to see an epic healthbar in an empty scene
-	EmptyTestScene* emptyScene = new EmptyTestScene();
-	Game::addScene(emptyScene);
+	//EmptyTestScene* emptyScene = new EmptyTestScene();
+	//Game::addScene(emptyScene);
 	/*
 	Game::addScene(new Scene());
 	MapGenerator mapGen;
