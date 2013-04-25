@@ -65,7 +65,9 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 							mainmenu->Ipadresinput->setVisible(false);
 							mainmenu->Namelabel->setVisible(false);
 							mainmenu->Nameinput->setVisible(false);
-							Game::guiEnv->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainmenu->mainMenuWindow);
+							mainmenu->quit_button->setVisible(true);
+							mainmenu->waitinglabel->setVisible(true);
+							
 						}
 
 						
@@ -104,7 +106,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					Network::GetInstance()->SendServerPacket(packet, true);
 					return true;
 				case 4:
-					Network::GetInstance()->SendServerPacket(quitpacket, true);
+					Network::GetInstance()->SendPacket(quitpacket, true);
 					mainmenu->BackToMainMenu();
 					return true;
 				default:

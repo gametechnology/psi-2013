@@ -47,6 +47,7 @@ public:
 	// other items in menu
 	IGUIStaticText* Clientlist;
 	IGUIStaticText* Namelabel;
+	IGUIStaticText* waitinglabel;
 	IGUIEditBox* Ipadresinput;
 	IGUIEditBox* Nameinput;
 	IGUIWindow* messagebox;
