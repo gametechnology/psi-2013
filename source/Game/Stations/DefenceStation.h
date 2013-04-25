@@ -30,7 +30,7 @@ private:
 		bool HasArmor( );
 		bool IsStunned( );
 	};
-	map<StationType, DefenceStation :: DefenceStats> *_stations;
+	irr::core::map<StationType, DefenceStation :: DefenceStats> *_stations;
 	
 public:
 	DefenceStation( Ship* ship);

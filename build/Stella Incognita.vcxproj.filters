@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -79,9 +79,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\MapGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Shipmap.cpp">
@@ -255,6 +252,12 @@
     <ClCompile Include="..\source\Game\HudComposite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\EmptyTestScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\CalculateRotation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Enemy.h">
@@ -270,9 +273,6 @@
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\GalaxyMap.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EnemySceneTest.h">
       <Filter>Header files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Player.h">
@@ -417,6 +417,12 @@
       <Filter>Header Files\Stations</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\HudComposite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EmptyTestScene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\CalculateRotation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

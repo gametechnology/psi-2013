@@ -9,6 +9,7 @@
 #include "Engine/Game.h"
 #include "EnemyManager.h"
 #include <vector>
+#include "Ship.h"
 
 class SectorManager;
 class SectorTemplate : public Scene  {
@@ -20,8 +21,8 @@ protected:
 	// Camera Placeholder instead of player
 	irr::scene::ICameraSceneNode *_camera;
 	Entity* _player;
-	Entity* _ship;
-	Entity* _ship2;
+	Ship* _ship;
+	Ship* _ship2;
 	Entity* _skybox;
 	Mist* _fog;
 public:

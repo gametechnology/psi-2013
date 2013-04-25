@@ -37,6 +37,16 @@ Ship::Ship( Composite * parent, vector3df position, vector3df orientation) : Ent
 	addComponent(_weaponStation);
 	addComponent(_powerStation);*/
 
+	//Camera
+	_camera = new Camera(this, vector3df(0,0,0), vector3df(0,0,0));
+	addComponent(_camera);
+	
+	//Thrusters
+	_thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0,0, -4), _inertiaMatrix);
+	_thrusters[1] = new Thruster(this, vector3df(0,-2, 4), vector3df(0, 4, 0 ),_inertiaMatrix);
+	_thrusters[2] = new Thruster(this, vector3df(0,2, -4), vector3df(0, 4, 0 ),_inertiaMatrix);
+
+	//Health crap below
 	this->updateShipHealth();
 	this->_shipDestroyed = false;
 
@@ -146,6 +156,11 @@ void Ship :: update()
 	}
 }
 
+Thruster** Ship :: GetThrusters()
+{
+	return this->_thrusters;
+}
+
 void Ship :: CheckChangeInput()
 {
 	if (Game::input->isKeyboardButtonPressed(KEY_KEY_1))
@@ -211,4 +226,21 @@ int Ship :: getShipHealth()
 bool Ship :: getShipDestroyed()
 {
 	return this->_shipDestroyed;
+}
+
+void Ship::setInertiaMatrix(float h, float w, float d, float m)
+{
+	//used for the momentum of inertia, currently not used, only m is used (mass)
+	float inertiaData[16];
+	for(unsigned i = 0; i < 16; i++)
+	{
+		inertiaData[i] = 0.0f;
+	}
+
+	inertiaData[0] = (((1.0f / 5.0f) * m) * (pow(w, 2) + pow(d, 2)));
+	inertiaData[5] = (((1.0f / 5.0f) * m) * (pow(h, 2) + pow(d, 2)));
+	inertiaData[10] = (((1.0f / 5.0f) * m) * (pow(h, 2) + pow(w, 2)));
+	inertiaData[15] = 1.0f;
+
+	_inertiaMatrix->setM(inertiaData);
 }

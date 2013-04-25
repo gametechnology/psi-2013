@@ -13,6 +13,9 @@
 #include "Engine/Entity.h"
 #include "Player.h"
 #include "Engine/Input.h"
+#include "Thruster.h"
+#include "Engine\Camera.h"
+#include "ShipMover.h"
 
 class DefenceStation;
 class HelmStation;
@@ -29,8 +32,6 @@ public:
 	NavigationStation	*_navigationStation;
 	PowerStation		*_powerStation;
 	WeaponStation		*_weaponStation;
-
-	Input				*_input;
 
 	//to test the ship health and station health
 	irr::gui::IGUIEnvironment *env;
@@ -55,7 +56,8 @@ public:
 	Ship(Composite * parent, vector3df position, vector3df orientation);
 	virtual ~Ship(void);
 
-	Station *GetStation(StationType );	
+	Station*	GetStation(StationType);
+	Thruster**	GetThrusters();
 
 	int getShipHealth();
 	bool getShipDestroyed();
@@ -63,9 +65,14 @@ public:
 	void SwitchToStation(StationType stationType);
 private:
 
-	Station *_currentStation;
+	Station				*_currentStation;
+	Camera				*_camera;
+	Thruster			*_thrusters[3];
+	matrix4				*_inertiaMatrix;
 
 	stringw varToString(stringw str1, float var, stringw str2);
 	stringw varToString(stringw str1, float var);
+
+	void setInertiaMatrix(float h, float w, float d, float m);
 };
 #endif

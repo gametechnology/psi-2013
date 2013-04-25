@@ -1,36 +1,50 @@
 #include "ShipMover.h"
-#include "NetworkInterface.h"
+#include "Engine\Entity.h"
+#include "Ship.h"
 
-using namespace irr;
-using namespace core;
 
-ShipMover::ShipMover(Ship* parent):BasicMoverComponent(parent)
+ShipMover::ShipMover(Ship* ship) : Component(ship)
 {
-	maxFwdSpeed = 10;
-	maxBwdSpeed = -10;
+	this->_ship = ship;
 }
 
-ShipMover::~ShipMover()
+ShipMover::~ShipMover(void)
 {
+
+
 }
 
-void ShipMover::update()
-{
-	if (Game::input->isKeyboardButtonDown(KEY_KEY_R) && thrust < maxFwdSpeed)
-		thrust += 0.01f;
-	if (Game::input->isKeyboardButtonDown(KEY_KEY_F) && thrust > maxBwdSpeed)
-		thrust -= 0.01f;
+void ShipMover::update(){
+	//input logic
+	
+	ShipMover::linearAcceleration = vector3df(0,0,0);
+	ShipMover::angularAcceleration = vector3df(0,0,0);
 
-	BasicMoverComponent::update();
+	if(Game::input->isKeyboardButtonPressed(KEY_KEY_W))
+	{
+		this->linearAcceleration += _ship->GetThrusters()[0]->linearForce;
+		this->angularAcceleration += (_ship->GetThrusters()[0]->angularAccelaration * 0.0001);
+	}
+	if(Game::input->isKeyboardButtonPressed(KEY_KEY_A))
+	{
+		this->linearAcceleration += _ship->GetThrusters()[1]->linearForce;
+		this->angularAcceleration += (_ship->GetThrusters()[1]->angularAccelaration * 0.0001);
+	}
+	if(Game::input->isKeyboardButtonPressed(KEY_KEY_D))
+	{
+		this->linearAcceleration += _ship->GetThrusters()[2]->linearForce;
+		this->angularAcceleration += (_ship->GetThrusters()[2]->angularAccelaration * 0.0001);
+	}
+	
+	_ship->accelaration = linearAcceleration;
+	_ship->angularAccelaration = angularAcceleration;	
+}
 
-	//Vec3 position, Vec3 orientation, Vec3 acceleration, Vec3 angularAcceleration
-	NetworkPacket movementPacket = NetworkPacket(PacketType::CLIENT_SHIP_MOVEMENT);
-	vector3df yey = vector3df(entityParent->position.X, entityParent->position.Y, entityParent->position.Z);
-	movementPacket << yey;
-	//movementPacket << vector3df(entityParent->orientation.X, entityParent->orientation.Y, entityParent->orientation.Z);
-	//movementPacket << vector3df(entityParent->accelaration.X, entityParent->accelaration.Y, entityParent->accelaration.Z);
-	//movementPacket << vector3df(entityParent->angularAccelaration.X, entityParent->angularAccelaration.Y, entityParent->angularAccelaration.Z);
+void ShipMover::init(){
 
-	//Send packet to server
-	Network::GetInstance()->SendPacket(movementPacket, false);
+}
+
+void ShipMover::draw(){
+
+
 }
