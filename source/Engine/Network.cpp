@@ -109,7 +109,6 @@ void Network::SendPacket(NetworkPacket packet, const bool reliable)
 	if(_isConnected)
 	{
 		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
-
 		if(!_isServer)
 			enet_peer_send(_peer, 0, enetPacket);
 		else
