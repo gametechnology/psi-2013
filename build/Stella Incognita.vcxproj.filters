@@ -252,6 +252,9 @@
     <ClCompile Include="..\source\Game\Stations\PowerStationData.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\HudComposite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Enemy.h">
@@ -356,9 +359,6 @@
     <ClInclude Include="..\source\Game\EnemyPlayer.h">
       <Filter>Header Files\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\EnemySceneTest.h">
-      <Filter>Header Files\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\MainMenuScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
@@ -415,6 +415,9 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\PowerStationData.h">
       <Filter>Header Files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HudComposite.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

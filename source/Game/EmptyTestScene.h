@@ -6,7 +6,7 @@
 #include "Engine/Composite.h"
 #include "Engine/Component.h"
 #include "../../include/Engine/Scene.h"
-#include "HealthBar.h"
+#include "HudComposite.h"
 
 class EmptyTestScene : public Scene
 {
@@ -15,9 +15,10 @@ public:
 	EmptyTestScene(void);
 	~EmptyTestScene(void);
 	void init();
-	HealthBar* healthBar;
+	HudComposite* hud;
 	void update();
 	int a;
+	int b;
 
 
 };

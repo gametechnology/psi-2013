@@ -8,16 +8,18 @@
 #include "Irrlicht\irrlicht.h"
 #include "Engine\Game.h"
 
+
 class HealthBar : public Component
 {
 public:
 	HealthBar(Composite* parent, vector2df position, int* stat);
-	HealthBar(Composite* parent, vector2df position, int* stat, vector2df size, int barHeight);
+	HealthBar(Composite* parent, vector2df position, int* stat, vector2df size, int barHeight, SColor colour);
 	~HealthBar(void);
 	void update();
 	void draw();
 	void init();
 	bool visible;
+
 private:
 	int* stat_;
 	vector2df position_;

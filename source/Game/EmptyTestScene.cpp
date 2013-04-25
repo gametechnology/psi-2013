@@ -13,14 +13,17 @@ EmptyTestScene::~EmptyTestScene(void) {
 
 void EmptyTestScene::init(){
 	a = 100;
+	b = 25;
 	
-	
-	healthBar = new HealthBar(this, vector2df(300, 300), &a, vector2df(28, 8), 2);
-	addComponent(healthBar);
+	hud = new HudComposite(this, &a, &b);
+	addComponent(hud);
 }
 
 void EmptyTestScene::update(){
 	if(Game::input->isKeyboardButtonDown(KEY_KEY_W)){
 		a -= 1;
+	}
+	if(Game::input->isKeyboardButtonDown(KEY_KEY_S)){
+		a += 1;
 	}
 }

@@ -41,10 +41,10 @@ int main()
 	// Create test scene
 	Game::addScene(new Scene());
 	//Game::addScene(new MainMenuScene());
-	/*		//Silvan's test scene for HUD stuff. Enable it if you want to see an epic healthbar in an empty scene
+			//Silvan's test scene for HUD stuff. Enable it if you want to see an epic healthbar in an empty scene
 	EmptyTestScene* emptyScene = new EmptyTestScene();
-	Game::addScene(emptyScene);*/
-	
+	Game::addScene(emptyScene);
+	/*
 	Game::addScene(new Scene());
 	MapGenerator mapGen;
 	mapGen.init(20, 2, 5);
@@ -56,7 +56,7 @@ int main()
 	Game::addScene(new MainMenuScene());
 	// Create sector manager that creates all the Scenes/Sectors
 	SectorManager sectorManager(galaxyMap);
-	sectorManager.init();
+	sectorManager.init();*/
 
 	// Start the main loop
 	Game::run();
