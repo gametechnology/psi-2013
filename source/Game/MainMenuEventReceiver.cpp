@@ -107,6 +107,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					return true;
 				case 4:
 					Network::GetInstance()->SendPacket(quitpacket, true);
+					Network::GetInstance()->DeInitialize();
 					mainmenu->BackToMainMenu();
 					return true;
 				default:
