@@ -1,29 +1,17 @@
 #include <Engine\CameraMover.h>
 
 
-CameraMover::CameraMover(Camera* parent):Component(parent)
-{
-	cam = (Camera*)(parent);
+CameraMover::CameraMover() : Component() {
 	
 }
 
-void CameraMover::update()
-{
-	cam->position = cam->node->getPosition();
-	cam->orientation = cam->node->getRotation();
-	if (cam->parentIsEntity)
-	{
-		cam->position -= oldParentPosition;
-		cam->orientation -= oldParentOrientation;
-		cam->position += cam->getEntity()->position;
-		cam->orientation += cam->getEntity()->orientation;
-	}
-	oldParentPosition = cam->getEntity()->position;
-	oldParentOrientation = cam->getEntity()->orientation;
+void CameraMover::init() {
+	camera = (Camera*)(Component::entity);
+}
 
-
-	vector3df tempPosition = cam->position;
-	vector3df tempRotation = cam->orientation;
+void CameraMover::lateUpdate() {
+	vector3df tempPosition = *camera->transform->position;
+	vector3df tempRotation = *camera->transform->rotation;
 
 	vector3df forward = vector3df(0,0,1);
 	vector3df right = vector3df(1,0,0);
@@ -34,10 +22,10 @@ void CameraMover::update()
 	nodeRotation.transformVect(right);
 	nodeRotation.transformVect(up);
 
-	cam->getCameraNode()->setTarget(cam->position + forward);
-	cam->getCameraNode()->setUpVector(cam->position +up);
+	camera->setTarget(*camera->transform->position + forward);
+	camera->setUpVector(*camera->transform->position + up);
 }
 
-CameraMover::~CameraMover()
-{
+CameraMover::~CameraMover() {
+
 }

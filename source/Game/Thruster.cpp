@@ -4,7 +4,7 @@
 #include "Engine\Entity.h"
 #include <iostream>
 
-Thruster::Thruster(Composite* parent, vector3df position, vector3df initialDirection, matrix4* inertiaMatrix) : Entity(parent)
+Thruster::Thruster(Composite * parent, irr::core::vector3df position, irr::core::vector3df initialDirection) : Component()
 {
 	Thruster::position = position;
 	Thruster::direction = initialDirection;

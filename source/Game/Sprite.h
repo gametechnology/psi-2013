@@ -4,19 +4,16 @@
 #include "Engine\Entity.h"
 #include "Irrlicht\irrlicht.h"
 
-class Sprite : public Entity
-{
+class Sprite : public Entity {
 public:
-	Sprite(Composite* parent);
+	Sprite();
 	virtual ~Sprite();
 
 	virtual void draw();
-	virtual void setTexture(video::ITexture* texture);
-	virtual void setPosition(position2d<s32> position);
+	virtual void setTexture(irr::video::ITexture* texture);
 private:
-	video::ITexture* _texture;
-	rect<s32> _size;
-	position2d<s32> _position;
+	irr::video::ITexture* _texture;
+	irr::core::rect<irr::s32> _size;
 };
 
 #endif // SPRITE_H

@@ -3,9 +3,8 @@
 #include "DefenceStation.h"
 
 
-Station :: Station( Ship *ship, int startHealth ) : Composite(ship)
+Station :: Station( Ship *ship, int startHealth ) : Entity()
 {
-	driver = Game::driver;
 	this ->	_ship	= ship;
 	this -> _health = startHealth;
 	//this -> _switchTime = 4.0f;
@@ -13,12 +12,24 @@ Station :: Station( Ship *ship, int startHealth ) : Composite(ship)
 	//addComponent(_healthBar);
 }
 
-Station :: Station( Ship * ship ) : Composite(ship)
+Station :: Station( Ship * ship ) : Entity()
 {
 	this -> _ship   = ship;
 	this -> _totalHealth = 50;
 	this -> _health = this->_totalHealth;
 	this -> _tempTimer = 0;
+}
+
+void Station :: init() {
+	driver = this->game->driver;
+
+	this -> _player = NULL;
+	this -> _playerOnStationTime = 0;
+	this -> _stunTime = 0;
+	this -> _switchTime = 0;
+
+	if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
+	if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
 }
 
 Station :: ~Station(void)
@@ -56,7 +67,9 @@ bool Station::IsStunned()
 
 void Station::update()
 {
-	Component::update();
+	// NOTE Component update goes automatic
+	//Component::update();
+
 	updateHealth();
 	//Update Stun Time
 	//Update player on station time	
@@ -107,6 +120,7 @@ void Station::updateHealth()
 		}
 	}
 }
+
 int Station :: getHealth()
 {
 	return 10;//this -> _health;
@@ -121,6 +135,7 @@ void Station::decreaseHealth(int health)
 		repairStation(this->_totalHealth/2);
 	}
 }
+
 void Station::increaseHealth(int health)
 {
 	this->_health += health;

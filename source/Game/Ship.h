@@ -11,6 +11,7 @@
 
 #include "Stations\Station.h"
 #include "Engine/Entity.h"
+#include "Engine/IrrlichtNode.h"
 #include "Player.h"
 #include "Engine/Input.h"
 #include "Thruster.h"
@@ -47,10 +48,14 @@ public:
 
 	bool _sitOnStation;
 
+	void onAdd();
+	void init();
+
 	void update();
 	void updateShipHealth();
 	void draw();
 
+	Ship();
 	void CheckChangeInput();
 
 	Ship(Composite * parent, vector3df position, vector3df orientation);

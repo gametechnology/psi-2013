@@ -5,7 +5,7 @@
 class Thruster : public Entity
 {
 public:
-	Thruster(Composite* parent, vector3df position, vector3df initialDirection, matrix4* inertiaMatrix);
+	Thruster(Composite *parent, irr::core::vector3df position, irr::core::vector3df initialDirection);
 	virtual ~Thruster();
 	void Activate();
 	void init();
@@ -14,7 +14,7 @@ public:
 	void handleMessage(unsigned int message, void* data);
 
 	void printAng();
-
+	irr::core::vector3df UpdateDirection();
 	float force_;
 
 	vector3df position;
@@ -30,6 +30,7 @@ public:
 	Entity * parent;
 	vector3df torque;
 
+	irr::core::vector3df pushDirection();
 
 };
 

@@ -16,14 +16,14 @@
     <Filter Include="Irrlicht Header Files">
       <UniqueIdentifier>{a757206d-aa06-47ae-ae75-a229e7eb4d62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{34893b4a-6286-4261-b504-a9a3939bfee6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{d4af654a-2d36-4975-a28f-1e33204fc6d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Engine\Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Engine\CameraMover.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Engine\Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -40,12 +40,14 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Engine\INetworkListener.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\include\Engine\IrrlichtNode.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Engine\Network.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\..\include\Engine\Transform.h">
+      <Filter>Header Files\Components</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\Engine\NetworkComponent.h">
+    <ClInclude Include="..\..\include\Engine\SceneManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Engine\Network.h">
@@ -81,15 +83,21 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Engine\Network.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\source\Engine\NetworkComponent.cpp">
+    <ClCompile Include="..\..\source\Engine\Transform.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Engine\SceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Engine\Network.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Engine\NetworkPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Engine\VectorToPacket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Engine\InputManager.cpp">

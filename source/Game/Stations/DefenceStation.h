@@ -7,8 +7,7 @@
 #include <time.h>
 #include <map>
 
-class DefenceStation : public Station
-{
+class DefenceStation : public Station {
 private:
 	struct DefenceStats
 	{
@@ -33,7 +32,7 @@ private:
 	irr::core::map<StationType, DefenceStation :: DefenceStats> *_stations;
 	
 public:
-	DefenceStation( Ship* ship);
+	DefenceStation(Ship* ship);
 	~DefenceStation(void);
 	
 	void DoCameraShake();

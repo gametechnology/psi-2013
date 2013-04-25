@@ -3,25 +3,25 @@
 #include "Ship.h"
 
 
-ShipMover::ShipMover(Ship* ship) : Component(ship)
-{
+ShipMover::ShipMover(Ship* _ship) : BasicMoverComponent() {
 	this->_ship = ship;
 }
 
-ShipMover::~ShipMover(void)
+ShipMover::~ShipMover() {
+
 {
 
 
 }
 
-void ShipMover::update(){
+void ShipMover::update() {
 	//input logic
 	
 	ShipMover::linearAcceleration = vector3df(0,0,0);
 	ShipMover::angularAcceleration = vector3df(0,0,0);
 
 	if(Game::input->isKeyboardButtonPressed(KEY_KEY_W))
-	{
+{
 		this->linearAcceleration += _ship->GetThrusters()[0]->linearForce;
 		this->angularAcceleration += (_ship->GetThrusters()[0]->angularAccelaration * 0.0001);
 	}
@@ -36,15 +36,39 @@ void ShipMover::update(){
 		this->angularAcceleration += (_ship->GetThrusters()[2]->angularAccelaration * 0.0001);
 	}
 	
-	_ship->accelaration = linearAcceleration;
-	_ship->angularAccelaration = angularAcceleration;	
-}
+	//Roll 
+	if (Game::input->isKeyboardButtonDown(KEY_KEY_Q))
+		entity->transform->angularVelocity->X -= 1;
+	if (Game::input->isKeyboardButtonDown(KEY_KEY_E))
+		entity->transform->angularVelocity->X += 1;
+	
+	//YAW 
+	if (Game::input->isKeyboardButtonDown(KEY_KEY_A))
+		entity->transform->angularVelocity->Y -= 1;
+	if (Game::input->isKeyboardButtonDown(KEY_KEY_D))
+		entity->transform->angularVelocity->Y += 1;   
 
-void ShipMover::init(){
+	//PITCH
+	if (Game::input->isKeyboardButtonDown(KEY_KEY_W))
+		entity->transform->angularVelocity->Z -= 1;   
+	if (Game::input->isKeyboardButtonDown(KEY_KEY_S))
+		entity->transform->angularVelocity->Z += 1;
 
-}
+	//printf("rotation: x:%f, y:%f, z:%f\n", entityParent->orientation.X, entityParent->orientation.Y, entityParent->orientation.Z);
 
-void ShipMover::draw(){
+	*entity->transform->angularVelocity *= 0.90f;
+	
+	
+	BasicMoverComponent::update();
 
+	//Vec3 position, Vec3 orientation, Vec3 acceleration, Vec3 angularAcceleration
+	NetworkPacket movementPacket = NetworkPacket(PacketType::CLIENT_SHIP_MOVEMENT);
+	vector3df yey = vector3df(entity->transform->position->X, entity->transform->position->Y, entity->transform->position->Z);
+	movementPacket << yey;
+	//movementPacket << vector3df(entityParent->orientation.X, entityParent->orientation.Y, entityParent->orientation.Z);
+	//movementPacket << vector3df(entityParent->accelaration.X, entityParent->accelaration.Y, entityParent->accelaration.Z);
+	//movementPacket << vector3df(entityParent->angularAccelaration.X, entityParent->angularAccelaration.Y, entityParent->angularAccelaration.Z);
 
+	//Send packet to server
+	Network::GetInstance()->SendPacket(movementPacket, false);
 }

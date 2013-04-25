@@ -24,13 +24,14 @@ using namespace gui;
 // standard namespace
 using namespace std;
 
-class MainMenuScene: public Scene, public INetworkListener
-{
+class MainMenuScene: public Scene, public INetworkListener {
 public:
 	MainMenuScene();
+	void init();
 	void update();
 	~MainMenuScene();
 	void StartGame();
+	void BackToMainMenu();
 	void HandleNetworkMessage(NetworkPacket packet); 
 
 	//Create the different windows
@@ -42,9 +43,12 @@ public:
 	IGUIButton* createServerWindow_Button;
 	IGUIButton* joinServerWindow_Button;
 	IGUIButton* start_button;
+	IGUIButton* quit_button;
+	IGUIButton* host_quit_button;
 	// other items in menu
 	IGUIStaticText* Clientlist;
 	IGUIStaticText* Namelabel;
+	IGUIStaticText* waitinglabel;
 	IGUIEditBox* Ipadresinput;
 	IGUIEditBox* Nameinput;
 	IGUIWindow* messagebox;
