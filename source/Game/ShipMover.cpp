@@ -20,7 +20,25 @@ void ShipMover::update()
 		thrust += 0.01f;
 	if (Game::input->isKeyboardButtonDown(KEY_KEY_F) && thrust > maxBwdSpeed)
 		thrust -= 0.01f;
+	//Roll 
+	if (Game::input->isKeyboardButtonDown(KEY_KEY_Q))
+		entityParent->orientation.X -= 1.01f;   
+	if (Game::input->isKeyboardButtonDown(KEY_KEY_E))
+		entityParent->orientation.X += 1.01f;   
+	
+	//YAW 
+	if (Game::input->isKeyboardButtonDown(KEY_KEY_A))
+		entityParent->orientation.Y -= 1.01f;   
+	if (Game::input->isKeyboardButtonDown(KEY_KEY_D))
+		entityParent->orientation.Y += 1.01f;   
 
+	//PITCH
+	if (Game::input->isKeyboardButtonDown(KEY_KEY_W))
+		entityParent->orientation.Z -= 1.01f;   
+	if (Game::input->isKeyboardButtonDown(KEY_KEY_S))
+		entityParent->orientation.Z += 1.01f;   
+	
+	
 	BasicMoverComponent::update();
 
 	//Vec3 position, Vec3 orientation, Vec3 acceleration, Vec3 angularAcceleration
