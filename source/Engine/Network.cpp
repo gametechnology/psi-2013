@@ -68,7 +68,7 @@ void Network::InitializeClient(const char* ipAdress, const unsigned int maxDowns
 		std::cout << "No available peers for initiating an ENet connection.\n";
 
 	// If connect send packages
-	if (enet_host_service(_host, &_event, 1000) > 0 && _event.type == ENET_EVENT_TYPE_CONNECT)
+	if (enet_host_service(_host, &_event, 1500) > 0 && _event.type == ENET_EVENT_TYPE_CONNECT)
 	{
 		_isConnected = true;
 		printf("Connection to %s:%i succeeded.\n", ipAdress, _address.port);
@@ -103,7 +103,16 @@ void Network::InitializeServer(size_t maxPlayers)
 		StartThreads();
 	}	
 }
+void Network::DeInitialize(){
+	enet_deinitialize();
+	_host = NULL;
+	_address.host = NULL;
+	_address.port = NULL;
+	_isServer = NULL;
+	_isConnected = false;
+	StopThreads();
 
+}
 void Network::SendPacket(NetworkPacket packet, const bool reliable)
 {
 	if(_isConnected)

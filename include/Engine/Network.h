@@ -91,6 +91,10 @@ public:
 	*/
 	void InitializeServer(size_t maxPlayers = 16);
 
+	/* 
+	* Deinitialize as server or as client
+	*/
+	void DeInitialize();
 	/*
 	* Returns true if you are the server and the server is succesfully initialized.
 	*/
