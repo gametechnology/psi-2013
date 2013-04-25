@@ -94,6 +94,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 	int team;
 	unsigned int ipclientaffect;
 	unsigned int checksum;
+	sf::IpAddress localip;
 	Player* newplayer;
 	std::list<Player*>::const_iterator iterator;
 	
@@ -114,10 +115,18 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			}
 		break;
 		case CLIENT_JOIN_DENIED:
+			name = new wchar_t[500];
 			packet >> name;
 			packet >> ipclientaffect;
-			if (packet.ipadress == sf::IpAddress::getLocalAddress().toInteger())
+			localip = sf::IpAddress::getLocalAddress();
+			checksum = localip.m_address;
+			
+			if (ipclientaffect == checksum){
 				BackToMainMenu();
+				Network::GetInstance()->DeInitialize();
+				messagebox =  Game::guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
+			}
+			break;
 		case START_GAME:
 			StartGame();
 			break;
@@ -128,14 +137,15 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			
 			if(checksum != Network::GetInstance()->GetPacketTypeChecksum())
 			{
-				deniedpack << L"Your version is out of date, please get the latest version";
+				deniedpack << L"Your version does not match with the version of the host";
 				deniedpack << packet.ipadress;
 				Network::GetInstance()->SendServerPacket(deniedpack, true);
 				return;
 			}
 			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
 				if((*iterator)->Ipadres == packet.ipadress){
-					deniedpack << L"You are already in the lobby";
+					deniedpack << L"Your pc is already connected to the host";
+					deniedpack << packet.ipadress;
 					Network::GetInstance()->SendServerPacket(deniedpack, true);
 
 					return;
