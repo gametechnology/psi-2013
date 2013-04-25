@@ -10,6 +10,8 @@ public:
 	~WeaponStation(void);
 
 	void DoCameraShake();
+	void OnEnabled();
+	void OnDisabled();
 };
 
 #endif

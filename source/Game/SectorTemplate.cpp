@@ -11,7 +11,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	//setting sector Manager
 	_sectormanager = sectormanager;
 	// Creating Skybox
-	//_skybox = new Skybox(skyBoxTexture, this);
+	_skybox = new Skybox(skyBoxTexture, this);
 	// Adding mist
 	_fog = new Mist(this);
 	// Setting the boundry
@@ -41,7 +41,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 //This function isn't being overriden so it needs to be called in constructor
 void SectorTemplate::init(){
 	addComponent(_enemyManager);
-	//addComponent( this->_skybox );
+	addComponent( this->_skybox );
 	//addComponent( this->_player );
 	addComponent(_ship);
 	addComponent(_ship2);

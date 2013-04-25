@@ -73,7 +73,7 @@ class MyEventReceiver : public IEventReceiver
 
 public:
 
-	MyEventReceiver(UIData & context) : _context(context) { }
+	MyEventReceiver(PowerStationData & context) : _context(context) { }
 
 	virtual bool OnEvent(const SEvent& event)
 	{
@@ -157,7 +157,7 @@ public:
 	}
 
 private:
-	UIData & _context;
+	PowerStationData & _context;
 };
 
 //Initializes the User Interface.
@@ -172,8 +172,17 @@ void PowerStation::Initialize()
 		skin->setFont(font);
 	else
 		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
+}
+
+void PowerStation::OnEnabled(){
 	createUI();
 }
+
+void PowerStation::OnDisabled(){
+	//TODO: Make a remove UI.
+	//removeUI();
+}
+
 //Creates the User Interface. Is a helper method. Also initializes the event receiver.
 void PowerStation::createUI()
 {

@@ -19,13 +19,7 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	this->_helmStation		-> Initialize();
 	this->_navigationStation	-> Initialize();
 	this->_weaponStation		-> Initialize();
-	//this->_powerStation		-> Initialize();	//TODO: uncomment to show stations
-	
-	addComponent(_defenceStation);
-	addComponent(_helmStation);
-	addComponent(_navigationStation);
-	addComponent(_weaponStation);
-	//addComponent(_powerStation);	//TODO: uncomment to show stations
+	this->_powerStation		-> Initialize();	//TODO: uncomment to show stations
 
 	this->updateShipHealth();
 	this->_shipDestroyed = false;
