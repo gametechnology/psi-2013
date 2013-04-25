@@ -32,7 +32,7 @@ int main()
 	Game::addScene(new MainMenuScene());
 
 	//Epic healthbar in an empty scene
-	Game::addScene(new EmptyTestScene());
+	//Game::addScene(new EmptyTestScene());
 
 	// Start the main loop
 	Game::run();
