@@ -4,9 +4,10 @@
 
 #include "../HealthBar.h"
 #include "../Player.h"
-#include "../../../include/Engine/Component.h"
+#include "../../../include/Engine/Entity.h"
 #include "../../../include/Engine/Game.h"
 #include "Irrlicht/irrlicht.h"
+
 #ifdef ENTITY_SHIP
 #include "../Ship.h"
 #endif
@@ -23,7 +24,7 @@ enum StationType
 	ST_NAVIGATION	= 4
 };
 
-class Station : public Composite
+class Station : public Entity
 {
 public:
 	Station( Ship *ship, int startHealth );
@@ -49,7 +50,8 @@ public:
 	void decreaseHealth(int health);
 	void repairStation(int health);
 
-	void update();
+	virtual void init();
+	virtual void update();
 
 	virtual void OnDamage( );
 	virtual void OnEnabled() = 0;

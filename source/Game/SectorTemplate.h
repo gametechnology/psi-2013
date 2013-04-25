@@ -27,11 +27,15 @@ protected:
 public:
 	SectorManager* _sectormanager;
 	SectorTemplate(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundry, unsigned int amountWormHoles );
+	virtual ~SectorTemplate();
+	
 	void handleMessage( unsigned int message, void* data = 0 );
 	virtual void update();
-	void init();
+	virtual void onAdd();
+	virtual void init();
 	void createWormHoles( unsigned int amountOfWormHoles );
-	virtual ~SectorTemplate();
+	void addWormHoles();
+	
 
 private:
 	EnemyManager* _enemyManager;

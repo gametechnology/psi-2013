@@ -12,9 +12,10 @@ public:
 
 	SectorHomeBase(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundry, unsigned int amountWormHoles);
 	void SectorHomeBase::handleMessage(unsigned int message, void* data = 0);
-	virtual void SectorHomeBase::update();
-	void SectorHomeBase::init();
 	virtual ~SectorHomeBase();
+
+	virtual void onAdd();
+	virtual void update();
 };
 
 #endif
@@ -22,7 +23,9 @@ public:
 #define BASE_PLACEHOLDER
 class BasePlaceholder : public Entity{
 	public:
-	BasePlaceholder(Composite* parent);
+	BasePlaceholder();
 	virtual ~BasePlaceholder();
+
+	virtual void onAdd();
 };
 #endif

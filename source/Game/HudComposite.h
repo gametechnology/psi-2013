@@ -1,19 +1,25 @@
 #ifndef HUDCOMPOSITE
 #define HUDCOMPOSITE
 
-#include "Engine/Composite.h"
+#include "Engine/Entity.h"
 #include "../source/Game/HealthBar.h"
 #include "../../include/Irrlicht/IGUIEnvironment.h"
 #pragma once
 
-class HudComposite : public Composite
+class HudComposite : public Entity
 {
 public:
-	HudComposite(Composite* parent, int* health, int* energy);
+	int _health;
+	int _energy;
+
+	HudComposite( int* health, int* energy);
 	~HudComposite(void);
+
+	virtual void onAdd();
+
 	HealthBar* energyBar;
 	HealthBar* healthBar;
-	IGUIEnvironment* guiEnviroment;
+	irr::gui::IGUIEnvironment* guiEnviroment;
 	//diego's button
 	//helptext
 };

@@ -1,60 +1,136 @@
 #include <Engine\Entity.h>
-#include <Engine\Game.h>
+#include "Engine\Component.h"
+#include "Engine\Transform.h"
+#include "Engine\Scene.h"
 
-
-Entity::Entity(Composite* parent):Composite(parent)
-{
-	this->mass = 1;
-	node = NULL;
+Entity::Entity() : Composite() {
+	transform = new Transform();
+	addComponent(transform);
 }
 
-void Entity::update()
-{
-	Composite::update();
+Entity::~Entity() {
 
-	this->angularVelocity += this->angularAccelaration;
-	this->orientation += this->angularVelocity;
+}
 
-	this->accelaration = (1 / this->mass) * this->force;
-	this->velocity += this->accelaration;
-	this->position += this->velocity;
-	if (node != NULL)
-	{
-		this->node->setPosition(this->position);
-		this->node->setRotation(this->orientation);
+void Entity::onAdd() {
+	// If this is true, it means the object is added during runtime, and will miss the base initialize.
+	// Therefore initialize it after it has been added.
+	if (parent != NULL && parent->initialized) {
+		init();
 	}
 }
 
-void Entity::draw()
-{
-	Composite::draw();
+void Entity::init() {
+	Composite::init();
 
-	if (node == NULL) return;
-	if (!this->visible)
-	{
-		this->node->setVisible(false);
-		return;
+	for (unsigned int i = 0; i < components.size(); i++) {
+		components[i]->init();
 	}
-	this->node->setVisible(true);
 
-	this->node->render();
+	for (unsigned int i = 0; i < children.size(); i++) {
+		children[i]->init();
+	}
 }
 
-void Entity::createNode(std::string modelPath)
-{
-	// Get the mesh
-	irr::scene::IAnimatedMesh* mesh = Game::getSceneManager()->getMesh(modelPath.c_str());
+void Entity::handleMessage(unsigned int message) {
+	if (enabled) {
+		for (unsigned int i = 0; i < components.size(); i++) {
+			components[i]->handleMessage(message);
+		}
 
-	// Create model entity
-	this->node =  Game::getSceneManager()->addMeshSceneNode( mesh );
-	this->node->setMaterialFlag(EMF_FOG_ENABLE, true);
+		for (unsigned int i = 0; i < children.size(); i++) {
+			children[i]->handleMessage(message);
+		}
+	}
 }
 
-Entity::~Entity()
-{
-	Composite::~Composite();
-	if (node != NULL)
-	{
-		node->drop();
+void Entity::update() {
+	for (unsigned int i = 0; i < components.size(); i++) {
+		if (components[i] == NULL) {
+			components.erase(components.begin()+i--);
+		} else if (components[i]->destroyed) {
+			Component* component = components[i];
+			components.erase(components.begin()+i--);
+			delete component;
+		} else {
+			components[i]->update();
+		}
 	}
+	
+	for (unsigned int i = 0; i < children.size(); i++) {
+		if (children[i] == NULL) {
+			children.erase(children.begin()+i--);
+		} else if (children[i]->destroyed) {
+			Entity* child = children[i];
+			children.erase(children.begin()+i--);
+			delete child;
+		} else {
+			children[i]->update();
+		}
+	}
+}
+
+void Entity::lateUpdate() {
+	for (unsigned int i = 0; i < components.size(); i++) {
+		components[i]->lateUpdate();
+	}
+
+	for (unsigned int i = 0; i < children.size(); i++) {
+		children[i]->lateUpdate();
+	}
+}
+
+void Entity::draw() {
+	for (unsigned int i = 0; i < components.size(); i++) {
+		components[i]->draw();
+	}
+
+	for (unsigned int i = 0; i < children.size(); i++) {
+		children[i]->draw();
+	}
+}
+
+void Entity::addComponent(Component* component) {
+	components.push_back(component);
+	component->entity = this;
+
+	component->onAdd();
+}
+
+bool Entity::removeComponent(Component* component) {
+	for (unsigned int i = 0; i < components.size(); i++) {
+		if (components[i] == component) {
+			Component* component = components[i];
+			components[i] = NULL;
+
+			delete component;
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void Entity::addChild(Entity* child) {
+	children.push_back(child);
+	child->parent = this;
+	child->game = game;
+ 
+	if (dynamic_cast<Scene*>(this) != NULL)
+		child->scene = dynamic_cast<Scene*>(this);
+	else if (child->scene != NULL)
+		child->scene = scene;
+
+	child->onAdd();
+}
+
+bool Entity::removeChild(Entity* child) {
+	for (unsigned int i = 0; i < components.size(); i++) {
+		if (children[i] == child) {
+			children[i] = NULL;
+			return true;
+		}
+	}
+
+	return false;
 }

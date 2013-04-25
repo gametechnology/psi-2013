@@ -2,50 +2,44 @@
 #include "Stations/Station.h"
 #include "ShipMover.h"
 
-Ship::Ship( Composite * parent ) : Entity ( parent )
+Ship::Ship( ) : Entity ( )
 {
-	createNode("../assets/Models/myship.obj");
-	this->node->setMaterialFlag(EMF_LIGHTING, false);
+	
+}
 
+Ship::~Ship(void)
+{
+	
+}
+
+void Ship::onAdd() {
+	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
+	addComponent(model);
+
+	this->env = game->device->getGUIEnvironment();
 	this->_currentStation = NULL;
-	this->env = Game :: device->getGUIEnvironment();
 
 	//TODO remove temp stuff
-	this->_defenceStation		= new DefenceStation( this );
-	this->_helmStation			= new HelmStation( this );
-	this->_navigationStation	= new NavigationStation( this );
-	this->_weaponStation		= new WeaponStation( this );
-	this->_powerStation			= new PowerStation( this );
+	addChild(_defenceStation		= new DefenceStation(this));
+	addChild(_helmStation			= new HelmStation(this));
+	addChild(_navigationStation		= new NavigationStation(this));
+	addChild(_weaponStation			= new WeaponStation(this));
+	addChild(_powerStation			= new PowerStation(this));
 	
-	this->_defenceStation		-> Initialize();
-	this->_helmStation			-> Initialize();
-	this->_navigationStation	-> Initialize();
-	this->_weaponStation		-> Initialize();
-	this->_powerStation			-> Initialize();
+	Entity::onAdd();
+}
 	
-	/*
-	this->_defenceStation->Disable();
-	this->_helmStation->Disable();
-	this->_navigationStation->Disable();
-	this->_weaponStation->Disable();
-	this->_powerStation->Disable();
+	
 
-	addComponent(_defenceStation);
-	addComponent(_helmStation);
-	addComponent(_navigationStation);
-	addComponent(_weaponStation);
-	addComponent(_powerStation);*/
+void Ship::init() {
+	irr::core::stringw strShipHealth			= "ship health: "; 
+	strShipHealth +	irr::core::stringw();
 
-	this->updateShipHealth();
-	this->_shipDestroyed = false;
-
-	stringw strShipHealth = "ship health: " + this->getShipHealth();
-	stringw strDefenceHealth = "Defence Station health: " + this->_defenceStation->getHealth();
-	stringw strHelmHealth = "Helm Station health: " + this->_helmStation->getHealth();
-	stringw strNavigationHealth = "Navigation Station health: " + this->_navigationStation-> getHealth();
-	stringw strPowerHealth = "Power Station health: " + this->_powerStation->getHealth();
-	stringw strWeaponHealth = "Weapon Station health: " + this->_weaponStation->getHealth();
-
+	irr::core::stringw strDefenceHealth			= "Defence Station health: "		+ this->_defenceStation->getHealth();
+	irr::core::stringw strHelmHealth			= "Helm Station health: "			+ this->_helmStation->getHealth();
+	irr::core::stringw strNavigationHealth		= "Navigation Station health: "	+ this->_navigationStation-> getHealth();
+	irr::core::stringw strPowerHealth			= "Power Station health: "		+ this->_powerStation->getHealth();
+	irr::core::stringw strWeaponHealth			= "Weapon Station health: "		+ this->_weaponStation->getHealth();
 
 	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
@@ -54,11 +48,9 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 
-}
+	this->updateShipHealth();
 
-Ship::~Ship(void)
-{
-
+	Entity::init();
 }
 
 Station *Ship :: GetStation( StationType s )
@@ -86,13 +78,13 @@ Station *Ship :: GetStation( StationType s )
 	return NULL;
 }
 
-stringw Ship::varToString(stringw str1, float var){
+irr::core::stringw Ship::varToString(irr::core::stringw str1, float var){
 	stringw str = L"";
 	str += str1;
 	str += (int)var;	
 	return str;
 }
-stringw Ship::varToString(stringw str1, float var, stringw str2){
+irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::core::stringw str2){
 	stringw str = L"";
 	str += str1;
 	str += (int)var;
@@ -175,7 +167,7 @@ void Ship :: SwitchToStation(StationType stationType)
 
 		//First remove the currentStation from the shipComponents
 		_currentStation->OnDisabled();
-		removeComponent(_currentStation);
+		removeChild(_currentStation);
 		//_currentStation->Disable();
 	}
 
@@ -184,7 +176,7 @@ void Ship :: SwitchToStation(StationType stationType)
 
 	//Init and add the new station
 	_currentStation->OnEnabled();
-	addComponent(_currentStation);
+	addChild(_currentStation);
 	//_currentStation->Enable();
 }
 

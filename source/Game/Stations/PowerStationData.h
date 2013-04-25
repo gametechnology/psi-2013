@@ -1,7 +1,7 @@
 #ifndef GUI_STATION_DATA
 #define GUI_STATION_DATA
 
-#include <map>
+//#include <map>
 #include "..\..\..\include\Irrlicht\irrlicht.h"
 #include "Station.h"
 #include <iostream>
@@ -29,7 +29,7 @@ private:
 		int powerCurrent;
 	};
 	
-	map<StationType, PowerUsage> *_stationsPowerUsage;
+	irr::core::map<StationType, PowerUsage> *_stationsPowerUsage;
 	time_t _timeOfLastBoost;	
 	int _powerUsed;
 

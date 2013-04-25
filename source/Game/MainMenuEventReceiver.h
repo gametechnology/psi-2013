@@ -22,7 +22,7 @@ using namespace std;
 // has it available inside its OnEvent() method.
 struct SAppContext
 {
-    IrrlichtDevice *device;
+    Game*			game;
     s32             counter;
     IGUIListBox*    listbox;
 };
@@ -42,6 +42,7 @@ public:
 	
 private:
     SAppContext & Context;
+	Game* contextGame;
 };
 
 #endif

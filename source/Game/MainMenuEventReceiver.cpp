@@ -3,8 +3,8 @@
 #include "Engine\Network.h"
 #include "NetworkInterface.h"
 
-MainMenuEventReceiver::MainMenuEventReceiver(SAppContext & context) : Context(context)
-{
+MainMenuEventReceiver::MainMenuEventReceiver(SAppContext & context) : Context(context) {
+	this->contextGame = context.game;
 }
 
 bool MainMenuEventReceiver::OnEvent(const SEvent& event)
@@ -12,8 +12,8 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
     if (event.EventType == EET_GUI_EVENT)
     {
         s32 id = event.GUIEvent.Caller->getID();
-        IGUIEnvironment* env = Game::device->getGUIEnvironment();
-		MainMenuScene* mainmenu = ((MainMenuScene*)Game::getCurrentScene());
+		IGUIEnvironment* env = this->contextGame->guiEnv;
+		MainMenuScene* mainmenu = ((MainMenuScene*)this->contextGame->sceneManager->getScene("MainMenuScene"));
 		char* ipadress;
 		 wchar_t* inputwchar;
 
@@ -44,17 +44,16 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 
 					if((*ipadress == ' ' || *ipadress == NULL) || (*playername == ' ' || *playername == NULL)){
 						if(*ipadress == ' ' || *ipadress == NULL){
-							mainmenu->messagebox =  Game::guiEnv->addMessageBox(L"Message",L"Fill in an Ipadress",true,1,mainmenu->mainMenuWindow);
+						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Fill in an Ipadress",true,1,mainmenu->mainMenuWindow);
 							mainmenu->messagebox->setDraggable(false);
 						}else{
-							mainmenu->messagebox =  Game::guiEnv->addMessageBox(L"Message",L"Fill in an Name",true,1,mainmenu->mainMenuWindow);
+							mainmenu->messagebox = this->contextGame->guiEnv->addMessageBox(L"Message",L"Fill in an Name",true,1,mainmenu->mainMenuWindow);
 							mainmenu->messagebox->setDraggable(false);
 						}
 					}else{
 						Network::GetInstance()->InitializeClient(ipadress);
 						if(!Network::GetInstance()->IsConnected()){
-
-							mainmenu->messagebox =  Game::guiEnv->addMessageBox(L"Messsage",L"Not able to connect to server",true,1,mainmenu->mainMenuWindow);
+							mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Not able to connect to server",true,1,mainmenu->mainMenuWindow);
 							mainmenu->messagebox->setDraggable(false);
 						}else{
 							//TODO: package met naam en checksum: Network->getinstance->GetPacketTypeChecksum
@@ -65,6 +64,8 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 							mainmenu->Clientlist->setVisible(true);
 							mainmenu->Ipadresinput->setVisible(false);
 							mainmenu->Namelabel->setVisible(false);
+							// TODO check merge Both??
+							env->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainmenu->mainMenuWindow);
 							mainmenu->Nameinput->setVisible(false);
 							mainmenu->quit_button->setVisible(true);
 							mainmenu->waitinglabel->setVisible(true);
@@ -84,7 +85,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					playername[wcslen(namewchar)] = 0;
 
 					if(*playername == ' ' || *playername == NULL){
-							mainmenu->messagebox =  Game::guiEnv->addMessageBox(L"Message",L"Fill in a name",true,1,mainmenu->mainMenuWindow);
+						mainmenu->messagebox = this->contextGame->guiEnv->addMessageBox(L"Message",L"Fill in a name",true,1,mainmenu->mainMenuWindow);
 							mainmenu->messagebox->setDraggable(false);
 							return false;
 					}else{
@@ -97,7 +98,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					mainmenu->start_button->setVisible(true);
 					mainmenu->quit_button->setVisible(true);
 					mainmenu->Clientlist->setVisible(true);
-					newplayer = new Player(NULL);
+					newplayer = new Player();
 					newplayer->Name = namewchar;
 					newplayer->Team = 1;
 					mainmenu->playerlist.push_back(newplayer);

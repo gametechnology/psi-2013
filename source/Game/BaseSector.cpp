@@ -4,6 +4,8 @@ BaseSector::BaseSector(SectorManager* sectormanager, const io::path & skyBoxText
 	//init();
 }
 void BaseSector::init(){
+	SectorTemplate::init();
+
 	// Your code here
 }
 

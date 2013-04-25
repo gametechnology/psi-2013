@@ -2,7 +2,7 @@
 
 PowerStationData :: PowerStationData( )
 {
-	this -> _stationsPowerUsage	= new map<StationType, PowerUsage>( );
+	this -> _stationsPowerUsage	= new irr::core::map<StationType, PowerUsage>( );
 	this -> powerPool	= POWER_MAX;
 }
 
@@ -13,7 +13,7 @@ void PowerStationData :: SubscribeStation( Station *s )
 
 void PowerStationData :: UpdatePowerUsage(StationType s, int newValue )
 {
-	map<StationType, PowerUsage> :: Node *n = this -> _stationsPowerUsage -> find( s );
+	irr::core::map<StationType, PowerUsage>:: Node *n = this -> _stationsPowerUsage -> find( s );
 
 	int prevValue		= PowerUsage( n -> getValue( ) ).powerCurrent;
 	powerPool			+= prevValue;

@@ -1,10 +1,16 @@
 #include "Engine/Game.h"
 #include "MainMenuScene.h"
 
-MainMenuScene::MainMenuScene() 
-{
+MainMenuScene::MainMenuScene() : Scene() {
+	
+}
+MainMenuScene::~MainMenuScene() {
+
+}
+
+void MainMenuScene::init() {
 	//Get the device
-	guiEnv = Game::guiEnv;
+	guiEnv = game->guiEnv;
 	playerlist = std::list<Player*>();
 	
 
@@ -36,12 +42,10 @@ MainMenuScene::MainMenuScene()
 	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
 	Network::GetInstance()->AddListener(HOST_DISCONNECT, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
-	
-	
-	
+
 	 // Store the appropriate data in a context structure.
     SAppContext context;
-	context.device = Game::device;
+	context.game = game;
     context.counter = 0;
 
 	// Then create the event receiver, giving it that context structure.
@@ -51,9 +55,6 @@ MainMenuScene::MainMenuScene()
 	Game::input->setCustomEventReceiver(eventReceiver);
 }
 
-MainMenuScene::~MainMenuScene()
-{
-}
 void MainMenuScene::update(){
 	
 	std::wstringstream ssp;
@@ -78,16 +79,18 @@ void MainMenuScene::update(){
 
 
 }
+
 void MainMenuScene::StartGame()
 {
+	/*MapGenerator mapGen;
 	mainMenuWindow->remove();
-	MapGenerator mapGen;
 	mapGen.init(20, 2, 5);
 	GalaxyMap* galaxyMap = mapGen.createNewMap(300, 300, 15);
-	galaxyMap->position.set(vector3df(100, 670, 0));
+	galaxyMap->transform->position->set(vector3df(100, 670, 0));
 	SectorManager sectorManager(galaxyMap);
-	sectorManager.init();
+	sectorManager.init();*/
 }
+
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 {
 	wchar_t *  name ;
@@ -109,7 +112,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 				packet >> lenght;
 				for (int i = 0;i < lenght;i++){
 					Player * newplayer;
-					newplayer = new Player(NULL);
+					newplayer = new Player();
 					packet >> newplayer;
 					playerlist.push_back(newplayer);
 				}
@@ -125,7 +128,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			if (ipclientaffect == checksum){
 				BackToMainMenu();
 				Network::GetInstance()->DeInitialize();
-				messagebox =  Game::guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
+				messagebox =  game->guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
 			}
 			delete name;
 			break;
@@ -158,7 +161,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 				team = 2;
 			else
 				team = 1;
-			newplayer = new Player(NULL, name,  packet.ipadress, team);
+			newplayer = new Player( name,  packet.ipadress, team);
 			playerlist.push_back(newplayer);
 			
 			lenght = playerlist.size();
@@ -198,7 +201,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			name = new wchar_t[500];
 			packet >> name;
 			playerlist.clear();
-			messagebox =  Game::guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
+			messagebox =  game->guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
 			Network::GetInstance()->DeInitialize();
 			BackToMainMenu();
 			delete name;
@@ -210,15 +213,15 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 
 void MainMenuScene::BackToMainMenu()
 {
-					createServerWindow_Button->setVisible(true);
-					joinServerWindow_Button->setVisible(true);
-					Ipadresinput->setVisible(true);
-					Namelabel->setVisible(true);
-					Nameinput->setVisible(true);
-					Clientlist->setVisible(false);
-					start_button->setVisible(false);
-					quit_button->setVisible(false);
-					waitinglabel->setVisible(false);
+	createServerWindow_Button->setVisible(true);
+	joinServerWindow_Button->setVisible(true);
+	Ipadresinput->setVisible(true);
+	Namelabel->setVisible(true);
+	Nameinput->setVisible(true);
+	Clientlist->setVisible(false);
+	start_button->setVisible(false);
+	quit_button->setVisible(false);
+	waitinglabel->setVisible(false);
 }
 
 

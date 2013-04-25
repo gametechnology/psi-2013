@@ -1,9 +1,10 @@
 #include <Engine/Game.h>
 #include <Irrlicht/driverChoice.h>
+
 #include "HelmSceneTest.h"
 #include "EnemySceneTest.h"
-
 #include "MainMenuScene.h"
+#include "GameScene.h"
 
 #include "NetworkInterface.h"
 #include "EmptyTestScene.h"
@@ -26,16 +27,21 @@ using namespace gui;
 int main()
 {
 	// Create engine
-	Game game;
+	Game* game = new Game();
 
 	//Add the MainMenu
-	Game::addScene(new MainMenuScene());
+	Scene* scene = new EnemySceneTest();
+	game->sceneManager->addScene("MainMenuScene", scene);
 
-	//Epic healthbar in an empty scene
-	//Game::addScene(new EmptyTestScene());
+	// Need to create an Scene first or else it will crash, because I first delete then create scenes in SectorManager
+
+	
+
+	// Initialize game
+	game->init();
 
 	// Start the main loop
-	Game::run();
+	game->run();
 
 	// Debug for memory leaks
 	#ifdef _DEBUG

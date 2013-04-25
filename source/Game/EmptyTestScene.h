@@ -14,7 +14,10 @@ class EmptyTestScene : public Scene
 public:
 	EmptyTestScene(void);
 	~EmptyTestScene(void);
-	void init();
+
+	virtual void onAdd();
+	virtual void init();
+
 	HudComposite* hud;
 	void update();
 	int a;

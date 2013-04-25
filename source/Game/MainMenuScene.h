@@ -24,10 +24,10 @@ using namespace gui;
 // standard namespace
 using namespace std;
 
-class MainMenuScene: public Scene, public INetworkListener
-{
+class MainMenuScene: public Scene, public INetworkListener {
 public:
 	MainMenuScene();
+	void init();
 	void update();
 	~MainMenuScene();
 	void StartGame();
