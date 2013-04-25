@@ -44,6 +44,7 @@ public:
 	IGUIButton* joinServerWindow_Button;
 	IGUIButton* start_button;
 	IGUIButton* quit_button;
+	IGUIButton* host_quit_button;
 	// other items in menu
 	IGUIStaticText* Clientlist;
 	IGUIStaticText* Namelabel;
