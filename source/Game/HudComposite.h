@@ -9,8 +9,14 @@
 class HudComposite : public Entity
 {
 public:
+	int _health;
+	int _energy;
+
 	HudComposite( int* health, int* energy);
 	~HudComposite(void);
+
+	virtual void onAdd();
+
 	HealthBar* energyBar;
 	HealthBar* healthBar;
 	irr::gui::IGUIEnvironment* guiEnviroment;

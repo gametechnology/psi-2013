@@ -41,7 +41,8 @@ public:
     
 	
 private:
-    SAppContext & _context;
+    SAppContext & Context;
+	Game* contextGame;
 };
 
 #endif
