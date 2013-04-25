@@ -12,7 +12,7 @@ void SectorHomeBase::onAdd(){
 	base->transform->position = new irr::core::vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250));
 	base->transform->rotation = new irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90));
 	
-	Scene::onAdd();
+	SectorTemplate::onAdd();
 }
 
 void SectorHomeBase::update() {

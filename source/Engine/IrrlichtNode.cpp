@@ -3,6 +3,7 @@
 
 IrrlichtNode::IrrlichtNode(const irr::io::path& modelPath) : Component() {
 	this->modelPath = modelPath;
+	this->node = NULL;
 }
 
 void IrrlichtNode::init() {
@@ -16,12 +17,14 @@ void IrrlichtNode::createNode() {
 	irr::scene::IAnimatedMesh* mesh = Component::getScene()->getIrrlichtSceneManager()->getMesh( modelPath );
 
 	// Create model entity
-	node = Component::getScene()->getIrrlichtSceneManager()->addMeshSceneNode( mesh );
+	node = getScene()->getIrrlichtSceneManager()->addMeshSceneNode( mesh );
 }
 
 void IrrlichtNode::update() {
-	node->setPosition(*Component::entity->transform->position);
-	node->setRotation(*Component::entity->transform->rotation);
+	if (node != NULL) {
+		node->setPosition(*entity->transform->position);
+		node->setRotation(*entity->transform->rotation);
+	}
 
 	Component::update();
 }

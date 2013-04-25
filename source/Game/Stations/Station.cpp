@@ -21,6 +21,14 @@ Station :: Station( Ship * ship ) : Entity()
 
 void Station :: init() {
 	driver = this->game->driver;
+
+	this -> _player = NULL;
+	this -> _playerOnStationTime = 0;
+	this -> _stunTime = 0;
+	this -> _switchTime = 0;
+
+	if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
+	if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
 }
 
 Station :: ~Station(void)
