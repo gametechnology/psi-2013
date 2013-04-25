@@ -5,17 +5,17 @@
 SectorHomeBase::SectorHomeBase(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : SectorTemplate(sectormanager, skyBoxTexture,boundryRadius,amountWormHoles) {
 	//init();
 }
-void SectorHomeBase::init(){
-	Scene::init();
+void SectorHomeBase::onAdd(){
+	Scene::onAdd();
 
 	//TODO causes memory leak should create entity's
-		BasePlaceholder* base = new BasePlaceholder(this->parent);
-		base->transform->position = new irr::core::vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250));
-		base->transform->rotation = new irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90));
-		addChild(base);
+	BasePlaceholder* base = new BasePlaceholder();
+	base->transform->position = new irr::core::vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250));
+	base->transform->rotation = new irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90));
+	addChild(base);
 }
 
-void SectorHomeBase::update(){
+void SectorHomeBase::update() {
 	SectorTemplate::update();
 }
 
@@ -28,7 +28,13 @@ SectorHomeBase::~SectorHomeBase() {
 	SectorTemplate::~SectorTemplate();
 }
 
-BasePlaceholder::BasePlaceholder(Composite* parent):Entity() {
+BasePlaceholder::BasePlaceholder() : Entity() {
+	
+}
+
+void BasePlaceholder::onAdd() {
+	Entity::onAdd();
+
 	irr::scene::IMeshSceneNode *node = scene->sceneManager->addCubeSceneNode(100, 0, -1,
 		irr::core::vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250)),
 		irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90))

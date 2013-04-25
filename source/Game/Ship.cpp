@@ -13,6 +13,8 @@ Ship::~Ship(void)
 }
 
 void Ship::onAdd() {
+	Entity::onAdd();
+
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/sydney.md2"));
 	addComponent(model);
 
@@ -21,23 +23,27 @@ void Ship::onAdd() {
 	ShipMover* mover = new ShipMover(this);
 	addComponent(mover);
 
-	//this->env = Game :: device->getGUIEnvironment();
+	this->env = game->device->getGUIEnvironment();
 
 	//TODO remove temp stuff
-	addChild(_defenceStation	= new DefenceStation(this));
-	addChild(_helmStation		= new HelmStation(this));
-	addChild(_navigationStation = new NavigationStation(this));
-	addChild(_weaponStation		= new WeaponStation(this));
-	addChild(_powerStation		= new PowerStation(this));
+	addChild(_defenceStation		= new DefenceStation(this));
+	addChild(_helmStation			= new HelmStation(this));
+	addChild(_navigationStation		= new NavigationStation(this));
+	addChild(_weaponStation			= new WeaponStation(this));
+	addChild(_powerStation			= new PowerStation(this));
 }
 
 void Ship::init() {
-	stringw strShipHealth		= "ship health: "				+ this->getShipHealth();
-	stringw strDefenceHealth	= "Defence Station health: "	+ this->_defenceStation->getHealth();
-	stringw strHelmHealth		= "Helm Station health: "		+ this->_helmStation->getHealth();
-	stringw strNavigationHealth = "Navigation Station health: " + this->_navigationStation-> getHealth();
-	stringw strPowerHealth		= "Power Station health: "		+ this->_powerStation->getHealth();
-	stringw strWeaponHealth		= "Weapon Station health: "		+ this->_weaponStation->getHealth();
+	Entity::init();
+
+	irr::core::stringw strShipHealth			= varToString("ship health: ", this->getShipHealth()); 
+	//strShipHealth +	irr::core::stringw();
+
+	irr::core::stringw strDefenceHealth			= "Defence Station health: %i"		+ this->_defenceStation->getHealth();
+	irr::core::stringw strHelmHealth			= "Helm Station health: %i"			+ this->_helmStation->getHealth();
+	irr::core::stringw strNavigationHealth		= "Navigation Station health: %i"	+ this->_navigationStation-> getHealth();
+	irr::core::stringw strPowerHealth			= "Power Station health: %i"		+ this->_powerStation->getHealth();
+	irr::core::stringw strWeaponHealth			= "Weapon Station health: %i"		+ this->_weaponStation->getHealth();
 
 	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));

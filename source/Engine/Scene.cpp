@@ -7,10 +7,10 @@ Scene::Scene() : Entity() {
 }
 
 void Scene::onAdd() {
-	Entity::onAdd();
-
 	// Create a scene manager
 	sceneManager = this->game->device->getSceneManager();
+
+	Entity::onAdd();
 }
 
 Scene::~Scene() {

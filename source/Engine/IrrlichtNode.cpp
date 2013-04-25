@@ -6,6 +6,8 @@ IrrlichtNode::IrrlichtNode(const irr::io::path& modelPath) : Component() {
 }
 
 void IrrlichtNode::init() {
+	Component::init();
+
 	createNode();
 }
 
@@ -18,6 +20,8 @@ void IrrlichtNode::createNode() {
 }
 
 void IrrlichtNode::update() {
+	Component::update();
+
 	node->setPosition(*Component::entity->transform->position);
 	node->setRotation(*Component::entity->transform->rotation);
 }

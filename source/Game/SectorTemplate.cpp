@@ -46,7 +46,7 @@ void SectorTemplate::onAdd() {
 
 //This function isn't being overriden so it needs to be called in constructor
 void SectorTemplate::init(){
-	
+	Scene::init();
 }
 
 void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ){
