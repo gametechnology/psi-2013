@@ -101,6 +101,7 @@ void Entity::addComponent(Component* component) {
  components.push_back(component);
  component->entity = this;
 
+ component->onEnabled();
  component->onAdd();
 }
 
@@ -108,6 +109,7 @@ bool Entity::removeComponent(Component* component) {
  for (unsigned int i = 0; i < components.size(); i++) {
   if (components[i] == component) {
    Component* component = components[i];
+   component->onDisabled();
    components[i] = NULL;
 
    delete component;

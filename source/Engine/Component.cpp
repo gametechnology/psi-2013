@@ -22,18 +22,10 @@ void Component::onAdd() {
 		init();
 }
 
-void Component::init() {
+void Component::init() { }
+void Component::update() { }
+void Component::draw() { }
+void Component::onEnabled() { }
+void Component::onDisabled() { }
 
-}
-
-void Component::update() {
-
-}
-
-void Component::draw() {
-
-}
-
-void Component::handleMessage(unsigned int message) {
-
-}
+void Component::handleMessage(unsigned int message) { }
