@@ -34,6 +34,7 @@ MainMenuScene::MainMenuScene()
 	Network::GetInstance()->AddListener(START_GAME, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
 	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
+	Network::GetInstance()->AddListener(HOST_DISCONNECT, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
 	
 	
