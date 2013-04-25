@@ -22,14 +22,14 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	//Get the player/Ship via Sectormanager
 	//_sectormanager->getShip()
 	_ship = new Ship(this);
-	this->_player = new Camera( _ship, vector3df(0, 0, -100), _ship->position ); //TODO: Make the camera work correctly according to station
+	this->_player = new Camera(_ship, vector3df(0, 0, -100), _ship->position ); //TODO: Make the camera work correctly according to station
 	ShipMover* mover = new ShipMover((Ship*)_ship);
 	_ship->addComponent(mover);
 
 	_ship2 = new Ship(this);
 	_ship2->orientation.X = 180;
 	BasicMoverComponent* movComp = new BasicMoverComponent(_ship2);
-	movComp->thrust = 0.01f;
+	movComp->thrust = 0.0001f;
 	_ship2->addComponent(movComp);
 	
 	//this->_camera = Game::getSceneManager()->addCameraSceneNodeFPS();
@@ -42,7 +42,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 void SectorTemplate::init(){
 	addComponent(_enemyManager);
 	addComponent( this->_skybox );
-	addComponent( this->_player );
+	//addComponent( this->_player );
 	addComponent(_ship);
 	addComponent(_ship2);
 	addComponent( this->_fog );
