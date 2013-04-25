@@ -49,6 +49,8 @@ public:
 	void updateShipHealth();
 	void draw();
 
+	void CheckChangeInput();
+
 	Ship(Composite * parent);
 	virtual ~Ship(void);
 
@@ -56,8 +58,11 @@ public:
 
 	int getShipHealth();
 	bool getShipDestroyed();
+
+	void SwitchToStation(StationType stationType);
 private:
 	stringw varToString(stringw str1, float var, stringw str2);
 	stringw varToString(stringw str1, float var);
+	Station *_currentStation;
 };
 #endif

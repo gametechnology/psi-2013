@@ -108,8 +108,9 @@ void Station::updateHealth()
 }
 int Station :: getHealth()
 {
-	return this -> _health;
+	return 10;//this -> _health;
 }
+
 void Station::decreaseHealth(int health)
 {
 	this->_health -= health;
