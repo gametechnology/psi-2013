@@ -14,6 +14,6 @@ void ShipScenes::init()
 	manager = new EnemyManager();
 
 	addComponent(new Player(this));
-	addComponent(new Ship(this));
+	//addComponent(new Ship(this, new vector));
 	addComponent(manager);
 }

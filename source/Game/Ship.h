@@ -52,7 +52,7 @@ public:
 
 	void CheckChangeInput();
 
-	Ship(Composite * parent);
+	Ship(Composite * parent, vector3df position, vector3df orientation);
 	virtual ~Ship(void);
 
 	Station *GetStation(StationType );	
@@ -62,8 +62,10 @@ public:
 
 	void SwitchToStation(StationType stationType);
 private:
+
+	Station *_currentStation;
+
 	stringw varToString(stringw str1, float var, stringw str2);
 	stringw varToString(stringw str1, float var);
-	Station *_currentStation;
 };
 #endif

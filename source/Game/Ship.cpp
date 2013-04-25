@@ -2,14 +2,16 @@
 #include "Stations/Station.h"
 #include "ShipMover.h"
 
-Ship::Ship( Composite * parent ) : Entity ( parent )
+Ship::Ship( Composite * parent, vector3df position, vector3df orientation) : Entity ( parent )
 {
 	createNode("../assets/sydney.md2");
-
+	
+	this->position = position;
+	this->orientation = orientation;
+	
 	this->_currentStation = NULL;
 	this->env = Game :: device->getGUIEnvironment();
 
-	//TODO remove temp stuff
 	this->_defenceStation		= new DefenceStation( this );
 	this->_helmStation			= new HelmStation( this );
 	this->_navigationStation	= new NavigationStation( this );
@@ -22,7 +24,7 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	this->_weaponStation		-> Initialize();
 	this->_powerStation			-> Initialize();
 	
-	/*
+	/* Uncomment this when engine is merged with developer 25 apr 2013
 	this->_defenceStation->Disable();
 	this->_helmStation->Disable();
 	this->_navigationStation->Disable();
@@ -38,13 +40,12 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 	this->updateShipHealth();
 	this->_shipDestroyed = false;
 
-	stringw strShipHealth = "ship health: " + this->getShipHealth();
+	stringw strShipHealth = "Ship health: " + this->getShipHealth();
 	stringw strDefenceHealth = "Defence Station health: " + this->_defenceStation->getHealth();
 	stringw strHelmHealth = "Helm Station health: " + this->_helmStation->getHealth();
 	stringw strNavigationHealth = "Navigation Station health: " + this->_navigationStation-> getHealth();
 	stringw strPowerHealth = "Power Station health: " + this->_powerStation->getHealth();
 	stringw strWeaponHealth = "Weapon Station health: " + this->_weaponStation->getHealth();
-
 
 	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
