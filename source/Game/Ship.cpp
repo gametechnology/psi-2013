@@ -4,7 +4,8 @@
 
 Ship::Ship( Composite * parent ) : Entity ( parent )
 {
-	createNode("../assets/sydney.md2");
+	createNode("../assets/Models/myship.obj");
+	this->node->setMaterialFlag(EMF_LIGHTING, false);
 
 	this->_currentStation = NULL;
 	this->env = Game :: device->getGUIEnvironment();

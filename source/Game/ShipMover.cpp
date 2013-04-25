@@ -20,23 +20,28 @@ void ShipMover::update()
 		thrust += 0.01f;
 	if (Game::input->isKeyboardButtonDown(KEY_KEY_F) && thrust > maxBwdSpeed)
 		thrust -= 0.01f;
+
 	//Roll 
 	if (Game::input->isKeyboardButtonDown(KEY_KEY_Q))
-		entityParent->orientation.X -= 1.01f;   
+		entityParent->angularVelocity.X -= 1;
 	if (Game::input->isKeyboardButtonDown(KEY_KEY_E))
-		entityParent->orientation.X += 1.01f;   
+		entityParent->angularVelocity.X += 1;
 	
 	//YAW 
 	if (Game::input->isKeyboardButtonDown(KEY_KEY_A))
-		entityParent->orientation.Y -= 1.01f;   
+		entityParent->angularVelocity.Y -= 1;
 	if (Game::input->isKeyboardButtonDown(KEY_KEY_D))
-		entityParent->orientation.Y += 1.01f;   
+		entityParent->angularVelocity.Y += 1;   
 
 	//PITCH
 	if (Game::input->isKeyboardButtonDown(KEY_KEY_W))
-		entityParent->orientation.Z -= 1.01f;   
+		entityParent->angularVelocity.Z -= 1;   
 	if (Game::input->isKeyboardButtonDown(KEY_KEY_S))
-		entityParent->orientation.Z += 1.01f;   
+		entityParent->angularVelocity.Z += 1;
+
+	//printf("rotation: x:%f, y:%f, z:%f\n", entityParent->orientation.X, entityParent->orientation.Y, entityParent->orientation.Z);
+
+	entityParent->angularVelocity *= 0.90f;
 	
 	
 	BasicMoverComponent::update();
