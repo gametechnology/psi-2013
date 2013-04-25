@@ -24,6 +24,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 		 NetworkPacket packet(START_GAME);
 		 NetworkPacket namepacket(CLIENT_JOIN);
 		 NetworkPacket quitpacket(CLIENT_QUIT);
+		 NetworkPacket hostquitpacket(HOST_DISCONNECT);
 
         switch(event.GUIEvent.EventType)
         { 
@@ -106,7 +107,16 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					Network::GetInstance()->SendServerPacket(packet, true);
 					return true;
 				case 4:
-					Network::GetInstance()->SendPacket(quitpacket, true);
+					if(!Network::getInstance()->IsServer())
+					{
+						Network::GetInstance()->SendPacket(quitpacket, true);
+					}
+					else
+					{
+						hostquitpacket << L"The host got disconnected";
+						Network::GetInstance()->SendServerPacket(hostquitpacket, true);
+					}
+
 					Network::GetInstance()->DeInitialize();
 					mainmenu->BackToMainMenu();
 					return true;
