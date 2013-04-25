@@ -95,6 +95,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					mainmenu->Namelabel->setVisible(false);
 					mainmenu->Nameinput->setVisible(false);
 					mainmenu->start_button->setVisible(true);
+					mainmenu->quit_button->setVisible(true);
 					mainmenu->Clientlist->setVisible(true);
 					newplayer = new Player(NULL);
 					newplayer->Name = namewchar;
@@ -107,7 +108,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					Network::GetInstance()->SendServerPacket(packet, true);
 					return true;
 				case 4:
-					if(!Network::getInstance()->IsServer())
+					if(!Network::GetInstance()->IsServer())
 					{
 						Network::GetInstance()->SendPacket(quitpacket, true);
 					}
@@ -115,6 +116,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					{
 						hostquitpacket << L"The host got disconnected";
 						Network::GetInstance()->SendServerPacket(hostquitpacket, true);
+						mainmenu->playerlist.clear();
 					}
 
 					Network::GetInstance()->DeInitialize();
