@@ -2,12 +2,13 @@
 #define STATION_BASE
 #pragma once
 
-#include "..\Player.h"
+#include "../HealthBar.h"
+#include "../Player.h"
 #include "../../../include/Engine/Component.h"
 #include "../../../include/Engine/Game.h"
 #include "Irrlicht/irrlicht.h"
 #ifdef ENTITY_SHIP
-#include "..\Ship.h"
+#include "../Ship.h"
 #endif
 
 #define STUN_TIME 4.0
@@ -53,7 +54,7 @@ public:
 	virtual void OnDamage( );
 	virtual void OnEnabled() = 0;
 	virtual void OnDisabled() = 0;
-
+	
 protected:
 	video::IVideoDriver *driver;
 
@@ -67,6 +68,7 @@ protected:
 	StationType _stationType;
 
 private:
+	HealthBar* _healthBar;
 	int _tempTimer;
 	int _totalHealth;
 	int _health;

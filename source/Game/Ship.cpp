@@ -6,20 +6,34 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 {
 	createNode("../assets/sydney.md2");
 
+	this->_currentStation = NULL;
 	this->env = Game :: device->getGUIEnvironment();
 
 	//TODO remove temp stuff
 	this->_defenceStation		= new DefenceStation( this );
-	this->_helmStation		= new HelmStation( this );
+	this->_helmStation			= new HelmStation( this );
 	this->_navigationStation	= new NavigationStation( this );
 	this->_weaponStation		= new WeaponStation( this );
-	this->_powerStation		= new PowerStation( this );
+	this->_powerStation			= new PowerStation( this );
 	
 	this->_defenceStation		-> Initialize();
-	this->_helmStation		-> Initialize();
+	this->_helmStation			-> Initialize();
 	this->_navigationStation	-> Initialize();
 	this->_weaponStation		-> Initialize();
-	this->_powerStation		-> Initialize();	//TODO: uncomment to show stations
+	this->_powerStation			-> Initialize();
+	
+	/*
+	this->_defenceStation->Disable();
+	this->_helmStation->Disable();
+	this->_navigationStation->Disable();
+	this->_weaponStation->Disable();
+	this->_powerStation->Disable();
+
+	addComponent(_defenceStation);
+	addComponent(_helmStation);
+	addComponent(_navigationStation);
+	addComponent(_weaponStation);
+	addComponent(_powerStation);*/
 
 	this->updateShipHealth();
 	this->_shipDestroyed = false;
@@ -43,11 +57,7 @@ Ship::Ship( Composite * parent ) : Entity ( parent )
 
 Ship::~Ship(void)
 {
-	this->removeComponent(_defenceStation);
-	this->removeComponent(_helmStation);
-	this->removeComponent(_navigationStation);
-	this->removeComponent(_weaponStation);
-	this->removeComponent(_powerStation);
+
 }
 
 Station *Ship :: GetStation( StationType s )
@@ -65,9 +75,9 @@ Station *Ship :: GetStation( StationType s )
 	case ST_NAVIGATION:
 		return this->_navigationStation;
 		break;
-	//case STATION_TYPE :: Power:
-	//	return this->_powerStation;
-	//	break;
+	case ST_POWER:
+		return this->_powerStation;
+		break;
 	case ST_WEAPON:
 		return this->_weaponStation;
 		break;
@@ -93,6 +103,7 @@ void Ship :: update()
 {
 	Entity :: update();
 	this->updateShipHealth();
+	CheckChangeInput();
 
 	//updating the text for testing the health
 	stringw strShipHealth = "ship health: " + this->getShipHealth();
@@ -108,28 +119,6 @@ void Ship :: update()
 	this->navigationStationHealth->setText(	(varToString("Navigation HP: ",	(float)this->_navigationStation->getHealth())	).c_str());
 	this->powerStationHealth->setText(		(varToString("Power HP: ",		(float)this->_powerStation->getHealth())		).c_str());
 	this->weaponStationHealth->setText(		(varToString("Weapon HP: ",		(float)this->_weaponStation->getHealth())		).c_str());
-
-	//TODO! Stations need a way to leave. Set _sitOnStation on false. Temporary code, other team should make a better version of it someday.
-	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_1)){
-		this -> _defenceStation		-> Initialize();
-		_sitOnStation=true;
-	} else 
-	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_2)){
-		this -> _helmStation		-> Initialize();
-		_sitOnStation=true;
-	}else 
-	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_3)){
-		this -> _navigationStation		-> Initialize();
-		_sitOnStation=true;
-	}else 
-	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_4)){
-		this -> _weaponStation		-> Initialize();
-		_sitOnStation=true;
-	}else 
-	if(_sitOnStation==false&&Game::input->isKeyboardButtonPressed(KEY_KEY_5)){
-		this -> _powerStation		-> Initialize();
-		_sitOnStation=true;
-	}
 
 	if(this->_shipHealth <= 0 && this->_shipDestroyed == false) {
 		this->_shipDestroyed = true;
@@ -154,6 +143,48 @@ void Ship :: update()
 	if(this->_weaponStation->getHealth() <= 0 && this->_weaponStation->getStationDestroyed() == false) {
 		this->_weaponStation->setStationDestroyed(true);
 	}
+}
+
+void Ship :: CheckChangeInput()
+{
+	if (Game::input->isKeyboardButtonPressed(KEY_KEY_1))
+		SwitchToStation(ST_DEFENCE);
+
+	if (Game::input->isKeyboardButtonPressed(KEY_KEY_2))
+		SwitchToStation(ST_HELM);
+
+	if (Game::input->isKeyboardButtonPressed(KEY_KEY_3))
+		SwitchToStation(ST_WEAPON);
+
+	if (Game::input->isKeyboardButtonPressed(KEY_KEY_4))
+		SwitchToStation(ST_NAVIGATION);
+
+	if (Game::input->isKeyboardButtonPressed(KEY_KEY_5))
+		SwitchToStation(ST_POWER);
+}
+
+//Swith to a specific station
+void Ship :: SwitchToStation(StationType stationType)
+{
+	//Check if we are already on this station
+	if (_currentStation != NULL)
+	{
+		if (_currentStation->GetStationType() == stationType)
+			return;
+
+		//First remove the currentStation from the shipComponents
+		_currentStation->OnDisabled();
+		removeComponent(_currentStation);
+		//_currentStation->Disable();
+	}
+
+	//Find the new station
+	_currentStation = this->GetStation(stationType);
+
+	//Init and add the new station
+	_currentStation->OnEnabled();
+	addComponent(_currentStation);
+	//_currentStation->Enable();
 }
 
 void Ship :: updateShipHealth()

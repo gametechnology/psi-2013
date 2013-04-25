@@ -1,7 +1,6 @@
 #include "Station.h"
 #include "PowerStation.h"
 #include "DefenceStation.h"
-#include "../HealthBar.h"
 
 
 Station :: Station( Ship *ship, int startHealth ) : Composite(ship)
@@ -10,6 +9,8 @@ Station :: Station( Ship *ship, int startHealth ) : Composite(ship)
 	this ->	_ship	= ship;
 	this -> _health = startHealth;
 	//this -> _switchTime = 4.0f;
+	//this->_healthBar = new HealthBar(this, vector2df(200, 20), &_health);
+	//addComponent(_healthBar);
 }
 
 Station :: Station( Ship * ship ) : Composite(ship)
@@ -108,8 +109,9 @@ void Station::updateHealth()
 }
 int Station :: getHealth()
 {
-	return this -> _health;
+	return 10;//this -> _health;
 }
+
 void Station::decreaseHealth(int health)
 {
 	this->_health -= health;
