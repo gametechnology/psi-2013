@@ -7,12 +7,7 @@ ShipMover::ShipMover(Ship* _ship) : BasicMoverComponent() {
 	this->_ship = ship;
 }
 
-ShipMover::~ShipMover() {
-
-{
-
-
-}
+ShipMover::~ShipMover() { }
 
 void ShipMover::update() {
 	//input logic
@@ -21,19 +16,19 @@ void ShipMover::update() {
 	ShipMover::angularAcceleration = vector3df(0,0,0);
 
 	if(Game::input->isKeyboardButtonPressed(KEY_KEY_W))
-{
-		this->linearAcceleration += _ship->GetThrusters()[0]->linearForce;
-		this->angularAcceleration += (_ship->GetThrusters()[0]->angularAccelaration * 0.0001);
+	{
+		this->linearAcceleration += _ship->GetThrusters()[0]->transform->linearForce;
+		this->angularAcceleration += (_ship->GetThrusters()[0]->transform->angularAccelaration * 0.0001);
 	}
 	if(Game::input->isKeyboardButtonPressed(KEY_KEY_A))
 	{
-		this->linearAcceleration += _ship->GetThrusters()[1]->linearForce;
-		this->angularAcceleration += (_ship->GetThrusters()[1]->angularAccelaration * 0.0001);
+		this->linearAcceleration += _ship->GetThrusters()[1]->transform->linearForce;
+		this->angularAcceleration += (_ship->GetThrusters()[1]->transform->angularAccelaration * 0.0001);
 	}
 	if(Game::input->isKeyboardButtonPressed(KEY_KEY_D))
 	{
-		this->linearAcceleration += _ship->GetThrusters()[2]->linearForce;
-		this->angularAcceleration += (_ship->GetThrusters()[2]->angularAccelaration * 0.0001);
+		this->linearAcceleration += _ship->GetThrusters()[2]->transform->linearForce;
+		this->angularAcceleration += (_ship->GetThrusters()[2]->transform->angularAccelaration * 0.0001);
 	}
 	
 	//Roll 

@@ -40,10 +40,14 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Engine\INetworkListener.h">
+	  <Filter>Header Files\Components</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\Engine\IrrlichtNode.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\Engine\Network.h">
+	  <Filter>Header Files\Components</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\Engine\Transform.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>

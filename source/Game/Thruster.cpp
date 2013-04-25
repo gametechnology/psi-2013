@@ -6,8 +6,8 @@
 
 Thruster::Thruster(Composite * parent, irr::core::vector3df position, irr::core::vector3df initialDirection) : Component()
 {
-	Thruster::position = position;
-	Thruster::direction = initialDirection;
+	this->transform->position = position;
+	this->transform->orientation = initialDirection;
 	//Normalize the vectors so I can use them to calculate the dot product and the cross product.
 	nPosition = position.normalize();
 	nDirection = direction.normalize();
@@ -17,9 +17,9 @@ Thruster::Thruster(Composite * parent, irr::core::vector3df position, irr::core:
 	//torque is the axis the force will rotate the object around.
 	f32 dot = nPosition.dotProduct(nDirection);
 	if(dot != -1){
-		Thruster::torque = nPosition.crossProduct(nDirection);
+		this->transform->torque = nPosition.crossProduct(nDirection);
 	} else{
-		torque = vector3df(0,0,0);
+		this->transform->torque = vector3df(0,0,0);
 	}
 
 	

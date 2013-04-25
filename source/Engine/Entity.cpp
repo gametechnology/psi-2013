@@ -45,48 +45,59 @@ void Entity::handleMessage(unsigned int message) {
 }
 
 void Entity::update() {
-	for (unsigned int i = 0; i < components.size(); i++) {
-		if (components[i] == NULL) {
-			components.erase(components.begin()+i--);
-		} else if (components[i]->destroyed) {
-			Component* component = components[i];
-			components.erase(components.begin()+i--);
-			delete component;
-		} else {
-			components[i]->update();
+	if (enabled)
+	{
+		//Update components
+		for (unsigned int i = 0; i < components.size(); i++) {
+			if (components[i] == NULL) {
+				components.erase(components.begin()+i--);
+			} else if (components[i]->destroyed) {
+				Component* component = components[i];
+				components.erase(components.begin()+i--);
+				delete component;
+			} else {
+				components[i]->update();
+			}
 		}
-	}
-	
-	for (unsigned int i = 0; i < children.size(); i++) {
-		if (children[i] == NULL) {
-			children.erase(children.begin()+i--);
-		} else if (children[i]->destroyed) {
-			Entity* child = children[i];
-			children.erase(children.begin()+i--);
-			delete child;
-		} else {
-			children[i]->update();
+		
+		//Update children
+		for (unsigned int i = 0; i < children.size(); i++) {
+			if (children[i] == NULL) {
+				children.erase(children.begin()+i--);
+			} else if (children[i]->destroyed) {
+				Entity* child = children[i];
+				children.erase(children.begin()+i--);
+				delete child;
+			} else {
+				children[i]->update();
+			}
 		}
 	}
 }
 
 void Entity::lateUpdate() {
-	for (unsigned int i = 0; i < components.size(); i++) {
-		components[i]->lateUpdate();
-	}
+	if (enabled)
+	{
+		for (unsigned int i = 0; i < components.size(); i++) {
+			components[i]->lateUpdate();
+		}
 
-	for (unsigned int i = 0; i < children.size(); i++) {
-		children[i]->lateUpdate();
+		for (unsigned int i = 0; i < children.size(); i++) {
+			children[i]->lateUpdate();
+		}
 	}
 }
 
 void Entity::draw() {
-	for (unsigned int i = 0; i < components.size(); i++) {
-		components[i]->draw();
-	}
+	if (enabled)
+	{
+		for (unsigned int i = 0; i < components.size(); i++) {
+			components[i]->draw();
+		}
 
-	for (unsigned int i = 0; i < children.size(); i++) {
-		children[i]->draw();
+		for (unsigned int i = 0; i < children.size(); i++) {
+			children[i]->draw();
+		}
 	}
 }
 

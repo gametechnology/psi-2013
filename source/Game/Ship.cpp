@@ -4,10 +4,8 @@
 
 Ship::Ship( Composite * parent, vector3df position, vector3df orientation) : Entity ( parent )
 {
-	
-	this->position = position;
-	this->orientation = orientation;
-	
+	this->transform->position = position;
+	this->transform->orientation = orientation;
 }
 
 Ship::~Ship(void)
@@ -29,23 +27,17 @@ void Ship::onAdd() {
 	addChild(_weaponStation			= new WeaponStation(this));
 	addChild(_powerStation			= new PowerStation(this));
 	
-	this->_defenceStation		-> Initialize();
-	this->_helmStation			-> Initialize();
-	this->_navigationStation	-> Initialize();
-	this->_weaponStation		-> Initialize();
-	this->_powerStation			-> Initialize();
-	
-	this->_defenceStation->Disable();
-	this->_helmStation->Disable();
-	this->_navigationStation->Disable();
-	this->_weaponStation->Disable();
-	this->_powerStation->Disable();
+	this->_defenceStation->disable();
+	this->_helmStation->disable();
+	this->_navigationStation->disable();
+	this->_weaponStation->disable();
+	this->_powerStation->disable();
 
 	addComponent(_defenceStation);
 	addComponent(_helmStation);
 	addComponent(_navigationStation);
 	addComponent(_weaponStation);
-	addComponent(_powerStation);*/
+	addComponent(_powerStation);
 
 	//Camera
 	_camera = new Camera(this, vector3df(0,0,0), vector3df(0,0,0));
@@ -57,6 +49,7 @@ void Ship::onAdd() {
 	_thrusters[2] = new Thruster(this, vector3df(0,2, -4), vector3df(0, 4, 0 ),_inertiaMatrix);
 
 	//Health crap below
+}
 
 void Ship::init() {
 	irr::core::stringw strShipHealth			= "ship health: "; 
