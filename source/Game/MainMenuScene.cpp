@@ -1,13 +1,12 @@
 #include "Engine/Game.h"
 #include "MainMenuScene.h"
 
-
-
 MainMenuScene::MainMenuScene() 
 {
 	//Get the device
 	guiEnv = Game::guiEnv;
 	playerlist = std::list<Player*>();
+	
 
 	///////////////////////////////////////////
 	// MainMenu
@@ -91,6 +90,8 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 	unsigned int checksum;
 	Player* newplayer;
 	std::list<Player*>::const_iterator iterator;
+	
+	NetworkPacket deniedpack(CLIENT_JOIN_DENIED);
 	NetworkPacket packetsend(ClIENT_IN_LOBBY);
 	switch(packet.GetType())
 	{
@@ -115,11 +116,18 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			packet >> checksum;
 			
 			if(checksum != Network::GetInstance()->GetPacketTypeChecksum())
+			{
+				deniedpack << "Your version is out of date, please get the latest version";
+				Network::GetInstance()->SendServerPacket(deniedpack, true);
 				return;
-
+			}
 			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-				if((*iterator)->Ipadres == packet.ipadress)
+				if((*iterator)->Ipadres == packet.ipadress){
+					deniedpack << "You are already in the lobby";
+					Network::GetInstance()->SendServerPacket(deniedpack, true);
+
 					return;
+				}
 					
 			}
 			if((playerlist.size()) % 2 != 0)
@@ -150,8 +158,14 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			playerlist.remove(newplayer);
 			lenght = playerlist.size();
 			packetsend << lenght;
+			int i;
 			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-				 
+				
+				
+				if(i != 0 && (playerlist.size()) % 2 != 0)
+					(*iterator)->Team = 2;
+				else
+					(*iterator)->Team = 1;
 				packetsend << (*iterator);
 			}
 			Network::GetInstance()->SendServerPacket(packetsend, true);
