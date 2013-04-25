@@ -30,7 +30,7 @@ struct SAppContext
 class MainMenuEventReceiver : public IEventReceiver
 {
 public:
-	MainMenuEventReceiver(SAppContext & context );
+	MainMenuEventReceiver(SAppContext & context);
 	
 	//Create the different windows
 	IGUIWindow* mainMenuWindow;
@@ -41,7 +41,7 @@ public:
     
 	
 private:
-    SAppContext & Context;
+    SAppContext & _context;
 };
 
 #endif

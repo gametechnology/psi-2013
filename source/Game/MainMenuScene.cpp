@@ -42,6 +42,7 @@ void MainMenuScene::init() {
 	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
 	Network::GetInstance()->AddListener(HOST_DISCONNECT, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
+
 	 // Store the appropriate data in a context structure.
     SAppContext context;
 	context.game = game;

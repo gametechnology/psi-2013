@@ -54,8 +54,9 @@ void SectorTemplate::onAdd() {
 	//addComponent( this->_player );
 	addChild(_ship);
 	addChild(_fog );
+
 	// TODO CHECK MERGE!
-	addChild(_ship2);
+	//addChild(_ship2);
 
 	// adding the wormholes
 	addWormHoles();

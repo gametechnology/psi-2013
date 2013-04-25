@@ -3,9 +3,9 @@
 #include "Engine\Network.h"
 #include "NetworkInterface.h"
 
-MainMenuEventReceiver::MainMenuEventReceiver(SAppContext & context) : Context(context)
+MainMenuEventReceiver::MainMenuEventReceiver(SAppContext & context) : _context(context)
 {
-	this->Context = context;
+	this->_context = context;
 }
 
 bool MainMenuEventReceiver::OnEvent(const SEvent& event)
@@ -13,8 +13,8 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
     if (event.EventType == EET_GUI_EVENT)
     {
         s32 id = event.GUIEvent.Caller->getID();
-		IGUIEnvironment* env = this->Context.game->device->getGUIEnvironment();
-		MainMenuScene* mainmenu = ((MainMenuScene*)this->Context.game->sceneManager->getScene("MainMenuScene"));
+		IGUIEnvironment* env = this->_context.game->guiEnv;
+		MainMenuScene* mainmenu = ((MainMenuScene*)this->_context.game->sceneManager->getScene("MainMenuScene"));
 		char* ipadress;
 		 wchar_t* inputwchar;
 
@@ -48,7 +48,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Fill in an Ipadress",true,1,mainmenu->mainMenuWindow);
 							mainmenu->messagebox->setDraggable(false);
 						}else{
-							mainmenu->messagebox =  Context.game->guiEnv->addMessageBox(L"Message",L"Fill in an Name",true,1,mainmenu->mainMenuWindow);
+							mainmenu->messagebox = _context.game->guiEnv->addMessageBox(L"Message",L"Fill in an Name",true,1,mainmenu->mainMenuWindow);
 							mainmenu->messagebox->setDraggable(false);
 						}
 					}else{
@@ -86,7 +86,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					playername[wcslen(namewchar)] = 0;
 
 					if(*playername == ' ' || *playername == NULL){
-						mainmenu->messagebox =  Context.game->guiEnv->addMessageBox(L"Message",L"Fill in a name",true,1,mainmenu->mainMenuWindow);
+						mainmenu->messagebox = _context.game->guiEnv->addMessageBox(L"Message",L"Fill in a name",true,1,mainmenu->mainMenuWindow);
 							mainmenu->messagebox->setDraggable(false);
 							return false;
 					}else{
