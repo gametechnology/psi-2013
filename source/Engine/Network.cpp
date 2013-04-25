@@ -45,7 +45,7 @@ void Network::StartThreads()
 
 void Network::StopThreads()
 {
-
+	_receiverThread->terminate();
 }
 
 void Network::InitializeClient(const char* ipAdress, const unsigned int maxDownstream, const unsigned int maxUpstream)
@@ -104,13 +104,11 @@ void Network::InitializeServer(size_t maxPlayers)
 	}	
 }
 void Network::DeInitialize(){
+	_mutex.lock();
 	enet_deinitialize();
-	_host = NULL;
-	_address.host = NULL;
-	_address.port = NULL;
-	_isServer = NULL;
 	_isConnected = false;
 	StopThreads();
+	_mutex.unlock();
 
 }
 void Network::SendPacket(NetworkPacket packet, const bool reliable)
