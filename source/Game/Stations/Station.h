@@ -54,7 +54,7 @@ public:
 	virtual void OnDamage( );
 	virtual void OnEnabled() = 0;
 	virtual void OnDisabled() = 0;
-
+	
 protected:
 	video::IVideoDriver *driver;
 
