@@ -161,15 +161,14 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			playerlist.remove(newplayer);
 			lenght = playerlist.size();
 			packetsend << lenght;
-			int i;
+			lenght = 0;
 			for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-				
-				
-				if(i != 0 && (playerlist.size()) % 2 != 0)
+				if(lenght != 0 && (lenght) % 2 != 0)
 					(*iterator)->Team = 2;
 				else
 					(*iterator)->Team = 1;
 				packetsend << (*iterator);
+				lenght++;
 			}
 			Network::GetInstance()->SendServerPacket(packetsend, true);
 			break;
