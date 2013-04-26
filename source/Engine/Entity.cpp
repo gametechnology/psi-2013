@@ -9,18 +9,7 @@ Entity::Entity() : Composite() {
 }
 
 Entity::~Entity() {
-/*	for (unsigned int i = 0; i < components.size(); i++) {
-		Component* component = components[i];
-		components.erase(components.begin()+i--);
-		delete component;
-	}
-	
-	for (unsigned int i = 0; i < children.size(); i++) {
-		
-		Entity* child = children[i];
-		children.erase(children.begin()+i--);
-		delete child;
-	}*/
+
 }
 
 void Entity::onAdd() {
@@ -162,6 +151,15 @@ Entity* Entity::removeChild(Entity* child, bool deleteChild) {
 			children[i] = NULL;
 
 			if (deleteChild) {
+
+				if(children.size()>0)
+				{
+					for (unsigned int i = 0; i < child->children.size(); i++) {
+						child->removeChild(child->children[i],true);
+					} 
+				}
+
+				children.erase(children.begin()+i);
 				delete child;
 				return child; // I know child doesn't exist here anymore, but the pointer will contain 0xcdcdcdcd instead of NULL so we know if something is deleted
 			} else

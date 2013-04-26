@@ -78,10 +78,11 @@ void SceneManager::destroyScene(char* name){
 	if (exists(name)) {//exists(name)
 		for(int i = 0; i < nameScenes.size(); i++){
 		// delete nameScenes[i].name;
-		 nameScenes[i].scene->destroy();
-		 //entity->removeChild(nameScenes[i].scene);
+		// nameScenes[i].scene->destroy();
+		entity->removeChild(nameScenes[i].scene);
+		nameScenes.erase(nameScenes.begin() + i);
 		// delete nameScenes[i].scene;
-		 //delete &nameScenes[i];
+		// delete &nameScenes[i];
 		}
 	}
 }
@@ -98,11 +99,11 @@ bool SceneManager::exists(char* name){
 }
 
 SceneManager::~SceneManager(){
-	for(int i = 0; i< nameScenes.size(); i++){
+	/*for(int i = 0; i< nameScenes.size(); i++){
 		delete &nameScenes[i].name;
 		// check if deconstructor is called
 		this->entity->removeChild(nameScenes[i].scene);
 		delete &nameScenes[i].scene;
 		delete &nameScenes[i];
-	}
+	}*/
 }
