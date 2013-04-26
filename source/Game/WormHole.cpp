@@ -22,6 +22,7 @@ void WormHole::onAdd() {
 
 // Added update for possible annimations
 void WormHole::update(){
+	_wormhole->setPosition(*this->transform->position);
 	Entity::update();
 }
 
