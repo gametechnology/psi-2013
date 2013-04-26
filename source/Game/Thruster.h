@@ -17,18 +17,18 @@ public:
 	irr::core::vector3df UpdateDirection();
 	float force_;
 
-	vector3df position;
-	vector3df nPosition;
-	vector3df direction;
-	vector3df nDirection;
+	irr::core::vector3df position;
+	irr::core::vector3df nPosition;
+	irr::core::vector3df direction;
+	irr::core::vector3df nDirection;
 
-	vector3df forceComponent1;
-	vector3df forceComponent2;
+	irr::core::vector3df forceComponent1;
+	irr::core::vector3df forceComponent2;
 
-	vector3df linearForce;
-	vector3df angularForce;
+	irr::core::vector3df linearForce;
+	irr::core::vector3df angularForce;
 	Entity * parent;
-	vector3df torque;
+	irr::core::vector3df torque;
 
 	irr::core::vector3df pushDirection();
 

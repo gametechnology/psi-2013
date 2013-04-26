@@ -4,7 +4,7 @@
 
 Ship::Ship( Composite * parent, vector3df position, vector3df orientation) : Entity ( parent )
 {
-	this->transform->position = position;
+	this->transform->position = &position;
 	this->transform->orientation = orientation;
 }
 
@@ -19,7 +19,6 @@ void Ship::onAdd() {
 
 	this->env = game->device->getGUIEnvironment();
 	this->_currentStation = NULL;
-	this->env = Game :: device->getGUIEnvironment();
 
 	addChild(_defenceStation		= new DefenceStation(this));
 	addChild(_helmStation			= new HelmStation(this));
@@ -32,12 +31,6 @@ void Ship::onAdd() {
 	this->_navigationStation->disable();
 	this->_weaponStation->disable();
 	this->_powerStation->disable();
-
-	addComponent(_defenceStation);
-	addComponent(_helmStation);
-	addComponent(_navigationStation);
-	addComponent(_weaponStation);
-	addComponent(_powerStation);
 
 	//Camera
 	_camera = new Camera(this, vector3df(0,0,0), vector3df(0,0,0));

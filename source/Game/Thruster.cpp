@@ -4,10 +4,10 @@
 #include "Engine\Entity.h"
 #include <iostream>
 
-Thruster::Thruster(Composite * parent, irr::core::vector3df position, irr::core::vector3df initialDirection) : Component()
+Thruster::Thruster(Composite *parent, irr::core::vector3df position, irr::core::vector3df initialDirection) : Entity(*parent)
 {
-	this->transform->position = position;
-	this->transform->orientation = initialDirection;
+	this->transform->position = &position;
+	this->transform->rotation = &initialDirection;
 	//Normalize the vectors so I can use them to calculate the dot product and the cross product.
 	nPosition = position.normalize();
 	nDirection = direction.normalize();
@@ -17,9 +17,9 @@ Thruster::Thruster(Composite * parent, irr::core::vector3df position, irr::core:
 	//torque is the axis the force will rotate the object around.
 	f32 dot = nPosition.dotProduct(nDirection);
 	if(dot != -1){
-		this->transform->torque = nPosition.crossProduct(nDirection);
+		this->torque = nPosition.crossProduct(nDirection);
 	} else{
-		this->transform->torque = vector3df(0,0,0);
+		this->torque = irr::core::vector3df(0,0,0);
 	}
 
 	
@@ -46,7 +46,7 @@ Thruster::Thruster(Composite * parent, irr::core::vector3df position, irr::core:
 		inertiaMatrix->transformVect(angularForce, torque);
 		angularForce*= forceComponent2.getLength();
 	} else{
-		angularForce = vector3df(0,0,0);
+		angularForce = irr::core::vector3df(0,0,0);
 	}
 }
 
