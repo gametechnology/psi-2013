@@ -136,7 +136,8 @@ void SectorTemplate::update(){
 		irr::core::vector3df deltaPos = *_wormHoles[i]->transform->position - this->_camera->getPosition();
 		float collisionRadius = 50;
 		if( deltaPos.getLength() < collisionRadius ){			
-			//_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
+			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
+			//delete _wormHoles[i];
 			break;
 		}
 	}

@@ -9,7 +9,18 @@ Entity::Entity() : Composite() {
 }
 
 Entity::~Entity() {
-
+/*	for (unsigned int i = 0; i < components.size(); i++) {
+		Component* component = components[i];
+		components.erase(components.begin()+i--);
+		delete component;
+	}
+	
+	for (unsigned int i = 0; i < children.size(); i++) {
+		
+		Entity* child = children[i];
+		children.erase(children.begin()+i--);
+		delete child;
+	}*/
 }
 
 void Entity::onAdd() {
@@ -125,7 +136,7 @@ void Entity::addChild(Entity* child) {
 }
 
 bool Entity::removeChild(Entity* child) {
-	for (unsigned int i = 0; i < components.size(); i++) {
+	for (unsigned int i = 0; i < children.size(); i++) {
 		if (children[i] == child) {
 			children[i] = NULL;
 			return true;
