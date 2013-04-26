@@ -24,6 +24,8 @@ Entity::~Entity() {
 }
 
 void Entity::onAdd() {
+	Composite::onAdd();
+
 	// If this is true, it means the object is added during runtime, and will miss the base initialize.
 	// Therefore initialize it after it has been added.
 	if (parent != NULL && parent->initialized) {
@@ -44,6 +46,8 @@ void Entity::init() {
 }
 
 void Entity::handleMessage(unsigned int message) {
+	Composite::handleMessage(message);
+
 	if (enabled) {
 		for (unsigned int i = 0; i < components.size(); i++) {
 			components[i]->handleMessage(message);
@@ -56,48 +60,60 @@ void Entity::handleMessage(unsigned int message) {
 }
 
 void Entity::update() {
-	for (unsigned int i = 0; i < components.size(); i++) {
-		if (components[i] == NULL) {
-			components.erase(components.begin()+i--);
-		} else if (components[i]->destroyed) {
-			Component* component = components[i];
-			components.erase(components.begin()+i--);
-			delete component;
-		} else {
-			components[i]->update();
+	Composite::update();
+
+	if (enabled) {
+		for (unsigned int i = 0; i < components.size(); i++) {
+			if (components[i] == NULL) {
+				components.erase(components.begin()+i--);
+			} else if (components[i]->destroyed) {
+				Component* component = components[i];
+				components.erase(components.begin()+i--);
+				delete component;
+			} else {
+				components[i]->update();
+			}
 		}
-	}
 	
-	for (unsigned int i = 0; i < children.size(); i++) {
-		if (children[i] == NULL) {
-			children.erase(children.begin()+i--);
-		} else if (children[i]->destroyed) {
-			Entity* child = children[i];
-			children.erase(children.begin()+i--);
-			delete child;
-		} else {
-			children[i]->update();
+		for (unsigned int i = 0; i < children.size(); i++) {
+			if (children[i] == NULL) {
+				children.erase(children.begin()+i--);
+			} else if (children[i]->destroyed) {
+				Entity* child = children[i];
+				children.erase(children.begin()+i--);
+				delete child;
+			} else {
+				children[i]->update();
+			}
 		}
 	}
 }
 
 void Entity::lateUpdate() {
-	for (unsigned int i = 0; i < components.size(); i++) {
-		components[i]->lateUpdate();
-	}
+	Composite::lateUpdate();
 
-	for (unsigned int i = 0; i < children.size(); i++) {
-		children[i]->lateUpdate();
+	if (enabled) {
+		for (unsigned int i = 0; i < components.size(); i++) {
+			components[i]->lateUpdate();
+		}
+
+		for (unsigned int i = 0; i < children.size(); i++) {
+			children[i]->lateUpdate();
+		}
 	}
 }
 
 void Entity::draw() {
-	for (unsigned int i = 0; i < components.size(); i++) {
-		components[i]->draw();
-	}
+	Composite::draw();
 
-	for (unsigned int i = 0; i < children.size(); i++) {
-		children[i]->draw();
+	if (enabled) {
+		for (unsigned int i = 0; i < components.size(); i++) {
+			components[i]->draw();
+		}
+
+		for (unsigned int i = 0; i < children.size(); i++) {
+			children[i]->draw();
+		}
 	}
 }
 
@@ -136,12 +152,22 @@ void Entity::addChild(Entity* child) {
 }
 
 bool Entity::removeChild(Entity* child) {
+	return removeChild(child, true) != NULL;
+}
+
+Entity* Entity::removeChild(Entity* child, bool deleteChild) {
 	for (unsigned int i = 0; i < children.size(); i++) {
 		if (children[i] == child) {
+			Entity* child = children[i];
 			children[i] = NULL;
-			return true;
+
+			if (deleteChild) {
+				delete child;
+				return child; // I know child doesn't exist here anymore, but the pointer will contain 0xcdcdcdcd instead of NULL so we know if something is deleted
+			} else
+				return child;
 		}
 	}
 
-	return false;
+	return NULL;
 }
