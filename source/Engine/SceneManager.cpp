@@ -36,6 +36,10 @@ void SceneManager::removeScene(char* name) {
 	}
 }
 
+Scene* SceneManager::getLastScene() {
+	return nameScenes[nameScenes.size() - 1].scene;
+}
+
 //Activates Scene so it update &  be drawed
 void SceneManager::activateScene(char* name){
 	if (exists(name)) {

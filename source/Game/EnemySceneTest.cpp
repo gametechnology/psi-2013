@@ -37,6 +37,6 @@ void EnemySceneTest::init()
 
 void EnemySceneTest::update() {
 
-	std::cout<<"UPDATING je moeder. ja, de bouwvakker";
+	//std::cout<<"UPDATING je moeder. ja, de bouwvakker";
 
 }
