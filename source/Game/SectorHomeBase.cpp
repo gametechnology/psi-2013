@@ -47,6 +47,5 @@ void BasePlaceholder::onAdd() {
 
 BasePlaceholder::~BasePlaceholder() {
 	node->drop();
-	delete node;
 	Entity::~Entity();
 }

@@ -34,9 +34,7 @@ int main()
 	Scene* scene = new GameScene();
 	game->sceneManager->addScene("MainMenuScene", scene);
 
-	// Need to create an Scene first or else it will crash, because I first delete then create scenes in SectorManager
-
-	
+	// Need to create an Scene first or else it will crash, because I first delete then create scenes in SectorManager	
 
 	// Initialize game
 	game->init();

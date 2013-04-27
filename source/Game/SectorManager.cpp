@@ -39,8 +39,11 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 			
 			_mapSector = *temp;//change the _mapSector to the sector the data tells him to be
 			
-			if (this->getGame()->sceneManager->destroyScene(activeSceneName))
-				printf("Deleted properly\n");
+			char * tempName = activeSceneName;
+
+			// Deleting Scene
+			this->getGame()->sceneManager->deactivateScene( activeSceneName );
+				printf("deactivated properly\n");
 				//printf("No scene deleted");
 
 			//Creates new Sector
@@ -82,7 +85,9 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 					this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,"skybox02.png",2000.0,_mapSector->connections.size()));
 					break;
 			}
-
+			
+			this->getGame()->sceneManager->destroyScene( tempName );
+			
 			break;
 	}
 	//delete data;

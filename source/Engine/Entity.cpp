@@ -50,31 +50,32 @@ void Entity::handleMessage(unsigned int message) {
 
 void Entity::update() {
 	Composite::update();
-	
-	if (enabled) {
+
+	if (!enabled) return;
 		
-		for (unsigned int i = 0; i < components.size(); i++) {
-			if (components[i] == NULL) {
-				components.erase(components.begin()+i--);
-			} else if (components[i]->destroyed) {
-				Component* component = components[i];
-				components.erase(components.begin()+i--);
-				delete component;
-			} else {
-				components[i]->update();
-			}
+	for (unsigned int i = 0; i < components.size(); i++) {
+		if (components[i] == NULL) {
+			components.erase(components.begin()+i--);
+		} else if (components[i]->destroyed) {
+			Component* component = components[i];
+			components.erase(components.begin()+i--);
+			delete component;
+		} else {
+			if ( components[i]->enabled == false ) continue;
+			components[i]->update();
 		}
+	}
 	
-		for (unsigned int i = 0; i < children.size(); i++) {
-			if (children[i] == NULL) {
-				children.erase(children.begin()+i--);
-			} else if (children[i]->destroyed) {
-				Entity* child = children[i];
-				children.erase(children.begin()+i--);
-				delete child;
-			} else {
-				children[i]->update();
-			}
+	for (unsigned int i = 0; i < children.size(); i++) {
+		if (children[i] == NULL) {
+			children.erase(children.begin()+i--);
+		} else if (children[i]->destroyed) {
+			Entity* child = children[i];
+			children.erase(children.begin()+i--);
+			delete child;
+		} else {
+			if ( children[i]->enabled == false ) continue;
+			children[i]->update();
 		}
 	}
 }

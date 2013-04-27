@@ -151,9 +151,6 @@ void SectorTemplate::update(){
 //}
 
 SectorTemplate::~SectorTemplate() {
-	if ( _camera != NULL ){
-		_camera->drop();
-//		delete _camera;
-	}
+	//_camera->drop();
 	Scene::~Scene();
 }
