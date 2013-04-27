@@ -77,12 +77,16 @@ bool SceneManager::destroyScene(char* name){
 	if (exists(name)) {		//exists(name)
 		for(int i = 0; i < nameScenes.size(); i++){
 			//Checks for the right scene
-			if (&nameScenes[i].name == &name) {
+			if (*nameScenes[i].name == *name) {
 				// delete nameScenes[i].name;
 				// nameScenes[i].scene->destroy();
-				entity->removeChild(nameScenes[i].scene);
-				nameScenes.erase(nameScenes.begin() + i);
-				return true;
+				if( entity->removeChild(nameScenes[i].scene) ){
+					printf("Deleted correctly the entity\n");
+					nameScenes.erase(nameScenes.begin() + i);
+					return true;
+				}else
+					return false;
+				
 				// delete nameScenes[i].scene;
 				// delete &nameScenes[i];
 			}
@@ -93,7 +97,7 @@ bool SceneManager::destroyScene(char* name){
 
 bool SceneManager::exists(char* name){
 	//NameScene namesc = getNameScene(name);
-	printf("[SceneManager]Size: %i",nameScenes.size());
+	//printf("[SceneManager]Size: %i",nameScenes.size());
 	for(int i = 0; i<nameScenes.size(); i++){
 		if (*nameScenes[i].name == *name)
 			return true;
