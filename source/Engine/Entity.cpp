@@ -152,11 +152,15 @@ Entity* Entity::removeChild(Entity* child, bool deleteChild) {
 
 			if (deleteChild) {
 
-				if(children.size()>0)
-				{
+				if(children.size()>0) {
+					// Deleting the Entitys of this Child
 					for (unsigned int i = 0; i < child->children.size(); i++) {
-						child->removeChild(child->children[i],true);
-					} 
+						child->removeChild( child->children[i],true );
+					}
+					// Deleting the Components of this Child
+					for (unsigned int i = 0; i < child->components.size(); i++) {
+						child->removeComponent( child->components[i] );
+					}
 				}
 
 				children.erase(children.begin()+i);
