@@ -29,7 +29,7 @@ public:
 	SectorTemplate(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundry, unsigned int amountWormHoles );
 	virtual ~SectorTemplate();
 	
-	void handleMessage( unsigned int message, void* data = 0 );
+	//void handleMessage( unsigned int message, void* data = 0 );
 	virtual void update();
 	virtual void onAdd();
 	virtual void init();

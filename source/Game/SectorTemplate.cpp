@@ -12,7 +12,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	_sectormanager = sectormanager;
 	
 	// Creating Skybox
-	_skybox = new Skybox(skyBoxTexture, this);
+	_skybox = new Skybox( skyBoxTexture );
 
 	// Adding mist
 	_fog = new Mist();
@@ -50,7 +50,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 void SectorTemplate::onAdd() {
 	this->_camera = this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
 	//addComponent(_enemyManager);
-	addChild(_skybox );
+	addChild( _skybox );
 	addChild( this->_player );
 	//addChild(_ship);
 	addChild(_fog );
@@ -137,7 +137,6 @@ void SectorTemplate::update(){
 		float collisionRadius = 50;
 		if( deltaPos.getLength() < collisionRadius ){			
 			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
-			//delete _wormHoles[i];
 			break;
 		}
 	}
@@ -146,11 +145,15 @@ void SectorTemplate::update(){
 	Scene::update();
 }
 
-void SectorTemplate::handleMessage(unsigned int message, void* data) {
-	
-	delete data;
-}
+//void SectorTemplate::handleMessage(unsigned int message, void* data) {
+//	
+//	delete data;
+//}
 
 SectorTemplate::~SectorTemplate() {
+	if ( _camera != NULL ){
+		_camera->drop();
+//		delete _camera;
+	}
 	Scene::~Scene();
 }

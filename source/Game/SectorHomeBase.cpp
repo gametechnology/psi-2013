@@ -19,10 +19,10 @@ void SectorHomeBase::update() {
 	SectorTemplate::update();
 }
 
-void SectorHomeBase::handleMessage(unsigned int message, void* data) {
-	
-	delete data;
-}
+//void SectorHomeBase::handleMessage(unsigned int message, void* data) {
+//	
+//	delete data;
+//}
 
 SectorHomeBase::~SectorHomeBase() {
 	SectorTemplate::~SectorTemplate();
@@ -33,7 +33,7 @@ BasePlaceholder::BasePlaceholder() : Entity() {
 }
 
 void BasePlaceholder::onAdd() {
-	irr::scene::IMeshSceneNode *node = scene->getIrrlichtSceneManager()->addCubeSceneNode(100, 0, -1,
+	node = scene->getIrrlichtSceneManager()->addCubeSceneNode(100, 0, -1,
 		irr::core::vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250)),
 		irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90))
 	);
@@ -46,5 +46,7 @@ void BasePlaceholder::onAdd() {
 }
 
 BasePlaceholder::~BasePlaceholder() {
+	node->drop();
+	delete node;
 	Entity::~Entity();
 }

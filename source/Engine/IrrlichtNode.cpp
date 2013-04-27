@@ -34,4 +34,5 @@ IrrlichtNode::~IrrlichtNode() {
 		node->drop();
 		delete node;
 	}
+	Component::~Component();
 }

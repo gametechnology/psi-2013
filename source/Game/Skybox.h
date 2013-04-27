@@ -9,9 +9,12 @@
 #include "Engine/Game.h"
 class Skybox : public Entity  {
 public:
-	Skybox(const io::path & filePath, Composite* parent);
+	Skybox( const io::path & filePath );
 	void init(void);
 	virtual ~Skybox();
+
+	irr::scene::ISceneNode *skydome;
+
 private:
 	io::path  _filePath;
 };

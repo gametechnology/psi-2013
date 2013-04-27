@@ -22,5 +22,6 @@ class AstroidPlaceholder : public Entity{
 	public:
 	AstroidPlaceholder(Composite* parent);
 	virtual ~AstroidPlaceholder();
+	irr::scene::IMeshSceneNode *node;
 };
 #endif

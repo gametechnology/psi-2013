@@ -28,7 +28,7 @@ void SceneManager::addScene(char* name,Scene* scene){
 void SceneManager::removeScene(char* name) {
 	if (exists(name)) {
 		for(int i = 0; i< nameScenes.size(); i++){
-			if (&nameScenes[i].name == &name)
+			if (*nameScenes[i].name == *name)
 			{
 				nameScenes.erase(nameScenes.begin() + i);
 			}
@@ -58,7 +58,7 @@ void SceneManager::deactivateScene(char* name){
 NameScene SceneManager::getNameScene(char* name){
 	if (exists(name)) {
 		for(int i = 0; i< nameScenes.size(); i++){
-			if (&nameScenes[i].name == &name) {
+			if (*nameScenes[i].name == *name) {
 				return nameScenes[i];
 			}
 		} 

@@ -39,8 +39,7 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 			
 			_mapSector = *temp;//change the _mapSector to the sector the data tells him to be
 			
-			// Debug check
-			if ( this->getGame()->sceneManager->destroyScene(activeSceneName) )
+			if (this->getGame()->sceneManager->destroyScene(activeSceneName))
 				printf("Deleted properly\n");
 				//printf("No scene deleted");
 
@@ -49,38 +48,38 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 				case EMPTY:
 					//delete _currentSector;
 					printf("[SectorTemplate] EMPTY \n");
-					//activeSceneName = "BaseSector";
-					//this->getGame()->sceneManager->addScene(activeSceneName,new BaseSector(this,"skybox02.png",2000.0,_mapSector->connections.size()));
+					activeSceneName = "BaseSector";
+					this->getGame()->sceneManager->addScene(activeSceneName,new BaseSector(this,"skybox02.png",2000.0,_mapSector->connections.size()));
 					break;
 				case ASTEROID:
 					printf("[SectorTemplate] ASTEROID \n");
 					//delete _currentSector;
-					//activeSceneName = "AsteroidSector";
-					//this->getGame()->sceneManager->addScene(activeSceneName,new AsteroidSector(this,"skybox02.png",2000.0,_mapSector->connections.size()));
+					activeSceneName = "AsteroidSector";
+					this->getGame()->sceneManager->addScene(activeSceneName,new AsteroidSector(this,"skybox02.png",2000.0,_mapSector->connections.size()));
 					break;
 				case NEBULA:
 					printf("[SectorTemplate] NEBULA \n");
 					//delete _currentSector;
-					//activeSceneName = "NebulaSector";
-					//this->getGame()->sceneManager->addScene(activeSceneName,new NebulaSector(this,"skybox02.png",2000.0,_mapSector->connections.size()));
+					activeSceneName = "NebulaSector";
+					this->getGame()->sceneManager->addScene(activeSceneName,new NebulaSector(this,"skybox02.png",2000.0,_mapSector->connections.size()));
 					break;
 				case SOLAR: 
 					printf("[SectorTemplate] SOLAR \n");
 					//delete _currentSector;
-					//activeSceneName = "BaseSector";
-					//this->getGame()->sceneManager->addScene(activeSceneName,new BaseSector(this,"skybox02.png",2000.0,_mapSector->connections.size()));
+					activeSceneName = "BaseSector";
+					this->getGame()->sceneManager->addScene(activeSceneName,new BaseSector(this,"skybox02.png",2000.0,_mapSector->connections.size()));
 					break;
 				case HOME_BLUE:
 					printf("[SectorTemplate] HOME_BLUE \n");
 					//delete _currentSector;
-					//activeSceneName = "SectorHomeBase";
-					//this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,"skybox02.png",2000.0,_mapSector->connections.size()));
+					activeSceneName = "SectorHomeBase";
+					this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,"skybox02.png",2000.0,_mapSector->connections.size()));
 					break;
 				case HOME_RED:
 					printf("[SectorTemplate] HOME_RED \n");
 					//delete _currentSector;
-					//activeSceneName = "SectorHomeBase";
-					//this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,"skybox02.png",2000.0,_mapSector->connections.size()));
+					activeSceneName = "SectorHomeBase";
+					this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,"skybox02.png",2000.0,_mapSector->connections.size()));
 					break;
 			}
 

@@ -50,8 +50,9 @@ void Entity::handleMessage(unsigned int message) {
 
 void Entity::update() {
 	Composite::update();
-
+	
 	if (enabled) {
+		
 		for (unsigned int i = 0; i < components.size(); i++) {
 			if (components[i] == NULL) {
 				components.erase(components.begin()+i--);
@@ -119,6 +120,8 @@ bool Entity::removeComponent(Component* component) {
 			Component* component = components[i];
 			components[i] = NULL;
 
+			components.erase(components.begin()+i);
+			component->destroy();
 			delete component;
 			return true;
 		}
@@ -154,16 +157,22 @@ Entity* Entity::removeChild(Entity* child, bool deleteChild) {
 
 				if(children.size()>0) {
 					// Deleting the Entitys of this Child
-					for (unsigned int i = 0; i < child->children.size(); i++) {
-						child->removeChild( child->children[i],true );
+					int childIndex = child->children.size()-1;
+					while(childIndex > 0){
+						child->removeChild( child->children[childIndex],true );
+						childIndex = child->children.size()-1;
 					}
+
 					// Deleting the Components of this Child
-					for (unsigned int i = 0; i < child->components.size(); i++) {
-						child->removeComponent( child->components[i] );
+					int componentIndex = child->components.size()-1;
+					while(componentIndex > 0){
+						child->removeComponent( child->components[componentIndex] );
+						componentIndex = child->components.size()-1;
 					}
 				}
 
 				children.erase(children.begin()+i);
+				child->destroy();
 				delete child;
 				return child; // I know child doesn't exist here anymore, but the pointer will contain 0xcdcdcdcd instead of NULL so we know if something is deleted
 			} else

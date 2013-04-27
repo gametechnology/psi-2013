@@ -32,12 +32,14 @@ AsteroidSector::~AsteroidSector() {
 
 
 AstroidPlaceholder::AstroidPlaceholder(Composite* parent):Entity() {
-	irr::scene::IMeshSceneNode *node = scene->getIrrlichtSceneManager()->addSphereSceneNode(10, 8, 0, -1);
+	node = scene->getIrrlichtSceneManager()->addSphereSceneNode(10, 8, 0, -1);
 	node->setMaterialFlag(EMF_LIGHTING, false);
 	node->setMaterialFlag(EMF_FOG_ENABLE, true);
 	node->setMaterialTexture(0, this->game->driver->getTexture("../assets/Textures/SkyBoxes/skybox01.png"));
 }
 
 AstroidPlaceholder::~AstroidPlaceholder() {
+	node->drop();
+	delete node;
 	Entity::~Entity();
 }

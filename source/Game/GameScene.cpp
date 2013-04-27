@@ -21,7 +21,7 @@ void GameScene::init() {
 }
 
 void GameScene::update() {
-
+	Scene::update();
 }
 
 GameScene::~GameScene() {

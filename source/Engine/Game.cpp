@@ -51,14 +51,14 @@ void Game::run()
 		// Clearing the screen
 		driver -> beginScene(true, true, irr::video::SColor(255,100,101,140));
 
-		//Irrlicht draw all
-		sceneManager->drawAll();
-
 		//Game engine draw
 		game->draw();
 
 		//Irrlicht GUI
 		guiEnv->drawAll();
+
+		//Irrlicht draw all
+		sceneManager->drawAll();
 
 		// End the scene
 		driver->endScene();
