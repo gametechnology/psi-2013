@@ -42,17 +42,17 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	
 	// ----------NEW--------------------
 	
-	//this->_camera = Game::getSceneManager()->addCameraSceneNodeFPS();
 	
 	// Creating wormholes
 	createWormHoles( amountWormHoles );
 }
 
 void SectorTemplate::onAdd() {
-	addComponent(_enemyManager);
+	this->_camera = this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
+	//addComponent(_enemyManager);
 	addChild(_skybox );
-	//addComponent( this->_player );
-	addChild(_ship);
+	addChild( this->_player );
+	//addChild(_ship);
 	addChild(_fog );
 
 	// TODO CHECK MERGE!
@@ -88,6 +88,7 @@ void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ) {
 }
 
 void SectorTemplate::addWormHoles() {
+	printf("[SectorTemplate] -=*[Begin of Add WormHole]*=- \n");
 	for(unsigned int i = 0; i < _wormHoles.size(); i++) {
 		// Calculating the pos in the sector
 		irr::core::vector3df wormHolePos((float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)));
@@ -99,8 +100,10 @@ void SectorTemplate::addWormHoles() {
 		addChild(_wormHoles[i]);
 
 		// And give it their position
-		_wormHoles[i]->transform->position = &wormHolePos;
+		*_wormHoles[i]->transform->position = wormHolePos;
+		printf("[SectorTemplate] wormhole.x[ %f ] wormhole.y[ %f ] wormhole.z[ %f ] \n",_wormHoles[i]->transform->position->X,_wormHoles[i]->transform->position->Y,_wormHoles[i]->transform->position->Z);
 	}
+	printf("[SectorTemplate] -=*[End of add WormHole]*=- \n");
 }
 
 void SectorTemplate::update(){
@@ -123,17 +126,18 @@ void SectorTemplate::update(){
 	// Placeholder because there is no player yet
 	/*To use Fps camera:
 	replace:
-	this->_ship->position
+	this->_ship->transform->position
 	with
 	this->_camera->getPosition()*/
-	if( this->_ship->transform->position->getLength() > _boundry ){
-		printf("OUT OF BOUNDS!");
+	if( this->_camera->getPosition().getLength() > _boundry ){
+		printf("\n OUT OF BOUNDS!");
 	}
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
-		irr::core::vector3df deltaPos = *_wormHoles[i]->transform->position - *this->_ship->transform->position;
+		irr::core::vector3df deltaPos = *_wormHoles[i]->transform->position - this->_camera->getPosition();
 		float collisionRadius = 50;
 		if( deltaPos.getLength() < collisionRadius ){			
-			//_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
+			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
+			//delete _wormHoles[i];
 			break;
 		}
 	}

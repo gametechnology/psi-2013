@@ -217,7 +217,7 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 				{
 					if (distance < (_input[i]->getRadius() + _input[j]->getRadius() ) )
 					{
-						std::printf("lll\n");
+						//std::printf("[EnemyManager] lll\n");
 						_input[i]->contactResolverA(_input[j]);
 						continue;
 					}

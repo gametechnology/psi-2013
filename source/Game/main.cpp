@@ -30,7 +30,8 @@ int main()
 	Game* game = new Game();
 
 	//Add the MainMenu
-	Scene* scene = new EnemySceneTest();
+	//Scene* scene = new EnemySceneTest();
+	Scene* scene = new GameScene();
 	game->sceneManager->addScene("MainMenuScene", scene);
 
 	// Need to create an Scene first or else it will crash, because I first delete then create scenes in SectorManager

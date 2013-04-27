@@ -22,6 +22,7 @@ void WormHole::onAdd() {
 
 // Added update for possible annimations
 void WormHole::update(){
+	_wormhole->setPosition(*this->transform->position);
 	Entity::update();
 }
 
@@ -30,5 +31,6 @@ void WormHole::handleMessage(unsigned int message, void* data) {
 }
 
 WormHole::~WormHole() {
+	delete _wormhole;
 	Entity::~Entity();
 }
