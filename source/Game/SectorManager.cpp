@@ -40,7 +40,7 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 			_mapSector = *temp;//change the _mapSector to the sector the data tells him to be
 			
 			// Debug check
-			this->getGame()->sceneManager->destroyScene(activeSceneName);
+			if ( this->getGame()->sceneManager->destroyScene(activeSceneName) )
 				printf("Deleted properly\n");
 				//printf("No scene deleted");
 
