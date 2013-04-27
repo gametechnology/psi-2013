@@ -58,8 +58,7 @@ void SceneManager::deactivateScene(char* name){
 NameScene SceneManager::getNameScene(char* name){
 	if (exists(name)) {
 		for(int i = 0; i< nameScenes.size(); i++){
-			if (&nameScenes[i].name == &name)
-			{
+			if (&nameScenes[i].name == &name) {
 				return nameScenes[i];
 			}
 		} 
@@ -74,17 +73,22 @@ Scene* SceneManager::getScene(char* name){
 }
 
 //Destroys Scene, Deletes the scene properly
-void SceneManager::destroyScene(char* name){
-	if (exists(name)) {//exists(name)
+bool SceneManager::destroyScene(char* name){
+	if (exists(name)) {		//exists(name)
 		for(int i = 0; i < nameScenes.size(); i++){
-		// delete nameScenes[i].name;
-		// nameScenes[i].scene->destroy();
-		entity->removeChild(nameScenes[i].scene);
-		nameScenes.erase(nameScenes.begin() + i);
-		// delete nameScenes[i].scene;
-		// delete &nameScenes[i];
+			//Checks for the right scene
+			if (&nameScenes[i].name == &name) {
+				// delete nameScenes[i].name;
+				// nameScenes[i].scene->destroy();
+				entity->removeChild(nameScenes[i].scene);
+				nameScenes.erase(nameScenes.begin() + i);
+				return true;
+				// delete nameScenes[i].scene;
+				// delete &nameScenes[i];
+			}
 		}
-	}
+	}else
+		return false;
 }
 
 bool SceneManager::exists(char* name){

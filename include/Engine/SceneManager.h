@@ -27,7 +27,7 @@ public:
 	void deactivateScene(char* name);
 	NameScene getNameScene(char* name);
 	Scene* getScene(char* name);
-	void destroyScene(char* name);
+	bool destroyScene(char* name);
 	bool exists(char* name);
 };
 
