@@ -13,6 +13,8 @@ Entity::~Entity() {
 }
 
 void Entity::onAdd() {
+	Composite::onAdd();
+
 	// If this is true, it means the object is added during runtime, and will miss the base initialize.
 	// Therefore initialize it after it has been added.
 	if (parent != NULL && parent->initialized) {
@@ -33,6 +35,8 @@ void Entity::init() {
 }
 
 void Entity::handleMessage(unsigned int message) {
+	Composite::handleMessage(message);
+
 	if (enabled) {
 		for (unsigned int i = 0; i < components.size(); i++) {
 			components[i]->handleMessage(message);
@@ -45,9 +49,9 @@ void Entity::handleMessage(unsigned int message) {
 }
 
 void Entity::update() {
-	if (enabled)
-	{
-		//Update components
+	Composite::update();
+
+	if (enabled) {
 		for (unsigned int i = 0; i < components.size(); i++) {
 			if (components[i] == NULL) {
 				components.erase(components.begin()+i--);
@@ -59,8 +63,7 @@ void Entity::update() {
 				components[i]->update();
 			}
 		}
-		
-		//Update children
+	
 		for (unsigned int i = 0; i < children.size(); i++) {
 			if (children[i] == NULL) {
 				children.erase(children.begin()+i--);
@@ -76,8 +79,9 @@ void Entity::update() {
 }
 
 void Entity::lateUpdate() {
-	if (enabled)
-	{
+	Composite::lateUpdate();
+
+	if (enabled) {
 		for (unsigned int i = 0; i < components.size(); i++) {
 			components[i]->lateUpdate();
 		}
@@ -89,8 +93,9 @@ void Entity::lateUpdate() {
 }
 
 void Entity::draw() {
-	if (enabled)
-	{
+	Composite::draw();
+
+	if (enabled) {
 		for (unsigned int i = 0; i < components.size(); i++) {
 			components[i]->draw();
 		}
@@ -136,12 +141,31 @@ void Entity::addChild(Entity* child) {
 }
 
 bool Entity::removeChild(Entity* child) {
-	for (unsigned int i = 0; i < components.size(); i++) {
+	return removeChild(child, true) != NULL;
+}
+
+Entity* Entity::removeChild(Entity* child, bool deleteChild) {
+	for (unsigned int i = 0; i < children.size(); i++) {
 		if (children[i] == child) {
+			Entity* child = children[i];
 			children[i] = NULL;
-			return true;
+
+			if (deleteChild) {
+
+				if(children.size()>0)
+				{
+					for (unsigned int i = 0; i < child->children.size(); i++) {
+						child->removeChild(child->children[i],true);
+					} 
+				}
+
+				children.erase(children.begin()+i);
+				delete child;
+				return child; // I know child doesn't exist here anymore, but the pointer will contain 0xcdcdcdcd instead of NULL so we know if something is deleted
+			} else
+				return child;
 		}
 	}
 
-	return false;
+	return NULL;
 }

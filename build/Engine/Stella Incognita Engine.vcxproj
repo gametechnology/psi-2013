@@ -94,6 +94,7 @@
     <ClInclude Include="..\..\include\Engine\Composite.h" />
     <ClInclude Include="..\..\include\Engine\Entity.h" />
     <ClInclude Include="..\..\include\Engine\Game.h" />
+    <ClInclude Include="..\..\include\Engine\Hierarchy.h" />
     <ClInclude Include="..\..\include\Engine\IrrlichtNode.h" />
     <ClInclude Include="..\..\include\Engine\InputManager.h" />
     <ClInclude Include="..\..\include\Engine\Scene.h" />
@@ -107,6 +108,7 @@
     <ClCompile Include="..\..\source\Engine\Composite.cpp" />
     <ClCompile Include="..\..\source\Engine\Entity.cpp" />
     <ClCompile Include="..\..\source\Engine\Game.cpp" />
+    <ClCompile Include="..\..\source\Engine\Hierarchy.cpp" />
     <ClCompile Include="..\..\source\Engine\InputManager.cpp" />
     <ClCompile Include="..\..\source\Engine\IrrlichtNode.cpp" />
     <ClCompile Include="..\..\source\Engine\Network.cpp" />

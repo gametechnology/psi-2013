@@ -24,6 +24,7 @@ public:
 
 	void addChild(Entity* child);
 	bool removeChild(Entity* child);
+ Entity* removeChild(Entity* child, bool deleteChild);
 	void addComponent(Component* component);
 	bool removeComponent(Component* component);
 

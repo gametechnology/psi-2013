@@ -1,4 +1,5 @@
 #include "Engine\Game.h"
+#include "Engine\Hierarchy.h"
 #include "../source/Game/NetworkInterface.h"
 
 #pragma comment(lib, "Irrlicht.lib")
@@ -53,6 +54,10 @@ void Game::run()
 
 		//Irrlicht draw all
 		sceneManager->drawAll();
+
+		//Print the Hierarchy of the latest scene
+		if (Game::input->isKeyboardButtonReleased(KEY_KEY_V))
+			Hierarchy::Visualize(sceneManager->getLastScene());
 
 		//Game engine draw
 		game->draw();
