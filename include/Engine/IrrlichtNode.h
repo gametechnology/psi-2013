@@ -15,6 +15,7 @@ private:
 	irr::io::path modelPath;
 	irr::scene::ISceneNode* node;
 	void createNode();
+
 };
 
 #endif

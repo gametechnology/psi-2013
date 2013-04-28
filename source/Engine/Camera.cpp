@@ -3,12 +3,12 @@
 #include <Engine\CameraMover.h>
 
 
-Camera::Camera() : Entity() {
-	//node = Entity::scene->sceneManager->addCameraSceneNode(NULL, position, lookAt);
+Camera::Camera() : IrrlichtNode("") {
 }
 
 void Camera::onAdd() {
-	addComponent(new CameraMover());
+	this->node = this->entity->scene->getIrrlichtSceneManager()->addCameraSceneNode(NULL, position, lookAt);
+	entity->addComponent(new CameraMover());
 }
 
 irr::scene::ICameraSceneNode* Camera::getCameraNode() {
