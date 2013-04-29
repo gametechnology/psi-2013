@@ -2,9 +2,10 @@
 #include "Stations/Station.h"
 #include "ShipMover.h"
 
-Ship::Ship( ) : Entity ( )
+Ship::Ship( Entity * parent, vector3df position, vector3df rotation) : Entity ( *parent )
 {
-	
+	this->transform->position = &position;
+	this->transform->rotation = &rotation;
 }
 
 Ship::~Ship(void)
@@ -19,17 +20,31 @@ void Ship::onAdd() {
 	this->env = game->device->getGUIEnvironment();
 	this->_currentStation = NULL;
 
-	//TODO remove temp stuff
 	addChild(_defenceStation		= new DefenceStation(this));
 	addChild(_helmStation			= new HelmStation(this));
 	addChild(_navigationStation		= new NavigationStation(this));
 	addChild(_weaponStation			= new WeaponStation(this));
 	addChild(_powerStation			= new PowerStation(this));
 	
-	Entity::onAdd();
+	this->_defenceStation->disable();
+	this->_helmStation->disable();
+	this->_navigationStation->disable();
+	this->_weaponStation->disable();
+	this->_powerStation->disable();
+
+	//Camera
+	_camera = new Camera();
+	_camera->setTarget(vector3df(0,0,0));
+	_camera->setUpVector(vector3df(0,1,0));
+	addChild(_camera);
+	
+	//Thrusters
+	_thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0,0, -4));
+	_thrusters[1] = new Thruster(this, vector3df(0,-2, 4), vector3df(0, 4, 0 ));
+	_thrusters[2] = new Thruster(this, vector3df(0,2, -4), vector3df(0, 4, 0 ));
+
+	//Health crap below
 }
-	
-	
 
 void Ship::init() {
 	irr::core::stringw strShipHealth			= "ship health: "; 
@@ -40,7 +55,6 @@ void Ship::init() {
 	irr::core::stringw strNavigationHealth		= "Navigation Station health: "	+ this->_navigationStation-> getHealth();
 	irr::core::stringw strPowerHealth			= "Power Station health: "		+ this->_powerStation->getHealth();
 	irr::core::stringw strWeaponHealth			= "Weapon Station health: "		+ this->_weaponStation->getHealth();
-
 	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->helmStationHealth			= env->addStaticText(strHelmHealth.c_str(),			rect<s32>(40, 120, 300, 140), false);	this->helmStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
@@ -138,6 +152,11 @@ void Ship :: update()
 	}
 }
 
+Thruster** Ship :: GetThrusters()
+{
+	return this->_thrusters;
+}
+
 void Ship :: CheckChangeInput()
 {
 	if (Game::input->isKeyboardButtonPressed(KEY_KEY_1))
@@ -203,4 +222,21 @@ int Ship :: getShipHealth()
 bool Ship :: getShipDestroyed()
 {
 	return this->_shipDestroyed;
+}
+
+void Ship::setInertiaMatrix(float h, float w, float d, float m)
+{
+	//used for the momentum of inertia, currently not used, only m is used (mass)
+	float inertiaData[16];
+	for(unsigned i = 0; i < 16; i++)
+	{
+		inertiaData[i] = 0.0f;
+	}
+
+	inertiaData[0] = (((1.0f / 5.0f) * m) * (pow(w, 2) + pow(d, 2)));
+	inertiaData[5] = (((1.0f / 5.0f) * m) * (pow(h, 2) + pow(d, 2)));
+	inertiaData[10] = (((1.0f / 5.0f) * m) * (pow(h, 2) + pow(w, 2)));
+	inertiaData[15] = 1.0f;
+
+	_inertiaMatrix->setM(inertiaData);
 }

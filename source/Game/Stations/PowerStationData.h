@@ -1,7 +1,6 @@
 #ifndef GUI_STATION_DATA
 #define GUI_STATION_DATA
 
-//#include <map>
 #include "..\..\..\include\Irrlicht\irrlicht.h"
 #include "Station.h"
 #include <iostream>

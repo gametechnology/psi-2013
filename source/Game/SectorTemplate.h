@@ -2,6 +2,7 @@
 #define SECTOR_TEMPLATE
 
 #include "Engine/Scene.h"
+#include "Engine/Camera.h"
 #include "SectorManager.h"
 #include "WormHole.h"
 #include "Mist.h"
@@ -9,6 +10,7 @@
 #include "Engine/Game.h"
 #include "EnemyManager.h"
 #include <vector>
+#include "Ship.h"
 
 class SectorManager;
 class SectorTemplate : public Scene  {
@@ -19,9 +21,9 @@ protected:
 	vector3df* _playerPosition;
 	// Camera Placeholder instead of player
 	irr::scene::ICameraSceneNode *_camera;
-	Entity* _player;
-	Entity* _ship;
-	Entity* _ship2;
+	Camera* _player;
+	Ship* _ship;
+	Ship* _ship2;
 	Entity* _skybox;
 	Mist* _fog;
 public:

@@ -1,24 +1,39 @@
 #include "ShipMover.h"
-#include "NetworkInterface.h"
+#include "Engine\Entity.h"
+#include "Ship.h"
+#include "BasicMoverComponent.h"
 
-using namespace irr;
-using namespace core;
 
-ShipMover::ShipMover(Ship* parent) : BasicMoverComponent() {
-	maxFwdSpeed = 10;
-	maxBwdSpeed = -10;
+ShipMover::ShipMover(Ship* _ship) : BasicMoverComponent() {
+	this->_ship = _ship;
 }
 
-ShipMover::~ShipMover() {
-
-}
+ShipMover::~ShipMover() { }
+void ShipMover::draw() { }
+void ShipMover::init() { }
 
 void ShipMover::update() {
-	if (Game::input->isKeyboardButtonDown(KEY_KEY_R) && thrust < maxFwdSpeed)
-		thrust += 0.01f;
-	if (Game::input->isKeyboardButtonDown(KEY_KEY_F) && thrust > maxBwdSpeed)
-		thrust -= 0.01f;
+	//input logic
+	
+	ShipMover::linearAcceleration = vector3df(0,0,0);
+	ShipMover::angularAcceleration = vector3df(0,0,0);
 
+	if(Game::input->isKeyboardButtonPressed(KEY_KEY_W))
+	{
+		this->linearAcceleration += _ship->GetThrusters()[0]->transform->force;
+		this->angularAcceleration += *(_ship->GetThrusters()[0]->transform->angularAccelaration) * 0.0001;
+	}
+	if(Game::input->isKeyboardButtonPressed(KEY_KEY_A))
+	{
+		this->linearAcceleration += _ship->GetThrusters()[1]->transform->force;
+		this->angularAcceleration += *(_ship->GetThrusters()[1]->transform->angularAccelaration) * 0.0001;
+	}
+	if(Game::input->isKeyboardButtonPressed(KEY_KEY_D))
+	{
+		this->linearAcceleration += _ship->GetThrusters()[2]->transform->force;
+		this->angularAcceleration += *(_ship->GetThrusters()[2]->transform->angularAccelaration) * 0.0001;
+	}
+	
 	//Roll 
 	if (Game::input->isKeyboardButtonDown(KEY_KEY_Q))
 		entity->transform->angularVelocity->X -= 1;

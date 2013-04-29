@@ -24,23 +24,21 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	// The player
 	//Get the player/Ship via Sectormanager
 	//_sectormanager->getShip()
-	_ship = new Ship();
-	
-	//TODO MERGE CONFLICT
-	// ----------------NEW-------------
-	//this->_player = new Camera(_ship, vector3df(0, 0, -100), _ship->transform->position ); //TODO: Make the camera work correctly according to station
-	//ShipMover* mover = new ShipMover((Ship*)_ship);
+	_ship = new Ship(this, vector3df(0,0,-100), vector3df(0,0,0));
+
 	_player = new Camera(); //TODO: Make the camera work correctly according to station
+	_player->setTarget(vector3df(0, 0, -100));
+	_player->setUpVector(*_ship->transform->position);
+	_ship->addChild(_player);
 
-	//_ship->addComponent(mover);
-
-	//_ship2 = new Ship();
-	//_ship2->transform->rotation->X = 180;
-	//BasicMoverComponent* movComp = new BasicMoverComponent();
-	//movComp->thrust = 0.0001f;
-	//_ship2->addComponent(movComp);
+	ShipMover* mover = new ShipMover(_ship);
 	
-	// ----------NEW--------------------
+	_ship->addComponent(mover);
+
+	_ship2 = new Ship(this, vector3df(0,0,-100), vector3df(180,0,0));
+	BasicMoverComponent* movComp = new BasicMoverComponent();
+	movComp->thrust = 0.01f;
+	_ship2->addComponent(movComp);
 	
 	
 	// Creating wormholes

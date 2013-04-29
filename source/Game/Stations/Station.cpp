@@ -150,14 +150,3 @@ void Station::repairStation(int health)
 	this->setStationDestroyed(false);
 	this->_health = health;
 }
-
-void Station :: Initialize( )
-{
-	this -> _player = NULL;
-	this -> _playerOnStationTime = 0;
-	this -> _stunTime = 0;
-	this -> _switchTime = 0;
-
-	if ( this -> _stationType != ST_POWER )	this -> _ship -> _powerStation		-> SubscribeStation( this );
-	if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
-}
