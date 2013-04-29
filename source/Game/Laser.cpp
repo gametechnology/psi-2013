@@ -8,7 +8,7 @@ Laser::Laser() : Entity()
 }
 
 void Laser::onAdd() {
-	addComponent(new IrrlichtNode(irr::io::path("../assets/Models/laser.3ds")));
+	addChild(new IrrlichtNode(irr::io::path("../assets/Models/laser.3ds")));
 }
 
 void Laser::init() {

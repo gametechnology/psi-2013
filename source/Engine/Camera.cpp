@@ -7,11 +7,12 @@ Camera::Camera() : IrrlichtNode("") {
 }
 
 void Camera::onAdd() {
-	entity->addComponent(new CameraMover());
+	addComponent(new CameraMover());
 }
 void Camera::createNode() {
 	printf("[Camera]-CreateNode \n");
-	//this->node = this->entity->scene->getIrrlichtSceneManager()->addCameraSceneNode(NULL, position, lookAt);
+	irr::core::vector3df lookAt = *this->transform->position + irr::core::vector3df(0,0,1); 
+	this->node = this->scene->getIrrlichtSceneManager()->addCameraSceneNode(NULL, *this->transform->position, lookAt);
 }
 irr::scene::ICameraSceneNode* Camera::getCameraNode() {
 	return ((irr::scene::ICameraSceneNode*)(node));
