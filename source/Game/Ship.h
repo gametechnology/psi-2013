@@ -57,7 +57,7 @@ public:
 
 	void CheckChangeInput();
 
-	Ship(Entity * parent, vector3df position, vector3df rotation);
+	Ship(vector3df position, vector3df rotation);
 	virtual ~Ship(void);
 
 	Station*	GetStation(StationType);

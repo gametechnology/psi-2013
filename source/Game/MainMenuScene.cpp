@@ -82,6 +82,7 @@ void MainMenuScene::update(){
 
 void MainMenuScene::StartGame()
 {
+	cout << endl << "MainMenuScene::StartGame() - not yet implemented" << endl;
 	/*MapGenerator mapGen;
 	mainMenuWindow->remove();
 	mapGen.init(20, 2, 5);

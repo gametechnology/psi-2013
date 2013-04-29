@@ -8,7 +8,7 @@
 
 PowerStation :: PowerStation( Ship *ship ) : Station( ship )
 {
-	
+	env = NULL;
 }
 
 void PowerStation :: init() {
@@ -312,7 +312,8 @@ void PowerStation::draw()
 {
 	Station::draw();
 
-	env->drawAll();
+	if (env != NULL)
+		env->drawAll();
 }
 
 //This method displays the selected station. We're using an integer which indicates which station is currently selected. 

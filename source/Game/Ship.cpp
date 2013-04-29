@@ -2,7 +2,7 @@
 #include "Stations/Station.h"
 #include "ShipMover.h"
 
-Ship::Ship( Entity * parent, vector3df position, vector3df rotation) : Entity ( *parent )
+Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 {
 	this->transform->position = &position;
 	this->transform->rotation = &rotation;
@@ -39,14 +39,13 @@ void Ship::onAdd() {
 	addChild(_camera);
 	
 	//Thrusters
-	_thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0,0, -4));
+	_thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0, 0, -4));
 	_thrusters[1] = new Thruster(this, vector3df(0,-2, 4), vector3df(0, 4, 0 ));
 	_thrusters[2] = new Thruster(this, vector3df(0,2, -4), vector3df(0, 4, 0 ));
-
-	//Health crap below
 }
 
-void Ship::init() {
+void Ship::init() 
+{
 	irr::core::stringw strShipHealth			= "ship health: "; 
 	strShipHealth +	irr::core::stringw();
 

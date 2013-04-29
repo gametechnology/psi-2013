@@ -14,6 +14,6 @@ void ShipScenes::init()
 	manager = new EnemyManager();
 
 	addChild(new Player());
-	addChild(new Ship(this, irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0)));
+	addChild(new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0)));
 	addComponent(manager);
 }

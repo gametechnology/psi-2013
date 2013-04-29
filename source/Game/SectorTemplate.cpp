@@ -24,7 +24,8 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	// The player
 	//Get the player/Ship via Sectormanager
 	//_sectormanager->getShip()
-	_ship = new Ship(this, vector3df(0,0,-100), vector3df(0,0,0));
+	_ship = new Ship(vector3df(0,0,-100), vector3df(0,0,0));
+	addChild(_ship);
 
 	_player = new Camera(); //TODO: Make the camera work correctly according to station
 	_player->setTarget(vector3df(0, 0, -100));
@@ -35,7 +36,9 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	
 	_ship->addComponent(mover);
 
-	_ship2 = new Ship(this, vector3df(0,0,-100), vector3df(180,0,0));
+	_ship2 = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
+	addChild(_ship2);
+
 	BasicMoverComponent* movComp = new BasicMoverComponent();
 	movComp->thrust = 0.01f;
 	_ship2->addComponent(movComp);

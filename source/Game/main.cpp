@@ -34,9 +34,9 @@ int main()
 	Scene* scene = new MainMenuScene();
 	game->sceneManager->addScene("MainMenuScene", scene);
 
-	// Need to create an Scene first or else it will crash, because I first delete then create scenes in SectorManager
-
-	
+	//Create ship
+	Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
+	scene->addChild(ship);
 
 	// Initialize game
 	game->init();
