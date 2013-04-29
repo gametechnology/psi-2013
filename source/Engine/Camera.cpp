@@ -10,7 +10,6 @@ void Camera::onAdd() {
 	addComponent(new CameraMover());
 }
 void Camera::createNode() {
-	printf("[Camera]-CreateNode \n");
 	irr::core::vector3df lookAt = *this->transform->position + irr::core::vector3df(0,0,1); 
 	this->node = this->scene->getIrrlichtSceneManager()->addCameraSceneNode(NULL, *this->transform->position, lookAt);
 }
