@@ -148,7 +148,7 @@ bool Entity::removeChild(Entity* child) {
 	return removeChild(child, true) != NULL;
 }
 
-Entity* Entity::removeChild(Entity* child, bool deleteChild) {
+bool Entity::removeChild(Entity* child, bool deleteChild) {
 	for (unsigned int i = 0; i < children.size(); i++) {
 		if (children[i] == child) {
 			Entity* child = children[i];
@@ -175,11 +175,11 @@ Entity* Entity::removeChild(Entity* child, bool deleteChild) {
 				children.erase(children.begin()+i);
 				child->destroy();
 				delete child;
-				return child; // I know child doesn't exist here anymore, but the pointer will contain 0xcdcdcdcd instead of NULL so we know if something is deleted
+				return true; // I know child doesn't exist here anymore, but the pointer will contain 0xcdcdcdcd instead of NULL so we know if something is deleted
 			} else
-				return child;
+				return true;
 		}
 	}
 
-	return NULL;
+	return false;
 }
