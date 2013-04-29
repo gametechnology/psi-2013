@@ -1,18 +1,19 @@
 #ifndef CAMERA
 #define CAMERA
 
-#include "Entity.h"
+#include "Engine/IrrlichtNode.h"
 
 using namespace irr;
 using namespace core;
 
-class Camera : public Entity {
+class Camera : public IrrlichtNode {
 public:
 	Camera();
 	virtual ~Camera();
 	
 	irr::scene::ICameraSceneNode* getCameraNode();
 	void onAdd();
+	void createNode();
 
 	void setTarget(irr::core::vector3df target);
 	void setUpVector(irr::core::vector3df up);

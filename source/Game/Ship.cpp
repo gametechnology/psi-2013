@@ -15,7 +15,7 @@ Ship::~Ship(void)
 
 void Ship::onAdd() {
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
-	addComponent(model);
+	addChild(model);
 
 	this->env = game->device->getGUIEnvironment();
 	this->_currentStation = NULL;

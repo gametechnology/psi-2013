@@ -10,6 +10,7 @@ void CameraMover::init() {
 }
 
 void CameraMover::lateUpdate() {
+	
 	vector3df tempPosition = *camera->transform->position;
 	vector3df tempRotation = *camera->transform->rotation;
 

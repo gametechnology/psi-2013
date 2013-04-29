@@ -49,7 +49,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 }
 
 void SectorTemplate::onAdd() {
-	this->_camera = this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
+	//this->_camera = this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
 	//addComponent(_enemyManager);
 	addChild(_skybox );
 	addChild( this->_player );
@@ -130,11 +130,11 @@ void SectorTemplate::update(){
 	this->_ship->transform->position
 	with
 	this->_camera->getPosition()*/
-	if( this->_camera->getPosition().getLength() > _boundry ){
+	if( this->_player->transform->position->getLength() > _boundry ){
 		printf("\n OUT OF BOUNDS!");
 	}
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
-		irr::core::vector3df deltaPos = *_wormHoles[i]->transform->position - this->_camera->getPosition();
+		irr::core::vector3df deltaPos = *_wormHoles[i]->transform->position - *this->_player->transform->position;
 		float collisionRadius = 50;
 		if( deltaPos.getLength() < collisionRadius ){			
 			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );

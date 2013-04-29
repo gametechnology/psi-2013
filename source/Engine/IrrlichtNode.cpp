@@ -1,7 +1,7 @@
 #include "Engine\IrrlichtNode.h"
 #include "Engine\Game.h"
 
-IrrlichtNode::IrrlichtNode(const irr::io::path& modelPath) : Component() {
+IrrlichtNode::IrrlichtNode(const irr::io::path& modelPath) : Entity() {
 	this->modelPath = modelPath;
 	this->node = NULL;
 }
@@ -9,24 +9,23 @@ IrrlichtNode::IrrlichtNode(const irr::io::path& modelPath) : Component() {
 void IrrlichtNode::init() {
 	createNode();
 
-	Component::init();
+	Entity::init();
 }
 
 void IrrlichtNode::createNode() {
 	// Get the mesh
-	irr::scene::IAnimatedMesh* mesh = Component::getScene()->getIrrlichtSceneManager()->getMesh( modelPath );
-
+	irr::scene::IAnimatedMesh* mesh = this->scene->getIrrlichtSceneManager()->getMesh( modelPath );
 	// Create model entity
-	node = getScene()->getIrrlichtSceneManager()->addMeshSceneNode( mesh );
+	node = this->scene->getIrrlichtSceneManager()->addMeshSceneNode( mesh );
 }
 
 void IrrlichtNode::update() {
 	if (node != NULL) {
-		node->setPosition(*entity->transform->position);
-		node->setRotation(*entity->transform->rotation);
+		node->setPosition(*this->parent->transform->position);
+		node->setRotation(*this->parent->transform->rotation);
 	}
 
-	Component::update();
+	Entity::update();
 }
 
 IrrlichtNode::~IrrlichtNode() {
@@ -34,4 +33,5 @@ IrrlichtNode::~IrrlichtNode() {
 		node->drop();
 		delete node;
 	}
+	Entity::~Entity();
 }

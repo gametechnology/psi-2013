@@ -2,14 +2,16 @@
 #include <Engine\Game.h>
 #include <Engine\CameraMover.h>
 
-Camera::Camera() : Entity() {
-	
+Camera::Camera() : IrrlichtNode("") {
 }
 
 void Camera::onAdd() {
 	addComponent(new CameraMover());
 }
-
+void Camera::createNode() {
+	irr::core::vector3df lookAt = *this->transform->position + irr::core::vector3df(0,0,1); 
+	this->node = this->scene->getIrrlichtSceneManager()->addCameraSceneNode(NULL, *this->transform->position, lookAt);
+}
 irr::scene::ICameraSceneNode* Camera::getCameraNode() {
 	return ((irr::scene::ICameraSceneNode*)(node));
 }
@@ -24,5 +26,5 @@ void Camera::setUpVector(irr::core::vector3df up) {
 
 Camera::~Camera()
 {
-	Entity::~Entity();
+	IrrlichtNode::~IrrlichtNode();
 }
