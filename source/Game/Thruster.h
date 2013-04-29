@@ -5,7 +5,7 @@
 class Thruster : public Entity
 {
 public:
-	Thruster(Composite *parent, irr::core::vector3df position, irr::core::vector3df initialDirection);
+	Thruster(Entity *parent, irr::core::vector3df position, irr::core::vector3df initialDirection);
 	virtual ~Thruster();
 	void Activate();
 	void init();

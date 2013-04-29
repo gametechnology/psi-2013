@@ -5,7 +5,8 @@
 #include "Thruster.h"
 #include "CalculateRotation.h"
 #include "Ship.h"
-class ShipMover : public Component
+#include "BasicMoverComponent.h"
+class ShipMover : public BasicMoverComponent
 {
 public:
 	ShipMover(Ship* ship);

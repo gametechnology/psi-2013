@@ -4,7 +4,7 @@
 #include "Engine\Entity.h"
 #include <iostream>
 
-Thruster::Thruster(Composite *parent, irr::core::vector3df position, irr::core::vector3df initialDirection) : Entity(*parent)
+Thruster::Thruster(Entity *parent, irr::core::vector3df position, irr::core::vector3df initialDirection) : Entity(*parent)
 {
 	this->transform->position = &position;
 	this->transform->rotation = &initialDirection;
@@ -43,7 +43,7 @@ Thruster::Thruster(Composite *parent, irr::core::vector3df position, irr::core::
 	//the angular acceleration direction this thruster provides is calculated
 	// Ö = I -1 * t
 	if(dot != -1){			//this is an earlyish escape to prevent unnecesarry matrix manipulato
-		inertiaMatrix->transformVect(angularForce, torque);
+		//inertiaMatrix->transformVect(angularForce, torque);
 		angularForce*= forceComponent2.getLength();
 	} else{
 		angularForce = irr::core::vector3df(0,0,0);

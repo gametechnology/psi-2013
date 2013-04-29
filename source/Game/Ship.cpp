@@ -2,10 +2,10 @@
 #include "Stations/Station.h"
 #include "ShipMover.h"
 
-Ship::Ship( Composite * parent, vector3df position, vector3df orientation) : Entity ( parent )
+Ship::Ship( Entity * parent, vector3df position, vector3df rotation) : Entity ( *parent )
 {
 	this->transform->position = &position;
-	this->transform->orientation = orientation;
+	this->transform->rotation = &rotation;
 }
 
 Ship::~Ship(void)
@@ -33,13 +33,15 @@ void Ship::onAdd() {
 	this->_powerStation->disable();
 
 	//Camera
-	_camera = new Camera(this, vector3df(0,0,0), vector3df(0,0,0));
-	addComponent(_camera);
+	_camera = new Camera();
+	_camera->setTarget(vector3df(0,0,0));
+	_camera->setUpVector(vector3df(0,1,0));
+	addChild(_camera);
 	
 	//Thrusters
-	_thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0,0, -4), _inertiaMatrix);
-	_thrusters[1] = new Thruster(this, vector3df(0,-2, 4), vector3df(0, 4, 0 ),_inertiaMatrix);
-	_thrusters[2] = new Thruster(this, vector3df(0,2, -4), vector3df(0, 4, 0 ),_inertiaMatrix);
+	_thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0,0, -4));
+	_thrusters[1] = new Thruster(this, vector3df(0,-2, 4), vector3df(0, 4, 0 ));
+	_thrusters[2] = new Thruster(this, vector3df(0,2, -4), vector3df(0, 4, 0 ));
 
 	//Health crap below
 }

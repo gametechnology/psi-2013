@@ -1,13 +1,16 @@
 #include "ShipMover.h"
 #include "Engine\Entity.h"
 #include "Ship.h"
+#include "BasicMoverComponent.h"
 
 
 ShipMover::ShipMover(Ship* _ship) : BasicMoverComponent() {
-	this->_ship = ship;
+	this->_ship = _ship;
 }
 
 ShipMover::~ShipMover() { }
+void ShipMover::draw() { }
+void ShipMover::init() { }
 
 void ShipMover::update() {
 	//input logic
@@ -17,18 +20,18 @@ void ShipMover::update() {
 
 	if(Game::input->isKeyboardButtonPressed(KEY_KEY_W))
 	{
-		this->linearAcceleration += _ship->GetThrusters()[0]->transform->linearForce;
-		this->angularAcceleration += (_ship->GetThrusters()[0]->transform->angularAccelaration * 0.0001);
+		this->linearAcceleration += _ship->GetThrusters()[0]->transform->force;
+		this->angularAcceleration += *(_ship->GetThrusters()[0]->transform->angularAccelaration) * 0.0001;
 	}
 	if(Game::input->isKeyboardButtonPressed(KEY_KEY_A))
 	{
-		this->linearAcceleration += _ship->GetThrusters()[1]->transform->linearForce;
-		this->angularAcceleration += (_ship->GetThrusters()[1]->transform->angularAccelaration * 0.0001);
+		this->linearAcceleration += _ship->GetThrusters()[1]->transform->force;
+		this->angularAcceleration += *(_ship->GetThrusters()[1]->transform->angularAccelaration) * 0.0001;
 	}
 	if(Game::input->isKeyboardButtonPressed(KEY_KEY_D))
 	{
-		this->linearAcceleration += _ship->GetThrusters()[2]->transform->linearForce;
-		this->angularAcceleration += (_ship->GetThrusters()[2]->transform->angularAccelaration * 0.0001);
+		this->linearAcceleration += _ship->GetThrusters()[2]->transform->force;
+		this->angularAcceleration += *(_ship->GetThrusters()[2]->transform->angularAccelaration) * 0.0001;
 	}
 	
 	//Roll 

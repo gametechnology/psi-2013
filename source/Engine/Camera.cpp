@@ -2,9 +2,8 @@
 #include <Engine\Game.h>
 #include <Engine\CameraMover.h>
 
-
 Camera::Camera() : Entity() {
-	//node = Entity::scene->sceneManager->addCameraSceneNode(NULL, position, lookAt);
+	
 }
 
 void Camera::onAdd() {

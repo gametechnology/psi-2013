@@ -55,10 +55,9 @@ public:
 	void updateShipHealth();
 	void draw();
 
-	Ship();
 	void CheckChangeInput();
 
-	Ship(Composite * parent, vector3df position, vector3df orientation);
+	Ship(Entity * parent, vector3df position, vector3df rotation);
 	virtual ~Ship(void);
 
 	Station*	GetStation(StationType);
