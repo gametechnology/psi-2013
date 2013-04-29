@@ -13,7 +13,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
     {
         s32 id = event.GUIEvent.Caller->getID();
 		IGUIEnvironment* env = this->contextGame->guiEnv;
-		MainMenuScene* mainmenu = ((MainMenuScene*)this->contextGame->sceneManager->getScene("MainMenuScene"));
+		MainMenuScene* mainmenu = ((MainMenuScene*)this->contextGame->sceneManager->getLastScene());
 		char* ipadress;
 		 wchar_t* inputwchar;
 
@@ -31,7 +31,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 				case EGET_BUTTON_CLICKED:
 				switch(id)
 				{
-				case 1:
+				case 1: // Join
 					inputwchar = (wchar_t*)mainmenu->Ipadresinput->getText();
 					ipadress = (char*)malloc(wcslen(inputwchar)+ 1);
 					wcstombs(ipadress, inputwchar, wcslen(inputwchar));
@@ -78,7 +78,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						
 					
 					return true;
-				case 2:
+				case 2: // Create
 					namewchar = (wchar_t*)mainmenu->Nameinput->getText();
 					playername = (char*)malloc(wcslen(namewchar)+ 1);
 					wcstombs(playername, namewchar, wcslen(namewchar));
@@ -104,11 +104,11 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					mainmenu->playerlist.push_back(newplayer);
 					return true;
 					}
-				case 3:
+				case 3: // Start
 					mainmenu->StartGame();
 					Network::GetInstance()->SendServerPacket(packet, true);
 					return true;
-				case 4:
+				case 4: // Quit
 					if(!Network::GetInstance()->IsServer())
 					{
 						Network::GetInstance()->SendPacket(quitpacket, true);

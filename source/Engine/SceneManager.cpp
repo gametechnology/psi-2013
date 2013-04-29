@@ -59,11 +59,11 @@ void SceneManager::deactivateScene(char* name){
 }
 
 //Returns The NameScene of a scene, So you'll can get the name & scene object
-NameScene SceneManager::getNameScene(char* name){
+NameScene* SceneManager::getNameScene(char* name){
 	if (exists(name)) {
 		for(int i = 0; i< nameScenes.size(); i++){
 			if (&nameScenes[i].name == &name) {
-				return nameScenes[i];
+				return &nameScenes[i];
 			}
 		} 
 	}
@@ -71,8 +71,8 @@ NameScene SceneManager::getNameScene(char* name){
 //Returns the Scene object
 Scene* SceneManager::getScene(char* name){
 
-	NameScene namesc = getNameScene(name);
-	return namesc.scene;
+	NameScene* namesc = getNameScene(name);
+	return namesc->scene;
 
 }
 

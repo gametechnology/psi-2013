@@ -15,11 +15,11 @@ irr::scene::ICameraSceneNode* Camera::getCameraNode() {
 }
 
 void Camera::setTarget(irr::core::vector3df target) {
-	node->setTarget(target);
+	//node->setTarget(target);
 }
 
 void Camera::setUpVector(irr::core::vector3df up) {
-	node->setUpVector(up);
+	//node->setUpVector(up);
 }
 
 Camera::~Camera()
