@@ -29,13 +29,16 @@ void EnemyFighter::chase(vector3df target)
 void EnemyFighter::loadLaser()
 {
 	this->_nrLasers = 5;
-	this->_laser = new Laser[this->_nrLasers];
+	for (int i = 0; i< _nrLasers; i++)
+	{
+		this->_laser.push_back(new Laser);
+	}
 	this->_curLaser = 0;
 	this->_fireTime = 0;
 
 	for (int i = 0; i < this->_nrLasers; i++)
 	{
-		Game::getCurrentScene()->addComponent(&this->_laser[i]);
+		Game::getCurrentScene()->addComponent(this->_laser[i]);
 	}
 }
 
@@ -55,7 +58,7 @@ void EnemyFighter::update()
 			this->fireLaserAt(this->getTarget());
 			this->_fireTime = 0;
 		}
-		this->_laser[this->_curLaser].update();
+		this->_laser[this->_curLaser]->update();
 	}
 
 	Enemy::update();
@@ -70,7 +73,7 @@ EnemyFighter::~EnemyFighter(void)
 
 void EnemyFighter::fireLaserAt(vector3df target)
 {
-	this->_laser[this->_curLaser].fire(this, target, 1.0f);
+	this->_laser[this->_curLaser]->fire(this, target, 1.0f);
 	this->_curLaser++;
 	
 	if(this->_curLaser >= 5)
@@ -79,7 +82,7 @@ void EnemyFighter::fireLaserAt(vector3df target)
 	}
 }
 
-Laser* EnemyFighter::GetLasers()
+array<Laser*> EnemyFighter::GetLasers()
 {
 	return _laser;
 }

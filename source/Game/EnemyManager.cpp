@@ -204,12 +204,12 @@ void EnemyManager::LaserNarrowPhase(array<Enemy*> _enput, array<Laser*> _laput)
 {
 	for (int i = 0; i < (int)(_laput.size()); i++)
 	{
-		for(int j = i; j < (int)(_enput.size()); j++)
+		for(int j = 0; j < (int)(_enput.size()); j++)
 		{
 			float distance = _laput[i]->position.getDistanceFrom(_enput[j]->position);
 			if (distance < (_enput[j]->getRadius()))
 			{
-				_laput[j]->contactResolver(_enput[i]);
+				_laput[i]->contactResolver(_enput[j]);
 			}
 		}
 	}
@@ -290,7 +290,13 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 		if(dynamic_cast<EnemyFighter*>(_input[i]))
 		{
 			EnemyFighter* temp = (EnemyFighter*) _input[i];
-			laserlist.push_back(temp->GetLasers());
+			if (!temp->GetLasers().empty())
+			{
+				for (int k = 0; k < temp->GetLasers().size(); k++)
+				{
+					laserlist.push_back(temp->GetLasers()[k]);
+				}
+			}
 		}
 	}
 	if (!laserlist.empty())
