@@ -66,6 +66,9 @@
     <ClInclude Include="CubeNode.h">
       <Filter>Header Files\Components</Filter>
     </ClInclude>
+    <ClInclude Include="BillBoardNode.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\Engine\Camera.cpp">
@@ -120,6 +123,9 @@
       <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="CubeNode.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="BillBoardNode.cpp">
       <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
