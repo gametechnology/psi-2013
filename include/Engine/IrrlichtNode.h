@@ -12,9 +12,10 @@ public:
 	void init();
 	void update();
 private:
+	virtual void createNode();
+protected:
 	irr::io::path modelPath;
 	irr::scene::ISceneNode* node;
-	virtual void createNode();
 
 };
 
