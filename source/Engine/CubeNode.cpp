@@ -1,7 +1,7 @@
-#include "Engine\CubeNode"
+#include "Engine\CubeNode.h"
 #include <Engine\Game.h>
 
-CubeNode::CubeNode(irr::f32 size = 10.0F,irr::core::vector3df position = irr::core::vector3df(0,0,0),irr::core::vector3df rotation = irr::core::vector3df(0,0,0), const irr::io::path& modelPath) : IrrlichtNode(modelPath) {
+CubeNode::CubeNode(const irr::io::path& modelPath, irr::f32 size = 10.0F,irr::core::vector3df position = irr::core::vector3df(0,0,0),irr::core::vector3df rotation = irr::core::vector3df(0,0,0)) : IrrlichtNode(modelPath) {
 	_size = size;
 	_position = position;
 	_rotation = rotation;

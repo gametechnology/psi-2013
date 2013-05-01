@@ -1,7 +1,7 @@
-#include "Engine\BillBoardNode"
+#include "Engine\BillBoardNode.h"
 #include <Engine\Game.h>
 
-BillBoardNode::BillBoardNode(irr::core::dimension2df size = irr::core::dimension2df(10,10),irr::core::vector3df position = irr::core::vector3df(0,0,0),irr::core::vector3df rotation = irr::core::vector3df(0,0,0), const irr::io::path& modelPath) : IrrlichtNode(modelPath) {
+BillBoardNode::BillBoardNode(const irr::io::path& modelPath, irr::core::dimension2df size = irr::core::dimension2df(10,10),irr::core::vector3df position = irr::core::vector3df(0,0,0),irr::core::vector3df rotation = irr::core::vector3df(0,0,0)) : IrrlichtNode(modelPath) {
 	_size = size;
 	_position = position;
 	_rotation = rotation;
