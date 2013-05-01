@@ -89,7 +89,7 @@ public:
 	void contactGenerator(Enemy* input);
 	void contactResolverA(Enemy* _input);
 	void contactResolverB();
-	void steering(irr::core::vector3df rotational);
+	void steering(irr::core::vector3df rotational, irr::core::vector3df playerPos);
 	void wander();
 	int getHealth();
 	int getMaxHealth();

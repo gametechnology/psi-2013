@@ -104,7 +104,7 @@ void Enemy::applySpeed()
 	}
 }
 
-void Enemy::steering(irr::core::vector3df rotational)
+void Enemy::steering(irr::core::vector3df rotational, irr::core::vector3df playerPos)
 {
 
 		irr::core::matrix4 matX;
@@ -195,7 +195,15 @@ void Enemy::steering(irr::core::vector3df rotational)
 		this->setOriginalVelocity(velocity);
 		this->velocity = newvelocity;
 
-	    float magnitude = sqrt(pow(velocity.X,2) + pow(velocity.Y,2) + pow(velocity.Z,2));
+		irr::core::vector3df diffPos;
+		diffPos.X = this->getPosition().X - playerPos.X;
+		diffPos.Y = this->getPosition().Y - playerPos.Y;
+		diffPos.normalize();
+		
+		orientation.X = RADTODEG * asin(diffPos.Y);
+		orientation.Y = RADTODEG * acos(diffPos.X);
+
+	    /*float magnitude = sqrt(pow(velocity.X,2) + pow(velocity.Y,2) + pow(velocity.Z,2));
 		vector3df normalizedvelocity = vector3df((velocity.X/magnitude),(velocity.Y/magnitude),(velocity.Z/magnitude));
 
 		magnitude = sqrt(pow(originalvelocity_.X,2) + pow(originalvelocity_.Y,2) + pow(originalvelocity_.Z,2));
@@ -205,37 +213,7 @@ void Enemy::steering(irr::core::vector3df rotational)
 		{
 			this->setOriginalVelocity(velocity);
 			return;
-		}
-
-		if(rotational.X < 0)
-		{
-			rotational.X *= -1;
-			this->orientation.X -= rotational.X/60;
-		}
-		else
-		{
-			this->orientation.X += rotational.X/60;
-		}	
-
-		if(rotational.Y < 0)
-		{
-				rotational.Y *= -1;
-				this->orientation.Y -= rotational.Y/60;
-		}
-		else
-		{
-			this->orientation.Y += rotational.Y/60;
-		}
-		
-		if(rotational.Z < 0)
-		{
-			rotational.Z *= -1;
-			this->orientation.Z -= rotational.Z/60;
-		}
-		else
-		{
-			this->orientation.Z += rotational.Z/60;
-		}
+		}*/
 }
 
 void Enemy::contactResolverA(Enemy* _input)

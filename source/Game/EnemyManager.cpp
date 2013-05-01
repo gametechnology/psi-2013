@@ -50,7 +50,7 @@ void EnemyManager::createEnemies()
 	drone1->setRotation(irr::core::vector3df(0,1,0));
 	addComponent(drone1);
 	fighter1 = new EnemyFighter(irr::core::vector3df(100,0,0));
-	fighter1->setVelocity(vector3df(0.0005f,0,0));
+	fighter1->setVelocity(vector3df(0.1f,0,0));
 	addComponent(fighter1);
 
 	asteroid1 = new EnemyAsteroid(irr::core::vector3df(50,0,0),vector3df(0,0,0));
@@ -64,7 +64,7 @@ void EnemyManager::createEnemies()
 	asteroid5 = new EnemyAsteroid(irr::core::vector3df(50,20,0),vector3df(0,0.005f,0));
 	addComponent(asteroid5);
 	
-	//kamikaze enemy
+	////kamikaze enemy
 	kamikaze1 = new EnemyDrone(irr::core::vector3df(30,30,30));
 	kamikaze1->setVelocity(vector3df(0.0005f,0,0));
 	addComponent(kamikaze1);
@@ -108,14 +108,14 @@ void EnemyManager::update()
 
 		if(dynamic_cast<EnemyDrone*>(_enemyList[i]))
 		{
-			_enemyList[i]->steering(irr::core::vector3df(0,1,0));
+			_enemyList[i]->steering(irr::core::vector3df(0,1,0), player->position);
 			if((player->position - _enemyList[i]->position).getLength() <= _enemyList[i]->getLoS())
 			{
 				_enemyList[i]->inRangeList.push_back(player);
 			}
 		}else if(dynamic_cast<EnemyFighter*>(_enemyList[i]))
 		{
-			_enemyList[i]->steering(irr::core::vector3df(0,-1,0));
+			_enemyList[i]->steering(irr::core::vector3df(0,-1,0), player->position);
 			if((player->position - _enemyList[i]->position).getLength() <= _enemyList[i]->getLoS())
 			{
 				_enemyList[i]->inRangeList.push_back(player);
