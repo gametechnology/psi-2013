@@ -16,7 +16,7 @@ void Skybox::init() {
 }
 
 Skybox::~Skybox() {
-	skydome->drop();
+	skydome->remove();
 	//delete skydome;
 	Entity::~Entity();
 }

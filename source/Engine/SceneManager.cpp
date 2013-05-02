@@ -10,6 +10,7 @@ void SceneManager::init(){
 
 void SceneManager::drawAll() {
 	for(unsigned int i = 0; i < nameScenes.size(); i++) {
+		
 		if (nameScenes[i].scene->enabled)
 			nameScenes[i].scene->getIrrlichtSceneManager()->drawAll();
 	}

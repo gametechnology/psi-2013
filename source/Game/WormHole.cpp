@@ -31,7 +31,7 @@ void WormHole::handleMessage(unsigned int message, void* data) {
 }
 
 WormHole::~WormHole() {
-	_wormhole->drop();
+	_wormhole->remove();
 	//delete _wormhole;
 	Entity::~Entity();
 }

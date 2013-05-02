@@ -39,7 +39,7 @@ AstroidPlaceholder::AstroidPlaceholder(Composite* parent):Entity() {
 }
 
 AstroidPlaceholder::~AstroidPlaceholder() {
-	node->drop();
-	delete node;
+	node->remove();
+	//delete node;
 	Entity::~Entity();
 }
