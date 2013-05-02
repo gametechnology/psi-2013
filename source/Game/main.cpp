@@ -24,7 +24,7 @@ using namespace gui;
 int main()
 {
 	// Create engine
-	Game game;
+	Game* game = new Game();
 	//Enemy::newEnemyId = 0;
 	
 	/////////////////////////////////////////
@@ -53,7 +53,7 @@ int main()
 	//sectorManager.init();
 
 	// Start the main loop
-	Game::run();
+	game->run();
 
 	// Debug for memory leaks
 	#ifdef _DEBUG

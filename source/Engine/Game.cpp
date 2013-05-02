@@ -8,28 +8,17 @@
 #pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
 
-using namespace irr;
-using namespace core;
-using namespace video;
-using namespace scene;
-
-// Predefine static variables
-IrrlichtDevice* Game::device;
-IVideoDriver* Game::driver;
 InputManager* Game::input;
-std::forward_list<Scene*>* Game::scenes;
-
-IGUIEnvironment* Game::guiEnv;
 Game::Game()
 {
 	//Create a new stack to store all scenes
-	Game::scenes = new std::forward_list<Scene*>;
+	Game::scenes = new std::vector<Scene*>;
 
 	//Create input manager
 	Game::input = new InputManager();
 
 	// Create the irrlicht device 
-	Game::device = createDevice(EDT_OPENGL, dimension2d<u32>(1280, 720), 16, false, false, true, Game::input);
+	Game::device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1280, 720), 16, false, false, true);
 
 	// If the device was not created correctly, then shut down the program
 	if(Game::device) {
@@ -42,22 +31,31 @@ Game::Game()
 		//Set title of the window
 		Game::device->setWindowCaption(L"Stella Incognita");
 	}
+	// Create the topmost node
+	game = new Entity();
 }
 
 void Game::run()
 {
 	//Main loop
 	while( Game :: device -> run( ) )
-	{	
-		Game::input->endInputProcess();
-		Game::getCurrentScene( ) -> update( );
-		Game::driver -> beginScene(true, true, SColor(255,100,101,140));
+	{		
+		game->update();
+
+		// Clearing the screen
+		Game :: driver -> beginScene(true, true, irr::video::SColor(255,100,101,140));
+
 		//Irrlicht draw all
-		(*Game::scenes->begin())->sceneManager->drawAll();
+		//(*Game::scenes->begin())->sceneManager->drawAll();
+		sceneManager->drawAll();
+
 		//Game engine draw
-		Game::getCurrentScene()->draw();
+		game->draw();
+
 		//Irrlicht GUI
 		Game::guiEnv->drawAll();
+
+		// End the scene
 		Game::driver->endScene();
 		Game::input->startInputProcess();
 		Network::GetInstance()->DistributeReceivedPackets();
@@ -68,23 +66,23 @@ void Game::run()
 
 Scene* Game::getCurrentScene()
 {
-	return *scenes->begin();
+	return *scenes->end();
 }
 
-ISceneManager* Game::getSceneManager()
+irr::scene::ISceneManager* Game::getSceneManager()
 {
 	return (*scenes->begin())->sceneManager;
 }
 
 void Game::addScene(Scene* scene)
 {
-	Game::scenes->push_front(scene);
+	Game::scenes->push_back(scene);
 	scene->init();
 }
 
 void Game::removeScene()
 {
-	Game::scenes->pop_front();
+	Game::scenes->pop_back();
 }
 
 Game::~Game()
@@ -94,6 +92,6 @@ Game::~Game()
 	//{
 	//	delete (*i);
 	//}
-	scenes->clear();
+
 	delete scenes;
 }

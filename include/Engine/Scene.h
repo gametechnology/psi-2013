@@ -1,21 +1,15 @@
-#include "Composite.h"
-#include "Entity.h"
-#include <Irrlicht\irrlicht.h>
-
-
 #ifndef SCENE
 #define SCENE
 
-using namespace core;
-using namespace scene;
+#include "Entity.h"
+#include "Irrlicht\irrlicht.h"
 
-class Scene : public Composite
-{
+class Scene : public Entity {
 public:
 	Scene();
-	~Scene(void);
+	~Scene();
 
-	enum State{
+	enum State {
 		LOADING,
 		PLAYING,
 		PAUSED,
@@ -23,7 +17,7 @@ public:
 	};
 
 	State state;
-	ISceneManager* sceneManager;
+	irr::scene::ISceneManager* sceneManager;
 };
 
 #endif
