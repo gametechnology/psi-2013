@@ -199,7 +199,7 @@ void PowerStation::createUI()
 	// Create the event receiver, giving it that context structure.
 	MyEventReceiver *receiver = new MyEventReceiver(context, this->game->device);
 	// And tell the device to use our custom event receiver.
-	Game::input->setCustomEventReceiver(receiver);
+	game->input->setCustomEventReceiver(receiver);
 }
 
 //Defines the used driver and some UI data values.

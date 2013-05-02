@@ -1,11 +1,15 @@
+/*
+ *	https://github.com/gametechnology/psi-2013/wiki/InputManager
+*/
+
 #pragma once
 #include "Irrlicht\irrlicht.h"
 #include "Irrlicht\IEventReceiver.h"
 
 using namespace irr;
 
-#define NUMBER_OF_KEYS KEY_KEY_CODES_COUNT
-#define NUMBER_OF_MOUSE_BUTTONS 3
+#define NUMBER_OF_KEYBOARD_BUTTONS KEY_KEY_CODES_COUNT
+#define NUMBER_OF_MOUSE_BUTTONS MOUSE_BUTTON_COUNT
 
 enum ButtonState
 {
@@ -19,7 +23,8 @@ enum MouseButton
 {
 	LEFT_MB,
 	MIDDLE_MB,
-	RIGHT_MB
+	RIGHT_MB,
+	MOUSE_BUTTON_COUNT
 };
 
 struct MouseData
@@ -75,7 +80,7 @@ public:
 
 	bool OnEvent(const SEvent &event);
 protected:
-	ButtonState keys[NUMBER_OF_KEYS];
+	ButtonState keys[NUMBER_OF_KEYBOARD_BUTTONS];
 	ButtonState mouse[NUMBER_OF_MOUSE_BUTTONS];
 	MouseData mouseData;
 	ProcessEventState processState;

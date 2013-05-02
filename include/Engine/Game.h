@@ -23,7 +23,7 @@ public:
 
 	Entity* game;
 	SceneManager* sceneManager;
-	static InputManager* input;
+	InputManager* input;
 
 protected:
 	

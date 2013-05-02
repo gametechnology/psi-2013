@@ -24,10 +24,10 @@ void EmptyTestScene::init(){
 }
 
 void EmptyTestScene::update(){
-	if(Game::input->isKeyboardButtonDown(KEY_KEY_W)){
+	if(game->input->isKeyboardButtonDown(KEY_KEY_W)){
 		a -= 1;
 	}
-	if(Game::input->isKeyboardButtonDown(KEY_KEY_S)){
+	if(game->input->isKeyboardButtonDown(KEY_KEY_S)){
 		a += 1;
 	}
 }

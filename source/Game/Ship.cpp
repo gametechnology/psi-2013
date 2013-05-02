@@ -158,19 +158,19 @@ Thruster** Ship :: GetThrusters()
 
 void Ship :: CheckChangeInput()
 {
-	if (Game::input->isKeyboardButtonPressed(KEY_KEY_1))
+	if (game->input->isKeyboardButtonPressed(KEY_KEY_1))
 		SwitchToStation(ST_DEFENCE);
 
-	if (Game::input->isKeyboardButtonPressed(KEY_KEY_2))
+	if (game->input->isKeyboardButtonPressed(KEY_KEY_2))
 		SwitchToStation(ST_HELM);
 
-	if (Game::input->isKeyboardButtonPressed(KEY_KEY_3))
+	if (game->input->isKeyboardButtonPressed(KEY_KEY_3))
 		SwitchToStation(ST_WEAPON);
 
-	if (Game::input->isKeyboardButtonPressed(KEY_KEY_4))
+	if (game->input->isKeyboardButtonPressed(KEY_KEY_4))
 		SwitchToStation(ST_NAVIGATION);
 
-	if (Game::input->isKeyboardButtonPressed(KEY_KEY_5))
+	if (game->input->isKeyboardButtonPressed(KEY_KEY_5))
 		SwitchToStation(ST_POWER);
 }
 

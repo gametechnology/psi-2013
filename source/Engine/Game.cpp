@@ -9,14 +9,13 @@
 #pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
 
-InputManager* Game::input;
 Game::Game()
 {
 	//Create input manager
-	Game::input = new InputManager();
+	input = new InputManager();
 
 	// Create the irrlicht device 
-	device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1280, 720), 16, false, false, true, Game::input);
+	device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1280, 720), 16, false, false, true, input);
 
 	// If the device was not created correctly, then shut down the program
 	if(device != NULL) {
@@ -46,6 +45,8 @@ void Game::run()
 	//Main loop
 	while(device -> run( ) )
 	{		
+		input->endInputProcess();
+
 		//Game :: getCurrentScene( ) -> update( );
 		game->update();
 
@@ -56,7 +57,7 @@ void Game::run()
 		sceneManager->drawAll();
 
 		//Print the Hierarchy of the latest scene
-		if (Game::input->isKeyboardButtonReleased(KEY_KEY_V))
+		if (input->isKeyboardButtonReleased(KEY_KEY_V))
 			Hierarchy::Visualize(sceneManager->getLastScene());
 
 		//Game engine draw
@@ -69,7 +70,7 @@ void Game::run()
 		driver->endScene();
 
 		// Other shit
-		Game::input->startInputProcess();
+		input->startInputProcess();
 		Network::GetInstance()->DistributeReceivedPackets();
 	}
 

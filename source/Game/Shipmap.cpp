@@ -158,49 +158,49 @@ void Shipmap::update()
 	playerTile.x = (int)((this->transform->position->X - offsetX) / tileSize);
 	playerTile.y = (int)((this->transform->position->Y - offsetY) / tileSize);
 
-	if (Game::input->isKeyboardButtonDown(irr::KEY_KEY_A))
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_A))
 	{
 		isMoving = true;
 		this->transform->position->X -= playerSpeed;
 	}
-	else if (Game::input->isKeyboardButtonDown(irr::KEY_KEY_D))
+	else if (game->input->isKeyboardButtonDown(irr::KEY_KEY_D))
 	{
 		isMoving = true;
 		this->transform->position->X += playerSpeed;
 	}
-	if (Game::input->isKeyboardButtonDown(irr::KEY_KEY_W))
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_W))
 	{
 		isMoving = true;
 		this->transform->position->Y -= playerSpeed;
 	}
-	else if (Game::input->isKeyboardButtonDown(irr::KEY_KEY_S))
+	else if (game->input->isKeyboardButtonDown(irr::KEY_KEY_S))
 	{
 		isMoving = true;
 		this->transform->position->Y += playerSpeed;
 	}
 
 	// TODO remove this when implementing stations - it's merely for testing purposes to see if station occupied state works
-	if (Game::input->isKeyboardButtonPressed(irr::KEY_KEY_0))
+	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_0))
 	{
 		stationOccupied[0] = !stationOccupied[0];
 	}
-	if (Game::input->isKeyboardButtonPressed(irr::KEY_KEY_1))
+	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_1))
 	{
 		stationOccupied[1] = !stationOccupied[1];
 	}
-	if (Game::input->isKeyboardButtonPressed(irr::KEY_KEY_2))
+	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_2))
 	{
 		stationOccupied[2] = !stationOccupied[2];
 	}
-	if (Game::input->isKeyboardButtonPressed(irr::KEY_KEY_3))
+	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_3))
 	{
 		stationOccupied[3] = !stationOccupied[3];
 	}
-	if (Game::input->isKeyboardButtonPressed(irr::KEY_KEY_4))
+	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_4))
 	{
 		stationOccupied[4] = !stationOccupied[4];
 	}
-	if (Game::input->isKeyboardButtonPressed(irr::KEY_KEY_5))
+	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_5))
 	{
 		stationOccupied[5] = !stationOccupied[5];
 	}
@@ -225,7 +225,7 @@ void Shipmap::update()
 
 	// Enter a station
 	// TODO implement with stations, enter the correct station on pressing E by checking position against boundingboxes
-	if (Game::input->isKeyboardButtonDown(irr::KEY_KEY_E) || Game::input->isKeyboardButtonDown(irr::KEY_KEY_F))
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_E) || game->input->isKeyboardButtonDown(irr::KEY_KEY_F))
 	{
 		if(!blockedE && onStation)
 		{

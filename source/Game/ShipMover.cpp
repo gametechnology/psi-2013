@@ -17,39 +17,39 @@ void ShipMover::update() {
 	
 	ShipMover::linearAcceleration = vector3df(0,0,0);
 	ShipMover::angularAcceleration = vector3df(0,0,0);
-
-	if(Game::input->isKeyboardButtonPressed(KEY_KEY_W))
+	
+	if(getGame()->input->isKeyboardButtonPressed(KEY_KEY_W))
 	{
 		this->linearAcceleration += _ship->GetThrusters()[0]->transform->force;
 		this->angularAcceleration += *(_ship->GetThrusters()[0]->transform->angularAccelaration) * 0.0001;
 	}
-	if(Game::input->isKeyboardButtonPressed(KEY_KEY_A))
+	if(getGame()->input->isKeyboardButtonPressed(KEY_KEY_A))
 	{
 		this->linearAcceleration += _ship->GetThrusters()[1]->transform->force;
 		this->angularAcceleration += *(_ship->GetThrusters()[1]->transform->angularAccelaration) * 0.0001;
 	}
-	if(Game::input->isKeyboardButtonPressed(KEY_KEY_D))
+	if(getGame()->input->isKeyboardButtonPressed(KEY_KEY_D))
 	{
 		this->linearAcceleration += _ship->GetThrusters()[2]->transform->force;
 		this->angularAcceleration += *(_ship->GetThrusters()[2]->transform->angularAccelaration) * 0.0001;
 	}
 	
 	//Roll 
-	if (Game::input->isKeyboardButtonDown(KEY_KEY_Q))
+	if (getGame()->input->isKeyboardButtonDown(KEY_KEY_Q))
 		entity->transform->angularVelocity->X -= 1;
-	if (Game::input->isKeyboardButtonDown(KEY_KEY_E))
+	if (getGame()->input->isKeyboardButtonDown(KEY_KEY_E))
 		entity->transform->angularVelocity->X += 1;
 	
 	//YAW 
-	if (Game::input->isKeyboardButtonDown(KEY_KEY_A))
+	if (getGame()->input->isKeyboardButtonDown(KEY_KEY_A))
 		entity->transform->angularVelocity->Y -= 1;
-	if (Game::input->isKeyboardButtonDown(KEY_KEY_D))
+	if (getGame()->input->isKeyboardButtonDown(KEY_KEY_D))
 		entity->transform->angularVelocity->Y += 1;   
 
 	//PITCH
-	if (Game::input->isKeyboardButtonDown(KEY_KEY_W))
+	if (getGame()->input->isKeyboardButtonDown(KEY_KEY_W))
 		entity->transform->angularVelocity->Z -= 1;   
-	if (Game::input->isKeyboardButtonDown(KEY_KEY_S))
+	if (getGame()->input->isKeyboardButtonDown(KEY_KEY_S))
 		entity->transform->angularVelocity->Z += 1;
 
 	//printf("rotation: x:%f, y:%f, z:%f\n", entityParent->orientation.X, entityParent->orientation.Y, entityParent->orientation.Z);
