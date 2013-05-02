@@ -51,29 +51,31 @@ void Entity::handleMessage(unsigned int message) {
 void Entity::update() {
 	Composite::update();
 
-	if (enabled) {
-		for (unsigned int i = 0; i < components.size(); i++) {
-			if (components[i] == NULL) {
-				components.erase(components.begin()+i--);
-			} else if (components[i]->destroyed) {
-				Component* component = components[i];
-				components.erase(components.begin()+i--);
-				delete component;
-			} else {
-				components[i]->update();
-			}
+	if (!enabled) return;
+		
+	for (unsigned int i = 0; i < components.size(); i++) {
+		if (components[i] == NULL) {
+			components.erase(components.begin()+i--);
+		} else if (components[i]->destroyed) {
+			Component* component = components[i];
+			components.erase(components.begin()+i--);
+			delete component;
+		} else {
+			if ( components[i]->enabled == false ) continue;
+			components[i]->update();
 		}
+	}
 	
-		for (unsigned int i = 0; i < children.size(); i++) {
-			if (children[i] == NULL) {
-				children.erase(children.begin()+i--);
-			} else if (children[i]->destroyed) {
-				Entity* child = children[i];
-				children.erase(children.begin()+i--);
-				delete child;
-			} else {
-				children[i]->update();
-			}
+	for (unsigned int i = 0; i < children.size(); i++) {
+		if (children[i] == NULL) {
+			children.erase(children.begin()+i--);
+		} else if (children[i]->destroyed) {
+			Entity* child = children[i];
+			children.erase(children.begin()+i--);
+			delete child;
+		} else {
+			if ( children[i]->enabled == false ) continue;
+			children[i]->update();
 		}
 	}
 }
@@ -119,6 +121,8 @@ bool Entity::removeComponent(Component* component) {
 			Component* component = components[i];
 			components[i] = NULL;
 
+			components.erase(components.begin()+i);
+			component->destroy();
 			delete component;
 			return true;
 		}
@@ -144,7 +148,7 @@ bool Entity::removeChild(Entity* child) {
 	return removeChild(child, true) != NULL;
 }
 
-Entity* Entity::removeChild(Entity* child, bool deleteChild) {
+bool Entity::removeChild(Entity* child, bool deleteChild) {
 	for (unsigned int i = 0; i < children.size(); i++) {
 		if (children[i] == child) {
 			Entity* child = children[i];
@@ -152,20 +156,30 @@ Entity* Entity::removeChild(Entity* child, bool deleteChild) {
 
 			if (deleteChild) {
 
-				if(children.size()>0)
-				{
-					for (unsigned int i = 0; i < child->children.size(); i++) {
-						child->removeChild(child->children[i],true);
-					} 
+				if(children.size()>0) {
+					// Deleting the Entitys of this Child
+					int childIndex = child->children.size()-1;
+					while(childIndex > 0){
+						child->removeChild( child->children[childIndex],true );
+						childIndex = child->children.size()-1;
+					}
+
+					// Deleting the Components of this Child
+					int componentIndex = child->components.size()-1;
+					while(componentIndex > 0){
+						child->removeComponent( child->components[componentIndex] );
+						componentIndex = child->components.size()-1;
+					}
 				}
 
 				children.erase(children.begin()+i);
+				child->destroy();
 				delete child;
-				return child; // I know child doesn't exist here anymore, but the pointer will contain 0xcdcdcdcd instead of NULL so we know if something is deleted
+				return true; // I know child doesn't exist here anymore, but the pointer will contain 0xcdcdcdcd instead of NULL so we know if something is deleted
 			} else
-				return child;
+				return true;
 		}
 	}
 
-	return NULL;
+	return false;
 }

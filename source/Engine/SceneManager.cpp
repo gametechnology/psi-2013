@@ -9,7 +9,8 @@ void SceneManager::init(){
 }
 
 void SceneManager::drawAll() {
-	for(int i = 0; i < nameScenes.size(); i++) {
+	for(unsigned int i = 0; i < nameScenes.size(); i++) {
+		
 		if (nameScenes[i].scene->enabled)
 			nameScenes[i].scene->getIrrlichtSceneManager()->drawAll();
 	}
@@ -27,8 +28,8 @@ void SceneManager::addScene(char* name,Scene* scene){
 
 void SceneManager::removeScene(char* name) {
 	if (exists(name)) {
-		for(int i = 0; i< nameScenes.size(); i++){
-			if (&nameScenes[i].name == &name)
+		for(unsigned int i = 0; i< nameScenes.size(); i++){
+			if (*nameScenes[i].name == *name)
 			{
 				nameScenes.erase(nameScenes.begin() + i);
 			}
@@ -61,8 +62,8 @@ void SceneManager::deactivateScene(char* name){
 //Returns The NameScene of a scene, So you'll can get the name & scene object
 NameScene* SceneManager::getNameScene(char* name){
 	if (exists(name)) {
-		for(int i = 0; i< nameScenes.size(); i++){
-			if (&nameScenes[i].name == &name) {
+		for(unsigned int i = 0; i< nameScenes.size(); i++){
+			if (*nameScenes[i].name == *name) {
 				return &nameScenes[i];
 			}
 		} 
@@ -79,7 +80,7 @@ Scene* SceneManager::getScene(char* name){
 //Destroys Scene, Deletes the scene properly
 bool SceneManager::destroyScene(char* name){
 	if (exists(name)) {		//exists(name)
-		for(int i = 0; i < nameScenes.size(); i++){
+		for(unsigned int i = 0; i < nameScenes.size(); i++){
 			//Checks for the right scene
 			if (*nameScenes[i].name == *name) {
 				// delete nameScenes[i].name;
@@ -102,7 +103,7 @@ bool SceneManager::destroyScene(char* name){
 bool SceneManager::exists(char* name){
 	//NameScene namesc = getNameScene(name);
 	//printf("[SceneManager]Size: %i",nameScenes.size());
-	for(int i = 0; i<nameScenes.size(); i++){
+	for(unsigned int i = 0; i<nameScenes.size(); i++){
 		if (*nameScenes[i].name == *name)
 			return true;
 	}

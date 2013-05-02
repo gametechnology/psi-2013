@@ -12,7 +12,7 @@ void GameScene::onAdd() {
 	
 	galaxyMap->createMap(20, 2, 5);
 	galaxyMap->transform->position = new vector3df(100, 670, 0);
-	
+	printf("-----------Added SectorManager----------\n\n");
 	addComponent(new SectorManager(galaxyMap));
 }
 
@@ -21,7 +21,7 @@ void GameScene::init() {
 }
 
 void GameScene::update() {
-
+	Scene::update();
 }
 
 GameScene::~GameScene() {

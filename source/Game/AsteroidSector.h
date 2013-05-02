@@ -12,7 +12,7 @@ public:
 	AsteroidSector(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundry, unsigned int amountWormHoles);
 	void AsteroidSector::handleMessage(unsigned int message, void* data = 0);
 	virtual void AsteroidSector::update();
-	void AsteroidSector::init();
+	void AsteroidSector::onAdd();
 	virtual ~AsteroidSector();
 };
 #endif
@@ -22,5 +22,7 @@ class AstroidPlaceholder : public Entity{
 	public:
 	AstroidPlaceholder(Composite* parent);
 	virtual ~AstroidPlaceholder();
+	virtual void onAdd();
+	irr::scene::IMeshSceneNode *node;
 };
 #endif

@@ -1,6 +1,6 @@
 #include "Shipmap.h"
 
-Shipmap::Shipmap(Composite* parent):Entity()
+Shipmap::Shipmap():Entity()
 {
 	// Assets
 	bg = game->driver->getTexture("../assets/shipmap/map.png");

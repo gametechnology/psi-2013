@@ -36,7 +36,7 @@ class Shipmap : public Entity
 	int tiles[7][12];
 
 public:
-	Shipmap(Composite* parent);
+	Shipmap();
 	~Shipmap();
 	void init();
 	void draw();

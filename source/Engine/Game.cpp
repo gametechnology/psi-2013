@@ -73,7 +73,7 @@ void Game::run()
 		Network::GetInstance()->DistributeReceivedPackets();
 	}
 
-	Game::device->drop();
+	device->drop();
 }
 
 Game::~Game()

@@ -17,5 +17,5 @@ irr::scene::ISceneManager* Scene::getIrrlichtSceneManager() {
 }
 
 Scene::~Scene() {
-	
+	Entity::~Entity();
 }

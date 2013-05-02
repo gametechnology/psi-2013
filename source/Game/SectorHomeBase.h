@@ -23,6 +23,8 @@ public:
 #define BASE_PLACEHOLDER
 class BasePlaceholder : public Entity{
 	public:
+	irr::scene::IMeshSceneNode *node;
+
 	BasePlaceholder();
 	virtual ~BasePlaceholder();
 
