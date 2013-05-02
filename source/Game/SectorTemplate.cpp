@@ -22,27 +22,12 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	
 	_enemyManager = new EnemyManager();
 	// The player
-	//Get the player/Ship via Sectormanager
-	//_sectormanager->getShip()
 	_ship = new Ship(vector3df(0,0,-100), vector3df(0,0,0));
-	addChild(_ship);
 
 	_player = new Camera(); //TODO: Make the camera work correctly according to station
-	_player->setTarget(vector3df(0, 0, -100));
-	_player->setUpVector(*_ship->transform->position);
-	_ship->addChild(_player);
-
-	ShipMover* mover = new ShipMover(_ship);
 	
-	_ship->addComponent(mover);
 
 	_ship2 = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
-	addChild(_ship2);
-
-	BasicMoverComponent* movComp = new BasicMoverComponent();
-	movComp->thrust = 0.01f;
-	_ship2->addComponent(movComp);
-	
 	
 	// Creating wormholes
 	createWormHoles( amountWormHoles );
@@ -52,13 +37,22 @@ void SectorTemplate::onAdd() {
 	//this->_camera = this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
 	//addComponent(_enemyManager);
 	addChild( _skybox );
-	addChild( this->_player );
-	//addChild(_ship);
 	addChild(_fog );
 
-	// TODO CHECK MERGE!
-	//addChild(_ship2);
+	addChild(_ship);
+	_ship->addChild(_player);
+	//TODO: Disabled this Caused errors 
+	//_player->setTarget(vector3df(0, 0, -100));
+	//_player->setUpVector(*_ship->transform->position);
 
+	ShipMover* mover = new ShipMover(_ship);
+	_ship->addComponent(mover);
+
+	addChild(_ship2);
+
+	BasicMoverComponent* movComp = new BasicMoverComponent();
+	movComp->thrust = 0.01f;
+	_ship2->addComponent(movComp);
 	// adding the wormholes
 	addWormHoles();
 
@@ -127,7 +121,7 @@ void SectorTemplate::update(){
 	// Placeholder because there is no player yet
 	/*To use Fps camera:
 	replace:
-	this->_ship->transform->position
+	this->_player->transform->position
 	with
 	this->_camera->getPosition()*/
 	if( this->_player->transform->position->getLength() > _boundry ){

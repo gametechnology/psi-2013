@@ -1,5 +1,6 @@
 #include "Engine/Game.h"
 #include "MainMenuScene.h"
+#include "GameScene.h"
 
 MainMenuScene::MainMenuScene() : Scene() {
 	
@@ -90,6 +91,9 @@ void MainMenuScene::StartGame()
 	galaxyMap->transform->position->set(vector3df(100, 670, 0));
 	SectorManager sectorManager(galaxyMap);
 	sectorManager.init();*/
+	//TODO: Previous scene still displayed, shouldn't be the case
+	this->game->sceneManager->deactivateScene("MainMenuScene");
+	this->game->sceneManager->addScene("GameScene",new GameScene());
 }
 
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)

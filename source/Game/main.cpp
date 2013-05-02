@@ -35,8 +35,8 @@ int main()
 	game->sceneManager->addScene("MainMenuScene", scene);
 
 	//Create ship
-	Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
-	scene->addChild(ship);
+	//Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
+	//scene->addChild(ship);
 
 	// Initialize game
 	game->init();

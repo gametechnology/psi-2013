@@ -18,7 +18,7 @@ public:
 	void setTarget(irr::core::vector3df target);
 	void setUpVector(irr::core::vector3df up);
 private:
-	irr::scene::ICameraSceneNode* node;
+	irr::scene::ICameraSceneNode* cameraNode;
 };
 
 
