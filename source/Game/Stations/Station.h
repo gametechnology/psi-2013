@@ -5,6 +5,7 @@
 #include "../HealthBar.h"
 #include "../Player.h"
 #include "../../../include/Engine/Entity.h"
+#include "../../../include/Engine/Component.h"
 #include "../../../include/Engine/Game.h"
 #include "Irrlicht/irrlicht.h"
 
@@ -30,7 +31,7 @@ public:
 	Station( Ship *ship, int startHealth );
 	Station( Ship *ship );
 	virtual ~Station(void);
-
+	void Initialize( );
 	virtual void DoCameraShake() = 0;
 
 	StationType GetStationType();
@@ -40,6 +41,8 @@ public:
 
 	bool HasPower();
 	bool HasArmor();
+
+	std::string helpTextString;
 
 	bool getStationDestroyed();
 	void setStationDestroyed(bool _destroyed);
@@ -52,11 +55,13 @@ public:
 
 	virtual void init();
 	virtual void update();
-
+	
 	virtual void OnDamage( );
 	virtual void OnEnabled() = 0;
 	virtual void OnDisabled() = 0;
 	
+	
+
 protected:
 	video::IVideoDriver *driver;
 
@@ -70,13 +75,9 @@ protected:
 	StationType _stationType;
 
 private:
-	HealthBar* _healthBar;
 	int _tempTimer;
 	int _totalHealth;
 	int _health;
 	bool _stationDestroyed;
-
-public:
-	void Initialize( );
 };
 #endif

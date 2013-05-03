@@ -7,6 +7,7 @@ Station :: Station( Ship *ship, int startHealth ) : Entity()
 {
 	this ->	_ship	= ship;
 	this -> _health = startHealth;
+	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
 	//this -> _switchTime = 4.0f;
 	//this->_healthBar = new HealthBar(this, vector2df(200, 20), &_health);
 	//addComponent(_healthBar);
