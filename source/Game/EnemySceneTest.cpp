@@ -132,26 +132,6 @@ void EnemySceneTest::HandleNetworkMessage(NetworkPacket packet)
 void EnemySceneTest::init()
 {
 	Scene::init();
-
-	/////////////////////////////////////////////////////////////////
-	//Doesn't work and doesnt use anything of engine, also is obsolete 22-04-2013
-	//if using change data please, thank you.
-	////////////////////////////////////////////////////////////////
-	
-	EnemyManager* enemymanager;
-
-	camera = getIrrlichtSceneManager()->addCameraSceneNodeFPS();
-	this->light = getIrrlichtSceneManager()->addLightSceneNode(0,vector3df(5000,5000,5000),SColor(100,100,100,255),100000);
-	
-	enemymanager = new EnemyManager();
-	addComponent(enemymanager);
-
-	
-	if(Network::GetInstance()->IsServer())
-	{
-		createEnemies();
-	}
-	
 }
 
 int timer = 0;
@@ -170,6 +150,14 @@ void EnemySceneTest::update()
 		timer = 0;
 	}
 	timer++;
+}
+
+void EnemySceneTest::onAdd()
+{
+	if(Network::GetInstance()->IsServer())
+	{
+		createEnemies();
+	}
 }
 
 

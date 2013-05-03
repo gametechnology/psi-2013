@@ -147,6 +147,7 @@
     <ClInclude Include="..\source\Game\EnemyFighter.h" />
     <ClInclude Include="..\source\Game\EnemyManager.h" />
     <ClInclude Include="..\source\Game\EnemyPlayer.h" />
+    <ClInclude Include="..\source\Game\EnemySceneTest.h" />
     <ClInclude Include="..\source\Game\GalaxyMap.h" />
     <ClInclude Include="..\source\Game\GameScene.h" />
     <ClInclude Include="..\source\Game\HealthBar.h" />

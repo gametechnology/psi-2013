@@ -16,8 +16,9 @@ class EnemySceneTest :
 public:
 	EnemySceneTest(void);
 	~EnemySceneTest(void);
-	virtual void init();
-	virtual void update();
+	void init();
+	void update();
+	void onAdd();
 	void createEnemies();
 
 	void HandleNetworkMessage(NetworkPacket packet);
