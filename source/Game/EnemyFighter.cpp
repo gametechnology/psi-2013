@@ -17,7 +17,9 @@ EnemyFighter::EnemyFighter(irr::core::vector3df position): Enemy()
 
 	EnemyFighter::inRangeList = array<Entity*>();
 	EnemyFighter::stateSwitch = new StateSwitchFighter(StateSwitch::STATE_WANDER,this);
+}
 
+void EnemyFighter::onAdd() {
 	this->loadLaser();
 }
 
@@ -38,7 +40,7 @@ void EnemyFighter::loadLaser()
 
 	for (int i = 0; i < this->_nrLasers; i++)
 	{
-		Game::getCurrentScene()->addComponent(this->_laser[i]);
+		this->scene->addChild(&this->_laser[i]);
 	}
 }
 

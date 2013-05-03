@@ -8,11 +8,24 @@
 
 PowerStation :: PowerStation( Ship *ship ) : Station( ship )
 {
+	env = NULL;
+}
+
+void PowerStation :: init() {
 	this -> _stationType		= ST_POWER;
-	this -> device				= Game :: device;
+	this -> device				= this->game->device;
 	//this ->	driver				= device -> getVideoDriver( );
-	this -> env					= Game::guiEnv;	
+	this -> env					= this->game->guiEnv;	
 	this -> setStationDestroyed(false);
+
+	skin = env->getSkin( );
+	font = env->getFont( "../assets/Textures/Stations/PowerStation/fontcopperplategothicbold.png" );
+	
+	if (font)
+		skin->setFont(font);
+	else
+		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
+	createUI();
 }
 
 PowerStation :: ~PowerStation()
@@ -72,15 +85,16 @@ class MyEventReceiver : public IEventReceiver
 {
 
 public:
+	irr::IrrlichtDevice *device;
 
-	MyEventReceiver(UIData & context) : _context(context) { }
+	MyEventReceiver(PowerStationData & context, irr::IrrlichtDevice *device) : _context(context) { this->device = device; }
 
 	virtual bool OnEvent(const SEvent& event)
 	{
 		if (event.EventType == EET_GUI_EVENT)
 		{
 			s32 id = event.GUIEvent.Caller->getID();
-			IGUIEnvironment* env = Game::device->getGUIEnvironment();
+			IGUIEnvironment* env = this->device->getGUIEnvironment();
 
 			switch(event.GUIEvent.EventType)
 			{
@@ -118,7 +132,7 @@ public:
 				switch(id)
 				{
 				case GUI_ID_LEAVE_BUTTON:
-					Game::device->closeDevice();
+					this->device->closeDevice();
 					return true;
 				case GUI_ID_POWER_HELM:
 					_context.scrollBar->setVisible(true);
@@ -157,23 +171,20 @@ public:
 	}
 
 private:
-	UIData & _context;
+	PowerStationData & _context;
 };
 
-//Initializes the User Interface.
-void PowerStation::Initialize()
-{
-	Station :: Initialize( );
-	
-	skin = env->getSkin( );
-	font = env->getFont( "../assets/Textures/Stations/PowerStation/fontcopperplategothicbold.png" );
-	
-	if (font)
-		skin->setFont(font);
-	else
-		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
+
+
+void PowerStation::OnEnabled(){
 	createUI();
 }
+
+void PowerStation::OnDisabled(){
+	//TODO: Make a remove UI.
+	//removeUI();
+}
+
 //Creates the User Interface. Is a helper method. Also initializes the event receiver.
 void PowerStation::createUI()
 {
@@ -186,9 +197,9 @@ void PowerStation::createUI()
 	createCurrentSelectedStationText();
 
 	// Create the event receiver, giving it that context structure.
-	MyEventReceiver *receiver = new MyEventReceiver(context);
+	MyEventReceiver *receiver = new MyEventReceiver(context, this->game->device);
 	// And tell the device to use our custom event receiver.
-	Game::input->setCustomEventReceiver(receiver);
+	game->input->setCustomEventReceiver(receiver);
 }
 
 //Defines the used driver and some UI data values.
@@ -216,8 +227,8 @@ stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 //Adds the background image and the spaceship image. 
 void PowerStation::addImages()
 {
-	env->addImage(Game::driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
-	env->addImage(Game::driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190,266));
+	env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
+	env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190,266));
 }
 //Creates the power scrollbar. 
 void PowerStation::createScrollbar(){
@@ -301,7 +312,8 @@ void PowerStation::draw()
 {
 	Station::draw();
 
-	env->drawAll();
+	if (env != NULL)
+		env->drawAll();
 }
 
 //This method displays the selected station. We're using an integer which indicates which station is currently selected. 

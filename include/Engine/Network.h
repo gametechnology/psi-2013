@@ -12,13 +12,21 @@
 class NetworkPacket;
 class INetworkListener;
 
+/* IMPORTANT: before adding PacketTypes, read the following two pages:
+* https://github.com/gametechnology/psi-2013/wiki/Packet-types-101
+* https://github.com/gametechnology/psi-2013/wiki/PacketType-overview
+*/
 enum PacketType
 {
 	CLIENT_JOIN = 0,
 	CLIENT_QUIT,
 	ClIENT_IN_LOBBY,
+	CLIENT_JOIN_DENIED,
+	CLIENT_SHIP_MOVEMENT,
+	HOST_DISCONNECT,
 	START_GAME,
 	ENEMY,
+
 	//Add new PacketTypes above
 	LAST_TYPE
 };
@@ -31,6 +39,9 @@ inline char* getPacketTypeName(PacketType type)
 		case CLIENT_JOIN: { return "CLIENT_JOIN"; break; }
 		case CLIENT_QUIT: { return "CLIENT_QUIT"; break; }
 		case ClIENT_IN_LOBBY: { return "ClIENT_IN_LOBBY"; break; }
+		case CLIENT_JOIN_DENIED: { return "CLIENT_JOIN_DENIED"; break; }  
+		case CLIENT_SHIP_MOVEMENT: { return "CLIENT_SHIP_MOVEMENT"; break; }
+		case HOST_DISCONNECT: { return "HOST_DISCONNECT"; break; }
 		case START_GAME: { return "START_GAME"; break; }
 		case ENEMY: { return "ENEMY"; break; }
 		default: { throw "Tried to get string from non-existing packet type"; }
@@ -68,10 +79,7 @@ private:
 
 public:
 	~Network();
-	/*
-		List of clients connected used to fill the lobby.
-	*/
-	std::list<enet_uint32> connectedclients;
+	
 	/*
 	* Gets you an instance of the Network interface. If not initialized yet, it will then.
 	*/
@@ -87,6 +95,10 @@ public:
 	*/
 	void InitializeServer(size_t maxPlayers = 16);
 
+	/* 
+	* Deinitialize as server or as client
+	*/
+	void DeInitialize();
 	/*
 	* Returns true if you are the server and the server is succesfully initialized.
 	*/

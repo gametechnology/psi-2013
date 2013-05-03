@@ -88,24 +88,36 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\include\Engine\BillBoardNode.h" />
+    <ClInclude Include="..\..\include\Engine\Camera.h" />
+    <ClInclude Include="..\..\include\Engine\CameraMover.h" />
     <ClInclude Include="..\..\include\Engine\Component.h" />
     <ClInclude Include="..\..\include\Engine\Composite.h" />
+    <ClInclude Include="..\..\include\Engine\CubeNode.h" />
     <ClInclude Include="..\..\include\Engine\Entity.h" />
     <ClInclude Include="..\..\include\Engine\Game.h" />
+    <ClInclude Include="..\..\include\Engine\Hierarchy.h" />
     <ClInclude Include="..\..\include\Engine\IrrlichtNode.h" />
+    <ClInclude Include="..\..\include\Engine\InputManager.h" />
+    <ClInclude Include="..\..\include\Engine\Network.h" />
     <ClInclude Include="..\..\include\Engine\Scene.h" />
     <ClInclude Include="..\..\include\Engine\SceneManager.h" />
     <ClInclude Include="..\..\include\Engine\Transform.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\source\Engine\Camera.cpp" />
+    <ClCompile Include="..\..\source\Engine\CameraMover.cpp" />
     <ClCompile Include="..\..\source\Engine\Component.cpp" />
     <ClCompile Include="..\..\source\Engine\Composite.cpp" />
+    <ClCompile Include="..\..\source\Engine\CubeNode.cpp" />
     <ClCompile Include="..\..\source\Engine\Entity.cpp" />
     <ClCompile Include="..\..\source\Engine\Game.cpp" />
+    <ClCompile Include="..\..\source\Engine\Hierarchy.cpp" />
     <ClCompile Include="..\..\source\Engine\IrrlichtNode.cpp" />
-    <ClCompile Include="..\..\source\Engine\Scene.cpp" />
     <ClCompile Include="..\..\source\Engine\SceneManager.cpp" />
+    <ClCompile Include="..\..\source\Engine\VectorToPacket.cpp" />
     <ClCompile Include="..\..\source\Engine\Transform.cpp" />
+    <ClCompile Include="BillBoardNode.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\assets\sydney.bmp" />

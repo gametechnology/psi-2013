@@ -4,14 +4,18 @@
 Scene::Scene() : Entity() {
 	// Set the state
 	state = LOADING;
+}
 
-	// Create a scene manager
-	sceneManager = Entity::game->device->getSceneManager();
+void Scene::onAdd() {
 
-	// Scene is enabled
-	//enabled = true;
+
+	Entity::onAdd();
+}
+
+irr::scene::ISceneManager* Scene::getIrrlichtSceneManager() {
+	return game->device->getSceneManager();
 }
 
 Scene::~Scene() {
-	
+	Entity::~Entity();
 }

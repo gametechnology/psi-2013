@@ -3,7 +3,7 @@
 
 #include "Station.h"
 #include "..\Ship.h"
-#include "UIData.h"
+#include "PowerStationData.h"
 #include "..\..\..\include\Engine\Game.h"
 #include "../NetworkInterface.h"
 #include "Irrlicht\irrlicht.h"
@@ -26,7 +26,7 @@ public:
 	IGUIEnvironment			*env;
 	IGUISkin				*skin;
 	IGUIFont				*font;
-	UIData					context;
+	PowerStationData		context;
 
 	PowerStation( Ship* ship );
 	~PowerStation( void );
@@ -37,7 +37,6 @@ public:
 	//shakes the camera whenever the station is hurt (aaaahh)
 	void DoCameraShake( );
 	
-	void Initialize();
 	void createUI();
 	void addImages();
 	void declareUIData();
@@ -48,14 +47,17 @@ public:
 	void createCurrentSelectedStationText();
 	void HandleNetworkMessage(NetworkPacket packet);
 	stringw varToString(stringw str1, float var, stringw str2 = L"");
-
-	void update();
-	void draw();
+	
+	virtual void init();
+	virtual void update();
+	virtual void draw();
 
 	void selectedStation();
 	void changeColorAccordingToPowerStatus(IGUIStaticText &staticText, float powerAmount);
 
 	int GetPower(StationType type);
+	void OnEnabled();
+	void OnDisabled();
 };
 
 #endif

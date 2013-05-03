@@ -1,33 +1,44 @@
 #include "Engine\SceneManager.h"
 
-SceneManager::SceneManager():Component(){
-	//sceneList = new std::vector<Scene*>();
+SceneManager::SceneManager() : Component() {
+	
 }
 
 void SceneManager::init(){
-	//add scenes here
+	Component::init();
+}
+
+void SceneManager::drawAll() {
+	for(unsigned int i = 0; i < nameScenes.size(); i++) {
+		
+		if (nameScenes[i].scene->enabled)
+			nameScenes[i].scene->getIrrlichtSceneManager()->drawAll();
+	}
 }
 
 void SceneManager::addScene(char* name,Scene* scene){
-	if (exists(name)) {
+	if (!exists(name)) {
 		NameScene namescene;
 		namescene.name = name;
 		namescene.scene = scene;
 		nameScenes.push_back(namescene);
 		this->entity->addChild(scene);
 	}
-
 }
 
 void SceneManager::removeScene(char* name) {
 	if (exists(name)) {
-		for(int i = 0; i< nameScenes.size(); i++){
-			if (&nameScenes[i].name == &name)
+		for(unsigned int i = 0; i< nameScenes.size(); i++){
+			if (*nameScenes[i].name == *name)
 			{
 				nameScenes.erase(nameScenes.begin() + i);
 			}
 		} 
 	}
+}
+
+Scene* SceneManager::getLastScene() {
+	return nameScenes[nameScenes.size() - 1].scene;
 }
 
 //Activates Scene so it update &  be drawed
@@ -38,6 +49,7 @@ void SceneManager::activateScene(char* name){
 		scene->enable();
 	}
 }
+
 //Deactivates Scene so it won't update & won't be drawed
 void SceneManager::deactivateScene(char* name){
 	if (exists(name)) {
@@ -46,13 +58,13 @@ void SceneManager::deactivateScene(char* name){
 		scene->disable();
 	}
 }
+
 //Returns The NameScene of a scene, So you'll can get the name & scene object
-NameScene SceneManager::getNameScene(char* name){
+NameScene* SceneManager::getNameScene(char* name){
 	if (exists(name)) {
-		for(int i = 0; i< nameScenes.size(); i++){
-			if (&nameScenes[i].name == &name)
-			{
-				return nameScenes[i];
+		for(unsigned int i = 0; i< nameScenes.size(); i++){
+			if (*nameScenes[i].name == *name) {
+				return &nameScenes[i];
 			}
 		} 
 	}
@@ -60,27 +72,39 @@ NameScene SceneManager::getNameScene(char* name){
 //Returns the Scene object
 Scene* SceneManager::getScene(char* name){
 
-	NameScene namesc = getNameScene(name);
-	return namesc.scene;
+	NameScene* namesc = getNameScene(name);
+	return namesc->scene;
 
 }
 
 //Destroys Scene, Deletes the scene properly
-void SceneManager::destroyScene(char* name){
-	if (exists(name)) {
-		for(int i = 0; i < nameScenes.size(); i++){
-		 delete &nameScenes[i].name;
-		 this->entity->removeChild(nameScenes[i].scene);
-		 delete &nameScenes[i].scene;
-		 delete&nameScenes[i];
+bool SceneManager::destroyScene(char* name){
+	if (exists(name)) {		//exists(name)
+		for(unsigned int i = 0; i < nameScenes.size(); i++){
+			//Checks for the right scene
+			if (*nameScenes[i].name == *name) {
+				// delete nameScenes[i].name;
+				// nameScenes[i].scene->destroy();
+				if( entity->removeChild(nameScenes[i].scene) ){
+					printf("Deleted correctly the entity\n");
+					nameScenes.erase(nameScenes.begin() + i);
+					return true;
+				}else
+					return false;
+				
+				// delete nameScenes[i].scene;
+				// delete &nameScenes[i];
+			}
 		}
-	}
+	}else
+		return false;
 }
 
 bool SceneManager::exists(char* name){
-	NameScene namesc = getNameScene(name);
-	for(int i = 0; i<nameScenes.size(); i++){
-		if (&nameScenes[i].name == &name)
+	//NameScene namesc = getNameScene(name);
+	//printf("[SceneManager]Size: %i",nameScenes.size());
+	for(unsigned int i = 0; i<nameScenes.size(); i++){
+		if (*nameScenes[i].name == *name)
 			return true;
 	}
 	return false;
@@ -88,11 +112,11 @@ bool SceneManager::exists(char* name){
 }
 
 SceneManager::~SceneManager(){
-	for(int i = 0; i< nameScenes.size(); i++){
+	/*for(int i = 0; i< nameScenes.size(); i++){
 		delete &nameScenes[i].name;
 		// check if deconstructor is called
 		this->entity->removeChild(nameScenes[i].scene);
 		delete &nameScenes[i].scene;
 		delete &nameScenes[i];
-	}
+	}*/
 }

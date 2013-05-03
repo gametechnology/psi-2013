@@ -3,7 +3,7 @@
 InputManager::InputManager()
 {
 	// Default keyboard button states.
-	for(irr::u32 i = 0; i < NUMBER_OF_KEYS; i++)
+	for(irr::u32 i = 0; i < NUMBER_OF_KEYBOARD_BUTTONS; i++)
 		keys[i] = BS_UP;
 
 	// Default mouse button states.
@@ -110,7 +110,7 @@ void InputManager::startInputProcess()
 	processState = STARTED;
 
 	// Keyboard button states.
-	for(int i = 0; i < KEY_KEY_CODES_COUNT; i++)
+	for(int i = 0; i < NUMBER_OF_KEYBOARD_BUTTONS; i++)
 	{
 		if(keys[i] == BS_RELEASED)
 			keys[i] = BS_UP;

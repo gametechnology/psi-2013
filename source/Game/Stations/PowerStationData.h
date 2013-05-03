@@ -1,7 +1,6 @@
 #ifndef GUI_STATION_DATA
 #define GUI_STATION_DATA
 
-#include <map>
 #include "..\..\..\include\Irrlicht\irrlicht.h"
 #include "Station.h"
 #include <iostream>
@@ -17,7 +16,7 @@ using namespace gui;
 #define MIN_INT(a, b) a < b ? a : b
 #define POWER_MAX	100
 
-class UIData
+class PowerStationData
 {
 private:
 	struct PowerUsage
@@ -34,7 +33,7 @@ private:
 	int _powerUsed;
 
 public:
-	UIData( );
+	PowerStationData( );
 
 	int powerPool;
 	int selectedStation;

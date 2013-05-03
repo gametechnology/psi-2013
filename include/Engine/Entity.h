@@ -11,7 +11,7 @@ class Game;
 class Entity : public Composite {
 public:
 	Entity();
-	~Entity();
+	virtual ~Entity();
 
 	Game* game;
 	Scene* scene;
@@ -22,16 +22,21 @@ public:
 	std::vector<Component*> components;
 	std::vector<Entity*> children;
 
-	virtual void addChild(Entity* child);
-	virtual void removeChild(Entity* child);
-	virtual void addComponent(Component* component);
-	virtual void removeComponent(Component* component);
+	void addChild(Entity* child);
+	bool removeChild(Entity* child);
+ bool removeChild(Entity* child, bool deleteChild);
+	void addComponent(Component* component);
+	bool removeComponent(Component* component);
 
 	virtual void onAdd();
 	virtual void init();
 
+	virtual void handleMessage(unsigned int message);
+ 
+	virtual void destroy(){};
 	virtual void update();
 	virtual void lateUpdate();
+	virtual void draw();
 };
 
 #endif

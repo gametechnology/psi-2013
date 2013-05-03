@@ -2,29 +2,32 @@
 #include <Engine\Game.h>
 #include <Engine\CameraMover.h>
 
-
-Camera::Camera(Composite* parent, vector3df position, vector3df lookAt):Entity(parent)
-{
-	if (parent != NULL && dynamic_cast<Entity*>(parent) != NULL)
-		parentIsEntity = true;
-	else parentIsEntity = false; 
-	node = Game::getSceneManager()->addCameraSceneNode(NULL, position, lookAt);
-	addComponent(new CameraMover(this));
+Camera::Camera() : IrrlichtNode("") {
 }
 
-irr::scene::ICameraSceneNode* Camera::getCameraNode()
-{
+void Camera::onAdd() {
+	addComponent(new CameraMover());
+}
+void Camera::createNode() {
+	irr::core::vector3df lookAt = *this->transform->position + irr::core::vector3df(0,0,-100); 
+	this->cameraNode = this->scene->getIrrlichtSceneManager()->addCameraSceneNode(NULL, *this->transform->position, lookAt);
+}
+irr::scene::ICameraSceneNode* Camera::getCameraNode() {
 	return ((irr::scene::ICameraSceneNode*)(node));
 }
 
-Entity* Camera::getEntity()
-{
-	if (parentIsEntity)
-		return (Entity*)(parent);
-	else return NULL;
+void Camera::setTarget(irr::core::vector3df target) {
+	//TODO: Disabled this Caused errors
+	//cameraNode->setTarget(target);
+}
+
+void Camera::setUpVector(irr::core::vector3df up) {
+	//TODO: Disabled this Caused errors
+	//cameraNode->setUpVector(up);
 }
 
 Camera::~Camera()
 {
-	Entity::~Entity();
+	cameraNode->remove();
+	IrrlichtNode::~IrrlichtNode();
 }

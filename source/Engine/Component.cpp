@@ -9,31 +9,23 @@ Component::~Component() {
 
 }
 
-//Game* Component::getGame() {
-//	return entity->game;
-//}
+Game* Component::getGame() {
+	return entity->game;
+}
 
-//Scene* Component::getScene() {
-//	return entity->scene;
-//}
+Scene* Component::getScene() {
+	return entity->scene;
+}
 
 void Component::onAdd() {
-	if (entity->initialized)
-		handleMessage(1); // Calling init if adding something while the game already has been initialized
+	Composite::onAdd();
 }
 
-void Component::init() {
+void Component::init() { Composite::init(); }
+void Component::update() { Composite::update(); }
+void Component::draw() { Composite::draw(); }
 
-}
+void Component::onEnabled() { }
+void Component::onDisabled() { }
 
-void Component::update() {
-
-}
-
-void Component::draw() {
-
-}
-
-void Component::handleMessage(unsigned int message) {
-
-}
+void Component::handleMessage(unsigned int message) { }

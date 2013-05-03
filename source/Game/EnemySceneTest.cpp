@@ -54,13 +54,15 @@ sf::Packet& operator >>(sf::Packet& in, irr::core::array<Enemy>& out)
 
 NetworkPacket packet(ENEMY);
 
-EnemySceneTest::EnemySceneTest(void)
+#include <iostream>
+
+EnemySceneTest::EnemySceneTest(void) : Scene()
 {
+	std::cout<<"CONSTRUCTION";
 	Network::GetInstance()->AddListener(ENEMY, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
 	EnemySceneTest::_enemyList = array<Enemy*>();
 }
-
 
 EnemySceneTest::~EnemySceneTest(void)
 {
@@ -127,15 +129,21 @@ void EnemySceneTest::HandleNetworkMessage(NetworkPacket packet)
 		}
 	}
 }
-
 void EnemySceneTest::init()
 {
+	Scene::init();
+
+	/////////////////////////////////////////////////////////////////
+	//Doesn't work and doesnt use anything of engine, also is obsolete 22-04-2013
+	//if using change data please, thank you.
+	////////////////////////////////////////////////////////////////
+	
 	EnemyManager* enemymanager;
-	smgr = Game::getSceneManager();
-	camera = smgr->addCameraSceneNodeFPS();
-	this->light = smgr->addLightSceneNode(0,vector3df(5000,5000,5000),SColor(100,100,100,255),100000);
-	enemymanager = new EnemyManager();	
-	enemymanager->createEnemies();
+
+	camera = getIrrlichtSceneManager()->addCameraSceneNodeFPS();
+	this->light = getIrrlichtSceneManager()->addLightSceneNode(0,vector3df(5000,5000,5000),SColor(100,100,100,255),100000);
+	
+	enemymanager = new EnemyManager();
 	addComponent(enemymanager);
 
 	

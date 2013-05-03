@@ -1,4 +1,5 @@
 #include "Engine\Game.h"
+#include "Engine\Hierarchy.h"
 #include "../source/Game/NetworkInterface.h"
 
 #pragma comment(lib, "Irrlicht.lib")
@@ -8,90 +9,73 @@
 #pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
 
-InputManager* Game::input;
 Game::Game()
 {
-	//Create a new stack to store all scenes
-	Game::scenes = new std::vector<Scene*>;
-
 	//Create input manager
-	Game::input = new InputManager();
+	input = new InputManager();
 
 	// Create the irrlicht device 
-	Game::device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1280, 720), 16, false, false, true);
+	device = irr::createDevice(irr::video::EDT_OPENGL, irr::core::dimension2d<irr::u32>(1280, 720), 16, false, false, true, input);
 
 	// If the device was not created correctly, then shut down the program
-	if(Game::device) {
+	if(device != NULL) {
 		// Create a driver 
-		driver = Game::device->getVideoDriver();
+		driver = device->getVideoDriver();
 
 		//Get the GUI environment
-		guiEnv = Game::device->getGUIEnvironment();
+		guiEnv = device->getGUIEnvironment();
 
 		//Set title of the window
-		Game::device->setWindowCaption(L"Stella Incognita");
+		device->setWindowCaption(L"Stella Incognita");
 	}
 	// Create the topmost node
 	game = new Entity();
+	game->game = this;
+	game->addComponent(sceneManager = new SceneManager());
+}
+
+void Game::init() {
+	// Initialize the game entity
+	game->init();
 }
 
 void Game::run()
 {
 	//Main loop
-	while( Game :: device -> run( ) )
+	while(device -> run( ) )
 	{		
+		input->endInputProcess();
+
 		game->update();
 
 		// Clearing the screen
-		Game :: driver -> beginScene(true, true, irr::video::SColor(255,100,101,140));
+		driver -> beginScene(true, true, irr::video::SColor(255,100,101,140));
 
 		//Irrlicht draw all
-		//(*Game::scenes->begin())->sceneManager->drawAll();
 		sceneManager->drawAll();
+
+		//Print the Hierarchy of the latest scene
+		if (input->isKeyboardButtonReleased(KEY_KEY_V))
+			Hierarchy::Visualize(sceneManager->getLastScene());
 
 		//Game engine draw
 		game->draw();
 
 		//Irrlicht GUI
-		Game::guiEnv->drawAll();
+		guiEnv->drawAll();
 
 		// End the scene
-		Game::driver->endScene();
-		Game::input->startInputProcess();
+		driver->endScene();
+
+		// Other shit
+		input->startInputProcess();
 		Network::GetInstance()->DistributeReceivedPackets();
 	}
 
-	Game::device->drop();
-}
-
-Scene* Game::getCurrentScene()
-{
-	return *scenes->end();
-}
-
-irr::scene::ISceneManager* Game::getSceneManager()
-{
-	return (*scenes->begin())->sceneManager;
-}
-
-void Game::addScene(Scene* scene)
-{
-	Game::scenes->push_back(scene);
-	scene->init();
-}
-
-void Game::removeScene()
-{
-	Game::scenes->pop_back();
+	device->drop();
 }
 
 Game::~Game()
 {
-	//delete messages;
-	//for (std::forward_list<Scene*>::iterator i = scenes->begin(); i != scenes->end(); ++i)
-	//{
-	//	delete (*i);
-	//}
-
-	delete scenes;
+	
 }

@@ -7,7 +7,11 @@
 class Scene : public Entity {
 public:
 	Scene();
-	~Scene();
+	virtual ~Scene();
+
+	void onAdd();
+
+	irr::scene::ISceneManager* getIrrlichtSceneManager();
 
 	enum State {
 		LOADING,
@@ -17,7 +21,6 @@ public:
 	};
 
 	State state;
-	irr::scene::ISceneManager* sceneManager;
 };
 
 #endif

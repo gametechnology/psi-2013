@@ -1,23 +1,20 @@
-/*
-	Example entity for loading a model
-*/
-
 #ifndef SECTOR_MANAGER
 #define SECTOR_MANAGER
 
-#include "Engine/Scene.h"
+#include "Engine/Component.h"
 #include "SectorTemplate.h"
 #include "GalaxyMap.h"
 #include "MapSector.h"
 
 
-class SectorManager  {
+class SectorManager : public Component {
 public:
 	SectorManager(GalaxyMap* map);
 	void handleMessage(unsigned int message, void* data = 0);
-	void init();
+	void onAdd();
 	virtual ~SectorManager();
 	MapSector* _mapSector;
+	char* activeSceneName;
 private:
 	GalaxyMap* _map;
 };

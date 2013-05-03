@@ -23,6 +23,9 @@ public:
 	virtual void update();
 	virtual void draw();
 
+	virtual void onEnabled();
+	virtual void onDisabled();
+
 	virtual void handleMessage(unsigned int message);
 };
 

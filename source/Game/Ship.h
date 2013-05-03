@@ -1,5 +1,6 @@
 #ifndef ENTITY_SHIP
 #define ENTITY_SHIP
+#pragma once
 
 #include "Stations\DefenceStation.h"
 #include "Stations\HelmStation.h"
@@ -10,8 +11,12 @@
 
 #include "Stations\Station.h"
 #include "Engine/Entity.h"
+#include "Engine/IrrlichtNode.h"
 #include "Player.h"
 #include "Engine/Input.h"
+#include "Thruster.h"
+#include "Engine\Camera.h"
+#include "ShipMover.h"
 
 class DefenceStation;
 class HelmStation;
@@ -29,8 +34,6 @@ public:
 	PowerStation		*_powerStation;
 	WeaponStation		*_weaponStation;
 
-	Input				*_input;
-
 	//to test the ship health and station health
 	irr::gui::IGUIEnvironment *env;
 	irr::gui::IGUIStaticText *shipHealth;
@@ -45,19 +48,35 @@ public:
 
 	bool _sitOnStation;
 
+	void onAdd();
+	void init();
+
 	void update();
 	void updateShipHealth();
 	void draw();
 
-	Ship(Composite * parent);
+	void CheckChangeInput();
+
+	Ship(vector3df position, vector3df rotation);
 	virtual ~Ship(void);
 
-	Station *GetStation(StationType );	
+	Station*	GetStation(StationType);
+	Thruster**	GetThrusters();
 
 	int getShipHealth();
 	bool getShipDestroyed();
+
+	void SwitchToStation(StationType stationType);
 private:
+
+	Station				*_currentStation;
+	Camera				*_camera;
+	Thruster			*_thrusters[3];
+	matrix4				*_inertiaMatrix;
+
 	stringw varToString(stringw str1, float var, stringw str2);
 	stringw varToString(stringw str1, float var);
+
+	void setInertiaMatrix(float h, float w, float d, float m);
 };
 #endif

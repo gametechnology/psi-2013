@@ -10,6 +10,8 @@ public:
 	HelmStation(Ship* ship);
 	~HelmStation(void);	
 	void DoCameraShake( );
+	void OnEnabled();
+	void OnDisabled();
 };
 
 #endif

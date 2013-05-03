@@ -2,8 +2,9 @@
 #define ENGINE
 
 #include "Irrlicht\irrlicht.h"
-#include "Scene.h"
-#include "SceneManager.h"
+#include "Engine\Scene.h"
+#include "Engine\SceneManager.h"
+#include "Engine\InputManager.h"
 
 class Entity;
 
@@ -12,12 +13,8 @@ public:
 	Game();
 	~Game();
 	
+	void init();
 	void run();
-
-	Scene* getCurrentScene();
-	irr::scene::ISceneManager* getSceneManager();
-	void addScene(Scene* defaultScene);
-	void removeScene();
 
 	irr::IrrlichtDevice* device;
 	irr::video::IVideoDriver* driver;
@@ -25,10 +22,10 @@ public:
 
 	Entity* game;
 	SceneManager* sceneManager;
+	InputManager* input;
 
 protected:
-	std::vector<Scene*>* scenes;
-	//Input inputReceiver;
+	
 };
 
 #endif

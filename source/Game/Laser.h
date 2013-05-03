@@ -16,6 +16,10 @@ class Laser : public Entity
 	public:
 		Laser();
 		~Laser();
+		
+		virtual void init();
+		virtual void onAdd();
+
 		void fire(Entity* parent, vector3df target, f32 speed);
 		bool isAlive;
 		void update();

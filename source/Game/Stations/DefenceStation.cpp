@@ -2,10 +2,10 @@
 #include "Station.h"
 #include "..\Ship.h"
 
-DefenceStation::DefenceStation(Ship* ship):Station(ship)
+DefenceStation::DefenceStation(Ship* ship) : Station(ship)
 {
 	this->_stationType	= ST_DEFENCE;
-	this->_stations		= new map<StationType, DefenceStation::DefenceStats>();
+	this->_stations		= new irr::core::map<StationType, DefenceStation::DefenceStats>();
 	this->setStationDestroyed(false);
 	std::srand((unsigned int)time(NULL));
 }
@@ -22,7 +22,7 @@ void DefenceStation::DoCameraShake()
 
 void DefenceStation :: SubscribeStation( Station *s )
 {
-	this -> _stations -> insert( s -> GetStationType( ), DefenceStats( ) );
+	this ->_stations -> insert( s -> GetStationType( ), DefenceStats( ) );
 }
 
 void DefenceStation :: Damage( )
@@ -37,4 +37,12 @@ void DefenceStation :: Damage( )
 int DefenceStation :: GetDamage(StationType)
 {
 	return 0;
+}
+
+void DefenceStation::OnEnabled(){
+
+}
+
+void DefenceStation::OnDisabled(){
+
 }

@@ -4,6 +4,8 @@
 #include "Engine\Scene.h"
 #include "NetworkInterface.h"
 #include "Enemy.h"
+#include "Irrlicht\ICameraSceneNode.h"
+#include "Irrlicht\ILightSceneNode.h"
 #include "EnemyAsteroid.h"
 #include "EnemyDrone.h"
 #include "EnemyFighter.h"
@@ -20,9 +22,8 @@ public:
 
 	void HandleNetworkMessage(NetworkPacket packet);
 
-	ISceneManager* smgr;
-	ICameraSceneNode* camera;
-	ILightSceneNode* light;
+	irr::scene::ICameraSceneNode* camera;
+	irr::scene::ILightSceneNode* light;
 
 private:
 	array<Enemy*> _enemyList;

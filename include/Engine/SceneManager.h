@@ -20,13 +20,15 @@ public:
 	SceneManager();
 	~SceneManager(void);
 	void init();
+	void drawAll();
 	void addScene(char* name,Scene* scene);
 	void removeScene(char* name);
 	void activateScene(char* name);
 	void deactivateScene(char* name);
-	NameScene getNameScene(char* name);
+	NameScene* getNameScene(char* name);
+	Scene* getLastScene();
 	Scene* getScene(char* name);
-	void destroyScene(char* name);
+	bool destroyScene(char* name);
 	bool exists(char* name);
 };
 

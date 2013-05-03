@@ -1,10 +1,12 @@
 #include <Engine/Game.h>
 #include <Irrlicht/driverChoice.h>
-#include "EnemySceneTest.h"
 
+#include "EnemySceneTest.h"
 #include "MainMenuScene.h"
+#include "GameScene.h"
 
 #include "NetworkInterface.h"
+#include "EmptyTestScene.h"
 
 
 // Include memory leak detection files.
@@ -26,31 +28,17 @@ int main()
 	// Create engine
 	Game* game = new Game();
 	//Enemy::newEnemyId = 0;
-	
-	/////////////////////////////////////////
-	//temporary until main menu works
-	//Server 
-	Network::GetInstance()->InitializeServer(16);
-	
-	//Client 
-	//Network::GetInstance()->InitializeClient("192.168.12.89");
-	/////////////////////////////////////////
+	//Add the MainMenu
+	//Scene* scene = new EnemySceneTest();
+	Scene* scene = new MainMenuScene();
+	game->sceneManager->addScene("MainMenuScene", scene);
 
-	// Create test scene
+	//Create ship
+	//Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
+	//scene->addChild(ship);
 	Game::addScene(new EnemySceneTest());
-	//Game::addScene(new MainMenuScene());
-
-	//MapGenerator mapGen;
-	//mapGen.init(20, 2, 5);
-	//GalaxyMap* galaxyMap = mapGen.createNewMap(300, 300, 15);
-	//galaxyMap->position.set(vector3df(100, 670, 0));
-	
-	//Game::client->setupClient("145.92.13.97");
-	//Need to create an Scene first or else it will crash, because I first delete then create scenes in SectorManager
-	//Game::addScene(new MainMenuScene());
-	// Create sector manager that creates all the Scenes/Sectors
-	//SectorManager sectorManager(galaxyMap);
-	//sectorManager.init();
+	// Initialize game
+	game->init();
 
 	// Start the main loop
 	game->run();

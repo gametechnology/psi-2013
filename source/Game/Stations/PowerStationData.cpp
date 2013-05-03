@@ -1,19 +1,19 @@
-#include "UIData.h"
+#include "PowerStationData.h"
 
-UIData :: UIData( )
+PowerStationData :: PowerStationData( )
 {
-	this -> _stationsPowerUsage	= new map<StationType, PowerUsage>( );
+	this -> _stationsPowerUsage	= new irr::core::map<StationType, PowerUsage>( );
 	this -> powerPool	= POWER_MAX;
 }
 
-void UIData :: SubscribeStation( Station *s )
+void PowerStationData :: SubscribeStation( Station *s )
 {
 	this -> _stationsPowerUsage	-> insert( s -> GetStationType( ), PowerUsage( 0 ) );
 }
 
-void UIData :: UpdatePowerUsage(StationType s, int newValue )
+void PowerStationData :: UpdatePowerUsage(StationType s, int newValue )
 {
-	map<StationType, PowerUsage> :: Node *n = this -> _stationsPowerUsage -> find( s );
+	irr::core::map<StationType, PowerUsage>:: Node *n = this -> _stationsPowerUsage -> find( s );
 
 	int prevValue		= PowerUsage( n -> getValue( ) ).powerCurrent;
 	powerPool			+= prevValue;
@@ -27,13 +27,13 @@ void UIData :: UpdatePowerUsage(StationType s, int newValue )
 	n -> setValue( newValue );
 }
 
-int UIData :: GetPower(StationType s )
+int PowerStationData :: GetPower(StationType s )
 {
 	PowerUsage p = PowerUsage( this -> _stationsPowerUsage -> find( s ) -> getValue( ) );
 	return p.powerCurrent;
 }
 
-UIData :: PowerUsage :: PowerUsage( int powerCurrent )
+PowerStationData :: PowerUsage :: PowerUsage( int powerCurrent )
 {
 	this -> powerCurrent = powerCurrent;
 }
