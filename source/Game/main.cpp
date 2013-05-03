@@ -36,7 +36,6 @@ int main()
 	//Create ship
 	//Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
 	//scene->addChild(ship);
-	Game::addScene(new EnemySceneTest());
 	// Initialize game
 	game->init();
 

@@ -198,11 +198,14 @@ void Enemy::steering(irr::core::vector3df rotational, irr::core::vector3df playe
 
 	    	float magnitude = sqrt(pow(this->transform->velocity->X,2) + pow(this->transform->velocity->Y,2) + pow(this->transform->velocity->Z,2));
 		vector3df normalizedvelocity = vector3df((this->transform->velocity->X/magnitude),(this->transform->velocity->Y/magnitude),(this->transform->velocity->Z/magnitude));
+
+		irr::core::vector3df diffPos;
 		diffPos.Y = this->getPosition().Y - playerPos.Y;
 		diffPos.normalize();
 		
-		orientation.X = RADTODEG * asin(diffPos.Y);
-		orientation.Y = RADTODEG * acos(diffPos.X);
+		this->transform->rotation->X = RADTODEG * asin(diffPos.Y);
+		this->transform->rotation->Y = RADTODEG * acos(diffPos.X);
+}
 
 	    /*float magnitude = sqrt(pow(velocity.X,2) + pow(velocity.Y,2) + pow(velocity.Z,2));
 
@@ -488,7 +491,6 @@ void Enemy::receiveDamage(int damage)
 void Enemy::destroy()
 {
 	this->_isAlive = false;
-	this->visible = false;
 }
 
 void Enemy::wander()

@@ -40,7 +40,7 @@ void EnemyFighter::loadLaser()
 
 	for (int i = 0; i < this->_nrLasers; i++)
 	{
-		this->scene->addChild(&this->_laser[i]);
+		this->scene->addChild(this->_laser[i]);
 	}
 }
 

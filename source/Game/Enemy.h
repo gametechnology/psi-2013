@@ -40,7 +40,7 @@ public:
 	bool isWithinLoS(/*playership class*/);
 
 	array<Entity*> inRangeList;
-	virtual void destroy(){};
+	virtual void destroy();
 	void HandleNetworkMessage(NetworkPacket packet);
 
 	void setVisual(IMesh* visual, ISceneManager* smgr);	// visuals are the only component which do not have a get method
@@ -83,7 +83,6 @@ public:
 	void flee(vector3df target);
 	void setTarget(vector3df target);
 	void receiveDamage(int damage);
-	void destroy();
 
 	/*void contactGenerator(Player* input);*/
 	void contactGenerator(Enemy* input);

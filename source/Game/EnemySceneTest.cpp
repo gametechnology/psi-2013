@@ -180,6 +180,6 @@ void EnemySceneTest::createEnemies()
 	for(int i = 0; i < 20; i++)
 	{
 		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
-		addComponent(_enemyList.getLast());
+		addChild(_enemyList.getLast());
 	}
 }

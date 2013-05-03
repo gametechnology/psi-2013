@@ -56,11 +56,11 @@ void StateSwitchFighter::handleDefensive()
 	StateSwitch::handleDefensive();
 	if(!StateSwitchFighter::getParent()->inRangeList.empty())
 	{
-		if((StateSwitchFighter::getParent()->inRangeList.getLast()->position - StateSwitchFighter::getParent()->position).getLength() > 20)
+		if((*StateSwitchFighter::getParent()->inRangeList.getLast()->transform->position - *StateSwitchFighter::getParent()->transform->position).getLength() > 20)
 		{
-			StateSwitchFighter::getParent()->chase(StateSwitchFighter::getParent()->inRangeList.getLast()->position);
+			StateSwitchFighter::getParent()->chase(*StateSwitchFighter::getParent()->inRangeList.getLast()->transform->position);
 		}
-		StateSwitchFighter::getParent()->setTarget(StateSwitchFighter::getParent()->inRangeList.getLast()->position);
+		StateSwitchFighter::getParent()->setTarget(*StateSwitchFighter::getParent()->inRangeList.getLast()->transform->position);
 	}
 }
 
@@ -69,9 +69,9 @@ void StateSwitchFighter::handleFleeing()
 	StateSwitch::handleFleeing();
 	if(!StateSwitchFighter::getParent()->inRangeList.empty())
 	{
-		if((StateSwitchFighter::getParent()->inRangeList.getLast()->position - StateSwitchFighter::getParent()->position).getLength() > 20)
+		if((*StateSwitchFighter::getParent()->inRangeList.getLast()->transform->position - *StateSwitchFighter::getParent()->transform->position).getLength() > 20)
 		{
-			vector3df fleetarget = (StateSwitchFighter::getParent()->inRangeList.getLast()->position) + (StateSwitchFighter::getParent()->position);
+			vector3df fleetarget = (*StateSwitchFighter::getParent()->inRangeList.getLast()->transform->position) + (*StateSwitchFighter::getParent()->transform->position);
 			fleetarget = fleetarget.normalize()*50;
 			StateSwitchFighter::getParent()->flee(fleetarget);
 		}
