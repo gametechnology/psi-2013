@@ -248,7 +248,7 @@ void Enemy::steering(irr::core::vector3df rotational, irr::core::vector3df playe
 			this->transform->rotation->Z += rotational.Z/60;
 		}
 }
-
+*/
 void Enemy::contactResolverA(Enemy* _input)
 {
     double deltamass = (this->getRadius() / _input->getRadius());
@@ -268,12 +268,12 @@ vector3df Enemy::componentOnto(vector3df input, vector3df deltavelocity)
 	return input * (deltavelocity.dotProduct(input) / input.getLengthSQ());
 }
 
-void Enemy::contactResolverB()
+/*void Enemy::contactResolverB()
 {
 	*this->transform->velocity *= -1;
 }
 
-/*void Enemy::contactGenerator(Player* input)
+void Enemy::contactGenerator(Player* input)
 {
 	float distance = position.getDistanceFrom(input->position);
 	float radii = input->radius_ + radius_;
@@ -283,7 +283,7 @@ void Enemy::contactResolverB()
 	}
 }*/
 
-void Enemy::contactGenerator(Enemy* input)
+/*void Enemy::contactGenerator(Enemy* input)
 {
 	float distance = transform->position->getDistanceFrom(input->getPosition());
 	int radii = (int)(input->getRadius() + radius_);
@@ -291,7 +291,7 @@ void Enemy::contactGenerator(Enemy* input)
 	{
 		contactResolverB();
 	}
-}
+}*/
 
 void Enemy::setVisual(IMesh* visual, ISceneManager* smgr)
 {

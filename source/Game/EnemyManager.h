@@ -10,7 +10,7 @@
 #include "EnemyAsteroid.h"
 #include "NetworkInterface.h"
 
-class EnemyManager : public Component, INetworkListener
+class EnemyManager : public Component
 {
 	public:
 		EnemyManager(void);
@@ -19,7 +19,6 @@ class EnemyManager : public Component, INetworkListener
 		void createEnemies();
 		virtual void onAdd();
 		virtual void update();
-		void HandleNetworkMessage(NetworkPacket packet);
 		void NarrowPhaseDetection(array<Enemy*> _input);
 		void LaserNarrowPhase(array<Enemy*> _enput, array<Laser*> _laput);
 

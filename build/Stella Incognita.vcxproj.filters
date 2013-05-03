@@ -78,9 +78,6 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -261,6 +258,9 @@
     <ClCompile Include="..\source\Game\Stations\PowerStationData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\Collision.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\GalaxyMap.h">
@@ -422,9 +422,6 @@
     <ClInclude Include="..\source\Game\Enemy.h">
       <Filter>Header Files\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\EnemySceneTest.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\GameScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
@@ -432,6 +429,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\PowerStationData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Collision.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -113,7 +113,13 @@
     <ClCompile Include="..\..\source\Engine\Entity.cpp" />
     <ClCompile Include="..\..\source\Engine\Game.cpp" />
     <ClCompile Include="..\..\source\Engine\Hierarchy.cpp" />
+    <ClCompile Include="..\..\source\Engine\Input.cpp" />
+    <ClCompile Include="..\..\source\Engine\InputManager.cpp" />
     <ClCompile Include="..\..\source\Engine\IrrlichtNode.cpp" />
+    <ClCompile Include="..\..\source\Engine\Network.cpp" />
+    <ClCompile Include="..\..\source\Engine\NetworkComponent.cpp" />
+    <ClCompile Include="..\..\source\Engine\NetworkPacket.cpp" />
+    <ClCompile Include="..\..\source\Engine\Scene.cpp" />
     <ClCompile Include="..\..\source\Engine\SceneManager.cpp" />
     <ClCompile Include="..\..\source\Engine\Transform.cpp" />
     <ClCompile Include="BillBoardNode.cpp" />
