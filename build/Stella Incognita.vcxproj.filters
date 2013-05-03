@@ -72,9 +72,6 @@
     <ClCompile Include="..\source\Game\MapGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Shipmap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -258,6 +255,12 @@
     <ClCompile Include="..\source\Game\CalculateRotation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\HudComposite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\PowerStationData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\GalaxyMap.h">
@@ -289,9 +292,6 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\RandomGenerator.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Stations\UIData.h">
-      <Filter>Header Files\Stations</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\StateSwitch.h">
       <Filter>Header Files</Filter>
@@ -339,9 +339,6 @@
       <Filter>Header Files\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\EnemyPlayer.h">
-      <Filter>Header Files\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EnemySceneTest.h">
       <Filter>Header Files\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\MainMenuScene.h">
@@ -393,7 +390,7 @@
       <Filter>Header files\Sector</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\CalculateRotation.h">
-    	<Filter>Header files\Sector</Filter>
+      <Filter>Header files\Sector</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\NebulaSector.h">
       <Filter>Header files\Sector</Filter>
@@ -430,6 +427,12 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\GameScene.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HudComposite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\PowerStationData.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
