@@ -32,5 +32,6 @@ private:
 	irr::video::ITexture* escButton;
 	bool pressed;
 	IGUIButton *button;
+	IGUIEnvironment* env;
 };
 #endif

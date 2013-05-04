@@ -40,6 +40,8 @@ BackButton::BackButton(rect< s32 > position, IGUIEnvironment* env):Entity(){
 	button = env->addButton(position,0,GUI_ID_BACK_BUTTON,L"Esc to Back",L"Go back to 2d shipmap");
 	BackButton::pressed = false;
 	BackButton::visible = true;
+	this->env = env;
+	
 	//button->setImage(video::ITexture("../assets/Textures/Stations/backButton.png");
 }
 
@@ -54,12 +56,12 @@ bool BackButton::isButtonPressed(){
 		BackButton::pressed = true;
 		return true;
 	}else BackButton::pressed = false;
-
-	
+	if(	button->isPressed()) return true;
+	else return false;
 
 	//button clicked
 	SAppContext context;
-	context.env = ((HudComposite*)parent)->guiEnviroment;
+	context.env = env;
 	context.buttonFlag = false;
 	ButtonEventReceiver receiver(context);
 
