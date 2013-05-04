@@ -10,7 +10,7 @@ Collision::~Collision(void)
 {
 }
 
-void Collision::LaserNarrowPhase(array<Enemy*> _enput, array<Laser*> _laput)
+void Collision::LaserNarrowPhase(vector<Enemy*> _enput, vector<Laser*> _laput)
 {
 	for (int i = 0; i < (int)(_laput.size()); i++)
 	{
@@ -25,9 +25,9 @@ void Collision::LaserNarrowPhase(array<Enemy*> _enput, array<Laser*> _laput)
 	}
 }
 
-void Collision::NarrowPhaseDetection(array<Enemy*> _input)
+void Collision::NarrowPhaseDetection(vector<Enemy*> _input)
 {
-	array<Laser*> laserlist;
+	vector<Laser*> laserlist;
 	for(int i = 0; i < (int)(_input.size()); i++)
 	{
 		for(int j = i; j < (int)(_input.size()); j++)

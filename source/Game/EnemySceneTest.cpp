@@ -30,7 +30,7 @@ sf::Packet& operator >>(sf::Packet& in, Enemy& out)
 	return in;
 }
 
-sf::Packet& operator <<(sf::Packet& out, irr::core::array<Enemy*>& in)
+sf::Packet& operator <<(sf::Packet& out, vector<Enemy*>& in)
 {
 	out << in.size();
 	for(unsigned i = 0; i < in.size(); i++)
@@ -40,7 +40,7 @@ sf::Packet& operator <<(sf::Packet& out, irr::core::array<Enemy*>& in)
 	return out;
 }
 
-sf::Packet& operator >>(sf::Packet& in, irr::core::array<Enemy>& out)
+sf::Packet& operator >>(sf::Packet& in, vector<Enemy>& out)
 {
 	int size;
 	in >> size;
@@ -63,7 +63,7 @@ EnemySceneTest::EnemySceneTest(void) : Scene()
 {
 	Network::GetInstance()->AddListener(SERVER_ENEMY, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
-	EnemySceneTest::_enemyList = array<Enemy*>();
+	EnemySceneTest::_enemyList = vector<Enemy*>();
 	//player1->transform->velocity->operator=(irr::core::vector3d<f32>(0,0,0));
 	//player1->transform->position->operator=(irr::core::vector3d<f32>(0,0,0));
 	//addChild(player1);
@@ -85,20 +85,19 @@ void EnemySceneTest::HandleNetworkMessage(NetworkPacket packet)
 	{
 		if(!Network::GetInstance()->IsServer())
 		{
-			array<Enemy> serverEnemies = array<Enemy>();
-			array<int> enemyIds = array<int>();
+			vector<Enemy> serverEnemies = vector<Enemy>();
 
 			packet >> serverEnemies;
 
-			for(unsigned i = 0; i < serverEnemies.size(); i++)
-			{
-				enemyIds.push_back(serverEnemies[i].getId());
-			}
-
 			for(unsigned j = 0; j < _enemyList.size(); j++)
 			{
-				if(enemyIds.binary_search(_enemyList[j]->getId()) == -1)
+				for(unsigned k = 0; k < serverEnemies.size(); k++)
 				{
+					if(_enemyList[j]->getId() == serverEnemies[k].getId())
+					{
+						continue;
+					}
+
 					_enemyList[j]->destroy();
 				}
 			}
@@ -130,11 +129,11 @@ void EnemySceneTest::HandleNetworkMessage(NetworkPacket packet)
 						break;
 					}
 
-					_enemyList.getLast()->setId(serverEnemies[i].getId());
-					_enemyList.getLast()->setPosition(serverEnemies[i].getPosition());
-					_enemyList.getLast()->setVelocity(serverEnemies[i].getVelocity());
-					_enemyList.getLast()->setRotation(serverEnemies[i].getRotation());
-					this->addChild(_enemyList.getLast());
+					_enemyList.back()->setId(serverEnemies[i].getId());
+					_enemyList.back()->setPosition(serverEnemies[i].getPosition());
+					_enemyList.back()->setVelocity(serverEnemies[i].getVelocity());
+					_enemyList.back()->setRotation(serverEnemies[i].getRotation());
+					this->addChild(_enemyList.back());
 				}
 			}
 		}
@@ -185,26 +184,24 @@ void EnemySceneTest::onAdd()
 
 void EnemySceneTest::createEnemies()
 {
-	this->_enemyList = array<Enemy*>();
-
 	for(int i = 0; i < 20; i++)
 	{
 		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
 		
-		addChild(_enemyList.getLast());
+		addChild(_enemyList.back());
 	}
 
 	for(int j = 0; j < 10; j++)
 	{
 		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(0,(irr::f32)(j + (j * j)),0)));
 		
-		addChild(_enemyList.getLast());
+		addChild(_enemyList.back());
 	}
 
 	for(int k = 0; k < 30; k++)
 	{
 		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df((irr::f32)(k + (k * k)),0,0), irr::core::vector3df(0,0,0.01f)));
 		
-		addChild(_enemyList.getLast());
+		addChild(_enemyList.back());
 	}
 }

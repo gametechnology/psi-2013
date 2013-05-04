@@ -11,7 +11,7 @@ public:
 	EnemyFighter(irr::core::vector3df position);
 	~EnemyFighter(void);
 
-	array<Laser*> GetLasers();
+	vector<Laser*> GetLasers();
 	void SetTarget(vector3df target);
 	virtual void chase(vector3df target);
 	
@@ -24,7 +24,7 @@ private:
 	int			_curLaser;
 	int			_nrLasers;
 	int			_fireTime;
-	array<Laser*> _laser;
+	vector<Laser*> _laser;
 	vector3df	_target;
 	vector3df	_endPosition;
 	StateSwitchFighter* stateSwitch;

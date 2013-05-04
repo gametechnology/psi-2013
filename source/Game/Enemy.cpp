@@ -190,7 +190,7 @@ void Enemy::steering(irr::core::vector3df rotational, irr::core::vector3df playe
 		this->setOriginalVelocity(*this->transform->velocity);
 		this->transform->velocity = &newvelocity;
 
-	    	float magnitude = sqrt(pow(this->transform->velocity->X,2) + pow(this->transform->velocity->Y,2) + pow(this->transform->velocity->Z,2));
+	    float magnitude = sqrt(pow(this->transform->velocity->X,2) + pow(this->transform->velocity->Y,2) + pow(this->transform->velocity->Z,2));
 		vector3df normalizedvelocity = vector3df((this->transform->velocity->X/magnitude),(this->transform->velocity->Y/magnitude),(this->transform->velocity->Z/magnitude));
 
 		irr::core::vector3df diffPos;

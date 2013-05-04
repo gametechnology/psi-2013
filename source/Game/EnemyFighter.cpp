@@ -20,7 +20,7 @@ void EnemyFighter::init()
 {
 	Enemy::init();
 
-	EnemyFighter::inRangeList = array<Entity*>();
+	EnemyFighter::inRangeList = vector<Entity*>();
 	EnemyFighter::stateSwitch = new StateSwitchFighter(StateSwitch::STATE_WANDER,this);
 }
 
@@ -93,7 +93,7 @@ void EnemyFighter::fireLaserAt(vector3df target)
 	}
 }
 
-array<Laser*> EnemyFighter::GetLasers()
+vector<Laser*> EnemyFighter::GetLasers()
 {
 	return _laser;
 }

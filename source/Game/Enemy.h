@@ -33,7 +33,7 @@ public:
 
 	bool isWithinLoS(/*playership class*/);
 
-	array<Entity*> inRangeList;
+	vector<Entity*> inRangeList;
 
 	void setVisualWithPath(const irr::io::path& path);
 	void setPath(vector3df destination);

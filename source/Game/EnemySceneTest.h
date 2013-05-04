@@ -27,7 +27,7 @@ public:
 	irr::scene::ILightSceneNode* light;
 
 private:
-	array<Enemy*> _enemyList;
+	vector<Enemy*> _enemyList;
 };
 
 #endif

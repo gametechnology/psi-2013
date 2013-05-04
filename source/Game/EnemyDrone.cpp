@@ -20,7 +20,7 @@ void EnemyDrone::init()
 {
 	Enemy::init();
 
-	EnemyDrone::inRangeList = array<Entity*>();
+	EnemyDrone::inRangeList = vector<Entity*>();
 	EnemyDrone::stateSwitch = new StateSwitchDrone(StateSwitch::STATE_WANDER, this);
 }
 
