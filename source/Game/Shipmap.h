@@ -3,9 +3,12 @@
 #include "Shipmap.h"
 #include "Engine/Game.h"
 #include <math.h>
+#include "Stations\Station.h"
 
 class Shipmap : public Entity
 {
+	void enterStation(StationType station);
+
 	struct tilePos	{
 		int x;
 		int y;
@@ -28,6 +31,7 @@ class Shipmap : public Entity
 	u32 now, then;
 
 	bool isMoving, isIntersecting, onStation, blockedE, onOccupiedStation, stationOccupied[5];
+	StationType _intersectingStation;
 
 	int offsetX, offsetY, tileSize, iconOffset, stationNumber;
 	int stationIconOffset[5];
@@ -38,6 +42,7 @@ class Shipmap : public Entity
 public:
 	Shipmap();
 	~Shipmap();
+	void onAdd();
 	void init();
 	void draw();
 	void update();
