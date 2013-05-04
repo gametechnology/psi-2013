@@ -15,7 +15,7 @@ void EmptyTestScene::onAdd(){
 	a = 100;
 	b = 25;
 
-	hud = new HudComposite( &a, &b);
+	hud = new HudComposite( &a, &b, game->guiEnv);
 	addChild(hud);
 }
 
