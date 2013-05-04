@@ -91,8 +91,9 @@ void EnemySceneTest::HandleNetworkMessage(NetworkPacket packet)
 					{
 						continue;
 					}
-
-					_enemyList[j]->destroy();
+					Enemy* enemy = _enemyList[j];
+					_enemyList.erase(_enemyList.begin() + j);
+					enemy->destroy();
 				}
 			}
 
