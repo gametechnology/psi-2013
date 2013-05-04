@@ -4,7 +4,6 @@
 
 EnemyAsteroid::EnemyAsteroid(irr::core::vector3df position, vector3df velocity): Enemy()
 {
-	this->setVisualWithPath("../assets/Models/Space_Asteroid.dae");
 	this->setPosition(position);
 	this->setMaxHealth(25);
 	this->setAgility(1);
@@ -15,6 +14,18 @@ EnemyAsteroid::EnemyAsteroid(irr::core::vector3df position, vector3df velocity):
 	this->setOuterRadius(sqrt((this->getRadius()*this->getRadius())+(this->getRadius()*this->getRadius())));
 	this->setVelocity(velocity);
 	this->_type = Enemy::ASTROID;
+}
+
+void EnemyAsteroid::init()
+{
+
+}
+
+void EnemyAsteroid::onAdd()
+{
+	Enemy::onAdd();
+
+	this->setVisualWithPath("../assets/Models/Space_Asteroid.dae");
 }
 
 EnemyAsteroid::~EnemyAsteroid(void)

@@ -3,7 +3,6 @@
 
 EnemyFighter::EnemyFighter(irr::core::vector3df position): Enemy()
 {
-	this->setVisualWithPath("../assets/Models/Space_Fighter.dae");
 	this->setPosition(position);
 	this->setMaxHealth(50);
 	this->setAgility(2);
@@ -15,11 +14,21 @@ EnemyFighter::EnemyFighter(irr::core::vector3df position): Enemy()
 	this->setLoS(4800);
 	this->_type = Enemy::FIGHTER;
 
+}
+
+void EnemyFighter::init()
+{
+	Enemy::init();
+
 	EnemyFighter::inRangeList = array<Entity*>();
 	EnemyFighter::stateSwitch = new StateSwitchFighter(StateSwitch::STATE_WANDER,this);
 }
 
-void EnemyFighter::onAdd() {
+void EnemyFighter::onAdd() 
+{
+	Enemy::onAdd();
+	
+	this->setVisualWithPath("../assets/Models/Space_Fighter.dae");
 	this->loadLaser();
 }
 

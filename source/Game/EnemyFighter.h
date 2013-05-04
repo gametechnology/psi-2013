@@ -15,6 +15,7 @@ public:
 	void SetTarget(vector3df target);
 	virtual void chase(vector3df target);
 	
+	virtual void init();
 	virtual void onAdd();
 	virtual void update();
 private:
