@@ -9,8 +9,6 @@
 class HudComposite : public Entity
 {
 public:
-	int _health;
-	int _energy;
 
 	HudComposite( int* health, int* energy);
 	~HudComposite(void);

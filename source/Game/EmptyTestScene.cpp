@@ -12,13 +12,15 @@ EmptyTestScene::~EmptyTestScene(void) {
 }
 
 void EmptyTestScene::onAdd(){
+	a = 100;
+	b = 25;
+
 	hud = new HudComposite( &a, &b);
 	addChild(hud);
 }
 
 void EmptyTestScene::init(){
-	a = 100;
-	b = 25;
+	
 
 	Entity::init();
 }
