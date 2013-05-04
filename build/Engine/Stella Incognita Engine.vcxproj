@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{034C2CDA-CFB7-4A4C-BE98-628B85DA5D84}</ProjectGuid>
+    <ProjectGuid>{449E530E-8A1D-42BC-B6A9-11F4A23D2BD0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>StellaIncognita</RootNamespace>
     <ProjectName>Stella Incognita Engine</ProjectName>
