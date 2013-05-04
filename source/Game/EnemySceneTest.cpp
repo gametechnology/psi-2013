@@ -61,7 +61,6 @@ NetworkPacket packet(ENEMY);
 
 EnemySceneTest::EnemySceneTest(void) : Scene()
 {
-	std::cout<<"CONSTRUCTION";
 	Network::GetInstance()->AddListener(ENEMY, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
 	EnemySceneTest::_enemyList = array<Enemy*>();
@@ -135,6 +134,7 @@ void EnemySceneTest::HandleNetworkMessage(NetworkPacket packet)
 					_enemyList.getLast()->setPosition(serverEnemies[i].getPosition());
 					_enemyList.getLast()->setVelocity(serverEnemies[i].getVelocity());
 					_enemyList.getLast()->setRotation(serverEnemies[i].getRotation());
+					this->addChild(_enemyList.getLast());
 				}
 			}
 		}
