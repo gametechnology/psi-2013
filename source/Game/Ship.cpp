@@ -157,6 +157,7 @@ void Ship :: update()
 	if(this->_weaponStation->getHealth() <= 0 && this->_weaponStation->getStationDestroyed() == false) {
 		this->_weaponStation->setStationDestroyed(true);
 	}
+	Entity :: update();
 }
 
 Thruster** Ship :: GetThrusters()
