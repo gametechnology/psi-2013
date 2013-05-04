@@ -15,7 +15,7 @@ void EmptyTestScene::onAdd(){
 	a = 100;
 	b = 25;
 
-	hud = new HudComposite( &a, &b);
+	hud = new HudComposite( &a, &b, game->guiEnv);
 	addChild(hud);
 }
 
@@ -32,4 +32,5 @@ void EmptyTestScene::update(){
 	if(game->input->isKeyboardButtonDown(KEY_KEY_S)){
 		a += 1;
 	}
+	
 }
