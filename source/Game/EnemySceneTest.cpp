@@ -3,6 +3,7 @@
 #include "Skybox.h"
 #include "EnemyManager.h"
 #include "RandomGenerator.h"
+#include "EnemyPlayer.h"
 
 
 sf::Packet& operator <<(sf::Packet& out, Enemy& in)
@@ -55,6 +56,8 @@ sf::Packet& operator >>(sf::Packet& in, irr::core::array<Enemy>& out)
 NetworkPacket packet(ENEMY);
 
 #include <iostream>
+IrrlichtNode* player1 = new IrrlichtNode(irr::io::path("../assets/Models/Space_Fighter.dae"));
+IrrlichtNode* player2 = new IrrlichtNode(irr::io::path("../assets/Models/Space_Fighter.dae"));
 
 EnemySceneTest::EnemySceneTest(void) : Scene()
 {
@@ -62,6 +65,14 @@ EnemySceneTest::EnemySceneTest(void) : Scene()
 	Network::GetInstance()->AddListener(ENEMY, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
 	EnemySceneTest::_enemyList = array<Enemy*>();
+	player1->transform->velocity->operator=(irr::core::vector3d<f32>(0,0,0));
+	player1->transform->position->operator=(irr::core::vector3d<f32>(0,0,0));
+	addChild(player1);
+	//player2->transform->velocity->operator=(irr::core::vector3d<f32>(-1,0,0));
+	//player2->transform->position->operator=(irr::core::vector3d<f32>(10,0,0));
+	//addChild(player2);
+	//Camera* camera = new Camera();
+	//addChild(camera);
 }
 
 EnemySceneTest::~EnemySceneTest(void)
@@ -139,6 +150,8 @@ int timer = 0;
 void EnemySceneTest::update()
 {
 	Scene::update();
+	player1->update();
+	player2->update();
 	if(timer >= 500)
 	{
 		if(Network::GetInstance()->IsServer())
