@@ -56,22 +56,16 @@ sf::Packet& operator >>(sf::Packet& in, irr::core::array<Enemy>& out)
 NetworkPacket packet(SERVER_ENEMY);
 
 #include <iostream>
-//IrrlichtNode* player1 = new IrrlichtNode(irr::io::path("../assets/Models/Space_Fighter.dae"));
-//IrrlichtNode* player2 = new IrrlichtNode(irr::io::path("../assets/Models/Space_Fighter.dae"));
 
 EnemySceneTest::EnemySceneTest(void) : Scene()
 {
 	Network::GetInstance()->AddListener(SERVER_ENEMY, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
 	EnemySceneTest::_enemyList = array<Enemy*>();
-	//player1->transform->velocity->operator=(irr::core::vector3d<f32>(0,0,0));
-	//player1->transform->position->operator=(irr::core::vector3d<f32>(0,0,0));
-	//addChild(player1);
-	//player2->transform->velocity->operator=(irr::core::vector3d<f32>(-1,0,0));
-	//player2->transform->position->operator=(irr::core::vector3d<f32>(10,0,0));
-	//addChild(player2);
-	//Camera* camera = new Camera();
-	//addChild(camera);
+	EnemyPlayer* player1 = new EnemyPlayer(irr::core::vector3df(0,1,0),irr::core::vector3df(0,0,0));
+	addChild(player1);
+	EnemyPlayer* player2 = new EnemyPlayer(irr::core::vector3df(20,1,0),irr::core::vector3df(-1,0,0));
+	addChild(player2);
 }
 
 EnemySceneTest::~EnemySceneTest(void)
