@@ -53,7 +53,7 @@ sf::Packet& operator >>(sf::Packet& in, irr::core::array<Enemy>& out)
 	return in;
 }
 
-NetworkPacket packet(ENEMY);
+NetworkPacket packet(SERVER_ENEMY);
 
 #include <iostream>
 //IrrlichtNode* player1 = new IrrlichtNode(irr::io::path("../assets/Models/Space_Fighter.dae"));
@@ -61,7 +61,7 @@ NetworkPacket packet(ENEMY);
 
 EnemySceneTest::EnemySceneTest(void) : Scene()
 {
-	Network::GetInstance()->AddListener(ENEMY, this);
+	Network::GetInstance()->AddListener(SERVER_ENEMY, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
 	EnemySceneTest::_enemyList = array<Enemy*>();
 	//player1->transform->velocity->operator=(irr::core::vector3d<f32>(0,0,0));
@@ -81,7 +81,7 @@ EnemySceneTest::~EnemySceneTest(void)
 
 void EnemySceneTest::HandleNetworkMessage(NetworkPacket packet)
 {
-	if(packet.GetType() == ENEMY)
+	if(packet.GetType() == SERVER_ENEMY)
 	{
 		if(!Network::GetInstance()->IsServer())
 		{
@@ -152,10 +152,11 @@ void EnemySceneTest::update()
 {
 	Scene::update();
 
-	if(timer >= 500)
+	if(timer >= 50)
 	{
 		if(Network::GetInstance()->IsServer())
 		{
+			packet.clear();
 			packet << _enemyList;
 
 			Network::GetInstance()->SendServerPacket(packet);
@@ -172,6 +173,11 @@ void EnemySceneTest::onAdd()
 	if(Network::GetInstance()->IsServer())
 	{
 		createEnemies();
+
+		packet.clear();
+		packet << _enemyList;
+
+		Network::GetInstance()->SendServerPacket(packet);
 	}
 
 }
@@ -185,7 +191,20 @@ void EnemySceneTest::createEnemies()
 	{
 		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
 		
-		std::cout << _enemyList[i]->transform->position->Z << std::endl;
+		addChild(_enemyList.getLast());
+	}
+
+	for(int j = 0; j < 10; j++)
+	{
+		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(0,(irr::f32)(j + (j * j)),0)));
+		
+		addChild(_enemyList.getLast());
+	}
+
+	for(int k = 0; k < 30; k++)
+	{
+		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df((irr::f32)(k + (k * k)),0,0), irr::core::vector3df(0,0,0.01f)));
+		
 		addChild(_enemyList.getLast());
 	}
 }

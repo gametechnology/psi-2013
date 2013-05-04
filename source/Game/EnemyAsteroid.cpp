@@ -18,7 +18,7 @@ EnemyAsteroid::EnemyAsteroid(irr::core::vector3df position, vector3df velocity):
 
 void EnemyAsteroid::init()
 {
-
+	Enemy::init();
 }
 
 void EnemyAsteroid::onAdd()

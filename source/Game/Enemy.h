@@ -12,7 +12,7 @@ using namespace scene;
 using namespace video;
 using namespace core;
 
-class Enemy : public Entity, public INetworkListener
+class Enemy : public Entity
 {
 public:
 	static int newEnemyId;
@@ -34,7 +34,6 @@ public:
 	bool isWithinLoS(/*playership class*/);
 
 	array<Entity*> inRangeList;
-	void HandleNetworkMessage(NetworkPacket packet);
 
 	void setVisualWithPath(const irr::io::path& path);
 	void setPath(vector3df destination);
@@ -47,7 +46,7 @@ public:
 	void setLoS(unsigned int los);
 	void setHealth(signed int health);
 	void setMaxHealth(unsigned int maxhealth);
-	void setVelocity(vector3df input);
+	void setVelocity(vector3df velocity);
 	void setRadius(float radius);
 	void setOriginalRadius(float origradius);
 	void setOuterRadius(float outerradius);

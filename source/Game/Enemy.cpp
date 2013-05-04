@@ -4,19 +4,10 @@
 #include "Engine/IrrlichtNode.h"
 
 int Enemy::newEnemyId;
-NetworkPacket myPacket(ENEMY);
 
 Enemy::Enemy(void): Entity()
 {
 	
-}
-
-void Enemy::HandleNetworkMessage(NetworkPacket packet)
-{
-	if(packet.GetType() == ENEMY)
-	{
-
-	}
 }
 
 void Enemy::init()
@@ -30,7 +21,6 @@ void Enemy::init()
 	{
 		this->_id = this->newEnemyId++;
 	}
-	Network::GetInstance()->AddListener(ENEMY, this);
 }
 
 void Enemy::onAdd()
