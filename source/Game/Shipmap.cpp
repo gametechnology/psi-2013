@@ -297,4 +297,18 @@ void Shipmap::update()
 void Shipmap::enterStation(StationType station)
 {
 	printf("Enter station with station %i \n", station);
+
+	switch(station)
+	{
+		case StationType::ST_DEFENCE:
+			break;
+		case StationType::ST_HELM:
+			break;
+		case StationType::ST_NAVIGATION:
+			break;
+		case StationType::ST_POWER:
+			break;
+		case StationType::ST_WEAPON:
+			break;
+	}
 }
