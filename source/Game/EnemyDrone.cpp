@@ -3,7 +3,6 @@
 
 EnemyDrone::EnemyDrone(irr::core::vector3df position):Enemy()
 {
-	this->setVisualWithPath("../assets/Models/Space_Drone.dae");
 	this->setPosition(position);
 	this->setMaxHealth(25);
 	this->setAgility(3);
@@ -14,10 +13,24 @@ EnemyDrone::EnemyDrone(irr::core::vector3df position):Enemy()
 	this->setAccelaration(vector3df(75,0,0));
 	this->setLoS(200);
 	this->_type = Enemy::DRONE;
+	
+}
+
+void EnemyDrone::init()
+{
+	Enemy::init();
 
 	EnemyDrone::inRangeList = array<Entity*>();
 	EnemyDrone::stateSwitch = new StateSwitchDrone(StateSwitch::STATE_WANDER, this);
 }
+
+void EnemyDrone::onAdd()
+{
+	Enemy::onAdd();
+
+	this->setVisualWithPath("../assets/Models/Space_Drone.dae");
+}
+
 EnemyDrone::~EnemyDrone(void)
 {
 	EnemyDrone::stateSwitch->~StateSwitchDrone();

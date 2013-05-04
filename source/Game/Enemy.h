@@ -17,16 +17,7 @@ class Enemy : public Entity, public INetworkListener
 public:
 	static int newEnemyId;
 
-	Enemy(void);
-	Enemy(ISceneManager* smgr, IMesh* mesh,				// using default parameters allows 
-		vector3df position = vector3df(0,0,0),			// maximum flexibility with the constructor but everything left 
-		vector3df rotation = vector3df(0,0,0),			// open or not required can still be set by using the set methods.
-		unsigned int maxspeed = 1,						// 
-		unsigned int agility = 1,						//
-		vector3df acc = vector3df(0,0,0),			//
-		unsigned int damage = 1,						//
-		unsigned int los = 1,							//
-		unsigned int health = 1);						//
+	Enemy(void);						//
 	~Enemy(void);
 
 	typedef enum {
@@ -37,13 +28,14 @@ public:
 		FIGHTER = 2
 	} EnemyType;
 
+	virtual void init();
+	virtual void onAdd();
+
 	bool isWithinLoS(/*playership class*/);
 
 	array<Entity*> inRangeList;
-	virtual void destroy();
 	void HandleNetworkMessage(NetworkPacket packet);
 
-	void setVisual(IMesh* visual, ISceneManager* smgr);	// visuals are the only component which do not have a get method
 	void setVisualWithPath(const irr::io::path& path);
 	void setPath(vector3df destination);
 	void setPosition(vector3df position);
@@ -110,7 +102,6 @@ private:
 
 	void pathFinding();
 	
-	IMesh* visual_;
 	vector3df destination_;
 	vector3df originalvelocity_;
 	signed int _health;

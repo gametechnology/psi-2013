@@ -30,8 +30,8 @@ int main()
 	Game* game = new Game();
 	//Enemy::newEnemyId = 0;
 	//Add the MainMenu
-	Scene* scene = new EnemySceneTest();
-	//Scene* scene = new MainMenuScene();
+	//Scene* scene = new EnemySceneTest();
+	Scene* scene = new MainMenuScene();
 	game->sceneManager->addScene("MainMenuScene", scene);
 
 	//Create ship

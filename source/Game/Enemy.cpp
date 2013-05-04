@@ -8,22 +8,7 @@ NetworkPacket myPacket(ENEMY);
 
 Enemy::Enemy(void): Entity()
 {
-	this->_wanderTime = 0;
-	this->healthTimer = 0;
-	this->_isAlive = true;
-	if(Network::GetInstance()->IsServer())
-	{
-		this->_id = this->newEnemyId++;
-	}
-
-	array<vector3df> vector3Array = array<vector3df>();
-	vector3Array.push_back(vector3df(5,5,2));
-	myPacket << vector3Array;
-	if(!Network::GetInstance()->IsServer())
-	{
-		//Network::GetInstance()->SendPacket(myPacket);
-	}
-	Network::GetInstance()->AddListener(ENEMY, this);
+	
 }
 
 void Enemy::HandleNetworkMessage(NetworkPacket packet)
@@ -32,6 +17,25 @@ void Enemy::HandleNetworkMessage(NetworkPacket packet)
 	{
 
 	}
+}
+
+void Enemy::init()
+{
+	Entity::init();
+
+	this->_wanderTime = 0;
+	this->healthTimer = 0;
+	this->_isAlive = true;
+	if(Network::GetInstance()->IsServer())
+	{
+		this->_id = this->newEnemyId++;
+	}
+	Network::GetInstance()->AddListener(ENEMY, this);
+}
+
+void Enemy::onAdd()
+{
+	Entity::onAdd();
 }
 
 int Enemy::getId()
@@ -293,21 +297,15 @@ void Enemy::contactGenerator(Player* input)
 	}
 }*/
 
-void Enemy::setVisual(IMesh* visual, ISceneManager* smgr)
-{
-	visual_ = visual;
-	smgr->addMeshSceneNode(this->visual_);
-}
-
 void Enemy::setVisualWithPath(const irr::io::path& path)
 {
 	//this->createNode(path);
 	this->addChild(new IrrlichtNode(path));
 }
 
-void Enemy::setVelocity(vector3df input)
+void Enemy::setVelocity(vector3df velocity)
 {
-	this->transform->velocity = &input;
+	*this->transform->velocity = velocity;
 }
 void Enemy::setPath(vector3df destination)
 {
@@ -315,7 +313,7 @@ void Enemy::setPath(vector3df destination)
 }
 void Enemy::setPosition(vector3df pos)
 {
-	this->transform->position = &pos;
+	*this->transform->position = pos;
 }
 void Enemy::setRotation(vector3df rotategoal)
 {
@@ -334,7 +332,7 @@ void Enemy::setAgility(unsigned int agility)
 }
 void Enemy::setAccelaration(vector3df acc)
 {
-	this->transform->acceleration = &acc;
+	*this->transform->acceleration = acc;
 }
 void Enemy::setDamage(unsigned int damage)
 {
@@ -485,12 +483,8 @@ void Enemy::receiveDamage(int damage)
 	if(this->_health <= 0)
 	{
 		this->_health = 0;
+		this->_isAlive = false;
 	}
-}
-
-void Enemy::destroy()
-{
-	this->_isAlive = false;
 }
 
 void Enemy::wander()

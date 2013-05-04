@@ -1,6 +1,7 @@
 #include "Engine/Game.h"
 #include "MainMenuScene.h"
 #include "GameScene.h"
+#include "EnemySceneTest.h"
 
 MainMenuScene::MainMenuScene() : Scene() {
 	
@@ -93,7 +94,8 @@ void MainMenuScene::StartGame()
 	sectorManager.init();*/
 	//TODO: Previous scene still displayed, shouldn't be the case
 	this->game->sceneManager->deactivateScene("MainMenuScene");
-	this->game->sceneManager->addScene("GameScene",new GameScene());
+	//this->game->sceneManager->addScene("GameScene",new GameScene());
+	this->game->sceneManager->addScene("EnemySceneTest", new EnemySceneTest());
 }
 
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
