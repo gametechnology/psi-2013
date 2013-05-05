@@ -1,20 +1,18 @@
-#ifndef COLLISION
-#define COLLISION
-/*
-#include "../source/Game/Enemy.h"
-#include "../source/Game/EnemyFighter.h"
-#include "../source/Game/Laser.h"
-*/
+#ifndef COLLISIONCOMPONENT
+#define COLLISIONCOMPONENT
+
 #include "Irrlicht\irrlicht.h"
+#include "Engine\Component.h"
 #include "Engine\Entity.h"
 
-class Collision
+class Collision : public Component
 {
 public:
 	Collision(void);
-	~Collision(void);
-/*	void static LaserNarrowPhase(vector<Enemy*> _enput, vector<Laser*> _laput);
-	void static NarrowPhaseDetection(vector<Enemy*> _input); */
+	virtual ~Collision(void);
+
+	virtual void onAdd();
+
 	void static NarrowPhaseDetection(vector<Entity*> _input);
 	irr::core::vector3df static componentOnto(irr::core::vector3df input, irr::core::vector3df deltavelocity);
 };

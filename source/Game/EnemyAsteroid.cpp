@@ -1,5 +1,6 @@
 #include "EnemyAsteroid.h"
 #include "Engine/Entity.h"
+#include "Engine/Collision.h"
 #include <iostream>
 
 EnemyAsteroid::EnemyAsteroid(irr::core::vector3df position, vector3df velocity): Enemy()
@@ -26,6 +27,8 @@ void EnemyAsteroid::onAdd()
 	Enemy::onAdd();
 
 	this->setVisualWithPath("../assets/Models/Space_Asteroid.dae");
+	Collision* collision = new Collision();
+	addComponent(collision);
 }
 
 EnemyAsteroid::~EnemyAsteroid(void)

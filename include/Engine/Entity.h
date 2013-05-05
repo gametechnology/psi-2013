@@ -24,7 +24,7 @@ public:
 
 	void addChild(Entity* child);
 	bool removeChild(Entity* child);
- bool removeChild(Entity* child, bool deleteChild);
+	bool removeChild(Entity* child, bool deleteChild);
 	void addComponent(Component* component);
 	bool removeComponent(Component* component);
 	virtual void contactResolverA(Entity* _input);

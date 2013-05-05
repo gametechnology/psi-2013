@@ -1,5 +1,6 @@
 #include "EnemyFighter.h"
 #include "Engine/Entity.h"
+#include "Engine/Collision.h"
 
 EnemyFighter::EnemyFighter(irr::core::vector3df position): Enemy()
 {
@@ -29,6 +30,8 @@ void EnemyFighter::onAdd()
 	Enemy::onAdd();
 	
 	this->setVisualWithPath("../assets/Models/Space_Fighter.dae");
+	Collision* collision = new Collision();
+	addComponent(collision);
 	this->loadLaser();
 }
 

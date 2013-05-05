@@ -9,6 +9,8 @@
 #pragma comment(linker, "/subsystem:windows /ENTRY:mainCRTStartup")
 #endif
 
+CollisionSystem* Game::collisionSystem;
+
 Game::Game()
 {
 	//Create input manager
@@ -31,6 +33,9 @@ Game::Game()
 	// Create the topmost node
 	game = new Entity();
 	game->game = this;
+
+	collisionSystem = new CollisionSystem();
+
 	game->addComponent(sceneManager = new SceneManager());
 }
 
@@ -47,6 +52,7 @@ void Game::run()
 		input->endInputProcess();
 
 		game->update();
+		collisionSystem->update();
 
 		// Clearing the screen
 		driver -> beginScene(true, true, irr::video::SColor(255,100,101,140));

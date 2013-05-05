@@ -192,7 +192,7 @@ void Entity::contactResolverA(Entity* _input)
     irr::core::vector3df componentNormalToBal = deltavelocity - componentThisToBal;
     irr::core::vector3df thisMassComponent = componentThisToBal * (((deltamass- 1) / (deltamass + 1)));
 	irr::core::vector3df balMassComponent = componentThisToBal * ((2 * deltamass / (deltamass + 1)));
-	this->transform->velocity = &(componentNormalToBal + thisMassComponent + (*_input->transform->velocity));
+	*this->transform->velocity = (componentNormalToBal + thisMassComponent + (*_input->transform->velocity));
 	*_input->transform->velocity = (balMassComponent + *_input->transform->velocity);
 	this->transform->radii->X = (this->transform->radii->X*2 - this->transform->position->getDistanceFrom(*_input->transform->position));
 	_input->transform->radii->X = (this->transform->radii->X);
