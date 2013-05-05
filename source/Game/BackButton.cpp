@@ -5,11 +5,13 @@
 enum{
 		GUI_ID_BACK_BUTTON = 101
 };
+
 struct SAppContext
 {
 	IGUIEnvironment* env;
 	bool buttonFlag; // boolean to pass the return of the OnEvent to the main class
 };
+
 class ButtonEventReceiver : public IEventReceiver{
 public:
 	ButtonEventReceiver(SAppContext & context) : Context(context) { }
@@ -39,8 +41,7 @@ private:
 BackButton::BackButton(rect< s32 > position) : Component()
 {
 	position_ = position;
-	BackButton::pressed = false;
-	BackButton::visible = true;
+	
 	
 	//button->setImage(video::ITexture("../assets/Textures/Stations/backButton.png");
 }
@@ -71,12 +72,17 @@ bool BackButton::isButtonPressed(){
 	
 	return BackButton::pressed;
 }
+
 void BackButton::update(){
 	
 }
 
 void BackButton::init(){
 	button = getGame()->guiEnv->addButton(position_,0,GUI_ID_BACK_BUTTON,L"Esc to Back",L"Go back to 2d shipmap");
+	button = env->addButton(posRect,0,GUI_ID_BACK_BUTTON,L"Esc to Back",L"Go back to 2d shipmap");
+	BackButton::pressed = false;
+	BackButton::visible = true;
+	this->env = env;
 }
 void BackButton::draw(){
 

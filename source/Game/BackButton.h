@@ -28,6 +28,7 @@ public:
 
 private:
 	irr::core::rect<s32> position_;
+	rect<s32> posRect;
 	irr::video::ITexture* escButton;
 	bool pressed;
 	IGUIButton *button;

@@ -7,13 +7,27 @@
 #include "Irrlicht\irrlicht.h"
 #include "Engine\Game.h"
 
+using namespace irr::core; 
+using namespace irr::gui;
+
 class HudHelpText : public Component
 {
 public:
-	HudHelpText();
+	HudHelpText(irr::core::rect< s32 > position);
 	~HudHelpText(void);
+	~BackButton(void);
+	bool isButtonPressed(); 
+	void update();
+	void draw();
+	void init();
+	bool visible;
 private: 
-	std::string* helpTextString;
+	irr::core::vector2df position_;
+	rect<s32> posRect;
+	irr::video::ITexture* escButton;
+	bool pressed;
+	IGUIButton *button;
+	IGUIEnvironment* env;
 };
 #endif
 
