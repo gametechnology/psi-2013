@@ -1,9 +1,9 @@
 #include "EnemyDrone.h"
 #include "Engine/Entity.h"
+#include "Engine/Collision.h"
 
 EnemyDrone::EnemyDrone(irr::core::vector3df position):Enemy()
 {
-	this->setVisualWithPath("../assets/Models/Space_Drone.dae");
 	this->setPosition(position);
 	this->setMaxHealth(25);
 	this->setAgility(3);
@@ -13,10 +13,28 @@ EnemyDrone::EnemyDrone(irr::core::vector3df position):Enemy()
 	this->setOuterRadius(sqrt((this->getRadius()*this->getRadius())+(this->getRadius()*this->getRadius())));
 	this->setAccelaration(vector3df(75,0,0));
 	this->setLoS(200);
+	this->_type = Enemy::DRONE;
+	
+}
 
-	EnemyDrone::inRangeList = array<Entity*>();
+void EnemyDrone::init()
+{
+	Enemy::init();
+
+	EnemyDrone::inRangeList = vector<Entity*>();
 	EnemyDrone::stateSwitch = new StateSwitchDrone(StateSwitch::STATE_WANDER, this);
 }
+
+void EnemyDrone::onAdd()
+{
+	Enemy::onAdd();
+
+	this->setVisualWithPath("../assets/Models/Space_Drone.dae");
+
+	Collision* collision = new Collision();
+	addComponent(collision);
+}
+
 EnemyDrone::~EnemyDrone(void)
 {
 	EnemyDrone::stateSwitch->~StateSwitchDrone();

@@ -1,6 +1,7 @@
 #include "Engine/Game.h"
 #include "MainMenuScene.h"
 #include "GameScene.h"
+#include "EnemySceneTest.h"
 
 MainMenuScene::MainMenuScene() : Scene() {
 	
@@ -92,6 +93,7 @@ void MainMenuScene::StartGame()
 	SectorManager sectorManager(galaxyMap);
 	sectorManager.init();*/
 	//TODO: Previous scene still displayed, shouldn't be the case
+	this->game->guiEnv->clear();
 	this->game->sceneManager->deactivateScene("MainMenuScene");
 	this->game->sceneManager->addScene("GameScene",new GameScene());
 }

@@ -123,9 +123,6 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -429,6 +426,12 @@
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\PowerStationData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Collision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EnemySceneTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\HudComposite.h">

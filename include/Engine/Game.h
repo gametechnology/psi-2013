@@ -1,4 +1,3 @@
-#include <Irrlicht\irrlicht.h>
 #ifndef ENGINE
 #define ENGINE
 
@@ -6,6 +5,7 @@
 #include "Engine\Scene.h"
 #include "Engine\SceneManager.h"
 #include "Engine\InputManager.h"
+#include "Engine\CollisionSystem.h"
 
 class Entity;
 
@@ -24,6 +24,7 @@ public:
 	Entity* game;
 	SceneManager* sceneManager;
 	InputManager* input;
+	static CollisionSystem* collisionSystem;
 
 protected:
 	

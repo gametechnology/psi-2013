@@ -141,6 +141,7 @@
     <ClInclude Include="..\source\Game\BaseSector.h" />
     <ClInclude Include="..\source\Game\BasicMoverComponent.h" />
     <ClInclude Include="..\source\Game\CalculateRotation.h" />
+    <ClInclude Include="..\source\Game\Collision.h" />
     <ClInclude Include="..\source\Game\EmptyTestScene.h" />
     <ClInclude Include="..\source\Game\Enemy.h" />
     <ClInclude Include="..\source\Game\EnemyAsteroid.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="..\source\Game\EnemyFighter.h" />
     <ClInclude Include="..\source\Game\EnemyManager.h" />
     <ClInclude Include="..\source\Game\EnemyPlayer.h" />
+    <ClInclude Include="..\source\Game\EnemySceneTest.h" />
     <ClInclude Include="..\source\Game\GalaxyMap.h" />
     <ClInclude Include="..\source\Game\GameScene.h" />
     <ClInclude Include="..\source\Game\HealthBar.h" />
