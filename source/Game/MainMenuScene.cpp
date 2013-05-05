@@ -93,9 +93,9 @@ void MainMenuScene::StartGame()
 	SectorManager sectorManager(galaxyMap);
 	sectorManager.init();*/
 	//TODO: Previous scene still displayed, shouldn't be the case
+	this->game->guiEnv->clear();
 	this->game->sceneManager->deactivateScene("MainMenuScene");
-	//this->game->sceneManager->addScene("GameScene",new GameScene());
-	this->game->sceneManager->addScene("EnemySceneTest", new EnemySceneTest());
+	this->game->sceneManager->addScene("GameScene",new GameScene());
 }
 
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
