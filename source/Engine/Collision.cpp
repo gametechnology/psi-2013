@@ -9,7 +9,7 @@ Collision::Collision(void)
 Collision::~Collision(void)
 {
 }
-
+/*
 void Collision::LaserNarrowPhase(vector<Enemy*> _enput, vector<Laser*> _laput)
 {
 	for (int i = 0; i < (int)(_laput.size()); i++)
@@ -79,17 +79,6 @@ void Collision::NarrowPhaseDetection(vector<Enemy*> _input)
 							}
 						}
 					}
-
-					/*
-					if (distance < (_input[i]->getRadius() + _input[j]->getOuterRadius()))
-					{
-						_input[i]->contactResolverA(_input[j]);
-					}
-					if (distance < (_input[j]->getRadius() + _input[i]->getOuterRadius()))
-					{
-						_input[i]->contactResolverA(_input[j]);
-					}
-					*/
 				}
 				else
 				{
@@ -120,17 +109,16 @@ void Collision::NarrowPhaseDetection(vector<Enemy*> _input)
  // contactResolverB();
  //}
 }
-
+*/
 void Collision::NarrowPhaseDetection(vector<Entity*> _input)
 {
-	vector<Laser*> laserlist;
 	for(int i = 0; i < (int)(_input.size()); i++)
 	{
 		for(int j = i; j < (int)(_input.size()); j++)
 		{
 			if(i != j)
 			{
-				float distance = _input[i]->transform->position->getDistanceFrom(vector3df(_input[j]->transform->position->X,_input[j]->transform->position->Y,_input[j]->transform->position->Z));
+				float distance = _input[i]->transform->position->getDistanceFrom(irr::core::vector3df(_input[j]->transform->position->X,_input[j]->transform->position->Y,_input[j]->transform->position->Z));
 				if (distance < (_input[i]->transform->radii->Z + _input[j]->transform->radii->Z))
 				{
 					if (distance < (_input[i]->transform->radii->X + _input[j]->transform->radii->X ) )
@@ -141,23 +129,23 @@ void Collision::NarrowPhaseDetection(vector<Entity*> _input)
 					irr::core::vector3df box1[8];
 					irr::core::vector3df box2[8];
 
-					box1[0] = vector3df(_input[i]->transform->position->X-_input[i]->transform->radii->X,_input[i]->transform->position->Y+_input[i]->transform->radii->X,_input[i]->transform->position->Z+_input[i]->transform->radii->X);
-					box1[1] = vector3df(_input[i]->transform->position->X+_input[i]->transform->radii->X,_input[i]->transform->position->Y-_input[i]->transform->radii->X,_input[i]->transform->position->Z+_input[i]->transform->radii->X);
-					box1[2] = vector3df(_input[i]->transform->position->X+_input[i]->transform->radii->X,_input[i]->transform->position->Y+_input[i]->transform->radii->X,_input[i]->transform->position->Z+_input[i]->transform->radii->X);
-					box1[3] = vector3df(_input[i]->transform->position->X-_input[i]->transform->radii->X,_input[i]->transform->position->Y-_input[i]->transform->radii->X,_input[i]->transform->position->Z+_input[i]->transform->radii->X);
-					box1[4] = vector3df(_input[i]->transform->position->X-_input[i]->transform->radii->X,_input[i]->transform->position->Y+_input[i]->transform->radii->X,_input[i]->transform->position->Z-_input[i]->transform->radii->X);
-					box1[5] = vector3df(_input[i]->transform->position->X+_input[i]->transform->radii->X,_input[i]->transform->position->Y-_input[i]->transform->radii->X,_input[i]->transform->position->Z-_input[i]->transform->radii->X);
-					box1[6] = vector3df(_input[i]->transform->position->X+_input[i]->transform->radii->X,_input[i]->transform->position->Y+_input[i]->transform->radii->X,_input[i]->transform->position->Z-_input[i]->transform->radii->X);
-					box1[7] = vector3df(_input[i]->transform->position->X-_input[i]->transform->radii->X,_input[i]->transform->position->Y-_input[i]->transform->radii->X,_input[i]->transform->position->Z-_input[i]->transform->radii->X);
+					box1[0] = irr::core::vector3df(_input[i]->transform->position->X-_input[i]->transform->radii->X,_input[i]->transform->position->Y+_input[i]->transform->radii->X,_input[i]->transform->position->Z+_input[i]->transform->radii->X);
+					box1[1] = irr::core::vector3df(_input[i]->transform->position->X+_input[i]->transform->radii->X,_input[i]->transform->position->Y-_input[i]->transform->radii->X,_input[i]->transform->position->Z+_input[i]->transform->radii->X);
+					box1[2] = irr::core::vector3df(_input[i]->transform->position->X+_input[i]->transform->radii->X,_input[i]->transform->position->Y+_input[i]->transform->radii->X,_input[i]->transform->position->Z+_input[i]->transform->radii->X);
+					box1[3] = irr::core::vector3df(_input[i]->transform->position->X-_input[i]->transform->radii->X,_input[i]->transform->position->Y-_input[i]->transform->radii->X,_input[i]->transform->position->Z+_input[i]->transform->radii->X);
+					box1[4] = irr::core::vector3df(_input[i]->transform->position->X-_input[i]->transform->radii->X,_input[i]->transform->position->Y+_input[i]->transform->radii->X,_input[i]->transform->position->Z-_input[i]->transform->radii->X);
+					box1[5] = irr::core::vector3df(_input[i]->transform->position->X+_input[i]->transform->radii->X,_input[i]->transform->position->Y-_input[i]->transform->radii->X,_input[i]->transform->position->Z-_input[i]->transform->radii->X);
+					box1[6] = irr::core::vector3df(_input[i]->transform->position->X+_input[i]->transform->radii->X,_input[i]->transform->position->Y+_input[i]->transform->radii->X,_input[i]->transform->position->Z-_input[i]->transform->radii->X);
+					box1[7] = irr::core::vector3df(_input[i]->transform->position->X-_input[i]->transform->radii->X,_input[i]->transform->position->Y-_input[i]->transform->radii->X,_input[i]->transform->position->Z-_input[i]->transform->radii->X);
 
-					box2[0] = vector3df(_input[j]->transform->position->X-_input[j]->transform->radii->X,_input[j]->transform->position->Y+_input[j]->transform->radii->X,_input[j]->transform->position->Z+_input[j]->transform->radii->X);
-					box2[1] = vector3df(_input[j]->transform->position->X+_input[j]->transform->radii->X,_input[j]->transform->position->Y-_input[j]->transform->radii->X,_input[j]->transform->position->Z+_input[j]->transform->radii->X);
-					box2[2] = vector3df(_input[j]->transform->position->X+_input[j]->transform->radii->X,_input[j]->transform->position->Y+_input[j]->transform->radii->X,_input[j]->transform->position->Z+_input[j]->transform->radii->X);
-					box2[3] = vector3df(_input[j]->transform->position->X-_input[j]->transform->radii->X,_input[j]->transform->position->Y-_input[j]->transform->radii->X,_input[j]->transform->position->Z+_input[j]->transform->radii->X);
-					box2[4] = vector3df(_input[j]->transform->position->X-_input[j]->transform->radii->X,_input[j]->transform->position->Y+_input[j]->transform->radii->X,_input[j]->transform->position->Z-_input[j]->transform->radii->X);
-					box2[5] = vector3df(_input[j]->transform->position->X+_input[j]->transform->radii->X,_input[j]->transform->position->Y-_input[j]->transform->radii->X,_input[j]->transform->position->Z-_input[j]->transform->radii->X);
-					box2[6] = vector3df(_input[j]->transform->position->X+_input[j]->transform->radii->X,_input[j]->transform->position->Y+_input[j]->transform->radii->X,_input[j]->transform->position->Z-_input[j]->transform->radii->X);
-					box2[7] = vector3df(_input[j]->transform->position->X-_input[j]->transform->radii->X,_input[j]->transform->position->Y-_input[j]->transform->radii->X,_input[j]->transform->position->Z-_input[j]->transform->radii->X);
+					box2[0] = irr::core::vector3df(_input[j]->transform->position->X-_input[j]->transform->radii->X,_input[j]->transform->position->Y+_input[j]->transform->radii->X,_input[j]->transform->position->Z+_input[j]->transform->radii->X);
+					box2[1] = irr::core::vector3df(_input[j]->transform->position->X+_input[j]->transform->radii->X,_input[j]->transform->position->Y-_input[j]->transform->radii->X,_input[j]->transform->position->Z+_input[j]->transform->radii->X);
+					box2[2] = irr::core::vector3df(_input[j]->transform->position->X+_input[j]->transform->radii->X,_input[j]->transform->position->Y+_input[j]->transform->radii->X,_input[j]->transform->position->Z+_input[j]->transform->radii->X);
+					box2[3] = irr::core::vector3df(_input[j]->transform->position->X-_input[j]->transform->radii->X,_input[j]->transform->position->Y-_input[j]->transform->radii->X,_input[j]->transform->position->Z+_input[j]->transform->radii->X);
+					box2[4] = irr::core::vector3df(_input[j]->transform->position->X-_input[j]->transform->radii->X,_input[j]->transform->position->Y+_input[j]->transform->radii->X,_input[j]->transform->position->Z-_input[j]->transform->radii->X);
+					box2[5] = irr::core::vector3df(_input[j]->transform->position->X+_input[j]->transform->radii->X,_input[j]->transform->position->Y-_input[j]->transform->radii->X,_input[j]->transform->position->Z-_input[j]->transform->radii->X);
+					box2[6] = irr::core::vector3df(_input[j]->transform->position->X+_input[j]->transform->radii->X,_input[j]->transform->position->Y+_input[j]->transform->radii->X,_input[j]->transform->position->Z-_input[j]->transform->radii->X);
+					box2[7] = irr::core::vector3df(_input[j]->transform->position->X-_input[j]->transform->radii->X,_input[j]->transform->position->Y-_input[j]->transform->radii->X,_input[j]->transform->position->Z-_input[j]->transform->radii->X);
 					
 					for (int k = 0; k < 8; k++)
 					{

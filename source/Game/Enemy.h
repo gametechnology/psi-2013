@@ -76,7 +76,6 @@ public:
 	void receiveDamage(int damage);
 
 	/*void contactGenerator(Player* input);*/
-	void contactGenerator(Enemy* input);
 	void contactResolverA(Enemy* _input);
 	void contactResolverB();
 	void steering(irr::core::vector3df rotational, irr::core::vector3df playerPos);

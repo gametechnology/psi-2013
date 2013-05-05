@@ -1,6 +1,5 @@
 #ifndef ENTITY
 #define ENTITY
-#pragma once
 
 #include "Composite.h"
 #include "Component.h"

@@ -204,7 +204,7 @@ void EnemyManager::LaserNarrowPhase(array<Enemy*> _enput, array<Laser*> _laput)
 			float distance = (*_laput[i]->transform->position).getDistanceFrom(*_enput[j]->transform->position);
 			if (distance < (_enput[j]->getRadius()))
 			{
-				_laput[i]->contactResolver(_enput[j]);
+				_laput[i]->contactResolverA(_enput[j]);
 			}
 		}
 	}

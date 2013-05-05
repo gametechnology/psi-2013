@@ -97,7 +97,6 @@
     <ClCompile Include="..\source\Game\BaseSector.cpp" />
     <ClCompile Include="..\source\Game\BasicMoverComponent.cpp" />
     <ClCompile Include="..\source\Game\CalculateRotation.cpp" />
-    <ClCompile Include="..\source\Game\Collision.cpp" />
     <ClCompile Include="..\source\Game\EmptyTestScene.cpp" />
     <ClCompile Include="..\source\Game\Enemy.cpp" />
     <ClCompile Include="..\source\Game\EnemyAsteroid.cpp" />
