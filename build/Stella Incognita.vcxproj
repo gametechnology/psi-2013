@@ -110,6 +110,7 @@
     <ClCompile Include="..\source\Game\GameScene.cpp" />
     <ClCompile Include="..\source\Game\HealthBar.cpp" />
     <ClCompile Include="..\source\Game\HudComposite.cpp" />
+    <ClCompile Include="..\source\Game\HudHelpText.cpp" />
     <ClCompile Include="..\source\Game\ShipMover.cpp" />
     <ClCompile Include="..\source\Game\ShipScenes.cpp" />
     <ClCompile Include="..\source\Game\Laser.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="..\source\Game\GameScene.h" />
     <ClInclude Include="..\source\Game\HealthBar.h" />
     <ClInclude Include="..\source\Game\HudComposite.h" />
+    <ClInclude Include="..\source\Game\HudHelpText.h" />
     <ClInclude Include="..\source\Game\ShipMover.h" />
     <ClInclude Include="..\source\Game\ShipScenes.h" />
     <ClInclude Include="..\source\Game\Laser.h" />

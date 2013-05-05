@@ -1,10 +1,10 @@
 #include "HudHelpText.h"
 
 
-HudHelpText::HudHelpText(Composite* parent) : Component(parent)
+HudHelpText::HudHelpText(Composite* parent)
 {
 	//parent is hudComposite.	HudComposite Parent should be station~
-	station_ = (Station*)((parent->parent));
+	
 	helpTextString = &station_->helpTextString;
 }
 
