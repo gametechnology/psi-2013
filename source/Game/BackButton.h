@@ -27,10 +27,9 @@ public:
 	bool visible;
 
 private:
-	irr::core::vector2df position_;
+	irr::core::rect<s32> position_;
 	irr::video::ITexture* escButton;
 	bool pressed;
 	IGUIButton *button;
-	IGUIEnvironment* env;
 };
 #endif

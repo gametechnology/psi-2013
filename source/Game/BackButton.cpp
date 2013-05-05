@@ -38,10 +38,9 @@ private:
 
 BackButton::BackButton(rect< s32 > position) : Component()
 {
-	button = getGame()->guiEnv->addButton(position,0,GUI_ID_BACK_BUTTON,L"Esc to Back",L"Go back to 2d shipmap");
+	position_ = position;
 	BackButton::pressed = false;
 	BackButton::visible = true;
-	this->env = env;
 	
 	//button->setImage(video::ITexture("../assets/Textures/Stations/backButton.png");
 }
@@ -62,7 +61,7 @@ bool BackButton::isButtonPressed(){
 
 	//button clicked
 	SAppContext context;
-	context.env = env;
+	context.env = getGame()->guiEnv;
 	context.buttonFlag = false;
 	ButtonEventReceiver receiver(context);
 
@@ -77,7 +76,7 @@ void BackButton::update(){
 }
 
 void BackButton::init(){
-
+	button = getGame()->guiEnv->addButton(position_,0,GUI_ID_BACK_BUTTON,L"Esc to Back",L"Go back to 2d shipmap");
 }
 void BackButton::draw(){
 
