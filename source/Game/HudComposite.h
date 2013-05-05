@@ -5,6 +5,7 @@
 #include "../source/Game/HealthBar.h"
 #include"BackButton.h"
 #include "../../include/Irrlicht/IGUIEnvironment.h"
+#include "HudHelpText.h"
 #pragma once
 
 
@@ -19,7 +20,8 @@ public:
 
 	HealthBar* energyBar;
 	HealthBar* healthBar;
-	//BackButton* backButton; //if I let it here is giving errors
+	HudHelpText* hudHelpText;
+	BackButton* backButton; //if I let it here is giving errors
 	irr::gui::IGUIEnvironment* guiEnviroment;
 	 
 	//helptext

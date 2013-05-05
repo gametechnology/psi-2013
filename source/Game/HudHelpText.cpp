@@ -1,11 +1,12 @@
 #include "HudHelpText.h"
+#include "Stations\Station.h"
 
-
-HudHelpText::HudHelpText(Composite* parent)
+HudHelpText::HudHelpText()
 {
-	//parent is hudComposite.	HudComposite Parent should be station~
-	
-	helpTextString = &station_->helpTextString;
+	/*if(((Station*)entity->parent) != NULL){
+		station_ = ((Station*)entity->parent);
+		helpTextString = &station_->helpTextString;
+	}*/
 }
 
 

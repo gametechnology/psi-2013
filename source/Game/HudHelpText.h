@@ -11,7 +11,7 @@
 class HudHelpText : public Component
 {
 public:
-	HudHelpText(Composite* parent);
+	HudHelpText();
 	~HudHelpText(void);
 private: 
 	std::string* helpTextString;

@@ -14,7 +14,7 @@ using namespace irr::core;
 using namespace irr::gui;
 
 class BackButton :
-	public Entity
+	public Component
 	
 {
 public:

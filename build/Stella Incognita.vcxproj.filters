@@ -87,9 +87,6 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
@@ -267,6 +264,9 @@
     <ClCompile Include="..\source\Game\HudHelpText.cpp">
       <Filter>Source Files\Hud</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\BackButton.cpp">
+      <Filter>Source Files\Hud</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\GalaxyMap.h">
@@ -438,6 +438,9 @@
       <Filter>Header Files\Hud</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\HudHelpText.h">
+      <Filter>Header Files\Hud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\BackButton.h">
       <Filter>Header Files\Hud</Filter>
     </ClInclude>
   </ItemGroup>
