@@ -60,7 +60,6 @@ NetworkPacket packet(SERVER_ENEMY);
 EnemySceneTest::EnemySceneTest(void) : Scene()
 {
 	Network::GetInstance()->AddListener(SERVER_ENEMY, this);
-	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
 	EnemySceneTest::_enemyList = vector<Enemy*>();
 	EnemyPlayer* player1 = new EnemyPlayer(irr::core::vector3df(0,1,0),irr::core::vector3df(0,0,0));
 	addChild(player1);
@@ -134,6 +133,7 @@ void EnemySceneTest::HandleNetworkMessage(NetworkPacket packet)
 		}
 	}
 }
+
 void EnemySceneTest::init()
 {
 	Scene::init();
