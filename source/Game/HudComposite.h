@@ -3,25 +3,33 @@
 
 #include "Engine/Entity.h"
 #include "../source/Game/HealthBar.h"
+#include"BackButton.h"
 #include "../../include/Irrlicht/IGUIEnvironment.h"
+#include "HudHelpText.h"
+#include <iostream>
+#include "../../include/Irrlicht/irrlicht.h"
 #pragma once
+
 
 class HudComposite : public Entity
 {
 public:
-	int _health;
-	int _energy;
 
-	HudComposite( int* health, int* energy);
-	~HudComposite(void);
+	HudComposite( int* health, int* energy, rect<s32> buttonPos); //this change was necessary to get the game IGUIEnviroment
+	~HudComposite(void); 
 
 	virtual void onAdd();
 
 	HealthBar* energyBar;
 	HealthBar* healthBar;
+	HudHelpText* hudHelpText;
+	BackButton* backButton; //if I let it here is giving errors
 	irr::gui::IGUIEnvironment* guiEnviroment;
-	//diego's button
+	 
 	//helptext
+
+
+	
 };
 
 #endif

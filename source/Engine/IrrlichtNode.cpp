@@ -31,8 +31,8 @@ void IrrlichtNode::update() {
 
 IrrlichtNode::~IrrlichtNode() {
 	if (node != NULL) {
-		node->drop();
-		delete node;
+		node->remove();
+		//delete node;
 	}
 	Entity::~Entity();
 }

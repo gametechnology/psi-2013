@@ -94,6 +94,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Game\AsteroidSector.cpp" />
+    <ClCompile Include="..\source\Game\BackButton.cpp" />
     <ClCompile Include="..\source\Game\BaseSector.cpp" />
     <ClCompile Include="..\source\Game\BasicMoverComponent.cpp" />
     <ClCompile Include="..\source\Game\CalculateRotation.cpp" />
@@ -109,6 +110,7 @@
     <ClCompile Include="..\source\Game\GameScene.cpp" />
     <ClCompile Include="..\source\Game\HealthBar.cpp" />
     <ClCompile Include="..\source\Game\HudComposite.cpp" />
+    <ClCompile Include="..\source\Game\HudHelpText.cpp" />
     <ClCompile Include="..\source\Game\ShipMover.cpp" />
     <ClCompile Include="..\source\Game\ShipScenes.cpp" />
     <ClCompile Include="..\source\Game\Laser.cpp" />
@@ -135,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="..\source\Game\ArrayList.h" />
     <ClInclude Include="..\source\Game\AsteroidSector.h" />
+    <ClInclude Include="..\source\Game\BackButton.h" />
     <ClInclude Include="..\source\Game\BaseSector.h" />
     <ClInclude Include="..\source\Game\BasicMoverComponent.h" />
     <ClInclude Include="..\source\Game\CalculateRotation.h" />
@@ -151,6 +154,7 @@
     <ClInclude Include="..\source\Game\GameScene.h" />
     <ClInclude Include="..\source\Game\HealthBar.h" />
     <ClInclude Include="..\source\Game\HudComposite.h" />
+    <ClInclude Include="..\source\Game\HudHelpText.h" />
     <ClInclude Include="..\source\Game\ShipMover.h" />
     <ClInclude Include="..\source\Game\ShipScenes.h" />
     <ClInclude Include="..\source\Game\Laser.h" />

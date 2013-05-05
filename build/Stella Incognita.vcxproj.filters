@@ -34,6 +34,12 @@
     <Filter Include="Header Files\Networking">
       <UniqueIdentifier>{7ddc756e-99c4-4f8b-821e-979591bf9626}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Hud">
+      <UniqueIdentifier>{0df8ed24-8fcd-423c-92f0-11028da12138}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hud">
+      <UniqueIdentifier>{a6bc21e1-73c1-47d4-8b26-2f75fcd82beb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Game\main.cpp">
@@ -73,9 +79,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Shipmap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
@@ -207,9 +210,6 @@
     <ClCompile Include="..\source\Game\ShipMover.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\HealthBar.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\NebulaSector.cpp">
       <Filter>Source files\Sector</Filter>
     </ClCompile>
@@ -246,11 +246,23 @@
     <ClCompile Include="..\source\Game\CalculateRotation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\HudComposite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\PowerStationData.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\HealthBar.cpp">
+      <Filter>Source Files\Hud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\HudComposite.cpp">
+      <Filter>Source Files\Hud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\HudHelpText.cpp">
+      <Filter>Source Files\Hud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\BackButton.cpp">
+      <Filter>Source Files\Hud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\Station.cpp">
+      <Filter>Source Files\Stations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -359,9 +371,6 @@
     <ClInclude Include="..\source\Game\ShipMover.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\HealthBar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\NetworkInterface.h">
       <Filter>Header files\Network</Filter>
     </ClInclude>
@@ -416,9 +425,6 @@
     <ClInclude Include="..\source\Game\GameScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\HudComposite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\Stations\PowerStationData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -427,6 +433,18 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\EnemySceneTest.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HudComposite.h">
+      <Filter>Header Files\Hud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HealthBar.h">
+      <Filter>Header Files\Hud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HudHelpText.h">
+      <Filter>Header Files\Hud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\BackButton.h">
+      <Filter>Header Files\Hud</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

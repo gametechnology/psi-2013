@@ -8,7 +8,7 @@
 #include "Irrlicht\irrlicht.h"
 #include "Engine\Game.h"
 
-class HealthBar : public Entity {
+class HealthBar : public Component {
 public:
 	HealthBar(irr::core::vector2df position, int* stat);
 	HealthBar(irr::core::vector2df position, int* stat, irr::core::vector2df size, int barHeight, irr::video::SColor colour);
