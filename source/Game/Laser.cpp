@@ -51,14 +51,14 @@ void Laser::update()
 	Entity::update();
 }
 
-void Laser::contactResolver(Enemy* input)
+void Laser::contactResolverA(Enemy* input)
 {
 	input->setHealth(input->getHealth() - this->_damage);
 	std::printf("HIT on Enemy!");
 //	delete(this); //'kill' this projectile
 }
 
-void Laser::contactResolver(DefenceStation* input)
+void Laser::contactResolverA(DefenceStation* input)
 {
 	input->Damage();
 	std::printf("HIT on Defence station!");

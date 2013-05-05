@@ -23,8 +23,8 @@ class Laser : public Entity
 		void fire(Entity* parent, vector3df target, f32 speed);
 		bool isAlive;
 		void update();
-		void contactResolver(Enemy* input);
-		void contactResolver(DefenceStation* input);
+		void contactResolverA(Enemy* input);
+		void contactResolverA(DefenceStation* input);
 	private:
 		u32			_timeofLife;
 		u32			_currentLife;

@@ -247,7 +247,7 @@ void Enemy::contactResolverA(Enemy* _input)
 {
     double deltamass = (this->getRadius() / _input->getRadius());
 	vector3df deltavelocity = this->getVelocity() - _input->getVelocity();
-	vector3df componentThisToBal = componentOnto(_input->getPosition() - *this->transform->position, deltavelocity);
+	vector3df componentThisToBal = Collision.componentOnto(_input->getPosition() - *this->transform->position, deltavelocity);
     vector3df componentNormalToBal = deltavelocity - componentThisToBal;
     vector3df thisMassComponent = componentThisToBal * (float)(((deltamass- 1) / (deltamass + 1)));
 	vector3df balMassComponent = componentThisToBal * (float)((2 * deltamass / (deltamass + 1)));
@@ -255,11 +255,6 @@ void Enemy::contactResolverA(Enemy* _input)
     _input->setVelocity(balMassComponent + _input->getVelocity());
 	this->setRadius(this->getRadius()*2 - this->getPosition().getDistanceFrom(_input->getPosition()));
 	_input->setRadius(this->getRadius());
-}
-
-vector3df Enemy::componentOnto(vector3df input, vector3df deltavelocity)
-{
-	return input * (deltavelocity.dotProduct(input) / input.getLengthSQ());
 }
 
 /*void Enemy::contactResolverB()
