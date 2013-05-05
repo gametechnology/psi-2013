@@ -4,9 +4,13 @@
 #include "EnemyManager.h"
 #include "RandomGenerator.h"
 #include "EnemyPlayer.h"
+///////////////////////////////////////////////////////////
+//
+//Not used scene, can be used for testing the enemy.
+//
+//////////////////////////////////////////////////////////
 
-
-sf::Packet& operator <<(sf::Packet& out, Enemy& in)
+/*sf::Packet& operator <<(sf::Packet& out, Enemy& in)
 {
 	return out << in.getId() << in.getType() << in.getPosition() << in.getVelocity() << in.getRotation();
 }
@@ -51,9 +55,9 @@ sf::Packet& operator >>(sf::Packet& in, vector<Enemy>& out)
 		out.push_back(enemy);
 	}
 	return in;
-}
+}*/
 
-NetworkPacket packet(SERVER_ENEMY);
+//NetworkPacket packet(SERVER_ENEMY);
 
 #include <iostream>
 
@@ -80,7 +84,7 @@ void EnemySceneTest::HandleNetworkMessage(NetworkPacket packet)
 		{
 			vector<Enemy> serverEnemies = vector<Enemy>();
 
-			packet >> serverEnemies;
+			//packet >> serverEnemies;
 
 			for(unsigned j = 0; j < _enemyList.size(); j++)
 			{
@@ -140,39 +144,39 @@ void EnemySceneTest::init()
 	this->game->device->getSceneManager()->addCameraSceneNodeFPS();
 }
 
-int timer = 0;
+//int timer = 0;
 
 void EnemySceneTest::update()
 {
 	Scene::update();
 
-	if(timer >= 50)
+	/*if(timer >= 50)
 	{
 		if(Network::GetInstance()->IsServer())
 		{
 			packet.clear();
-			packet << _enemyList;
+			//packet << _enemyList;
 
 			Network::GetInstance()->SendServerPacket(packet);
 		}
 		timer = 0;
 	}
-	timer++;
+	timer++;*/
 }
 
 void EnemySceneTest::onAdd()
 {
 	Scene::onAdd();
 
-	if(Network::GetInstance()->IsServer())
+	/*if(Network::GetInstance()->IsServer())
 	{
 		createEnemies();
 
 		packet.clear();
-		packet << _enemyList;
+		//packet << _enemyList;
 
 		Network::GetInstance()->SendServerPacket(packet);
-	}
+	}*/
 
 }
 
@@ -186,17 +190,23 @@ void EnemySceneTest::createEnemies()
 		addChild(_enemyList.back());
 	}
 
-	for(int j = 0; j < 10; j++)
+	for(int j = 2; j < 10; j++)
 	{
 		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(0,(irr::f32)(j + (j * j)),0)));
 		
 		addChild(_enemyList.back());
 	}
 
-	for(int k = 0; k < 30; k++)
+	for(int k = 2; k < 30; k++)
 	{
 		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df((irr::f32)(k + (k * k)),0,0), irr::core::vector3df(0,0,0.01f)));
 		
 		addChild(_enemyList.back());
 	}
+
+	_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-10,0,0), irr::core::vector3df(0.02f,0,0)));
+	addChild(_enemyList.back());
+
+	//_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(10,0,0), irr::core::vector3df(-0.02f,0,0)));
+	//addChild(_enemyList.back());
 }

@@ -11,9 +11,13 @@
 #include "EnemyManager.h"
 #include <vector>
 #include "Ship.h"
+#include "NetworkInterface.h"
+#include "EnemyAsteroid.h"
+#include "EnemyDrone.h"
+#include "EnemyFighter.h"
 
 class SectorManager;
-class SectorTemplate : public Scene  {
+class SectorTemplate : public Scene, public INetworkListener  {
 protected:
 	std::vector<WormHole*> _wormHoles;
 	float _boundry;
@@ -38,9 +42,13 @@ public:
 	void createWormHoles( unsigned int amountOfWormHoles );
 	void addWormHoles();
 	
+	virtual void createEnemies();
+
+	void HandleNetworkMessage(NetworkPacket packet);
+	
 
 private:
-	EnemyManager* _enemyManager;
+	vector<Enemy*> _enemyList;
 };
 
 #endif
