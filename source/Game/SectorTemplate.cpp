@@ -79,6 +79,13 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	
 	// Creating wormholes
 	createWormHoles( amountWormHoles );
+
+	if(!Network::GetInstance()->IsServer())
+	{
+		Network::GetInstance()->AddListener(SERVER_ENEMY, this);
+	}
+
+	_enemyList = vector<Enemy*>();
 }
 
 void SectorTemplate::onAdd() {
@@ -224,14 +231,20 @@ void SectorTemplate::HandleNetworkMessage(NetworkPacket packet)
 
 			packet >> serverEnemies;
 
-			for(unsigned j = 0; j < _enemyList.size(); j++)
+
+			for(int j = 0; j < _enemyList.size(); j++)
 			{
+				bool isAtServer = false;
 				for(unsigned k = 0; k < serverEnemies.size(); k++)
 				{
 					if(_enemyList[j]->getId() == serverEnemies[k].getId())
 					{
-						continue;
+						isAtServer = true;
 					}
+				}
+				
+				if(!isAtServer)
+				{
 					Enemy* enemy = _enemyList[j];
 					_enemyList.erase(_enemyList.begin() + j);
 					enemy->destroy();
