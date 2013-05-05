@@ -5,6 +5,7 @@ Laser::Laser() : Entity()
 {
 	this->_currentLife = 0;
 	this->_timeofLife = 100;
+	this->_damage = 1;
 }
 
 void Laser::onAdd() {
@@ -48,4 +49,18 @@ void Laser::update()
 	}
 
 	Entity::update();
+}
+
+void Laser::contactResolverA(Enemy* input)
+{
+	input->setHealth(input->getHealth() - this->_damage);
+	std::printf("HIT on Enemy!");
+//	delete(this); //'kill' this projectile
+}
+
+void Laser::contactResolverA(DefenceStation* input)
+{
+	input->Damage();
+	std::printf("HIT on Defence station!");
+//	delete(this); //'kill' this projectile
 }

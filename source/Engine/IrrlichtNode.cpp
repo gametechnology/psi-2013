@@ -17,6 +17,7 @@ void IrrlichtNode::createNode() {
 	irr::scene::IAnimatedMesh* mesh = this->scene->getIrrlichtSceneManager()->getMesh( modelPath );
 	// Create model entity
 	node = this->scene->getIrrlichtSceneManager()->addMeshSceneNode( mesh );
+	node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 }
 
 void IrrlichtNode::update() {

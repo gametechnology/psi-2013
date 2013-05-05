@@ -9,6 +9,7 @@ Transform::Transform() : Component() {
 	acceleration = new irr::core::vector3df();
 	angularVelocity = new irr::core::vector3df();
 	angularAccelaration = new irr::core::vector3df();
+	radii = new irr::core::vector3df(1,1,1);
 }
 
 void Transform::init() {

@@ -8,8 +8,10 @@
 #include "EnemyDrone.h"
 #include "EnemyFighter.h"
 #include "EnemyAsteroid.h"
+#include "NetworkInterface.h"
 
-class EnemyManager : public Component {
+class EnemyManager : public Component
+{
 	public:
 		EnemyManager(void);
 		~EnemyManager(void);
@@ -18,6 +20,8 @@ class EnemyManager : public Component {
 		virtual void onAdd();
 		virtual void update();
 		void NarrowPhaseDetection(array<Enemy*> _input);
+		void LaserNarrowPhase(array<Enemy*> _enput, array<Laser*> _laput);
+
 	private:
 		array<Enemy*> _enemyList;
 };

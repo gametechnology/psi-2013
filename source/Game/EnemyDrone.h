@@ -11,6 +11,9 @@ public:
 	EnemyDrone(unsigned int health); 
 	~EnemyDrone(void);
 
+	void init();
+	void onAdd();
+
 	virtual void chase(vector3df target);
 	virtual void update();
 	virtual void wander();

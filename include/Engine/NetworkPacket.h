@@ -18,10 +18,26 @@ public:
 
 	enet_uint32 ipadress;
 
-	friend sf::Packet& operator <<(sf::Packet &out, const irr::core::vector3df &in);
+	friend sf::Packet& operator <<(sf::Packet& out, const irr::core::vector3df &in);
 	friend sf::Packet& operator >>(sf::Packet& in, irr::core::vector3df& out);
+
 	friend sf::Packet& operator <<(sf::Packet& out, const irr::core::vector2df& in);
 	friend sf::Packet& operator >>(sf::Packet& in, irr::core::vector2df& out);
+
+	friend sf::Packet& operator <<(sf::Packet& out, const std::vector<irr::core::vector3df>& in);
+	friend sf::Packet& operator >>(sf::Packet& in, std::vector<irr::core::vector3df>& out);
+
+	friend sf::Packet& operator <<(sf::Packet& out, const std::vector<irr::core::vector2df>& in);
+	friend sf::Packet& operator >>(sf::Packet& in, std::vector<irr::core::vector2df>& out);
+
+	friend sf::Packet& operator <<(sf::Packet& out, const std::vector<bool>& in);
+	friend sf::Packet& operator >>(sf::Packet& in, std::vector<bool>& out);
+
+	friend sf::Packet& operator <<(sf::Packet& out, const std::vector<int>& in);
+	friend sf::Packet& operator >>(sf::Packet& in, std::vector<int>& out);
+
+	friend sf::Packet& operator <<(sf::Packet& out, const std::vector<float>& in);
+	friend sf::Packet& operator >>(sf::Packet& in, std::vector<float>& out);
 
 private:
 	PacketType _type;

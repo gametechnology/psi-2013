@@ -1,10 +1,10 @@
 #ifndef ENTITY
 #define ENTITY
-#pragma once
 
 #include "Composite.h"
 #include "Component.h"
 #include "Transform.h"
+#include "Collision.h"
 
 class Game;
 
@@ -24,9 +24,10 @@ public:
 
 	void addChild(Entity* child);
 	bool removeChild(Entity* child);
- bool removeChild(Entity* child, bool deleteChild);
+	bool removeChild(Entity* child, bool deleteChild);
 	void addComponent(Component* component);
 	bool removeComponent(Component* component);
+	virtual void contactResolverA(Entity* _input);
 
 	virtual void onAdd();
 	virtual void init();

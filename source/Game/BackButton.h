@@ -7,18 +7,17 @@
 #include "Engine/Entity.h"
 #include "Irrlicht\irrlicht.h"
 #include "Engine\Game.h"
-#include "HudComposite.h"
 
 
 using namespace irr::core; 
 using namespace irr::gui;
 
 class BackButton :
-	public Entity
+	public Component
 	
 {
 public:
-	BackButton(irr::core::rect< s32 > position, IGUIEnvironment* env);
+	BackButton(irr::core::rect< s32 > position);
 	~BackButton(void);
 
 	bool isButtonPressed(); 
@@ -28,10 +27,9 @@ public:
 	bool visible;
 
 private:
-	irr::core::vector2df position_;
+	irr::core::rect<s32> position_;
 	irr::video::ITexture* escButton;
 	bool pressed;
 	IGUIButton *button;
-	IGUIEnvironment* env;
 };
 #endif

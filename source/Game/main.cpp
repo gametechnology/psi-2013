@@ -1,13 +1,13 @@
 #include <Engine/Game.h>
 #include <Irrlicht/driverChoice.h>
 
-#include "HelmSceneTest.h"
 #include "EnemySceneTest.h"
 #include "MainMenuScene.h"
 #include "GameScene.h"
 
 #include "NetworkInterface.h"
 #include "EmptyTestScene.h"
+#include "EnemySceneTest.h"
 
 
 // Include memory leak detection files.
@@ -28,16 +28,17 @@ int main()
 {
 	// Create engine
 	Game* game = new Game();
-
+	//Enemy::newEnemyId = 0;
 	//Add the MainMenu
 	//Scene* scene = new EnemySceneTest();
+	//Scene* scene = new EmptyTestScene();
 	Scene* scene = new MainMenuScene();
+
 	game->sceneManager->addScene("MainMenuScene", scene);
 
 	//Create ship
 	//Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
 	//scene->addChild(ship);
-
 	// Initialize game
 	game->init();
 

@@ -110,6 +110,7 @@
     <ClCompile Include="..\source\Game\GameScene.cpp" />
     <ClCompile Include="..\source\Game\HealthBar.cpp" />
     <ClCompile Include="..\source\Game\HudComposite.cpp" />
+    <ClCompile Include="..\source\Game\HudHelpText.cpp" />
     <ClCompile Include="..\source\Game\ShipMover.cpp" />
     <ClCompile Include="..\source\Game\ShipScenes.cpp" />
     <ClCompile Include="..\source\Game\Laser.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="..\source\Game\BaseSector.h" />
     <ClInclude Include="..\source\Game\BasicMoverComponent.h" />
     <ClInclude Include="..\source\Game\CalculateRotation.h" />
+    <ClInclude Include="..\source\Game\Collision.h" />
     <ClInclude Include="..\source\Game\EmptyTestScene.h" />
     <ClInclude Include="..\source\Game\Enemy.h" />
     <ClInclude Include="..\source\Game\EnemyAsteroid.h" />
@@ -147,10 +149,12 @@
     <ClInclude Include="..\source\Game\EnemyFighter.h" />
     <ClInclude Include="..\source\Game\EnemyManager.h" />
     <ClInclude Include="..\source\Game\EnemyPlayer.h" />
+    <ClInclude Include="..\source\Game\EnemySceneTest.h" />
     <ClInclude Include="..\source\Game\GalaxyMap.h" />
     <ClInclude Include="..\source\Game\GameScene.h" />
     <ClInclude Include="..\source\Game\HealthBar.h" />
     <ClInclude Include="..\source\Game\HudComposite.h" />
+    <ClInclude Include="..\source\Game\HudHelpText.h" />
     <ClInclude Include="..\source\Game\ShipMover.h" />
     <ClInclude Include="..\source\Game\ShipScenes.h" />
     <ClInclude Include="..\source\Game\Laser.h" />
