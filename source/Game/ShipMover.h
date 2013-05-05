@@ -31,5 +31,8 @@ public:
 	vector3df	angularAcceleration;
 	Ship		*_ship;
 
+	float maxFwdSpeed;
+	float maxBwdSpeed;
+
 };
 

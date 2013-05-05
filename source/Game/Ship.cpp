@@ -2,6 +2,9 @@
 #include "Stations/Station.h"
 #include "ShipMover.h"
 
+vector3df startPosition;
+vector3df startRotation;
+
 Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 {
 	this->transform->position = &position;
@@ -39,9 +42,9 @@ void Ship::onAdd() {
 	addChild(_camera);
 	
 	//Thrusters
-	_thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0, 0, -4));
+	/*_thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0, 0, -4));
 	_thrusters[1] = new Thruster(this, vector3df(0,-2, 4), vector3df(0, 4, 0 ));
-	_thrusters[2] = new Thruster(this, vector3df(0,2, -4), vector3df(0, 4, 0 ));
+	_thrusters[2] = new Thruster(this, vector3df(0,2, -4), vector3df(0, 4, 0 ));*/
 }
 
 void Ship::init() 
@@ -62,6 +65,11 @@ void Ship::init()
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 
 	this->updateShipHealth();
+
+	startPosition = vector3df(0,0,-100);
+	startRotation = vector3df(0,0,0);
+	this->transform->position = &startPosition;
+	this->transform->rotation = &startRotation;
 
 	Entity::init();
 }
