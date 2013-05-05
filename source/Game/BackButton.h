@@ -7,7 +7,6 @@
 #include "Engine/Entity.h"
 #include "Irrlicht\irrlicht.h"
 #include "Engine\Game.h"
-#include "HudComposite.h"
 
 
 using namespace irr::core; 
@@ -18,7 +17,7 @@ class BackButton :
 	
 {
 public:
-	BackButton(irr::core::rect< s32 > position, IGUIEnvironment* env);
+	BackButton(irr::core::rect< s32 > position);
 	~BackButton(void);
 
 	bool isButtonPressed(); 

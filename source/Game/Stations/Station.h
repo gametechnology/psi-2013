@@ -2,12 +2,13 @@
 #define STATION_BASE
 #pragma once
 
-#include "../HealthBar.h"
+#include "../HudComposite.h"
 #include "../Player.h"
 #include "../../../include/Engine/Entity.h"
 #include "../../../include/Engine/Component.h"
 #include "../../../include/Engine/Game.h"
 #include "Irrlicht/irrlicht.h"
+
 
 #ifdef ENTITY_SHIP
 #include "../Ship.h"
@@ -60,7 +61,7 @@ public:
 	virtual void OnEnabled() = 0;
 	virtual void OnDisabled() = 0;
 	
-	
+	HudComposite* hud;
 
 protected:
 	video::IVideoDriver *driver;

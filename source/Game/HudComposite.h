@@ -6,6 +6,8 @@
 #include"BackButton.h"
 #include "../../include/Irrlicht/IGUIEnvironment.h"
 #include "HudHelpText.h"
+#include <iostream>
+#include "../../include/Irrlicht/irrlicht.h"
 #pragma once
 
 
@@ -13,8 +15,8 @@ class HudComposite : public Entity
 {
 public:
 
-	HudComposite( int* health, int* energy, irr::gui::IGUIEnvironment* env); //this change was necessary to get the game IGUIEnviroment
-	~HudComposite(void);
+	HudComposite( int* health, int* energy, rect<s32> buttonPos); //this change was necessary to get the game IGUIEnviroment
+	~HudComposite(void); 
 
 	virtual void onAdd();
 

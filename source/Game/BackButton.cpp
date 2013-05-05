@@ -36,9 +36,9 @@ private:
 
 };
 
-BackButton::BackButton(rect< s32 > position, IGUIEnvironment* env) : Component()
+BackButton::BackButton(rect< s32 > position) : Component()
 {
-	button = env->addButton(position,0,GUI_ID_BACK_BUTTON,L"Esc to Back",L"Go back to 2d shipmap");
+	button = getGame()->guiEnv->addButton(position,0,GUI_ID_BACK_BUTTON,L"Esc to Back",L"Go back to 2d shipmap");
 	BackButton::pressed = false;
 	BackButton::visible = true;
 	this->env = env;

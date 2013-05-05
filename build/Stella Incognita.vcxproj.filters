@@ -84,9 +84,6 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\Station.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
@@ -266,6 +263,9 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\BackButton.cpp">
       <Filter>Source Files\Hud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\Station.cpp">
+      <Filter>Source Files\Stations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

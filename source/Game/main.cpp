@@ -31,8 +31,8 @@ int main()
 
 	//Add the MainMenu
 	//Scene* scene = new EnemySceneTest();
-	Scene* scene = new EmptyTestScene();
-	//Scene* scene = new MainMenuScene();
+	//Scene* scene = new EmptyTestScene();
+	Scene* scene = new MainMenuScene();
 
 	game->sceneManager->addScene("MainMenuScene", scene);
 

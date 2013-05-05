@@ -6,7 +6,6 @@
 #include "Engine/Entity.h"
 #include "Irrlicht\irrlicht.h"
 #include "Engine\Game.h"
-#include "Stations\Station.h"
 
 class HudHelpText : public Component
 {
@@ -15,7 +14,6 @@ public:
 	~HudHelpText(void);
 private: 
 	std::string* helpTextString;
-	Station* station_;
 };
 #endif
 

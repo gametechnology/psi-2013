@@ -9,8 +9,9 @@ Station :: Station( Ship *ship, int startHealth ) : Entity()
 	this -> _health = startHealth;
 	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
 	//this -> _switchTime = 4.0f;
-	//this->_healthBar = new HealthBar(this, vector2df(200, 20), &_health);
-	//addComponent(_healthBar);
+	int energy = 50;
+	this->hud = new HudComposite(&(this->_totalHealth), &energy, rect<s32>(10,240,110,240 + 32));
+	this->addChild(hud);
 }
 
 Station :: Station( Ship * ship ) : Entity()
