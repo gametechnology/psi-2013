@@ -1,6 +1,6 @@
 #include "Shipmap.h"
 
-Shipmap::Shipmap():Entity()
+Shipmap::Shipmap(GameScene* scene): _scene(scene), Entity()
 {
 	
 }
@@ -227,8 +227,7 @@ void Shipmap::update()
 	if (onStation && (game->input->isKeyboardButtonDown(irr::KEY_KEY_E) || game->input->isKeyboardButtonDown(irr::KEY_KEY_F)))
 	{
 			enterStation(_intersectingStation);
-			//Game::getCurrentScene()->addComponent(new HelmStation(NULL));
-			//Game::getCurrentScene()->state = Game::getCurrentScene()->EXITING;
+			return;
 	}
 	
 
@@ -296,19 +295,5 @@ void Shipmap::update()
 
 void Shipmap::enterStation(StationType station)
 {
-	printf("Enter station with station %i \n", station);
-
-	switch(station)
-	{
-		case StationType::ST_DEFENCE:
-			break;
-		case StationType::ST_HELM:
-			break;
-		case StationType::ST_NAVIGATION:
-			break;
-		case StationType::ST_POWER:
-			break;
-		case StationType::ST_WEAPON:
-			break;
-	}
+	_scene->switchStation(station);
 }

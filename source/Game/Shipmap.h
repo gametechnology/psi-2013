@@ -4,6 +4,7 @@
 #include "Engine/Game.h"
 #include <math.h>
 #include "Stations\Station.h"
+#include "GameScene.h"
 
 class Shipmap : public Entity
 {
@@ -39,8 +40,10 @@ class Shipmap : public Entity
 
 	int tiles[7][12];
 
+	GameScene* _scene;
+
 public:
-	Shipmap();
+	Shipmap(GameScene* scene);
 	~Shipmap();
 	void onAdd();
 	void init();
