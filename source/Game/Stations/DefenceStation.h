@@ -1,14 +1,12 @@
 #ifndef DEFENCE_STATION
 #define DEFENCE_STATION
-#pragma once
 
 #include "Station.h"
 #include "..\Ship.h"
 #include <time.h>
 #include <map>
 
-class DefenceStation : public Station
-{
+class DefenceStation : public Station {
 private:
 	struct DefenceStats
 	{
@@ -30,10 +28,10 @@ private:
 		bool HasArmor( );
 		bool IsStunned( );
 	};
-	map<StationType, DefenceStation :: DefenceStats> *_stations;
+	irr::core::map<StationType, DefenceStation :: DefenceStats> *_stations;
 	
 public:
-	DefenceStation( Ship* ship);
+	DefenceStation(Ship* ship);
 	~DefenceStation(void);
 	
 	void DoCameraShake();

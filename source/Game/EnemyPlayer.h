@@ -7,6 +7,8 @@ class EnemyPlayer : public Enemy
 {
 public:
 	EnemyPlayer(irr::core::vector3df position, vector3df speed);
+	void init();
+	void onAdd();
 	~EnemyPlayer(void);
 private:
 };

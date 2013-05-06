@@ -31,9 +31,9 @@ void StateSwitchFighter::handleFollow()
 {
 	StateSwitch::handleFollow();
 
-	if((StateSwitchFighter::getParent()->inRangeList.getLast()->position - StateSwitchFighter::getParent()->position).getLength() > 10)
+	if((*StateSwitchFighter::getParent()->inRangeList.back()->transform->position - *StateSwitchFighter::getParent()->transform->position).getLength() > 10)
 	{
-		StateSwitchFighter::getParent()->chase(StateSwitchFighter::getParent()->inRangeList.getLast()->position);
+		StateSwitchFighter::getParent()->chase(*StateSwitchFighter::getParent()->inRangeList.back()->transform->position);
 	}
 }
 
@@ -42,12 +42,11 @@ void StateSwitchFighter::handleOffensive()
 	StateSwitch::handleOffensive();
 	if(!StateSwitchFighter::getParent()->inRangeList.empty())
 	{
-		if((StateSwitchFighter::getParent()->inRangeList.getLast()->position - StateSwitchFighter::getParent()->position).getLength() > 10)
+		if((*StateSwitchFighter::getParent()->inRangeList.back()->transform->position - *StateSwitchFighter::getParent()->transform->position).getLength() > 10)
 		{
-			StateSwitchFighter::getParent()->chase(StateSwitchFighter::getParent()->inRangeList.getLast()->position);
+			StateSwitchFighter::getParent()->chase(*StateSwitchFighter::getParent()->inRangeList.back()->transform->position);
 		}
-
-		StateSwitchFighter::getParent()->setTarget(StateSwitchFighter::getParent()->inRangeList.getLast()->position);
+		StateSwitchFighter::getParent()->setTarget(*StateSwitchFighter::getParent()->inRangeList.back()->transform->position);
 	}
 
 }
@@ -55,9 +54,26 @@ void StateSwitchFighter::handleOffensive()
 void StateSwitchFighter::handleDefensive()
 {
 	StateSwitch::handleDefensive();
+	if(!StateSwitchFighter::getParent()->inRangeList.empty())
+	{
+		if((*StateSwitchFighter::getParent()->inRangeList.back()->transform->position - *StateSwitchFighter::getParent()->transform->position).getLength() > 20)
+		{
+			StateSwitchFighter::getParent()->chase(*StateSwitchFighter::getParent()->inRangeList.back()->transform->position);
+		}
+		StateSwitchFighter::getParent()->setTarget(*StateSwitchFighter::getParent()->inRangeList.back()->transform->position);
+	}
 }
 
 void StateSwitchFighter::handleFleeing()
 {
 	StateSwitch::handleFleeing();
+	if(!StateSwitchFighter::getParent()->inRangeList.empty())
+	{
+		if((*StateSwitchFighter::getParent()->inRangeList.back()->transform->position - *StateSwitchFighter::getParent()->transform->position).getLength() > 20)
+		{
+			vector3df fleetarget = (*StateSwitchFighter::getParent()->inRangeList.back()->transform->position) + (*StateSwitchFighter::getParent()->transform->position);
+			fleetarget = fleetarget.normalize()*50;
+			StateSwitchFighter::getParent()->flee(fleetarget);
+		}
+	}
 }

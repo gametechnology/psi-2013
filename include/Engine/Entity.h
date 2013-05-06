@@ -1,41 +1,43 @@
-#include "Composite.h"
-
-#include <Irrlicht\irrlicht.h>
-#include <Irrlicht\vector3d.h>
-#include <Irrlicht\irrMath.h>
-#include <string>
-
 #ifndef ENTITY
 #define ENTITY
 
-using namespace irr;
-using namespace core;
+#include "Composite.h"
+#include "Component.h"
+#include "Transform.h"
+#include "Collision.h"
 
-class Entity : public Composite
-{
+class Game;
+
+class Entity : public Composite {
 public:
-	Entity(Composite* parent);
+	Entity();
 	virtual ~Entity();
 
-	// Variables
-	irr::scene::ISceneNode* node;
+	Game* game;
+	Scene* scene;
 
-	float mass;
-	vector3d<float> force;
-	vector3d<float> position;
-	vector3d<float> velocity;
-	vector3d<float> accelaration;
-	vector3d<float> orientation;
-	vector3d<float> angularVelocity;
-	vector3d<float> angularAccelaration;
+	Transform* transform;
 
-	vector3d<float> anchorPoint;
-	bool visible;
+	Entity* parent;
+	std::vector<Component*> components;
+	std::vector<Entity*> children;
 
-	// Methods
+	void addChild(Entity* child);
+	bool removeChild(Entity* child);
+	bool removeChild(Entity* child, bool deleteChild);
+	void addComponent(Component* component);
+	bool removeComponent(Component* component);
+	virtual void contactResolverA(Entity* _input);
+
+	virtual void onAdd();
+	virtual void init();
+
+	virtual void handleMessage(unsigned int message);
+ 
+	virtual void destroy(){};
 	virtual void update();
+	virtual void lateUpdate();
 	virtual void draw();
-	virtual void createNode(std::string modelPath);
 };
 
 #endif

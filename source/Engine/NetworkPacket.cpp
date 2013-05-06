@@ -60,3 +60,118 @@ sf::Packet& operator >>(sf::Packet& in, irr::core::vector2df& out)
 {
 	return in >> out.X >> out.Y;
 }
+
+sf::Packet& operator <<(sf::Packet& out, const std::vector<irr::core::vector3df>& in)
+{
+	out << in.size();
+	for(unsigned int i = 0; i < in.size(); i++)
+	{
+		out << in[i];
+	}
+	return out;
+}
+
+sf::Packet& operator >>(sf::Packet& in, std::vector<irr::core::vector3df>& out)
+{
+	int size;
+	in >> size;
+	for(int i = 0; i < size; i++)
+	{
+		irr::core::vector3df vector3;
+		in >> vector3;
+		out.push_back(vector3);
+	}
+	return in;
+}
+
+sf::Packet& operator <<(sf::Packet& out, const std::vector<irr::core::vector2df>& in)
+{
+	out << in.size();
+	for(unsigned i = 0; i < in.size(); i++)
+	{
+		out << in[i];
+	}
+	return out;
+}
+
+sf::Packet& operator >>(sf::Packet& in, std::vector<irr::core::vector2df>& out)
+{
+	int size;
+	in >> size;
+	for(int i = 0; i < size; i++)
+	{
+		irr::core::vector2df vector2;
+		in >> vector2;
+		out.push_back(vector2);
+	}
+	return in;
+}
+
+sf::Packet& operator <<(sf::Packet& out, const std::vector<bool>& in)
+{
+	out << in.size();
+	for(unsigned i = 0; i < in.size(); i++)
+	{
+		out << in[i];
+	}
+	return out;
+}
+
+sf::Packet& operator >>(sf::Packet& in, std::vector<bool>& out)
+{
+	int size;
+	in >> size;
+	for(int i = 0; i < size; i++)
+	{
+		bool tempBool;
+		in >> tempBool;
+		out.push_back(tempBool);
+	}
+	return in;
+}
+
+sf::Packet& operator <<(sf::Packet& out, const std::vector<int>& in)
+{
+	out << in.size();
+	for(unsigned int i = 0; i < in.size(); i++)
+	{
+		out << in[i];
+	}
+	return out;
+}
+
+sf::Packet& operator >>(sf::Packet& in, std::vector<int>& out)
+{
+	int size;
+	in >> size;
+	for(int i = 0; i < size; i++)
+	{
+		int j;
+		in >> j;
+		out.push_back(j);
+	}
+	return in;
+}
+
+sf::Packet& operator <<(sf::Packet& out, const std::vector<float>& in)
+{
+	out << in.size();
+	for(unsigned int i = 0; i < in.size(); i++)
+	{
+		out << in[i];
+	}
+	return out;
+}
+
+sf::Packet& operator >>(sf::Packet& in, std::vector<float>& out)
+{
+	int size;
+	in >> size;
+	for(int i = 0; i < size; i++)
+	{
+		float j;
+		in >> j;
+		out.push_back(j);
+	}
+	return in;
+}

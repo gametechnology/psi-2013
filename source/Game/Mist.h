@@ -6,7 +6,8 @@
 
 class Mist : public Entity {
 public:
-	Mist(Composite* parent, video::SColor color = SColor(255, 0, 0, 0), float nearDistance = 100000, float farDistance = 1000000, video::E_FOG_TYPE fogType = EFT_FOG_LINEAR);
+	Mist(video::SColor color = video::SColor(255, 0, 0, 0), float nearDistance = 100000, float farDistance = 1000000, video::E_FOG_TYPE fogType = video::EFT_FOG_LINEAR);
+	virtual void		init();
 	virtual void		update();
 	void				SetColor(video::SColor color);
 	void				SetNearDistance(float nearDistance);

@@ -3,9 +3,13 @@
 #include "Shipmap.h"
 #include "Engine/Game.h"
 #include <math.h>
+#include "Stations\Station.h"
+#include "GameScene.h"
 
 class Shipmap : public Entity
 {
+	void enterStation(StationType station);
+
 	struct tilePos	{
 		int x;
 		int y;
@@ -23,11 +27,12 @@ class Shipmap : public Entity
 	video::ITexture* icon_engine;
 
 	float iconRadius, duration, savedPosX, savedPosY, playerSpeed;
-	rect<s32> *boundingBoxes[5];
-	rect<s32> *playerBox;
+	irr::core::rect<s32> *boundingBoxes[5];
+	irr::core::rect<s32> *playerBox;
 	u32 now, then;
 
 	bool isMoving, isIntersecting, onStation, blockedE, onOccupiedStation, stationOccupied[5];
+	StationType _intersectingStation;
 
 	int offsetX, offsetY, tileSize, iconOffset, stationNumber;
 	int stationIconOffset[5];
@@ -35,9 +40,12 @@ class Shipmap : public Entity
 
 	int tiles[7][12];
 
+	GameScene* _scene;
+
 public:
-	Shipmap(Composite* parent);
+	Shipmap(GameScene* scene);
 	~Shipmap();
+	void onAdd();
 	void init();
 	void draw();
 	void update();

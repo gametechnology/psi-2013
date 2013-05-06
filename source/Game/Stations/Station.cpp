@@ -1,23 +1,46 @@
 #include "Station.h"
 #include "PowerStation.h"
 #include "DefenceStation.h"
-#include "../HealthBar.h"
 
 
-Station :: Station( Ship *ship, int startHealth ) : Composite(ship)
+Station :: Station( Ship *ship, int startHealth ) : Entity()
 {
-	driver = Game::driver;
 	this ->	_ship	= ship;
 	this -> _health = startHealth;
+	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
 	//this -> _switchTime = 4.0f;
 }
 
-Station :: Station( Ship * ship ) : Composite(ship)
+Station :: Station( Ship * ship ) : Entity()
 {
 	this -> _ship   = ship;
 	this -> _totalHealth = 50;
 	this -> _health = this->_totalHealth;
 	this -> _tempTimer = 0;
+}
+
+void Station::onAdd()
+{
+	Entity::onAdd();
+	// Energy testing variable for hud.
+	energy = 50;
+	// End energy testing variable for hud.
+	this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32));
+	this->addChild(hud);
+}
+
+void Station :: init() {
+	Entity::init();
+
+	driver = this->game->driver;
+
+	this -> _player = NULL;
+	this -> _playerOnStationTime = 0;
+	this -> _stunTime = 0;
+	this -> _switchTime = 0;
+
+	if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
+	if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
 }
 
 Station :: ~Station(void)
@@ -55,11 +78,23 @@ bool Station::IsStunned()
 
 void Station::update()
 {
-	Component::update();
+	Entity::update();
+	// NOTE Component update goes automatic
+	//Component::update();
+
+	// Test code for testing energy of a station.
+	if(game->input->isKeyboardButtonDown(KEY_ADD) && energy < 50)
+		energy += 1;
+	if(game->input->isKeyboardButtonDown(KEY_SUBTRACT) && energy > 0)
+		energy -= 1;
+	// End test code for testing energy of a station.
+
 	updateHealth();
 	//Update Stun Time
 	//Update player on station time	
 }
+
+
 
 void Station :: OnDamage( )
 {	
@@ -106,10 +141,12 @@ void Station::updateHealth()
 		}
 	}
 }
+
 int Station :: getHealth()
 {
-	return this -> _health;
+	return 10;//this -> _health;
 }
+
 void Station::decreaseHealth(int health)
 {
 	this->_health -= health;
@@ -119,6 +156,7 @@ void Station::decreaseHealth(int health)
 		repairStation(this->_totalHealth/2);
 	}
 }
+
 void Station::increaseHealth(int health)
 {
 	this->_health += health;
@@ -132,15 +170,4 @@ void Station::repairStation(int health)
 {
 	this->setStationDestroyed(false);
 	this->_health = health;
-}
-
-void Station :: Initialize( )
-{
-	this -> _player = NULL;
-	this -> _playerOnStationTime = 0;
-	this -> _stunTime = 0;
-	this -> _switchTime = 0;
-
-	if ( this -> _stationType != ST_POWER )	this -> _ship -> _powerStation		-> SubscribeStation( this );
-	if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
 }

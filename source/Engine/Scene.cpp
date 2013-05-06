@@ -1,19 +1,21 @@
 #include <Engine\Scene.h>
 #include <Engine\Game.h>
 
-Scene::Scene() : Composite(NULL)
-{
+Scene::Scene() : Entity() {
 	// Set the state
 	state = LOADING;
-
-	// Create a scene manager
-	sceneManager = Game::device->getSceneManager();
-
-	// Scene is enabled
-	//enabled = true;
 }
 
-Scene::~Scene()
-{
-	Composite::~Composite();
+void Scene::onAdd() {
+
+
+	Entity::onAdd();
+}
+
+irr::scene::ISceneManager* Scene::getIrrlichtSceneManager() {
+	return game->device->getSceneManager();
+}
+
+Scene::~Scene() {
+	Entity::~Entity();
 }

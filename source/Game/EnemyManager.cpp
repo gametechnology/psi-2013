@@ -7,14 +7,18 @@
 #include "EnemyAsteroid.h"
 #include "EnemyPlayer.h"
 
-EnemyManager::EnemyManager(void) 
+EnemyManager::EnemyManager(void) : Component()
 {
-	createEnemies();
+	
 }
 
 EnemyManager::~EnemyManager(void)
 {
 
+}
+
+void EnemyManager::onAdd() {
+	createEnemies();
 }
 
 Enemy* drone1;
@@ -40,40 +44,41 @@ void EnemyManager::createEnemies()
 	drone1 = new EnemyDrone(irr::core::vector3df(0,0,40));
 	drone1->setVelocity(vector3df(0.0005f,0,0));
 	drone1->setRotation(irr::core::vector3df(0,1,0));
-	addComponent(drone1);
-	fighter1 = new EnemyFighter(irr::core::vector3df(100,0,0));
-	fighter1->setVelocity(vector3df(0.0005f,0,0));
-	addComponent(fighter1);
+	entity->addChild(drone1);
 
-	asteroid1 = new EnemyAsteroid(irr::core::vector3df(50,0,0),vector3df(0,0,0));
-	addComponent(asteroid1);
-	asteroid2 = new EnemyAsteroid(irr::core::vector3df(50,10,0),vector3df(0,0,0));
-	addComponent(asteroid2);
-	asteroid3 = new EnemyAsteroid(irr::core::vector3df(50,10,10),vector3df(0,-0.005f,-0.005f));
-	addComponent(asteroid3);
-	asteroid4 = new EnemyAsteroid(irr::core::vector3df(50,30,0),vector3df(0,-0.005f,0));
-	addComponent(asteroid4);
-	asteroid5 = new EnemyAsteroid(irr::core::vector3df(50,20,0),vector3df(0,0.005f,0));
-	addComponent(asteroid5);
+	fighter1 = new EnemyFighter(irr::core::vector3df(100,0,0));
+	fighter1->setVelocity(vector3df(0.1f,0,0));
+	entity->addChild(fighter1);
 	
-	//kamikaze enemy
+	asteroid1 = new EnemyAsteroid(irr::core::vector3df(50,0,0),vector3df(0,0,0));
+	entity->addChild(asteroid1);
+	asteroid2 = new EnemyAsteroid(irr::core::vector3df(50,10,0),vector3df(0,0,0));
+	entity->addChild(asteroid2);
+	asteroid3 = new EnemyAsteroid(irr::core::vector3df(50,10,10),vector3df(0,-0.005f,-0.005f));
+	entity->addChild(asteroid3);
+	asteroid4 = new EnemyAsteroid(irr::core::vector3df(50,30,0),vector3df(0,-0.005f,0));
+	entity->addChild(asteroid4);
+	asteroid5 = new EnemyAsteroid(irr::core::vector3df(50,20,0),vector3df(0,0.005f,0));
+	entity->addChild(asteroid5);
+	
+	////kamikaze enemy
 	kamikaze1 = new EnemyDrone(irr::core::vector3df(30,30,30));
 	kamikaze1->setVelocity(vector3df(0.0005f,0,0));
-	addComponent(kamikaze1);
+	entity->addChild(kamikaze1);
+
 	kamikaze2 = new EnemyDrone(irr::core::vector3df(150,150,150));
-	addComponent(kamikaze2);
+	entity->addChild(kamikaze2);
 	kamikaze3 = new EnemyDrone(irr::core::vector3df(-50,-50,-50));
-	addComponent(kamikaze3);
+	entity->addChild(kamikaze3);
 	kamikaze4 = new EnemyDrone(irr::core::vector3df(-150,-150,-150));
-	addComponent(kamikaze4);
+	entity->addChild(kamikaze4);
 	kamikaze5 = new EnemyDrone(irr::core::vector3df(25,25,250));
-	addComponent(kamikaze5);
+	entity->addChild(kamikaze5);
 
 	//dummyplayer
 	player = new EnemyPlayer(irr::core::vector3df(0,0,10),vector3df(0,0.0f,0));
-	addComponent(player);
+	entity->addChild(player);
 
-	
 	this->_enemyList.push_back(drone1);
 	this->_enemyList.push_back(kamikaze1);
 	this->_enemyList.push_back(kamikaze2);
@@ -89,33 +94,24 @@ void EnemyManager::createEnemies()
 	this->_enemyList.push_back(player);
 }
 
-void EnemyManager::update()
-{
-	Scene::update();
+void EnemyManager::update() {
 	NarrowPhaseDetection(this->_enemyList);
 	
 	for(unsigned int i=0; i<_enemyList.size(); i++) //loop through all asteroids, update these and check for contact with all other asteroids
 	{
-		//for(unsigned int j=0; j<_enemyList.size(); j++)
-		//{
-		//	if(j!=i)
-		//	{
-		//		if(!dynamic_cast<EnemyFighter*>(_enemyList[i]) && !dynamic_cast<EnemyFighter*>(_enemyList[j]))
-		//			this->_enemyList[i]->contactGenerator(_enemyList[j]);	
-		//	}
-		//}
+		
 
 		if(dynamic_cast<EnemyDrone*>(_enemyList[i]))
 		{
-			_enemyList[i]->steering(irr::core::vector3df(0,1,0));
-			if((player->position - _enemyList[i]->position).getLength() <= _enemyList[i]->getLoS())
+			_enemyList[i]->steering(irr::core::vector3df(0,1,0), *player->transform->position);
+			if((*player->transform->position - *_enemyList[i]->transform->position).getLength() <= _enemyList[i]->getLoS())
 			{
 				_enemyList[i]->inRangeList.push_back(player);
 			}
 		}else if(dynamic_cast<EnemyFighter*>(_enemyList[i]))
 		{
-			_enemyList[i]->steering(irr::core::vector3df(0,-1,0));
-			if((player->position - _enemyList[i]->position).getLength() <= _enemyList[i]->getLoS())
+			_enemyList[i]->steering(irr::core::vector3df(0,-1,0), *player->transform->position);
+			if((*player->transform->position - *_enemyList[i]->transform->position).getLength() <= _enemyList[i]->getLoS())
 			{
 				_enemyList[i]->inRangeList.push_back(player);
 			}
@@ -123,9 +119,8 @@ void EnemyManager::update()
 	}
 }
 
-#define UNIFORMSIZE 10
-
 /*
+#define UNIFORMSIZE 10
 void EnemyManager::BroadPhaseDetection()
 {
 	vector3df max = vector3df(0,0,0);
@@ -200,21 +195,35 @@ void EnemyManager::BroadPhaseDetection()
 	}
 }
 */
+void EnemyManager::LaserNarrowPhase(array<Enemy*> _enput, array<Laser*> _laput)
+{
+	for (int i = 0; i < (int)(_laput.size()); i++)
+	{
+		for(int j = 0; j < (int)(_enput.size()); j++)
+		{
+			float distance = (*_laput[i]->transform->position).getDistanceFrom(*_enput[j]->transform->position);
+			if (distance < (_enput[j]->getRadius()))
+			{
+				_laput[i]->contactResolverA(_enput[j]);
+			}
+		}
+	}
+}
 
 void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 {
+	array<Laser*> laserlist;
 	for(int i = 0; i < (int)(_input.size()); i++)
 	{
 		for(int j = i; j < (int)(_input.size()); j++)
 		{
 			if(i != j)
 			{
-				float distance = _input[i]->position.getDistanceFrom(_input[j]->getPosition());
+				float distance = _input[i]->transform->position->getDistanceFrom(_input[j]->getPosition());
 				if (distance < (_input[i]->getOuterRadius() + _input[j]->getOuterRadius()))
 				{
 					if (distance < (_input[i]->getRadius() + _input[j]->getRadius() ) )
 					{
-						std::printf("lll\n");
 						_input[i]->contactResolverA(_input[j]);
 						continue;
 					}
@@ -251,7 +260,6 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 								box2[k].Z > box1[l].Z - _input[i]->getRadius() 
 								)
 							{
-								std::printf("..!..\n");
 								_input[i]->contactResolverA(_input[j]);
 							}
 						}
@@ -274,6 +282,21 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 				}
 			}
 		}
+		if(dynamic_cast<EnemyFighter*>(_input[i]))
+		{
+			EnemyFighter* temp = (EnemyFighter*) _input[i];
+			if (!temp->GetLasers().empty())
+			{
+				for (int k = 0; k < temp->GetLasers().size(); k++)
+				{
+					laserlist.push_back(temp->GetLasers()[k]);
+				}
+			}
+		}
+	}
+	if (!laserlist.empty())
+	{
+		LaserNarrowPhase(_input, laserlist);
 	}
  //float distance = position.getDistanceFrom(input->getPosition());
  //float radii = input->getRadius() + radius_;

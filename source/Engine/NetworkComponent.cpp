@@ -4,7 +4,7 @@
 #include <Engine\Game.h>
 
 
-NetworkComponent::NetworkComponent() : Component(NULL) {
+NetworkComponent::NetworkComponent() : Component() {
 	
 }
 
