@@ -85,10 +85,12 @@ void Entity::lateUpdate() {
 
 	if (enabled) {
 		for (unsigned int i = 0; i < components.size(); i++) {
+			if ( components[i]->enabled == false ) continue;
 			components[i]->lateUpdate();
 		}
 
 		for (unsigned int i = 0; i < children.size(); i++) {
+			if ( children[i]->enabled == false ) continue;
 			children[i]->lateUpdate();
 		}
 	}
@@ -99,10 +101,12 @@ void Entity::draw() {
 
 	if (enabled) {
 		for (unsigned int i = 0; i < components.size(); i++) {
+			if ( components[i]->enabled == false ) continue;
 			components[i]->draw();
 		}
 
 		for (unsigned int i = 0; i < children.size(); i++) {
+			if ( children[i]->enabled == false ) continue;
 			children[i]->draw();
 		}
 	}
