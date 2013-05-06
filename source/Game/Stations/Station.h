@@ -54,6 +54,7 @@ public:
 	void decreaseHealth(int health);
 	void repairStation(int health);
 
+	virtual void onAdd();
 	virtual void init();
 	virtual void update();
 	
@@ -78,6 +79,9 @@ protected:
 private:
 	int _tempTimer;
 	int _totalHealth;
+	// Energy testing variable for hud.
+	int energy;
+	// End energy testing variable for hud.
 	int _health;
 	bool _stationDestroyed;
 };

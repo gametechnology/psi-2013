@@ -43,7 +43,7 @@ void GalaxyMap::draw()
 	//TODO: uncomment code to make sectors and connections invissible if not visited yet
 
 	video::ITexture* bgMap = game->driver->getTexture("../assets/galaxy.jpg");
-	game->driver->draw2DImage(bgMap, irr::core::rect<s32>(0, 0, (int)width, (int)height), irr::core::rect<s32>(0, 0, bgMap->getOriginalSize().Width, bgMap->getOriginalSize().Height));
+	game->driver->draw2DImage(bgMap, irr::core::rect<s32>(0, 300, (int)width, 300+(int)height), irr::core::rect<s32>(0, 0, bgMap->getOriginalSize().Width, bgMap->getOriginalSize().Height));
 
 	for(unsigned int i = 0; i < sectors.size(); i++) {
 		for(unsigned int j = 0; j != sectors[i]->connections.size(); j++) {

@@ -26,6 +26,8 @@ void PowerStation :: init() {
 	else
 		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
 	createUI();
+
+	Station::init();
 }
 
 PowerStation :: ~PowerStation()
@@ -311,9 +313,6 @@ void PowerStation::update()
 void PowerStation::draw()
 {
 	Station::draw();
-
-	if (env != NULL)
-		env->drawAll();
 }
 
 //This method displays the selected station. We're using an integer which indicates which station is currently selected. 

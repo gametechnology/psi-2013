@@ -46,6 +46,9 @@ void Game::init() {
 
 void Game::run()
 {
+	// Quick hack to switch to switch the order of draws. We had some problems with drawing stuff because of the draw order. 
+	bool switchDraws = false;
+
 	//Main loop
 	while(device -> run( ) )
 	{		
@@ -64,11 +67,26 @@ void Game::run()
 		if (input->isKeyboardButtonReleased(KEY_KEY_V))
 			Hierarchy::Visualize(sceneManager->getLastScene());
 
-		//Game engine draw
-		game->draw();
+		// Quick hack to switch to switch the order of draws. We had some problems with drawing stuff because of the draw order.
+		if(input->isKeyboardButtonPressed(KEY_KEY_K))
+			switchDraws = !switchDraws;
 
-		//Irrlicht GUI
-		guiEnv->drawAll();
+		if(switchDraws)
+		{
+			//Irrlicht GUI
+			guiEnv->drawAll();
+
+			//Game engine draw
+			game->draw();
+		}
+		else
+		{
+			//Game engine draw
+			game->draw();
+
+			//Irrlicht GUI
+			guiEnv->drawAll();
+		}
 
 		// End the scene
 		driver->endScene();
@@ -83,5 +101,5 @@ void Game::run()
 
 Game::~Game()
 {
-	
+
 }

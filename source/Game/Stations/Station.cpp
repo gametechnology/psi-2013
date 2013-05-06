@@ -9,9 +9,6 @@ Station :: Station( Ship *ship, int startHealth ) : Entity()
 	this -> _health = startHealth;
 	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
 	//this -> _switchTime = 4.0f;
-	int energy = 50;
-	this->hud = new HudComposite(&(this->_totalHealth), &energy, rect<s32>(10,240,110,240 + 32));
-	this->addChild(hud);
 }
 
 Station :: Station( Ship * ship ) : Entity()
@@ -22,7 +19,19 @@ Station :: Station( Ship * ship ) : Entity()
 	this -> _tempTimer = 0;
 }
 
+void Station::onAdd()
+{
+	Entity::onAdd();
+	// Energy testing variable for hud.
+	energy = 50;
+	// End energy testing variable for hud.
+	this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32));
+	this->addChild(hud);
+}
+
 void Station :: init() {
+	Entity::init();
+
 	driver = this->game->driver;
 
 	this -> _player = NULL;
@@ -69,13 +78,23 @@ bool Station::IsStunned()
 
 void Station::update()
 {
+	Entity::update();
 	// NOTE Component update goes automatic
 	//Component::update();
+
+	// Test code for testing energy of a station.
+	if(game->input->isKeyboardButtonDown(KEY_ADD) && energy < 50)
+		energy += 1;
+	if(game->input->isKeyboardButtonDown(KEY_SUBTRACT) && energy > 0)
+		energy -= 1;
+	// End test code for testing energy of a station.
 
 	updateHealth();
 	//Update Stun Time
 	//Update player on station time	
 }
+
+
 
 void Station :: OnDamage( )
 {	

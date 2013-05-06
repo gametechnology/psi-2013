@@ -33,7 +33,7 @@ void Ship::onAdd() {
 	this->_helmStation->disable();
 	this->_navigationStation->disable();
 	this->_weaponStation->disable();
-	this->_powerStation->disable();
+	this->_powerStation->enable();
 
 	//Camera
 	_camera = new Camera();
