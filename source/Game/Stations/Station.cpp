@@ -29,7 +29,7 @@ void Station::onAdd()
 	// Energy testing variable for hud.
 	energy = 50;
 	// End energy testing variable for hud.
-	this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32));
+	this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32), &helpTextString);
 	this->addChild(hud);
 }
 
