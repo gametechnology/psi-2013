@@ -79,10 +79,8 @@ void BackButton::update(){
 
 void BackButton::init(){
 	button = getGame()->guiEnv->addButton(position_,0,GUI_ID_BACK_BUTTON,L"Esc to Back",L"Go back to 2d shipmap");
-	button = env->addButton(posRect,0,GUI_ID_BACK_BUTTON,L"Esc to Back",L"Go back to 2d shipmap");
 	BackButton::pressed = false;
 	BackButton::visible = true;
-	this->env = env;
 }
 void BackButton::draw(){
 
