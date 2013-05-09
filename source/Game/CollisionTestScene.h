@@ -23,6 +23,7 @@ public:
 	CollisionTestScene(void);
 	virtual ~CollisionTestScene(void);
 
+	//functions from Scene
 	void init();
 	void onAdd();
 	void update();
@@ -30,16 +31,8 @@ public:
 	void HandleNetworkMessage(NetworkPacket packet);
 
 private:
-	Player* _player;
-	Camera* _camera;
+	//create an enemylist
 	vector<Enemy*> _enemyList;
-	
-	//Visual testing with camera and light
-	//irr::scene::ILightSceneNode*	_light;
-
-	//add two players for testing
-	EnemyPlayer* _player1;
-	EnemyPlayer* _player2;
 };
 
 #endif

@@ -2,12 +2,8 @@
 
 CollisionTestScene::CollisionTestScene(void) : Scene() 
 {
-	//Network::GetInstance()->AddListener(SERVER_ENEMY, this);
+	//Create a list of the enemies
 	this->_enemyList = vector<Enemy*>();
-	_player1 = new EnemyPlayer(irr::core::vector3df(0,1,0),irr::core::vector3df(0,0,0));
-	addChild(_player1);
-	_player2 = new EnemyPlayer(irr::core::vector3df(20,1,0),irr::core::vector3df(-1,0,0));
-	addChild(_player2);
 }
 
 void CollisionTestScene::onAdd() 
@@ -15,16 +11,7 @@ void CollisionTestScene::onAdd()
 }
 
 void CollisionTestScene::init() {
-	// Create model entity
-	/*_player = new Player();
-	addChild(_player);
-	_player->handleMessage(DAMAGE, new int(789));	// Send a message to player and components.
-
-	// Create camera entity
-	_camera = new Camera();
-	_camera->transform->velocity->Z -= (float)0.001;
-	addChild(_camera);*/
-
+	//add a first person camera to fly through the space
 	this->game->device->getSceneManager()->addCameraSceneNodeFPS();
 	createTestEnemies();
 	Scene::init();
