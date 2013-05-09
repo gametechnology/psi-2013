@@ -4,7 +4,7 @@
 #include "EnemySceneTest.h"
 #include "MainMenuScene.h"
 #include "GameScene.h"
-
+#include "CollisionTestScene.h"
 #include "NetworkInterface.h"
 #include "EmptyTestScene.h"
 #include "EnemySceneTest.h"
@@ -30,11 +30,11 @@ int main()
 	Game* game = new Game();
 	//Enemy::newEnemyId = 0;
 	//Add the MainMenu
-	//Scene* scene = new EnemySceneTest();
+	//Scene* scene = new EnemySceneTest();	
 	//Scene* scene = new EmptyTestScene();
-	Scene* scene = new MainMenuScene();
+	Scene* scene = new CollisionTestScene();
 
-	game->sceneManager->addScene("MainMenuScene", scene);
+	game->sceneManager->addScene("CollisionTestScene", scene);
 
 	//Create ship
 	//Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
