@@ -13,15 +13,59 @@ void CollisionTestScene::onAdd()
 void CollisionTestScene::init() {
 	//add a first person camera to fly through the space
 	this->game->device->getSceneManager()->addCameraSceneNodeFPS();
-	createTestEnemies();
+
+	//createTestEnemies();
 	Scene::init();
 }
 
 void CollisionTestScene::update() {
+
+	//for now, press only once, else you will have too many enemies!
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_1))
+	{
+		std::cout << "Test Laser-Enemy is activated";
+		createLaserTestObjects();
+	}
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_2))
+	{
+		std::cout << "Test Bullet-Enemy is activated";
+		createBulletTestObjects();
+	}
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_3))
+	{
+		std::cout << "Test Laser-Bullet is activated";
+		createLaserToBullet();
+	}
 	Scene::update();
 }
 
-void CollisionTestScene::createTestEnemies(){
+void CollisionTestScene::createLaserTestObjects(){
+	//Create a row of EnemyDrones
+	for(int i = 0; i < 5; i++)
+	{
+		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
+		
+		addChild(_enemyList.back());
+	}
+
+	//Create a row of EnemyFighters
+	for(int j = 0; j < 5; j++)
+	{
+		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(20,0,(irr::f32)(j + (j * j)))));
+		
+		addChild(_enemyList.back());
+	}
+
+	//Create a row of Enemy Asteroids
+	for(int k = 0; k < 5; k++)
+	{
+		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-20,0,(irr::f32)(k + (k * k))), irr::core::vector3df(0,0,0.01f)));
+		
+		addChild(_enemyList.back());
+	}
+
+}
+void CollisionTestScene::createBulletTestObjects(){
 
 	//Create a row of EnemyDrones
 	for(int i = 0; i < 5; i++)
@@ -51,7 +95,9 @@ void CollisionTestScene::createTestEnemies(){
 	addChild(_enemyList.back());
 }
 
+void CollisionTestScene::createLaserToBullet(){
 
+}
 CollisionTestScene::~CollisionTestScene() {
 
 }

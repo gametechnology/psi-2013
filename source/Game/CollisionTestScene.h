@@ -4,6 +4,7 @@
 #include "Engine\Scene.h"
 #include "Engine\Camera.h"
 #include "Stations\Station.h"
+#include "ENgine\InputManager.h"
 #include "Messages.h"
 #include "NetworkInterface.h"
 
@@ -27,12 +28,16 @@ public:
 	void init();
 	void onAdd();
 	void update();
-	void createTestEnemies();
 	void HandleNetworkMessage(NetworkPacket packet);
 
 private:
 	//create an enemylist
 	vector<Enemy*> _enemyList;
+
+	void createTestEnemies();
+	void createLaserTestObjects();
+	void createBulletTestObjects();
+	void createLaserToBullet();
 };
 
 #endif
