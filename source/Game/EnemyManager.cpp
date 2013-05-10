@@ -282,17 +282,17 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 				}
 			}
 		}
-		if(dynamic_cast<EnemyFighter*>(_input[i]))
+		/*if(dynamic_cast<EnemyFighter*>(_input[i]))
 		{
 			EnemyFighter* temp = (EnemyFighter*) _input[i];
 			if (!temp->GetLasers().empty())
 			{
-				for (int k = 0; k < temp->GetLasers().size(); k++)
+				for (unsigned k = 0; k < temp->GetLasers().size(); k++)
 				{
 					laserlist.push_back(temp->GetLasers()[k]);
 				}
 			}
-		}
+		}*/
 	}
 	if (!laserlist.empty())
 	{

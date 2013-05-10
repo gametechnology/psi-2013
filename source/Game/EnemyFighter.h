@@ -3,6 +3,7 @@
 
 #include "Enemy.h"
 #include "StateSwitchFighter.h"
+#include "ObjectPool.h"
 #include "Laser.h"
 
 class EnemyFighter : public Enemy
@@ -11,20 +12,17 @@ public:
 	EnemyFighter(irr::core::vector3df position);
 	~EnemyFighter(void);
 
-	vector<Laser*> GetLasers();
 	void SetTarget(vector3df target);
 	virtual void chase(vector3df target);
 	
 	virtual void init();
 	virtual void onAdd();
 	virtual void update();
+
+	static ObjectPool<Laser> laserPool;
 private:
-	void		loadLaser();
 	void		fireLaserAt(vector3df target);
-	int			_curLaser;
-	int			_nrLasers;
 	int			_fireTime;
-	vector<Laser*> _laser;
 	vector3df	_target;
 	vector3df	_endPosition;
 	StateSwitchFighter* stateSwitch;

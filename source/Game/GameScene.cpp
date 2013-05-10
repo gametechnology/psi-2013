@@ -2,12 +2,16 @@
 #include "MapGenerator.h"
 #include "SectorManager.h"
 #include "Shipmap.h"
+#include "ObjectPool.h"
+#include "Laser.h"
 
 GameScene::GameScene() : Scene() {
 
 }
 
 void GameScene::onAdd() {
+	ObjectPool<Laser>* laserPool = new ObjectPool<Laser>(50);
+	EnemyFighter::laserPool = *laserPool;
 	GalaxyMap* galaxyMap = new GalaxyMap(300, 300, 15);
 	
 	galaxyMap->createMap(20, 2, 5);
@@ -17,6 +21,7 @@ void GameScene::onAdd() {
 
 	_shipmap = new Shipmap(this);
 	addChild(_shipmap);
+
 }
 
 void GameScene::init() {
@@ -33,15 +38,15 @@ void GameScene::switchStation(StationType type)
 
 	switch(type)
 	{
-		case StationType::ST_DEFENCE:
+		case ST_DEFENCE:
 			break;
-		case StationType::ST_HELM:
+		case ST_HELM:
 			break;
-		case StationType::ST_NAVIGATION:
+		case ST_NAVIGATION:
 			break;
-		case StationType::ST_POWER:
+		case ST_POWER:
 			break;
-		case StationType::ST_WEAPON:
+		case ST_WEAPON:
 			break;
 	}
 }

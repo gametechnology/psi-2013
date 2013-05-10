@@ -20,18 +20,19 @@ Laser::~Laser() {
 	Entity::~Entity();
 }
 
-void Laser::fire(Entity* origin, vector3df target, f32 speed)
+void Laser::fire(Scene* scene, Transform* transform, vector3df target, f32 speed)
 {
 	Composite::enable();
+	this->scene = scene;
+	this->parent = scene;
+	*this->transform->position = *transform->position;
+	*this->transform->rotation = *transform->rotation;
+	*this->transform->rotation += 90;
 	
-	transform->position = origin->transform->position;
-	transform->rotation = parent->transform->rotation;
-	transform->rotation += 90;
-	
-	this->_direction = target - *transform->position;
+	this->_direction = target - *this->transform->position;
 	this->_direction.normalize();
 
-	*transform->velocity = _direction * speed;
+	*this->transform->velocity = _direction * speed;
 }
 
 void Laser::update()
