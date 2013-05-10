@@ -41,6 +41,20 @@ void CollisionTestScene::update() {
 		std::cout << "Test Laser-Ship is activated";
 		createLaserAndShip();
 	}
+
+	//Tell the other EnemyFighters to shoot at target dummy	
+	for(int l = 0; l < _enemyList.size(); l++)
+	{
+		if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
+		{
+			//_enemyList[l]->setTarget(dummyFighter->getPosition());
+			//_enemyList[l]->inRangeList.push_back(dummyFighter);			
+			//_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
+			_enemyList[l]->inRangeList.push_back(_enemyList[11]); //to asteroid 1
+			std::cout << _enemyList[l]->getTarget().X << ", " << _enemyList[l]->getTarget().Y << ", " << _enemyList[l]->getTarget().Z << "; ";
+		}
+	}
+
 	Scene::update();
 }
 
@@ -72,16 +86,7 @@ void CollisionTestScene::createLaserTestObjects(){
 	EnemyFighter* dummyFighter = new EnemyFighter(irr::core::vector3df(10,10,10));
 	addChild(dummyFighter);
 
-	//Tell the other EnemyFighters to shoot at target dummy
-	for(int l = 0; l < _enemyList.size(); l++)
-	{
-		if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
-		{
-			//_enemyList[l]->setTarget(dummyFighter->getPosition());
-			_enemyList[l]->inRangeList.push_back(dummyFighter);
-			std::cout << _enemyList[l]->getTarget().X << ", " << _enemyList[l]->getTarget().Y << ", " << _enemyList[l]->getTarget().Z << "; ";
-		}
-	}
+	
 
 }
 void CollisionTestScene::createBulletTestObjects(){
@@ -130,6 +135,7 @@ void CollisionTestScene::createLaserAndShip(){
 	Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
 	addChild(ship);
 }
+
 CollisionTestScene::~CollisionTestScene() {
 
 }
