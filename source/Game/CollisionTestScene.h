@@ -38,6 +38,7 @@ private:
 	void createLaserTestObjects();
 	void createBulletTestObjects();
 	void createLaserToBullet();
+	void createLaserAndShip();
 };
 
 #endif

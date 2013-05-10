@@ -36,6 +36,11 @@ void CollisionTestScene::update() {
 		std::cout << "Test Laser-Bullet is activated";
 		createLaserToBullet();
 	}
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_4))
+	{
+		std::cout << "Test Laser-Ship is activated";
+		createLaserAndShip();
+	}
 	Scene::update();
 }
 
@@ -52,7 +57,6 @@ void CollisionTestScene::createLaserTestObjects(){
 	for(int j = 0; j < 5; j++)
 	{
 		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(20,0,(irr::f32)(j + (j * j)))));
-		
 		addChild(_enemyList.back());
 	}
 
@@ -62,6 +66,21 @@ void CollisionTestScene::createLaserTestObjects(){
 		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-20,0,(irr::f32)(k + (k * k))), irr::core::vector3df(0,0,0.01f)));
 		
 		addChild(_enemyList.back());
+	}
+	
+	//Make a dummy EnemyFighter to shoot at
+	EnemyFighter* dummyFighter = new EnemyFighter(irr::core::vector3df(10,10,10));
+	addChild(dummyFighter);
+
+	//Tell the other EnemyFighters to shoot at target dummy
+	for(int l = 0; l < _enemyList.size(); l++)
+	{
+		if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
+		{
+			//_enemyList[l]->setTarget(dummyFighter->getPosition());
+			_enemyList[l]->inRangeList.push_back(dummyFighter);
+			std::cout << _enemyList[l]->getTarget().X << ", " << _enemyList[l]->getTarget().Y << ", " << _enemyList[l]->getTarget().Z << "; ";
+		}
 	}
 
 }
@@ -97,6 +116,19 @@ void CollisionTestScene::createBulletTestObjects(){
 
 void CollisionTestScene::createLaserToBullet(){
 
+}
+
+void CollisionTestScene::createLaserAndShip(){
+	
+	//Create a row of EnemyFighters
+	for(int j = 0; j < 5; j++)
+	{
+		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(20,0,(irr::f32)(j + (j * j)))));
+		addChild(_enemyList.back());
+	}
+
+	Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
+	addChild(ship);
 }
 CollisionTestScene::~CollisionTestScene() {
 

@@ -201,48 +201,6 @@ void Enemy::steering(irr::core::vector3df rotational, irr::core::vector3df playe
 		this->transform->rotation->Y = RADTODEG * acos(diffPos.X);
 }
 
-	    /*float magnitude = sqrt(pow(velocity.X,2) + pow(velocity.Y,2) + pow(velocity.Z,2));
-
-		magnitude = sqrt(pow(originalvelocity_.X,2) + pow(originalvelocity_.Y,2) + pow(originalvelocity_.Z,2));
-		vector3df normalizeoriginal = vector3df((originalvelocity_.X/magnitude),(originalvelocity_.Y/magnitude),(originalvelocity_.Z/magnitude));
-	
-		if(normalizeoriginal == normalizedvelocity)
-		{
-			this->setOriginalVelocity(*this->transform->velocity);
-			return;
-		}
-
-		if(rotational.X < 0)
-		{
-			rotational.X *= -1;
-			this->transform->rotation->X -= rotational.X/60;
-		}
-		else
-		{
-			this->transform->rotation->X += rotational.X/60;
-		}	
-
-		if(rotational.Y < 0)
-		{
-				rotational.Y *= -1;
-				this->transform->rotation->Y -= rotational.Y/60;
-		}
-		else
-		{
-			this->transform->rotation->Y += rotational.Y/60;
-		}
-		
-		if(rotational.Z < 0)
-		{
-			rotational.Z *= -1;
-			this->transform->rotation->Z -= rotational.Z/60;
-		}
-		else
-		{
-			this->transform->rotation->Z += rotational.Z/60;
-		}
-}
-*/
 void Enemy::contactResolverA(Enemy* _input)
 {
     double deltamass = (this->getRadius() / _input->getRadius());
