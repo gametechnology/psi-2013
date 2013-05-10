@@ -85,7 +85,11 @@ void StateSwitch::handleWander()
 		std::cout << parent_->getHealth() << ", Enemy is dead \n";
 		return;
 	}
-
+	std::cout<<(parent_->inRangeList.size()>0);
+	for(unsigned int i =0; i<parent_->inRangeList.size(); i++)
+	{
+		std::cout<<(parent_->inRangeList[i]);
+	}
 	if(parent_->inRangeList.size() > 0)
 	{
 		if(parent_->getHealth() <= (parent_->getMaxHealth() / 4))
