@@ -22,7 +22,7 @@ void EnemyFighter::init()
 	Enemy::init();
 
 	EnemyFighter::inRangeList = vector<Entity*>();
-	EnemyFighter::stateSwitch = new StateSwitchFighter(StateSwitch::STATE_OFFENSIVE,this);
+	EnemyFighter::stateSwitch = new StateSwitchFighter(StateSwitch::STATE_WANDER,this);
 }
 
 void EnemyFighter::onAdd() 

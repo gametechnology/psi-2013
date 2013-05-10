@@ -53,7 +53,7 @@ void StateSwitch::handleIdle()
 		return;
 	}
 	parent_->setVelocity(vector3df(0,0,0));
-
+	
 	if(parent_->inRangeList.size() > 0)
 	{
 		if(parent_->getHealth() <= (parent_->getMaxHealth() / 4))
