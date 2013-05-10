@@ -155,6 +155,7 @@
     <ClInclude Include="..\source\Game\HealthBar.h" />
     <ClInclude Include="..\source\Game\HudComposite.h" />
     <ClInclude Include="..\source\Game\HudHelpText.h" />
+    <ClInclude Include="..\source\Game\ObjectPool.h" />
     <ClInclude Include="..\source\Game\ShipMover.h" />
     <ClInclude Include="..\source\Game\ShipScenes.h" />
     <ClInclude Include="..\source\Game\Laser.h" />
