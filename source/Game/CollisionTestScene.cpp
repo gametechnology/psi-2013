@@ -59,7 +59,7 @@ void CollisionTestScene::update() {
 
 void CollisionTestScene::createLaserTestObjects(){
 	//Create a row of EnemyDrones
-	for(int i = 0; i < 5; i++)
+	for(int i = 0; i < 1; i++) //create only 1 in stead of 5 for testing.
 	{
 		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
 		
