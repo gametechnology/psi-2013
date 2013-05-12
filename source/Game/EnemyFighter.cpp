@@ -46,7 +46,11 @@ void EnemyFighter::chase(vector3df target)
 void EnemyFighter::update()
 {
 	EnemyFighter::stateSwitch->updateState();
-	EnemyFighter::inRangeList.clear();
+
+	if(game->input->isKeyboardButtonPressed(irr::KEY_KEY_M))
+	{
+		this->fireLaserAt(vector3df(0));
+	}
 
 	if(EnemyFighter::stateSwitch->getState() == StateSwitch::STATE_OFFENSIVE)
 	{
@@ -61,6 +65,8 @@ void EnemyFighter::update()
 		}
 	}
 
+	EnemyFighter::inRangeList.clear();
+
 	Enemy::update();
 }
 
@@ -73,6 +79,10 @@ EnemyFighter::~EnemyFighter(void)
 
 void EnemyFighter::fireLaserAt(vector3df target)
 {
-	this->laserPool.NewInstance()->fire(this->transform, target, 1.0f);
+	Laser* laser = this->laserPool.GetFreeObject();
+	if(laser != NULL)
+	{
+		laser->fire(this->scene, this->transform, target, 0.001f);
+	}
 }
 

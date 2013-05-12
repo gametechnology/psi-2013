@@ -1,59 +1,58 @@
 #ifndef OBJECT_POOL_H
 #define OBJECT_POOL_H
 
-#include "Engine/Scene.h"
+#include "Engine/Entity.h"
 
-template<class OPDataType> class ObjectPool 
+template<class T> class ObjectPool 
 {
-protected:
-	OPDataType* _objectData;
-	OPDataType** _objectFree;
+private:
+	std::vector<T*> _objectList; 
 	int _objectCount, _top;
-	Scene* scene;
 
 	void FreeAll()
 	{
-		int i = (_objectCount - 1);
-		for(_top = 0; _top < _objectCount; _top++)
+		for(int i = 0; i < _objectCount; i++)
 		{
-			_objectFree[_top] = &_objectData[i--];
+			_objectList[i]->disable();
 		}
 	}
 
 public:
-	void FreeInstance(OPDataType* instance)
-	{
-		if((instance) && (_top < _objectCount) && (instance >= &_objectData[0]) &&
-			(instance <= &_objectData[_objectCount-1]))
-		{
-			_objectFree[_top++] = instance;
-		}
-	}
 
-	OPDataType* NewInstance()
+	
+	T* GetFreeObject()
 	{
-		if(_top > 0)
+		for(int i = 0; i < _objectCount; i++)
 		{
-			return _objectFree[--_top];
+			if(!_objectList[i]->enabled)
+			return _objectList[i];
 		}
 		return 0;
 	}
 
 	ObjectPool() {};
 
-	ObjectPool(int count, Scene* scene)
+	ObjectPool(int count)
 	{
-		this->scene = scene;
-		_objectData = new OPDataType[count];
-		_objectFree = new OPDataType*[count];
+		_objectList = std::vector<T*>();
+		_objectCount = count;
+
+		for(int i = 0; i < _objectCount; i++)
+		{
+			_objectList.push_back(new T());
+		}
 
 		FreeAll();
 	}
 
 	virtual ~ObjectPool()
 	{
-		delete[] _objectData;
-		delete[] _objectFree;
+		FreeAll();
+
+		for(int i = 0; i < _objectList.size(); i++)
+		{
+			delete _objectList[i];
+		}
 	}
 };
 
