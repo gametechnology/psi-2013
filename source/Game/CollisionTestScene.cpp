@@ -13,7 +13,7 @@ void CollisionTestScene::onAdd()
 void CollisionTestScene::init() {
 	//add a first person camera to fly through the space
 	this->game->device->getSceneManager()->addCameraSceneNodeFPS();
-
+	removeenemytestinitiationcheck = true;
 	//createTestEnemies();
 	Scene::init();
 }
@@ -35,6 +35,11 @@ void CollisionTestScene::update() {
 	{
 		std::cout << "Test Laser-Bullet is activated";
 		createLaserToBullet();
+	}
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_9))
+	{
+		std::cout << "Test Remove Enemy is activated \n";
+		createRemoveEnemyTest();
 	}
 	Scene::update();
 }
@@ -100,4 +105,24 @@ void CollisionTestScene::createLaserToBullet(){
 }
 CollisionTestScene::~CollisionTestScene() {
 
+}
+
+void CollisionTestScene::createRemoveEnemyTest()
+{
+	if (removeenemytestinitiationcheck)
+	{
+		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,9,0), irr::core::vector3df(0.02f,0,0)));
+		addChild(_enemyList.back());
+		removeenemytestinitiationcheck = false;
+		std::cout << "Test Remove Enemy is initiated, press again to execute \n";
+	}
+	else
+	{
+		_enemyList[0]->setPosition(irr::core::vector3df(10000,10000,10000));
+		_enemyList[0]->update();
+		_enemyList[0]->destroy();
+		_enemyList[0]->parent->removeChild(_enemyList[0],true);
+		std::cout << "Test Remove Enemy is executed succesfully \n";
+		removeenemytestinitiationcheck = true;
+	}
 }

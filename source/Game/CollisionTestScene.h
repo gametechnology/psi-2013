@@ -38,6 +38,9 @@ private:
 	void createLaserTestObjects();
 	void createBulletTestObjects();
 	void createLaserToBullet();
+	void createRemoveEnemyTest();
+
+	bool removeenemytestinitiationcheck;
 };
 
 #endif
