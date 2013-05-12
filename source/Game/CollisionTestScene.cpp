@@ -37,16 +37,32 @@ void CollisionTestScene::update() {
 		createLaserToBullet();
 	}
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_9))
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_4))
 	{
 		std::cout << "Test Remove Enemy is activated \n";
 		createRemoveEnemyTest();
+		std::cout << "Test Laser-Ship is activated";
+		createLaserAndShip();
 	}
+
+	//Tell the other EnemyFighters to shoot at target dummy	
+	for(int l = 0; l < _enemyList.size(); l++)
+	{
+		if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
+		{
+			//_enemyList[l]->setTarget(dummyFighter->getPosition());
+			//_enemyList[l]->inRangeList.push_back(dummyFighter);			
+			_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
+			//_enemyList[l]->inRangeList.push_back(_enemyList[11]); //to asteroid 1
+		}
+	}
+
 	Scene::update();
 }
 
 void CollisionTestScene::createLaserTestObjects(){
 	//Create a row of EnemyDrones
-	for(int i = 0; i < 5; i++)
+	for(int i = 0; i < 1; i++) //create only 1 in stead of 5 for testing.
 	{
 		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
 		
@@ -57,7 +73,6 @@ void CollisionTestScene::createLaserTestObjects(){
 	for(int j = 0; j < 5; j++)
 	{
 		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(20,0,(irr::f32)(j + (j * j)))));
-		
 		addChild(_enemyList.back());
 	}
 
@@ -68,6 +83,22 @@ void CollisionTestScene::createLaserTestObjects(){
 		
 		addChild(_enemyList.back());
 	}
+	
+	//Make a dummy EnemyFighter to shoot at
+	EnemyFighter* dummyFighter = new EnemyFighter(irr::core::vector3df(10,10,10));
+	dummyFighter->setVelocity(irr::core::vector3df(0.01f,0,0));
+	addChild(dummyFighter);
+
+	
+	//Tell the other EnemyFighters to shoot at target dummy
+	//for(int l = 0; l < _enemyList.size(); l++)
+	//{
+	//	if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
+	//	{
+	//		//_enemyList[l]->setTarget(dummyFighter->getPosition());
+	//		_enemyList[l]->inRangeList.push_back(dummyFighter);
+	//	}
+	//}
 
 }
 void CollisionTestScene::createBulletTestObjects(){
@@ -103,6 +134,21 @@ void CollisionTestScene::createBulletTestObjects(){
 void CollisionTestScene::createLaserToBullet(){
 
 }
+
+void CollisionTestScene::createLaserAndShip(){
+	
+	//Create a row of EnemyFighters
+	for(int j = 0; j < 5; j++)
+	{
+		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(20,0,(irr::f32)(j + (j * j)))));
+		addChild(_enemyList.back());
+	}
+
+	//Causes Error in Powerstation
+	Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
+	addChild(ship);
+}
+
 CollisionTestScene::~CollisionTestScene() {
 
 }
