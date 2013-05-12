@@ -31,5 +31,6 @@ class Laser : public Entity
 		u32			_currentLife;
 		vector3df	_direction;
 		unsigned int _damage;
+		bool _hasAnIrrlichtNode;
 };
 #endif

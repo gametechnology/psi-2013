@@ -49,7 +49,7 @@ void EnemyFighter::update()
 
 	if(game->input->isKeyboardButtonPressed(irr::KEY_KEY_M))
 	{
-		this->fireLaserAt(vector3df(0));
+		this->fireLaserAt(vector3df(200));
 	}
 
 	if(EnemyFighter::stateSwitch->getState() == StateSwitch::STATE_OFFENSIVE)
@@ -82,7 +82,7 @@ void EnemyFighter::fireLaserAt(vector3df target)
 	Laser* laser = this->laserPool.GetFreeObject();
 	if(laser != NULL)
 	{
-		laser->fire(this->scene, this->transform, target, 0.001f);
+		laser->fire(this->scene, this->transform, target, 1.0f);
 	}
 }
 

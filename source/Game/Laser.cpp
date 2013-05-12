@@ -4,19 +4,26 @@
 Laser::Laser() : Entity()
 {
 	this->_currentLife = 0;
-	this->_timeofLife = 100;
+	this->_timeofLife = 250;
 	this->_damage = 1;
 	this->disable();
 	this->scene = NULL;
+	this->_hasAnIrrlichtNode = false;
 
 	//the addchild is located in the constructor because a laser is being added more than once
-	addChild(new IrrlichtNode(irr::io::path("../assets/Models/laser.3ds")));
 }
 
 void Laser::onAdd() {
+	if(!this->_hasAnIrrlichtNode)
+	{
+		addChild(new IrrlichtNode("../assets/Models/laser.3ds"));
+		this->_hasAnIrrlichtNode = true;
+	}
+	Entity::onAdd();
 }
 
 void Laser::init() {
+	Entity::init();
 }
 
 Laser::~Laser() 
@@ -43,8 +50,6 @@ void Laser::fire(Scene* scene, Transform* transform, vector3df target, f32 speed
 	this->_direction.normalize();
 
 	*this->transform->velocity = _direction * speed;
-
-	std::cout << this->transform->position->X << this->transform->position->Y << this->transform->position->Z << std::endl;
 }
 
 void Laser::update()
@@ -55,6 +60,10 @@ void Laser::update()
 		if(this->_currentLife >= this->_timeofLife)
 		{
 			this->disable();
+			for(unsigned i = 0; i < this->children.size(); i++)
+			{
+				this->children[i]->update();
+			}
 			_currentLife = 0;
 		}
 	}
