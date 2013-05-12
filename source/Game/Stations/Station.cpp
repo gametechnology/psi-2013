@@ -7,8 +7,9 @@ Station :: Station( Ship *ship, int startHealth ) : Entity()
 {
 	this ->	_ship	= ship;
 	this -> _health = startHealth;
-	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
+	
 	//this -> _switchTime = 4.0f;
+	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
 }
 
 Station :: Station( Ship * ship ) : Entity()
@@ -17,6 +18,9 @@ Station :: Station( Ship * ship ) : Entity()
 	this -> _totalHealth = 50;
 	this -> _health = this->_totalHealth;
 	this -> _tempTimer = 0;
+
+	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
+	
 }
 
 void Station::onAdd()
@@ -25,7 +29,7 @@ void Station::onAdd()
 	// Energy testing variable for hud.
 	energy = 50;
 	// End energy testing variable for hud.
-	this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32));
+	this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32), &helpTextString);
 	this->addChild(hud);
 }
 
@@ -41,6 +45,11 @@ void Station :: init() {
 
 	if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
 	if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
+
+	
+	int energy = 50;
+	this->hud = new HudComposite(&(this->_totalHealth), &energy, rect<s32>(10,240,110,240 + 32), &helpTextString);
+	this->addChild(hud);
 }
 
 Station :: ~Station(void)
