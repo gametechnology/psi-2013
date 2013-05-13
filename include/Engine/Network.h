@@ -26,7 +26,7 @@ enum PacketType
 	HOST_DISCONNECT,
 	START_GAME,
 	SERVER_ENEMY,
-
+	SHIP_ACCELERATION,
 	//Add new PacketTypes above
 	LAST_TYPE
 };
@@ -44,6 +44,7 @@ inline char* getPacketTypeName(PacketType type)
 		case HOST_DISCONNECT: { return "HOST_DISCONNECT"; break; }
 		case START_GAME: { return "START_GAME"; break; }
 		case SERVER_ENEMY: { return "SERVER_ENEMY"; break; }
+		case SHIP_ACCELERATION: { return "SHIP_ACCELERATION"; break; }
 		default: { throw "Tried to get string from non-existing packet type"; }
 	}
 }
@@ -115,6 +116,7 @@ public:
 	*/
 	void SendPacket(NetworkPacket packet, const bool reliable = false);
 
+	
 	/*
 	* If you are a server, sends a packet to all connected clients, including yourself, as if you are be a client.
 	*/
