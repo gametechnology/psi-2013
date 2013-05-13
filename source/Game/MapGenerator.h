@@ -20,6 +20,7 @@ public:
 	std::vector<MapSector*>* createNewMap(float width = 300, float height = 300, float sectorRadius = 15);
 	void createSectors();
 	void createConnections();
+	std::vector<MapSector*>* createStaticMap(float width = 300, float height = 300, float sectorRadius = 15);
 
 private:
 	std::vector<std::string> nameprefix;
