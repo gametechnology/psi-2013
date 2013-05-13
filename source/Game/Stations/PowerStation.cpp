@@ -25,8 +25,7 @@ void PowerStation :: init() {
 		skin->setFont(font);
 	else
 		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
-	createUI();
-
+	
 	help = new HudHelpText(L"Klik hier ofzo!\nBlah", vector2df(100,0));
 	addComponent(help);
 
@@ -286,13 +285,12 @@ void PowerStation::createScrollbar(){
 //Creates the station buttons.
 void PowerStation::createButtons(){
 	helmButton = env->addButton(rect<s32>(870, 460, 930, 520),0, GUI_ID_POWER_HELM,L"HLM",L"Helm Station");
-
 	weaponButton = env->addButton(rect<s32>(700, 560, 790, 660),0, GUI_ID_POWER_WEAPON,L"WPN",L"Weapons Station");
 
 	defenseButton = env->addButton(rect<s32>(700, 310, 790, 410),0, GUI_ID_POWER_DEFENCE,L"DEF",L"Defence Station");
 
 	navigationButton = env->addButton(rect<s32>(490, 310, 580, 410),0, GUI_ID_POWER_NAVIGATION,L"NAV",L"Navigation Station");
-
+	
 	//Placeholder code for Communication Station.
 
 	//IGUIButton *commbut;
@@ -374,7 +372,7 @@ void PowerStation::draw()
 void PowerStation::disable()
 {
 	Station::disable();
-
+	
 	game->guiEnv->clear();
 }
 

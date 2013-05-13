@@ -3,6 +3,8 @@
 
 #include "Station.h"
 #include "..\Ship.h"
+#include "Engine\Network.h"
+#include "Engine\NetworkPacket.h"
 
 class HelmStation : public Station 
 {
@@ -11,6 +13,7 @@ public:
 	~HelmStation(void);	
 	void DoCameraShake( );
 	void OnEnabled();
+	void update();
 	void OnDisabled();
 };
 

@@ -99,8 +99,9 @@ void Ship::init()
 	startRotation = vector3df(0,0,0);
 	this->transform->position = &startPosition;
 	this->transform->rotation = &startRotation;*/
-
+	
 	Entity::init();
+	SwitchToStation(StationType::ST_HELM);
 }
 
 Station *Ship :: GetStation( StationType s )
@@ -203,8 +204,8 @@ void Ship :: SwitchToStation(StationType stationType)
 
 		//First remove the currentStation from the shipComponents
 		_currentStation->OnDisabled();
-		removeChild(_currentStation);
-		//_currentStation->Disable();
+		//removeChild(_currentStation);
+		_currentStation->disable();
 	}
 
 	//Find the new station
@@ -212,8 +213,8 @@ void Ship :: SwitchToStation(StationType stationType)
 
 	//Init and add the new station
 	_currentStation->OnEnabled();
-	addChild(_currentStation);
-	//_currentStation->Enable();
+	//addChild(_currentStation);
+	_currentStation->enable();
 }
 
 void Ship :: draw()
