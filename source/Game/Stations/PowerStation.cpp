@@ -25,8 +25,7 @@ void PowerStation :: init() {
 		skin->setFont(font);
 	else
 		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
-	createUI();
-
+	
 	Station::init();
 }
 
@@ -245,7 +244,6 @@ void PowerStation::createScrollbar(){
 void PowerStation::createButtons(){
 	IGUIButton *helmbut;
 	helmbut = env->addButton(rect<s32>(870, 460, 930, 520),0, GUI_ID_POWER_HELM,L"HLM",L"Helm Station");
-
 	IGUIButton *weaponbut;
 	weaponbut = env->addButton(rect<s32>(700, 560, 790, 660),0, GUI_ID_POWER_WEAPON,L"WPN",L"Weapons Station");
 
@@ -254,7 +252,7 @@ void PowerStation::createButtons(){
 
 	IGUIButton *navigationbut;
 	navigationbut = env->addButton(rect<s32>(490, 310, 580, 410),0, GUI_ID_POWER_NAVIGATION,L"NAV",L"Navigation Station");
-
+	
 	//Placeholder code for Communication Station.
 
 	//IGUIButton *commbut;
@@ -333,7 +331,7 @@ void PowerStation::draw()
 void PowerStation::disable()
 {
 	Station::disable();
-
+	
 	game->guiEnv->clear();
 }
 

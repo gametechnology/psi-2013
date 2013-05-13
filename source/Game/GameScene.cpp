@@ -16,7 +16,7 @@ void GameScene::onAdd() {
 	addComponent(new SectorManager(galaxyMap));
 
 	_shipmap = new Shipmap(this);
-	addChild(_shipmap);
+	//addChild(_shipmap);
 }
 
 void GameScene::init() {
