@@ -18,6 +18,7 @@ void CollisionTestScene::onAdd()
 void CollisionTestScene::init() {
 	//add a first person camera to fly through the space
 	this->game->device->getSceneManager()->addCameraSceneNodeFPS();
+	
 	removeenemytestinitiationcheck = true;
 	//createTestEnemies();
 	dummyFighter->setVelocity(irr::core::vector3df(0.01f,0,0));
@@ -30,28 +31,28 @@ void CollisionTestScene::update() {
 	//for now, press only once, else you will have too many enemies!
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_1))
 	{
-		std::cout << "Test Laser-Enemy is activated";
+		std::cout << "Test Laser-Enemy is activated \n";
 		createLaserTestObjects();
 	}
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_2))
 	{
-		std::cout << "Test Bullet-Enemy is activated";
+		std::cout << "Test Bullet-Enemy is activated \n";
 		createBulletTestObjects();
 	}
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_3))
 	{
-		std::cout << "Test Laser-Bullet is activated";
+		std::cout << "Test Laser-Bullet is activated \n";
 		createLaserToBullet();
+	}
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_4))
+	{
+		std::cout << "Test Laser-Ship is activated \n";
+		createLaserAndShip();
 	}
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_9))
 	{
 		std::cout << "Test Remove Enemy is activated \n";
 		createRemoveEnemyTest();
-	}
-	if(game->input->isKeyboardButtonPressed(KEY_KEY_4))
-	{
-		std::cout << "Test Laser-Ship is activated";
-		createLaserAndShip();
 	}
 
 	//Tell the other EnemyFighters to shoot at target dummy	
@@ -137,7 +138,8 @@ void CollisionTestScene::createLaserAndShip(){
 	}
 
 	//Causes Error in Powerstation
-	_ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
+	_ship = new DummyShip(irr::core::vector3df(10,10,10));
+	std::cout <<_ship->transform->position;
 	addChild(_ship);
 }
 
