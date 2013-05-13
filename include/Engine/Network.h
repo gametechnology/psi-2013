@@ -26,6 +26,7 @@ enum PacketType
 	HOST_DISCONNECT,
 	START_GAME,
 	SERVER_ENEMY,
+	CLIENT_SWITCH_STATION,
 
 	//Add new PacketTypes above
 	LAST_TYPE
@@ -44,6 +45,7 @@ inline char* getPacketTypeName(PacketType type)
 		case HOST_DISCONNECT: { return "HOST_DISCONNECT"; break; }
 		case START_GAME: { return "START_GAME"; break; }
 		case SERVER_ENEMY: { return "SERVER_ENEMY"; break; }
+		case CLIENT_SWITCH_STATION: { return "CLIENT_SWITCH_STATION"; break; }
 		default: { throw "Tried to get string from non-existing packet type"; }
 	}
 }
