@@ -4,6 +4,11 @@
 #include "Shipmap.h"
 
 GameScene::GameScene() : Scene() {
+	
+
+}
+
+void GameScene::onAdd() {
 	// The player
 	_ship = new Ship(vector3df(0,0,-100), vector3df(0,0,0));
 
@@ -11,10 +16,6 @@ GameScene::GameScene() : Scene() {
 	
 
 	_ship2 = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
-
-}
-
-void GameScene::onAdd() {
 	addChild(_ship);
 	_ship->addChild(_player);
 	//TODO: Disabled this Caused errors 

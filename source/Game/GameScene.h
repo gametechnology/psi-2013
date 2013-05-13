@@ -22,7 +22,6 @@ public:
 	void switchStation(StationType type);
 private:
 	Shipmap* _shipmap;
-private:
 	Camera* _player;
 	Ship* _ship;
 	Ship* _ship2;

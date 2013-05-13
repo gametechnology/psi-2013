@@ -25,16 +25,6 @@ Station :: Station( Ship * ship ) : Entity()
 
 void Station::onAdd()
 {
-	Entity::onAdd();
-	// Energy testing variable for hud.
-	energy = 50;
-	// End energy testing variable for hud.
-	this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32), &helpTextString);
-	this->addChild(hud);
-}
-
-void Station :: init() {
-	Entity::init();
 
 	driver = this->game->driver;
 
@@ -45,11 +35,33 @@ void Station :: init() {
 
 	if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
 	if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
-
-	
-	int energy = 50;
-	this->hud = new HudComposite(&(this->_totalHealth), &energy, rect<s32>(10,240,110,240 + 32), &helpTextString);
+	// Energy testing variable for hud.
+	energy = 50;
+	// End energy testing variable for hud.
+	this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32), &helpTextString);
 	this->addChild(hud);
+	Entity::onAdd();
+	
+}
+
+void Station :: init() 
+{
+	Entity::init();
+
+	//driver = this->game->driver;
+	//
+	//this -> _player = NULL;
+	//this -> _playerOnStationTime = 0;
+	//this -> _stunTime = 0;
+	//this -> _switchTime = 0;
+	//
+	//if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
+	//if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
+	//
+	//
+	//int energy = 50;
+	//this->hud = new HudComposite(&(this->_totalHealth), &energy, rect<s32>(10,240,110,240 + 32), &helpTextString);
+	//this->addChild(hud);
 }
 
 Station :: ~Station(void)
