@@ -31,9 +31,11 @@ void MainMenuScene::init() {
 	Nameinput					= guiEnv->addEditBox(L"",rect<s32>(position2di(300,165),dimension2di(200,25)),true,mainMenuWindow);
 	Clientlist					= guiEnv->addStaticText(L"",rect<s32>(position2di(300,105),dimension2di(200,200)),false,true,mainMenuWindow);
 	Clientlist->setVisible(false);
-	start_button				= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,3, L"Start Game");
+	start_button				= guiEnv->addButton(rect<s32>(position2di(350,330),dimension2di(200,25)),mainMenuWindow,3, L"Start Game");
 	start_button->setVisible(false);
-	quit_button					= guiEnv->addButton(rect<s32>(position2di(50,195),dimension2di(200,25)),mainMenuWindow,4, L"Quit game");
+	startStatic_button			= guiEnv->addButton(rect<s32>(position2di(350,300),dimension2di(200,25)),mainMenuWindow,4, L"Start Test Game");
+	startStatic_button->setVisible(false);
+	quit_button					= guiEnv->addButton(rect<s32>(position2di(50,330),dimension2di(200,25)),mainMenuWindow,5, L"Quit game");
 	quit_button->setVisible(false);
 	waitinglabel				= guiEnv->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainMenuWindow);
 	waitinglabel->setVisible(false);
@@ -227,6 +229,7 @@ void MainMenuScene::BackToMainMenu()
 	Nameinput->setVisible(true);
 	Clientlist->setVisible(false);
 	start_button->setVisible(false);
+	startStatic_button->setVisible(false);
 	quit_button->setVisible(false);
 	waitinglabel->setVisible(false);
 }

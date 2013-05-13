@@ -43,6 +43,7 @@ public:
 	IGUIButton* createServerWindow_Button;
 	IGUIButton* joinServerWindow_Button;
 	IGUIButton* start_button;
+	IGUIButton* startStatic_button;
 	IGUIButton* quit_button;
 	IGUIButton* host_quit_button;
 	// other items in menu

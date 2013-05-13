@@ -96,6 +96,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					mainmenu->Namelabel->setVisible(false);
 					mainmenu->Nameinput->setVisible(false);
 					mainmenu->start_button->setVisible(true);
+					mainmenu->startStatic_button->setVisible(true);
 					mainmenu->quit_button->setVisible(true);
 					mainmenu->Clientlist->setVisible(true);
 					newplayer = new Player();
@@ -108,7 +109,11 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					mainmenu->StartGame();
 					Network::GetInstance()->SendServerPacket(packet, true);
 					return true;
-				case 4: // Quit
+				case 4: // Start Test Map
+					mainmenu->StartGame();
+					Network::GetInstance()->SendServerPacket(packet, true);
+					return true;
+				case 5: // Quit
 					if(!Network::GetInstance()->IsServer())
 					{
 						Network::GetInstance()->SendPacket(quitpacket, true);
