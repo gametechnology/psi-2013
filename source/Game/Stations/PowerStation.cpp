@@ -229,8 +229,8 @@ stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 //Adds the background image and the spaceship image. 
 void PowerStation::addImages()
 {
-	env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
-	env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190,266));
+	//env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
+	//env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190,266));
 }
 //Creates the power scrollbar. 
 void PowerStation::createScrollbar(){
@@ -312,10 +312,29 @@ void PowerStation::update()
 
 void PowerStation::draw()
 {
-
-	if (env != NULL)
-		env->drawAll();
+	//env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
+	//env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190,266));
 	Station::draw();
+
+	game->driver->draw2DImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), 
+		position2d<s32>(0,0), 
+		rect<s32>(0, 0, 1280, 720), 
+		0,
+		SColor(255, 255, 255, 255),
+		true);
+	game->driver->draw2DImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), 
+		position2d<s32>(190, 266), 
+		rect<s32>(0, 0, 1280, 720), 
+		0,
+		SColor(255, 255, 255, 255),
+		true);
+}
+
+void PowerStation::disable()
+{
+	Station::disable();
+
+	game->guiEnv->clear();
 }
 
 //This method displays the selected station. We're using an integer which indicates which station is currently selected. 
