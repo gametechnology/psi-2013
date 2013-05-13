@@ -43,13 +43,15 @@ void Laser::fire(Scene* scene, Transform* transform, vector3df target, f32 speed
 	this->enable();
 
 	*this->transform->position = *transform->position;
-	*this->transform->rotation = *transform->rotation;
-	*this->transform->rotation += 90;
+	//*this->transform->rotation = *transform->rotation;
 	
 	this->_direction = target - *this->transform->position;
 	this->_direction.normalize();
+	*this->transform->rotation = this->_direction;
 
-	*this->transform->velocity = _direction * speed;
+	//*this->transform->rotation += 90;
+
+	*this->transform->velocity = this->_direction * speed;
 }
 
 void Laser::update()
@@ -76,6 +78,10 @@ void Laser::contactResolverA(Enemy* input)
 	input->setHealth(input->getHealth() - this->_damage);
 	std::printf("HIT on Enemy!");
 	this->disable();
+	for(unsigned i = 0; i < this->children.size(); i++)
+	{
+		this->children[i]->update();
+	}
 //	delete(this); //'kill' this projectile
 }
 
@@ -84,5 +90,9 @@ void Laser::contactResolverA(DefenceStation* input)
 	input->Damage();
 	std::printf("HIT on Defence station!");
 	this->disable();
+	for(unsigned i = 0; i < this->children.size(); i++)
+	{
+		this->children[i]->update();
+	}
 //	delete(this); //'kill' this projectile
 }

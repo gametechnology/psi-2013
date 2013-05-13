@@ -149,8 +149,8 @@ void CollisionTestScene::createLaserAndShip(){
 	}
 
 	//Causes Error in Powerstation
-	Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
-	addChild(ship);
+	_ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
+	addChild(_ship);
 }
 
 CollisionTestScene::~CollisionTestScene() {
