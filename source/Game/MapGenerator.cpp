@@ -173,7 +173,7 @@ void MapGenerator::createConnections()
 	typeSector tempType;
 
 	//Find the red base and the base furthest from blue base
-	for	(int i = 0; i < sectors.size(); i++) {
+	for	(unsigned i = 0; i < sectors.size(); i++) {
 		if (sectors[i]->type == HOME_RED) {
 			red = sectors[i];
 		} else if (sectors[i]->distToBlueBase > away->distToBlueBase && sectors[i]->distToBlueBase != INT_MAX && sectors[i]->type != HOME_RED) {
@@ -204,7 +204,7 @@ bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* se
 	
 	cr = _sectorRadius;
 
-	for(int i=0;i<sectors.size();i++)
+	for(unsigned i=0;i<sectors.size();i++)
 	{
 		if (sectors[i] == sector1 || sectors[i] == sector2)
 		{
@@ -282,7 +282,7 @@ std::string MapGenerator::nameGenerator(typeSector type)
 
 int MapGenerator::dijkstra()
 {
-	for(int i = 0; i < sectors.size(); i++)
+	for(unsigned i = 0; i < sectors.size(); i++)
 	{
 		sectors[i]->distToBlueBase = INT_MAX;
 	}
@@ -311,7 +311,7 @@ int MapGenerator::dijkstra()
 
 		curDist++;
 	}
-	for(int i=0;i<sectors.size();i++)
+	for(unsigned i=0;i<sectors.size();i++)
 	{
 		if (sectors[i]->type == HOME_RED)
 		{

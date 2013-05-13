@@ -32,7 +32,7 @@ void GalaxyMap::createMap(int sectorCount, int minWormholes, int maxWormholes) {
 }
 
 GalaxyMap::~GalaxyMap() {
-	for(int i =0;i<sectors.size();i++) {
+	for(unsigned i =0;i<sectors.size();i++) {
 		delete sectors[i];
 	}
 	sectors.clear();

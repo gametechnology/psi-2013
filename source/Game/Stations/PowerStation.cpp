@@ -312,6 +312,9 @@ void PowerStation::update()
 
 void PowerStation::draw()
 {
+
+	if (env != NULL)
+		env->drawAll();
 	Station::draw();
 }
 

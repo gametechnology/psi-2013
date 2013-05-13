@@ -437,6 +437,9 @@
     <ClInclude Include="..\source\Game\CollisionTestScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\ObjectPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\assets\sydney.bmp">

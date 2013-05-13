@@ -3,7 +3,7 @@
 BasicMoverComponent::BasicMoverComponent() : Component()
 {
 	thrust = 0;
-	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
+	Network::GetInstance()->AddListener(CLIENT_SHIP_MOVEMENT, this);
 }
 
 BasicMoverComponent::~BasicMoverComponent()
@@ -20,7 +20,7 @@ void BasicMoverComponent::update()
 
 void BasicMoverComponent::HandleNetworkMessage(NetworkPacket packet)
 {
-	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
+	if(packet.GetType() == CLIENT_SHIP_MOVEMENT)
     {
 		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
         irr::core::vector3df position;

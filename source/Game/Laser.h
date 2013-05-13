@@ -3,8 +3,10 @@
 
 #include "Engine/Entity.h"
 #include "Engine/Game.h"
+#include "Engine/Scene.h"
 #include "Enemy.h"
 #include "Stations\DefenceStation.h"
+#include "ObjectPool.h"
 
 using namespace irr;
 using namespace scene;
@@ -20,8 +22,7 @@ class Laser : public Entity
 		virtual void init();
 		virtual void onAdd();
 
-		void fire(Entity* parent, vector3df target, f32 speed);
-		bool isAlive;
+		void fire(Scene* scene, Transform* transform, vector3df target, f32 speed);
 		void update();
 		void contactResolverA(Enemy* input);
 		void contactResolverA(DefenceStation* input);
@@ -30,5 +31,6 @@ class Laser : public Entity
 		u32			_currentLife;
 		vector3df	_direction;
 		unsigned int _damage;
+		bool _hasAnIrrlichtNode;
 };
 #endif

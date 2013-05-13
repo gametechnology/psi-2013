@@ -9,7 +9,7 @@
 SectorManager::SectorManager(GalaxyMap* map) : Component() {
 	_map=map;
 
-	for (int i = 0; i < map->sectors.size(); i++) {
+	for (unsigned i = 0; i < map->sectors.size(); i++) {
 		if(map->sectors[i]->type == HOME_BLUE){
 			//delete _mapSector;
 			_mapSector = map->sectors[i];

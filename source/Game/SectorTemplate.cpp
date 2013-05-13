@@ -232,7 +232,7 @@ void SectorTemplate::HandleNetworkMessage(NetworkPacket packet)
 			packet >> serverEnemies;
 
 
-			for(int j = 0; j < _enemyList.size(); j++)
+			for(unsigned j = 0; j < _enemyList.size(); j++)
 			{
 				bool isAtServer = false;
 				for(unsigned k = 0; k < serverEnemies.size(); k++)
