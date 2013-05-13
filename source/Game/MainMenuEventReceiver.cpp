@@ -110,7 +110,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					Network::GetInstance()->SendServerPacket(packet, true);
 					return true;
 				case 4: // Start Test Map
-					mainmenu->StartGame();
+					mainmenu->StartTestGame();
 					Network::GetInstance()->SendServerPacket(packet, true);
 					return true;
 				case 5: // Quit

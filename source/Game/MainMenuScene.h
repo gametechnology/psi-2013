@@ -31,6 +31,7 @@ public:
 	void update();
 	~MainMenuScene();
 	void StartGame();
+	void StartTestGame();
 	void BackToMainMenu();
 	void HandleNetworkMessage(NetworkPacket packet); 
 

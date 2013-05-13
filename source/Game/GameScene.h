@@ -9,7 +9,7 @@ class Shipmap;
 
 class GameScene : public Scene {
 public:
-	GameScene();
+	GameScene(bool isTestMap = false);
 	virtual ~GameScene();
 
 	void init();
@@ -17,6 +17,8 @@ public:
 	void update();
 	void switchStation(StationType type);
 private:
+	bool testMap;
+
 	Shipmap* _shipmap;
 };
 

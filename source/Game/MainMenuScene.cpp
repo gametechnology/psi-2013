@@ -100,6 +100,15 @@ void MainMenuScene::StartGame()
 	this->game->sceneManager->addScene("GameScene",new GameScene());
 }
 
+void MainMenuScene::StartTestGame()
+{
+	cout << endl << "MainMenuScene::StartGame() - not yet implemented" << endl;
+	//TODO: Previous scene still displayed, shouldn't be the case
+	this->game->guiEnv->clear();
+	this->game->sceneManager->deactivateScene("MainMenuScene");
+	this->game->sceneManager->addScene("GameScene",new GameScene(true));
+}
+
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 {
 	wchar_t *  name ;
