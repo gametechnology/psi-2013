@@ -29,8 +29,6 @@ public:
 	Station( Ship *ship, int startHealth );
 	Station( Ship *ship );
 	virtual ~Station(void);
-	void Initialize( );
-	virtual void DoCameraShake() = 0;
 
 	StationType GetStationType();
 	bool HasPlayer();
@@ -54,6 +52,8 @@ public:
 	virtual void onAdd();
 	virtual void init();
 	virtual void update();
+	virtual void draw();
+
 	virtual void OnDamage( );
 	virtual void OnEnabled() = 0;
 	virtual void OnDisabled() = 0;

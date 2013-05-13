@@ -108,7 +108,10 @@ void Station::update()
 	//Update player on station time	
 }
 
-
+void Station::draw()
+{
+	Entity::draw();
+}
 
 void Station :: OnDamage( )
 {	
