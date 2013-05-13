@@ -1,4 +1,7 @@
 #include "CollisionTestScene.h"
+	
+//Make a dummy EnemyFighter to shoot at
+EnemyFighter* dummyFighter = new EnemyFighter(irr::core::vector3df(10,10,10));
 
 CollisionTestScene::CollisionTestScene(void) : Scene() 
 {
@@ -17,6 +20,8 @@ void CollisionTestScene::init() {
 	this->game->device->getSceneManager()->addCameraSceneNodeFPS();
 	removeenemytestinitiationcheck = true;
 	//createTestEnemies();
+	dummyFighter->setVelocity(irr::core::vector3df(0.01f,0,0));
+	addChild(dummyFighter);
 	Scene::init();
 }
 
@@ -54,9 +59,8 @@ void CollisionTestScene::update() {
 	{
 		if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
 		{
-			//_enemyList[l]->setTarget(dummyFighter->getPosition());
-			//_enemyList[l]->inRangeList.push_back(dummyFighter);			
-			_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
+			_enemyList[l]->inRangeList.push_back(dummyFighter);			
+			//_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
 			//_enemyList[l]->inRangeList.push_back(_enemyList[11]); //to asteroid 1
 		}
 	}
@@ -87,22 +91,6 @@ void CollisionTestScene::createLaserTestObjects(){
 		
 		addChild(_enemyList.back());
 	}
-
-	//Make a dummy EnemyFighter to shoot at
-	EnemyFighter* dummyFighter = new EnemyFighter(irr::core::vector3df(10,10,10));
-	dummyFighter->setVelocity(irr::core::vector3df(0.01f,0,0));
-	addChild(dummyFighter);
-
-	
-	//Tell the other EnemyFighters to shoot at target dummy
-	//for(int l = 0; l < _enemyList.size(); l++)
-	//{
-	//	if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
-	//	{
-	//		//_enemyList[l]->setTarget(dummyFighter->getPosition());
-	//		_enemyList[l]->inRangeList.push_back(dummyFighter);
-	//	}
-	//}
 
 }
 void CollisionTestScene::createBulletTestObjects(){
@@ -161,16 +149,18 @@ void CollisionTestScene::createRemoveEnemyTest()
 {
 	if (removeenemytestinitiationcheck)
 	{
-		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,9,0), irr::core::vector3df(0.02f,0,0)));
+		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,0,0), irr::core::vector3df(0.02f,0,0)));
 		addChild(_enemyList.back());
 		removeenemytestinitiationcheck = false;
 		std::cout << "Test Remove Enemy is initiated, press again to execute \n";
 	}
 	else
 	{
-		_enemyList[0]->setPosition(irr::core::vector3df(10000,10000,10000));
-		_enemyList[0]->update();
-		_enemyList[0]->destroy();
+		_enemyList[0]->disable();
+		for (int i = 0; i < _enemyList[0]->children.size(); i++)
+		{
+			_enemyList[0]->children[i]->update();
+		}
 		_enemyList[0]->parent->removeChild(_enemyList[0],true);
 		std::cout << "Test Remove Enemy is executed succesfully \n";
 		removeenemytestinitiationcheck = true;
