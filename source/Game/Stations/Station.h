@@ -62,7 +62,7 @@ public:
 	virtual void OnDisabled() = 0;
 	
 	HudComposite* hud;
-	StationType _stationType;
+	StationType stationType;
 protected:
 	video::IVideoDriver *driver;
 
@@ -73,7 +73,7 @@ protected:
 	time_t *_playerOnStationTime;	//the time that the player has spent on this station (since he switched)
 	time_t *_stunTime;				//if a station fot stunned, the time it happened will be stored here.
 	
-	
+	irr::video::ITexture *_stationTexture;
 
 private:
 	int _tempTimer;

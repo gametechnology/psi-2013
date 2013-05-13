@@ -4,7 +4,7 @@
 
 DefenceStation::DefenceStation(Ship* ship) : Station(ship)
 {
-	this->_stationType	= ST_DEFENCE;
+	this->stationType	= ST_DEFENCE;
 	this->_stations		= new irr::core::map<StationType, DefenceStation::DefenceStats>();
 	this->setStationDestroyed(false);
 	std::srand((unsigned int)time(NULL));

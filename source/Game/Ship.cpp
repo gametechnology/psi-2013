@@ -192,8 +192,8 @@ void Ship :: SwitchToStation(StationType stationType)
 			return;
 
 		//First remove the currentStation from the shipComponents
-		_currentStation->OnDisabled();
-		removeChild(_currentStation);
+		_currentStation->disable();
+		//removeChild(_currentStation);
 		//_currentStation->Disable();
 	}
 
@@ -201,8 +201,8 @@ void Ship :: SwitchToStation(StationType stationType)
 	_currentStation = this->GetStation(stationType);
 
 	//Init and add the new station
-	_currentStation->OnEnabled();
-	addChild(_currentStation);
+	_currentStation->enable();
+	//addChild(_currentStation);
 	//_currentStation->Enable();
 }
 

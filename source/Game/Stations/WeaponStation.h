@@ -1,17 +1,20 @@
-#ifndef WEAPON_STATION
-#define WEAPON_STATION
-
-#include "Station.h"
-#include "..\Ship.h"
+#pragma once
+#include "../Ship.h"
 
 class WeaponStation : public Station {
 public:
-	WeaponStation( Ship *ship );
+	WeaponStation(Ship *ship);
 	~WeaponStation(void);
 
-	void DoCameraShake();
-	void OnEnabled();
-	void OnDisabled();
-};
+	void onAdd();
+	void init();
 
-#endif
+	void update();
+	void draw();
+
+	void enable();
+	void disable();
+
+	void OnEnabled() {};
+	void OnDisabled() {};
+};

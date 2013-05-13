@@ -12,7 +12,7 @@ PowerStation :: PowerStation( Ship *ship ) : Station( ship )
 }
 
 void PowerStation :: init() {
-	this -> _stationType		= ST_POWER;
+	this -> stationType		= ST_POWER;
 	this -> device				= this->game->device;
 	//this ->	driver				= device -> getVideoDriver( );
 	this -> env					= this->game->guiEnv;	
@@ -25,7 +25,7 @@ void PowerStation :: init() {
 		skin->setFont(font);
 	else
 		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
-	createUI();
+	//createUI();
 
 	Station::init();
 }
@@ -328,6 +328,11 @@ void PowerStation::draw()
 		0,
 		SColor(255, 255, 255, 255),
 		true);
+}
+
+void PowerStation::enable()
+{
+	Station::enable();
 }
 
 void PowerStation::disable()

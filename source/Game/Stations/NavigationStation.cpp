@@ -4,7 +4,7 @@
 
 NavigationStation::NavigationStation(Ship *ship) : Station( ship )
 {
-	this->_stationType = ST_NAVIGATION;
+	this->stationType = ST_NAVIGATION;
 	this -> setStationDestroyed(false);
 }
 

@@ -43,13 +43,13 @@ void Station :: init() {
 	this -> _stunTime = 0;
 	this -> _switchTime = 0;
 
-	if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
-	if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
+	if ( this -> stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
+	if ( this -> stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
 
 	
 	int energy = 50;
-	this->hud = new HudComposite(&(this->_totalHealth), &energy, rect<s32>(10,240,110,240 + 32), &helpTextString);
-	this->addChild(hud);
+	//this->hud = new HudComposite(&(this->_totalHealth), &energy, rect<s32>(10,240,110,240 + 32), &helpTextString);
+	//this->addChild(hud);
 }
 
 Station :: ~Station(void)
@@ -73,7 +73,7 @@ bool Station::SwitchTimePassed()
 
 StationType Station :: GetStationType( )
 {
-	return this -> _stationType;
+	return this -> stationType;
 }
 
 bool Station::IsStunned()
