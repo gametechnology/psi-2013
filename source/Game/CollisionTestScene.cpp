@@ -4,6 +4,8 @@ CollisionTestScene::CollisionTestScene(void) : Scene()
 {
 	//Create a list of the enemies
 	this->_enemyList = vector<Enemy*>();
+	ObjectPool<Laser>* laserPool = new ObjectPool<Laser>(50);
+	EnemyFighter::laserPool = *laserPool;
 }
 
 void CollisionTestScene::onAdd() 
@@ -37,10 +39,12 @@ void CollisionTestScene::update() {
 		createLaserToBullet();
 	}
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_9))
-	if(game->input->isKeyboardButtonPressed(KEY_KEY_4))
 	{
 		std::cout << "Test Remove Enemy is activated \n";
 		createRemoveEnemyTest();
+	}
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_4))
+	{
 		std::cout << "Test Laser-Ship is activated";
 		createLaserAndShip();
 	}
@@ -83,7 +87,7 @@ void CollisionTestScene::createLaserTestObjects(){
 		
 		addChild(_enemyList.back());
 	}
-	
+
 	//Make a dummy EnemyFighter to shoot at
 	EnemyFighter* dummyFighter = new EnemyFighter(irr::core::vector3df(10,10,10));
 	dummyFighter->setVelocity(irr::core::vector3df(0.01f,0,0));
