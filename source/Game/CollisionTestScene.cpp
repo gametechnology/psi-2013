@@ -137,8 +137,8 @@ void CollisionTestScene::createLaserAndShip(){
 		addChild(_enemyList.back());
 	}
 
-	//Causes Error in Powerstation
-	_ship = new DummyShip(irr::core::vector3df(10,10,10));
+	//Creates a dummy ship, without any extra properties
+	DummyShip* _ship = new DummyShip(vector3df(10,10,10));
 	addChild(_ship);
 }
 
