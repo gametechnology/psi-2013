@@ -13,7 +13,7 @@ using namespace scene;
 using namespace video;
 using namespace core;
 
-class Laser : public Entity
+class Laser : public Enemy
 {
 	public:
 		Laser();
@@ -24,7 +24,7 @@ class Laser : public Entity
 
 		void fire(Scene* scene, Transform* transform, vector3df target, f32 speed);
 		void update();
-		void contactResolverA(Enemy* input);
+		void contactResolverA(Entity* input);
 		void contactResolverA(DefenceStation* input);
 	private:
 		u32			_timeofLife;

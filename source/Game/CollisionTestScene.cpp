@@ -73,7 +73,7 @@ void CollisionTestScene::createLaserTestObjects(){
 	//Create a row of EnemyDrones
 	for(int i = 0; i < 1; i++) //create only 1 in stead of 5 for testing.
 	{
-		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
+		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,20,(irr::f32)(i + (i * i)))));
 		
 		addChild(_enemyList.back());
 	}
@@ -157,12 +157,7 @@ void CollisionTestScene::createRemoveEnemyTest()
 	}
 	else
 	{
-		_enemyList[0]->disable();
-		for (int i = 0; i < _enemyList[0]->children.size(); i++)
-		{
-			_enemyList[0]->children[i]->update();
-		}
-		_enemyList[0]->parent->removeChild(_enemyList[0],true);
+		_enemyList[0]->destroy();
 		std::cout << "Test Remove Enemy is executed succesfully \n";
 		removeenemytestinitiationcheck = true;
 	}
