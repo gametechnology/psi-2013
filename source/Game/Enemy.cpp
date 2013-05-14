@@ -66,6 +66,10 @@ void Enemy::update()
 	//std::cout << "Health of Enemy: " << this->getHealth() << "on positionX " << this->position.X << ", positionY " << this->position.Y << ", positionZ " << this->position.Z << "\n" ;
 	applySpeed();
 	Entity::update();
+	if (0 > this->getHealth())
+	{
+		this->destroy();
+	}
 	//updateHealth();
 }
 

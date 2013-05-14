@@ -34,7 +34,7 @@ public:
 
 	virtual void handleMessage(unsigned int message);
  
-	virtual void destroy(){};
+	virtual void destroy();
 	virtual void update();
 	virtual void lateUpdate();
 	virtual void draw();
