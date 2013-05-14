@@ -65,7 +65,7 @@ void StateSwitch::handleIdle()
 		}else
 		{
 			int random = RandomGenerator::getRandomInt(10, 1);
-			if(random > 5)
+			if(random > 10)
 			{
 				StateSwitch::setState(StateSwitch::STATE_FOLLOW);
 			}else

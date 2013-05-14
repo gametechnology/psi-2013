@@ -1,4 +1,7 @@
 #include "CollisionTestScene.h"
+	
+//Make a dummy EnemyFighter to shoot at
+EnemyFighter* dummyFighter = new EnemyFighter(irr::core::vector3df(10,10,10));
 
 CollisionTestScene::CollisionTestScene(void) : Scene() 
 {
@@ -15,8 +18,11 @@ void CollisionTestScene::onAdd()
 void CollisionTestScene::init() {
 	//add a first person camera to fly through the space
 	this->game->device->getSceneManager()->addCameraSceneNodeFPS();
+	
 	removeenemytestinitiationcheck = true;
 	//createTestEnemies();
+	//dummyFighter->setVelocity(irr::core::vector3df(0.01f,0,0));
+	//addChild(dummyFighter);
 	Scene::init();
 }
 
@@ -25,28 +31,28 @@ void CollisionTestScene::update() {
 	//for now, press only once, else you will have too many enemies!
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_1))
 	{
-		std::cout << "Test Laser-Enemy is activated";
+		std::cout << "Test Laser-Enemy is activated \n";
 		createLaserTestObjects();
 	}
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_2))
 	{
-		std::cout << "Test Bullet-Enemy is activated";
+		std::cout << "Test Bullet-Enemy is activated \n";
 		createBulletTestObjects();
 	}
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_3))
 	{
-		std::cout << "Test Laser-Bullet is activated";
+		std::cout << "Test Laser-Bullet is activated \n";
 		createLaserToBullet();
+	}
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_4))
+	{
+		std::cout << "Test Laser-Ship is activated \n";
+		createLaserAndShip();
 	}
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_9))
 	{
 		std::cout << "Test Remove Enemy is activated \n";
 		createRemoveEnemyTest();
-	}
-	if(game->input->isKeyboardButtonPressed(KEY_KEY_4))
-	{
-		std::cout << "Test Laser-Ship is activated";
-		createLaserAndShip();
 	}
 
 	//Tell the other EnemyFighters to shoot at target dummy	
@@ -54,9 +60,8 @@ void CollisionTestScene::update() {
 	{
 		if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
 		{
-			//_enemyList[l]->setTarget(dummyFighter->getPosition());
-			//_enemyList[l]->inRangeList.push_back(dummyFighter);			
-			_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
+			_enemyList[l]->inRangeList.push_back(dummyFighter);			
+			//_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
 			//_enemyList[l]->inRangeList.push_back(_enemyList[11]); //to asteroid 1
 		}
 	}
@@ -87,22 +92,6 @@ void CollisionTestScene::createLaserTestObjects(){
 		
 		addChild(_enemyList.back());
 	}
-
-	//Make a dummy EnemyFighter to shoot at
-	EnemyFighter* dummyFighter = new EnemyFighter(irr::core::vector3df(10,10,10));
-	dummyFighter->setVelocity(irr::core::vector3df(0.01f,0,0));
-	addChild(dummyFighter);
-
-	
-	//Tell the other EnemyFighters to shoot at target dummy
-	//for(int l = 0; l < _enemyList.size(); l++)
-	//{
-	//	if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
-	//	{
-	//		//_enemyList[l]->setTarget(dummyFighter->getPosition());
-	//		_enemyList[l]->inRangeList.push_back(dummyFighter);
-	//	}
-	//}
 
 }
 void CollisionTestScene::createBulletTestObjects(){
@@ -149,8 +138,8 @@ void CollisionTestScene::createLaserAndShip(){
 	}
 
 	//Causes Error in Powerstation
-	Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
-	addChild(ship);
+	_ship = new DummyShip(irr::core::vector3df(10,10,10));
+	addChild(_ship);
 }
 
 CollisionTestScene::~CollisionTestScene() {
@@ -161,7 +150,7 @@ void CollisionTestScene::createRemoveEnemyTest()
 {
 	if (removeenemytestinitiationcheck)
 	{
-		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,9,0), irr::core::vector3df(0.02f,0,0)));
+		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,0,0), irr::core::vector3df(0.02f,0,0)));
 		addChild(_enemyList.back());
 		removeenemytestinitiationcheck = false;
 		std::cout << "Test Remove Enemy is initiated, press again to execute \n";

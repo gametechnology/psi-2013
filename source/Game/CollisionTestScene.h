@@ -15,6 +15,7 @@
 #include "EnemyDrone.h"
 #include "EnemyFighter.h"
 #include "Player.h"
+#include "DummyShip.h"
 
 // Forward declare Shipmap
 class Shipmap;
@@ -42,6 +43,8 @@ private:
 	void createLaserAndShip();
 
 	bool removeenemytestinitiationcheck;
+
+	DummyShip* _ship;
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "StateSwitchFighter.h"
+#include <iostream>
 
 StateSwitchFighter::StateSwitchFighter(StateSwitch::States startState, Enemy* parent)
 {
