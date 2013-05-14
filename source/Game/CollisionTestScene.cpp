@@ -73,7 +73,7 @@ void CollisionTestScene::createLaserTestObjects(){
 	//Create a row of EnemyDrones
 	for(int i = 0; i < 1; i++) //create only 1 in stead of 5 for testing.
 	{
-		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
+		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,20,(irr::f32)(i + (i * i)))));
 		
 		addChild(_enemyList.back());
 	}
@@ -138,8 +138,8 @@ void CollisionTestScene::createLaserAndShip(){
 	}
 
 	//Causes Error in Powerstation
-	_ship = new DummyShip(irr::core::vector3df(10,10,10));
-	addChild(_ship);
+	//_ship = new DummyShip(irr::core::vector3df(10,10,10));
+	//addChild(_ship);
 }
 
 CollisionTestScene::~CollisionTestScene() {

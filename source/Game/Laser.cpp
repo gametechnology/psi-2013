@@ -1,7 +1,7 @@
 #include "Laser.h"
 #include "Engine\IrrlichtNode.h"
 
-Laser::Laser() : Entity()
+Laser::Laser() : Enemy()
 {
 	this->_currentLife = 0;
 	this->_timeofLife = 250;
@@ -19,6 +19,8 @@ void Laser::onAdd() {
 		addChild(new IrrlichtNode("../assets/Models/laser.3ds"));
 		this->_hasAnIrrlichtNode = true;
 	}
+	Collision *coll = new Collision();
+	this->addComponent(coll);
 	Entity::onAdd();
 }
 
@@ -73,9 +75,11 @@ void Laser::update()
 	Entity::update();
 }
 
-void Laser::contactResolverA(Enemy* input)
+void Laser::contactResolverA(Entity* input)
 {
-	input->setHealth(input->getHealth() - this->_damage);
+	Enemy* tempEnemy = dynamic_cast<Enemy*>(input);
+	tempEnemy->setHealth(tempEnemy->getHealth() - this->_damage);
+	//input->setHealth(input->getHealth() - this->_damage);
 	std::printf("HIT on Enemy!");
 	this->disable();
 	for(unsigned i = 0; i < this->children.size(); i++)
