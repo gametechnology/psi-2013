@@ -21,8 +21,8 @@ void CollisionTestScene::init() {
 	
 	removeenemytestinitiationcheck = true;
 	//createTestEnemies();
-	dummyFighter->setVelocity(irr::core::vector3df(0.01f,0,0));
-	addChild(dummyFighter);
+	//dummyFighter->setVelocity(irr::core::vector3df(0.01f,0,0));
+	//addChild(dummyFighter);
 	Scene::init();
 }
 
@@ -139,7 +139,6 @@ void CollisionTestScene::createLaserAndShip(){
 
 	//Causes Error in Powerstation
 	_ship = new DummyShip(irr::core::vector3df(10,10,10));
-	std::cout <<_ship->transform->position;
 	addChild(_ship);
 }
 

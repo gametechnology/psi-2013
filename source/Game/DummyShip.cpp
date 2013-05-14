@@ -15,6 +15,7 @@ DummyShip::~DummyShip(void)
 void DummyShip::onAdd() {
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
+	Entity::onAdd();
 }
 
 void DummyShip::init() 
