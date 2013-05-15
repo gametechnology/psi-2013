@@ -4,9 +4,9 @@
 #include "Station.h"
 #include "..\Ship.h"
 #include "PowerStationData.h"
-#include "..\..\..\include\Engine\Game.h"
+#include <Engine\Game.h>
 #include "../NetworkInterface.h"
-#include "Irrlicht\irrlicht.h"
+#include <Irrlicht\irrlicht.h>
 #include <time.h>
 #include <iostream>
 
