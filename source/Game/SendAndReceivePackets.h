@@ -19,7 +19,7 @@ public:
 
 	//send and receives enemy packets
 	static void sendEnemyPacket(std::vector<Enemy*> enemyList, const bool relibale = false);
-	static void receiveEnemyPacket(NetworkPacket& packet, Scene* scene, std::vector<Enemy*>& enemyList);
+	static std::vector<Enemy*> receiveEnemyPacket(NetworkPacket& packet, Scene* scene, std::vector<Enemy*> enemyList);
 
 
 	friend sf::Packet& operator <<(sf::Packet& out, Enemy& in);

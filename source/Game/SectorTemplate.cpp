@@ -227,8 +227,7 @@ void SectorTemplate::HandleNetworkMessage(NetworkPacket packet)
 {
 	if(packet.GetType() == SERVER_ENEMY)
 	{
-
-		SendAndReceivePackets::receiveEnemyPacket(packet, this, _enemyList);
+		_enemyList = SendAndReceivePackets::receiveEnemyPacket(packet, this, _enemyList);
 		/*if(!Network::GetInstance()->IsServer())
 		{
 			vector<Enemy> serverEnemies = vector<Enemy>();

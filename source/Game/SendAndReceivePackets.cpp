@@ -20,8 +20,8 @@ void SendAndReceivePackets::sendEnemyPacket(std::vector<Enemy*> enemyList, const
 	sendServerPacket(packet, reliable);
 }
 
-void SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& packet, Scene* scene, 
-	std::vector<Enemy*>& enemyList)
+std::vector<Enemy*> SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& packet, Scene* scene, 
+	std::vector<Enemy*> enemyList)
 {
 	if(!Network::GetInstance()->IsServer())
 	{
@@ -84,6 +84,7 @@ void SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& packet, Scene* sce
 			}
 		}
 	}
+	return enemyList;
 }
 
 sf::Packet& operator <<(sf::Packet& out, Enemy& in)
