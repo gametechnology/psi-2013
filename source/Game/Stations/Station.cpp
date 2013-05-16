@@ -29,8 +29,8 @@ void Station::onAdd()
 	// Energy testing variable for hud.
 	energy = 50;
 	// End energy testing variable for hud.
-	this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32), &helpTextString);
-	this->addChild(hud);
+	//this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32), &helpTextString);
+	//this->addChild(hud);
 }
 
 void Station :: init() {
@@ -48,8 +48,8 @@ void Station :: init() {
 
 	
 	int energy = 50;
-	this->hud = new HudComposite(&(this->_totalHealth), &energy, rect<s32>(10,240,110,240 + 32), &helpTextString);
-	this->addChild(hud);
+	//this->hud = new HudComposite(&(this->_totalHealth), &energy, rect<s32>(10,240,110,240 + 32), &helpTextString);
+	//this->addChild(hud);
 }
 
 Station :: ~Station(void)
