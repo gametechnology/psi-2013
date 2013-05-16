@@ -88,7 +88,7 @@ void EnemyFighter::fireLaserAt(vector3df target)
 void EnemyFighter::contactResolverA(Entity* input)
 {
 	std::printf("HIT on Fighter!");
-	//Entity::contactResolverA(input);
+	Entity::contactResolverA(input);
 }
 
 
