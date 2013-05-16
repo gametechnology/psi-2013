@@ -2,8 +2,9 @@
 #include <iostream>
 
 
-NetworkPacket::NetworkPacket(const PacketType type) : _type(type)
+NetworkPacket::NetworkPacket(const PacketType type, bool sendtoall) : _type(type)
 {
+	*this << sendtoall;
 }
 
 NetworkPacket::NetworkPacket(ENetPacket* packet, enet_uint32 ipadressrec)

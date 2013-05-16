@@ -204,9 +204,25 @@ void Network::PacketReciever()
 
 void Network::DistributePacket(NetworkPacket networkPacket)
 {
+
 	int type = networkPacket.GetType();
 	if (type >= 0 && type < LAST_TYPE)
 	{
+		bool sendall;
+		networkPacket >> sendall;
+		if(IsServer() && sendall){
+			networkPacket << sendall;
+			networkPacket << networkPacket.ipadress;
+			SendServerPacket(networkPacket);
+		}
+		if(!IsServer() && sendall)
+		{
+			int ipadress;
+			networkPacket >> ipadress;
+			if(ipadress ==  sf::IpAddress::getLocalAddress().m_address)
+				return;
+			
+		}
 		std::list<INetworkListener*>::const_iterator iterator;
 		for (iterator = _listeners[type]->begin(); iterator != _listeners[type]->end(); ++iterator)
 			(*iterator)->HandleNetworkMessage(networkPacket);
@@ -221,6 +237,7 @@ void Network::DistributeReceivedPackets()
 
 	std::vector<NetworkPacket>::const_iterator iterator;
 	for (iterator = _receivedPackets.begin(); iterator != _receivedPackets.end(); ++iterator) {
+		
 		this->DistributePacket(*iterator);
 	}
 	_receivedPackets.clear();
