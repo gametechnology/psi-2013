@@ -21,6 +21,7 @@ private:
 	bool visible;
 	const wchar_t* _helpTextStr;
 	irr::core::vector2df _position;
+	irr::gui::IGUIStaticText* stringObj;
 };
 #endif
 
