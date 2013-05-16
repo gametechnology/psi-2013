@@ -5,6 +5,9 @@ PlayerManager *player_manager = new PlayerManager( );
 
 PlayerManager :: PlayerManager( ) : INetworkListener( )
 {
+	if ( player_manager != NULL ) return;
+
+	this -> _playerData = new irr :: core :: map<int, PlayerData>( );
 	//we want to receive messages when players are added, when they are updating their info and when they leave again
 	Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_ADD_PLAYER_DATA, this );
 	Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_UPDATE_PLAYER_DATA, this );
@@ -23,7 +26,8 @@ void PlayerManager :: UpdatePlayer( int player_id, StationType t )
 	//here, we received a message that one of the players updated their data.
 	//first, we get the PlayerData associated with the id we received
 	PlayerData *player_data = GetPlayerData( player_id );
-	player_data -> stationType	= t;
+	player_data -> stationType	= t;	
+	std :: cout << "Player: " << player_data -> name << "has entered the " << ( int ) t << " station.\n";
 }
 
 void PlayerManager :: AddPlayerData( int player_id, const wchar_t *player_name, int team_id )
@@ -32,6 +36,7 @@ void PlayerManager :: AddPlayerData( int player_id, const wchar_t *player_name, 
 	PlayerData	*player_data = new PlayerData( player_id, player_name, team_id );
 	//and we add it to our _playerData map
 	this -> _playerData -> insert( player_id, *player_data );
+	std :: cout << "Added player: " << player_data -> name << " to the game. ID: " << player_data -> id << ". He is in team " << team_id << ".\n";
 }
 
 void PlayerManager :: RemovePlayerData( int player_id )
@@ -82,6 +87,8 @@ void PlayerManager :: GenerateLocalPlayerData( int player_id, const wchar_t *pla
 
 	//it is important that this message reaches all other devies, so we sent it reliably.
 	Network :: GetInstance( ) -> SendPacket( p, true );
+
+	std :: cout << "blaat";
 }
 
 void PlayerManager :: SyncLocalPlayerData( )

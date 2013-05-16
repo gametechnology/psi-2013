@@ -1,6 +1,7 @@
 #include "Engine\Game.h"
 #include "Engine\Hierarchy.h"
 #include "../source/Game/NetworkInterface.h"
+#include "..\Game\PlayerManager.h"
 
 #pragma comment(lib, "Irrlicht.lib")
 
@@ -23,12 +24,12 @@ Game::Game()
 	if(device != NULL) {
 		// Create a driver 
 		driver = device->getVideoDriver();
-
 		//Get the GUI environment
 		guiEnv = device->getGUIEnvironment();
-
+		
 		//Set title of the window
 		device->setWindowCaption(L"Stella Incognita");
+		player_manager -> GenerateLocalPlayerData( 1, L"Jur van Oerle", 0 );
 	}
 	// Create the topmost node
 	game = new Entity();
@@ -36,7 +37,7 @@ Game::Game()
 
 	collisionSystem = new CollisionSystem();
 
-	game->addComponent(sceneManager = new SceneManager());
+	game->addComponent(sceneManager = new SceneManager());	
 }
 
 void Game::init() {
