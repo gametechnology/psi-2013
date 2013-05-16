@@ -39,8 +39,7 @@ EnemyAsteroid::~EnemyAsteroid(void)
 
 void EnemyAsteroid::contactResolverA(Entity* input)
 {
-	if(dynamic_cast<Laser*>(input))
-	{
 		std::printf("HIT on ASTEROID!");
-	}
+		Entity::contactResolverA(input);
+	
 }

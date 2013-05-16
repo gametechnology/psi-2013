@@ -58,4 +58,5 @@ void EnemyDrone::update()
 void EnemyDrone::contactResolverA(Entity* input)
 {
 	std::printf("HIT on DRONE!");
+	Entity::contactResolverA(input);
 }
