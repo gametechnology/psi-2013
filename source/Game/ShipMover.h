@@ -18,7 +18,7 @@ public:
 	vector3df right;
 	void setInertiaMatrix(float h, float w, float d, float m);
 	matrix4 inertiaMatrix;
-
+	int lastsend;
 	virtual void init();
 	virtual void update();
 	virtual void draw();
