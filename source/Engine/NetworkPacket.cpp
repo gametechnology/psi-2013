@@ -4,7 +4,11 @@
 
 NetworkPacket::NetworkPacket(const PacketType type, bool sendtoall) : _type(type)
 {
-	*this << sendtoall;
+	if(Network::GetInstance()->IsServer())
+		*this << false;
+	else
+		*this << sendtoall;
+
 }
 
 NetworkPacket::NetworkPacket(ENetPacket* packet, enet_uint32 ipadressrec)

@@ -19,12 +19,17 @@ void HelmStation :: DoCameraShake( )
 void HelmStation :: update( )
 {
 	Station::update();
+	
 	 NetworkPacket packet(SHIP_ACCELERATION, true);
 	 packet << _ship->transform->acceleration;
 	 packet << _ship->transform->angularAccelaration;
 	 packet << _ship->transform->position;
 	 packet << _ship->transform->rotation;
-	 Network::GetInstance()->SendPacket(packet, true);
+	 
+	 if(Network::GetInstance()->IsServer())
+		Network::GetInstance()->SendServerPacket(packet, true);
+	else
+		Network::GetInstance()->SendPacket(packet, true);
 
 	 
 }
