@@ -49,7 +49,7 @@ public:
 	{
 		FreeAll();
 
-		for(int i = 0; i < _objectList.size(); i++)
+		for(unsigned i = 0; i < _objectList.size(); i++)
 		{
 			delete _objectList[i];
 		}
