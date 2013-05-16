@@ -9,6 +9,7 @@ Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 {
 	this->transform->position = &position;
 	this->transform->rotation = &rotation;
+
 }
 
 Ship::~Ship(void)
@@ -17,6 +18,8 @@ Ship::~Ship(void)
 }
 
 void Ship::onAdd() {
+	
+	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
 
@@ -252,4 +255,15 @@ void Ship::setInertiaMatrix(float h, float w, float d, float m)
 	inertiaData[15] = 1.0f;
 
 	_inertiaMatrix->setM(inertiaData);
+}
+void Ship::HandleNetworkMessage(NetworkPacket packet)
+{
+	
+	if(packet.GetType() == SHIP_ACCELERATION )
+	{
+		 packet >> *transform->acceleration;
+		 packet >> *transform->angularAccelaration;
+		 packet >> *transform->position;
+		 packet >> *transform->rotation;
+	}
 }

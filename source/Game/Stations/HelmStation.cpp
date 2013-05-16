@@ -21,10 +21,10 @@ void HelmStation :: update( )
 	Station::update();
 	
 	 NetworkPacket packet(SHIP_ACCELERATION, true);
-	 packet << _ship->transform->acceleration;
-	 packet << _ship->transform->angularAccelaration;
-	 packet << _ship->transform->position;
-	 packet << _ship->transform->rotation;
+	 packet << *_ship->transform->acceleration;
+	 packet << *_ship->transform->angularAccelaration;
+	 packet << *_ship->transform->position;
+	 packet << *_ship->transform->rotation;
 	 
 	 if(Network::GetInstance()->IsServer())
 		Network::GetInstance()->SendServerPacket(packet, true);
