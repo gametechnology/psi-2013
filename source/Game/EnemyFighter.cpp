@@ -30,7 +30,6 @@ void EnemyFighter::init()
 void EnemyFighter::onAdd() 
 {
 	Enemy::onAdd();
-	
 	this->setVisualWithPath("../assets/Models/Space_Fighter.dae");
 	Collision* collision = new Collision();
 	addComponent(collision);
@@ -84,5 +83,10 @@ void EnemyFighter::fireLaserAt(vector3df target)
 	{
 		laser->fire(this->scene, this->transform, target, 1.0f);
 	}
+}
+
+void EnemyFighter::contactResolverA(Entity* input)
+{
+	std::printf("HIT on Fighter!");
 }
 

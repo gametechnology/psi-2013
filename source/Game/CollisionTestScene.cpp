@@ -86,7 +86,7 @@ void CollisionTestScene::createLaserTestObjects(){
 	}
 
 	//Create a row of EnemyFighters
-	for(int j = 0; j < 5; j++)
+	for(int j = 0; j < 1; j++)
 	{
 		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(20,0,(irr::f32)(j + (j * j)))));
 		addChild(_enemyList.back());
