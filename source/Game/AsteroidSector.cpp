@@ -13,8 +13,20 @@ void AsteroidSector::onAdd(){
 		AstroidPlaceholder* ass = new AstroidPlaceholder(this->parent);
 		ass->transform->position = &irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
 		ass->transform->rotation = &irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90));
+		ass->transform->velocity = &irr::core::vector3df(100, 100, 100);
 		this->addChild(ass);
 	}
+	//if(Network::GetInstance()->IsServer())
+	//{
+	//	for(int k = 2; k < 1000; k++)
+	//	{
+	//		irr::core::vector3df pos = irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
+	//		irr::core::vector3df vel = irr::core::vector3df((float)((rand() % 15) - 7,5)/100, (float)((rand() % 15) - 7,5)/100, (float)((rand() % 15) - 7,5)/100);
+	//		_enemyList.push_back(new EnemyAsteroid(pos,vel));
+	//		
+	//		addChild(_enemyList.back());
+	//	}
+	//}
 	SectorTemplate::onAdd();
 }
 
@@ -43,6 +55,7 @@ void AstroidPlaceholder::onAdd() {
 
 	node->setPosition(irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750)));
 	this->transform->rotation = &irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90));
+		this->transform->velocity = &irr::core::vector3df(100, 100, 100);
 
 	Entity::onAdd();
 }

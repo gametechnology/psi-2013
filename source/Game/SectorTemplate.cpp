@@ -283,15 +283,15 @@ void SectorTemplate::createEnemies()
 		addChild(_enemyList.back());
 	}
 
-	for(int k = 2; k < 30; k++)
-	{
-		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df((irr::f32)(k + (k * k)),0,0), irr::core::vector3df(0,0,0.01f)));
-		
-		addChild(_enemyList.back());
-	}
-
-	_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-10,0,0), irr::core::vector3df(0.02f,0,0)));
-	addChild(_enemyList.back());
+	//for(int k = 2; k < 30; k++)
+	//{
+	//	_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df((irr::f32)(k + (k * k)),0,0), irr::core::vector3df(0,0,0.01f)));
+	//	
+	//	addChild(_enemyList.back());
+	//}
+	//
+	//_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-10,0,0), irr::core::vector3df(0.02f,0,0)));
+	//addChild(_enemyList.back());
 
 	//_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(10,0,0), irr::core::vector3df(-0.02f,0,0)));
 	//addChild(_enemyList.back());
