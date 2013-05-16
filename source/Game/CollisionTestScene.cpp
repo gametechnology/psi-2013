@@ -3,6 +3,9 @@
 //Make a dummy EnemyFighter to shoot at
 EnemyFighter* dummyFighter = new EnemyFighter(irr::core::vector3df(10,10,10));
 
+//Creates a dummy ship, without any extra properties
+DummyShip* _ship = new DummyShip(vector3df(10,10,10));
+
 CollisionTestScene::CollisionTestScene(void) : Scene() 
 {
 	//Create a list of the enemies
@@ -21,6 +24,10 @@ void CollisionTestScene::init() {
 	this->game->device->getSceneManager()->addCameraSceneNodeFPS();
 	
 	removeenemytestinitiationcheck = true;
+	//createTestEnemies();
+	//dummyFighter->setVelocity(irr::core::vector3df(0.01f,0,0));
+	//addChild(dummyFighter);
+	addChild(_ship);
 	Scene::init();
 }
 
@@ -47,7 +54,7 @@ void CollisionTestScene::update() {
 		std::cout << "Test Laser-Ship is activated \n";
 		createLaserAndShip();
 	}
-	if(game->input->isKeyboardButtonPressed(KEY_KEY_9))
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_5))
 	{
 		std::cout << "Test Remove Enemy is activated \n";
 		createRemoveEnemyTest();
@@ -61,12 +68,14 @@ void CollisionTestScene::update() {
 			//_enemyList[l]->inRangeList.push_back(dummyFighter);			
 			_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
 			//_enemyList[l]->inRangeList.push_back(_enemyList[7]); //to asteroid 1
+			//_enemyList[l]->inRangeList.push_back(_enemyList[11]); //to asteroid 1
 		}
 	}
 
 	Scene::update();
 }
 
+//Debug Key 1
 void CollisionTestScene::createLaserTestObjects(){
 	//Create a row of EnemyDrones
 	for(int i = 0; i < 1; i++) //create only 1 in stead of 5 for testing.
@@ -92,6 +101,7 @@ void CollisionTestScene::createLaserTestObjects(){
 	}
 
 }
+//Debug Key 2
 void CollisionTestScene::createBulletTestObjects(){
 
 	//Create a row of EnemyDrones
@@ -121,11 +131,11 @@ void CollisionTestScene::createBulletTestObjects(){
 	_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-10,0,0), irr::core::vector3df(0.02f,0,0)));
 	addChild(_enemyList.back());
 }
-
+//Debug Key 3
 void CollisionTestScene::createLaserToBullet(){
 
 }
-
+//Debug Key 4
 void CollisionTestScene::createLaserAndShip(){
 	
 	//Create a row of EnemyFighters
@@ -134,16 +144,12 @@ void CollisionTestScene::createLaserAndShip(){
 		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(20,0,(irr::f32)(j + (j * j)))));
 		addChild(_enemyList.back());
 	}
-
-	//Creates a dummy ship, without any extra properties
-	DummyShip* _ship = new DummyShip(vector3df(10,10,10));
-	addChild(_ship);
 }
 
 CollisionTestScene::~CollisionTestScene() {
 
 }
-
+//Debug Key 5
 void CollisionTestScene::createRemoveEnemyTest()
 {
 	if (removeenemytestinitiationcheck)

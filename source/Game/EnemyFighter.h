@@ -19,7 +19,7 @@ public:
 	virtual void init();
 	virtual void onAdd();
 	virtual void update();
-
+	void contactResolverA(Entity* input);
 	static ObjectPool<Laser> laserPool;
 private:
 	void		fireLaserAt(vector3df target);
