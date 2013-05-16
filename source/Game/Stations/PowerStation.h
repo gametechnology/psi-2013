@@ -6,6 +6,7 @@
 #include "PowerStationData.h"
 #include <Engine\Game.h>
 #include "../NetworkInterface.h"
+#include "../HudHelpText.h"
 #include <Irrlicht\irrlicht.h>
 #include <time.h>
 #include <iostream>
@@ -20,6 +21,8 @@ private:
 	void UpdateStationPower(StationType, int newValue );	
 
 public:
+	HudHelpText* help;
+
 	//Power Station Impl	
 	video :: IVideoDriver	*driver;
 	IrrlichtDevice			*device;
