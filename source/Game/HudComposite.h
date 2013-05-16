@@ -15,7 +15,7 @@ class HudComposite : public Entity
 {
 public:
 
-	HudComposite( int* health, int* energy, rect<s32> buttonPos, std::string* helpText); //this change was necessary to get the game IGUIEnviroment
+	HudComposite( int* health, int* power, rect<s32> buttonPos, std::string* helpText); //this change was necessary to get the game IGUIEnviroment
 	~HudComposite(void); 
 
 	virtual void onAdd();

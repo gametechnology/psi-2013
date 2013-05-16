@@ -57,17 +57,15 @@ void Ship::onAdd() {
 
 	irr::core::stringw strDefenceHealth			= "Defence Station health: "		+ this->_defenceStation->getHealth();
 	irr::core::stringw strHelmHealth			= "Helm Station health: "			+ this->_helmStation->getHealth();
-	irr::core::stringw strNavigationHealth		= "Navigation Station health: "	+ this->_navigationStation-> getHealth();
-	irr::core::stringw strPowerHealth			= "Power Station health: "		+ this->_powerStation->getHealth();
-	irr::core::stringw strWeaponHealth			= "Weapon Station health: "		+ this->_weaponStation->getHealth();
+	irr::core::stringw strNavigationHealth		= "Navigation Station health: "		+ this->_navigationStation-> getHealth();
+	irr::core::stringw strPowerHealth			= "Power Station health: "			+ this->_powerStation->getHealth();
+	irr::core::stringw strWeaponHealth			= "Weapon Station health: "			+ this->_weaponStation->getHealth();
 	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->helmStationHealth			= env->addStaticText(strHelmHealth.c_str(),			rect<s32>(40, 120, 300, 140), false);	this->helmStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->navigationStationHealth	= env->addStaticText(strNavigationHealth.c_str(),	rect<s32>(40, 140, 300, 160), false);	this->navigationStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-
-	this->updateShipHealth();
 
 	startPosition = vector3df(0,0,-100);
 	startRotation = vector3df(0,0,0);
@@ -107,7 +105,6 @@ void Ship::init()
 
 Station *Ship :: GetStation( StationType s )
 {
-	this->_defenceStation->Damage( );
 
 	switch( s )
 	{
@@ -147,16 +144,15 @@ irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::co
 void Ship :: update()
 {
 	Entity :: update();
-	this->updateShipHealth();
 	CheckChangeInput();
 
 	//updating the text for testing the health
-	stringw strShipHealth = "ship health: " + this->getShipHealth();
-	stringw strDefenceHealth = "Defence Station health: " + this->_defenceStation->getHealth();
-	stringw strHelmHealth = "Helm Station health: " + this->_helmStation->getHealth();
+	stringw strShipHealth		= "ship health: "				+ this->getShipHealth();
+	stringw strDefenceHealth	= "Defence Station health: "	+ this->_defenceStation->getHealth();
+	stringw strHelmHealth		= "Helm Station health: "		+ this->_helmStation->getHealth();
 	stringw strNavigationHealth = "Navigation Station health: " + this->_navigationStation-> getHealth();
-	stringw strPowerHealth = "Power Station health: " + this->_powerStation->getHealth();
-	stringw strWeaponHealth = "Weapon Station health: " + this->_weaponStation->getHealth();
+	stringw strPowerHealth		= "Power Station health: "		+ this->_powerStation->getHealth();
+	stringw strWeaponHealth		= "Weapon Station health: "		+ this->_weaponStation->getHealth();
 
 	this->shipHealth->setText(				(varToString("Ship HP : ",		(float)this->getShipHealth())					).c_str());
 	this->defenceStationHealth->setText(	(varToString("Defence HP: ",	(float)this->_defenceStation->getHealth())		).c_str());
@@ -165,29 +161,11 @@ void Ship :: update()
 	this->powerStationHealth->setText(		(varToString("Power HP: ",		(float)this->_powerStation->getHealth())		).c_str());
 	this->weaponStationHealth->setText(		(varToString("Weapon HP: ",		(float)this->_weaponStation->getHealth())		).c_str());
 
-	if(this->_shipHealth <= 0 && this->_shipDestroyed == false) {
+	//If the ship has no more health and is not already destroyed, destroy it
+	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
 		this->_shipDestroyed = true;
 	}
 
-	if(this->_helmStation->getHealth() <= 0 && this->_helmStation->getStationDestroyed() == false) {
-		this->_helmStation->setStationDestroyed(true);
-	}
-
-	if(this->_defenceStation->getHealth() <= 0 && this->_defenceStation->getStationDestroyed() == false) {
-		this->_defenceStation->setStationDestroyed(true);
-	}
-
-	if(this->_navigationStation->getHealth() <= 0 && this->_navigationStation->getStationDestroyed() == false) {
-		this->_navigationStation->setStationDestroyed(true);
-	}
-
-	if(this->_powerStation->getHealth() <= 0 && this->_powerStation->getStationDestroyed() == false) {
-		this->_powerStation->setStationDestroyed(true);
-	}
-
-	if(this->_weaponStation->getHealth() <= 0 && this->_weaponStation->getStationDestroyed() == false) {
-		this->_weaponStation->setStationDestroyed(true);
-	}
 	Entity :: update();
 }
 
@@ -238,17 +216,6 @@ void Ship :: SwitchToStation(StationType stationType)
 	//_currentStation->Enable();
 }
 
-void Ship :: updateShipHealth()
-{
-
-	this->_shipHealth = 
-		this->_defenceStation->getHealth() +
-		this->_helmStation->getHealth() +
-		this->_navigationStation->getHealth() +
-		this->_powerStation->getHealth() +
-		this->_weaponStation->getHealth();
-}
-
 void Ship :: draw()
 {
 	Entity :: draw();
@@ -256,7 +223,12 @@ void Ship :: draw()
 
 int Ship :: getShipHealth()
 {
-	return this->_shipHealth;
+
+	return (this->_defenceStation->getHealth() +
+			this->_helmStation->getHealth() +
+			this->_navigationStation->getHealth() +
+			this->_powerStation->getHealth() +
+			this->_weaponStation->getHealth());
 }
 
 bool Ship :: getShipDestroyed()

@@ -77,10 +77,6 @@ private:
 	int _tempTimer;
 	int _totalHealth;
 	StationStats* _stationStats;
-	// Energy testing variable for hud.
-	//int energy;
-	// End energy testing variable for hud.
-	//int _health;
 	bool _stationDestroyed;
 };
 #endif

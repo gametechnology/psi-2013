@@ -52,9 +52,6 @@ void Station :: init()
 	this -> _stunTime = 0;
 	this -> _switchTime = 0;
 
-	if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
-	if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
-
 	// ?? This is also done in onAdd()
 	//this->hud = new HudComposite(&(_stationStats->health), &(_stationStats->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
 	//this->addChild(hud);
