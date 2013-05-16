@@ -1,10 +1,9 @@
+#ifndef MAINMENUEVENTRECEIVER
+#define MAINMENUEVENTRECEIVER
+
 #include "Irrlicht\irrlicht.h"
 #include "Engine\Game.h"
 #include "Engine\Scene.h"
-
-
-#ifndef MAINMENUEVENTRECEIVER
-#define MAINMENUEVENTRECEIVER
 
 // irrlicht namespaces
 using namespace irr;
