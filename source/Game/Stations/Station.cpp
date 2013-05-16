@@ -31,9 +31,11 @@ void Station::onAdd()
 	// End energy testing variable for hud.
 	//this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32), &helpTextString);
 	//this->addChild(hud);
+	
 }
 
-void Station :: init() {
+void Station :: init() 
+{
 	Entity::init();
 
 	driver = this->game->driver;

@@ -2,6 +2,10 @@
 #define GAMESCENE
 
 #include "Engine\Scene.h"
+#include "Engine\Camera.h"
+#include "Ship.h"
+#include "ShipMover.h"
+#include "BasicMoverComponent.h"
 #include "Stations\Station.h"
 
 // Forward declare Shipmap
@@ -20,6 +24,9 @@ private:
 	bool testMap;
 
 	Shipmap* _shipmap;
+	Camera* _player;
+	Ship* _ship;
+	Ship* _ship2;
 };
 
 #endif

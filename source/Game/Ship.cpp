@@ -29,6 +29,12 @@ void Ship::onAdd() {
 	addChild(_weaponStation			= new WeaponStation(this));
 	addChild(_powerStation			= new PowerStation(this));
 	
+	this->_defenceStation->init();
+	this->_helmStation->init();
+	this->_navigationStation->init();
+	this->_weaponStation->init();
+	this->_powerStation->init();
+
 	this->_defenceStation->disable();
 	this->_helmStation->disable();
 	this->_navigationStation->disable();
@@ -45,10 +51,7 @@ void Ship::onAdd() {
 	/*_thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0, 0, -4));
 	_thrusters[1] = new Thruster(this, vector3df(0,-2, 4), vector3df(0, 4, 0 ));
 	_thrusters[2] = new Thruster(this, vector3df(0,2, -4), vector3df(0, 4, 0 ));*/
-}
 
-void Ship::init() 
-{
 	irr::core::stringw strShipHealth			= "ship health: "; 
 	strShipHealth +	irr::core::stringw();
 
@@ -70,6 +73,34 @@ void Ship::init()
 	startRotation = vector3df(0,0,0);
 	this->transform->position = &startPosition;
 	this->transform->rotation = &startRotation;
+
+
+}
+
+void Ship::init() 
+{
+	//Isn't called
+	/*irr::core::stringw strShipHealth			= "ship health: "; 
+	strShipHealth +	irr::core::stringw();
+
+	irr::core::stringw strDefenceHealth			= "Defence Station health: "		+ this->_defenceStation->getHealth();
+	irr::core::stringw strHelmHealth			= "Helm Station health: "			+ this->_helmStation->getHealth();
+	irr::core::stringw strNavigationHealth		= "Navigation Station health: "	+ this->_navigationStation-> getHealth();
+	irr::core::stringw strPowerHealth			= "Power Station health: "		+ this->_powerStation->getHealth();
+	irr::core::stringw strWeaponHealth			= "Weapon Station health: "		+ this->_weaponStation->getHealth();
+	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+	this->helmStationHealth			= env->addStaticText(strHelmHealth.c_str(),			rect<s32>(40, 120, 300, 140), false);	this->helmStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+	this->navigationStationHealth	= env->addStaticText(strNavigationHealth.c_str(),	rect<s32>(40, 140, 300, 160), false);	this->navigationStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+
+	this->updateShipHealth();
+
+	startPosition = vector3df(0,0,-100);
+	startRotation = vector3df(0,0,0);
+	this->transform->position = &startPosition;
+	this->transform->rotation = &startRotation;*/
 
 	Entity::init();
 }
@@ -157,6 +188,7 @@ void Ship :: update()
 	if(this->_weaponStation->getHealth() <= 0 && this->_weaponStation->getStationDestroyed() == false) {
 		this->_weaponStation->setStationDestroyed(true);
 	}
+	Entity :: update();
 }
 
 Thruster** Ship :: GetThrusters()
@@ -208,6 +240,7 @@ void Ship :: SwitchToStation(StationType stationType)
 
 void Ship :: updateShipHealth()
 {
+
 	this->_shipHealth = 
 		this->_defenceStation->getHealth() +
 		this->_helmStation->getHealth() +
