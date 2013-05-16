@@ -207,6 +207,11 @@ void PowerStation::createUI()
 	game->input->setCustomEventReceiver(receiver);
 }
 
+void PowerStation::enable()
+{
+	createUI();
+}
+
 void PowerStation::disable()
 {
 	Composite::disable();
