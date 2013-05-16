@@ -87,6 +87,18 @@ std::vector<Enemy*> SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& pac
 	return enemyList;
 }
 
+void SendAndReceivePackets::sendLazerPacket(std::vector<Laser*> laserList, const bool reliable)
+{
+	NetworkPacket packet(SERVER_LASER);
+	packet << laserList;
+	sendServerPacket(packet, reliable);
+}
+
+std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& packet, std::vector<Laser*> laserList)
+{
+	return laserList;
+}
+
 sf::Packet& operator <<(sf::Packet& out, Enemy& in)
 {
 	return out << in.getId() << in.getType() << in.getPosition() << in.getVelocity() << in.getRotation();
@@ -131,5 +143,72 @@ sf::Packet& operator >>(sf::Packet& in, vector<Enemy>& out)
 		in >> enemy;
 		out.push_back(enemy);
 	}
+	return in;
+}
+
+sf::Packet& operator <<(sf::Packet& out, Laser& in)
+{
+	return out << in.getId() << in.scene << in.transform->position << in.transform->velocity << in.transform->rotation;
+}
+
+sf::Packet& operator >>(sf::Packet& in, Laser& out)
+{
+	int id;
+	Scene* scene;
+	irr::core::vector3df position;
+	irr::core::vector3df velocity;
+	irr::core::vector3df rotation;
+
+	in >> id >> scene >> position >> velocity >> rotation;
+
+	out.setId(id);
+	out.scene = scene;
+	*out.transform->position = position;
+	*out.transform->velocity = velocity;
+	*out.transform->rotation = rotation;
+
+	return in;
+}
+
+sf::Packet& operator <<(sf::Packet& out, std::vector<Laser*>& in)
+{
+	out << in.size();
+	for(int i = 0; i < in.size(); i++)
+	{
+		out << *in[i];
+	}
+	return out;
+}
+
+sf::Packet& operator >>(sf::Packet& in, std::vector<Laser>& out)
+{
+	int size;
+	in >> size;
+	for(int i = 0; i < size; i++)
+	{
+		Laser laser;
+		in >> laser;
+		out.push_back(laser);
+	}
+	return in;
+}
+
+sf::Packet& operator <<(sf::Packet& out, Scene* in)
+{
+	//edit this if more is needed to send a scene over
+	return out << in->game->sceneManager->getNameScene(in)->name;
+}
+
+sf::Packet& operator >>(sf::Packet& in, Scene* out)
+{
+	char* sceneName;
+	in >> sceneName;
+
+	//the scene you currently send with needs the game so if you make a temporarely scene set the game
+	if(out->game != NULL)
+	{
+		out = out->game->sceneManager->getScene(sceneName);
+	}
+
 	return in;
 }

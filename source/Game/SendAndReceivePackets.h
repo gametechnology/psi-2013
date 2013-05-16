@@ -7,6 +7,8 @@
 #include "EnemyAsteroid.h"
 #include "EnemyDrone.h"
 #include "EnemyFighter.h"
+#include "Laser.h"
+#include "Engine\Scene.h"
 
 static class SendAndReceivePackets
 {
@@ -21,11 +23,23 @@ public:
 	static void sendEnemyPacket(std::vector<Enemy*> enemyList, const bool relibale = false);
 	static std::vector<Enemy*> receiveEnemyPacket(NetworkPacket& packet, Scene* scene, std::vector<Enemy*> enemyList);
 
+	//send and receive laser packets
+	static void sendLazerPacket(std::vector<Laser*> laserList, const bool reliable = false);
+	static std::vector<Laser*> receiveLaserPacket(NetworkPacket& packet, std::vector<Laser*> laserList);
+
 
 	friend sf::Packet& operator <<(sf::Packet& out, Enemy& in);
 	friend sf::Packet& operator >>(sf::Packet& in, Enemy& out);
 	friend sf::Packet& operator <<(sf::Packet& out, vector<Enemy*>& in);
 	friend sf::Packet& operator >>(sf::Packet& in, vector<Enemy>& out);
+
+	friend sf::Packet& operator <<(sf::Packet& out, Laser& in);
+	friend sf::Packet& operator >>(sf::Packet& in, Laser& out);
+	friend sf::Packet& operator <<(sf::Packet& out, vector<Laser*>& in);
+	friend sf::Packet& operator >>(sf::Packet& in, vector<Laser>& out);
+
+	friend sf::Packet& operator <<(sf::Packet& out, Scene& in);
+	friend sf::Packet& operator >>(sf::Packet& in, Scene& out);
 };
 
 #endif

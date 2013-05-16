@@ -1,5 +1,8 @@
 #include "Laser.h"
 #include "Engine\IrrlichtNode.h"
+#include "NetworkInterface.h"
+
+int Laser::newLaserId = 0;
 
 Laser::Laser() : Entity()
 {
@@ -9,6 +12,10 @@ Laser::Laser() : Entity()
 	this->disable();
 	this->scene = NULL;
 	this->_hasAnIrrlichtNode = false;
+	if(Network::GetInstance()->IsServer())
+	{
+		this->_id = this->newLaserId++;
+	}
 
 	//the addchild is located in the constructor because a laser is being added more than once
 }
@@ -50,6 +57,19 @@ void Laser::fire(Scene* scene, Transform* transform, vector3df target, f32 speed
 	this->_direction.normalize();
 
 	*this->transform->velocity = _direction * speed;
+}
+
+int Laser::getId()
+{
+	return this->_id;
+}
+
+void Laser::setId(int id)
+{
+	if(!Network::GetInstance()->IsServer())
+	{
+		this->_id = id;
+	}
 }
 
 void Laser::update()

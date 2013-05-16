@@ -16,9 +16,11 @@ using namespace core;
 class Laser : public Entity
 {
 	public:
+		static int newLaserId;
+
 		Laser();
 		~Laser();
-		
+
 		virtual void init();
 		virtual void onAdd();
 
@@ -26,11 +28,16 @@ class Laser : public Entity
 		void update();
 		void contactResolverA(Enemy* input);
 		void contactResolverA(DefenceStation* input);
+
+		int getId();
+		void setId(int id);
+
 	private:
 		u32			_timeofLife;
 		u32			_currentLife;
 		vector3df	_direction;
 		unsigned int _damage;
 		bool _hasAnIrrlichtNode;
+		int _id;
 };
 #endif
