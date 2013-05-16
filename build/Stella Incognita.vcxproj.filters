@@ -255,6 +255,9 @@
     <ClCompile Include="..\source\Game\CollisionTestScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\DummyShip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\GalaxyMap.h">
@@ -438,6 +441,9 @@
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\ObjectPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\DummyShip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

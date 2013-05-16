@@ -49,7 +49,7 @@ void EnemyFighter::update()
 
 	if(game->input->isKeyboardButtonPressed(irr::KEY_KEY_M))
 	{
-		this->fireLaserAt(vector3df(200));
+		this->fireLaserAt(vector3df(this->getTarget().X , this->getTarget().Y , this->getTarget().Z ));
 	}
 
 	if(EnemyFighter::stateSwitch->getState() == StateSwitch::STATE_OFFENSIVE)

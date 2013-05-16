@@ -1,5 +1,4 @@
 #include "DummyShip.h"
-#include "ShipMover.h"
 
 
 DummyShip::DummyShip(vector3df position) : Entity ()
@@ -53,21 +52,4 @@ void DummyShip :: update()
 void DummyShip :: draw()
 {
 	Entity :: draw();
-}
-
-void DummyShip::setInertiaMatrix(float h, float w, float d, float m)
-{
-	//used for the momentum of inertia, currently not used, only m is used (mass)
-	float inertiaData[16];
-	for(unsigned i = 0; i < 16; i++)
-	{
-		inertiaData[i] = 0.0f;
-	}
-
-	inertiaData[0] = (((1.0f / 5.0f) * m) * (pow(w, 2) + pow(d, 2)));
-	inertiaData[5] = (((1.0f / 5.0f) * m) * (pow(h, 2) + pow(d, 2)));
-	inertiaData[10] = (((1.0f / 5.0f) * m) * (pow(h, 2) + pow(w, 2)));
-	inertiaData[15] = 1.0f;
-
-	_inertiaMatrix->setM(inertiaData);
 }

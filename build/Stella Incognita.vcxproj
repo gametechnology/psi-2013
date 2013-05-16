@@ -99,6 +99,7 @@
     <ClCompile Include="..\source\Game\BasicMoverComponent.cpp" />
     <ClCompile Include="..\source\Game\CalculateRotation.cpp" />
     <ClCompile Include="..\source\Game\CollisionTestScene.cpp" />
+    <ClCompile Include="..\source\Game\DummyShip.cpp" />
     <ClCompile Include="..\source\Game\EmptyTestScene.cpp" />
     <ClCompile Include="..\source\Game\Enemy.cpp" />
     <ClCompile Include="..\source\Game\EnemyAsteroid.cpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="..\source\Game\BasicMoverComponent.h" />
     <ClInclude Include="..\source\Game\CalculateRotation.h" />
     <ClInclude Include="..\source\Game\CollisionTestScene.h" />
+    <ClInclude Include="..\source\Game\DummyShip.h" />
     <ClInclude Include="..\source\Game\EmptyTestScene.h" />
     <ClInclude Include="..\source\Game\Enemy.h" />
     <ClInclude Include="..\source\Game\EnemyAsteroid.h" />

@@ -7,6 +7,7 @@ CollisionTestScene::CollisionTestScene(void) : Scene()
 {
 	//Create a list of the enemies
 	this->_enemyList = vector<Enemy*>();
+	//Uses the Pool Design pattern to create lasers and add them to each EnemyFighter
 	ObjectPool<Laser>* laserPool = new ObjectPool<Laser>(50);
 	EnemyFighter::laserPool = *laserPool;
 }
@@ -20,15 +21,12 @@ void CollisionTestScene::init() {
 	this->game->device->getSceneManager()->addCameraSceneNodeFPS();
 	
 	removeenemytestinitiationcheck = true;
-	//createTestEnemies();
-	//dummyFighter->setVelocity(irr::core::vector3df(0.01f,0,0));
-	//addChild(dummyFighter);
 	Scene::init();
 }
 
 void CollisionTestScene::update() {
 
-	//for now, press only once, else you will have too many enemies!
+	//Using the Input Manager, different scenes are created
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_1))
 	{
 		std::cout << "Test Laser-Enemy is activated \n";
@@ -61,8 +59,6 @@ void CollisionTestScene::update() {
 		if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
 		{
 			_enemyList[l]->inRangeList.push_back(dummyFighter);			
-			//_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
-			//_enemyList[l]->inRangeList.push_back(_enemyList[11]); //to asteroid 1
 		}
 	}
 
@@ -73,7 +69,7 @@ void CollisionTestScene::createLaserTestObjects(){
 	//Create a row of EnemyDrones
 	for(int i = 0; i < 1; i++) //create only 1 in stead of 5 for testing.
 	{
-		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
+		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,20,(irr::f32)(i + (i * i)))));
 		
 		addChild(_enemyList.back());
 	}
@@ -137,8 +133,8 @@ void CollisionTestScene::createLaserAndShip(){
 		addChild(_enemyList.back());
 	}
 
-	//Causes Error in Powerstation
-	_ship = new DummyShip(irr::core::vector3df(10,10,10));
+	//Creates a dummy ship, without any extra properties
+	DummyShip* _ship = new DummyShip(vector3df(10,10,10));
 	addChild(_ship);
 }
 

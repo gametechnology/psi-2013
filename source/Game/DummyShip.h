@@ -1,6 +1,5 @@
 #ifndef ENTITY_DUMMYSHIP
 #define ENTITY_DUMMYSHIP
-#pragma once
 #include "Irrlicht\irrlicht.h"
 
 #include "Engine/Entity.h"
@@ -13,16 +12,14 @@
 class DummyShip : public Entity
 {
 public:
-
+	DummyShip(vector3df position);
+	virtual ~DummyShip(void);
+	
 	void onAdd();
 	void init();
 	void update();
 	void draw();
 
-
-	DummyShip(vector3df position);
-	virtual ~DummyShip(void);
-	
 	vector3df startPosition;
 	vector3df startRotation;
 private:
