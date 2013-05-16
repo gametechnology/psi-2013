@@ -79,7 +79,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 }
 
 void SectorTemplate::onAdd() {
-	this->_camera = this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
+	//this->_camera = this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
 	//addComponent(_enemyManager);
 	addChild( _skybox );
 	addChild(_fog );
