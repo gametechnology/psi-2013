@@ -69,6 +69,19 @@ NameScene* SceneManager::getNameScene(char* name){
 		} 
 	}
 }
+
+//return the NameScene of a scene, so you'll get the name & scene object
+NameScene* SceneManager::getNameScene(Scene* scene)
+{
+	for(unsigned int i = 0; i < nameScenes.size(); i++)
+	{
+		if(nameScenes[i].scene == scene)
+		{
+			return &nameScenes[i];
+		}
+	}
+}
+
 //Returns the Scene object
 Scene* SceneManager::getScene(char* name){
 
