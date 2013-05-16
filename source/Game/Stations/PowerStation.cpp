@@ -27,6 +27,9 @@ void PowerStation :: init() {
 		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
 	createUI();
 
+	help = new HudHelpText(L"Klik hier ofzo!\nBlah", vector2df(100,0));
+	addComponent(help);
+
 	Station::init();
 }
 
