@@ -123,6 +123,7 @@
     <ClCompile Include="..\source\Game\SectorHomeBase.cpp" />
     <ClCompile Include="..\source\Game\Shipmap.cpp" />
     <ClCompile Include="..\source\Game\Sprite.cpp" />
+    <ClCompile Include="..\source\Game\StationStats.cpp" />
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\HelmStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp" />
@@ -178,6 +179,7 @@
     <ClInclude Include="..\source\Game\StateSwitch.h" />
     <ClInclude Include="..\source\Game\StateSwitchDrone.h" />
     <ClInclude Include="..\source\Game\StateSwitchFighter.h" />
+    <ClInclude Include="..\source\Game\StationStats.h" />
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h" />
     <ClInclude Include="..\source\Game\Stations\HelmStation.h" />
     <ClInclude Include="..\source\Game\Stations\NavigationStation.h" />
