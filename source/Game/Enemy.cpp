@@ -3,7 +3,7 @@
 #include <iostream>
 #include "Engine/IrrlichtNode.h"
 
-int Enemy::newEnemyId;
+int Enemy::newEnemyId = 0;
 
 Enemy::Enemy(void): Entity()
 {
