@@ -7,6 +7,7 @@ CollisionTestScene::CollisionTestScene(void) : Scene()
 {
 	//Create a list of the enemies
 	this->_enemyList = vector<Enemy*>();
+	//Uses the Pool Design pattern to create lasers and add them to each EnemyFighter
 	ObjectPool<Laser>* laserPool = new ObjectPool<Laser>(50);
 	EnemyFighter::laserPool = *laserPool;
 }
@@ -20,15 +21,12 @@ void CollisionTestScene::init() {
 	this->game->device->getSceneManager()->addCameraSceneNodeFPS();
 	
 	removeenemytestinitiationcheck = true;
-	//createTestEnemies();
-	//dummyFighter->setVelocity(irr::core::vector3df(0.01f,0,0));
-	//addChild(dummyFighter);
 	Scene::init();
 }
 
 void CollisionTestScene::update() {
 
-	//for now, press only once, else you will have too many enemies!
+	//Using the Input Manager, different scenes are created
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_1))
 	{
 		std::cout << "Test Laser-Enemy is activated \n";
