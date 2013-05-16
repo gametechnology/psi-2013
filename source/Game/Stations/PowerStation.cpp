@@ -369,12 +369,6 @@ void PowerStation::draw()
 		true);
 }
 
-void PowerStation::disable()
-{
-	Station::disable();
-	
-	game->guiEnv->clear();
-}
 
 
 
