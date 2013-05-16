@@ -28,7 +28,7 @@ void PowerStation :: init() {
 	
 	help = new HudHelpText(L"Klik hier ofzo!\nBlah", vector2df(100,0));
 	addComponent(help);
-
+	createUI();
 	Station::init();
 }
 
@@ -262,8 +262,8 @@ stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 //Adds the background image and the spaceship image. 
 void PowerStation::addImages()
 {
-	//env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
-	//env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190,266));
+	bgImage = env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
+	spaceshipImage = env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190,266));
 }
 
 void PowerStation::removeImages()
@@ -369,12 +369,7 @@ void PowerStation::draw()
 		true);
 }
 
-void PowerStation::disable()
-{
-	Station::disable();
-	
-	game->guiEnv->clear();
-}
+
 
 //This method displays the selected station. We're using an integer which indicates which station is currently selected. 
 //context.selectedStation gets changed by the EventListener when the user presses of the station buttons.

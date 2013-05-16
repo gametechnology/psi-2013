@@ -101,7 +101,6 @@ void Ship::init()
 	this->transform->rotation = &startRotation;*/
 	
 	Entity::init();
-	SwitchToStation(StationType::ST_HELM);
 }
 
 Station *Ship :: GetStation( StationType s )
