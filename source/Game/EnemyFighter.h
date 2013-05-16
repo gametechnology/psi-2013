@@ -13,12 +13,12 @@ public:
 	~EnemyFighter(void);
 
 	void SetTarget(vector3df target);
+	void contactResolverA(Entity* input);
 	virtual void chase(vector3df target);
 	
 	virtual void init();
 	virtual void onAdd();
 	virtual void update();
-	void contactResolverA(Entity* input);
 	static ObjectPool<Laser> laserPool;
 private:
 	void		fireLaserAt(vector3df target);
