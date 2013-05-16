@@ -138,6 +138,9 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\StateSwitchDrone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -254,6 +257,9 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\CollisionTestScene.cpp">
       <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\StationStats.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\DummyShip.cpp">
       <Filter>Source Files</Filter>
@@ -439,6 +445,8 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\CollisionTestScene.h">
       <Filter>Header Files\Scenes</Filter>
+    <ClInclude Include="..\source\Game\StationStats.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\ObjectPool.h">
       <Filter>Header Files</Filter>

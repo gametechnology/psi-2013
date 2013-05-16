@@ -31,6 +31,11 @@ void GalaxyMap::createMap(int sectorCount, int minWormholes, int maxWormholes) {
 	sectors = *mapGenerator.createNewMap(width, height, radius);
 }
 
+void GalaxyMap::createStaticMap() {
+	MapGenerator mapGenerator = MapGenerator(0,0,0);
+	sectors = *mapGenerator.createStaticMap(width, height, radius);
+}
+
 GalaxyMap::~GalaxyMap() {
 	for(unsigned i =0;i<sectors.size();i++) {
 		delete sectors[i];

@@ -6,10 +6,10 @@
 #include  "SectorHomeBase.h"
 #include  "BaseSector.h"
 
-SectorManager::SectorManager(GalaxyMap* map) : Component() {
+SectorManager::SectorManager(GalaxyMap* map,Ship* ship) : Component() {
 	_map=map;
-
-	for (unsigned i = 0; i < map->sectors.size(); i++) {
+	_ship=ship;
+	for (int i = 0; i < map->sectors.size(); i++) {
 		if(map->sectors[i]->type == HOME_BLUE){
 			//delete _mapSector;
 			_mapSector = map->sectors[i];
@@ -92,7 +92,9 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 	}
 	//delete data;
 }
-
+Ship* SectorManager::getShip(){
+	return _ship;
+}
 SectorManager::~SectorManager() {
 	
 }

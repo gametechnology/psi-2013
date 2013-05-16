@@ -1,6 +1,5 @@
 #ifndef STATION_BASE
 #define STATION_BASE
-#pragma once
 
 #include "../HudComposite.h"
 #include "../Player.h"
@@ -8,14 +7,12 @@
 #include "../../../include/Engine/Component.h"
 #include "../../../include/Engine/Game.h"
 #include "Irrlicht/irrlicht.h"
-
-
-#ifdef ENTITY_SHIP
-#include "../Ship.h"
-#endif
+//#include "../StationStats.h"
+//#include "../Ship.h"
 
 #define STUN_TIME 4.0
 class Ship;
+class StationStats;
 	
 enum StationType
 {
@@ -41,7 +38,7 @@ public:
 	bool IsStunned();
 
 	bool HasPower();
-	bool HasArmor();
+	bool HasShield();
 
 	std::string helpTextString;
 
@@ -76,12 +73,14 @@ protected:
 	
 
 private:
+	
 	int _tempTimer;
 	int _totalHealth;
+	StationStats* _stationStats;
 	// Energy testing variable for hud.
-	int energy;
+	//int energy;
 	// End energy testing variable for hud.
-	int _health;
+	//int _health;
 	bool _stationDestroyed;
 };
 #endif

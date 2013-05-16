@@ -84,6 +84,24 @@ std::vector<MapSector*>* MapGenerator::createNewMap(float width, float height, f
 
 	return &sectors;
 }
+std::vector<MapSector*>* MapGenerator::createStaticMap(float width, float height, float sectorRadius)
+{
+	std::vector<MapSector*>* map = new std::vector<MapSector*>();
+	MapSector* homeBlue = new MapSector(nameGenerator(HOME_BLUE), HOME_BLUE, 30);
+	MapSector* homeRed = new MapSector(nameGenerator(HOME_RED), HOME_RED, 30);
+	MapSector* empty = new MapSector(nameGenerator(EMPTY), EMPTY, 30);
+	map->push_back(homeBlue);
+	map->push_back(empty);
+	map->push_back(homeRed);
+	
+	homeBlue->connections.push_back(empty);
+	empty->connections.push_back(homeBlue);
+	
+	empty->connections.push_back(homeRed);
+	homeRed->connections.push_back(empty);
+
+	return map;
+}
 
 void MapGenerator::createSectors()
 {

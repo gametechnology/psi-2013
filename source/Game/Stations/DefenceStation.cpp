@@ -36,6 +36,7 @@ void DefenceStation :: Damage( )
 
 int DefenceStation :: GetDamage(StationType)
 {
+	//Needs to return the DefenceStats data !!!!
 	return 0;
 }
 
