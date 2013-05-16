@@ -79,7 +79,7 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 }
 
 void SectorTemplate::onAdd() {
-	//this->_camera = this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
+	this->_camera = this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
 	//addComponent(_enemyManager);
 	addChild( _skybox );
 	addChild(_fog );
@@ -208,7 +208,7 @@ void SectorTemplate::HandleNetworkMessage(NetworkPacket packet)
 			packet >> serverEnemies;
 
 
-			for(int j = 0; j < _enemyList.size(); j++)
+			for(unsigned int j = 0; j < _enemyList.size(); j++)
 			{
 				bool isAtServer = false;
 				for(unsigned k = 0; k < serverEnemies.size(); k++)

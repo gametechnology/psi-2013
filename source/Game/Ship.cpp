@@ -31,13 +31,13 @@ void Ship::onAdd() {
 	addChild(_helmStation			= new HelmStation(this));
 	addChild(_navigationStation		= new NavigationStation(this));
 	addChild(_weaponStation			= new WeaponStation(this));
-	addChild(_powerStation			= new PowerStation(this));
+	/*addChild(*/_powerStation			= new PowerStation(this);//);
 
 	this->_defenceStation->init();
 	this->_helmStation->init();
 	this->_navigationStation->init();
 	this->_weaponStation->init();
-	this->_powerStation->init();
+	//this->_powerStation->init();
 
 	this->_defenceStation->disable();
 	this->_helmStation->disable();

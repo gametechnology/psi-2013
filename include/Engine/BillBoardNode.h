@@ -14,7 +14,7 @@ public:
 	void onAdd();
 	void createNode();
 
-private:
+protected:
 	irr::core::dimension2df _size;
 	irr::core::vector3df _position;
 	irr::core::vector3df _rotation;
