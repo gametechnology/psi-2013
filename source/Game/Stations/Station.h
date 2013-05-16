@@ -22,8 +22,10 @@ enum StationType
 	ST_POWER		= 0,
 	ST_DEFENCE		= 1,
 	ST_WEAPON		= 2,
-	ST_HELM		= 3,
-	ST_NAVIGATION	= 4
+	ST_HELM			= 3,
+	ST_NAVIGATION	= 4,
+	//when the player is not in a station
+	ST_HALLWAY		= 5
 };
 
 class Station : public Entity

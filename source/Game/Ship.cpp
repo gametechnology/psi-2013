@@ -8,7 +8,7 @@ vector3df startRotation;
 Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 {
 	this->transform->position = &position;
-	this->transform->rotation = &rotation;
+	this->transform->rotation = &rotation;	
 }
 
 Ship::~Ship(void)
@@ -204,6 +204,7 @@ void Ship :: SwitchToStation(StationType stationType)
 	_currentStation->OnEnabled();
 	addChild(_currentStation);
 	//_currentStation->Enable();
+	player_manager -> SyncLocalPlayerData( );
 }
 
 void Ship :: updateShipHealth()

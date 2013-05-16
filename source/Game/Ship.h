@@ -17,6 +17,7 @@
 #include "Thruster.h"
 #include "Engine\Camera.h"
 #include "ShipMover.h"
+#include "PlayerManager.h"
 
 class DefenceStation;
 class HelmStation;
@@ -33,7 +34,7 @@ public:
 	NavigationStation	*_navigationStation;
 	PowerStation		*_powerStation;
 	WeaponStation		*_weaponStation;
-
+	
 	//to test the ship health and station health
 	irr::gui::IGUIEnvironment *env;
 	irr::gui::IGUIStaticText *shipHealth;

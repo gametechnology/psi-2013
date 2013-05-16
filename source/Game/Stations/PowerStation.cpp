@@ -97,7 +97,6 @@ public:
 		{
 			s32 id = event.GUIEvent.Caller->getID();
 			IGUIEnvironment* env = this->device->getGUIEnvironment();
-
 			switch(event.GUIEvent.EventType)
 			{
 
