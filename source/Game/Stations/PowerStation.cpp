@@ -369,6 +369,13 @@ void PowerStation::draw()
 		true);
 }
 
+void PowerStation::disable()
+{
+	Station::disable();
+	
+	game->guiEnv->clear();
+}
+
 
 
 //This method displays the selected station. We're using an integer which indicates which station is currently selected. 
