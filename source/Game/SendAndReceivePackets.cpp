@@ -96,8 +96,61 @@ void SendAndReceivePackets::sendLazerPacket(std::vector<Laser*> laserList, const
 
 std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& packet, std::vector<Laser*> laserList)
 {
+	std::vector<Laser> serverList;
+	packet >> serverList;
+
+	for(unsigned i = 0; i < serverList.size(); i++)
+	{
+		for(unsigned j = 0; j < laserList.size(); j++)
+		{
+			if(serverList[i].getId() == laserList[j]->getId())
+			{
+				if(serverList[i].scene != laserList[j]->scene)
+				{
+					laserList[j]->scene->removeChild(laserList[j], false);
+				}
+				laserList[j]->scene = serverList[i].scene;
+
+				if(serverList[i].enabled)
+				{
+					laserList[j]->scene->addChild(laserList[j]);
+					laserList[j]->enable();
+				}else
+				{
+					laserList[j]->disable();
+				}
+
+				*laserList[j]->transform->position = *serverList[i].transform->position;
+				*laserList[j]->transform->velocity = *serverList[i].transform->velocity;
+				*laserList[j]->transform->rotation = *serverList[i].transform->rotation;
+
+			}
+		}
+	}
+
 	return laserList;
 }
+
+sf::Packet& operator <<(sf::Packet& out, Scene* in)
+{
+	//edit this if more is needed to send a scene over
+	return out << in->game->sceneManager->getNameScene(in)->name;
+}
+
+sf::Packet& operator >>(sf::Packet& in, Scene* out)
+{
+	char* sceneName;
+	in >> sceneName;
+
+	//the scene you currently send with needs the game so if you make a temporarely scene set the game
+	if(out->game != NULL)
+	{
+		out = out->game->sceneManager->getScene(sceneName);
+	}
+
+	return in;
+}
+
 
 sf::Packet& operator <<(sf::Packet& out, Enemy& in)
 {
@@ -148,21 +201,29 @@ sf::Packet& operator >>(sf::Packet& in, vector<Enemy>& out)
 
 sf::Packet& operator <<(sf::Packet& out, Laser& in)
 {
-	return out << in.getId() << in.scene << in.transform->position << in.transform->velocity << in.transform->rotation;
+	return out << in.getId() << in.scene << in.enabled << in.transform->position << in.transform->velocity << in.transform->rotation;
 }
 
 sf::Packet& operator >>(sf::Packet& in, Laser& out)
 {
 	int id;
 	Scene* scene;
+	bool enabled;
 	irr::core::vector3df position;
 	irr::core::vector3df velocity;
 	irr::core::vector3df rotation;
 
-	in >> id >> scene >> position >> velocity >> rotation;
+	in >> id >> scene >> enabled >> position >> velocity >> rotation;
 
 	out.setId(id);
 	out.scene = scene;
+	if(enabled)
+	{
+		out.enable();
+	}else
+	{
+		out.disable();
+	}
 	*out.transform->position = position;
 	*out.transform->velocity = velocity;
 	*out.transform->rotation = rotation;
@@ -190,25 +251,5 @@ sf::Packet& operator >>(sf::Packet& in, std::vector<Laser>& out)
 		in >> laser;
 		out.push_back(laser);
 	}
-	return in;
-}
-
-sf::Packet& operator <<(sf::Packet& out, Scene* in)
-{
-	//edit this if more is needed to send a scene over
-	return out << in->game->sceneManager->getNameScene(in)->name;
-}
-
-sf::Packet& operator >>(sf::Packet& in, Scene* out)
-{
-	char* sceneName;
-	in >> sceneName;
-
-	//the scene you currently send with needs the game so if you make a temporarely scene set the game
-	if(out->game != NULL)
-	{
-		out = out->game->sceneManager->getScene(sceneName);
-	}
-
 	return in;
 }
