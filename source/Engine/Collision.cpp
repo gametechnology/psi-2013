@@ -23,7 +23,7 @@ void Collision::NarrowPhaseDetection(vector<Entity*> _input)
 {
 	for(int i = 0; i < (int)(_input.size()); i++)
 	{
-		for(int j = i; j < (int)(_input.size()); j++)
+		for(int j = 0; j < (int)(_input.size()); j++)
 		{
 			if(i != j && (_input[i]->enabled && _input[j]->enabled))
 			{
