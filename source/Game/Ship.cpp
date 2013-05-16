@@ -73,10 +73,13 @@ void Ship::onAdd() {
 	startRotation = vector3df(0,0,0);
 	this->transform->position = &startPosition;
 	this->transform->rotation = &startRotation;
+
+
 }
 
 void Ship::init() 
 {
+	//Isn't called
 	/*irr::core::stringw strShipHealth			= "ship health: "; 
 	strShipHealth +	irr::core::stringw();
 
