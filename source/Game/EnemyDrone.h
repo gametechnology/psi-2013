@@ -13,7 +13,7 @@ public:
 
 	void init();
 	void onAdd();
-
+	void contactResolverA(Entity* input);
 	virtual void chase(vector3df target);
 	virtual void update();
 	virtual void wander();

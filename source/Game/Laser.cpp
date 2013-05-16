@@ -1,8 +1,9 @@
 #include "Laser.h"
 #include "Engine\IrrlichtNode.h"
+#include "EnemyDrone.h"
 
 Laser::Laser() : Enemy()
-{
+{	
 	this->_currentLife = 0;
 	this->_timeofLife = 250;
 	this->_damage = 1;
@@ -79,6 +80,18 @@ void Laser::contactResolverA(Entity* input)
 {
 	Enemy* tempEnemy = dynamic_cast<Enemy*>(input);
 	tempEnemy->setHealth(tempEnemy->getHealth() - this->_damage);
+	//if(tempEnemy->getType()==tempEnemy->ASTROID)
+	//{
+	//	std::printf("HIT on ASTROID!");
+	//}
+	//if(tempEnemy->getType()==tempEnemy->DRONE)
+	//{
+	//	std::printf("HIT on DRONE!");
+	//}
+	//if(tempEnemy->getType()==tempEnemy->FIGHTER)
+	//{
+	//	std::printf("HIT on FIGHTER!");
+	//}
 	//input->setHealth(input->getHealth() - this->_damage);
 	std::printf("HIT on Enemy!");
 	this->disable();

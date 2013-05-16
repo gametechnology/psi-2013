@@ -60,9 +60,9 @@ void CollisionTestScene::update() {
 	{
 		if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
 		{
-			_enemyList[l]->inRangeList.push_back(dummyFighter);			
-			//_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
-			//_enemyList[l]->inRangeList.push_back(_enemyList[11]); //to asteroid 1
+			//_enemyList[l]->inRangeList.push_back(dummyFighter);			
+			_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
+			//_enemyList[l]->inRangeList.push_back(_enemyList[7]); //to asteroid 1
 		}
 	}
 
@@ -73,7 +73,7 @@ void CollisionTestScene::createLaserTestObjects(){
 	//Create a row of EnemyDrones
 	for(int i = 0; i < 1; i++) //create only 1 in stead of 5 for testing.
 	{
-		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,20,(irr::f32)(i + (i * i)))));
+		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
 		
 		addChild(_enemyList.back());
 	}
