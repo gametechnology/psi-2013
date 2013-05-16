@@ -50,6 +50,7 @@ public:
 	void increaseHealth(int health);
 	void decreaseHealth(int health);
 	void repairStation(int health);
+	void handleMessage(unsigned int message);
 
 	virtual void onAdd();
 	virtual void init();

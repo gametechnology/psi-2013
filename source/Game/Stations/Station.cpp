@@ -108,6 +108,19 @@ void Station::update()
 	//Update player on station time	
 }
 
+void Station::handleMessage(unsigned int message)
+{
+	switch(message)
+	{
+	case 0:
+		
+		break;
+	case 1:
+		break;
+	}
+
+}
+
 
 
 void Station :: OnDamage( )
