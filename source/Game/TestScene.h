@@ -1,8 +1,8 @@
-#include "Engine/Scene.h"
-#include "Engine/Entity.h"
-
 #ifndef PlayScene
 #define PlayScene
+
+#include "Engine/Scene.h"
+#include "Engine/Entity.h"
 
 class TestScene : public Scene
 {
