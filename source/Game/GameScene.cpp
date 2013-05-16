@@ -59,6 +59,8 @@ void GameScene::switchStation(StationType type)
 {
 	this->removeChild(_shipmap);
 
+	_ship->GetStation(type)->enable();
+
 	switch(type)
 	{
 		case StationType::ST_DEFENCE:
