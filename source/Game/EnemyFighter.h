@@ -13,6 +13,7 @@ public:
 	~EnemyFighter(void);
 
 	void SetTarget(vector3df target);
+	void contactResolverA(Entity* input);
 	virtual void chase(vector3df target);
 	
 	virtual void init();
