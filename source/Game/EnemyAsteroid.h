@@ -10,7 +10,7 @@ public:
 
 	void init();
 	void onAdd();
-
+	void contactResolverA(Entity* input);
 	~EnemyAsteroid(void);
 private:
 };

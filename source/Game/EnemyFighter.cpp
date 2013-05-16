@@ -90,3 +90,7 @@ void EnemyFighter::contactResolverA(Entity* input)
 	std::printf("HIT on Fighter!");
 }
 
+void EnemyFighter::contactResolverA(Entity* input)
+{
+	std::printf("HIT on FIGHTER!");
+}

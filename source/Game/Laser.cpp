@@ -98,7 +98,7 @@ void Laser::contactResolverA(Entity* input)
 	//	std::printf("HIT on FIGHTER!");
 	//}
 	//input->setHealth(input->getHealth() - this->_damage);
-	std::printf("HIT on Enemy!");
+	//std::printf("HIT on Enemy!");
 	this->disable();
 	for(unsigned i = 0; i < this->children.size(); i++)
 	{

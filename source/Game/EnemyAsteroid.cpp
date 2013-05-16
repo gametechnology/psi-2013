@@ -2,6 +2,7 @@
 #include "Engine/Entity.h"
 #include "Engine/Collision.h"
 #include <iostream>
+#include "Laser.h"
 
 EnemyAsteroid::EnemyAsteroid(irr::core::vector3df position, vector3df velocity): Enemy()
 {
@@ -34,4 +35,12 @@ void EnemyAsteroid::onAdd()
 EnemyAsteroid::~EnemyAsteroid(void)
 {
 
+}
+
+void EnemyAsteroid::contactResolverA(Entity* input)
+{
+	if(dynamic_cast<Laser*>(input))
+	{
+		std::printf("HIT on ASTEROID!");
+	}
 }
