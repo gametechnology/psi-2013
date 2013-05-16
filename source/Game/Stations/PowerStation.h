@@ -17,7 +17,15 @@ class PowerStation : public Station, public INetworkListener
 private:
 	
 	//checks if the new value can be matched (cannot be lower than 0 or higher than the total energy in our pool) and then updates the value of the station's energy pool.
-	void UpdateStationPower(StationType, int newValue );	
+	void UpdateStationPower(StationType, int newValue );
+
+	irr::gui::IGUIImage* bgImage;
+	irr::gui::IGUIImage* spaceshipImage;
+
+	irr::gui::IGUIButton* helmButton;
+	irr::gui::IGUIButton* weaponButton;
+	irr::gui::IGUIButton* defenseButton;
+	irr::gui::IGUIButton* navigationButton;
 
 public:
 	//Power Station Impl	
@@ -37,14 +45,20 @@ public:
 	//shakes the camera whenever the station is hurt (aaaahh)
 	void DoCameraShake( );
 	
+	void disable();
 	void createUI();
+	void removeUI();
 	void addImages();
+	void removeImages();
+
 	void declareUIData();
+
 	void createPowerPool();
 	void createScrollbar();
 	void createButtons();
 	void createGeneralPowerTexts();
 	void createCurrentSelectedStationText();
+
 	void HandleNetworkMessage(NetworkPacket packet);
 	stringw varToString(stringw str1, float var, stringw str2 = L"");
 	

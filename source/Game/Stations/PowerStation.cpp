@@ -184,7 +184,7 @@ void PowerStation::OnEnabled(){
 
 void PowerStation::OnDisabled(){
 	//TODO: Make a remove UI.
-	//removeUI();
+	removeUI();
 }
 
 //Creates the User Interface. Is a helper method. Also initializes the event receiver.
@@ -204,6 +204,31 @@ void PowerStation::createUI()
 	game->input->setCustomEventReceiver(receiver);
 }
 
+void PowerStation::disable()
+{
+	Composite::disable();
+
+	removeUI();
+	removeImages();
+}
+
+void PowerStation::removeUI()
+{
+	context.powerPoolText->remove();
+
+	context.helmStatus->remove();
+	context.weaponStatus->remove();
+	context.defenceStatus->remove();
+	context.navigationStatus->remove();
+	context.scrollBar->remove();
+	context.stationSelectedText->remove();
+
+	this->weaponButton->remove();
+	this->helmButton->remove();
+	this->navigationButton->remove();
+	this->defenseButton->remove();
+}
+
 //Defines the used driver and some UI data values.
 void PowerStation::declareUIData()
 {
@@ -217,6 +242,7 @@ void PowerStation::createPowerPool(){
 	context.powerPoolText = env->addStaticText(str.c_str(), rect<s32>(40, 40, 200, 100), false);
 	context.powerPoolText->setOverrideColor(video::SColor(255, 0, 255, 0));
 }
+
 //Variable to string converter for printing to the screen.
 stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 	stringw str = L"";
@@ -229,9 +255,17 @@ stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 //Adds the background image and the spaceship image. 
 void PowerStation::addImages()
 {
-	env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
-	env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190,266));
+	bgImage = env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
+	spaceshipImage = env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190,266));
 }
+
+void PowerStation::removeImages()
+{
+	bgImage->remove();
+	spaceshipImage->remove();
+}
+
+
 //Creates the power scrollbar. 
 void PowerStation::createScrollbar(){
 	context.scrollBar = env->addScrollBar(false, rect<s32>(1200, 20, 1230, 260), 0, GUI_ID_SCROLL_BAR);
@@ -243,17 +277,13 @@ void PowerStation::createScrollbar(){
 
 //Creates the station buttons.
 void PowerStation::createButtons(){
-	IGUIButton *helmbut;
-	helmbut = env->addButton(rect<s32>(870, 460, 930, 520),0, GUI_ID_POWER_HELM,L"HLM",L"Helm Station");
+	helmButton = env->addButton(rect<s32>(870, 460, 930, 520),0, GUI_ID_POWER_HELM,L"HLM",L"Helm Station");
 
-	IGUIButton *weaponbut;
-	weaponbut = env->addButton(rect<s32>(700, 560, 790, 660),0, GUI_ID_POWER_WEAPON,L"WPN",L"Weapons Station");
+	weaponButton = env->addButton(rect<s32>(700, 560, 790, 660),0, GUI_ID_POWER_WEAPON,L"WPN",L"Weapons Station");
 
-	IGUIButton *defencebut;
-	defencebut = env->addButton(rect<s32>(700, 310, 790, 410),0, GUI_ID_POWER_DEFENCE,L"DEF",L"Defence Station");
+	defenseButton = env->addButton(rect<s32>(700, 310, 790, 410),0, GUI_ID_POWER_DEFENCE,L"DEF",L"Defence Station");
 
-	IGUIButton *navigationbut;
-	navigationbut = env->addButton(rect<s32>(490, 310, 580, 410),0, GUI_ID_POWER_NAVIGATION,L"NAV",L"Navigation Station");
+	navigationButton = env->addButton(rect<s32>(490, 310, 580, 410),0, GUI_ID_POWER_NAVIGATION,L"NAV",L"Navigation Station");
 
 	//Placeholder code for Communication Station.
 
@@ -288,6 +318,9 @@ void PowerStation::createCurrentSelectedStationText(){
 void PowerStation::update()
 {
 	Station::update();
+
+	if(!enabled)
+		return;
 	
 	int helm		= context.GetPower(ST_HELM);
 	int defence		= context.GetPower(ST_DEFENCE);
