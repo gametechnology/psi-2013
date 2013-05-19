@@ -3,10 +3,10 @@
 
 #include "../HudComposite.h"
 #include "../Player.h"
-#include "../../../include/Engine/Entity.h"
-#include "../../../include/Engine/Component.h"
-#include "../../../include/Engine/Game.h"
-#include "Irrlicht/irrlicht.h"
+#include <Engine/Entity.h>
+#include <Engine/Component.h>
+#include <Engine/Game.h>
+#include <Irrlicht/irrlicht.h>
 //#include "../StationStats.h"
 //#include "../Ship.h"
 

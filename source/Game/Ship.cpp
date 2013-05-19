@@ -1,6 +1,4 @@
 #include "Ship.h"
-#include "Stations/Station.h"
-#include "ShipMover.h"
 
 vector3df startPosition;
 vector3df startRotation;

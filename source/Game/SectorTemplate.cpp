@@ -170,7 +170,7 @@ void SectorTemplate::update(){
 	with
 	this->_camera->getPosition()*/
 	if( _sectormanager->getShip()->transform->position->getLength() > _boundry ){
-		printf("\n OUT OF BOUNDS!");
+		//printf("\n OUT OF BOUNDS!");
 	}
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
 		irr::core::vector3df deltaPos = *_wormHoles[i]->transform->position - *_sectormanager->getShip()->transform->position;

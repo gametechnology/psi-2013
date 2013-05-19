@@ -94,7 +94,7 @@ public:
 	/*
 	* Initialize a client. When the connection with the server is succesfull, you will be able to send and receive messages.
 	*/
-	void InitializeClient(const char* ipAdress, unsigned int maxDownstream = 0, unsigned int maxUpstream = 0);
+	void InitializeClient(const char* ipAdress, const short port, unsigned int maxDownstream = 0, unsigned int maxUpstream = 0);
 
 	/* 
 	* Initialize a server. When succesfull, clients will be able to connect to you and receive your server messages.

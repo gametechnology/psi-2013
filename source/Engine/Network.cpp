@@ -6,7 +6,7 @@
 bool Network::isInitialized = false;
 Network* Network::instance = 0;
 
-Network::Network() : _port(1345)
+Network::Network() : _port(ENET_PORT_ANY)
 {
 	_isServer = false;
 	_isConnected = false;
@@ -48,9 +48,9 @@ void Network::StopThreads()
 	_receiverThread->terminate();
 }
 
-void Network::InitializeClient(const char* ipAdress, const unsigned int maxDownstream, const unsigned int maxUpstream)
+void Network::InitializeClient(const char* ipAdress, const short port, const unsigned int maxDownstream, const unsigned int maxUpstream)
 {
-	std::cout << "Initializing client at port " << _port << ".\n";
+	std::cout << "Initializing client at port " << port << ".\n";
 
 	_host = enet_host_create (NULL, 1, 2, maxDownstream, maxUpstream);
 
@@ -60,7 +60,7 @@ void Network::InitializeClient(const char* ipAdress, const unsigned int maxDowns
 		std::cout << "Succesfully created ENet client host.\n";
 
 	enet_address_set_host(&_address, ipAdress);
-	_address.port = _port;
+	_address.port = port;
 
 	_peer = enet_host_connect(_host, &_address, 2, 0);
 
@@ -84,12 +84,11 @@ void Network::InitializeClient(const char* ipAdress, const unsigned int maxDowns
 
 void Network::InitializeServer(size_t maxPlayers)
 {
-	std::cout << "Initializing server at port " << _port << ".\n";
 	_address.host = ENET_HOST_ANY;
-	_address.port = _port;
+	_address.port = 1234;
 	
 	_host = enet_host_create(&_address, maxPlayers, 2, 0, 0);
-
+	std::cout << "Initializing server at port " << _address.port << ".\n";
 	if (_host == NULL)
 	{
 		std::cout << "An error occurred while trying to create an ENet server host.\n";
@@ -178,11 +177,11 @@ void Network::PacketReciever()
 			Network::GetInstance()->_event.peer -> data = "Client information";
 			break;
 		case ENET_EVENT_TYPE_RECEIVE:
-			printf ("A packet of length %u containing %s was received from %s on channel %u.\n",
+			//printf ("A packet of length %u containing %s was received from %s on channel %u.\n",
 				Network::GetInstance()->_event.packet -> dataLength,
 				Network::GetInstance()->_event.packet -> data,
 				Network::GetInstance()->_event.peer -> data,
-				Network::GetInstance()->_event.channelID);
+				Network::GetInstance()->_event.channelID;
 
 			// Add to our list of received packets
 
