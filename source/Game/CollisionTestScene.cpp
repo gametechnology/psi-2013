@@ -5,7 +5,7 @@ EnemyFighter* dummyFighter = new EnemyFighter(irr::core::vector3df(10,10,10));
 
 //Creates a dummy ship, without any extra properties
 DummyShip* _ship = new DummyShip(vector3df(10,10,10));
-
+Ship* playerShip = new Ship(vector3df(10,10,10), vector3df(0));
 CollisionTestScene::CollisionTestScene(void) : Scene() 
 {
 	//Create a list of the enemies

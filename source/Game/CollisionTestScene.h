@@ -14,6 +14,7 @@
 #include "EnemyAsteroid.h"
 #include "EnemyDrone.h"
 #include "DummyShip.h"
+#include "Ship.h"
 #include "EnemyFighter.h"
 #include "Player.h"
 
