@@ -269,16 +269,19 @@ void SectorTemplate::HandleNetworkMessage(NetworkPacket packet)
 //creating enemies, in further sprints they can be moved to the correct sector
 void SectorTemplate::createEnemies()
 {
-	for(int i = 0; i < 20; i++)
+	int droneLimit = (rand() % 25);
+	for(int i = 0; i < droneLimit; i++)
 	{
-		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
+			irr::core::vector3df pos = irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
+			_enemyList.push_back(new EnemyDrone(pos));
 		
 		addChild(_enemyList.back());
 	}
-
-	for(int j = 2; j < 10; j++)
+	int fighterLimit = (rand() % 15);
+	for(int j = 2; j < fighterLimit; j++)
 	{
-		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(0,(irr::f32)(j + (j * j)),0)));
+		irr::core::vector3df pos = irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
+		_enemyList.push_back(new EnemyFighter(pos));
 		
 		addChild(_enemyList.back());
 	}

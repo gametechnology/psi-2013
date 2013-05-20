@@ -8,25 +8,25 @@ AsteroidSector::AsteroidSector(SectorManager* sectormanager, const io::path & sk
 	//init();
 }
 void AsteroidSector::onAdd(){
-	for(int i = 0; i < 1000; i++){
-		//irr::scene::IMeshSceneNode* cube = Game::getSceneManager()->addCubeSceneNode(2,0,-1,irr::core::vector3df((rand()%500)-250,(rand()%250)-125,(rand()%500)-250),irr::core::vector3df(rand()%90,rand()%90,rand()%90));
-		AstroidPlaceholder* ass = new AstroidPlaceholder(this->parent);
-		ass->transform->position = &irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
-		ass->transform->rotation = &irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90));
-		ass->transform->velocity = &irr::core::vector3df(100, 100, 100);
-		this->addChild(ass);
-	}
-	//if(Network::GetInstance()->IsServer())
-	//{
-	//	for(int k = 2; k < 1000; k++)
-	//	{
-	//		irr::core::vector3df pos = irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
-	//		irr::core::vector3df vel = irr::core::vector3df((float)((rand() % 15) - 7,5)/100, (float)((rand() % 15) - 7,5)/100, (float)((rand() % 15) - 7,5)/100);
-	//		_enemyList.push_back(new EnemyAsteroid(pos,vel));
-	//		
-	//		addChild(_enemyList.back());
-	//	}
+	//for(int i = 0; i < 1000; i++){
+	//	//irr::scene::IMeshSceneNode* cube = Game::getSceneManager()->addCubeSceneNode(2,0,-1,irr::core::vector3df((rand()%500)-250,(rand()%250)-125,(rand()%500)-250),irr::core::vector3df(rand()%90,rand()%90,rand()%90));
+	//	AstroidPlaceholder* ass = new AstroidPlaceholder(this->parent);
+	//	ass->transform->position = &irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
+	//	ass->transform->rotation = &irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90));
+	//	ass->transform->velocity = &irr::core::vector3df(100, 100, 100);
+	//	this->addChild(ass);
 	//}
+	if(Network::GetInstance()->IsServer())
+	{
+		for(int k = 2; k < 100; k++)
+		{
+			irr::core::vector3df pos = irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
+			irr::core::vector3df vel = irr::core::vector3df((float)((rand() % 15) - 7,5)/100, (float)((rand() % 15) - 7,5)/100, (float)((rand() % 15) - 7,5)/100);
+			_enemyList.push_back(new EnemyAsteroid(pos,vel));
+			
+			addChild(_enemyList.back());
+		}
+	}
 	SectorTemplate::onAdd();
 }
 
