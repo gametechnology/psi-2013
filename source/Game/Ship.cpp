@@ -198,13 +198,13 @@ void Ship :: SwitchToStation(StationType stationType)
 	}
 
 	//Find the new station
-	_currentStation = this->GetStation(stationType);
+	_currentStation = this -> GetStation(stationType);
 
 	//Init and add the new station
 	_currentStation->OnEnabled();
 	addChild(_currentStation);
 	//_currentStation->Enable();
-	player_manager -> SyncLocalPlayerData( );
+	player_manager -> SyncLocalPlayerData( stationType );
 }
 
 void Ship :: updateShipHealth()

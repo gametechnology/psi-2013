@@ -87,15 +87,14 @@ void PlayerManager :: GenerateLocalPlayerData( int player_id, const wchar_t *pla
 
 	//it is important that this message reaches all other devies, so we sent it reliably.
 	Network :: GetInstance( ) -> SendPacket( p, true );
-
-	std :: cout << "blaat";
 }
 
-void PlayerManager :: SyncLocalPlayerData( )
+void PlayerManager :: SyncLocalPlayerData( StationType currentStation )
 {
 	//here, we sent our local data to the other players.
 	//first, we have to get the playerdata of the local player
 	PlayerData *player_data = GetPlayerData( this -> _localPlayer_id );
+	player_data -> stationType	= currentStation;
 	//next, we create a packet where we place the data in from the player we got
 	NetworkPacket	p = NetworkPacket( PacketType :: CLIENT_UPDATE_PLAYER_DATA );
 	//place the values of the player_data in the packet

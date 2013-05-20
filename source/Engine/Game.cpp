@@ -28,8 +28,7 @@ Game::Game()
 		guiEnv = device->getGUIEnvironment();
 		
 		//Set title of the window
-		device->setWindowCaption(L"Stella Incognita");
-		player_manager -> GenerateLocalPlayerData( 1, L"Jur van Oerle", 0 );
+		device->setWindowCaption(L"Stella Incognita");		
 	}
 	// Create the topmost node
 	game = new Entity();

@@ -29,7 +29,7 @@ public:
 	void GenerateLocalPlayerData( int player_id, const wchar_t *name, int team_id );
 
 	//this makes sure that the local data is sent to all the other players on the network (only local data)
-	void SyncLocalPlayerData( );
+	void SyncLocalPlayerData( StationType currentStation );
 };
 extern PlayerManager *player_manager;
 #endif
