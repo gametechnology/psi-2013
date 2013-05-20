@@ -1,6 +1,4 @@
-#include "Station.h"
 #include "WeaponStation.h"
-#include "..\Ship.h"
 
 WeaponStation::WeaponStation( Ship *ship ) : Station( ship )
 {

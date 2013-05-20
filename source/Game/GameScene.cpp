@@ -5,9 +5,11 @@
 #include "ObjectPool.h"
 #include "Laser.h"
 
-GameScene::GameScene(bool isTestMap) : Scene() {
+GameScene::GameScene(std::list<Player*> playerList, bool isTestMap) : Scene()
+{
 	this->testMap = isTestMap;
-
+	_playerList = playerList;
+	Network::GetInstance()->AddListener(CLIENT_SWITCH_STATION, this);
 }
 
 void GameScene::onAdd() {
@@ -64,6 +66,8 @@ void GameScene::switchStation(StationType type)
 {
 	this->removeChild(_shipmap);
 
+	_ship->GetStation(type)->enable();
+
 	switch(type)
 	{
 		case ST_DEFENCE:
@@ -76,6 +80,17 @@ void GameScene::switchStation(StationType type)
 			break;
 		case ST_WEAPON:
 			break;
+	}
+}
+
+void GameScene::HandleNetworkMessage(NetworkPacket packet)
+{
+	// TODO fix the packet data so it actually holds the ip adress of the sender.
+	if(packet.GetType() == PacketType::CLIENT_SWITCH_STATION)
+	{
+		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
+		{
+		}
 	}
 }
 

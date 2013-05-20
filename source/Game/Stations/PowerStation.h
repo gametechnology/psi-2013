@@ -48,6 +48,7 @@ public:
 	//shakes the camera whenever the station is hurt (aaaahh)
 	void DoCameraShake( );
 	
+	void enable();
 	void disable();
 	void createUI();
 	void removeUI();

@@ -43,7 +43,6 @@ public:
 	irr::gui::IGUIStaticText *powerStationHealth;
 	irr::gui::IGUIStaticText *weaponStationHealth;
 
-	int _shipHealth;
 	bool _shipDestroyed;
 
 	bool _sitOnStation;
@@ -52,7 +51,6 @@ public:
 	void init();
 
 	void update();
-	void updateShipHealth();
 	void draw();
 
 	void CheckChangeInput();

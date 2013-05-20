@@ -29,7 +29,7 @@ void PowerStationData :: UpdatePowerUsage(StationType s, int newValue )
 	NetworkPacket packet(PacketType::CLIENT_POWER_CHANGED);
 	packet << s << newValue;
 	Network::GetInstance()->SendPacket(packet, true);
-	delete &packet;
+
 }
 
 int PowerStationData :: GetPower(StationType s )

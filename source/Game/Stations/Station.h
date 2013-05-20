@@ -3,10 +3,10 @@
 
 #include "../HudComposite.h"
 #include "../Player.h"
-#include "../../../include/Engine/Entity.h"
-#include "../../../include/Engine/Component.h"
-#include "../../../include/Engine/Game.h"
-#include "Irrlicht/irrlicht.h"
+#include <Engine/Entity.h>
+#include <Engine/Component.h>
+#include <Engine/Game.h>
+#include <Irrlicht/irrlicht.h>
 //#include "../StationStats.h"
 //#include "../Ship.h"
 
@@ -50,6 +50,7 @@ public:
 	void increaseHealth(int health);
 	void decreaseHealth(int health);
 	void repairStation(int health);
+	void handleMessage(unsigned int message);
 
 	virtual void onAdd();
 	virtual void init();
@@ -77,10 +78,6 @@ private:
 	int _tempTimer;
 	int _totalHealth;
 	StationStats* _stationStats;
-	// Energy testing variable for hud.
-	//int energy;
-	// End energy testing variable for hud.
-	//int _health;
 	bool _stationDestroyed;
 };
 #endif

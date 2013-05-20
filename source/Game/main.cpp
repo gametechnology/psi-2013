@@ -32,9 +32,9 @@ int main()
 	//Add the MainMenu
 	//Scene* scene = new EnemySceneTest();	
 	//Scene* scene = new EmptyTestScene();
-	Scene* scene = new CollisionTestScene();
+	Scene* scene = new MainMenuScene();
 
-	game->sceneManager->addScene("CollisionTestScene", scene);
+	game->sceneManager->addScene("MainmenuScene", scene);
 
 	//Create ship
 	//Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));

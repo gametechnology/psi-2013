@@ -52,7 +52,7 @@ void Station :: init()
 	this -> _stunTime = 0;
 	this -> _switchTime = 0;
 
-	//if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
+	if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
 	//if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
 
 	// ?? This is also done in onAdd()
@@ -109,6 +109,19 @@ void Station::update()
 	updateHealth();
 	//Update Stun Time
 	//Update player on station time	
+}
+
+void Station::handleMessage(unsigned int message)
+{
+	switch(message)
+	{
+	case 0:
+		
+		break;
+	case 1:
+		break;
+	}
+
 }
 
 
