@@ -16,7 +16,8 @@ Ship::~Ship(void)
 	
 }
 
-void Ship::onAdd() {
+void Ship::onAdd() 
+{
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
 

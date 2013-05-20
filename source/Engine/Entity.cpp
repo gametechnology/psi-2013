@@ -2,6 +2,7 @@
 #include "Engine\Component.h"
 #include "Engine\Transform.h"
 #include "Engine\Scene.h"
+#include <iostream>
 
 Entity::Entity() : Composite() {
 	transform = new Transform();
@@ -96,7 +97,8 @@ void Entity::lateUpdate() {
 	}
 }
 
-void Entity::draw() {
+void Entity::draw() 
+{
 	Composite::draw();
 
 	if (enabled) {

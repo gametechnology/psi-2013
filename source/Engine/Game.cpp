@@ -50,8 +50,8 @@ void Game::run()
 	bool switchDraws = false;
 
 	//Main loop
-	while(device -> run( ) )
-	{		
+	while( device -> run( ) )
+	{	
 		input->endInputProcess();
 
 		game->update();
@@ -59,43 +59,45 @@ void Game::run()
 
 		// Clearing the screen
 		driver -> beginScene(true, true, irr::video::SColor(255,100,101,140));
-
+	
 		//Irrlicht draw all
 		sceneManager->drawAll();
-
+	
 		//Print the Hierarchy of the latest scene
 		if (input->isKeyboardButtonReleased(KEY_KEY_V))
 			Hierarchy::Visualize(sceneManager->getLastScene());
-
+		
 		// Quick hack to switch to switch the order of draws. We had some problems with drawing stuff because of the draw order.
 		if(input->isKeyboardButtonPressed(KEY_KEY_K))
 			switchDraws = !switchDraws;
-
+	
 		if(switchDraws)
 		{
+			
 			//Irrlicht GUI
-			guiEnv->drawAll();
-
+			guiEnv->drawAll();			
 			//Game engine draw
 			game->draw();
+			
 		}
+		
 		else
 		{
+			//this is the most probable place where the game crashes.
 			//Game engine draw
 			game->draw();
-
 			//Irrlicht GUI
 			guiEnv->drawAll();
 		}
+
 
 		// End the scene
 		driver->endScene();
-
 		// Other shit
-		input->startInputProcess();
+		input->startInputProcess();		
 		Network::GetInstance()->DistributeReceivedPackets();
+	
 	}
-
 	device->drop();
 }
 

@@ -1,5 +1,5 @@
 #include <Engine\Composite.h>
-
+#include <iostream>
 Composite::Composite() {
 	initialized = false;
 	destroyed = false;
@@ -27,8 +27,7 @@ void Composite::lateUpdate() {
 }
 
 void Composite::draw() {
-	
-}
+	}
 
 void Composite::handleMessage(unsigned int message) {
 	

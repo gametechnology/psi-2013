@@ -21,6 +21,11 @@ PlayerManager :: ~PlayerManager( )
 	Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_REMOVE_PLAYER_DATA, this );
 }
 
+PlayerData *PlayerManager :: GetLocalPlayerData( )
+{
+	return GetPlayerData( _localPlayer_id );
+}
+
 void PlayerManager :: UpdatePlayer( int player_id, StationType t )
 {
 	//here, we received a message that one of the players updated their data.

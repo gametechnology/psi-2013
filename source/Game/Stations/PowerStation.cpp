@@ -312,9 +312,9 @@ void PowerStation::update()
 void PowerStation::draw()
 {
 
-	if (env != NULL)
+	/*if (env != NULL)
 		env->drawAll();
-	Station::draw();
+	Station::draw();*/
 }
 
 //This method displays the selected station. We're using an integer which indicates which station is currently selected. 
