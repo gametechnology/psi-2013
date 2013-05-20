@@ -211,8 +211,11 @@ void Network::DistributePacket(NetworkPacket networkPacket)
 		bool sendall;
 		networkPacket >> sendall;
 		if(IsServer() && sendall){
-			networkPacket << sendall;
+			sf::Packet tempPacket = networkPacket;
+			networkPacket.clear();
+			networkPacket << true;
 			networkPacket << networkPacket.ipadress;
+			networkPacket.append(tempPacket.getData(), tempPacket.getDataSize());
 			SendServerPacket(networkPacket);
 		}
 		if(!IsServer() && sendall)
