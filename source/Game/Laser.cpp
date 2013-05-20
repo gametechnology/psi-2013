@@ -9,10 +9,14 @@ Laser::Laser() : Entity()
 }
 
 void Laser::onAdd() {
+	Entity::onAdd();
+
 	addChild(new IrrlichtNode(irr::io::path("../assets/Models/laser.3ds")));
 }
 
 void Laser::init() {
+	Entity::init();
+
 	disable();
 }
 
@@ -22,7 +26,7 @@ Laser::~Laser() {
 
 void Laser::fire(Entity* origin, vector3df target, f32 speed)
 {
-	Composite::enable();
+	Entity::enable();
 	
 	transform->position = origin->transform->position;
 	transform->rotation = parent->transform->rotation;

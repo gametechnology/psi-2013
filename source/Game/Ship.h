@@ -17,6 +17,7 @@
 #include "Thruster.h"
 #include "Engine\Camera.h"
 #include "ShipMover.h"
+#include "Laser.h"
 
 class DefenceStation;
 class HelmStation;
@@ -65,6 +66,8 @@ public:
 	bool getShipDestroyed();
 
 	void SwitchToStation(StationType stationType);
+
+	void fireLaser();
 private:
 
 	Station				*_currentStation;
@@ -76,5 +79,8 @@ private:
 	stringw varToString(stringw str1, float var);
 
 	void setInertiaMatrix(float h, float w, float d, float m);
+
+	vector<Laser*> _laser;
+	int _laserCount, _laserCounter;
 };
 #endif

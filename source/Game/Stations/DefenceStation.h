@@ -2,7 +2,6 @@
 #define DEFENCE_STATION
 
 #include "Station.h"
-#include "..\Ship.h"
 #include <time.h>
 #include <map>
 

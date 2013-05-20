@@ -11,10 +11,12 @@ Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 
 Ship::~Ship(void)
 {
-	
+	Entity::~Entity();
 }
 
 void Ship::onAdd() {
+	Entity::onAdd();
+
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
 
@@ -26,7 +28,7 @@ void Ship::onAdd() {
 	addChild(_navigationStation		= new NavigationStation(this));
 	addChild(_weaponStation			= new WeaponStation(this));
 	addChild(_powerStation			= new PowerStation(this));
-	
+
 	this->_defenceStation->init();
 	this->_helmStation->init();
 	this->_navigationStation->init();
@@ -41,9 +43,8 @@ void Ship::onAdd() {
 
 	//Camera
 	_camera = new Camera();
-	_camera->setTarget(vector3df(0,0,0));
-	_camera->setUpVector(vector3df(0,1,0));
 	addChild(_camera);
+	_camera->createNode();
 	
 	//Thrusters
 	/*_thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0, 0, -4));
@@ -70,7 +71,15 @@ void Ship::onAdd() {
 	this->transform->position = &startPosition;
 	this->transform->rotation = &startRotation;
 
+	_laserCount = 10;
 
+	for (int i = 0; i < _laserCount; i++)
+		_laser.push_back(new Laser());
+
+	for (int i = 0; i < _laserCount; i++)
+		scene->addChild(_laser[i]);
+
+	_laserCounter = 0;
 }
 
 void Ship::init() 
@@ -163,8 +172,6 @@ void Ship :: update()
 	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
 		this->_shipDestroyed = true;
 	}
-
-	Entity :: update();
 }
 
 Thruster** Ship :: GetThrusters()
@@ -200,8 +207,8 @@ void Ship :: SwitchToStation(StationType stationType)
 			return;
 
 		//First remove the currentStation from the shipComponents
-		_currentStation->OnDisabled();
-		removeChild(_currentStation);
+		_currentStation->disable();
+		//removeChild(_currentStation);
 		//_currentStation->Disable();
 	}
 
@@ -209,8 +216,8 @@ void Ship :: SwitchToStation(StationType stationType)
 	_currentStation = this->GetStation(stationType);
 
 	//Init and add the new station
-	_currentStation->OnEnabled();
-	addChild(_currentStation);
+	_currentStation->enable();
+	//addChild(_currentStation);
 	//_currentStation->Enable();
 }
 
@@ -223,10 +230,10 @@ int Ship :: getShipHealth()
 {
 
 	return (this->_defenceStation->getHealth() +
-			this->_helmStation->getHealth() +
-			this->_navigationStation->getHealth() +
-			this->_powerStation->getHealth() +
-			this->_weaponStation->getHealth());
+		this->_helmStation->getHealth() +
+		this->_navigationStation->getHealth() +
+		this->_powerStation->getHealth() +
+		this->_weaponStation->getHealth());
 }
 
 bool Ship :: getShipDestroyed()
@@ -249,4 +256,12 @@ void Ship::setInertiaMatrix(float h, float w, float d, float m)
 	inertiaData[15] = 1.0f;
 
 	_inertiaMatrix->setM(inertiaData);
+}
+
+void Ship::fireLaser()
+{
+	_laser[_laserCounter++]->fire(this, _camera->getCameraNode()->getTarget(), 1.0);
+
+	if(_laserCounter >= _laserCount)
+		_laserCounter = 0;
 }

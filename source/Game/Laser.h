@@ -20,7 +20,7 @@ class Laser : public Entity
 		virtual void init();
 		virtual void onAdd();
 
-		void fire(Entity* parent, vector3df target, f32 speed);
+		void fire(Entity* origin, vector3df target, f32 speed);
 		bool isAlive;
 		void update();
 		void contactResolverA(Enemy* input);

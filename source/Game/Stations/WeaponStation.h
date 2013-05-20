@@ -1,17 +1,23 @@
-#ifndef WEAPON_STATION
-#define WEAPON_STATION
-
-#include "Station.h"
-#include "..\Ship.h"
+#pragma once
+#include "../Ship.h"
 
 class WeaponStation : public Station {
 public:
-	WeaponStation( Ship *ship );
-	~WeaponStation(void);
+	WeaponStation(Ship *ship);
+	~WeaponStation();
 
-	void DoCameraShake();
-	void OnEnabled();
-	void OnDisabled();
+	void onAdd();
+	void init();
+
+	void update();
+	void draw();
+
+	void enable();
+	void disable();
+
+	void OnEnabled(){};
+	void OnDisabled(){};
+	void DoCameraShake(){};
+private:
+	irr::video::ITexture *_stationTexture;
 };
-
-#endif
