@@ -1,5 +1,7 @@
 #include "SendAndReceivePackets.h"
 
+Game* SendAndReceivePackets::staticGame;
+
 void SendAndReceivePackets::sendPacket(NetworkPacket packet, const bool reliable)
 {
 	Network::GetInstance()->SendPacket(packet, reliable);
@@ -134,7 +136,13 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& pac
 sf::Packet& operator <<(sf::Packet& out, Scene* in)
 {
 	//edit this if more is needed to send a scene over
-	return out << in->game->sceneManager->getNameScene(in)->name;
+	if(in != NULL)
+	{
+		return out << in->game->sceneManager->getNameScene(in)->name;
+	}
+	char* name;
+	name = "";
+	return out << name;
 }
 
 sf::Packet& operator >>(sf::Packet& in, Scene* out)
@@ -212,6 +220,8 @@ sf::Packet& operator >>(sf::Packet& in, Laser& out)
 	irr::core::vector3df position;
 	irr::core::vector3df velocity;
 	irr::core::vector3df rotation;
+
+	scene->game = SendAndReceivePackets::staticGame;
 
 	in >> id >> scene >> enabled >> position >> velocity >> rotation;
 

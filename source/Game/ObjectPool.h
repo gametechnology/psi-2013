@@ -2,7 +2,6 @@
 #define OBJECT_POOL_H
 
 #include "Engine/Entity.h"
-#include "SendAndReceivePackets.h"
 #include "NetworkInterface.h"
 
 template<class T> class ObjectPool 
@@ -47,26 +46,19 @@ public:
 		FreeAll();
 	}
 
-	//currently only handles the lasers
-	void sendObjectPacket()
+	//returns the list of the objects in the pool
+	std::vector<T*> getAllObjects()
 	{
-		if(Network::GetInstance()->IsServer())
-		{
-			if(dynamic_cast<Laser*>(this->_objectList[0]))
-			{
-				SendAndReceivePackets::sendLazerPacket(this->_objectList);
-			}
-		}
+		return this->_objectList;
 	}
 
-	void receivePacket(NetworkPacket& packet)
+	//only sets the list when it is a client
+	void setAllObjects(std::vector<T*> lazerList)
 	{
 		if(!Network::GetInstance()->IsServer())
 		{
-			if(dynamic_cast<Laser*>(this->_objectCount[0]))
-			{
-				this->_objectList = SendAndReceivePackets::receiveLaserPacket(packet, this->_objectList);
-			}
+			this->_objectCount = lazerList.size();
+			this->_objectList = lazerList;
 		}
 	}
 

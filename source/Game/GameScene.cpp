@@ -2,16 +2,20 @@
 #include "MapGenerator.h"
 #include "SectorManager.h"
 #include "Shipmap.h"
-#include "ObjectPool.h"
-#include "Laser.h"
+#include "SendAndReceivePackets.h"
 
 GameScene::GameScene() : Scene() {
 
 }
 
 void GameScene::onAdd() {
-	ObjectPool<Laser>* laserPool = new ObjectPool<Laser>(50);
-	EnemyFighter::laserPool = *laserPool;
+
+	SendAndReceivePackets::staticGame = this->game;
+	Network::GetInstance()->AddListener(SERVER_LASER, this);
+
+	this->_sendLasersTimer = 0;
+	this->_laserPool = new ObjectPool<Laser>(50);
+	EnemyFighter::laserPool = *_laserPool;
 	GalaxyMap* galaxyMap = new GalaxyMap(300, 300, 15);
 	
 	galaxyMap->createMap(20, 2, 5);
@@ -29,7 +33,25 @@ void GameScene::init() {
 }
 
 void GameScene::update() {
+	if(Network::GetInstance()->IsServer())
+	{
+		this->_sendLasersTimer++;
+		if(this->_sendLasersTimer > 50)
+		{
+			SendAndReceivePackets::sendLazerPacket(this->_laserPool->getAllObjects());
+			this->_sendLasersTimer = 0;
+		}
+	}
+
 	Scene::update();
+}
+
+void GameScene::HandleNetworkMessage(NetworkPacket packet)
+{
+	if(packet.GetType() == SERVER_LASER)
+	{
+		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacket(packet, this->_laserPool->getAllObjects()));
+	}
 }
 
 void GameScene::switchStation(StationType type)

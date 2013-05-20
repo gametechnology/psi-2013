@@ -13,6 +13,8 @@
 static class SendAndReceivePackets
 {
 public:
+
+	static Game* staticGame;
 	//sends a packet to the server
 	static void sendPacket(NetworkPacket packet, const bool reliable = false);
 
