@@ -13,7 +13,6 @@
 #include "Engine/Entity.h"
 #include "Engine/IrrlichtNode.h"
 #include "Player.h"
-#include "Engine/Input.h"
 #include "Thruster.h"
 #include "Engine\Camera.h"
 #include "ShipMover.h"

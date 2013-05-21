@@ -1,17 +1,23 @@
-#ifndef HELM_STATION
-#define HELM_STATION
+#pragma once
+#include "../Ship.h"
 
-#include "Station.h"
-#include "..\Ship.h"
-
-class HelmStation : public Station 
-{
+class HelmStation : public Station {
 public:
-	HelmStation(Ship* ship);
-	~HelmStation(void);	
-	void DoCameraShake( );
-	void OnEnabled();
-	void OnDisabled();
-};
+	HelmStation(Ship *ship);
+	~HelmStation();
 
-#endif
+	void onAdd();
+	void init();
+
+	void update();
+	void draw();
+
+	void enable();
+	void disable();
+
+	void OnEnabled(){};
+	void OnDisabled(){};
+	void DoCameraShake(){};
+private:
+	irr::video::ITexture *_stationTexture;
+};
