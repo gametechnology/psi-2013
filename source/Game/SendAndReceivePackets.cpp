@@ -107,7 +107,7 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& pac
 		{
 			if(serverList[i].getId() == laserList[j]->getId())
 			{
-				if(serverList[i].scene != laserList[j]->scene)
+				if(serverList[i].scene != laserList[j]->scene && laserList[j]->scene != NULL)
 				{
 					laserList[j]->scene->removeChild(laserList[j], false);
 				}
@@ -147,14 +147,10 @@ sf::Packet& operator <<(sf::Packet& out, Scene* in)
 
 sf::Packet& operator >>(sf::Packet& in, Scene* out)
 {
-	char* sceneName;
+	char* sceneName = new char();
 	in >> sceneName;
 
-	//the scene you currently send with needs the game so if you make a temporarely scene set the game
-	if(out->game != NULL)
-	{
-		out = out->game->sceneManager->getScene(sceneName);
-	}
+	out = SendAndReceivePackets::staticGame->sceneManager->getScene(sceneName);
 
 	return in;
 }
@@ -209,19 +205,18 @@ sf::Packet& operator >>(sf::Packet& in, vector<Enemy>& out)
 
 sf::Packet& operator <<(sf::Packet& out, Laser& in)
 {
-	return out << in.getId() << in.scene << in.enabled << in.transform->position << in.transform->velocity << in.transform->rotation;
+	return out << in.getId() << in.scene << in.enabled << *in.transform->position << *in.transform->velocity << *in.transform->rotation;
 }
 
 sf::Packet& operator >>(sf::Packet& in, Laser& out)
 {
-	int id;
-	Scene* scene;
+	Scene* scene = new Scene();
 	bool enabled;
 	irr::core::vector3df position;
 	irr::core::vector3df velocity;
 	irr::core::vector3df rotation;
 
-	scene->game = SendAndReceivePackets::staticGame;
+	int id;
 
 	in >> id >> scene >> enabled >> position >> velocity >> rotation;
 

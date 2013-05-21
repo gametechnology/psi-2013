@@ -67,6 +67,9 @@ NameScene* SceneManager::getNameScene(char* name){
 				return &nameScenes[i];
 			}
 		} 
+	}else
+	{
+		return NULL;
 	}
 }
 
@@ -86,7 +89,13 @@ NameScene* SceneManager::getNameScene(Scene* scene)
 Scene* SceneManager::getScene(char* name){
 
 	NameScene* namesc = getNameScene(name);
-	return namesc->scene;
+	if(namesc != NULL)
+	{
+		return namesc->scene;
+	}else
+	{
+		return NULL;
+	}
 
 }
 

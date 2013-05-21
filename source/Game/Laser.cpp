@@ -12,10 +12,7 @@ Laser::Laser() : Entity()
 	this->disable();
 	this->scene = NULL;
 	this->_hasAnIrrlichtNode = false;
-	if(Network::GetInstance()->IsServer())
-	{
-		this->_id = this->newLaserId++;
-	}
+	this->_id = this->newLaserId++;
 
 	//the addchild is located in the constructor because a laser is being added more than once
 }
@@ -66,10 +63,7 @@ int Laser::getId()
 
 void Laser::setId(int id)
 {
-	if(!Network::GetInstance()->IsServer())
-	{
-		this->_id = id;
-	}
+	this->_id = id;
 }
 
 void Laser::update()
