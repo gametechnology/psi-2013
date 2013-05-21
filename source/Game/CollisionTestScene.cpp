@@ -169,9 +169,10 @@ void CollisionTestScene::createRemoveEnemyTest()
 		for (unsigned int i = 0; i < _enemyList.size(); i++)
 		{
 			_enemyList[i]->destroy();
+			_enemyList.erase(_enemyList.begin()+i);
 		//	delete _enemyList[i];
 		}
-		_enemyList.clear();
+	//	_enemyList.clear();
 		
 		std::cout << "Test Remove Enemy is executed succesfully \n";
 		removeenemytestinitiationcheck = true;
