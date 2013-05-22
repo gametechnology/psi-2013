@@ -36,6 +36,7 @@ void CollisionTestScene::init() {
 void CollisionTestScene::update() {
 
 	//Using the Input Manager, different targets are set
+	//key 2=drone, key3=fighter, key4=asteroid, key5=ship
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_1))
 	{
 		std::cout << "Test Laser-Enemy is activated \n";
@@ -73,7 +74,7 @@ void CollisionTestScene::update() {
 	}
 
 	//std::cout<<"target " << target;
-	//Tell the other EnemyFighters to shoot at target dummy	
+	//Tell the other EnemyFighters to shoot at target 	
 	for(int l = 0; l < _enemyList.size(); l++)
 	{
 		if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
@@ -98,7 +99,7 @@ void CollisionTestScene::update() {
 					{
 						if(_enemyList.size()>=4)
 						{
-							if(_enemyList[2] != NULL&&_enemyList[3]!=NULL)
+							if(_enemyList[0] != NULL&&_enemyList[1]!=NULL&&_enemyList[2] != NULL&&_enemyList[3]!=NULL)
 							{
 								_enemyList[l]->inRangeList.push_back(_enemyList[2]); //to fighter 1
 								_enemyList[l]->inRangeList.push_back(_enemyList[3]);
@@ -109,7 +110,7 @@ void CollisionTestScene::update() {
 					{
 						if(_enemyList.size()>=6)
 						{
-							if(_enemyList[4] != NULL&&_enemyList[5]!=NULL)
+							if(_enemyList[0] != NULL&&_enemyList[1]!=NULL&&_enemyList[2] != NULL&&_enemyList[3]!=NULL&&_enemyList[4] != NULL&&_enemyList[5]!=NULL)
 							{
 								_enemyList[l]->inRangeList.push_back(_enemyList[4]); //to asteroid 1
 								_enemyList[l]->inRangeList.push_back(_enemyList[5]);
@@ -120,7 +121,7 @@ void CollisionTestScene::update() {
 					{
 						if(_enemyList.size()>=7)
 						{
-							if(_enemyList[6] != NULL)
+							if(_enemyList[0] != NULL&&_enemyList[1]!=NULL&&_enemyList[2] != NULL&&_enemyList[3]!=NULL&&_enemyList[4] != NULL&&_enemyList[5]!=NULL&&_enemyList[6] != NULL)
 							{
 								_enemyList[l]->inRangeList.push_back(_enemyList[6]); //to dummyship
 							}
@@ -167,7 +168,6 @@ void CollisionTestScene::createLaserTestObjects(){
 	}
 
 }
-
 
 CollisionTestScene::~CollisionTestScene() {
 
