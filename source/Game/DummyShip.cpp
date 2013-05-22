@@ -1,7 +1,7 @@
 #include "DummyShip.h"
 
 
-DummyShip::DummyShip(vector3df position) : Entity ()
+DummyShip::DummyShip(vector3df position) : Enemy ()
 {
 	this->transform->position = &position;
 }

@@ -9,7 +9,7 @@
 #include "ShipMover.h"
 
 
-class DummyShip : public Entity
+class DummyShip : public Enemy
 {
 public:
 	DummyShip(vector3df position);
