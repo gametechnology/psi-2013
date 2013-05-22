@@ -1,5 +1,10 @@
 /* 
 * Basic ship mover, does not use thrusters.
+*
+* Use keys W and S to got forward or backward.
+* Use keys Arrow Up and Arrow Down to pitch.
+* Use keys Arrow Left and Arrow Right to turn.
+* Use keys A and D to roll.
 */
 #include "BasicShipMover.h"
 
