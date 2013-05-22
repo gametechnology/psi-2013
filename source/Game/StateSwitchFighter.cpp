@@ -43,11 +43,15 @@ void StateSwitchFighter::handleOffensive()
 	StateSwitch::handleOffensive();
 	if(!StateSwitchFighter::getParent()->inRangeList.empty() && StateSwitchFighter::getParent()->inRangeList.back() != NULL)
 	{
-		if((*StateSwitchFighter::getParent()->inRangeList.back()->transform->position - *StateSwitchFighter::getParent()->transform->position).getLength() > 10)
+		if(StateSwitchFighter::getParent()->inRangeList.back()->transform->position == NULL)
 		{
-			StateSwitchFighter::getParent()->chase(*StateSwitchFighter::getParent()->inRangeList.back()->transform->position);
+			StateSwitchFighter::getParent()->inRangeList.clear();
 		}
-		StateSwitchFighter::getParent()->setTarget(*StateSwitchFighter::getParent()->inRangeList.back()->transform->position);
+			if((*StateSwitchFighter::getParent()->inRangeList.back()->transform->position - *StateSwitchFighter::getParent()->transform->position).getLength() > 10)
+			{
+				StateSwitchFighter::getParent()->chase(*StateSwitchFighter::getParent()->inRangeList.back()->transform->position);
+			}
+			StateSwitchFighter::getParent()->setTarget(*StateSwitchFighter::getParent()->inRangeList.back()->transform->position);
 	}
 
 }

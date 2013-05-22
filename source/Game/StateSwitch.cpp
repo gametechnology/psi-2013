@@ -185,7 +185,8 @@ void StateSwitch::handleFleeing()
 void StateSwitch::handleDeath()
 {
 	//delete parent_;
-	parent_->destroy();
+	parent_->transform->position->operator=(vector3df(0,0,0));
+	//parent_->destroy();
 }
 
 void StateSwitch::setParent(Enemy* parent)
