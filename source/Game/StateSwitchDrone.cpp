@@ -14,21 +14,21 @@ void StateSwitchDrone::handleWander()
 void StateSwitchDrone::handleFollow()
 {
 	StateSwitch::handleFollow();
-	if(!StateSwitchDrone::getParent()->inRangeList.empty())
+	if(!StateSwitchDrone::getParent()->inRangeList.empty() && StateSwitchDrone::getParent()->inRangeList.back() != NULL)
 		StateSwitchDrone::getParent()->chase(*StateSwitchDrone::getParent()->inRangeList.back()->transform->position);
 }
 
 void StateSwitchDrone::handleOffensive()
 {
 	StateSwitch::handleOffensive();
-	if(!StateSwitchDrone::getParent()->inRangeList.empty())
+	if(!StateSwitchDrone::getParent()->inRangeList.empty() && StateSwitchDrone::getParent()->inRangeList.back() != NULL)
 		StateSwitchDrone::getParent()->chase(*StateSwitchDrone::getParent()->inRangeList.back()->transform->position);
 }
 
 void StateSwitchDrone::handleDefensive()
 {
 	StateSwitch::handleDefensive();
-	if(!StateSwitchDrone::getParent()->inRangeList.empty())
+	if(!StateSwitchDrone::getParent()->inRangeList.empty() && StateSwitchDrone::getParent()->inRangeList.back() != NULL)
 		StateSwitchDrone::getParent()->flee(*StateSwitchDrone::getParent()->inRangeList.back()->transform->position);
 }
 

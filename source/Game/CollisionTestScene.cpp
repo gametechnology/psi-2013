@@ -65,11 +65,14 @@ void CollisionTestScene::update() {
 	{
 		if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
 		{
-			//_enemyList[l]->inRangeList.push_back(dummyFighter);	
-			if(_enemyList[0] != NULL&&_enemyList[1]!=NULL)
+			//_enemyList[l]->inRangeList.push_back(dummyFighter);
+			if(_enemyList.size() >= 2)
 			{
-				_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
-				_enemyList[l]->inRangeList.push_back(_enemyList[1]);
+				if(_enemyList[0] != NULL&&_enemyList[1]!=NULL)
+				{
+					_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
+					_enemyList[l]->inRangeList.push_back(_enemyList[1]);
+				}
 			}
 			
 			//_enemyList[l]->inRangeList.push_back(_enemyList[7]); //to asteroid 1

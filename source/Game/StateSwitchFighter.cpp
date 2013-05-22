@@ -31,7 +31,7 @@ void StateSwitchFighter::handleWander()
 void StateSwitchFighter::handleFollow()
 {
 	StateSwitch::handleFollow();
-	if(!StateSwitchFighter::getParent()->inRangeList.empty())
+	if(!StateSwitchFighter::getParent()->inRangeList.empty() && StateSwitchFighter::getParent()->inRangeList.back() != NULL)
 		if((*StateSwitchFighter::getParent()->inRangeList.back()->transform->position - *StateSwitchFighter::getParent()->transform->position).getLength() > 10)
 		{
 			StateSwitchFighter::getParent()->chase(*StateSwitchFighter::getParent()->inRangeList.back()->transform->position);
@@ -41,7 +41,7 @@ void StateSwitchFighter::handleFollow()
 void StateSwitchFighter::handleOffensive()
 {
 	StateSwitch::handleOffensive();
-	if(!StateSwitchFighter::getParent()->inRangeList.empty())
+	if(!StateSwitchFighter::getParent()->inRangeList.empty() && StateSwitchFighter::getParent()->inRangeList.back() != NULL)
 	{
 		if((*StateSwitchFighter::getParent()->inRangeList.back()->transform->position - *StateSwitchFighter::getParent()->transform->position).getLength() > 10)
 		{
@@ -55,7 +55,7 @@ void StateSwitchFighter::handleOffensive()
 void StateSwitchFighter::handleDefensive()
 {
 	StateSwitch::handleDefensive();
-	if(!StateSwitchFighter::getParent()->inRangeList.empty())
+	if(!StateSwitchFighter::getParent()->inRangeList.empty() && StateSwitchFighter::getParent()->inRangeList.back() != NULL)
 	{
 		if((*StateSwitchFighter::getParent()->inRangeList.back()->transform->position - *StateSwitchFighter::getParent()->transform->position).getLength() > 20)
 		{
@@ -68,7 +68,7 @@ void StateSwitchFighter::handleDefensive()
 void StateSwitchFighter::handleFleeing()
 {
 	StateSwitch::handleFleeing();
-	if(!StateSwitchFighter::getParent()->inRangeList.empty())
+	if(!StateSwitchFighter::getParent()->inRangeList.empty() && StateSwitchFighter::getParent()->inRangeList.back() != NULL)
 	{
 		if((*StateSwitchFighter::getParent()->inRangeList.back()->transform->position - *StateSwitchFighter::getParent()->transform->position).getLength() > 20)
 		{
