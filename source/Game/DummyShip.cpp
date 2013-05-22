@@ -12,6 +12,7 @@ DummyShip::~DummyShip(void)
 }
 
 void DummyShip::onAdd() {
+	//Creates the visual feedback of health. The ship, the GUIenviroment to display the feed back, adds the collision component and handles everything to at it to the scene
 	health = 100;
 	this->env = game->device->getGUIEnvironment();
 	irr::core::stringw strShipHealth = "ship health: "; 
@@ -20,7 +21,6 @@ void DummyShip::onAdd() {
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
 	Entity::onAdd();
-	*this->transform->radii = irr::core::vector3df(1000,1000,1000);
 	Collision* collision = new Collision();
 	addComponent(collision);
 }
@@ -52,6 +52,7 @@ irr::core::stringw DummyShip::varToString(irr::core::stringw str1, float var, ir
 
 void DummyShip :: update()
 {
+	//checks for health below zero, if so it's reset to 0 and the check will say the dummy ship is destroyed and updates the text on screen to the current hp
 	if (health < 0)
 	{
 		health = 0;
@@ -74,6 +75,7 @@ void DummyShip :: draw()
 
 void DummyShip :: contactResolverA(Entity* input)
 {
+	//when the ship is hit, it will lose 30 hp. Does not matter what it get hits by.
 	std::printf("HIT on Ship!");
 	health -= 30;
 	Entity::contactResolverA(input);
