@@ -48,7 +48,14 @@ void EnemyFighter::update()
 
 	if(game->input->isKeyboardButtonPressed(irr::KEY_KEY_M))
 	{
-		this->fireLaserAt(vector3df(this->getTarget().X , this->getTarget().Y , this->getTarget().Z ));
+		this->_fireTime++;
+
+		if(this->_fireTime >= 200)
+		{
+			//fire laser to target
+			this->fireLaserAt(this->getTarget());
+			this->_fireTime = 0;
+		}
 	}
 
 	if(EnemyFighter::stateSwitch->getState() == StateSwitch::STATE_OFFENSIVE)
@@ -56,7 +63,7 @@ void EnemyFighter::update()
 		//Should be activated when in current state
 		this->_fireTime++;
 
-		if(this->_fireTime >= 400)
+		if(this->_fireTime >= 200)
 		{
 			//fire laser to target
 			this->fireLaserAt(this->getTarget());
