@@ -21,6 +21,8 @@ void DummyShip::onAdd() {
 	addChild(model);
 	Entity::onAdd();
 	*this->transform->radii = irr::core::vector3df(1000,1000,1000);
+	Collision* collision = new Collision();
+	addComponent(collision);
 }
 
 void DummyShip::init() 
