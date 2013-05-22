@@ -41,6 +41,10 @@ void GameScene::update() {
 			SendAndReceivePackets::sendLazerPacket(this->_laserPool->getAllObjects());
 			this->_sendLasersTimer = 0;
 		}
+		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z))
+		{
+			SendAndReceivePackets::sendWinLosePacket(1);
+		}
 	}
 
 	Scene::update();
@@ -51,6 +55,10 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 	if(packet.GetType() == SERVER_LASER)
 	{
 		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacket(packet, this->_laserPool->getAllObjects()));
+	}
+	if(packet.GetType() == SERVER_WINLOSE)
+	{
+		SendAndReceivePackets::receiveWinLosePacket(packet, 1, this);
 	}
 }
 
