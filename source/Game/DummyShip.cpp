@@ -20,6 +20,7 @@ void DummyShip::onAdd() {
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
 	Entity::onAdd();
+	*this->transform->radii = irr::core::vector3df(1000,1000,1000);
 }
 
 void DummyShip::init() 
@@ -72,5 +73,6 @@ void DummyShip :: draw()
 void DummyShip :: contactResolverA(Entity* input)
 {
 	std::printf("HIT on Ship!");
+	health -= 30;
 	Entity::contactResolverA(input);
 }
