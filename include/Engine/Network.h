@@ -26,10 +26,10 @@ enum PacketType
 	HOST_DISCONNECT,
 	START_GAME,
 	SERVER_ENEMY,
+	SHIP_ACCELERATION,
 	CLIENT_SWITCH_STATION,
 	CLIENT_LEAVE_STATION,
 	CLIENT_POWER_CHANGED,
-	
 	//Add new PacketTypes above
 	LAST_TYPE
 };
@@ -47,6 +47,7 @@ inline char* getPacketTypeName(PacketType type)
 		case HOST_DISCONNECT: { return "HOST_DISCONNECT"; break; }
 		case START_GAME: { return "START_GAME"; break; }
 		case SERVER_ENEMY: { return "SERVER_ENEMY"; break; }
+		case SHIP_ACCELERATION: { return "SHIP_ACCELERATION"; break; }
 		case CLIENT_SWITCH_STATION: { return "CLIENT_SWITCH_STATION"; break; }
 		case CLIENT_LEAVE_STATION: { return "CLIENT_LEAVE_STATION"; break; }
 		case CLIENT_POWER_CHANGED: { return "CLIENT_POWER_CHANGED"; break; }
@@ -82,6 +83,7 @@ private:
 	ENetEvent _event;
 	ENetPeer* _peer;
 	unsigned int _packetTypeChecksum;
+	NetworkPacket AddSendAll(NetworkPacket packet, bool sendall);
 
 public:
 	~Network();
@@ -121,6 +123,10 @@ public:
 	*/
 	void SendPacket(NetworkPacket packet, const bool reliable = false);
 
+
+	void SendPacketToAllClients(NetworkPacket packet, const bool reliable = false);
+
+	
 	/*
 	* If you are a server, sends a packet to all connected clients, including yourself, as if you are be a client.
 	*/

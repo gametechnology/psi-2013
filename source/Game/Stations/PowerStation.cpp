@@ -25,11 +25,10 @@ void PowerStation :: init() {
 		skin->setFont(font);
 	else
 		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
-	createUI();
-
+	
 	help = new HudHelpText(L"Klik hier ofzo!\nBlah", vector2df(100,0));
 	addComponent(help);
-
+	createUI();
 	Station::init();
 }
 
@@ -288,13 +287,12 @@ void PowerStation::createScrollbar(){
 //Creates the station buttons.
 void PowerStation::createButtons(){
 	helmButton = env->addButton(rect<s32>(870, 460, 930, 520),0, GUI_ID_POWER_HELM,L"HLM",L"Helm Station");
-
 	weaponButton = env->addButton(rect<s32>(700, 560, 790, 660),0, GUI_ID_POWER_WEAPON,L"WPN",L"Weapons Station");
 
 	defenseButton = env->addButton(rect<s32>(700, 310, 790, 410),0, GUI_ID_POWER_DEFENCE,L"DEF",L"Defence Station");
 
 	navigationButton = env->addButton(rect<s32>(490, 310, 580, 410),0, GUI_ID_POWER_NAVIGATION,L"NAV",L"Navigation Station");
-
+	
 	//Placeholder code for Communication Station.
 
 	//IGUIButton *commbut;
@@ -355,11 +353,26 @@ void PowerStation::update()
 
 void PowerStation::draw()
 {
-
-	if (env != NULL)
-		env->drawAll();
+	//env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
+	//env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190,266));
 	Station::draw();
+
+	game->driver->draw2DImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), 
+		position2d<s32>(0,0), 
+		rect<s32>(0, 0, 1280, 720), 
+		0,
+		SColor(255, 255, 255, 255),
+		true);
+	game->driver->draw2DImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), 
+		position2d<s32>(190, 266), 
+		rect<s32>(0, 0, 1280, 720), 
+		0,
+		SColor(255, 255, 255, 255),
+		true);
 }
+
+
+
 
 //This method displays the selected station. We're using an integer which indicates which station is currently selected. 
 //context.selectedStation gets changed by the EventListener when the user presses of the station buttons.

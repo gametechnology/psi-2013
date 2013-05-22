@@ -24,7 +24,7 @@ class NavigationStation;
 class PowerStation;
 class WeaponStation;
 
-class Ship : public Entity
+class Ship : public Entity, public INetworkListener
 {
 public:
 	//Player *players;
@@ -42,6 +42,7 @@ public:
 	irr::gui::IGUIStaticText *navigationStationHealth;
 	irr::gui::IGUIStaticText *powerStationHealth;
 	irr::gui::IGUIStaticText *weaponStationHealth;
+	void HandleNetworkMessage(NetworkPacket packet); 
 
 	bool _shipDestroyed;
 

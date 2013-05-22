@@ -93,8 +93,8 @@ void ShipMover::NotMovementStuff(){
 	if(Network::GetInstance()->IsServer()){
 		if (lastsend + 1 < time(0) ){
 			Network::GetInstance()->SendServerPacket(movementPacket, false);
-
 			lastsend = time(0) ;
 		}
+	}
 	}
 }
