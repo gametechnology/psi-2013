@@ -56,15 +56,20 @@ void CollisionTestScene::update() {
 		std::cout << "Target is asteroid";
 		target = 3;
 	}
-	if(game->input->isKeyboardButtonPressed(KEY_KEY_8))
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_5))
 	{
 		std::cout << "Target is dummyship";
 		target = 4;
 	}
-	if(game->input->isKeyboardButtonPressed(KEY_KEY_9))
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_8))
 	{
 		std::cout << "Test Remove Enemy is activated \n";
 		createRemoveEnemyTest();
+	}
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_9))
+	{
+		std::cout << "Remove All enemies \n";
+		RemoveAllEnemies();
 	}
 
 	//Tell the other EnemyFighters to shoot at target dummy	
