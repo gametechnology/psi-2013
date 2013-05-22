@@ -61,10 +61,15 @@ void CollisionTestScene::update() {
 		std::cout << "Target is dummyship";
 		target = 4;
 	}
-	if(game->input->isKeyboardButtonPressed(KEY_KEY_9))
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_8))
 	{
 		std::cout << "Test Remove Enemy is activated \n";
 		createRemoveEnemyTest();
+	}
+	if(game->input->isKeyboardButtonPressed(KEY_KEY_9))
+	{
+		std::cout << "Remove All enemies \n";
+		RemoveAllEnemies();
 	}
 
 	std::cout<<"target " << target;
@@ -171,27 +176,49 @@ void CollisionTestScene::createLaserTestObjects(){
 CollisionTestScene::~CollisionTestScene() {
 
 }
-//Debug Key 5
+//Debug Key 8
 void CollisionTestScene::createRemoveEnemyTest()
 {
 	if (removeenemytestinitiationcheck)
 	{
+		//creates 5 enemy asteroids in a row and allows
+		//the next press to work
 		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,0,0), irr::core::vector3df(0.02f,0,0)));
+		addChild(_enemyList.back());
+		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,2,0), irr::core::vector3df(0.02f,0,0)));
+		addChild(_enemyList.back());
+		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,4,0), irr::core::vector3df(0.02f,0,0)));
+		addChild(_enemyList.back());
+		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,6,0), irr::core::vector3df(0.02f,0,0)));
+		addChild(_enemyList.back());
+		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,8,0), irr::core::vector3df(0.02f,0,0)));
 		addChild(_enemyList.back());
 		removeenemytestinitiationcheck = false;
 		std::cout << "Test Remove Enemy is initiated, press again to execute \n";
 	}
 	else
 	{
-		for (unsigned int i = 0; i < _enemyList.size(); i++)
+		//removes the second enemy in the list
+		//if only pressed once before it will remove the middle
+		_enemyList[2]->destroy();
+		_enemyList.erase(_enemyList.begin()+2);
+		std::cout << "Test Remove Enemy is executed succesfully \n";
+		removeenemytestinitiationcheck = true;
+	}
+}
+//Debug Key 9
+void CollisionTestScene::RemoveAllEnemies()
+{
+	//destroys all enemies and removes them from the _enemyList. 
+	//changes removetestinitioncheck back to true so that function
+	//won't try to remove an already removed enemy
+	if (_enemyList.size() != 0)
+	{
+		for (int i = 0; i < _enemyList.size(); i++)
 		{
 			_enemyList[i]->destroy();
-			_enemyList.erase(_enemyList.begin()+i);
-		//	delete _enemyList[i];
 		}
-	//	_enemyList.clear();
-		
-		std::cout << "Test Remove Enemy is executed succesfully \n";
+		_enemyList.clear();
 		removeenemytestinitiationcheck = true;
 	}
 }
