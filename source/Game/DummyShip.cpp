@@ -16,6 +16,8 @@ void DummyShip::onAdd() {
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
 	Entity::onAdd();
+	Collision* collision = new Collision();
+	addComponent(collision);
 }
 
 void DummyShip::init() 

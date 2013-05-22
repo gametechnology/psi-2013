@@ -72,7 +72,7 @@ void CollisionTestScene::update() {
 		RemoveAllEnemies();
 	}
 
-	std::cout<<"target " << target;
+	//std::cout<<"target " << target;
 	//Tell the other EnemyFighters to shoot at target dummy	
 	for(int l = 0; l < _enemyList.size(); l++)
 	{
