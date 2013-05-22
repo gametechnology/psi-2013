@@ -268,7 +268,7 @@ void Ship::setInertiaMatrix(float h, float w, float d, float m)
 
 void Ship::fireLaser()
 {
-	_laser[_laserCounter++]->fire(this, _camera->getCameraNode()->getTarget(), 1.0);
+	_laser[_laserCounter++]->fire(this->scene, this->transform, _camera->getCameraNode()->getTarget(), 1.0);
 
 	if(_laserCounter >= _laserCount)
 		_laserCounter = 0;
