@@ -13,7 +13,7 @@ CollisionTestScene::CollisionTestScene(void) : Scene()
 	//Create a list of the enemies
 	this->_enemyList = vector<Enemy*>();
 	//Uses the Pool Design pattern to create lasers and add them to each EnemyFighter
-	ObjectPool<Laser>* laserPool = new ObjectPool<Laser>(50);
+	ObjectPool<Laser>* laserPool = new ObjectPool<Laser>(500);
 	EnemyFighter::laserPool = *laserPool;
 }
 
@@ -67,56 +67,61 @@ void CollisionTestScene::update() {
 		createRemoveEnemyTest();
 	}
 
+	std::cout<<"target " << target;
 	//Tell the other EnemyFighters to shoot at target dummy	
 	for(int l = 0; l < _enemyList.size(); l++)
 	{
 		if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
 		{
-			//_enemyList[l]->inRangeList.push_back(dummyFighter);
 			if(_enemyList.size() >= 2)
 			{
 				switch(target)
 				{
-					case 1
-						:
-					{
-						if(_enemyList[0] != NULL&&_enemyList[1]!=NULL)
+					case 1:
+					{	
+						if(_enemyList.size()>=2)
 						{
-							_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
-							_enemyList[l]->inRangeList.push_back(_enemyList[1]);
+							if(_enemyList[0] != NULL&&_enemyList[1]!=NULL)
+							{
+								_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
+								_enemyList[l]->inRangeList.push_back(_enemyList[1]);
+							}
 						}
 					}break;
 					case 2:
 					{
-						if(_enemyList[2] != NULL&&_enemyList[3]!=NULL)
+						if(_enemyList.size()>=4)
 						{
-							_enemyList[l]->inRangeList.push_back(_enemyList[2]); //to fighter 1
-							_enemyList[l]->inRangeList.push_back(_enemyList[3]);
+							if(_enemyList[2] != NULL&&_enemyList[3]!=NULL)
+							{
+								_enemyList[l]->inRangeList.push_back(_enemyList[2]); //to fighter 1
+								_enemyList[l]->inRangeList.push_back(_enemyList[3]);
+							}
 						}
 					}break;
 					case 3:
 					{
-						if(_enemyList[4] != NULL&&_enemyList[5]!=NULL)
+						if(_enemyList.size()>=6)
 						{
-							_enemyList[l]->inRangeList.push_back(_enemyList[4]); //to asteroid 1
-							_enemyList[l]->inRangeList.push_back(_enemyList[5]);
+							if(_enemyList[4] != NULL&&_enemyList[5]!=NULL)
+							{
+								_enemyList[l]->inRangeList.push_back(_enemyList[4]); //to asteroid 1
+								_enemyList[l]->inRangeList.push_back(_enemyList[5]);
+							}
 						}
 					}break;
 					case 4:
 					{
-						if(_enemyList[6] != NULL)
+						if(_enemyList.size()>=7)
 						{
-							_enemyList[l]->inRangeList.push_back(_enemyList[6]); //to dummyship
+							if(_enemyList[6] != NULL)
+							{
+								_enemyList[l]->inRangeList.push_back(_enemyList[6]); //to dummyship
+							}
 						}
 					}break;
-
-
-				}
-				
-			}
-			
-			//_enemyList[l]->inRangeList.push_back(_enemyList[7]); //to asteroid 1
-			//_enemyList[l]->inRangeList.push_back(_enemyList[11]); //to asteroid 1
+				}				
+			}			
 		}
 	}
 
@@ -128,7 +133,7 @@ void CollisionTestScene::createLaserTestObjects(){
 	//Create a row of EnemyDrones
 	for(int i = 0; i < 2; i++) //create only 2 in stead of 5 for testing.
 	{
-		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
+		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,(irr::f32)(i + (i * i)+10*i),(irr::f32)(i + (i * i)+10*i))));
 		
 		addChild(_enemyList.back());
 	}
@@ -136,14 +141,14 @@ void CollisionTestScene::createLaserTestObjects(){
 	//Create a row of EnemyFighters
 	for(int j = 0; j < 2; j++)
 	{
-		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(20,0,(irr::f32)(j + (j * j)))));
+		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(20,(irr::f32)(j + (j * j)+10*j),(irr::f32)(j + (j * j)+10*j))));
 		addChild(_enemyList.back());
 	}
 
 	//Create a row of Enemy Asteroids
 	for(int k = 0; k < 2; k++)
 	{
-		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-20,0,(irr::f32)(k + (k * k))), irr::core::vector3df(0,0,0.01f)));
+		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-20,(irr::f32)(k + (k * k)+10*k),(irr::f32)(k + (k * k)+10*k)), irr::core::vector3df(0,0,0.01f)));
 		
 		addChild(_enemyList.back());
 	}
