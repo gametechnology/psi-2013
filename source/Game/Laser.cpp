@@ -21,7 +21,9 @@ void Laser::onAdd() {
 	if(!this->_hasAnIrrlichtNode)
 	{
 		addChild(new IrrlichtNode("../assets/Models/laser.3ds"));
+
 		this->_hasAnIrrlichtNode = true;
+		this->init();
 	}
 	Entity::onAdd();
 }

@@ -32,7 +32,7 @@ public:
 
 	ObjectPool() {};
 
-	ObjectPool(Entity* parent, int count)
+	ObjectPool(Entity& parent, int count)
 	{
 		_objectList = std::vector<T*>();
 		_objectCount = count;
@@ -40,7 +40,7 @@ public:
 		for(int i = 0; i < _objectCount; i++)
 		{
 			_objectList.push_back(new T());
-			parent->addChild(_objectList.back());
+			parent.addChild(_objectList.back());
 		}
 
 		FreeAll();
@@ -64,6 +64,8 @@ public:
 
 	virtual ~ObjectPool()
 	{
+		FreeAll();
+
 		for(unsigned i = 0; i < _objectList.size(); i++)
 		{
 			delete _objectList[i];
