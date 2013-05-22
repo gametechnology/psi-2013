@@ -90,11 +90,11 @@ void ShipMover::NotMovementStuff(){
 	movementPacket << entity->transform->angularVelocity;
 	
 	//Send packet to server
-	if(Network::GetInstance()->IsServer()){
+	
 		if (lastsend + 1 < time(0) ){
-			Network::GetInstance()->SendServerPacket(movementPacket, false);
+			Network::GetInstance()->SendPacketToAllClients(movementPacket, false);
 			lastsend = time(0) ;
 		}
-	}
-	}
+	
 }
+

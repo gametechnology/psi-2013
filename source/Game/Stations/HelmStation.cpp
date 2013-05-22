@@ -23,19 +23,7 @@ void HelmStation::init()
 	_stationTexture = game->driver->getTexture("../assets/Textures/Stations/HelmStation/helm_station.png");
 	game->driver->makeColorKeyTexture(_stationTexture, irr::core::vector2d<irr::s32>(0, 0));
 }
-void HelmStation :: update( )
-{
-	Station::update();
-	
-	 NetworkPacket packet(SHIP_ACCELERATION);
-	 packet << *_ship->transform->acceleration;
-	 packet << *_ship->transform->angularAccelaration;
-	 packet << *_ship->transform->position;
-	 packet << *_ship->transform->rotation;
-	 Network::GetInstance()->SendPacketToAllClients(packet, true);
 
-	 
-}
 
 void HelmStation::update()
 {

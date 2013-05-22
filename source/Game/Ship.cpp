@@ -21,7 +21,7 @@ void Ship::onAdd() {
 	Entity::onAdd();
 
 	
-	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
+//	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
 
@@ -48,8 +48,7 @@ void Ship::onAdd() {
 
 	//Camera
 	_camera = new Camera();
-	_camera->setTarget(vector3df(0,0,0));
-	_camera->setUpVector(vector3df(0,1,0));
+	
 	addChild(_camera);
 	_camera->createNode();
 	
@@ -273,14 +272,4 @@ void Ship::fireLaser()
 
 	if(_laserCounter >= _laserCount)
 		_laserCounter = 0;
-void Ship::HandleNetworkMessage(NetworkPacket packet)
-{
-	
-	if(packet.GetType() == SHIP_ACCELERATION )
-	{
-		 packet >> *transform->acceleration;
-		 packet >> *transform->angularAccelaration;
-		 packet >> *transform->position;
-		 packet >> *transform->rotation;
-	}
 }

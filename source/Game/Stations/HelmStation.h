@@ -11,8 +11,6 @@ public:
 
 	void onAdd();
 	void init();
-
-	void update();
 	void draw();
 
 	void enable();
