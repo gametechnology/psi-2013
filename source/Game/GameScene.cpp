@@ -12,6 +12,7 @@ void GameScene::onAdd() {
 
 	SendAndReceivePackets::staticGame = this->game;
 	Network::GetInstance()->AddListener(SERVER_LASER, this);
+	Network::GetInstance()->AddListener(SERVER_WINLOSE, this);
 
 	this->_sendLasersTimer = 0;
 	this->_laserPool = new ObjectPool<Laser>(50);
@@ -24,7 +25,7 @@ void GameScene::onAdd() {
 	addComponent(new SectorManager(galaxyMap));
 
 	_shipmap = new Shipmap(this);
-	addChild(_shipmap);
+	//addChild(_shipmap);
 
 }
 
@@ -48,9 +49,14 @@ void GameScene::update() {
 
 void GameScene::HandleNetworkMessage(NetworkPacket packet)
 {
+	std::cout<< packet.GetType() << endl;
 	if(packet.GetType() == SERVER_LASER)
 	{
 		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacket(packet, this->_laserPool->getAllObjects()));
+	}
+	if(packet.GetType() == SERVER_WINLOSE)
+	{
+		SendAndReceivePackets::receiveWinLosePacket(packet, 1, this);
 	}
 }
 
