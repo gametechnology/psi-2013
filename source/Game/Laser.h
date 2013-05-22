@@ -24,7 +24,7 @@ class Laser : public Entity
 		virtual void init();
 		virtual void onAdd();
 
-		void fire(Scene* scene, Transform* transform, vector3df target, f32 speed);
+		void fire(Transform* transform, vector3df target, f32 speed);
 		void update();
 		void contactResolverA(Enemy* input);
 		void contactResolverA(DefenceStation* input);

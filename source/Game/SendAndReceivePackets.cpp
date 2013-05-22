@@ -97,7 +97,7 @@ void SendAndReceivePackets::sendLazerPacket(std::vector<Laser*> laserList, const
 	sendServerPacket(packet, reliable);
 }
 
-std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& packet, std::vector<Laser*> laserList)
+std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& packet, std::vector<Laser*> laserList, Scene* scene)
 {
 	std::vector<Laser> serverList;
 	packet >> serverList;
@@ -108,19 +108,22 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& pac
 		{
 			if(serverList[i].getId() == laserList[j]->getId())
 			{
-				if(serverList[i].scene != laserList[j]->scene && laserList[j]->scene != NULL)
+				if(laserList[j]->scene != scene)
 				{
 					laserList[j]->scene->removeChild(laserList[j], false);
+					scene->addChild(laserList[j]);
 				}
-				laserList[j]->scene = serverList[i].scene;
 
 				if(serverList[i].enabled)
 				{
-					laserList[j]->scene->addChild(laserList[j]);
 					laserList[j]->enable();
 				}else
 				{
 					laserList[j]->disable();
+					for(unsigned k = 0; k < laserList[j]->children.size(); k++)
+					{
+						laserList[j]->children[k]->update();
+					}
 				}
 
 				*laserList[j]->transform->position = *serverList[i].transform->position;

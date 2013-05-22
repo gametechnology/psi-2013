@@ -17,9 +17,9 @@ void GameScene::onAdd() {
 	Network::GetInstance()->AddListener(SERVER_LASER, this);
 	Network::GetInstance()->AddListener(SERVER_WINLOSE, this);
 
-	this->_sendLasersTimer = 0;
-	this->_laserPool = new ObjectPool<Laser>(50);
+	this->_laserPool = new ObjectPool<Laser>(this, 5);
 	EnemyFighter::laserPool = *_laserPool;
+	Ship::laserPool = *_laserPool;
 	// The player
 	_ship = new Ship(vector3df(0,0,-100), vector3df(0,0,0));
 
@@ -27,16 +27,16 @@ void GameScene::onAdd() {
 	
 
 	_ship2 = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
-	//addChild(_ship);
+	addChild(_ship);
 	_ship->addChild(_player);
 	//TODO: Disabled this Caused errors 
 	//_player->setTarget(vector3df(0, 0, -100));
 	//_player->setUpVector(*_ship->transform->position);
 
 	ShipMover* mover = new ShipMover(_ship);
-	//_ship->addComponent(mover);
+	_ship->addComponent(mover);
 
-	//addChild(_ship2);
+	addChild(_ship2);
 
 	BasicMoverComponent* movComp = new BasicMoverComponent();
 	movComp->thrust = 0.01f;
@@ -86,7 +86,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 	std::cout<< packet.GetType() << endl;
 	if(packet.GetType() == SERVER_LASER)
 	{
-		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacket(packet, this->_laserPool->getAllObjects()));
+		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacket(packet, this->_laserPool->getAllObjects(), this));
 	}
 	if(packet.GetType() == SERVER_WINLOSE)
 	{
@@ -122,6 +122,7 @@ void GameScene::switchStation(StationType type)
 	}
 }
 
-GameScene::~GameScene() {
-
+GameScene::~GameScene() 
+{
+	delete _laserPool;
 }

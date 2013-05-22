@@ -82,7 +82,7 @@ void EnemyFighter::fireLaserAt(vector3df target)
 	Laser* laser = this->laserPool.GetFreeObject();
 	if(laser != NULL)
 	{
-		laser->fire(this->scene, this->transform, target, 1.0f);
+		laser->fire(this->transform, target, 1.0f);
 	}
 }
 

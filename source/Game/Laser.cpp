@@ -36,15 +36,8 @@ Laser::~Laser()
 
 }
 
-void Laser::fire(Scene* scene, Transform* transform, vector3df target, f32 speed)
+void Laser::fire(Transform* transform, vector3df target, f32 speed)
 {
-	if(this->scene != NULL)
-	{
-		this->scene->removeChild(this, false);
-	}
-
-	this->scene = scene;
-	this->scene->addChild(this);
 	this->enable();
 
 	*this->transform->position = *transform->position;
