@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Engine/Input.h"
 #include "ShipMover.h"
+#include "Enemy.h"
 
 
 class DummyShip : public Enemy

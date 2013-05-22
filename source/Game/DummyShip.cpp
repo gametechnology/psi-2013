@@ -1,4 +1,5 @@
 #include "DummyShip.h"
+#include "Enemy.h"
 
 
 DummyShip::DummyShip(vector3df position) : Enemy ()
