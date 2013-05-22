@@ -62,6 +62,9 @@ public:
 		}
 	}
 
+	/* TODO:
+	Make sure the destructor is only called once
+	*/
 	virtual ~ObjectPool()
 	{
 		FreeAll();
