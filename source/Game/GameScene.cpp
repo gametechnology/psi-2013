@@ -12,7 +12,7 @@ GameScene::GameScene(std::list<Player*> playerList, bool isTestMap) : Scene()
 }
 
 void GameScene::onAdd() {
-
+	this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
 	SendAndReceivePackets::staticGame = this->game;
 	Network::GetInstance()->AddListener(SERVER_LASER, this);
 	Network::GetInstance()->AddListener(SERVER_WINLOSE, this);
@@ -27,16 +27,16 @@ void GameScene::onAdd() {
 	
 
 	_ship2 = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
-	addChild(_ship);
+	//addChild(_ship);
 	_ship->addChild(_player);
 	//TODO: Disabled this Caused errors 
 	//_player->setTarget(vector3df(0, 0, -100));
 	//_player->setUpVector(*_ship->transform->position);
 
 	ShipMover* mover = new ShipMover(_ship);
-	_ship->addComponent(mover);
+	//_ship->addComponent(mover);
 
-	addChild(_ship2);
+	//addChild(_ship2);
 
 	BasicMoverComponent* movComp = new BasicMoverComponent();
 	movComp->thrust = 0.01f;
@@ -92,6 +92,13 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 	{
 		SendAndReceivePackets::receiveWinLosePacket(packet, 1, this);
 	}
+	// TODO fix the packet data so it actually holds the ip adress of the sender.
+	if(packet.GetType() == PacketType::CLIENT_SWITCH_STATION)
+	{
+		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
+		{
+		}
+	}
 }
 
 void GameScene::switchStation(StationType type)
@@ -112,17 +119,6 @@ void GameScene::switchStation(StationType type)
 			break;
 		case ST_WEAPON:
 			break;
-	}
-}
-
-void GameScene::HandleNetworkMessage(NetworkPacket packet)
-{
-	// TODO fix the packet data so it actually holds the ip adress of the sender.
-	if(packet.GetType() == PacketType::CLIENT_SWITCH_STATION)
-	{
-		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
-		{
-		}
 	}
 }
 
