@@ -23,6 +23,8 @@ public:
 
 	vector3df startPosition;
 	vector3df startRotation;
+	void contactResolverA(Entity* input);
+
 private:
 	matrix4				*_inertiaMatrix;
 

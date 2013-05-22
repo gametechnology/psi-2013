@@ -73,7 +73,7 @@ void CollisionTestScene::update() {
 		RemoveAllEnemies();
 	}
 
-	std::cout<<"target " << target;
+	//std::cout<<"target " << target;
 	//Tell the other EnemyFighters to shoot at target 	
 	for(int l = 0; l < _enemyList.size(); l++)
 	{
@@ -176,8 +176,8 @@ void CollisionTestScene::createRemoveEnemyTest()
 {
 	if (removeenemytestinitiationcheck)
 	{
-		//creates 5 enemy asteroids in a row and allows
-		//the next press to work
+		//creates 5 enemy asteroids in a row and allows the next key press (8) to work
+
 		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,0,0), irr::core::vector3df(0.02f,0,0)));
 		addChild(_enemyList.back());
 		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,2,0), irr::core::vector3df(0.02f,0,0)));
