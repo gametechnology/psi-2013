@@ -166,11 +166,6 @@ void CollisionTestScene::createLaserTestObjects(){
 	}
 
 }
-//Debug Key 2
-
-//Debug Key 3
-
-//Debug Key 4
 
 
 CollisionTestScene::~CollisionTestScene() {
@@ -181,8 +176,8 @@ void CollisionTestScene::createRemoveEnemyTest()
 {
 	if (removeenemytestinitiationcheck)
 	{
-		//creates 5 enemy asteroids in a row and allows
-		//the next press to work
+		//creates 5 enemy asteroids in a row and allows the next key press (8) to work
+
 		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,0,0), irr::core::vector3df(0.02f,0,0)));
 		addChild(_enemyList.back());
 		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(0,2,0), irr::core::vector3df(0.02f,0,0)));
