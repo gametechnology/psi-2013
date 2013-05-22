@@ -39,7 +39,7 @@ EnemyAsteroid::~EnemyAsteroid(void)
 
 void EnemyAsteroid::contactResolverA(Entity* input)
 {
-		std::printf("HIT on ASTEROID!");
+		std::printf("HIT on ASTEROID! \n");
 		Entity::contactResolverA(input);
 	
 }

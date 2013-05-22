@@ -98,7 +98,7 @@ void Laser::contactResolverA(Entity* input)
 	//	std::printf("HIT on FIGHTER!");
 	//}
 	//input->setHealth(input->getHealth() - this->_damage);
-	std::printf("HIT on Enemy!");
+	std::printf("HIT on Enemy! \n");
 	this->disable();
 	for(unsigned i = 0; i < this->children.size(); i++)
 	{
@@ -110,7 +110,7 @@ void Laser::contactResolverA(Entity* input)
 void Laser::contactResolverA(DefenceStation* input)
 {
 	input->Damage();
-	std::printf("HIT on Defence station!");
+	std::printf("HIT on Defence station! \n");
 	this->disable();
 	for(unsigned i = 0; i < this->children.size(); i++)
 	{

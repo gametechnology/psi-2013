@@ -48,13 +48,14 @@ void EnemyFighter::update()
 
 	if(game->input->isKeyboardButtonPressed(irr::KEY_KEY_M))
 	{
-		std::cout<<"schiet";
+		std::cout<<"schiet"<<endl;
 		//this->_fireTime++;
 
 		//if(this->_fireTime >= 100)
 		//{
 			//fire laser to target
 			this->fireLaserAt(this->getTarget());
+			std::cout<<"target " << (this->getTarget().X)<<endl;
 			//this->_fireTime = 0;
 		//}
 	}
@@ -95,7 +96,7 @@ void EnemyFighter::fireLaserAt(vector3df target)
 
 void EnemyFighter::contactResolverA(Entity* input)
 {
-	std::printf("HIT on Fighter!");
+	std::printf("HIT on Fighter! \n");
 	Entity::contactResolverA(input);
 }
 

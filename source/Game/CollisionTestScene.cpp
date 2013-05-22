@@ -44,22 +44,22 @@ void CollisionTestScene::update() {
 	}
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_2))
 	{
-		std::cout << "Target is drone";
+		std::cout << "Target is drone"<<endl;
 		target = 1;
 	}
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_3))
 	{
-		std::cout << "Target is Fighter";
+		std::cout << "Target is Fighter"<<endl;
 		target = 2;
 	}
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_4))
 	{
-		std::cout << "Target is asteroid";
+		std::cout << "Target is asteroid"<<endl;
 		target = 3;
 	}
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_5))
 	{
-		std::cout << "Target is dummyship";
+		std::cout << "Target is dummyship"<<endl;
 		target = 4;
 	}
 	if(game->input->isKeyboardButtonPressed(KEY_KEY_8))
@@ -73,7 +73,7 @@ void CollisionTestScene::update() {
 		RemoveAllEnemies();
 	}
 
-	//std::cout<<"target " << target;
+	//std::cout<<"target " << target<<endl;
 	//Tell the other EnemyFighters to shoot at target 	
 	for(int l = 0; l < _enemyList.size(); l++)
 	{
