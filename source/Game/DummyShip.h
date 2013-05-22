@@ -31,8 +31,6 @@ public:
 private:
 	matrix4				*_inertiaMatrix;
 
-	signed int health;
-
 	stringw varToString(stringw str1, float var, stringw str2);
 	stringw varToString(stringw str1, float var);
 
