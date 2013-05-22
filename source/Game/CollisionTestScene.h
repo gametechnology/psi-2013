@@ -44,6 +44,8 @@ private:
 	void createRemoveEnemyTest();
 	void createLaserAndShip();
 
+	void RemoveAllEnemies();
+
 	bool removeenemytestinitiationcheck;
 
 };
