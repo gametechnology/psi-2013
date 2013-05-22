@@ -2,42 +2,18 @@
 #define DEFENCE_STATION
 
 #include "Station.h"
-#include "..\Ship.h"
 #include <time.h>
 #include <map>
 
 class DefenceStation : public Station {
-private:
-	struct DefenceStats
-	{
-	public:
-		DefenceStats( )
-		{
-			this -> health	= 10;
-			this ->	armor	= 10;
-		}
-
-		DefenceStats( float health, float armor )
-		{
-			this -> health	= health;
-			this -> armor	= armor;
-		}
-
-		float health;
-		float armor;
-		bool HasArmor( );
-		bool IsStunned( );
-	};
-	irr::core::map<StationType, DefenceStation :: DefenceStats> *_stations;
 	
 public:
 	DefenceStation(Ship* ship);
-	~DefenceStation(void);
+	~DefenceStation();
 	
 	void DoCameraShake();
-	int GetDamage(StationType stationType );
 	void Damage();
-	void SubscribeStation( Station *s );
+	int GetDamage(StationType stationType);
 
 	Station *station;
 

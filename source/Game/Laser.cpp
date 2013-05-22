@@ -28,6 +28,7 @@ void Laser::onAdd() {
 
 void Laser::init() {
 	Entity::init();
+
 }
 
 Laser::~Laser() 

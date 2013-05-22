@@ -4,7 +4,7 @@
 #include "Engine\Entity.h"
 #include <iostream>
 
-Thruster::Thruster(Entity *parent, irr::core::vector3df position, irr::core::vector3df initialDirection) : Entity(*parent)
+Thruster::Thruster(irr::core::vector3df position, irr::core::vector3df initialDirection) : Entity()
 {
 	this->transform->position = &position;
 	this->transform->rotation = &initialDirection;

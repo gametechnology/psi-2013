@@ -1,7 +1,15 @@
 #ifndef GAMESCENE
 #define GAMESCENE
 
-#include "Engine\Scene.h"
+#include <Engine\Network.h>
+#include <Engine\NetworkPacket.h>
+#include <Engine\INetworkListener.h>
+#include <Engine\Scene.h>
+#include <Engine\Camera.h>
+
+#include "Ship.h"
+#include "ShipMover.h"
+#include "BasicMoverComponent.h"
 #include "Stations\Station.h"
 #include "Laser.h"
 #include "ObjectPool.h"
@@ -12,7 +20,7 @@ class Shipmap;
 
 class GameScene : public Scene, INetworkListener {
 public:
-	GameScene();
+	GameScene(std::list<Player*>, bool isTestMap = false);
 	virtual ~GameScene();
 
 	void init();
@@ -21,9 +29,16 @@ public:
 	void switchStation(StationType type);
 	void HandleNetworkMessage(NetworkPacket packet);
 private:
+	bool testMap;
+
 	Shipmap* _shipmap;
 	int _sendLasersTimer;
 	ObjectPool<Laser>* _laserPool;
+	Camera* _player;
+	Ship* _ship;
+	Ship* _ship2;
+
+	std::list<Player*> _playerList;
 };
 
 #endif

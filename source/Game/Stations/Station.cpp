@@ -1,23 +1,30 @@
 #include "Station.h"
 #include "PowerStation.h"
 #include "DefenceStation.h"
+#include "../StationStats.h"
 
 
 Station :: Station( Ship *ship, int startHealth ) : Entity()
 {
 	this ->	_ship	= ship;
-	this -> _health = startHealth;
+
+	//Add astationstats component to this station
+	this->_stationStats = new StationStats();
+	addComponent(_stationStats);
 	
 	//this -> _switchTime = 4.0f;
 	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
+
 }
 
 Station :: Station( Ship * ship ) : Entity()
 {
 	this -> _ship   = ship;
-	this -> _totalHealth = 50;
-	this -> _health = this->_totalHealth;
 	this -> _tempTimer = 0;
+
+	//Add astationstats component to this station
+	this->_stationStats = new StationStats();
+	addComponent(_stationStats);
 
 	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
 	
@@ -26,14 +33,16 @@ Station :: Station( Ship * ship ) : Entity()
 void Station::onAdd()
 {
 	Entity::onAdd();
-	// Energy testing variable for hud.
-	energy = 50;
+
+	// ?? This was also done in onAdd()
 	// End energy testing variable for hud.
-	this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32), &helpTextString);
-	this->addChild(hud);
+	//this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32), &helpTextString);
+	//this->addChild(hud);
+	
 }
 
-void Station :: init() {
+void Station :: init() 
+{
 	Entity::init();
 
 	driver = this->game->driver;
@@ -43,13 +52,9 @@ void Station :: init() {
 	this -> _stunTime = 0;
 	this -> _switchTime = 0;
 
-	if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
-	if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
-
-	
-	int energy = 50;
-	this->hud = new HudComposite(&(this->_totalHealth), &energy, rect<s32>(10,240,110,240 + 32), &helpTextString);
-	this->addChild(hud);
+	// ?? This is also done in onAdd()
+	//this->hud = new HudComposite(&(_stationStats->health), &(_stationStats->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
+	//this->addChild(hud);
 }
 
 Station :: ~Station(void)
@@ -92,15 +97,34 @@ void Station::update()
 	//Component::update();
 
 	// Test code for testing energy of a station.
-	if(game->input->isKeyboardButtonDown(KEY_ADD) && energy < 50)
-		energy += 1;
-	if(game->input->isKeyboardButtonDown(KEY_SUBTRACT) && energy > 0)
-		energy -= 1;
+	if(game->input->isKeyboardButtonDown(KEY_ADD) && _stationStats->power < 50)
+		_stationStats->power += 1;
+	if(game->input->isKeyboardButtonDown(KEY_SUBTRACT) && _stationStats->power > 0)
+		_stationStats->power -= 1;
 	// End test code for testing energy of a station.
 
 	updateHealth();
 	//Update Stun Time
 	//Update player on station time	
+}
+
+
+void Station :: draw( )
+{	
+	
+	Entity::draw();
+}
+void Station::handleMessage(unsigned int message)
+{
+	switch(message)
+	{
+	case 0:
+		
+		break;
+	case 1:
+		break;
+	}
+
 }
 
 
@@ -113,12 +137,12 @@ void Station :: OnDamage( )
 
 bool Station::HasPower( )
 {
-	return true;//this->_ship->_powerStation->GetPower(this->_stationType) > 0;
+	return (_stationStats->power > 0);
 }
 
-bool Station::HasArmor( )
+bool Station::HasShield( )
 {
-	return true;//this->_ship->_defenceStation->GetArmor(this->_stationType) > 0;
+	return (_stationStats->shield > 0);
 }
 
 bool Station::getStationDestroyed( )
@@ -153,30 +177,30 @@ void Station::updateHealth()
 
 int Station :: getHealth()
 {
-	return 10;//this -> _health;
+	return (_stationStats->health > 0);
 }
 
 void Station::decreaseHealth(int health)
 {
-	this->_health -= health;
-	if(this->_health <= 0)
+	_stationStats->health -= health;
+	if(_stationStats->health <= 0)
 	{
-		this->_health = 0;
-		repairStation(this->_totalHealth/2);
+		setStationDestroyed(true);
 	}
 }
 
+//The stations health is increased
 void Station::increaseHealth(int health)
 {
-	this->_health += health;
-	if(this->_health >= this->_totalHealth)
+	_stationStats->health += health;
+	if(_stationStats->health >=  StationStats::maxHealth)
 	{
-		this->_health = this->_totalHealth;
+		_stationStats->health = StationStats::maxHealth;
 	}
 }
 
 void Station::repairStation(int health)
 {
 	this->setStationDestroyed(false);
-	this->_health = health;
+	_stationStats->health = health;
 }

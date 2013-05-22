@@ -1,17 +1,20 @@
-#include "Irrlicht\irrlicht.h"
-#include "Engine\Game.h"
-#include "Engine\Scene.h"
+#ifndef MAINMENUSCENE
+#define MAINMENUSCENE
+
+#include <sstream>
+
+#include <Irrlicht\irrlicht.h>
+#include <Engine\Game.h>
+#include <Engine\Scene.h>
+#include <Engine\Network.h>
+#include <Engine\NetworkPacket.h>
+#include <Engine\INetworkListener.h>
+
 #include "MainMenuEventReceiver.h"
 #include "MapGenerator.h"
 #include "SectorManager.h"
 #include "Player.h"
-#include "Engine\Network.h"
-#include "Engine\NetworkPacket.h"
- #include <sstream>
-#include "Engine\INetworkListener.h"
 
-#ifndef MAINMENUSCENE
-#define MAINMENUSCENE
 
 // irrlicht namespaces
 using namespace irr;
@@ -31,6 +34,7 @@ public:
 	void update();
 	~MainMenuScene();
 	void StartGame();
+	void StartTestGame();
 	void BackToMainMenu();
 	void HandleNetworkMessage(NetworkPacket packet); 
 
@@ -43,13 +47,17 @@ public:
 	IGUIButton* createServerWindow_Button;
 	IGUIButton* joinServerWindow_Button;
 	IGUIButton* start_button;
+	IGUIButton* startStatic_button;
 	IGUIButton* quit_button;
 	IGUIButton* host_quit_button;
 	// other items in menu
 	IGUIStaticText* Clientlist;
 	IGUIStaticText* Namelabel;
+	IGUIStaticText* portLabel;
+	IGUIStaticText* ipLabel;
 	IGUIStaticText* waitinglabel;
 	IGUIEditBox* Ipadresinput;
+	IGUIEditBox* hostPortInput;
 	IGUIEditBox* Nameinput;
 	IGUIWindow* messagebox;
 

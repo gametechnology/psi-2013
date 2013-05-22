@@ -2,9 +2,6 @@
 #include "Engine/Camera.h"
 #include "Skybox.h"
 #include "SectorManager.h"
-#include "Ship.h"
-#include "ShipMover.h"
-#include "BasicMoverComponent.h"
 #include "SendAndReceivePackets.h"
 
 /*sf::Packet& operator <<(sf::Packet& out, Enemy& in)
@@ -70,13 +67,6 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 	// Setting the boundry
 	_boundry = boundryRadius;
 
-	// The player
-	_ship = new Ship(vector3df(0,0,-100), vector3df(0,0,0));
-
-	_player = new Camera(); //TODO: Make the camera work correctly according to station
-	
-
-	_ship2 = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
 	
 	// Creating wormholes
 	createWormHoles( amountWormHoles );
@@ -90,25 +80,11 @@ SectorTemplate::SectorTemplate(SectorManager* sectormanager, const io::path & sk
 }
 
 void SectorTemplate::onAdd() {
-	this->_camera = this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
+	//this->_camera = this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
 	//addComponent(_enemyManager);
 	addChild( _skybox );
 	addChild(_fog );
 
-	addChild(_ship);
-	_ship->addChild(_player);
-	//TODO: Disabled this Caused errors 
-	//_player->setTarget(vector3df(0, 0, -100));
-	//_player->setUpVector(*_ship->transform->position);
-
-	ShipMover* mover = new ShipMover(_ship);
-	_ship->addComponent(mover);
-
-	addChild(_ship2);
-
-	BasicMoverComponent* movComp = new BasicMoverComponent();
-	movComp->thrust = 0.01f;
-	_ship2->addComponent(movComp);
 	// adding the wormholes
 	addWormHoles();
 
@@ -133,8 +109,8 @@ void SectorTemplate::init(){
 }
 
 void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ) {
-	printf("[SectorTemplate] -=*[Begin of Create WormHole]*=- \n");
-	printf("[SectorTemplate] -=*[Amount of wormholes %i]*=- \n", amountOfWormHoles);
+	//printf("[SectorTemplate] -=*[Begin of Create WormHole]*=- \n");
+	//printf("[SectorTemplate] -=*[Amount of wormholes %i]*=- \n", amountOfWormHoles);
 	
 	for(unsigned int i = 0; i < amountOfWormHoles; i++) {
 		// Creating a wormhole and giving it the pos we just calculated
@@ -146,12 +122,12 @@ void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ) {
 
 	int size = _wormHoles.size();
 	
-	printf("[SectorTemplate] -=*[Size array %i ]*=- \n" , size);
-	printf("[SectorTemplate] -=*[End of Create WormHole]*=- \n");
+	//printf("[SectorTemplate] -=*[Size array %i ]*=- \n" , size);
+	//printf("[SectorTemplate] -=*[End of Create WormHole]*=- \n");
 }
 
 void SectorTemplate::addWormHoles() {
-	printf("[SectorTemplate] -=*[Begin of Add WormHole]*=- \n");
+	//printf("[SectorTemplate] -=*[Begin of Add WormHole]*=- \n");
 	for(unsigned int i = 0; i < _wormHoles.size(); i++) {
 		// Calculating the pos in the sector
 		irr::core::vector3df wormHolePos((float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)));
@@ -164,9 +140,9 @@ void SectorTemplate::addWormHoles() {
 
 		// And give it their position
 		*_wormHoles[i]->transform->position = wormHolePos;
-		printf("[SectorTemplate] wormhole.x[ %f ] wormhole.y[ %f ] wormhole.z[ %f ] \n",_wormHoles[i]->transform->position->X,_wormHoles[i]->transform->position->Y,_wormHoles[i]->transform->position->Z);
+		//printf("[SectorTemplate] wormhole.x[ %f ] wormhole.y[ %f ] wormhole.z[ %f ] \n",_wormHoles[i]->transform->position->X,_wormHoles[i]->transform->position->Y,_wormHoles[i]->transform->position->Z);
 	}
-	printf("[SectorTemplate] -=*[End of add WormHole]*=- \n");
+	//printf("[SectorTemplate] -=*[End of add WormHole]*=- \n");
 }
 
 int timer = 0;
@@ -194,11 +170,11 @@ void SectorTemplate::update(){
 	this->_player->transform->position
 	with
 	this->_camera->getPosition()*/
-	if( this->_player->transform->position->getLength() > _boundry ){
-		printf("\n OUT OF BOUNDS!");
+	if( _sectormanager->getShip()->transform->position->getLength() > _boundry ){
+		//printf("\n OUT OF BOUNDS!");
 	}
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
-		irr::core::vector3df deltaPos = *_wormHoles[i]->transform->position - *this->_player->transform->position;
+		irr::core::vector3df deltaPos = *_wormHoles[i]->transform->position - *_sectormanager->getShip()->transform->position;
 		float collisionRadius = 50;
 		if( deltaPos.getLength() < collisionRadius ){			
 			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
@@ -296,29 +272,32 @@ void SectorTemplate::HandleNetworkMessage(NetworkPacket packet)
 //creating enemies, in further sprints they can be moved to the correct sector
 void SectorTemplate::createEnemies()
 {
-	for(int i = 0; i < 20; i++)
+	int droneLimit = (rand() % 25);
+	for(int i = 0; i < droneLimit; i++)
 	{
-		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
+			irr::core::vector3df pos = irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
+			_enemyList.push_back(new EnemyDrone(pos));
+		
+		addChild(_enemyList.back());
+	}
+	int fighterLimit = (rand() % 15);
+	for(int j = 2; j < fighterLimit; j++)
+	{
+		irr::core::vector3df pos = irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
+		_enemyList.push_back(new EnemyFighter(pos));
 		
 		addChild(_enemyList.back());
 	}
 
-	for(int j = 2; j < 10; j++)
-	{
-		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(0,(irr::f32)(j + (j * j)),0)));
-		
-		addChild(_enemyList.back());
-	}
-
-	for(int k = 2; k < 30; k++)
-	{
-		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df((irr::f32)(k + (k * k)),0,0), irr::core::vector3df(0,0,0.01f)));
-		
-		addChild(_enemyList.back());
-	}
-
-	_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-10,0,0), irr::core::vector3df(0.02f,0,0)));
-	addChild(_enemyList.back());
+	//for(int k = 2; k < 30; k++)
+	//{
+	//	_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df((irr::f32)(k + (k * k)),0,0), irr::core::vector3df(0,0,0.01f)));
+	//	
+	//	addChild(_enemyList.back());
+	//}
+	//
+	//_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-10,0,0), irr::core::vector3df(0.02f,0,0)));
+	//addChild(_enemyList.back());
 
 	//_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(10,0,0), irr::core::vector3df(-0.02f,0,0)));
 	//addChild(_enemyList.back());

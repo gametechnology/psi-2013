@@ -1,21 +1,18 @@
 #ifndef STATION_BASE
 #define STATION_BASE
-#pragma once
 
 #include "../HudComposite.h"
 #include "../Player.h"
-#include "../../../include/Engine/Entity.h"
-#include "../../../include/Engine/Component.h"
-#include "../../../include/Engine/Game.h"
-#include "Irrlicht/irrlicht.h"
-
-
-#ifdef ENTITY_SHIP
-#include "../Ship.h"
-#endif
+#include <Engine/Entity.h>
+#include <Engine/Component.h>
+#include <Engine/Game.h>
+#include <Irrlicht/irrlicht.h>
+//#include "../StationStats.h"
+//#include "../Ship.h"
 
 #define STUN_TIME 4.0
 class Ship;
+class StationStats;
 	
 enum StationType
 {
@@ -32,8 +29,6 @@ public:
 	Station( Ship *ship, int startHealth );
 	Station( Ship *ship );
 	virtual ~Station(void);
-	void Initialize( );
-	virtual void DoCameraShake() = 0;
 
 	StationType GetStationType();
 	bool HasPlayer();
@@ -41,7 +36,7 @@ public:
 	bool IsStunned();
 
 	bool HasPower();
-	bool HasArmor();
+	bool HasShield();
 
 	std::string helpTextString;
 
@@ -53,10 +48,13 @@ public:
 	void increaseHealth(int health);
 	void decreaseHealth(int health);
 	void repairStation(int health);
+	void handleMessage(unsigned int message);
 
 	virtual void onAdd();
 	virtual void init();
 	virtual void update();
+	virtual void draw();
+
 	virtual void OnDamage( );
 	virtual void OnEnabled() = 0;
 	virtual void OnDisabled() = 0;
@@ -76,12 +74,10 @@ protected:
 	
 
 private:
+	
 	int _tempTimer;
 	int _totalHealth;
-	// Energy testing variable for hud.
-	int energy;
-	// End energy testing variable for hud.
-	int _health;
+	StationStats* _stationStats;
 	bool _stationDestroyed;
 };
 #endif

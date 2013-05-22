@@ -28,7 +28,10 @@ enum PacketType
 	SERVER_ENEMY,
 	SERVER_LASER,
 	SERVER_WINLOSE,
-
+	SHIP_ACCELERATION,
+	CLIENT_SWITCH_STATION,
+	CLIENT_LEAVE_STATION,
+	CLIENT_POWER_CHANGED,
 	//Add new PacketTypes above
 	LAST_TYPE
 };
@@ -48,6 +51,10 @@ inline char* getPacketTypeName(PacketType type)
 		case SERVER_ENEMY: { return "SERVER_ENEMY"; break; }
 		case SERVER_LASER: { return "SERVER_LASER"; break; }
 		case SERVER_WINLOSE: { return "SERVER_WINLOSE"; break; }
+		case SHIP_ACCELERATION: { return "SHIP_ACCELERATION"; break; }
+		case CLIENT_SWITCH_STATION: { return "CLIENT_SWITCH_STATION"; break; }
+		case CLIENT_LEAVE_STATION: { return "CLIENT_LEAVE_STATION"; break; }
+		case CLIENT_POWER_CHANGED: { return "CLIENT_POWER_CHANGED"; break; }
 		default: { throw "Tried to get string from non-existing packet type"; }
 	}
 }
@@ -80,6 +87,7 @@ private:
 	ENetEvent _event;
 	ENetPeer* _peer;
 	unsigned int _packetTypeChecksum;
+	NetworkPacket AddSendAll(NetworkPacket packet, bool sendall);
 
 public:
 	~Network();
@@ -92,7 +100,7 @@ public:
 	/*
 	* Initialize a client. When the connection with the server is succesfull, you will be able to send and receive messages.
 	*/
-	void InitializeClient(const char* ipAdress, unsigned int maxDownstream = 0, unsigned int maxUpstream = 0);
+	void InitializeClient(const char* ipAdress, const short port, unsigned int maxDownstream = 0, unsigned int maxUpstream = 0);
 
 	/* 
 	* Initialize a server. When succesfull, clients will be able to connect to you and receive your server messages.
@@ -119,6 +127,10 @@ public:
 	*/
 	void SendPacket(NetworkPacket packet, const bool reliable = false);
 
+
+	void SendPacketToAllClients(NetworkPacket packet, const bool reliable = false);
+
+	
 	/*
 	* If you are a server, sends a packet to all connected clients, including yourself, as if you are be a client.
 	*/

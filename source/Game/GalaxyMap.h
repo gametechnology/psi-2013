@@ -18,6 +18,7 @@ public:
 
 	virtual void onAdd();
 	void createMap(int sectorCount, int minWormholes, int maxWormholes);
+	void createStaticMap();
 	void loadMap();
 	void saveMap();
 	

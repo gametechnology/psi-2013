@@ -295,5 +295,9 @@ void Shipmap::update()
 
 void Shipmap::enterStation(StationType station)
 {
-	_scene->switchStation(station);
+	NetworkPacket packet(PacketType::CLIENT_SWITCH_STATION);
+	packet << station;
+	Network::GetInstance()->SendPacket(packet, true);
+
+	this->_scene->switchStation(station);
 }
