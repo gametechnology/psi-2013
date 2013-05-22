@@ -68,3 +68,9 @@ void DummyShip :: draw()
 {
 	Entity :: draw();
 }
+
+void DummyShip :: contactResolverA(Entity* input)
+{
+	std::printf("HIT on Ship!");
+	Entity::contactResolverA(input);
+}

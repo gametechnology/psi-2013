@@ -25,6 +25,8 @@ public:
 	vector3df startRotation;
 
 	irr::gui::IGUIEnvironment *env;
+	void contactResolverA(Entity* input);
+
 	irr::gui::IGUIStaticText *shipHealth;
 private:
 	matrix4				*_inertiaMatrix;
