@@ -2,12 +2,9 @@
 #include <iostream>
 
 
-NetworkPacket::NetworkPacket(const PacketType type, bool sendtoall) : _type(type)
+NetworkPacket::NetworkPacket(const PacketType type) : _type(type)
 {
-	if(Network::GetInstance()->IsServer())
-		*this << false;
-	else
-		*this << sendtoall;
+	
 
 }
 

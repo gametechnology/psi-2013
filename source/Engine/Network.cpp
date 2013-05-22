@@ -118,6 +118,7 @@ void Network::DeInitialize(){
 }
 void Network::SendPacket(NetworkPacket packet, const bool reliable)
 {
+	packet = AddSendAll(packet, false);
 	if(_isConnected)
 	{
 		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
@@ -131,9 +132,45 @@ void Network::SendPacket(NetworkPacket packet, const bool reliable)
 		}
 	}
 }
+NetworkPacket Network::AddSendAll(NetworkPacket packet, bool sendall){
+	sf::Packet tempPacket = packet;
+	packet.clear();
+	if(Network::GetInstance()->IsServer())
+		packet << false;
+	else
+		packet << sendall;
+	packet.append(tempPacket.getData(), tempPacket.getDataSize());
+	return packet;
+}
+void Network::SendPacketToAllClients(NetworkPacket packet, const bool reliable){
+	packet = AddSendAll(packet, true);
+	if(Network::GetInstance()->IsServer())
+	{
+		if(_isConnected)
+		{	
+			ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
+
+			enet_host_broadcast(_host, 0, enetPacket);
+		}
+	}
+	else
+	{
+		if(_isConnected)
+		{
+			ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
+			enet_peer_send(_peer, 0, enetPacket);
+			
+		}
+	
+	}
+		
+	
+}
 
 void Network::SendServerPacket(NetworkPacket packet, const bool reliable)
 {
+
+	packet = AddSendAll(packet, false);
 	if(_isConnected && _isServer)
 	{	
 		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
@@ -216,7 +253,8 @@ void Network::DistributePacket(NetworkPacket networkPacket)
 			networkPacket << true;
 			networkPacket << networkPacket.ipadress;
 			networkPacket.append(tempPacket.getData(), tempPacket.getDataSize());
-			SendServerPacket(networkPacket);
+			ENetPacket* enetPacket = enet_packet_create(networkPacket.GetBytes(), networkPacket.GetSize(), true);
+				enet_host_broadcast(_host, 0, enetPacket);
 		}
 		if(!IsServer() && sendall)
 		{

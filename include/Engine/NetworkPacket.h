@@ -8,7 +8,7 @@
 class NetworkPacket : public sf::Packet
 {
 public:
-	NetworkPacket(const PacketType type, bool sendtoall  = false);
+	NetworkPacket(const PacketType type);
 	NetworkPacket(ENetPacket* packet, enet_uint32);
 	~NetworkPacket();
 	const void* GetBytes();

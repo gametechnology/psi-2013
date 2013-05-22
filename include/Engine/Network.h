@@ -83,6 +83,7 @@ private:
 	ENetEvent _event;
 	ENetPeer* _peer;
 	unsigned int _packetTypeChecksum;
+	NetworkPacket AddSendAll(NetworkPacket packet, bool sendall);
 
 public:
 	~Network();
@@ -121,6 +122,9 @@ public:
 	* you this message.
 	*/
 	void SendPacket(NetworkPacket packet, const bool reliable = false);
+
+
+	void SendPacketToAllClients(NetworkPacket packet, const bool reliable = false);
 
 	
 	/*
