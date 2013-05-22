@@ -133,6 +133,33 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& pac
 	return laserList;
 }
 
+void SendAndReceivePackets::sendWinLosePacket(int teamId)
+{
+	NetworkPacket packet(SERVER_WINLOSE);
+	packet << teamId;
+	sendServerPacket(packet, true);
+}
+
+void SendAndReceivePackets::receiveWinLosePacket(NetworkPacket& packet, int teamId, Scene* currentScene)
+{
+	int team;
+	packet >> team;
+
+	SceneManager sceneManager = *currentScene->game->sceneManager;
+	char nameCurrentScene = *sceneManager.getNameScene(currentScene)->name;
+	if(team == teamId)
+	{
+		sceneManager.addScene("LoseScene", new Scene());
+		sceneManager.activateScene("LoseScene");
+	}else
+	{
+		sceneManager.addScene("WinScene", new Scene());
+		sceneManager.activateScene("WinScene");
+	}
+		sceneManager.deactivateScene(&nameCurrentScene);
+		sceneManager.destroyScene(&nameCurrentScene);
+}
+
 sf::Packet& operator <<(sf::Packet& out, Scene* in)
 {
 	//edit this if more is needed to send a scene over
