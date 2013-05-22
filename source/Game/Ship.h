@@ -71,7 +71,7 @@ private:
 
 	Station				*_currentStation;
 	Camera				*_camera;
-	Thruster			*_thrusters[3];
+	Thruster			*_thrusters[4];
 	matrix4				*_inertiaMatrix;
 
 	stringw varToString(stringw str1, float var, stringw str2);

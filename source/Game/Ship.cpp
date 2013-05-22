@@ -47,9 +47,10 @@ void Ship::onAdd() {
 	_camera->createNode();
 	
 	//Thrusters
-	/*_thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0, 0, -4));
-	_thrusters[1] = new Thruster(this, vector3df(0,-2, 4), vector3df(0, 4, 0 ));
-	_thrusters[2] = new Thruster(this, vector3df(0,2, -4), vector3df(0, 4, 0 ));*/
+	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
+	_thrusters[1] = new Thruster(vector3df(0,-2, 4), vector3df(0, 4, 4 ));
+	_thrusters[2] = new Thruster(vector3df(0,2, -4), vector3df(0, -4, -4 ));
+	_thrusters[3] = new Thruster(vector3df(0,2, -4), vector3df(0, -4, 4 ));
 
 	irr::core::stringw strShipHealth			= "ship health: "; 
 	strShipHealth +	irr::core::stringw();
