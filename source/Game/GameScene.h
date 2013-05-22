@@ -1,8 +1,12 @@
 #ifndef GAMESCENE
 #define GAMESCENE
 
-#include "Engine\Scene.h"
-#include "Engine\Camera.h"
+#include <Engine\Network.h>
+#include <Engine\NetworkPacket.h>
+#include <Engine\INetworkListener.h>
+#include <Engine\Scene.h>
+#include <Engine\Camera.h>
+
 #include "Ship.h"
 #include "ShipMover.h"
 #include "BasicMoverComponent.h"
@@ -11,15 +15,16 @@
 // Forward declare Shipmap
 class Shipmap;
 
-class GameScene : public Scene {
+class GameScene : public Scene, public INetworkListener {
 public:
-	GameScene(bool isTestMap = false);
+	GameScene(std::list<Player*>, bool isTestMap = false);
 	virtual ~GameScene();
 
 	void init();
 	void onAdd();
 	void update();
 	void switchStation(StationType type);
+	void HandleNetworkMessage(NetworkPacket packet); 
 private:
 	bool testMap;
 
@@ -27,6 +32,8 @@ private:
 	Camera* _player;
 	Ship* _ship;
 	Ship* _ship2;
+
+	std::list<Player*> _playerList;
 };
 
 #endif

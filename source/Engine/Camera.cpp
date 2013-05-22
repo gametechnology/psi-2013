@@ -13,17 +13,15 @@ void Camera::createNode() {
 	this->cameraNode = this->scene->getIrrlichtSceneManager()->addCameraSceneNode(NULL, *this->transform->position, lookAt);
 }
 irr::scene::ICameraSceneNode* Camera::getCameraNode() {
-	return ((irr::scene::ICameraSceneNode*)(node));
+	return ((irr::scene::ICameraSceneNode*)(cameraNode));
 }
 
 void Camera::setTarget(irr::core::vector3df target) {
-	//TODO: Disabled this Caused errors
-	//cameraNode->setTarget(target);
+	cameraNode->setTarget(target);
 }
 
 void Camera::setUpVector(irr::core::vector3df up) {
-	//TODO: Disabled this Caused errors
-	//cameraNode->setUpVector(up);
+	cameraNode->setUpVector(up);
 }
 
 Camera::~Camera()

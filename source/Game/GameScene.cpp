@@ -3,9 +3,11 @@
 #include "SectorManager.h"
 #include "Shipmap.h"
 
-GameScene::GameScene(bool isTestMap) : Scene() {
+GameScene::GameScene(std::list<Player*> playerList, bool isTestMap) : Scene()
+{
 	this->testMap = isTestMap;
-
+	_playerList = playerList;
+	Network::GetInstance()->AddListener(CLIENT_SWITCH_STATION, this);
 }
 
 void GameScene::onAdd() {
@@ -73,6 +75,17 @@ void GameScene::switchStation(StationType type)
 			break;
 		case StationType::ST_WEAPON:
 			break;
+	}
+}
+
+void GameScene::HandleNetworkMessage(NetworkPacket packet)
+{
+	// TODO fix the packet data so it actually holds the ip adress of the sender.
+	if(packet.GetType() == PacketType::CLIENT_SWITCH_STATION)
+	{
+		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
+		{
+		}
 	}
 }
 

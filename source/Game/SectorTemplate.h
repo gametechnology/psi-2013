@@ -25,6 +25,7 @@ protected:
 	irr::scene::ICameraSceneNode *_camera;
 	Entity* _skybox;
 	Mist* _fog;
+	vector<Enemy*> _enemyList;
 public:
 	SectorManager* _sectormanager;
 	SectorTemplate(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundry, unsigned int amountWormHoles );
@@ -43,7 +44,6 @@ public:
 	
 	
 private:
-	vector<Enemy*> _enemyList;
 };
 
 #endif

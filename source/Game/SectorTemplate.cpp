@@ -170,7 +170,7 @@ void SectorTemplate::update(){
 	with
 	this->_camera->getPosition()*/
 	if( _sectormanager->getShip()->transform->position->getLength() > _boundry ){
-		printf("\n OUT OF BOUNDS!");
+		//printf("\n OUT OF BOUNDS!");
 	}
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
 		irr::core::vector3df deltaPos = *_wormHoles[i]->transform->position - *_sectormanager->getShip()->transform->position;
@@ -269,29 +269,32 @@ void SectorTemplate::HandleNetworkMessage(NetworkPacket packet)
 //creating enemies, in further sprints they can be moved to the correct sector
 void SectorTemplate::createEnemies()
 {
-	for(int i = 0; i < 20; i++)
+	int droneLimit = (rand() % 25);
+	for(int i = 0; i < droneLimit; i++)
 	{
-		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
+			irr::core::vector3df pos = irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
+			_enemyList.push_back(new EnemyDrone(pos));
+		
+		addChild(_enemyList.back());
+	}
+	int fighterLimit = (rand() % 15);
+	for(int j = 2; j < fighterLimit; j++)
+	{
+		irr::core::vector3df pos = irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
+		_enemyList.push_back(new EnemyFighter(pos));
 		
 		addChild(_enemyList.back());
 	}
 
-	for(int j = 2; j < 10; j++)
-	{
-		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(0,(irr::f32)(j + (j * j)),0)));
-		
-		addChild(_enemyList.back());
-	}
-
-	for(int k = 2; k < 30; k++)
-	{
-		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df((irr::f32)(k + (k * k)),0,0), irr::core::vector3df(0,0,0.01f)));
-		
-		addChild(_enemyList.back());
-	}
-
-	_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-10,0,0), irr::core::vector3df(0.02f,0,0)));
-	addChild(_enemyList.back());
+	//for(int k = 2; k < 30; k++)
+	//{
+	//	_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df((irr::f32)(k + (k * k)),0,0), irr::core::vector3df(0,0,0.01f)));
+	//	
+	//	addChild(_enemyList.back());
+	//}
+	//
+	//_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-10,0,0), irr::core::vector3df(0.02f,0,0)));
+	//addChild(_enemyList.back());
 
 	//_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(10,0,0), irr::core::vector3df(-0.02f,0,0)));
 	//addChild(_enemyList.back());

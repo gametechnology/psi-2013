@@ -35,7 +35,7 @@ void PowerStation :: init() {
 
 PowerStation :: ~PowerStation()
 {
-
+	Station::~Station();
 }
 
 void PowerStation::HandleNetworkMessage(NetworkPacket packet)
@@ -209,12 +209,14 @@ void PowerStation::createUI()
 
 void PowerStation::enable()
 {
+	Station::enable();
+
 	createUI();
 }
 
 void PowerStation::disable()
 {
-	Composite::disable();
+	Station::disable();
 
 	removeUI();
 	removeImages();

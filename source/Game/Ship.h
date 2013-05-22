@@ -13,10 +13,10 @@
 #include "Engine/Entity.h"
 #include "Engine/IrrlichtNode.h"
 #include "Player.h"
-#include "Engine/Input.h"
 #include "Thruster.h"
 #include "Engine\Camera.h"
 #include "ShipMover.h"
+#include "Laser.h"
 
 class DefenceStation;
 class HelmStation;
@@ -65,16 +65,21 @@ public:
 	bool getShipDestroyed();
 
 	void SwitchToStation(StationType stationType);
+
+	void fireLaser();
 private:
 
 	Station				*_currentStation;
 	Camera				*_camera;
-	Thruster			*_thrusters[3];
+	Thruster			*_thrusters[4];
 	matrix4				*_inertiaMatrix;
 
 	stringw varToString(stringw str1, float var, stringw str2);
 	stringw varToString(stringw str1, float var);
 
 	void setInertiaMatrix(float h, float w, float d, float m);
+
+	vector<Laser*> _laser;
+	int _laserCount, _laserCounter;
 };
 #endif
