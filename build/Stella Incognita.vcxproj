@@ -97,6 +97,7 @@
     <ClCompile Include="..\source\Game\BackButton.cpp" />
     <ClCompile Include="..\source\Game\BaseSector.cpp" />
     <ClCompile Include="..\source\Game\BasicMoverComponent.cpp" />
+    <ClCompile Include="..\source\Game\BasicShipMover.cpp" />
     <ClCompile Include="..\source\Game\CalculateRotation.cpp" />
     <ClCompile Include="..\source\Game\EmptyTestScene.cpp" />
     <ClCompile Include="..\source\Game\Enemy.cpp" />
@@ -141,6 +142,7 @@
     <ClInclude Include="..\source\Game\BackButton.h" />
     <ClInclude Include="..\source\Game\BaseSector.h" />
     <ClInclude Include="..\source\Game\BasicMoverComponent.h" />
+    <ClInclude Include="..\source\Game\BasicShipMover.h" />
     <ClInclude Include="..\source\Game\CalculateRotation.h" />
     <ClInclude Include="..\source\Game\Collision.h" />
     <ClInclude Include="..\source\Game\EmptyTestScene.h" />

@@ -14,6 +14,10 @@ HelmStation::~HelmStation()
 void HelmStation::onAdd()
 {
 	Station::onAdd();
+
+	//ShipMover* mover = new ShipMover(_ship); // Ship mover with thrusters.
+	BasicShipMover* mover = new BasicShipMover(_ship); // Ship mover without thrusters.
+	addComponent(mover);
 }
 
 void HelmStation::init()

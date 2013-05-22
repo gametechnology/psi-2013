@@ -9,16 +9,16 @@ using namespace core;
 class Camera : public IrrlichtNode {
 public:
 	Camera();
-	virtual ~Camera();
-	
+
 	irr::scene::ICameraSceneNode* getCameraNode();
-	void onAdd();
+
+	void init();
 	void createNode();
+
+	void update();
 
 	void setTarget(irr::core::vector3df target);
 	void setUpVector(irr::core::vector3df up);
-private:
-	irr::scene::ICameraSceneNode* cameraNode;
 };
 
 
