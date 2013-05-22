@@ -5,6 +5,8 @@
 vector3df startPosition;
 vector3df startRotation;
 
+ObjectPool<Laser> Ship::laserPool;
+
 Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 {
 	this->transform->position = &position;
@@ -77,16 +79,6 @@ void Ship::onAdd() {
 	startRotation = vector3df(0,0,0);
 	this->transform->position = &startPosition;
 	this->transform->rotation = &startRotation;
-
-	_laserCount = 10;
-
-	for (int i = 0; i < _laserCount; i++)
-		_laser.push_back(new Laser());
-
-	for (int i = 0; i < _laserCount; i++)
-		scene->addChild(_laser[i]);
-
-	_laserCounter = 0;
 }
 
 void Ship::init() 
@@ -268,8 +260,9 @@ void Ship::setInertiaMatrix(float h, float w, float d, float m)
 
 void Ship::fireLaser()
 {
-	_laser[_laserCounter++]->fire(this->scene, this->transform, _camera->getCameraNode()->getTarget(), 1.0);
-
-	if(_laserCounter >= _laserCount)
-		_laserCounter = 0;
+	Laser laser = *this->laserPool.GetFreeObject();
+	if(&laser != NULL)
+	{
+		laser.fire(this->transform, _camera->getCameraNode()->getTarget(), 1.0);
+	}
 }
