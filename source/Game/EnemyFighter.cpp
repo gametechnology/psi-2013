@@ -48,14 +48,15 @@ void EnemyFighter::update()
 
 	if(game->input->isKeyboardButtonPressed(irr::KEY_KEY_M))
 	{
-		this->_fireTime++;
+		std::cout<<"schiet";
+		//this->_fireTime++;
 
-		if(this->_fireTime >= 200)
-		{
+		//if(this->_fireTime >= 100)
+		//{
 			//fire laser to target
 			this->fireLaserAt(this->getTarget());
-			this->_fireTime = 0;
-		}
+			//this->_fireTime = 0;
+		//}
 	}
 
 	if(EnemyFighter::stateSwitch->getState() == StateSwitch::STATE_OFFENSIVE)
