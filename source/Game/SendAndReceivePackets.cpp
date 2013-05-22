@@ -97,6 +97,9 @@ void SendAndReceivePackets::sendLazerPacket(std::vector<Laser*> laserList, const
 	sendServerPacket(packet, reliable);
 }
 
+/*TODO:
+Make sure the laser is only visible on the right sector, currently shows all the lasers that er enabled
+*/
 std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& packet, std::vector<Laser*> laserList, Scene* scene)
 {
 	std::vector<Laser> serverList;
