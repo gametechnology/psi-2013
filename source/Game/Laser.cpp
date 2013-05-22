@@ -6,7 +6,7 @@ Laser::Laser() : Enemy()
 {	
 	this->_currentLife = 0;
 	this->_timeofLife = 250;
-	this->_damage = 1;
+	this->_damage = 10;
 	this->disable();
 	this->scene = NULL;
 	this->_hasAnIrrlichtNode = false;

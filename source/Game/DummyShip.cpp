@@ -75,7 +75,6 @@ void DummyShip :: draw()
 
 void DummyShip :: contactResolverA(Entity* input)
 {
-	//when the ship is hit, it will lose 30 hp. Does not matter what it get hits by.
 	std::printf("HIT on Ship!");
 	Entity::contactResolverA(input);
 }
