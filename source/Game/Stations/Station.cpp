@@ -204,3 +204,10 @@ void Station::repairStation(int health)
 	this->setStationDestroyed(false);
 	_stationStats->health = health;
 }
+
+void Station::leaveStation(StationType station)
+{
+	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
+	packet << station;
+	Network::GetInstance()->SendPacket(packet, true);
+}

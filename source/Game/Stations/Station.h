@@ -25,6 +25,8 @@ enum StationType
 
 class Station : public Entity
 {
+	void leaveStation(StationType station);
+
 public:
 	Station( Ship *ship, int startHealth );
 	Station( Ship *ship );
