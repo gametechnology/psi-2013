@@ -1,5 +1,4 @@
 #include "DummyShip.h"
-#include "Enemy.h"
 
 
 DummyShip::DummyShip(vector3df position) : Enemy ()
@@ -13,6 +12,11 @@ DummyShip::~DummyShip(void)
 }
 
 void DummyShip::onAdd() {
+	health = 100;
+	this->env = game->device->getGUIEnvironment();
+	irr::core::stringw strShipHealth = "ship health: "; 
+	this->shipHealth = env->addStaticText(strShipHealth.c_str(), rect<s32>(40,80,300,100), false);
+	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
 	Entity::onAdd();
@@ -24,7 +28,7 @@ void DummyShip::init()
 	startRotation = vector3df(0,0,0);
 	this->transform->position = &startPosition;
 	this->transform->rotation = &startRotation;
-
+	health = 100;
 	Entity::init();
 }
 
@@ -45,6 +49,16 @@ irr::core::stringw DummyShip::varToString(irr::core::stringw str1, float var, ir
 
 void DummyShip :: update()
 {
+	if (health < 0)
+	{
+		health = 0;
+	}
+	if (health == 0)
+	{
+		std::cout<<"DummyShip is destroyed!!!";
+	}
+	stringw strShipHealth = "ship health: "	+ this->health;
+	this->shipHealth->setText((varToString("Ship HP : ",(float)this->health)).c_str());
 	Entity :: update();
 }
 

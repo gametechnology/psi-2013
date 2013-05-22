@@ -23,8 +23,13 @@ public:
 
 	vector3df startPosition;
 	vector3df startRotation;
+
+	irr::gui::IGUIEnvironment *env;
+	irr::gui::IGUIStaticText *shipHealth;
 private:
 	matrix4				*_inertiaMatrix;
+
+	signed int health;
 
 	stringw varToString(stringw str1, float var, stringw str2);
 	stringw varToString(stringw str1, float var);
