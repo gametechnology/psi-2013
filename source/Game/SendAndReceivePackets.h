@@ -9,6 +9,7 @@
 #include "EnemyFighter.h"
 #include "Laser.h"
 #include "Engine\Scene.h"
+#include "EndScene.h"
 
 static class SendAndReceivePackets
 {

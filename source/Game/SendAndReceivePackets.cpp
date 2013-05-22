@@ -1,5 +1,6 @@
 #include "SendAndReceivePackets.h"
 
+
 Game* SendAndReceivePackets::staticGame;
 
 void SendAndReceivePackets::sendPacket(NetworkPacket packet, const bool reliable)
@@ -147,17 +148,18 @@ void SendAndReceivePackets::receiveWinLosePacket(NetworkPacket& packet, int team
 
 	SceneManager sceneManager = *currentScene->game->sceneManager;
 	char nameCurrentScene = *sceneManager.getNameScene(currentScene)->name;
+	std::cout <<"team ID: " <<team << endl;
 	if(team == teamId)
 	{
-		sceneManager.addScene("LoseScene", new Scene());
-		sceneManager.activateScene("LoseScene");
+		sceneManager.addScene("EndScene", new EndScene(true));
+		sceneManager.activateScene("EndScene");
 	}else
 	{
-		sceneManager.addScene("WinScene", new Scene());
-		sceneManager.activateScene("WinScene");
+		sceneManager.addScene("EndScene", new EndScene(false));
+		sceneManager.activateScene("EndScene");
 	}
 		sceneManager.deactivateScene(&nameCurrentScene);
-		sceneManager.destroyScene(&nameCurrentScene);
+		//sceneManager.destroyScene(&nameCurrentScene);
 }
 
 sf::Packet& operator <<(sf::Packet& out, Scene* in)
