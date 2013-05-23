@@ -68,7 +68,7 @@ public:
 
 	void SwitchToStation(StationType stationType);
 
-	static ObjectPool<Laser> laserPool;
+	static ObjectPool<Laser>* laserPool;
 
 	void fireLaser();
 private:

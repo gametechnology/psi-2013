@@ -2,7 +2,7 @@
 #include "Engine/Entity.h"
 #include "Engine/Collision.h"
 
-ObjectPool<Laser> EnemyFighter::laserPool;
+ObjectPool<Laser>* EnemyFighter::laserPool;
 
 EnemyFighter::EnemyFighter(irr::core::vector3df position): Enemy()
 {
@@ -79,7 +79,7 @@ EnemyFighter::~EnemyFighter(void)
 
 void EnemyFighter::fireLaserAt(vector3df target)
 {
-	Laser* laser = this->laserPool.GetFreeObject();
+	Laser* laser = this->laserPool->GetFreeObject();
 	if(laser != NULL)
 	{
 		laser->fire(this->transform, target, 1.0f);

@@ -19,7 +19,7 @@ public:
 	virtual void onAdd();
 	virtual void update();
 
-	static ObjectPool<Laser> laserPool;
+	static ObjectPool<Laser>* laserPool;
 private:
 	void		fireLaserAt(vector3df target);
 	int			_fireTime;

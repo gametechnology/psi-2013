@@ -8,7 +8,7 @@ template<class T> class ObjectPool
 {
 private:
 	std::vector<T*> _objectList; 
-	int _objectCount, _top;
+	int _objectCount;
 
 	void FreeAll()
 	{

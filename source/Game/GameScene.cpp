@@ -19,8 +19,8 @@ void GameScene::onAdd() {
 
 	this->_sendLasersTimer = 0;
 	this->_laserPool = new ObjectPool<Laser>(*this, 50);
-	EnemyFighter::laserPool = *_laserPool;
-	Ship::laserPool = *_laserPool;
+	EnemyFighter::laserPool = _laserPool;
+	Ship::laserPool = _laserPool;
 	// The player
 	_ship = new Ship(vector3df(0,0,-100), vector3df(0,0,0));
 
@@ -37,7 +37,7 @@ void GameScene::onAdd() {
 	ShipMover* mover = new ShipMover(_ship);
 	_ship->addComponent(mover);
 
-	addChild(_ship2);
+	//addChild(_ship2);
 
 	BasicMoverComponent* movComp = new BasicMoverComponent();
 	movComp->thrust = 0.01f;
@@ -56,7 +56,7 @@ void GameScene::onAdd() {
 	addComponent(new SectorManager(galaxyMap,_ship));
 
 	_shipmap = new Shipmap(this);
-	addChild(_shipmap);
+	//addChild(_shipmap);
 
 }
 
