@@ -124,6 +124,10 @@ void Station::update()
 	updateHealth();
 	//Update Stun Time
 	//Update player on station time	
+
+	if (game->input->isKeyboardButtonDown(KEY_ESCAPE)){
+	// Load Shipmap
+	}
 }
 
 

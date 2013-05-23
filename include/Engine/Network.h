@@ -133,6 +133,11 @@ public:
 	void SendServerPacket(NetworkPacket packet, const bool reliable = false);
 
 	/*
+	* If you are a server, sends a packet to a specific client
+	*/
+	void SendServerPacket(NetworkPacket packet, ENetPeer* peer, const bool reliable);
+
+	/*
 	* Add a listener to the Network interface. If the Network interface receives a message of the specified PacketType
 	* the listener's HandleNetworkMessage() will be called.
 	*/

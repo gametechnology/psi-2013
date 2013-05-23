@@ -71,7 +71,6 @@ public:
 private:
 
 	Station				*_currentStation;
-	Camera				*_camera;
 	Thruster			*_thrusters[4];
 	matrix4				*_inertiaMatrix;
 
