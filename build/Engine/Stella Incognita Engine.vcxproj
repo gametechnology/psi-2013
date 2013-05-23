@@ -111,6 +111,8 @@
     <ClInclude Include="..\..\include\Engine\SceneManager.h" />
     <ClInclude Include="..\..\include\Engine\Server.h" />
     <ClInclude Include="..\..\include\Engine\Transform.h" />
+    <ClInclude Include="WeaponCamera.h" />
+    <ClInclude Include="WeaponCameraMover.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\Engine\Camera.cpp" />
@@ -132,6 +134,8 @@
     <ClCompile Include="..\..\source\Engine\SceneManager.cpp" />
     <ClCompile Include="..\..\source\Engine\Transform.cpp" />
     <ClCompile Include="BillBoardNode.cpp" />
+    <ClCompile Include="WeaponCamera.cpp" />
+    <ClCompile Include="WeaponCameraMover.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\assets\sydney.bmp" />

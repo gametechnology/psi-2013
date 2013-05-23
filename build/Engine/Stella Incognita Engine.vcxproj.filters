@@ -90,6 +90,12 @@
     <ClInclude Include="..\..\include\Engine\Server.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WeaponCamera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponCameraMover.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\Engine\Camera.cpp">
@@ -150,6 +156,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Engine\CollisionSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponCamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponCameraMover.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
