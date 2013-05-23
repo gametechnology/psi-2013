@@ -51,6 +51,13 @@ public:
 	void updateHealth();
 	void increaseHealth(int health);
 	void decreaseHealth(int health);
+
+	
+	int getPower();
+	void updatePower(int power);
+	void increasePower(int power);
+	void decreasePower(int power);
+
 	void repairStation(int health);
 	void handleMessage(unsigned int message);
 

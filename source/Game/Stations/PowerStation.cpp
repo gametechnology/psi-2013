@@ -30,6 +30,11 @@ void PowerStation :: init() {
 	addComponent(help);
 	createUI();
 	Station::init();
+	SubscribeStation(this->_ship->GetStation(ST_DEFENCE) );
+	SubscribeStation(this->_ship->GetStation(ST_HELM) );
+	SubscribeStation(this->_ship->GetStation(ST_NAVIGATION) );
+	SubscribeStation(this->_ship->GetStation(ST_WEAPON) );
+	SubscribeStation(this);
 }
 
 PowerStation :: ~PowerStation()

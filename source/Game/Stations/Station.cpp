@@ -212,6 +212,29 @@ void Station::increaseHealth(int health)
 	_healthComponent->increaseHealth(health);
 }
 
+void Station::updatePower(int power)
+{
+	_powerComponent->power = power;
+}
+
+int Station :: getPower()
+{
+	return _powerComponent->power;
+}
+
+void Station::decreasePower(int power)
+{
+	_powerComponent->decreasePower(power);
+	
+}
+
+//The stations power is increased
+void Station::increasePower(int power)
+{
+	_powerComponent->increasePower(power);
+}
+
+
 void Station::repairStation(int health)
 {
 	this->setStationDestroyed(false);
