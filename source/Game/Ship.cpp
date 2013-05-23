@@ -9,18 +9,14 @@ Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 {
 	this->transform->position = &position;
 	this->transform->rotation = &rotation;
-
 }
 
 Ship::~Ship(void)
 {
-	Entity::~Entity();
+	
 }
 
 void Ship::onAdd() {
-	Entity::onAdd();
-
-//	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
 
@@ -31,13 +27,13 @@ void Ship::onAdd() {
 	addChild(_helmStation			= new HelmStation(this));
 	addChild(_navigationStation		= new NavigationStation(this));
 	addChild(_weaponStation			= new WeaponStation(this));
-	/*addChild(*/_powerStation			= new PowerStation(this);//);
-
+	addChild(_powerStation			= new PowerStation(this));
+	
 	this->_defenceStation->init();
 	this->_helmStation->init();
 	this->_navigationStation->init();
 	this->_weaponStation->init();
-	//this->_powerStation->init();
+	this->_powerStation->init();
 
 	this->_defenceStation->disable();
 	this->_helmStation->disable();
@@ -45,21 +41,25 @@ void Ship::onAdd() {
 	this->_weaponStation->disable();
 	this->_powerStation->disable();
 
+	//Camera
+	_camera = new Camera();
+	_camera->setTarget(vector3df(0,0,0));
+	_camera->setUpVector(vector3df(0,1,0));
+	addChild(_camera);
 	
 	//Thrusters
-	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
-	_thrusters[1] = new Thruster(vector3df(0,-2, 4), vector3df(0, 4, 4 ));
-	_thrusters[2] = new Thruster(vector3df(0,2, -4), vector3df(0, -4, -4 ));
-	_thrusters[3] = new Thruster(vector3df(0,2, -4), vector3df(0, -4, 4 ));
+	/*_thrusters[0] = new Thruster(this, vector3df(0,0, -4), vector3df(0, 0, -4));
+	_thrusters[1] = new Thruster(this, vector3df(0,-2, 4), vector3df(0, 4, 0 ));
+	_thrusters[2] = new Thruster(this, vector3df(0,2, -4), vector3df(0, 4, 0 ));*/
 
 	irr::core::stringw strShipHealth			= "ship health: "; 
 	strShipHealth +	irr::core::stringw();
 
 	irr::core::stringw strDefenceHealth			= "Defence Station health: "		+ this->_defenceStation->getHealth();
 	irr::core::stringw strHelmHealth			= "Helm Station health: "			+ this->_helmStation->getHealth();
-	irr::core::stringw strNavigationHealth		= "Navigation Station health: "		+ this->_navigationStation-> getHealth();
-	irr::core::stringw strPowerHealth			= "Power Station health: "			+ this->_powerStation->getHealth();
-	irr::core::stringw strWeaponHealth			= "Weapon Station health: "			+ this->_weaponStation->getHealth();
+	irr::core::stringw strNavigationHealth		= "Navigation Station health: "	+ this->_navigationStation-> getHealth();
+	irr::core::stringw strPowerHealth			= "Power Station health: "		+ this->_powerStation->getHealth();
+	irr::core::stringw strWeaponHealth			= "Weapon Station health: "		+ this->_weaponStation->getHealth();
 	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->helmStationHealth			= env->addStaticText(strHelmHealth.c_str(),			rect<s32>(40, 120, 300, 140), false);	this->helmStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
@@ -67,26 +67,14 @@ void Ship::onAdd() {
 	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 
+	this->updateShipHealth();
+
 	startPosition = vector3df(0,0,-100);
 	startRotation = vector3df(0,0,0);
 	this->transform->position = &startPosition;
 	this->transform->rotation = &startRotation;
 
-	_laserCount = 10;
 
-	for (int i = 0; i < _laserCount; i++)
-		_laser.push_back(new Laser());
-
-	for (int i = 0; i < _laserCount; i++)
-		scene->addChild(_laser[i]);
-
-	_laserCounter = 0;
-
-	
-
-	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station'", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
-	addComponent(help);
-	help->init();
 }
 
 void Ship::init() 
@@ -113,13 +101,13 @@ void Ship::init()
 	startRotation = vector3df(0,0,0);
 	this->transform->position = &startPosition;
 	this->transform->rotation = &startRotation;*/
-	
-	Entity::init();
 
+	Entity::init();
 }
 
 Station *Ship :: GetStation( StationType s )
 {
+	this->_defenceStation->Damage( );
 
 	switch( s )
 	{
@@ -159,15 +147,16 @@ irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::co
 void Ship :: update()
 {
 	Entity :: update();
+	this->updateShipHealth();
 	CheckChangeInput();
 
 	//updating the text for testing the health
-	stringw strShipHealth		= "ship health: "				+ this->getShipHealth();
-	stringw strDefenceHealth	= "Defence Station health: "	+ this->_defenceStation->getHealth();
-	stringw strHelmHealth		= "Helm Station health: "		+ this->_helmStation->getHealth();
+	stringw strShipHealth = "ship health: " + this->getShipHealth();
+	stringw strDefenceHealth = "Defence Station health: " + this->_defenceStation->getHealth();
+	stringw strHelmHealth = "Helm Station health: " + this->_helmStation->getHealth();
 	stringw strNavigationHealth = "Navigation Station health: " + this->_navigationStation-> getHealth();
-	stringw strPowerHealth		= "Power Station health: "		+ this->_powerStation->getHealth();
-	stringw strWeaponHealth		= "Weapon Station health: "		+ this->_weaponStation->getHealth();
+	stringw strPowerHealth = "Power Station health: " + this->_powerStation->getHealth();
+	stringw strWeaponHealth = "Weapon Station health: " + this->_weaponStation->getHealth();
 
 	this->shipHealth->setText(				(varToString("Ship HP : ",		(float)this->getShipHealth())					).c_str());
 	this->defenceStationHealth->setText(	(varToString("Defence HP: ",	(float)this->_defenceStation->getHealth())		).c_str());
@@ -176,10 +165,30 @@ void Ship :: update()
 	this->powerStationHealth->setText(		(varToString("Power HP: ",		(float)this->_powerStation->getHealth())		).c_str());
 	this->weaponStationHealth->setText(		(varToString("Weapon HP: ",		(float)this->_weaponStation->getHealth())		).c_str());
 
-	//If the ship has no more health and is not already destroyed, destroy it
-	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
+	if(this->_shipHealth <= 0 && this->_shipDestroyed == false) {
 		this->_shipDestroyed = true;
 	}
+
+	if(this->_helmStation->getHealth() <= 0 && this->_helmStation->getStationDestroyed() == false) {
+		this->_helmStation->setStationDestroyed(true);
+	}
+
+	if(this->_defenceStation->getHealth() <= 0 && this->_defenceStation->getStationDestroyed() == false) {
+		this->_defenceStation->setStationDestroyed(true);
+	}
+
+	if(this->_navigationStation->getHealth() <= 0 && this->_navigationStation->getStationDestroyed() == false) {
+		this->_navigationStation->setStationDestroyed(true);
+	}
+
+	if(this->_powerStation->getHealth() <= 0 && this->_powerStation->getStationDestroyed() == false) {
+		this->_powerStation->setStationDestroyed(true);
+	}
+
+	if(this->_weaponStation->getHealth() <= 0 && this->_weaponStation->getStationDestroyed() == false) {
+		this->_weaponStation->setStationDestroyed(true);
+	}
+	Entity :: update();
 }
 
 Thruster** Ship :: GetThrusters()
@@ -215,14 +224,29 @@ void Ship :: SwitchToStation(StationType stationType)
 			return;
 
 		//First remove the currentStation from the shipComponents
-		_currentStation->disable();
+		_currentStation->OnDisabled();
+		removeChild(_currentStation);
+		//_currentStation->Disable();
 	}
 
 	//Find the new station
 	_currentStation = this->GetStation(stationType);
 
 	//Init and add the new station
-	_currentStation->enable();
+	_currentStation->OnEnabled();
+	addChild(_currentStation);
+	//_currentStation->Enable();
+}
+
+void Ship :: updateShipHealth()
+{
+
+	this->_shipHealth = 
+		this->_defenceStation->getHealth() +
+		this->_helmStation->getHealth() +
+		this->_navigationStation->getHealth() +
+		this->_powerStation->getHealth() +
+		this->_weaponStation->getHealth();
 }
 
 void Ship :: draw()
@@ -232,12 +256,7 @@ void Ship :: draw()
 
 int Ship :: getShipHealth()
 {
-
-	return (this->_defenceStation->getHealth() +
-		this->_helmStation->getHealth() +
-		this->_navigationStation->getHealth() +
-		this->_powerStation->getHealth() +
-		this->_weaponStation->getHealth());
+	return this->_shipHealth;
 }
 
 bool Ship :: getShipDestroyed()
@@ -260,12 +279,4 @@ void Ship::setInertiaMatrix(float h, float w, float d, float m)
 	inertiaData[15] = 1.0f;
 
 	_inertiaMatrix->setM(inertiaData);
-}
-
-void Ship::fireLaser()
-{
-	//_laser[_laserCounter++]->fire(this, _camera->getCameraNode()->getTarget(), 1.0);
-
-	if(_laserCounter >= _laserCount)
-		_laserCounter = 0;
 }
