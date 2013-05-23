@@ -19,7 +19,7 @@ void GameScene::onAdd() {
 	_ship->addChild(_camera);
 	_camera->init();
 
-	_shipEnemy = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
+	_shipEnemy = new RemoteShip(vector3df(0,0,-100), vector3df(180,0,0));
 	addChild(_shipEnemy);
 
 	BasicMoverComponent* movComp = new BasicMoverComponent();

@@ -8,6 +8,7 @@
 #include <Engine\Camera.h>
 
 #include "Ship.h"
+#include "RemoteShip.h"
 #include "ShipMover.h"
 #include "BasicMoverComponent.h"
 #include "Stations\Station.h"
@@ -30,7 +31,7 @@ private:
 	Camera *_camera;
 	Shipmap* _shipmap;
 	Ship* _ship;
-	Ship* _shipEnemy;
+	RemoteShip* _shipEnemy;
 
 	std::list<Player*> _playerList;
 };
