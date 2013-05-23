@@ -151,23 +151,22 @@ void Shipmap::update()
 	playerTile.x = (int)((this->transform->position->X - offsetX) / tileSize);
 	playerTile.y = (int)((this->transform->position->Y - offsetY) / tileSize);
 
-	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_A))
-	{
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_A)) {
 		isMoving = true;
-		this->transform->position->X -= playerSpeed;
+		this->transform->position->X -= playerSpeed; 
 	}
-	else if (game->input->isKeyboardButtonDown(irr::KEY_KEY_D))
-	{
+
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_D)) {
 		isMoving = true;
 		this->transform->position->X += playerSpeed;
 	}
-	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_W))
-	{
+
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_W)) {
 		isMoving = true;
 		this->transform->position->Y -= playerSpeed;
 	}
-	else if (game->input->isKeyboardButtonDown(irr::KEY_KEY_S))
-	{
+
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_S)){
 		isMoving = true;
 		this->transform->position->Y += playerSpeed;
 	}
