@@ -46,7 +46,7 @@ void WeaponStation::draw()
 
 void WeaponStation::enable()
 {
-	((Ship*)parent)->help->setHelpText(L"todo: Exit station: 'Esc'");
+	((Ship*)parent)->help->setHelpText(L"Shoot: 'space'\ntodo: Exit station: 'Esc'");
 
 	Station::enable();
 }

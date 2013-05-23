@@ -83,10 +83,11 @@ void Ship::onAdd() {
 	_laserCounter = 0;
 
 	
-
-	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station'", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
+	//Todo: Remove debug info from helptext!
+	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
 	addComponent(help);
 	help->init();
+	//Todo: Reset the helptext to above text when you leave a station without entering another!
 }
 
 void Ship::init() 
