@@ -55,5 +55,5 @@ void BasicShipMover::update() {
 
 	//Send packet to server
 	if(Network::GetInstance()->IsServer())
-		Network::GetInstance()->SendServerPacket(movementPacket, false);
+		Network::GetInstance()->SendPacketToAllClients(movementPacket, false);
 }

@@ -17,6 +17,8 @@ public:
 
 	Station *station;
 
+	void enable();
+
 	void OnEnabled();
 	void OnDisabled();
 };

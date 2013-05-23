@@ -151,51 +151,24 @@ void Shipmap::update()
 	playerTile.x = (int)((this->transform->position->X - offsetX) / tileSize);
 	playerTile.y = (int)((this->transform->position->Y - offsetY) / tileSize);
 
-	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_A))
-	{
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_A)) {
 		isMoving = true;
-		this->transform->position->X -= playerSpeed;
+		this->transform->position->X -= playerSpeed; 
 	}
-	else if (game->input->isKeyboardButtonDown(irr::KEY_KEY_D))
-	{
+
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_D)) {
 		isMoving = true;
 		this->transform->position->X += playerSpeed;
 	}
-	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_W))
-	{
+
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_W)) {
 		isMoving = true;
 		this->transform->position->Y -= playerSpeed;
 	}
-	else if (game->input->isKeyboardButtonDown(irr::KEY_KEY_S))
-	{
+
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_S)){
 		isMoving = true;
 		this->transform->position->Y += playerSpeed;
-	}
-
-	// TODO remove this when implementing stations - it's merely for testing purposes to see if station occupied state works
-	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_0))
-	{
-		stationOccupied[0] = !stationOccupied[0];
-	}
-	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_1))
-	{
-		stationOccupied[1] = !stationOccupied[1];
-	}
-	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_2))
-	{
-		stationOccupied[2] = !stationOccupied[2];
-	}
-	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_3))
-	{
-		stationOccupied[3] = !stationOccupied[3];
-	}
-	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_4))
-	{
-		stationOccupied[4] = !stationOccupied[4];
-	}
-	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_5))
-	{
-		stationOccupied[5] = !stationOccupied[5];
 	}
 
 	// TODO replace stationOccupied[i] with the hasPlayer booleans of each individual station!

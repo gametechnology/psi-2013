@@ -130,6 +130,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 
 	NetworkPacket deniedpack(CLIENT_JOIN_DENIED);
 	NetworkPacket packetsend(ClIENT_IN_LOBBY);
+
 	switch(packet.GetType())
 	{
 	case ClIENT_IN_LOBBY:
@@ -169,14 +170,14 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		if(checksum != Network::GetInstance()->GetPacketTypeChecksum())
 		{
 			deniedpack << L"Your version does not match with the version of the host";
-			deniedpack << packet.ipadress;
+			deniedpack << packet.GetSender().address.host;
 			Network::GetInstance()->SendServerPacket(deniedpack, true);
 			return;
 		}
 		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-			if((*iterator)->Ipadres == packet.ipadress){
+			if((*iterator)->Ipadres == packet.GetSender().address.host){
 				deniedpack << L"Your pc is already connected to the host";
-				deniedpack << packet.ipadress;
+				deniedpack << packet.GetSender().address.host;
 				Network::GetInstance()->SendServerPacket(deniedpack, true);
 
 				return;
@@ -187,7 +188,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			team = 2;
 		else
 			team = 1;
-		newplayer = new Player( name,  packet.ipadress, team);
+		newplayer = new Player( name,  packet.GetSender().address.host, team);
 		playerlist.push_back(newplayer);
 
 		lenght = playerlist.size();
@@ -202,7 +203,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		break;
 	case CLIENT_QUIT:
 		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-			if((*iterator)->Ipadres == packet.ipadress)
+			if((*iterator)->Ipadres == packet.GetSender().address.host)
 				newplayer = (*iterator);
 
 		}
