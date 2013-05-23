@@ -216,16 +216,12 @@ void Ship :: SwitchToStation(StationType stationType)
 
 		//First remove the currentStation from the shipComponents
 		_currentStation->disable();
-		//removeChild(_currentStation);
-		_currentStation->disable();
 	}
 
 	//Find the new station
 	_currentStation = this->GetStation(stationType);
 
 	//Init and add the new station
-	_currentStation->enable();
-	//addChild(_currentStation);
 	_currentStation->enable();
 }
 
