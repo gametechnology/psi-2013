@@ -105,6 +105,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					return true;
 					}
 				case 3: // Start
+					cout << "test";
 					mainmenu->StartGame();
 					Network::GetInstance()->SendServerPacket(packet, true);
 					return true;

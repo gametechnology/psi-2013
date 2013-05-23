@@ -1,5 +1,6 @@
 #include "PlayerManager.h"
 #include "Stations\Station.h"
+#include "Ship.h"
 
 PlayerManager *player_manager = new PlayerManager( );
 
@@ -12,6 +13,10 @@ PlayerManager :: PlayerManager( ) : INetworkListener( )
 	Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_ADD_PLAYER_DATA, this );
 	Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_UPDATE_PLAYER_DATA, this );
 	Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REMOVE_PLAYER_DATA, this );	
+	Network :: GetInstance( ) -> AddListener( PacketType :: JOIN_STATION, this );	
+	Network :: GetInstance( ) -> AddListener( PacketType :: JOIN_STATION_ACCEPTED, this );	
+	Network :: GetInstance( ) -> AddListener( PacketType :: JOIN_STATION_DENIED, this );	
+	
 }
 
 PlayerManager :: ~PlayerManager( )
@@ -19,6 +24,9 @@ PlayerManager :: ~PlayerManager( )
 	Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_ADD_PLAYER_DATA, this );
 	Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_UPDATE_PLAYER_DATA, this );
 	Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_REMOVE_PLAYER_DATA, this );
+	Network :: GetInstance( ) -> RemoveListener( PacketType :: JOIN_STATION, this );
+	Network :: GetInstance( ) -> RemoveListener( PacketType :: JOIN_STATION_ACCEPTED, this );	
+	Network :: GetInstance( ) -> RemoveListener( PacketType :: JOIN_STATION_DENIED, this );
 }
 
 PlayerData *PlayerManager :: GetLocalPlayerData( )
@@ -76,7 +84,25 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	case PacketType :: CLIENT_REMOVE_PLAYER_DATA:
 		this -> RemovePlayerData( player_id );
 		break;
+
+	case PacketType :: JOIN_STATION_ACCEPTED:
+		packet >> player_station_type;
+		Station_Accepted((StationType)player_station_type);
+		break;
+	case PacketType :: JOIN_STATION_DENIED:
+		packet >> player_station_type;
+		Station_Refused((StationType)player_station_type);
+		break;
 	}
+}
+
+void PlayerManager :: Station_Accepted(StationType station){
+
+	ship->SwitchToStation(station);
+}
+
+void PlayerManager :: Station_Refused(StationType station){
+	cout << "Join station request refused; Station is occupied";
 }
 
 void PlayerManager :: GenerateLocalPlayerData( int player_id, const wchar_t *player_name, int team_id )
@@ -112,3 +138,12 @@ PlayerData *PlayerManager :: GetPlayerData( int player_id )
 {
 	return &this -> _playerData -> find( player_id ) -> getValue( );
 }
+
+void PlayerManager :: Request_Station_Join(int player_id, StationType station){
+
+	NetworkPacket p = NetworkPacket (PacketType :: JOIN_STATION );
+	p << player_id << (int)station;
+	Network :: GetInstance( ) -> SendPacket (p, true);
+
+}
+

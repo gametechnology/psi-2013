@@ -1,6 +1,7 @@
 #include "Ship.h"
 #include "Stations/Station.h"
 #include "ShipMover.h"
+#include "PlayerManager.h"
 
 vector3df startPosition;
 vector3df startRotation;
@@ -168,20 +169,28 @@ Thruster** Ship :: GetThrusters()
 void Ship :: CheckChangeInput()
 {
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_1))
-		SwitchToStation(ST_DEFENCE);
+		player_manager->Request_Station_Join(1,ST_DEFENCE);
 
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_2))
-		SwitchToStation(ST_HELM);
+		player_manager->Request_Station_Join(1,ST_HELM);
 
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_3))
-		SwitchToStation(ST_WEAPON);
+		player_manager->Request_Station_Join(1,ST_WEAPON);
 
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_4))
-		SwitchToStation(ST_NAVIGATION);
+		player_manager->Request_Station_Join(1,ST_NAVIGATION);
 
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_5))
-		SwitchToStation(ST_POWER);
+		player_manager->Request_Station_Join(1,ST_POWER);
+
+	if (game->input->isKeyboardButtonPressed(KEY_KEY_D))
+		cout << "Showing list!" <<endl;
+	
+	//TODO: This is a hack for not letting a key be processed more than once.
+	game ->input->endInputProcess();
+	game ->input->startInputProcess();
 }
+
 
 //Swith to a specific station
 void Ship :: SwitchToStation(StationType stationType)

@@ -32,6 +32,9 @@ enum PacketType
 	CLIENT_UPDATE_PLAYER_DATA,
 	CLIENT_ADD_PLAYER_DATA,
 	CLIENT_REMOVE_PLAYER_DATA,
+	JOIN_STATION,
+	JOIN_STATION_ACCEPTED,
+	JOIN_STATION_DENIED,
 
 	//Add new PacketTypes above
 	LAST_TYPE
@@ -54,6 +57,9 @@ inline char* getPacketTypeName(PacketType type)
 		case CLIENT_UPDATE_PLAYER_DATA: return "CLIENT_UPDATE_PLAYER_DATA";
 		case CLIENT_ADD_PLAYER_DATA: return "CLIENT_ADD_PLAYER_DATA";
 		case CLIENT_REMOVE_PLAYER_DATA: return "CLIENT_REMOVE_PLAYER_DATA";
+		case JOIN_STATION: return "JOIN_STATION";
+		case JOIN_STATION_ACCEPTED: return "JOIN_STATION_ACCEPTED";
+		case JOIN_STATION_DENIED: return "JOIN_STATION_DENIED";
 
 		default: { throw "Tried to get string from non-existing packet type"; }
 	}

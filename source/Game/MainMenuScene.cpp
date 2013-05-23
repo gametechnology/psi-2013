@@ -147,6 +147,8 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			packet >> name;
 			packet >> checksum;
 			
+			cout << "test";
+
 			if(checksum != Network::GetInstance()->GetPacketTypeChecksum())
 			{
 				deniedpack << L"Your version does not match with the version of the host";

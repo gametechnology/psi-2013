@@ -13,7 +13,8 @@ class PlayerManager : public INetworkListener
 private:
 	irr :: core :: map<int, PlayerData> *_playerData;
 	int									_localPlayer_id;
-	
+	Ship								*ship;
+
 	void UpdatePlayer( int player_id, StationType type );
 	//whenever the 
 	void AddPlayerData( int player_id, const wchar_t *player_name, int team_id );
@@ -28,6 +29,9 @@ public:
 
 	void HandleNetworkMessage( NetworkPacket p );
 	void GenerateLocalPlayerData( int player_id, const wchar_t *name, int team_id );
+	void Request_Station_Join(int player_id, StationType station);
+	void Station_Accepted(StationType station);
+	void Station_Refused(StationType station);
 
 	PlayerData *GetLocalPlayerData( );
 	//this makes sure that the local data is sent to all the other players on the network (only local data)
