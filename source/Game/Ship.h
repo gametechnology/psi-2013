@@ -17,6 +17,7 @@
 #include "Engine\Camera.h"
 #include "ShipMover.h"
 #include "Laser.h"
+#include "HudHelpText.h"
 
 class DefenceStation;
 class HelmStation;
@@ -27,6 +28,8 @@ class WeaponStation;
 class Ship : public Entity, public INetworkListener
 {
 public:
+	HudHelpText* help;
+
 	//Player *players;
 	DefenceStation		*_defenceStation;
 	HelmStation			*_helmStation;

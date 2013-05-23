@@ -48,6 +48,8 @@ void HelmStation::draw()
 
 void HelmStation::enable()
 {
+	((Ship*)parent)->help->setHelpText(L"Forward: 'W'\nBackwards: 'S'\nRoll left: 'A'\nRoll right: 'D'\nPitch up: 'down'\nPitch down: 'up'\nJaw left: 'left'\nJaw right: 'right'\ntodo: Exit station: 'Esc'");
+
 	Station::enable();
 }
 

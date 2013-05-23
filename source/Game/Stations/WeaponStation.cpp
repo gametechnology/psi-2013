@@ -66,6 +66,8 @@ void WeaponStation::enable()
 {
 	
 	rotationForeign	== *_ship->transform->rotation;
+	((Ship*)parent)->help->setHelpText(L"Shoot: 'space'\ntodo: Exit station: 'Esc'");
+
 	Station::enable();
 }
 

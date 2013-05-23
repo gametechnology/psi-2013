@@ -19,16 +19,9 @@ using namespace gui;
 class PowerStationData
 {
 private:
-	struct PowerUsage
-	{
-	public:
-		PowerUsage( ) { powerCurrent = 0; };
-		PowerUsage( int powerCurrent );
-		//this is the current powerlevel of the given station
-		int powerCurrent;
-	};
 	
-	irr::core::map<StationType, PowerUsage> *_stationsPowerUsage;
+	
+	irr::core::map<StationType, Station*> *_stationsPowerUsage;
 	time_t _timeOfLastBoost;	
 	int _powerUsed;
 

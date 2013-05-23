@@ -11,6 +11,7 @@ public:
 	~HealthComponent();
 	void increaseHealth(int health);
 	void decreaseHealth(int health);
+	void handleMessage(unsigned int message, void* data);
 
 	//Station information
 	const static int maxHealth = 100;
