@@ -1,7 +1,10 @@
 #include "Station.h"
 #include "PowerStation.h"
 #include "DefenceStation.h"
-#include "../StationStats.h"
+//#include "../StationStats.h"
+#include "../HealthComponent.h"
+#include "../PowerComponent.h"
+#include "../ShieldComponent.h"
 
 
 Station :: Station( Ship *ship, int startHealth ) : Entity()
@@ -11,7 +14,7 @@ Station :: Station( Ship *ship, int startHealth ) : Entity()
 	//Add astationstats component to this station
 	//this->_stationStats = new StationStats();
 	//addComponent(_stationStats);
-/*jorn
+
 	//Stations stats exist out of heath, power and shield
 	this->_healthComponent = new HealthComponent();
 	this->_powerComponent = new PowerComponent();
@@ -22,7 +25,6 @@ Station :: Station( Ship *ship, int startHealth ) : Entity()
 	
 	//this -> _switchTime = 4.0f;
 	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
-*/
 }
 
 Station :: Station( Ship * ship ) : Entity()
@@ -197,7 +199,7 @@ int Station :: getHealth()
 
 void Station::decreaseHealth(int health)
 {
-	_healthComponent->DecreaseHealth(health);
+	_healthComponent->decreaseHealth(health);
 	if(_healthComponent->health <= 0)
 	{
 		setStationDestroyed(true);
@@ -207,7 +209,7 @@ void Station::decreaseHealth(int health)
 //The stations health is increased
 void Station::increaseHealth(int health)
 {
-	_healthComponent->IncreaseHealth(health);
+	_healthComponent->increaseHealth(health);
 }
 
 void Station::repairStation(int health)
