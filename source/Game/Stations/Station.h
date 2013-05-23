@@ -79,7 +79,10 @@ private:
 	
 	int _tempTimer;
 	int _totalHealth;
-	StationStats* _stationStats;
+	//StationStats* _stationStats;
+	HealthComponent* _healthComponent;
+	PowerComponent* _powerComponent;
+	ShieldComponent* _shieldComponent;
 	bool _stationDestroyed;
 };
 #endif
