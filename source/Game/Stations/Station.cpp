@@ -186,9 +186,9 @@ void Station::increaseHealth(int health)
 	_healthComponent->increaseHealth(health);
 }
 
-void Station::updatePower(int power)
+void Station::decreaseHealth(int health)
 {
-	_powerComponent->power = power;
+	_healthComponent->decreaseHealth(health);
 }
 
 int Station :: getPower()
