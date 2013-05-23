@@ -43,6 +43,7 @@ public:
 	irr::gui::IGUIStaticText *powerStationHealth;
 	irr::gui::IGUIStaticText *weaponStationHealth;
 
+
 	bool _shipDestroyed;
 
 	bool _sitOnStation;

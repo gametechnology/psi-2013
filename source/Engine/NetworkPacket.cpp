@@ -4,6 +4,8 @@
 
 NetworkPacket::NetworkPacket(const PacketType type) : _type(type)
 {
+	
+
 }
 
 NetworkPacket::NetworkPacket(ENetPacket* packet, enet_uint32 ipadressrec)

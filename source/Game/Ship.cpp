@@ -1,4 +1,6 @@
 #include "Ship.h"
+#include "Stations/Station.h"
+#include "ShipMover.h"
 
 vector3df startPosition;
 vector3df startRotation;
@@ -7,6 +9,7 @@ Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 {
 	this->transform->position = &position;
 	this->transform->rotation = &rotation;
+
 }
 
 Ship::~Ship(void)
@@ -17,6 +20,8 @@ Ship::~Ship(void)
 void Ship::onAdd() {
 	Entity::onAdd();
 
+	
+//	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
 
@@ -41,6 +46,7 @@ void Ship::onAdd() {
 	this->_weaponStation->disable();
 	this->_powerStation->disable();
 
+	
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
 	_thrusters[1] = new Thruster(vector3df(0,-2, 4), vector3df(0, 4, 4 ));
@@ -102,8 +108,9 @@ void Ship::init()
 	startRotation = vector3df(0,0,0);
 	this->transform->position = &startPosition;
 	this->transform->rotation = &startRotation;*/
-
+	
 	Entity::init();
+
 }
 
 Station *Ship :: GetStation( StationType s )
@@ -204,8 +211,6 @@ void Ship :: SwitchToStation(StationType stationType)
 
 		//First remove the currentStation from the shipComponents
 		_currentStation->disable();
-		//removeChild(_currentStation);
-		//_currentStation->Disable();
 	}
 
 	//Find the new station
@@ -213,8 +218,6 @@ void Ship :: SwitchToStation(StationType stationType)
 
 	//Init and add the new station
 	_currentStation->enable();
-	//addChild(_currentStation);
-	//_currentStation->Enable();
 }
 
 void Ship :: draw()

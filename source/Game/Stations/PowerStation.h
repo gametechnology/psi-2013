@@ -70,6 +70,7 @@ public:
 	virtual void update();
 	virtual void draw();
 
+
 	void selectedStation();
 	void changeColorAccordingToPowerStatus(IGUIStaticText &staticText, float powerAmount);
 

@@ -4,6 +4,7 @@ HelmStation::HelmStation(Ship *ship) : Station(ship)
 {
 	_stationType = ST_HELM;
 	setStationDestroyed(false);
+
 }
 
 HelmStation::~HelmStation()
@@ -23,10 +24,10 @@ void HelmStation::onAdd()
 void HelmStation::init()
 {
 	Station::init();
-
 	_stationTexture = game->driver->getTexture("../assets/Textures/Stations/HelmStation/helm_station.png");
 	game->driver->makeColorKeyTexture(_stationTexture, irr::core::vector2d<irr::s32>(0, 0));
 }
+
 
 void HelmStation::update()
 {

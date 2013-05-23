@@ -53,21 +53,7 @@ void GameScene::switchStation(StationType type)
 {
 	this->removeChild(_shipmap);
 
-	_ship->GetStation(type)->enable();
-
-	switch(type)
-	{
-	case StationType::ST_DEFENCE:
-		break;
-	case StationType::ST_HELM:
-		break;
-	case StationType::ST_NAVIGATION:
-		break;
-	case StationType::ST_POWER:
-		break;
-	case StationType::ST_WEAPON:
-		break;
-	}
+	_ship->SwitchToStation(type);
 }
 
 void GameScene::HandleNetworkMessage(NetworkPacket packet)

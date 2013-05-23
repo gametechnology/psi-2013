@@ -13,7 +13,7 @@ public:
 	~ShipMover(void);
 	void Activate();
 	Ship		*_ship;
-
+	int lastsend;
 	virtual void init();
 	virtual void onAdd();
 	virtual void update();

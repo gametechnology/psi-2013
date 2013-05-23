@@ -9,7 +9,7 @@
 
 ShipMover::ShipMover(Ship* _ship) : BasicMoverComponent() {
 	this->_ship = _ship;
-	
+	lastsend = time(0);
 	maxFwdSpeed = 10.f;
 	maxBwdSpeed = -10.f;
 }
@@ -88,9 +88,13 @@ void ShipMover::NotMovementStuff(){
 	movementPacket << entity->transform->acceleration; 
 	movementPacket << entity->transform->angularAccelaration; 
 	movementPacket << entity->transform->angularVelocity;
-
+	
 	//Send packet to server
-	if(Network::GetInstance()->IsServer())
-		Network::GetInstance()->SendServerPacket(movementPacket, false);
-
+	
+		if (lastsend + 1 < time(0) ){
+			Network::GetInstance()->SendPacketToAllClients(movementPacket, false);
+			lastsend = time(0) ;
+		}
+	
 }
+

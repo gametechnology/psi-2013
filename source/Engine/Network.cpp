@@ -117,6 +117,7 @@ void Network::DeInitialize(){
 }
 void Network::SendPacket(NetworkPacket packet, const bool reliable)
 {
+	packet = AddSendAll(packet, false);
 	if(_isConnected)
 	{
 		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
@@ -130,9 +131,45 @@ void Network::SendPacket(NetworkPacket packet, const bool reliable)
 		}
 	}
 }
+NetworkPacket Network::AddSendAll(NetworkPacket packet, bool sendall){
+	sf::Packet tempPacket = packet;
+	packet.clear();
+	if(Network::GetInstance()->IsServer())
+		packet << false;
+	else
+		packet << sendall;
+	packet.append(tempPacket.getData(), tempPacket.getDataSize());
+	return packet;
+}
+void Network::SendPacketToAllClients(NetworkPacket packet, const bool reliable){
+	packet = AddSendAll(packet, true);
+	if(Network::GetInstance()->IsServer())
+	{
+		if(_isConnected)
+		{	
+			ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
+
+			enet_host_broadcast(_host, 0, enetPacket);
+		}
+	}
+	else
+	{
+		if(_isConnected)
+		{
+			ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
+			enet_peer_send(_peer, 0, enetPacket);
+			
+		}
+	
+	}
+		
+	
+}
 
 void Network::SendServerPacket(NetworkPacket packet, const bool reliable)
 {
+
+	packet = AddSendAll(packet, false);
 	if(_isConnected && _isServer)
 	{	
 		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
@@ -203,9 +240,29 @@ void Network::PacketReciever()
 
 void Network::DistributePacket(NetworkPacket networkPacket)
 {
+
 	int type = networkPacket.GetType();
 	if (type >= 0 && type < LAST_TYPE)
 	{
+		bool sendall;
+		networkPacket >> sendall;
+		if(IsServer() && sendall){
+			sf::Packet tempPacket = networkPacket;
+			networkPacket.clear();
+			networkPacket << true;
+			networkPacket << networkPacket.ipadress;
+			networkPacket.append(tempPacket.getData(), tempPacket.getDataSize());
+			ENetPacket* enetPacket = enet_packet_create(networkPacket.GetBytes(), networkPacket.GetSize(), true);
+				enet_host_broadcast(_host, 0, enetPacket);
+		}
+		if(!IsServer() && sendall)
+		{
+			int ipadress;
+			networkPacket >> ipadress;
+			if(ipadress ==  sf::IpAddress::getLocalAddress().m_address)
+				return;
+			
+		}
 		std::list<INetworkListener*>::const_iterator iterator;
 		for (iterator = _listeners[type]->begin(); iterator != _listeners[type]->end(); ++iterator)
 			(*iterator)->HandleNetworkMessage(networkPacket);
@@ -220,6 +277,7 @@ void Network::DistributeReceivedPackets()
 
 	std::vector<NetworkPacket>::const_iterator iterator;
 	for (iterator = _receivedPackets.begin(); iterator != _receivedPackets.end(); ++iterator) {
+		
 		this->DistributePacket(*iterator);
 	}
 	_receivedPackets.clear();

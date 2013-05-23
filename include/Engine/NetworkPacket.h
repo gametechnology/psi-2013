@@ -43,6 +43,7 @@ private:
 	PacketType _type;
 	sf::Packet _originalPacket;
 	sf::Packet _packet;
+	
 };
 
 
