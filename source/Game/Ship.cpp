@@ -9,7 +9,7 @@ Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 {
 	this->transform->position = &position;
 	this->transform->rotation = &rotation;
-
+	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
 }
 
 Ship::~Ship(void)
@@ -263,4 +263,39 @@ void Ship::fireLaser()
 
 	if(_laserCounter >= _laserCount)
 		_laserCounter = 0;
+}
+void Ship::HandleNetworkMessage(NetworkPacket packet)
+{
+	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
+	{
+		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
+		
+		
+
+		//Apply updates 
+		if(_currentStation->GetStationType() == ST_WEAPON){
+			((WeaponStation*)_currentStation)->HandlePosition (packet);
+		}
+		else{
+			//Read the information from the network packet
+			irr::core::vector3df position;
+			irr::core::vector3df orientation;
+			irr::core::vector3df velocity;
+			irr::core::vector3df acceleration;
+			irr::core::vector3df angularAcceleration;
+			irr::core::vector3df angularVelocity;
+			packet >> position;
+			packet >> orientation;
+			packet >> velocity;
+			packet >> acceleration;
+			packet >> angularAcceleration;
+			packet >> angularVelocity;
+			transform->position = &position;
+			transform->rotation = &orientation;
+			transform->velocity = &velocity;
+			transform->acceleration = &acceleration;
+			transform->angularAccelaration = &angularAcceleration;
+			transform->angularVelocity = &angularVelocity;
+		}
+	}
 }

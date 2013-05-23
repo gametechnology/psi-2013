@@ -53,3 +53,6 @@ void WeaponStation::disable()
 {
 	Station::disable();
 }
+void WeaponStation::HandlePosition(NetworkPacket pack){
+
+}

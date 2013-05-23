@@ -8,7 +8,7 @@ public:
 
 	void onAdd();
 	void init();
-
+		void HandlePosition(NetworkPacket pack);
 	void update();
 	void draw();
 

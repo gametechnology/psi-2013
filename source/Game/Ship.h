@@ -24,7 +24,7 @@ class NavigationStation;
 class PowerStation;
 class WeaponStation;
 
-class Ship : public Entity
+class Ship : public Entity, public INetworkListener
 {
 public:
 	//Player *players;
@@ -68,6 +68,8 @@ public:
 	void SwitchToStation(StationType stationType);
 
 	void fireLaser();
+	
+	void HandleNetworkMessage(NetworkPacket packet);
 private:
 
 	Station				*_currentStation;
