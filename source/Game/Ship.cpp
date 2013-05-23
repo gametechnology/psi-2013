@@ -20,7 +20,6 @@ Ship::~Ship(void)
 void Ship::onAdd() {
 	Entity::onAdd();
 
-	
 //	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
@@ -46,11 +45,6 @@ void Ship::onAdd() {
 	this->_weaponStation->disable();
 	this->_powerStation->disable();
 
-	//Camera
-	_camera = new Camera();
-	
-	addChild(_camera);
-	_camera->createNode();
 	
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
@@ -87,6 +81,12 @@ void Ship::onAdd() {
 		scene->addChild(_laser[i]);
 
 	_laserCounter = 0;
+
+	
+
+	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station'", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
+	addComponent(help);
+	help->init();
 }
 
 void Ship::init() 
@@ -264,7 +264,7 @@ void Ship::setInertiaMatrix(float h, float w, float d, float m)
 
 void Ship::fireLaser()
 {
-	_laser[_laserCounter++]->fire(this, _camera->getCameraNode()->getTarget(), 1.0);
+	//_laser[_laserCounter++]->fire(this, _camera->getCameraNode()->getTarget(), 1.0);
 
 	if(_laserCounter >= _laserCount)
 		_laserCounter = 0;
