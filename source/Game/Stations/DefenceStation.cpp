@@ -39,3 +39,9 @@ void DefenceStation::OnEnabled(){
 void DefenceStation::OnDisabled(){
 
 }
+
+void DefenceStation::enable() {
+	((Ship*)parent)->help->setHelpText(L"todo: Exit station: 'Esc'");
+
+	Station::enable();
+}
