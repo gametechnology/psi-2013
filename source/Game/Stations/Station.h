@@ -12,7 +12,9 @@
 
 #define STUN_TIME 4.0
 class Ship;
-class StationStats;
+class HealthComponent;
+class PowerComponent;
+class ShieldComponent;
 	
 enum StationType
 {
@@ -79,7 +81,10 @@ private:
 	
 	int _tempTimer;
 	int _totalHealth;
-	StationStats* _stationStats;
+	//StationStats* _stationStats;
+	HealthComponent* _healthComponent;
+	PowerComponent* _powerComponent;
+	ShieldComponent* _shieldComponent;
 	bool _stationDestroyed;
 };
 #endif

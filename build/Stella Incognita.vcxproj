@@ -109,9 +109,12 @@
     <ClCompile Include="..\source\Game\GalaxyMap.cpp" />
     <ClCompile Include="..\source\Game\GameScene.cpp" />
     <ClCompile Include="..\source\Game\HealthBar.cpp" />
+    <ClCompile Include="..\source\Game\HealthComponent.cpp" />
     <ClCompile Include="..\source\Game\HudComposite.cpp" />
     <ClCompile Include="..\source\Game\HudHelpText.cpp" />
     <ClCompile Include="..\source\Game\RemoteShip.cpp" />
+    <ClCompile Include="..\source\Game\PowerComponent.cpp" />
+    <ClCompile Include="..\source\Game\ShieldComponent.cpp" />
     <ClCompile Include="..\source\Game\ShipMover.cpp" />
     <ClCompile Include="..\source\Game\ShipScenes.cpp" />
     <ClCompile Include="..\source\Game\Laser.cpp" />
@@ -155,9 +158,12 @@
     <ClInclude Include="..\source\Game\GalaxyMap.h" />
     <ClInclude Include="..\source\Game\GameScene.h" />
     <ClInclude Include="..\source\Game\HealthBar.h" />
+    <ClInclude Include="..\source\Game\HealthComponent.h" />
     <ClInclude Include="..\source\Game\HudComposite.h" />
     <ClInclude Include="..\source\Game\HudHelpText.h" />
     <ClInclude Include="..\source\Game\RemoteShip.h" />
+    <ClInclude Include="..\source\Game\PowerComponent.h" />
+    <ClInclude Include="..\source\Game\ShieldComponent.h" />
     <ClInclude Include="..\source\Game\ShipMover.h" />
     <ClInclude Include="..\source\Game\ShipScenes.h" />
     <ClInclude Include="..\source\Game\Laser.h" />
