@@ -17,7 +17,7 @@ void GameScene::onAdd() {
 	_player = new Camera(); //TODO: Make the camera work correctly according to station
 	
 
-	_ship2 = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
+	_ship2 = new RemoteShip(vector3df(0,0,-100), vector3df(180,0,0));
 	addChild(_ship);
 	_ship->addChild(_player);
 	//TODO: Disabled this Caused errors 
