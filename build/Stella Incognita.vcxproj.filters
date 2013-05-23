@@ -258,6 +258,9 @@
     <ClCompile Include="..\source\Game\StationStats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\BasicShipMover.cpp">
+    	<Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\HealthComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -451,6 +454,9 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\StationStats.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\BasicShipMover.h">
+    	<Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\HealthComponent.h">
       <Filter>Header Files</Filter>
