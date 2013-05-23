@@ -26,8 +26,6 @@ void PowerStation :: init() {
 	else
 		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
 	
-	help = new HudHelpText(L"Klik hier ofzo!\nBlah", vector2df(100,0));
-	addComponent(help);
 	createUI();
 	Station::init();
 }
@@ -208,6 +206,8 @@ void PowerStation::createUI()
 
 void PowerStation::enable()
 {
+	((Ship*)parent)->help->setHelpText(L"todo: Exit station: 'Esc'");
+
 	Station::enable();
 
 	createUI();

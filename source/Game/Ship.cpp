@@ -20,7 +20,6 @@ Ship::~Ship(void)
 void Ship::onAdd() {
 	Entity::onAdd();
 
-	
 //	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
@@ -82,6 +81,12 @@ void Ship::onAdd() {
 		scene->addChild(_laser[i]);
 
 	_laserCounter = 0;
+
+	
+
+	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station'", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
+	addComponent(help);
+	help->init();
 }
 
 void Ship::init() 
