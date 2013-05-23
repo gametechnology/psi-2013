@@ -151,6 +151,7 @@ void Shipmap::update()
 	playerTile.x = (int)((this->transform->position->X - offsetX) / tileSize);
 	playerTile.y = (int)((this->transform->position->Y - offsetY) / tileSize);
 
+
 	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_A)) {
 		isMoving = true;
 		this->transform->position->X -= playerSpeed; 

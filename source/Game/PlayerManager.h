@@ -29,6 +29,8 @@ public:
 	void HandleNetworkMessage( NetworkPacket p );
 	void GenerateLocalPlayerData( int player_id, const wchar_t *name, int team_id );
 
+	void SendPlayerInfoRequest();
+
 	PlayerData *GetLocalPlayerData( );
 	//this makes sure that the local data is sent to all the other players on the network (only local data)
 	void SyncLocalPlayerData( StationType currentStation );

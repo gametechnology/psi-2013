@@ -5,8 +5,8 @@
 
 struct PlayerData
 {
-public
-		static int		uniqueId = 0;		
+public:
+		static int		uniqueId;		
         int				id;			//only sync this
         int				team_id;
 		ENetPeer		peer;
@@ -20,7 +20,7 @@ public
 			this -> name			= name;
 			this -> team_id			= team_id;
 			this -> peer			= peer;
-			this -> stationType		= StationType :: ST_HALLWAY;
+			this -> stationType		= StationType::ST_NONE;
 		}
 };
 #endif

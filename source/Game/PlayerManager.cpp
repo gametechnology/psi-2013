@@ -9,9 +9,11 @@ PlayerManager :: PlayerManager( ) : INetworkListener( )
 
 	this -> _playerData = new irr :: core :: map<int, PlayerData>( );
 	//we want to receive messages when players are added, when they are updating their info and when they leave again
-	Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_ADD_PLAYER_DATA, this );
+	Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_ADD_PLAYER_DATA,	this );
 	Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_UPDATE_PLAYER_DATA, this );
-	Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REMOVE_PLAYER_DATA, this );	
+	Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REMOVE_PLAYER_DATA, this );
+	Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ALL_PLAYERS, this);
+	Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this);
 }
 
 PlayerManager :: ~PlayerManager( )
@@ -19,11 +21,18 @@ PlayerManager :: ~PlayerManager( )
 	Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_ADD_PLAYER_DATA, this );
 	Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_UPDATE_PLAYER_DATA, this );
 	Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_REMOVE_PLAYER_DATA, this );
+	Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_ALL_PLAYERS, this );
+	Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this );
 }
 
 PlayerData *PlayerManager :: GetLocalPlayerData( )
 {
 	return GetPlayerData( _localPlayer_id );
+}
+
+void PlayerManager:: SendPlayerInfoRequest()
+{
+	Network :: GetInstance() -> SendPacket(NetworkPacket(PacketType :: CLIENT_GET_ALL_PLAYERS));
 }
 
 void PlayerManager :: UpdatePlayer( int player_id, StationType t )
@@ -38,7 +47,7 @@ void PlayerManager :: UpdatePlayer( int player_id, StationType t )
 void PlayerManager :: AddPlayerData( int player_id, const wchar_t *player_name, int team_id )
 {
 	//here, we received a message from a player that they want to join our game and they have sent some information regarding their data.
-	PlayerData	*player_data = new PlayerData( player_id, player_name, team_id );
+	PlayerData	*player_data = new PlayerData(player_name, team_id, );
 	//and we add it to our _playerData map
 	this -> _playerData -> insert( player_id, *player_data );
 	std :: cout << "Added player: " << player_data -> name << " to the game. ID: " << player_data -> id << ". He is in team " << team_id << ".\n";
@@ -55,26 +64,33 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 {
 	int			player_id;
 	wstring		player_name;
+	wstring		allPlayersMessage;
 	int			player_team_id;
 	int			player_station_type;
-
-	packet >> player_id;
 
 	//we received a message. This contains a packet. First we check the packet type.
 	switch ( packet.GetType( ) )
 	{
 	case PacketType :: CLIENT_ADD_PLAYER_DATA:
+		packet >> player_id;
 		packet >> player_name >> player_team_id;
 		this -> AddPlayerData( player_id, player_name.c_str( ), player_team_id );
 		break;
 
 	case PacketType :: CLIENT_UPDATE_PLAYER_DATA:
+		packet >> player_id;
 		packet >> player_station_type;
 		this -> UpdatePlayer( player_id, ( StationType ) player_station_type );
 		break;
 
 	case PacketType :: CLIENT_REMOVE_PLAYER_DATA:
+		packet >> player_id;
 		this -> RemovePlayerData( player_id );
+		break;
+
+	case PacketType ::SERVER_ALL_PLAYERS:
+		packet >> allPlayersMessage;
+		cout << "\nAll Player Message: \n" << allPlayersMessage.c_str() << endl;
 		break;
 	}
 }
