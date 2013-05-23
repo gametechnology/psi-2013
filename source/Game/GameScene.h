@@ -8,7 +8,6 @@
 #include <Engine\Camera.h>
 
 #include "Ship.h"
-#include "RemoteShip.h"
 #include "ShipMover.h"
 #include "BasicMoverComponent.h"
 #include "Stations\Station.h"
@@ -28,11 +27,10 @@ public:
 	void HandleNetworkMessage(NetworkPacket packet); 
 private:
 	bool testMap;
-
+	Camera *_camera;
 	Shipmap* _shipmap;
-	Camera* _player;
 	Ship* _ship;
-	RemoteShip* _ship2;
+	Ship* _shipEnemy;
 
 	std::list<Player*> _playerList;
 };

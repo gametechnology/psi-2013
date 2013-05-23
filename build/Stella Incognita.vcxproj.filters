@@ -153,6 +153,9 @@
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
@@ -255,8 +258,10 @@
     <ClCompile Include="..\source\Game\StationStats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\BasicShipMover.cpp">
+    	<Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\HealthComponent.cpp">
-    <ClCompile Include="..\source\Game\RemoteShip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\ShieldComponent.cpp">
@@ -450,7 +455,9 @@
     <ClInclude Include="..\source\Game\StationStats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\RemoteShip.h">
+    <ClInclude Include="..\source\Game\BasicShipMover.h">
+    	<Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\source\Game\HealthComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>

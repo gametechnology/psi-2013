@@ -9,22 +9,29 @@ void CameraMover::init() {
 	camera = (Camera*)(Component::entity);
 }
 
-void CameraMover::lateUpdate() {
-	
-	vector3df tempPosition = *camera->transform->position;
-	vector3df tempRotation = *camera->transform->rotation;
+void CameraMover::update() {
+	irr::core::vector3df offset = irr::core::vector3df(0);
 
-	vector3df forward = vector3df(0,0,1);
-	vector3df right = vector3df(1,0,0);
-	vector3df up = vector3df(0,1,0);
-	matrix4 nodeRotation = matrix4().setRotationDegrees(tempRotation);
-	
-	nodeRotation.transformVect(forward);
-	nodeRotation.transformVect(right);
-	nodeRotation.transformVect(up);
+	irr::core::matrix4 m;
+	m.setRotationDegrees(*camera->parent->transform->rotation);
 
-	camera->setTarget(*camera->transform->position + forward);
-	camera->setUpVector(*camera->transform->position + up);
+	irr::core::vector3df frv = irr::core::vector3df (0.0f, 0.0f, 1.0f);
+	m.transformVect(frv);
+
+	irr::core::vector3df upv = irr::core::vector3df (0.0f, 1.0f, 0.0f);
+	m.transformVect(upv);
+
+	m.transformVect(offset);
+
+	offset += *camera->parent->transform->position;
+	camera->getCameraNode()->setPosition(offset);
+
+	camera->getCameraNode()->setUpVector(upv);
+
+	offset += frv;
+	camera->getCameraNode()->setTarget(offset);
+
+	camera->getCameraNode()->updateAbsolutePosition();
 }
 
 CameraMover::~CameraMover() {
