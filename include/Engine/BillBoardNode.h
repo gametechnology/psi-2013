@@ -11,6 +11,9 @@ public:
 	BillBoardNode(const irr::io::path& modelPath, irr::core::dimension2df size);
 	virtual ~BillBoardNode();
 
+	virtual void init();
+	virtual void update();
+
 protected:
 	irr::core::dimension2df _size;
 	virtual void createNode();

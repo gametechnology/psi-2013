@@ -7,7 +7,7 @@ WormHole::WormHole( unsigned int id ) : BillBoardNode("../assets/Textures/Wormho
 }
 
 void WormHole::init() {
-	createNode( );
+	//BillBoardNode::createNode( );
 	BillBoardNode::init();
 }
 

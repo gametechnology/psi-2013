@@ -5,6 +5,10 @@ BillBoardNode::BillBoardNode( const irr::io::path& modelPath, irr::core::dimensi
 	_size = size;
 }
 
+void BillBoardNode::init(){
+	IrrlichtNode::init();
+}
+
 void BillBoardNode::createNode( ) {
 	node = scene->getIrrlichtSceneManager()->addBillboardSceneNode(0, _size, *transform->position);
 	
@@ -15,6 +19,10 @@ void BillBoardNode::createNode( ) {
 	
 	// Setting Texture
 	node->setMaterialTexture(0, game->driver->getTexture( this->modelPath ));
+}
+
+void BillBoardNode::update(){
+	IrrlichtNode::update();
 }
 
 
