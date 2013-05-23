@@ -3,12 +3,13 @@
 
 #include "Engine/Component.h"
 #include "Engine/WeaponCamera.h"
+//#include "Engine/InputManager.h"
 
-class WeaponCameraMover
+class WeaponCameraMover : public Component
 {
 public:
 	WeaponCameraMover(void);
-	~WeaponCameraMover(void);
+	virtual ~WeaponCameraMover(void);
 
 	virtual void init();
 	virtual void update();
@@ -17,7 +18,7 @@ public:
 	virtual void handleMessage(unsigned int message) {};
 private:
 	WeaponCamera* weaponCamera;
-	InputManager* input;
+	//InputManager* input;
 
 	float yawChange;
 	float rollChange;

@@ -1,6 +1,6 @@
-#include "WeaponCamera.h"
+#include <Engine\WeaponCamera.h>
 #include <Engine\Game.h>
-#include "WeaponCameraMover.h"
+#include <Engine\WeaponCameraMover.h>
 
 
 WeaponCamera::WeaponCamera() : IrrlichtNode("") {

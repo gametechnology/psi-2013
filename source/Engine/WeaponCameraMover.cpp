@@ -1,4 +1,4 @@
-#include <Engine\Component.h>
+#include <Engine\WeaponCameraMover.h>
 #include <Engine\InputManager.h>
 
 WeaponCameraMover::WeaponCameraMover() : Component() {
@@ -27,6 +27,7 @@ void WeaponCameraMover::update() {
 	m.transformVect(offset);
 
 		//Transform naar aanleiding van knoppen
+	/*
 	if(input->isKeyBoardButtonDown(KEY_KEY_W)){
 	}
 	if(input->isKeyBoardButtonDown(KEY_KEY_A)){
@@ -37,7 +38,7 @@ void WeaponCameraMover::update() {
 	}
 	if(input->isKeyBoardButtonDown(KEY_KEY_D)){
 	
-	}
+	}*/
 
 	offset += *weaponCamera->parent->transform->position;
 	weaponCamera->getCameraNode()->setPosition(offset);
