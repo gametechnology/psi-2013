@@ -126,7 +126,7 @@ void Network::SendPacket(NetworkPacket packet, const bool reliable)
 		else
 		{
 			_mutex.lock();
-			_receivedPackets.push_back(NetworkPacket(enetPacket, *_peer));
+			_receivedPackets.push_back(NetworkPacket(enetPacket));
 			_mutex.unlock();
 		}
 	}
