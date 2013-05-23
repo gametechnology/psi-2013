@@ -3,7 +3,7 @@
 
 #include "Engine/Component.h"
 #include "Engine/WeaponCamera.h"
-//#include "Engine/InputManager.h"
+#include "Engine/InputManager.h"
 
 class WeaponCameraMover : public Component
 {
@@ -18,10 +18,10 @@ public:
 	virtual void handleMessage(unsigned int message) {};
 private:
 	WeaponCamera* weaponCamera;
-	//InputManager* input;
+	InputManager* input;
+	irr::core::vector3df rotAngleVector;
 
-	float yawChange;
-	float rollChange;
-	float pitchChange;
+	float XChange;
+	float YChange;
 };
 #endif
