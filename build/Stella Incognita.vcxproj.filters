@@ -138,9 +138,6 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\StateSwitchDrone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -259,6 +256,15 @@
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\StationStats.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\HealthComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\ShieldComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\PowerComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -444,6 +450,15 @@
       <Filter>Header Files\Hud</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\StationStats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HealthComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ShieldComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\PowerComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
