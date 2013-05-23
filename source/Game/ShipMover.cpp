@@ -34,7 +34,7 @@ void ShipMover::update() {
 	//when a button is pressed, the linear and angular of the used thrusters will be added up	d'alemberts principle
 	
 	if(input->isKeyboardButtonDown(irr::KEY_KEY_W)){
-		std::cout << "[ShipMover] W IS PRESSED";
+		//std::cout << "[ShipMover] W IS PRESSED";
 		//localAngForce_ += thrusters_[3]->angularForce;			<----- THIS PART BREAKS STUFF
 		//localAngForce_ += thrusters_[4]->angularForce;
 		//localLinForce_ += thrusters_[3]->linearForce;

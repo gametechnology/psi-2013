@@ -11,6 +11,7 @@ SectorManager::SectorManager(GalaxyMap* map,Ship* ship) : Component() {
 	_ship=ship;
 	for (int i = 0; i < map->sectors.size(); i++) {
 		if(map->sectors[i]->type == HOME_BLUE){
+
 			//delete _mapSector;
 			_mapSector = map->sectors[i];
 		}
@@ -24,13 +25,17 @@ void SectorManager::onAdd() {
 	activeSceneName = "SectorHomeBase";
 }
 
+void SectorManager::update() { 
+	
+}
+
 void SectorManager::handleMessage(unsigned int message, void* data) {
 	switch(message) {
 		case NEXT_SECTOR: //Switch Sector 
+			cout << "yeah" << endl;
 			//Determen which is the new sector
 			int index = (int)data;
 			std::vector<MapSector*>::iterator temp = _mapSector->connections.begin();
-			
 			try{
 				std::advance(temp,index);
 			}catch(char * str){
@@ -75,12 +80,14 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 				case HOME_BLUE:
 					printf("[SectorTemplate] HOME_BLUE \n");
 					//delete _currentSector;
+					this->_ship->setBackAtOwnBase();
 					activeSceneName = "SectorHomeBase";
 					this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,"skybox02.png",2000.0,_mapSector->connections.size()));
 					break;
 				case HOME_RED:
 					printf("[SectorTemplate] HOME_RED \n");
 					//delete _currentSector;
+					this->_ship->setFoundEnemyBase();
 					activeSceneName = "SectorHomeBase";
 					this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,"skybox02.png",2000.0,_mapSector->connections.size()));
 					break;

@@ -36,6 +36,8 @@ public:
 	NavigationStation	*_navigationStation;
 	PowerStation		*_powerStation;
 	WeaponStation		*_weaponStation;
+	bool				foundEnemyBase;
+	bool				backatOwnBase;
 
 	//to test the ship health and station health
 	irr::gui::IGUIEnvironment *env;
@@ -56,6 +58,9 @@ public:
 
 	void update();
 	void draw();
+
+	void setFoundEnemyBase();
+	void setBackAtOwnBase();
 
 	void CheckChangeInput();
 

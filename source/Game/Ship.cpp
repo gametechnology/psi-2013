@@ -89,6 +89,23 @@ void Ship::onAdd() {
 	help->init();
 }
 
+void Ship::setBackAtOwnBase() { 
+	if(this->foundEnemyBase == true) { 
+		this->backatOwnBase = true; 
+		cout << "BACK AT OWN BASE!!! YOU HAVE WON!!!" << endl;
+	}
+	else { 
+		cout << "Didn't we tell you to find the red base first?" << endl;
+	}
+	
+	// Todo: You have won the game, let's show it to everyone
+}
+
+void Ship::setFoundEnemyBase() { 
+	this->foundEnemyBase = true; 
+	cout << "FOUND THE ENEMY BASE!!!" << endl;
+}
+
 void Ship::init() 
 {
 	//Isn't called
