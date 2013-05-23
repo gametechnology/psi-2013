@@ -1,5 +1,4 @@
 #include "RemoteShip.h"
-#include "Stations/Station.h"
 #include "ShipMover.h"
 
 vector3df startPosition;
@@ -19,38 +18,10 @@ RemoteShip::~RemoteShip(void)
 
 void RemoteShip::onAdd() {
 	Entity::onAdd();
-
-	
+		
 //	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
-
-	this->env = game->device->getGUIEnvironment();
-	this->_currentStation = NULL;
-
-	addChild(_defenceStation		= new DefenceStation(this));
-	addChild(_helmStation			= new HelmStation(this));
-	addChild(_navigationStation		= new NavigationStation(this));
-	addChild(_weaponStation			= new WeaponStation(this));
-	addChild(_powerStation			= new PowerStation(this));
-
-	this->_defenceStation->init();
-	this->_helmStation->init();
-	this->_navigationStation->init();
-	this->_weaponStation->init();
-	this->_powerStation->init();
-
-	this->_defenceStation->disable();
-	this->_helmStation->disable();
-	this->_navigationStation->disable();
-	this->_weaponStation->disable();
-	this->_powerStation->disable();
-
-	//Camera
-	_camera = new Camera();
-	
-	addChild(_camera);
-	_camera->createNode();
 	
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
@@ -60,18 +31,6 @@ void RemoteShip::onAdd() {
 
 	irr::core::stringw strShipHealth			= "ship health: "; 
 	strShipHealth +	irr::core::stringw();
-
-	irr::core::stringw strDefenceHealth			= "Defence Station health: "		+ this->_defenceStation->getHealth();
-	irr::core::stringw strHelmHealth			= "Helm Station health: "			+ this->_helmStation->getHealth();
-	irr::core::stringw strNavigationHealth		= "Navigation Station health: "		+ this->_navigationStation-> getHealth();
-	irr::core::stringw strPowerHealth			= "Power Station health: "			+ this->_powerStation->getHealth();
-	irr::core::stringw strWeaponHealth			= "Weapon Station health: "			+ this->_weaponStation->getHealth();
-	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->helmStationHealth			= env->addStaticText(strHelmHealth.c_str(),			rect<s32>(40, 120, 300, 140), false);	this->helmStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->navigationStationHealth	= env->addStaticText(strNavigationHealth.c_str(),	rect<s32>(40, 140, 300, 160), false);	this->navigationStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 
 	startPosition = vector3df(0,0,-100);
 	startRotation = vector3df(0,0,0);
@@ -91,55 +50,8 @@ void RemoteShip::onAdd() {
 
 void RemoteShip::init() 
 {
-	//Isn't called
-	/*irr::core::stringw strShipHealth			= "ship health: "; 
-	strShipHealth +	irr::core::stringw();
-
-	irr::core::stringw strDefenceHealth			= "Defence Station health: "		+ this->_defenceStation->getHealth();
-	irr::core::stringw strHelmHealth			= "Helm Station health: "			+ this->_helmStation->getHealth();
-	irr::core::stringw strNavigationHealth		= "Navigation Station health: "	+ this->_navigationStation-> getHealth();
-	irr::core::stringw strPowerHealth			= "Power Station health: "		+ this->_powerStation->getHealth();
-	irr::core::stringw strWeaponHealth			= "Weapon Station health: "		+ this->_weaponStation->getHealth();
-	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->helmStationHealth			= env->addStaticText(strHelmHealth.c_str(),			rect<s32>(40, 120, 300, 140), false);	this->helmStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->navigationStationHealth	= env->addStaticText(strNavigationHealth.c_str(),	rect<s32>(40, 140, 300, 160), false);	this->navigationStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-
-	this->updateShipHealth();
-
-	startPosition = vector3df(0,0,-100);
-	startRotation = vector3df(0,0,0);
-	this->transform->position = &startPosition;
-	this->transform->rotation = &startRotation;*/
-	
 	Entity::init();
 
-}
-
-Station *RemoteShip :: GetStation( StationType s )
-{
-
-	switch( s )
-	{
-	case ST_DEFENCE:
-		return this->_defenceStation;
-		break;
-	case ST_HELM:
-		return this->_helmStation;
-		break;
-	case ST_NAVIGATION:
-		return this->_navigationStation;
-		break;
-	case ST_POWER:
-		return this->_powerStation;
-		break;
-	case ST_WEAPON:
-		return this->_weaponStation;
-		break;
-	};
-	return NULL;
 }
 
 irr::core::stringw RemoteShip::varToString(irr::core::stringw str1, float var){
@@ -159,22 +71,6 @@ irr::core::stringw RemoteShip::varToString(irr::core::stringw str1, float var, i
 void RemoteShip :: update()
 {
 	Entity :: update();
-	CheckChangeInput();
-
-	//updating the text for testing the health
-	stringw strShipHealth		= "ship health: "				+ this->getShipHealth();
-	stringw strDefenceHealth	= "Defence Station health: "	+ this->_defenceStation->getHealth();
-	stringw strHelmHealth		= "Helm Station health: "		+ this->_helmStation->getHealth();
-	stringw strNavigationHealth = "Navigation Station health: " + this->_navigationStation-> getHealth();
-	stringw strPowerHealth		= "Power Station health: "		+ this->_powerStation->getHealth();
-	stringw strWeaponHealth		= "Weapon Station health: "		+ this->_weaponStation->getHealth();
-
-	this->shipHealth->setText(				(varToString("Ship HP : ",		(float)this->getShipHealth())					).c_str());
-	this->defenceStationHealth->setText(	(varToString("Defence HP: ",	(float)this->_defenceStation->getHealth())		).c_str());
-	this->helmStationHealth->setText(		(varToString("Helm HP: ",		(float)this->_helmStation->getHealth())		).c_str());
-	this->navigationStationHealth->setText(	(varToString("Navigation HP: ",	(float)this->_navigationStation->getHealth())	).c_str());
-	this->powerStationHealth->setText(		(varToString("Power HP: ",		(float)this->_powerStation->getHealth())		).c_str());
-	this->weaponStationHealth->setText(		(varToString("Weapon HP: ",		(float)this->_weaponStation->getHealth())		).c_str());
 
 	//If the ship has no more health and is not already destroyed, destroy it
 	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
@@ -187,57 +83,9 @@ Thruster** RemoteShip :: GetThrusters()
 	return this->_thrusters;
 }
 
-void RemoteShip :: CheckChangeInput()
-{
-	if (game->input->isKeyboardButtonPressed(KEY_KEY_1))
-		SwitchToStation(ST_DEFENCE);
-
-	if (game->input->isKeyboardButtonPressed(KEY_KEY_2))
-		SwitchToStation(ST_HELM);
-
-	if (game->input->isKeyboardButtonPressed(KEY_KEY_3))
-		SwitchToStation(ST_WEAPON);
-
-	if (game->input->isKeyboardButtonPressed(KEY_KEY_4))
-		SwitchToStation(ST_NAVIGATION);
-
-	if (game->input->isKeyboardButtonPressed(KEY_KEY_5))
-		SwitchToStation(ST_POWER);
-}
-
-//Swith to a specific station
-void RemoteShip :: SwitchToStation(StationType stationType)
-{
-	//Check if we are already on this station
-	if (_currentStation != NULL)
-	{
-		if (_currentStation->GetStationType() == stationType)
-			return;
-
-		//First remove the currentStation from the shipComponents
-		_currentStation->disable();
-	}
-
-	//Find the new station
-	_currentStation = this->GetStation(stationType);
-
-	//Init and add the new station
-	_currentStation->enable();
-}
-
 void RemoteShip :: draw()
 {
 	Entity :: draw();
-}
-
-int RemoteShip :: getShipHealth()
-{
-
-	return (this->_defenceStation->getHealth() +
-		this->_helmStation->getHealth() +
-		this->_navigationStation->getHealth() +
-		this->_powerStation->getHealth() +
-		this->_weaponStation->getHealth());
 }
 
 bool RemoteShip :: getShipDestroyed()

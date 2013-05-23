@@ -1,48 +1,19 @@
-#ifndef ENTITY_SHIP
-#define ENTITY_SHIP
+#ifndef REMOTE_SHIP
+#define REMOTE_SHIP
 #pragma once
 
-#include "Stations\DefenceStation.h"
-#include "Stations\HelmStation.h"
-#include "Stations\NavigationStation.h"
-#include "Stations\PowerStation.h"
-#include "Stations\WeaponStation.h"
 #include "Irrlicht\irrlicht.h"
 
-#include "Stations\Station.h"
 #include "Engine/Entity.h"
 #include "Engine/IrrlichtNode.h"
 #include "Player.h"
 #include "Thruster.h"
-#include "Engine\Camera.h"
 #include "ShipMover.h"
 #include "Laser.h"
-
-class DefenceStation;
-class HelmStation;
-class NavigationStation;
-class PowerStation;
-class WeaponStation;
 
 class RemoteShip : public Entity
 {
 public:
-	//Player *players;
-	DefenceStation		*_defenceStation;
-	HelmStation			*_helmStation;
-	NavigationStation	*_navigationStation;
-	PowerStation		*_powerStation;
-	WeaponStation		*_weaponStation;
-
-	//to test the ship health and station health
-	irr::gui::IGUIEnvironment *env;
-	irr::gui::IGUIStaticText *shipHealth;
-	irr::gui::IGUIStaticText *defenceStationHealth;
-	irr::gui::IGUIStaticText *helmStationHealth;
-	irr::gui::IGUIStaticText *navigationStationHealth;
-	irr::gui::IGUIStaticText *powerStationHealth;
-	irr::gui::IGUIStaticText *weaponStationHealth;
-
 
 	bool _shipDestroyed;
 
@@ -54,24 +25,17 @@ public:
 	void update();
 	void draw();
 
-	void CheckChangeInput();
-
 	RemoteShip(vector3df position, vector3df rotation);
 	virtual ~RemoteShip(void);
 
-	Station*	GetStation(StationType);
 	Thruster**	GetThrusters();
 
 	int getShipHealth();
 	bool getShipDestroyed();
-
-	void SwitchToStation(StationType stationType);
-
+	
 	void fireLaser();
 private:
 
-	Station				*_currentStation;
-	Camera				*_camera;
 	Thruster			*_thrusters[4];
 	matrix4				*_inertiaMatrix;
 
