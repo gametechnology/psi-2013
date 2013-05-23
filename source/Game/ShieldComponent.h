@@ -11,6 +11,7 @@ public:
 	~ShieldComponent();
 	void increaseShield(int shield);
 	void decreaseShield(int shield);
+	void handleMessage(unsigned int message, void* data);
 
 	//Station information
 	const static int maxShield = 100;

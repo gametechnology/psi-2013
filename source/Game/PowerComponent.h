@@ -11,6 +11,7 @@ public:
 	~PowerComponent();
 	void increasePower(int power);
 	void decreasePower(int power);
+	void handleMessage(unsigned int message, void* data);
 
 	//Station information
 	const static int maxPower = 100;

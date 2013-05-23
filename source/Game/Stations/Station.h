@@ -7,8 +7,6 @@
 #include <Engine/Component.h>
 #include <Engine/Game.h>
 #include <Irrlicht/irrlicht.h>
-//#include "../StationStats.h"
-//#include "../Ship.h"
 
 #define STUN_TIME 4.0
 class Ship;
@@ -59,7 +57,7 @@ public:
 	void decreasePower(int power);
 
 	void repairStation(int health);
-	void handleMessage(unsigned int message);
+	void handleMessage(unsigned int message, void* data);
 
 	virtual void onAdd();
 	virtual void init();
@@ -82,13 +80,10 @@ protected:
 	time_t *_playerOnStationTime;	//the time that the player has spent on this station (since he switched)
 	time_t *_stunTime;				//if a station fot stunned, the time it happened will be stored here.
 	
-	
-
 private:
 	
 	int _tempTimer;
 	int _totalHealth;
-	//StationStats* _stationStats;
 	HealthComponent* _healthComponent;
 	PowerComponent* _powerComponent;
 	ShieldComponent* _shieldComponent;

@@ -1,19 +1,13 @@
 #include "Station.h"
 #include "PowerStation.h"
 #include "DefenceStation.h"
-//#include "../StationStats.h"
 #include "../HealthComponent.h"
 #include "../PowerComponent.h"
 #include "../ShieldComponent.h"
 
-
 Station :: Station( Ship *ship, int startHealth ) : Entity()
 {
 	this ->	_ship	= ship;
-
-	//Add astationstats component to this station
-	//this->_stationStats = new StationStats();
-	//addComponent(_stationStats);
 
 	//Stations stats exist out of heath, power and shield
 	this->_healthComponent = new HealthComponent();
@@ -32,10 +26,6 @@ Station :: Station( Ship * ship ) : Entity()
 	this -> _ship   = ship;
 	this -> _tempTimer = 0;
 
-	//OLD = Add astationstats component to this station
-	//this->_stationStats = new StationStats();
-	//addComponent(_stationStats);
-
 	//Stations stats exist out of heath, power and shield
 	this->_healthComponent = new HealthComponent();
 	this->_powerComponent = new PowerComponent();
@@ -45,18 +35,11 @@ Station :: Station( Ship * ship ) : Entity()
 	addComponent(_shieldComponent);
 
 	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
-	
 }
 
 void Station::onAdd()
 {
 	Entity::onAdd();
-
-	// ?? This was also done in init()
-	// End energy testing variable for hud.
-	//this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32), &helpTextString);
-	//this->addChild(hud);
-	
 }
 
 void Station :: init() 
@@ -70,9 +53,8 @@ void Station :: init()
 	this -> _stunTime = 0;
 	this -> _switchTime = 0;
 
-	// ?? This is also done in onAdd()
-	//this->hud = new HudComposite(&(_stationStats->health), &(_stationStats->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
-	//this->addChild(hud);
+	this->hud = new HudComposite(&(_healthComponent->health), &(_powerComponent->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
+	this->addChild(hud);
 }
 
 Station :: ~Station(void)
@@ -111,8 +93,6 @@ bool Station::IsStunned()
 void Station::update()
 {
 	Entity::update();
-	// NOTE Component update goes automatic
-	//Component::update();
 
 	// Test code for testing energy of a station.
 	if(game->input->isKeyboardButtonDown(KEY_ADD) && _powerComponent->power < 50)
@@ -122,8 +102,6 @@ void Station::update()
 	// End test code for testing energy of a station.
 
 	updateHealth();
-	//Update Stun Time
-	//Update player on station time	
 
 	if (game->input->isKeyboardButtonDown(KEY_ESCAPE)){
 	// Load Shipmap
@@ -136,17 +114,9 @@ void Station :: draw( )
 	
 	Entity::draw();
 }
-void Station::handleMessage(unsigned int message)
-{
-	switch(message)
-	{
-	case 0:
-		
-		break;
-	case 1:
-		break;
-	}
 
+void Station::handleMessage(unsigned int message,  void* data)
+{
 }
 
 void Station :: OnDamage( )
