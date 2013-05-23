@@ -19,7 +19,10 @@ Ship::~Ship(void)
 
 void Ship::onAdd() {
 	Entity::onAdd();
-
+	startPosition = vector3df(0,0,-100);
+	startRotation = vector3df(0,0,0);
+	this->transform->position = &startPosition;
+	this->transform->rotation = &startRotation;
 	
 //	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
@@ -68,10 +71,7 @@ void Ship::onAdd() {
 	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 
-	startPosition = vector3df(0,0,-100);
-	startRotation = vector3df(0,0,0);
-	this->transform->position = &startPosition;
-	this->transform->rotation = &startRotation;
+	
 
 	_laserCount = 10;
 
@@ -269,33 +269,36 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
 	{
 		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
-		
-		
-
-		//Apply updates 
-		if(_currentStation->GetStationType() == ST_WEAPON){
-			((WeaponStation*)_currentStation)->HandlePosition (packet);
-		}
-		else{
-			//Read the information from the network packet
 			irr::core::vector3df position;
-			irr::core::vector3df orientation;
+			irr::core::vector3df rotation;
 			irr::core::vector3df velocity;
 			irr::core::vector3df acceleration;
 			irr::core::vector3df angularAcceleration;
 			irr::core::vector3df angularVelocity;
 			packet >> position;
-			packet >> orientation;
+			packet >> rotation;
 			packet >> velocity;
 			packet >> acceleration;
 			packet >> angularAcceleration;
 			packet >> angularVelocity;
-			transform->position = &position;
-			transform->rotation = &orientation;
-			transform->velocity = &velocity;
-			transform->acceleration = &acceleration;
-			transform->angularAccelaration = &angularAcceleration;
-			transform->angularVelocity = &angularVelocity;
+			*transform->acceleration = acceleration;
+			*transform->angularAccelaration = angularAcceleration;
+			*transform->angularVelocity = angularVelocity;
+			*transform->position = position;
+			*transform->velocity = velocity;
+			
+		//Apply updates 
+		if(_currentStation->GetStationType() == ST_WEAPON){
+			((WeaponStation*)_currentStation)->rotationForeign = rotation;
+		}
+		else{
+			//Read the information from the network packet
+			*transform->rotation = rotation;
+			
+		
+			
+			
+			
 		}
 	}
 }

@@ -8,7 +8,8 @@ public:
 
 	void onAdd();
 	void init();
-		void HandlePosition(NetworkPacket pack);
+	irr::core::vector3df rotationForeign;
+	
 	void update();
 	void draw();
 
@@ -19,5 +20,8 @@ public:
 	void OnDisabled(){};
 	void DoCameraShake(){};
 private:
+	
 	irr::video::ITexture *_stationTexture;
+	irr::core::vector3df rotationOwn;
+	
 };
