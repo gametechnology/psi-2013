@@ -46,11 +46,6 @@ void Ship::onAdd() {
 	this->_weaponStation->disable();
 	this->_powerStation->disable();
 
-	//Camera
-	_camera = new Camera();
-	
-	addChild(_camera);
-	_camera->createNode();
 	
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
@@ -264,7 +259,7 @@ void Ship::setInertiaMatrix(float h, float w, float d, float m)
 
 void Ship::fireLaser()
 {
-	_laser[_laserCounter++]->fire(this, _camera->getCameraNode()->getTarget(), 1.0);
+	//_laser[_laserCounter++]->fire(this, _camera->getCameraNode()->getTarget(), 1.0);
 
 	if(_laserCounter >= _laserCount)
 		_laserCounter = 0;

@@ -1,5 +1,6 @@
 #pragma once
 #include "../Ship.h"
+#include "../BasicShipMover.h"
 
 class HelmStation : public Station {
 #include "Engine\Network.h"

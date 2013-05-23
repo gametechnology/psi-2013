@@ -11,7 +11,8 @@ public:
 	virtual ~CameraMover();
 
 	virtual void init();
-	virtual void lateUpdate();
+	virtual void update();
+
 	virtual void draw(){};
 	virtual void handleMessage(unsigned int message) {};
 private:
