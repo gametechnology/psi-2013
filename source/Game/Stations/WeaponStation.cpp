@@ -1,9 +1,12 @@
 #include "WeaponStation.h"
 
+#define ANGLESPEED = 1
+
 WeaponStation::WeaponStation(Ship *ship) : Station(ship)
 {
 	_stationType = ST_WEAPON;
 	setStationDestroyed(false);
+	
 }
 
 WeaponStation::~WeaponStation()
@@ -30,6 +33,21 @@ void WeaponStation::update()
 
 	if(game->input->isKeyboardButtonPressed(KEY_SPACE) /* && weapon station has power */)
 		_ship->fireLaser();
+
+	if (game->input->isKeyboardButtonDown(KEY_RIGHT) || game->input->isKeyboardButtonDown(KEY_KEY_D)){
+		if(rotationOwn.Y <= 90)
+			rotationOwn.Y++;}
+	if (game->input->isKeyboardButtonDown(KEY_LEFT) || game->input->isKeyboardButtonDown(KEY_KEY_A)){
+		if(rotationOwn.Y >= -90)
+			rotationOwn.Y--;}
+	if (game->input->isKeyboardButtonDown(KEY_UP) || game->input->isKeyboardButtonDown(KEY_KEY_W)){
+		if(rotationOwn.X >= -90)
+			rotationOwn.X--;}
+	if (game->input->isKeyboardButtonDown(KEY_DOWN) || game->input->isKeyboardButtonDown(KEY_KEY_S)){
+		if(rotationOwn.X <= 90)
+			rotationOwn.X++;}
+
+	*_ship->transform->rotation = rotationForeign + rotationOwn;
 }
 
 void WeaponStation::draw()
@@ -46,10 +64,13 @@ void WeaponStation::draw()
 
 void WeaponStation::enable()
 {
+	
+	rotationForeign	== *_ship->transform->rotation;
 	Station::enable();
 }
 
 void WeaponStation::disable()
 {
+	_ship->transform->rotation->set( rotationForeign);
 	Station::disable();
 }
