@@ -2,6 +2,7 @@
 #define ENDSCENE_H
 
 #include "Engine\Game.h"
+#include "EndSceneEventReceiver.h"
 
 using namespace irr;
 using namespace core;
@@ -23,5 +24,6 @@ public:
 	IGUIEnvironment* guiEnv;
 	IGUIWindow* endGameWindow;
 	IGUIButton* backbutton;
+	EndSceneEventReceiver* eventReceiver;
 };
 #endif

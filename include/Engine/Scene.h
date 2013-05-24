@@ -11,6 +11,8 @@ public:
 
 	void onAdd();
 
+	virtual void addGuiElements();
+
 	irr::scene::ISceneManager* getIrrlichtSceneManager();
 
 	enum State {

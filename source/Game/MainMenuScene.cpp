@@ -13,6 +13,29 @@ void MainMenuScene::init() {
 	guiEnv = game->guiEnv;
 	playerlist = std::list<Player*>();
 
+	this->addGuiElements();
+
+	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
+	Network::GetInstance()->AddListener(START_GAME, this);
+	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
+	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
+	Network::GetInstance()->AddListener(HOST_DISCONNECT, this);
+	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
+
+	// Store the appropriate data in a context structure.
+	SAppContext context;
+	context.game = game;
+	context.counter = 0;
+
+	// Then create the event receiver, giving it that context structure.
+	eventReceiver = new MainMenuEventReceiver(context);
+
+	// And tell the device to use our custom event receiver.
+	game->input->setCustomEventReceiver(eventReceiver);
+}
+
+void MainMenuScene::addGuiElements()
+{
 
 	///////////////////////////////////////////
 	// MainMenu
@@ -48,23 +71,7 @@ void MainMenuScene::init() {
 	waitinglabel = guiEnv->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainMenuWindow);
 	waitinglabel->setVisible(false);
 
-	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
-	Network::GetInstance()->AddListener(START_GAME, this);
-	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
-	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
-	Network::GetInstance()->AddListener(HOST_DISCONNECT, this);
-	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
-
-	// Store the appropriate data in a context structure.
-	SAppContext context;
-	context.game = game;
-	context.counter = 0;
-
-	// Then create the event receiver, giving it that context structure.
-	eventReceiver = new MainMenuEventReceiver(context);
-
-	// And tell the device to use our custom event receiver.
-	game->input->setCustomEventReceiver(eventReceiver);
+	Scene::addGuiElements();
 }
 
 void MainMenuScene::update(){

@@ -47,6 +47,7 @@ void SceneManager::activateScene(char* name){
 		Scene* scene = getScene(name);
 		// scene->activate();
 		scene->enable();
+		scene->addGuiElements();
 	}
 }
 

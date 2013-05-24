@@ -36,7 +36,8 @@ public:
 	void StartGame();
 	void StartTestGame();
 	void BackToMainMenu();
-	void HandleNetworkMessage(NetworkPacket packet); 
+	void HandleNetworkMessage(NetworkPacket packet);
+	virtual void addGuiElements();
 
 	//Create the different windows
 	MainMenuEventReceiver* eventReceiver;
