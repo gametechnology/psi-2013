@@ -19,6 +19,7 @@ public:
 	void init();
 	void update();
 	void BackToMainMenu();
+	virtual void addGuiElements();
 
 	//GUI
 	IGUIEnvironment* guiEnv;
