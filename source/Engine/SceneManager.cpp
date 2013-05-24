@@ -47,6 +47,7 @@ void SceneManager::activateScene(char* name){
 		Scene* scene = getScene(name);
 		// scene->activate();
 		scene->enable();
+		scene->addGuiElements();
 	}
 }
 
@@ -67,13 +68,35 @@ NameScene* SceneManager::getNameScene(char* name){
 				return &nameScenes[i];
 			}
 		} 
+	}else
+	{
+		return NULL;
 	}
 }
+
+//return the NameScene of a scene, so you'll get the name & scene object
+NameScene* SceneManager::getNameScene(Scene* scene)
+{
+	for(unsigned int i = 0; i < nameScenes.size(); i++)
+	{
+		if(nameScenes[i].scene == scene)
+		{
+			return &nameScenes[i];
+		}
+	}
+}
+
 //Returns the Scene object
 Scene* SceneManager::getScene(char* name){
 
 	NameScene* namesc = getNameScene(name);
-	return namesc->scene;
+	if(namesc != NULL)
+	{
+		return namesc->scene;
+	}else
+	{
+		return NULL;
+	}
 
 }
 

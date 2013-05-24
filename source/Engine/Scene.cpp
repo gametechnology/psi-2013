@@ -7,9 +7,12 @@ Scene::Scene() : Entity() {
 }
 
 void Scene::onAdd() {
-
-
 	Entity::onAdd();
+}
+
+void Scene::addGuiElements()
+{
+
 }
 
 irr::scene::ISceneManager* Scene::getIrrlichtSceneManager() {

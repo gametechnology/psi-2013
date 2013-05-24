@@ -2,6 +2,8 @@
 #include "Engine/Entity.h"
 #include "Engine/Collision.h"
 
+ObjectPool<Laser>* EnemyFighter::laserPool;
+
 EnemyFighter::EnemyFighter(irr::core::vector3df position): Enemy()
 {
 	this->setPosition(position);
@@ -32,7 +34,8 @@ void EnemyFighter::onAdd()
 	this->setVisualWithPath("../assets/Models/Space_Fighter.dae");
 	Collision* collision = new Collision();
 	addComponent(collision);
-	this->loadLaser();
+
+	this->_fireTime = 0;
 }
 
 void EnemyFighter::chase(vector3df target)
@@ -40,26 +43,14 @@ void EnemyFighter::chase(vector3df target)
 	Enemy::chase(target);
 }
 
-void EnemyFighter::loadLaser()
-{
-	this->_nrLasers = 5;
-	for (int i = 0; i< _nrLasers; i++)
-	{
-		this->_laser.push_back(new Laser);
-	}
-	this->_curLaser = 0;
-	this->_fireTime = 0;
-
-	for (int i = 0; i < this->_nrLasers; i++)
-	{
-		this->scene->addChild(this->_laser[i]);
-	}
-}
-
 void EnemyFighter::update()
 {
 	EnemyFighter::stateSwitch->updateState();
-	EnemyFighter::inRangeList.clear();
+
+	if(game->input->isKeyboardButtonPressed(irr::KEY_KEY_M))
+	{
+		this->fireLaserAt(vector3df(200));
+	}
 
 	if(EnemyFighter::stateSwitch->getState() == StateSwitch::STATE_OFFENSIVE)
 	{
@@ -72,8 +63,9 @@ void EnemyFighter::update()
 			this->fireLaserAt(this->getTarget());
 			this->_fireTime = 0;
 		}
-		this->_laser[this->_curLaser]->update();
 	}
+
+	EnemyFighter::inRangeList.clear();
 
 	Enemy::update();
 }
@@ -87,17 +79,10 @@ EnemyFighter::~EnemyFighter(void)
 
 void EnemyFighter::fireLaserAt(vector3df target)
 {
-	this->_laser[this->_curLaser]->fire(this, target, 1.0f);
-	this->_curLaser++;
-	
-	if(this->_curLaser >= 5)
+	Laser* laser = this->laserPool->GetFreeObject();
+	if(laser != NULL)
 	{
-		this->_curLaser = 0;
+		laser->fire(this->transform, target, 1.0f);
 	}
-}
-
-vector<Laser*> EnemyFighter::GetLasers()
-{
-	return _laser;
 }
 

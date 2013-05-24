@@ -2,8 +2,9 @@
 #include "Engine/Camera.h"
 #include "Skybox.h"
 #include "SectorManager.h"
+#include "SendAndReceivePackets.h"
 
-sf::Packet& operator <<(sf::Packet& out, Enemy& in)
+/*sf::Packet& operator <<(sf::Packet& out, Enemy& in)
 {
 	return out << in.getId() << in.getType() << in.getPosition() << in.getVelocity() << in.getRotation();
 }
@@ -48,7 +49,7 @@ sf::Packet& operator >>(sf::Packet& in, vector<Enemy>& out)
 		out.push_back(enemy);
 	}
 	return in;
-}
+}*/
 
 NetworkPacket packet(SERVER_ENEMY);
 
@@ -93,10 +94,10 @@ void SectorTemplate::onAdd() {
 	{
 		createEnemies();
 
-		packet.clear();
-		packet << _enemyList;
-
-		Network::GetInstance()->SendServerPacket(packet);
+		//packet.clear();
+		//packet << _enemyList;
+		SendAndReceivePackets::sendEnemyPacket(_enemyList);
+		//Network::GetInstance()->SendServerPacket(packet);
 	}
 
 	Scene::onAdd();
@@ -185,10 +186,11 @@ void SectorTemplate::update(){
 	{
 		if(Network::GetInstance()->IsServer())
 		{
-			packet.clear();
-			packet << _enemyList;
+			//packet.clear();
+			//packet << _enemyList;
 
-			Network::GetInstance()->SendServerPacket(packet);
+			//Network::GetInstance()->SendServerPacket(packet);
+			SendAndReceivePackets::sendEnemyPacket(_enemyList);
 		}
 		timer = 0;
 	}
@@ -201,7 +203,8 @@ void SectorTemplate::HandleNetworkMessage(NetworkPacket packet)
 {
 	if(packet.GetType() == SERVER_ENEMY)
 	{
-		if(!Network::GetInstance()->IsServer())
+		_enemyList = SendAndReceivePackets::receiveEnemyPacket(packet, this, _enemyList);
+		/*if(!Network::GetInstance()->IsServer())
 		{
 			vector<Enemy> serverEnemies = vector<Enemy>();
 
@@ -261,7 +264,7 @@ void SectorTemplate::HandleNetworkMessage(NetworkPacket packet)
 					this->addChild(_enemyList.back());
 				}
 			}
-		}
+		}*/
 	}
 }
 

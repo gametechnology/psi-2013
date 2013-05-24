@@ -17,6 +17,7 @@
 #include "Engine\Camera.h"
 #include "ShipMover.h"
 #include "Laser.h"
+#include "ObjectPool.h"
 #include "HudHelpText.h"
 
 class DefenceStation;
@@ -70,6 +71,8 @@ public:
 
 	void SwitchToStation(StationType stationType);
 
+	static ObjectPool<Laser>* laserPool;
+
 	void fireLaser();
 	
 	void HandleNetworkMessage(NetworkPacket packet);
@@ -83,8 +86,5 @@ private:
 	stringw varToString(stringw str1, float var);
 
 	void setInertiaMatrix(float h, float w, float d, float m);
-
-	vector<Laser*> _laser;
-	int _laserCount, _laserCounter;
 };
 #endif

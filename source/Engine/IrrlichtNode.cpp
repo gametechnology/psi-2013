@@ -24,6 +24,7 @@ void IrrlichtNode::update() {
 	if (node != NULL) {
 		node->setPosition(this->parent->transform->position->operator+(*this->transform->position));
 		node->setRotation(this->parent->transform->rotation->operator+(*this->transform->rotation));
+		node->setVisible(this->parent->enabled);
 	}
 
 	Entity::update();

@@ -153,9 +153,6 @@
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\UIData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
@@ -255,11 +252,20 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\SendAndReceivePackets.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\StationStats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\EndScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\BasicShipMover.cpp">
     	<Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\EndSceneEventReceiver.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\HealthComponent.cpp">
       <Filter>Source Files</Filter>
@@ -452,13 +458,25 @@
     <ClInclude Include="..\source\Game\BackButton.h">
       <Filter>Header Files\Hud</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\ObjectPool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\source\Game\StationStats.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\SendAndReceivePackets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\BasicShipMover.h">
     	<Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\EndScene.h">
+      <Filter>Header Files\Scenes</Filter>    
+    </ClInclude>
     <ClInclude Include="..\source\Game\HealthComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EndSceneEventReceiver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\ShieldComponent.h">

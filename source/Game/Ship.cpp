@@ -5,6 +5,8 @@
 vector3df startPosition;
 vector3df startRotation;
 
+ObjectPool<Laser>* Ship::laserPool;
+
 Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 {
 	this->transform->position = &position;
@@ -71,16 +73,6 @@ void Ship::onAdd() {
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 
 	
-
-	_laserCount = 10;
-
-	for (int i = 0; i < _laserCount; i++)
-		_laser.push_back(new Laser());
-
-	for (int i = 0; i < _laserCount; i++)
-		scene->addChild(_laser[i]);
-
-	_laserCounter = 0;
 
 	
 	//Todo: Remove debug info from helptext!
@@ -265,10 +257,11 @@ void Ship::setInertiaMatrix(float h, float w, float d, float m)
 
 void Ship::fireLaser()
 {
-	//_laser[_laserCounter++]->fire(this, _camera->getCameraNode()->getTarget(), 1.0);
-
-	if(_laserCounter >= _laserCount)
-		_laserCounter = 0;
+	Laser laser = *this->laserPool->GetFreeObject();
+	if(&laser != NULL)
+	{
+		laser.fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
+	}
 }
 void Ship::HandleNetworkMessage(NetworkPacket packet)
 {

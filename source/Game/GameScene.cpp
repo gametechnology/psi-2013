@@ -2,6 +2,7 @@
 #include "MapGenerator.h"
 #include "SectorManager.h"
 #include "Shipmap.h"
+#include "SendAndReceivePackets.h"
 
 GameScene::GameScene(std::list<Player*> playerList, bool isTestMap) : Scene()
 {
@@ -11,6 +12,15 @@ GameScene::GameScene(std::list<Player*> playerList, bool isTestMap) : Scene()
 }
 
 void GameScene::onAdd() {
+	this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
+	SendAndReceivePackets::staticGame = this->game;
+	Network::GetInstance()->AddListener(SERVER_LASER, this);
+	Network::GetInstance()->AddListener(SERVER_WINLOSE, this);
+
+	this->_sendLasersTimer = 0;
+	this->_laserPool = new ObjectPool<Laser>(*this, 50);
+	EnemyFighter::laserPool = _laserPool;
+	Ship::laserPool = _laserPool;
 
 	_ship = new Ship(vector3df(0,0,0), vector3df(0,0,0));
 	addChild(_ship);
@@ -38,7 +48,8 @@ void GameScene::onAdd() {
 	addComponent(new SectorManager(galaxyMap,_ship));
 
 	_shipmap = new Shipmap(this);
-	addChild(_shipmap);
+	//addChild(_shipmap);
+
 }
 
 void GameScene::init() {
@@ -46,18 +57,40 @@ void GameScene::init() {
 }
 
 void GameScene::update() {
+	if(Network::GetInstance()->IsServer())
+	{
+		this->_sendLasersTimer++;
+		if(this->_sendLasersTimer > 50)
+		{
+			SendAndReceivePackets::sendLazerPacket(this->_laserPool->getAllObjects());
+			this->_sendLasersTimer = 0;
+		}
+		/*
+		TODO:
+		Edit code below to make it send a winlose packet when one of the ship reaches health of 0
+		and give the right team id as the parameter
+		*/
+		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z))
+		{
+			SendAndReceivePackets::sendWinLosePacket(1);
+			SendAndReceivePackets::handleWinLose(1, 2, this);
+		}
+	}
+
 	Scene::update();
-}
-
-void GameScene::switchStation(StationType type)
-{
-	this->removeChild(_shipmap);
-
-	_ship->SwitchToStation(type);
 }
 
 void GameScene::HandleNetworkMessage(NetworkPacket packet)
 {
+	std::cout<< packet.GetType() << endl;
+	if(packet.GetType() == SERVER_LASER)
+	{
+		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacket(packet, this->_laserPool->getAllObjects(), this));
+	}
+	if(packet.GetType() == SERVER_WINLOSE)
+	{
+		SendAndReceivePackets::receiveWinLosePacket(packet, 1, this);
+	}
 	// TODO fix the packet data so it actually holds the ip adress of the sender.
 	if(packet.GetType() == PacketType::CLIENT_SWITCH_STATION)
 	{
@@ -67,6 +100,14 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 	}
 }
 
-GameScene::~GameScene() {
+void GameScene::switchStation(StationType type)
+{
+	this->removeChild(_shipmap);
 
+	_ship->SwitchToStation(type);
+}
+
+GameScene::~GameScene() 
+{
+	delete _laserPool;
 }
