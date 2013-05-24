@@ -73,9 +73,15 @@ void GameScene::update() {
 			SendAndReceivePackets::sendLazerPacket(this->_laserPool->getAllObjects());
 			this->_sendLasersTimer = 0;
 		}
+		/*
+		TODO:
+		Edit code below to make it send a winlose packet when one of the ship reaches health of 0
+		and give the right team id as the parameter
+		*/
 		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z))
 		{
 			SendAndReceivePackets::sendWinLosePacket(1);
+			SendAndReceivePackets::handleWinLose(1, 2, this);
 		}
 	}
 

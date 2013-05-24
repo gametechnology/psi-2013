@@ -140,10 +140,10 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& pac
 	return laserList;
 }
 
-void SendAndReceivePackets::sendWinLosePacket(int teamId)
+void SendAndReceivePackets::sendWinLosePacket(int LosingteamId)
 {
 	NetworkPacket packet(SERVER_WINLOSE);
-	packet << teamId;
+	packet << LosingteamId;
 	sendServerPacket(packet, true);
 }
 
@@ -152,10 +152,16 @@ void SendAndReceivePackets::receiveWinLosePacket(NetworkPacket& packet, int team
 	int team;
 	packet >> team;
 
+	SendAndReceivePackets::handleWinLose(team, teamId, currentScene);
+}
+
+void SendAndReceivePackets::handleWinLose(int losingTeam, int teamId, Scene* currentScene)
+{
+	
 	SceneManager sceneManager = *currentScene->game->sceneManager;
 	char nameCurrentScene = *sceneManager.getNameScene(currentScene)->name;
-	std::cout <<"team ID: " <<team << endl;
-	if(team == teamId)
+
+	if(losingTeam == teamId)
 	{
 		sceneManager.addScene("EndScene", new EndScene(true));
 		sceneManager.activateScene("EndScene");
@@ -165,7 +171,6 @@ void SendAndReceivePackets::receiveWinLosePacket(NetworkPacket& packet, int team
 		sceneManager.activateScene("EndScene");
 	}
 		sceneManager.deactivateScene(&nameCurrentScene);
-		//sceneManager.destroyScene(&nameCurrentScene);
 }
 
 sf::Packet& operator <<(sf::Packet& out, Scene* in)
@@ -240,12 +245,11 @@ sf::Packet& operator >>(sf::Packet& in, vector<Enemy>& out)
 
 sf::Packet& operator <<(sf::Packet& out, Laser& in)
 {
-	return out << in.getId() << in.scene << in.enabled << *in.transform->position << *in.transform->velocity << *in.transform->rotation;
+	return out << in.getId() << in.enabled << *in.transform->position << *in.transform->velocity << *in.transform->rotation;
 }
 
 sf::Packet& operator >>(sf::Packet& in, Laser& out)
 {
-	Scene* scene = new Scene();
 	bool enabled;
 	irr::core::vector3df position;
 	irr::core::vector3df velocity;
@@ -253,10 +257,9 @@ sf::Packet& operator >>(sf::Packet& in, Laser& out)
 
 	int id;
 
-	in >> id >> scene >> enabled >> position >> velocity >> rotation;
+	in >> id >> enabled >> position >> velocity >> rotation;
 
 	out.setId(id);
-	out.scene = scene;
 	if(enabled)
 	{
 		out.enable();

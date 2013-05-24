@@ -30,8 +30,9 @@ public:
 	static void sendLazerPacket(std::vector<Laser*> laserList, const bool reliable = false);
 	static std::vector<Laser*> receiveLaserPacket(NetworkPacket& packet, std::vector<Laser*> laserList, Scene* scene);
 
-	static void sendWinLosePacket(int teamId);
+	static void sendWinLosePacket(int LosingteamId);
 	static void receiveWinLosePacket(NetworkPacket& packet, int teamId, Scene* currentScene);
+	static void handleWinLose(int losingTeam, int teamID, Scene* currentScene);
 
 
 	friend sf::Packet& operator <<(sf::Packet& out, Enemy& in);
