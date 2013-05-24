@@ -126,11 +126,12 @@ void Network::SendPacket(NetworkPacket packet, const bool reliable)
 		else
 		{
 			_mutex.lock();
-			_receivedPackets.push_back(NetworkPacket(enetPacket,0));
+			_receivedPackets.push_back(NetworkPacket(enetPacket));
 			_mutex.unlock();
 		}
 	}
 }
+
 NetworkPacket Network::AddSendAll(NetworkPacket packet, bool sendall){
 	sf::Packet tempPacket = packet;
 	packet.clear();
@@ -158,12 +159,8 @@ void Network::SendPacketToAllClients(NetworkPacket packet, const bool reliable){
 		{
 			ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
 			enet_peer_send(_peer, 0, enetPacket);
-			
 		}
-	
 	}
-		
-	
 }
 
 void Network::SendServerPacket(NetworkPacket packet, const bool reliable)
@@ -175,6 +172,17 @@ void Network::SendServerPacket(NetworkPacket packet, const bool reliable)
 		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
 
 		enet_host_broadcast(_host, 0, enetPacket);
+	}
+}
+
+void Network::SendServerPacket(NetworkPacket packet, ENetPeer* peer, const bool reliable)
+{
+	packet = AddSendAll(packet, false);
+	if(_isConnected && _isServer)
+	{	
+		ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
+
+		enet_peer_send(peer, 0, enetPacket);
 	}
 }
 
@@ -222,7 +230,7 @@ void Network::PacketReciever()
 
 			// Add to our list of received packets
 
-			_receivedPackets.push_back(NetworkPacket(_event.packet, Network::GetInstance()->_event.peer -> address.host));
+			_receivedPackets.push_back(NetworkPacket(_event.packet, *_event.peer));
 
 			// Clean up the packet now that we're done using it
 			enet_packet_destroy (_event.packet);
@@ -250,7 +258,7 @@ void Network::DistributePacket(NetworkPacket networkPacket)
 			sf::Packet tempPacket = networkPacket;
 			networkPacket.clear();
 			networkPacket << true;
-			networkPacket << networkPacket.ipadress;
+			networkPacket << networkPacket.GetSender().address.host;
 			networkPacket.append(tempPacket.getData(), tempPacket.getDataSize());
 			ENetPacket* enetPacket = enet_packet_create(networkPacket.GetBytes(), networkPacket.GetSize(), true);
 				enet_host_broadcast(_host, 0, enetPacket);

@@ -18,6 +18,7 @@
 #include "ShipMover.h"
 #include "Laser.h"
 #include "ObjectPool.h"
+#include "HudHelpText.h"
 
 class DefenceStation;
 class HelmStation;
@@ -25,9 +26,11 @@ class NavigationStation;
 class PowerStation;
 class WeaponStation;
 
-class Ship : public Entity
+class Ship : public Entity, public INetworkListener
 {
 public:
+	HudHelpText* help;
+
 	//Player *players;
 	DefenceStation		*_defenceStation;
 	HelmStation			*_helmStation;
@@ -71,10 +74,11 @@ public:
 	static ObjectPool<Laser>* laserPool;
 
 	void fireLaser();
+	
+	void HandleNetworkMessage(NetworkPacket packet);
 private:
 
 	Station				*_currentStation;
-	Camera				*_camera;
 	Thruster			*_thrusters[4];
 	matrix4				*_inertiaMatrix;
 

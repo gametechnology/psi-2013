@@ -9,13 +9,13 @@ public:
 	IrrlichtNode(const irr::io::path& modelPath);
 	~IrrlichtNode();
 
-	void init();
-	void update();
-private:
-	virtual void createNode();
+	virtual void init();
+	virtual void update();
+	
 protected:
 	irr::io::path modelPath;
 	irr::scene::ISceneNode* node;
+	virtual void createNode();
 
 };
 

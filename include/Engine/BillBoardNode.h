@@ -8,16 +8,15 @@ using namespace core;
 
 class BillBoardNode : public IrrlichtNode {
 public:
-	BillBoardNode(const irr::io::path& modelPath,irr::core::dimension2df size,irr::core::vector3df position,irr::core::vector3df rotation);
+	BillBoardNode(const irr::io::path& modelPath, irr::core::dimension2df size);
 	virtual ~BillBoardNode();
-	
-	void onAdd();
-	void createNode();
 
-private:
+	virtual void init();
+	virtual void update();
+
+protected:
 	irr::core::dimension2df _size;
-	irr::core::vector3df _position;
-	irr::core::vector3df _rotation;
+	virtual void createNode();
 };
 
 

@@ -127,7 +127,7 @@ void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ) {
 }
 
 void SectorTemplate::addWormHoles() {
-	//printf("[SectorTemplate] -=*[Begin of Add WormHole]*=- \n");
+	printf("[SectorTemplate] -=*[Begin of Add WormHole]*=- \n");
 	for(unsigned int i = 0; i < _wormHoles.size(); i++) {
 		// Calculating the pos in the sector
 		irr::core::vector3df wormHolePos((float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)));
@@ -140,9 +140,9 @@ void SectorTemplate::addWormHoles() {
 
 		// And give it their position
 		*_wormHoles[i]->transform->position = wormHolePos;
-		//printf("[SectorTemplate] wormhole.x[ %f ] wormhole.y[ %f ] wormhole.z[ %f ] \n",_wormHoles[i]->transform->position->X,_wormHoles[i]->transform->position->Y,_wormHoles[i]->transform->position->Z);
+		printf("[SectorTemplate] wormhole.x[ %f ] wormhole.y[ %f ] wormhole.z[ %f ] \n",_wormHoles[i]->transform->position->X,_wormHoles[i]->transform->position->Y,_wormHoles[i]->transform->position->Z);
 	}
-	//printf("[SectorTemplate] -=*[End of add WormHole]*=- \n");
+	printf("[SectorTemplate] -=*[End of add WormHole]*=- \n");
 }
 
 int timer = 0;
@@ -211,7 +211,7 @@ void SectorTemplate::HandleNetworkMessage(NetworkPacket packet)
 			packet >> serverEnemies;
 
 
-			for(unsigned j = 0; j < _enemyList.size(); j++)
+			for(unsigned int j = 0; j < _enemyList.size(); j++)
 			{
 				bool isAtServer = false;
 				for(unsigned k = 0; k < serverEnemies.size(); k++)

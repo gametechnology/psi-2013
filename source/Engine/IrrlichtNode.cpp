@@ -22,8 +22,8 @@ void IrrlichtNode::createNode() {
 
 void IrrlichtNode::update() {
 	if (node != NULL) {
-		node->setPosition(*this->parent->transform->position);
-		node->setRotation(*this->parent->transform->rotation);
+		node->setPosition(*this->transform->position);
+		node->setRotation(*this->transform->rotation);
 		node->setVisible(this->parent->enabled);
 	}
 

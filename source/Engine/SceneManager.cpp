@@ -118,6 +118,7 @@ bool SceneManager::destroyScene(char* name){
 				// delete nameScenes[i].scene;
 				// delete &nameScenes[i];
 			}
+			return false;
 		}
 	}else
 		return false;

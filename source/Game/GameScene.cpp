@@ -21,31 +21,23 @@ void GameScene::onAdd() {
 	this->_laserPool = new ObjectPool<Laser>(*this, 50);
 	EnemyFighter::laserPool = _laserPool;
 	Ship::laserPool = _laserPool;
-	// The player
-	_ship = new Ship(vector3df(0,0,-100), vector3df(0,0,0));
 
-	_player = new Camera(); //TODO: Make the camera work correctly according to station
-	
-
-	_ship2 = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
+	_ship = new Ship(vector3df(0,0,0), vector3df(0,0,0));
 	addChild(_ship);
-	_ship->addChild(_player);
-	//TODO: Disabled this Caused errors 
-	//_player->setTarget(vector3df(0, 0, -100));
-	//_player->setUpVector(*_ship->transform->position);
 
-	ShipMover* mover = new ShipMover(_ship);
-	_ship->addComponent(mover);
+	_camera = new Camera(); 
+	_ship->addChild(_camera);
+	_camera->init();
 
-	//addChild(_ship2);
+	_shipEnemy = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
+	addChild(_shipEnemy);
 
 	BasicMoverComponent* movComp = new BasicMoverComponent();
-	movComp->thrust = 0.01f;
-	_ship2->addComponent(movComp);
+	_shipEnemy->addComponent(movComp);
 
 	//Creates Map & SectorManager
 	GalaxyMap* galaxyMap = new GalaxyMap(300, 300, 15);
-	
+
 	if (!testMap) {
 		galaxyMap->createMap(20, 2, 5);
 	} else {
@@ -112,21 +104,7 @@ void GameScene::switchStation(StationType type)
 {
 	this->removeChild(_shipmap);
 
-	_ship->GetStation(type)->enable();
-
-	switch(type)
-	{
-		case ST_DEFENCE:
-			break;
-		case ST_HELM:
-			break;
-		case ST_NAVIGATION:
-			break;
-		case ST_POWER:
-			break;
-		case ST_WEAPON:
-			break;
-	}
+	_ship->SwitchToStation(type);
 }
 
 GameScene::~GameScene() 

@@ -15,6 +15,10 @@ HelmStation::~HelmStation()
 void HelmStation::onAdd()
 {
 	Station::onAdd();
+
+	//ShipMover* mover = new ShipMover(_ship); // Ship mover with thrusters.
+	BasicShipMover* mover = new BasicShipMover(_ship); // Ship mover without thrusters.
+	addComponent(mover);
 }
 
 void HelmStation::init()
@@ -44,6 +48,8 @@ void HelmStation::draw()
 
 void HelmStation::enable()
 {
+	((Ship*)parent)->help->setHelpText(L"Forward: 'W'\nBackwards: 'S'\nRoll left: 'A'\nRoll right: 'D'\nPitch up: 'down'\nPitch down: 'up'\nJaw left: 'left'\nJaw right: 'right'\ntodo: Exit station: 'Esc'");
+
 	Station::enable();
 }
 

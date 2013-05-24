@@ -30,13 +30,12 @@ public:
 	void HandleNetworkMessage(NetworkPacket packet);
 private:
 	bool testMap;
-
+	Camera *_camera;
 	Shipmap* _shipmap;
 	int _sendLasersTimer;
 	ObjectPool<Laser>* _laserPool;
-	Camera* _player;
 	Ship* _ship;
-	Ship* _ship2;
+	Ship* _shipEnemy;
 
 	std::list<Player*> _playerList;
 };

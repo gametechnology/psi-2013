@@ -5,7 +5,7 @@
 #include "Engine/Entity.h"
 #include "NetworkInterface.h"
 
-class BasicMoverComponent : public Component, public INetworkListener   {
+class BasicMoverComponent : public Component   {
 public:
 	float mass;
 	float thrust;
@@ -13,9 +13,12 @@ public:
 	BasicMoverComponent();
 	virtual ~BasicMoverComponent();
 	virtual void update();
-	void HandleNetworkMessage(NetworkPacket packet);
-private:
-
+protected:
+	void move(Entity *entity, irr::core::vector3df vel);
+	void rotate(Entity *entity, irr::core::vector3df rot);
+	void turn(Entity *entity, irr::f32 rot);
+	void pitch(Entity *entity, irr::f32 rot);
+	void roll(Entity *entity, irr::f32 rot);
 };
 
 #endif

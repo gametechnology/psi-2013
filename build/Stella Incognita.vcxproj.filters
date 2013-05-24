@@ -261,7 +261,19 @@
     <ClCompile Include="..\source\Game\EndScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\BasicShipMover.cpp">
+    	<Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\source\Game\EndSceneEventReceiver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\HealthComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\ShieldComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\PowerComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -455,10 +467,22 @@
     <ClInclude Include="..\source\Game\SendAndReceivePackets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\BasicShipMover.h">
+    	<Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\source\Game\EndScene.h">
-      <Filter>Header Files\Scenes</Filter>
+      <Filter>Header Files\Scenes</Filter>    
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HealthComponent.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\EndSceneEventReceiver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ShieldComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\PowerComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
