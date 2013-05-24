@@ -12,6 +12,7 @@
 #include "ShipMover.h"
 #include "BasicMoverComponent.h"
 #include "Stations\Station.h"
+#include "SectorManager.h"
 
 // Forward declare Shipmap
 class Shipmap;
@@ -32,7 +33,7 @@ private:
 	Shipmap* _shipmap;
 	Ship* _ship;
 	RemoteShip* _shipEnemy;
-
+	SectorManager* _sectorManager;
 	std::list<Player*> _playerList;
 };
 

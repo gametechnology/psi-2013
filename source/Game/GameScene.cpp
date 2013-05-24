@@ -1,6 +1,5 @@
 #include "GameScene.h"
 #include "MapGenerator.h"
-#include "SectorManager.h"
 #include "Shipmap.h"
 
 GameScene::GameScene(std::list<Player*> playerList, bool isTestMap) : Scene()
@@ -35,8 +34,9 @@ void GameScene::onAdd() {
 	}
 	galaxyMap->transform->position = new vector3df(100, 670, 0);
 	printf("-----------Added SectorManager----------\n\n");
-	addComponent(new SectorManager(galaxyMap,_ship));
-
+	_sectorManager= new SectorManager(galaxyMap,_ship);
+	addComponent(_sectorManager);
+	// USE "_sectorManager->_mapSector;" to get current sector
 	_shipmap = new Shipmap(this);
 	addChild(_shipmap);
 }
