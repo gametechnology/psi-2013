@@ -173,29 +173,6 @@ void SendAndReceivePackets::handleWinLose(int losingTeam, int teamId, Scene* cur
 		sceneManager.deactivateScene(&nameCurrentScene);
 }
 
-sf::Packet& operator <<(sf::Packet& out, Scene* in)
-{
-	//edit this if more is needed to send a scene over
-	if(in != NULL)
-	{
-		return out << in->game->sceneManager->getNameScene(in)->name;
-	}
-	char* name;
-	name = "";
-	return out << name;
-}
-
-sf::Packet& operator >>(sf::Packet& in, Scene* out)
-{
-	char* sceneName = new char();
-	in >> sceneName;
-
-	out = SendAndReceivePackets::staticGame->sceneManager->getScene(sceneName);
-
-	return in;
-}
-
-
 sf::Packet& operator <<(sf::Packet& out, Enemy& in)
 {
 	return out << in.getId() << in.getType() << in.getPosition() << in.getVelocity() << in.getRotation();

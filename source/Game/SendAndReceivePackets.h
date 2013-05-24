@@ -40,9 +40,6 @@ public:
 	friend sf::Packet& operator <<(sf::Packet& out, vector<Enemy*>& in);
 	friend sf::Packet& operator >>(sf::Packet& in, vector<Enemy>& out);
 
-	friend sf::Packet& operator <<(sf::Packet& out, Scene& in);
-	friend sf::Packet& operator >>(sf::Packet& in, Scene& out);
-
 	friend sf::Packet& operator <<(sf::Packet& out, Laser& in);
 	friend sf::Packet& operator >>(sf::Packet& in, Laser& out);
 	friend sf::Packet& operator <<(sf::Packet& out, vector<Laser*>& in);
