@@ -260,7 +260,7 @@ void Ship::fireLaser()
 	Laser laser = *this->laserPool->GetFreeObject();
 	if(&laser != NULL)
 	{
-		laser.fire(this->transform, _camera->getCameraNode()->getTarget(), 1.0);
+		laser.fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
 	}
 }
 void Ship::HandleNetworkMessage(NetworkPacket packet)
