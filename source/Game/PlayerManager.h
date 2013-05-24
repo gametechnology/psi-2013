@@ -20,17 +20,22 @@ private:
 	void RequestJoinServer( const wchar_t *player_name, int team_id, ENetPeer peer );
 	void OnJoinAcceptedReceived( int player_player_id );
 	void OnJoinDeniedReceived( );
-	void OnLobbyStatusReceived( );
+	//whenever something changes for any player, he will send something to the server.	
 
 	//these are the server-side functions
 	void OnClientJoinRequestReceived( const wchar_t *player_name, int team_id, ENetPeer peer );
-	
-public:
+	void OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id = -1 );
+
 	PlayerManager( );
+
+public:
+	
 	~PlayerManager( );	
 
 	void HandleNetworkMessage( NetworkPacket p );
-	
+	void UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_id );
+	void SendPlayerInfoRequest();
+
 	//this makes sure that the local data is sent to all the other players on the network (only local data)
 	void SyncLocalPlayerData( StationType currentStation );
 };

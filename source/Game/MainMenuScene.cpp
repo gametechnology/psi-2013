@@ -1,6 +1,7 @@
 #include "MainMenuScene.h"
 #include "GameScene.h"
 #include "EnemySceneTest.h"
+#include "PlayerManager.h"
 
 MainMenuScene::MainMenuScene() : Scene() {
 }
@@ -89,7 +90,11 @@ void MainMenuScene::update(){
 	const std::wstring& tmpp = ssp.str();
 	Clientlist->setText(tmpp.c_str());
 
+	
 
+	//Ask playermanager to get all player info from the server, when L is pressed
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_L))
+		player_manage->SendPlayerInfoRequest();
 }
 
 void MainMenuScene::StartGame()
