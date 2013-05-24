@@ -69,14 +69,12 @@ void Shipmap::onAdd()
 
 	playerBox = new irr::core::rect<s32>();
 
-	/*
-	* Temporary station occupied state
-	* TODO remove this and replace it with each individual station's hasPlayer boolean when implementing!
-	*/
+	
+	// Temporary station occupied state
 	for (int i = 0; i < 5; i++)
 		stationOccupied[i] = false;
 
-	// Player starting position
+	// Player starting position - should start in the middle of the plane
 	this->transform->position->X = (float)((playerTile.x * tileSize) + offsetX);
 	this->transform->position->Y = (float)((playerTile.y * tileSize) + offsetY + 20);
 }
@@ -172,17 +170,13 @@ void Shipmap::update()
 	}
 
 	// TODO replace stationOccupied[i] with the hasPlayer booleans of each individual station!
-	for(int i = 0; i < 5; i++)
-	{
-		if(playerBox->isRectCollided(*boundingBoxes[i]))
-		{
-			if (stationOccupied[i])
-			{
+	for(int i = 0; i < 5; i++) {
+		if(playerBox->isRectCollided(*boundingBoxes[i])) {
+			if (stationOccupied[i]) {
 				onOccupiedStation = true;
 				onStation = false;
 			}
-			else
-			{
+			else {
 				onOccupiedStation = false;
 				onStation = true;
 			}
@@ -190,40 +184,30 @@ void Shipmap::update()
 	}
 
 	// Enter a station
-	// TODO implement with stations, enter the correct station on pressing E by checking position against boundingboxes
-	if (onStation && (game->input->isKeyboardButtonDown(irr::KEY_KEY_E) || game->input->isKeyboardButtonDown(irr::KEY_KEY_F)))
-	{
+	if (onStation && (game->input->isKeyboardButtonDown(irr::KEY_KEY_E) || game->input->isKeyboardButtonDown(irr::KEY_KEY_F))) {
 			enterStation(_intersectingStation);
 			return;
 	}
 	
-
-	if (isMoving)
-	{
+	if (isMoving) {
 		int leftTile = (int)((this->transform->position->X - offsetX) / tileSize);
 		int rightTile = (int)(((this->transform->position->X + iconRadius * 2) - offsetX) / tileSize);
 		int topTile = (int)((this->transform->position->Y - offsetY) / tileSize);
 		int bottomTile = (int)(((this->transform->position->Y + iconRadius * 2) - offsetY) / tileSize);
 
-		if (tiles[topTile][leftTile] == 1 || tiles[bottomTile][leftTile] == 1 || tiles[topTile][rightTile] == 1 || tiles[bottomTile][rightTile] == 1)
-		{
+		if (tiles[topTile][leftTile] == 1 || tiles[bottomTile][leftTile] == 1 || tiles[topTile][rightTile] == 1 || tiles[bottomTile][rightTile] == 1) {
 			isIntersecting = true;
 		}
 
 		// TODO replace stationOccupied[i] with the hasPlayer booleans of each individual station!
-		if (tiles[topTile][leftTile] == 2 || tiles[bottomTile][leftTile] == 2 || tiles[topTile][rightTile] == 2 || tiles[bottomTile][rightTile] == 2)
-		{
-			for(int i = 0; i < 5; i++)
-			{
-				if(playerBox->isRectCollided(*boundingBoxes[i]))
-				{
-					if (stationOccupied[i])
-					{
+		if (tiles[topTile][leftTile] == 2 || tiles[bottomTile][leftTile] == 2 || tiles[topTile][rightTile] == 2 || tiles[bottomTile][rightTile] == 2) {
+			for(int i = 0; i < 5; i++) {
+				if(playerBox->isRectCollided(*boundingBoxes[i])) {
+					if (stationOccupied[i]) {
 						onOccupiedStation = true;
 						onStation = false;
 					}
-					else
-					{
+					else {
 						onOccupiedStation = false;
 						onStation = true;
 						_intersectingStation = (StationType)i;
@@ -231,14 +215,12 @@ void Shipmap::update()
 				}
 			}
 		} 
-		else 
-		{
+		else {
 			onOccupiedStation = false;
 			onStation = false;
 		}
 
-		if (isIntersecting)
-		{
+		if (isIntersecting) {
 			this->transform->position->X = savedPosX;
 			this->transform->position->Y = savedPosY;
 		}
@@ -260,8 +242,7 @@ void Shipmap::update()
 	then = now;
 }
 
-void Shipmap::enterStation(StationType station)
-{
+void Shipmap::enterStation(StationType station) {
 	NetworkPacket packet(PacketType::CLIENT_SWITCH_STATION);
 	packet << station;
 	Network::GetInstance()->SendPacket(packet, true);
