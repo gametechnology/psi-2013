@@ -3,7 +3,7 @@
 
 EndScene::EndScene(bool lostGame)
 {
-
+	this->_didWeLose = lostGame;
 }
 
 void EndScene::init()
@@ -23,6 +23,14 @@ void EndScene::addGuiElements()
 {
 	endGameWindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"End of Game",0,100);
 	endGameWindow->getCloseButton()->remove();
+
+	if(this->_didWeLose)
+	{
+		winOrLoseMessage = guiEnv->addStaticText(L"Your team lost",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,endGameWindow);
+	}else
+	{
+		winOrLoseMessage = guiEnv->addStaticText(L"Your team won!",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,endGameWindow);
+	}
 
 	backbutton	= guiEnv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),endGameWindow,0, L"Back to Main Menu");
 }

@@ -24,7 +24,11 @@ public:
 	//GUI
 	IGUIEnvironment* guiEnv;
 	IGUIWindow* endGameWindow;
+	IGUIStaticText* winOrLoseMessage;
 	IGUIButton* backbutton;
 	EndSceneEventReceiver* eventReceiver;
+
+private:
+	bool _didWeLose;
 };
 #endif
