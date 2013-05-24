@@ -18,7 +18,7 @@ void GameScene::onAdd() {
 	Network::GetInstance()->AddListener(SERVER_WINLOSE, this);
 
 	this->_sendLasersTimer = 0;
-	this->_laserPool = new ObjectPool<Laser>(*this, 50);
+	this->_laserPool = new ObjectPool<Laser>(*this, 100);
 	EnemyFighter::laserPool = _laserPool;
 	Ship::laserPool = _laserPool;
 
@@ -70,7 +70,7 @@ void GameScene::update() {
 		Edit code below to make it send a winlose packet when one of the ship reaches health of 0
 		and give the right team id as the parameter
 		*/
-		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z))
+		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z) || this->_ship->getShipHealth() <= 0 || this->_shipEnemy->getShipHealth() <= 0)
 		{
 			SendAndReceivePackets::sendWinLosePacket(1);
 			SendAndReceivePackets::handleWinLose(1, 2, this);
