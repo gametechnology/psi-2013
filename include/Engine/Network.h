@@ -33,8 +33,18 @@ enum PacketType
 	CLIENT_UPDATE_PLAYER_DATA,
     CLIENT_ADD_PLAYER_DATA,
     CLIENT_REMOVE_PLAYER_DATA,
+
+	//these are the player_manager packet types
+	CLIENT_JOIN_SERVER,
+	SERVER_JOIN_ACCEPTED,
+	SERVER_JOIN_DENIED,
+	SERVER_LOBBY_STATUS,
+
 	//Add new PacketTypes above
-	LAST_TYPE
+	LAST_TYPE,
+
+	
+
 };
 
 

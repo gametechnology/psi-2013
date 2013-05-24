@@ -11,25 +11,26 @@
 class PlayerManager : public INetworkListener
 {
 private:
-	irr :: core :: map<int, PlayerData> *_playerData;
-	int									_localPlayer_id;
+	irr :: core :: map<int, PlayerData*>	*_serverPlayerData;
+	PlayerData								*_localPlayerData;
 	
-	void UpdatePlayer( int player_id, StationType type );
-	//whenever the 
-	void AddPlayerData( int player_id, const wchar_t *player_name, int team_id );
-	void RemovePlayerData( int player_id );
+	bool _isServer;
 
-	//gets the PlayerData of a given player.
-	PlayerData *GetPlayerData( int player_id );
+	//these are client side functions. 
+	void RequestJoinServer( const wchar_t *player_name, int team_id, ENetPeer peer );
+	void OnJoinAcceptedReceived( int player_player_id );
+	void OnJoinDeniedReceived( );
+	void OnLobbyStatusReceived( );
 
+	//these are the server-side functions
+	void OnClientJoinRequestReceived( const wchar_t *player_name, int team_id, ENetPeer peer );
+	
 public:
 	PlayerManager( );
 	~PlayerManager( );	
 
 	void HandleNetworkMessage( NetworkPacket p );
-	void GenerateLocalPlayerData( int player_id, const wchar_t *name, int team_id );
-
-	PlayerData *GetLocalPlayerData( );
+	
 	//this makes sure that the local data is sent to all the other players on the network (only local data)
 	void SyncLocalPlayerData( StationType currentStation );
 };

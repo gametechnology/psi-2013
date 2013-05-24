@@ -6,7 +6,7 @@
 struct PlayerData
 {
 public
-		static int		uniqueId = 0;		
+		static int		uniqueId = 0;
         int				id;			//only sync this
         int				team_id;
 		ENetPeer		peer;
