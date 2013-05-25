@@ -288,7 +288,7 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 			*transform->velocity = velocity;
 			
 		//Apply updates 
-		if(_currentStation->GetStationType() == ST_WEAPON){
+		if(_currentStation != NULL && _currentStation->GetStationType() == ST_WEAPON){
 			((WeaponStation*)_currentStation)->rotationForeign = rotation;
 		}
 		else{

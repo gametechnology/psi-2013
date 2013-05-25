@@ -54,6 +54,6 @@ void BasicShipMover::update() {
 	movementPacket << entity->transform->angularVelocity;
 
 	//Send packet to server
-	if(Network::GetInstance()->IsServer())
+	//if(Network::GetInstance()->IsServer())
 		Network::GetInstance()->SendPacketToAllClients(movementPacket, false);
 }
