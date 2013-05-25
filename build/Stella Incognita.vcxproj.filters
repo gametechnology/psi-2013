@@ -258,13 +258,7 @@
     <ClCompile Include="..\source\Game\StationStats.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\DummyShip.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\EndScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\CollisionTestScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\BasicShipMover.cpp">
@@ -446,6 +440,9 @@
     <ClInclude Include="..\source\Game\Stations\PowerStationData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\Collision.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\source\Game\EnemySceneTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -467,17 +464,11 @@
     <ClInclude Include="..\source\Game\StationStats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\CollisionTestScene.h">
-      <Filter>Header Files\Scenes</Filter>
-    </ClCompile>
     <ClInclude Include="..\source\Game\SendAndReceivePackets.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\BasicShipMover.h">
     	<Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\DummyShip.h">
-      <Filter>Header Files\Scenes</Filter>    
     </ClInclude>
     <ClInclude Include="..\source\Game\EndScene.h">
       <Filter>Header Files\Scenes</Filter>    

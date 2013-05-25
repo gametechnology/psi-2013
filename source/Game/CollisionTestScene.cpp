@@ -12,13 +12,15 @@ CollisionTestScene::CollisionTestScene(void) : Scene()
 {
 	//Create a list of the enemies
 	this->_enemyList = vector<Enemy*>();
-	//Uses the Pool Design pattern to create lasers and add them to each EnemyFighter
-	ObjectPool<Laser>* laserPool = new ObjectPool<Laser>(50);
-	EnemyFighter::laserPool = *laserPool;
 }
 
 void CollisionTestScene::onAdd() 
 {
+	//Uses the Pool Design pattern to create lasers and add them to each EnemyFighter
+	ObjectPool<Laser>* laserPool = new ObjectPool<Laser>(*this, 100);
+	EnemyFighter::laserPool = laserPool;
+
+	Scene::onAdd();
 }
 
 void CollisionTestScene::init() {
