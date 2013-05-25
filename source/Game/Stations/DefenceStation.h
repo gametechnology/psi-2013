@@ -2,7 +2,6 @@
 #define DEFENCE_STATION
 
 #include "Station.h"
-#include "..\Ship.h"
 #include <time.h>
 #include <map>
 
@@ -17,6 +16,8 @@ public:
 	int GetDamage(StationType stationType);
 
 	Station *station;
+
+	void enable();
 
 	void OnEnabled();
 	void OnDisabled();

@@ -13,10 +13,12 @@
 #include "Engine/Entity.h"
 #include "Engine/IrrlichtNode.h"
 #include "Player.h"
-#include "Engine/Input.h"
 #include "Thruster.h"
 #include "Engine\Camera.h"
 #include "ShipMover.h"
+#include "Laser.h"
+#include "ObjectPool.h"
+#include "HudHelpText.h"
 
 class DefenceStation;
 class HelmStation;
@@ -24,9 +26,11 @@ class NavigationStation;
 class PowerStation;
 class WeaponStation;
 
-class Ship : public Entity
+class Ship : public Entity, public INetworkListener
 {
 public:
+	HudHelpText* help;
+
 	//Player *players;
 	DefenceStation		*_defenceStation;
 	HelmStation			*_helmStation;
@@ -42,6 +46,7 @@ public:
 	irr::gui::IGUIStaticText *navigationStationHealth;
 	irr::gui::IGUIStaticText *powerStationHealth;
 	irr::gui::IGUIStaticText *weaponStationHealth;
+
 
 	bool _shipDestroyed;
 
@@ -65,11 +70,16 @@ public:
 	bool getShipDestroyed();
 
 	void SwitchToStation(StationType stationType);
+
+	static ObjectPool<Laser>* laserPool;
+
+	void fireLaser();
+	
+	void HandleNetworkMessage(NetworkPacket packet);
 private:
 
 	Station				*_currentStation;
-	Camera				*_camera;
-	Thruster			*_thrusters[3];
+	Thruster			*_thrusters[4];
 	matrix4				*_inertiaMatrix;
 
 	stringw varToString(stringw str1, float var, stringw str2);

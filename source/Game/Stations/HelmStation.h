@@ -1,17 +1,25 @@
-#ifndef HELM_STATION
-#define HELM_STATION
+#pragma once
+#include "../Ship.h"
+#include "../BasicShipMover.h"
 
-#include "Station.h"
-#include "..\Ship.h"
-
-class HelmStation : public Station 
-{
+class HelmStation : public Station {
+#include "Engine\Network.h"
+#include "Engine\NetworkPacket.h"
 public:
-	HelmStation(Ship* ship);
-	~HelmStation(void);	
-	void DoCameraShake( );
-	void OnEnabled();
-	void OnDisabled();
-};
+	HelmStation(Ship *ship);
+	~HelmStation();
+	void update();
 
-#endif
+	void onAdd();
+	void init();
+	void draw();
+
+	void enable();
+	void disable();
+
+	void OnEnabled(){};
+	void OnDisabled(){};
+	void DoCameraShake(){};
+private:
+	irr::video::ITexture *_stationTexture;
+};

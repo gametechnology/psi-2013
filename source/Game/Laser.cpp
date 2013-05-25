@@ -2,6 +2,8 @@
 #include "Engine\IrrlichtNode.h"
 #include "EnemyDrone.h"
 
+int Laser::newLaserId = 0;
+
 Laser::Laser() : Enemy()
 {	
 	this->_currentLife = 0;
@@ -10,6 +12,7 @@ Laser::Laser() : Enemy()
 	this->disable();
 	this->scene = NULL;
 	this->_hasAnIrrlichtNode = false;
+	this->_id = this->newLaserId++;
 
 	//the addchild is located in the constructor because a laser is being added more than once
 }
@@ -18,7 +21,14 @@ void Laser::onAdd() {
 	if(!this->_hasAnIrrlichtNode)
 	{
 		addChild(new IrrlichtNode("../assets/Models/laser.3ds"));
+
 		this->_hasAnIrrlichtNode = true;
+		this->init();
+
+		for(unsigned i = 0; i < this->children.size(); i++)
+		{
+			this->children[i]->update();
+		}
 	}
 	Collision *coll = new Collision();
 	this->addComponent(coll);
@@ -27,6 +37,7 @@ void Laser::onAdd() {
 
 void Laser::init() {
 	Entity::init();
+
 }
 
 Laser::~Laser() 
@@ -34,15 +45,8 @@ Laser::~Laser()
 
 }
 
-void Laser::fire(Scene* scene, Transform* transform, vector3df target, f32 speed)
+void Laser::fire(Transform* transform, vector3df target, f32 speed)
 {
-	if(this->scene != NULL)
-	{
-		this->scene->removeChild(this, false);
-	}
-
-	this->scene = scene;
-	this->scene->addChild(this);
 	this->enable();
 
 	*this->transform->position = *transform->position;
@@ -60,6 +64,16 @@ void Laser::fire(Scene* scene, Transform* transform, vector3df target, f32 speed
 	//*this->transform->rotation += 90;
 
 	*this->transform->velocity = this->_direction * speed;
+}
+
+int Laser::getId()
+{
+	return this->_id;
+}
+
+void Laser::setId(int id)
+{
+	this->_id = id;
 }
 
 void Laser::update()

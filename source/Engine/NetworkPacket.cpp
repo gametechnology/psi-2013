@@ -4,11 +4,23 @@
 
 NetworkPacket::NetworkPacket(const PacketType type) : _type(type)
 {
+	
+
 }
 
-NetworkPacket::NetworkPacket(ENetPacket* packet, enet_uint32 ipadressrec)
+NetworkPacket::NetworkPacket(ENetPacket* packet, ENetPeer peer)
 {
-	ipadress = ipadressrec;
+	_peer = peer;
+	clear();
+	append(packet->data, packet->dataLength);
+	
+	int type;
+	*this >> type;
+	_type = (PacketType)type;
+}
+
+NetworkPacket::NetworkPacket(ENetPacket* packet)
+{
 	clear();
 	append(packet->data, packet->dataLength);
 	
@@ -19,6 +31,11 @@ NetworkPacket::NetworkPacket(ENetPacket* packet, enet_uint32 ipadressrec)
 
 NetworkPacket::~NetworkPacket()
 {
+}
+
+const ENetPeer NetworkPacket::GetSender()
+{
+	return _peer;
 }
 
 const size_t NetworkPacket::GetSize()

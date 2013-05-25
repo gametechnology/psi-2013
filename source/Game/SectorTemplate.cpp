@@ -2,8 +2,9 @@
 #include "Engine/Camera.h"
 #include "Skybox.h"
 #include "SectorManager.h"
+#include "SendAndReceivePackets.h"
 
-sf::Packet& operator <<(sf::Packet& out, Enemy& in)
+/*sf::Packet& operator <<(sf::Packet& out, Enemy& in)
 {
 	return out << in.getId() << in.getType() << in.getPosition() << in.getVelocity() << in.getRotation();
 }
@@ -48,7 +49,7 @@ sf::Packet& operator >>(sf::Packet& in, vector<Enemy>& out)
 		out.push_back(enemy);
 	}
 	return in;
-}
+}*/
 
 NetworkPacket packet(SERVER_ENEMY);
 
@@ -93,10 +94,10 @@ void SectorTemplate::onAdd() {
 	{
 		createEnemies();
 
-		packet.clear();
-		packet << _enemyList;
-
-		Network::GetInstance()->SendServerPacket(packet);
+		//packet.clear();
+		//packet << _enemyList;
+		SendAndReceivePackets::sendEnemyPacket(_enemyList);
+		//Network::GetInstance()->SendServerPacket(packet);
 	}
 
 	Scene::onAdd();
@@ -126,7 +127,7 @@ void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ) {
 }
 
 void SectorTemplate::addWormHoles() {
-	//printf("[SectorTemplate] -=*[Begin of Add WormHole]*=- \n");
+	printf("[SectorTemplate] -=*[Begin of Add WormHole]*=- \n");
 	for(unsigned int i = 0; i < _wormHoles.size(); i++) {
 		// Calculating the pos in the sector
 		irr::core::vector3df wormHolePos((float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)));
@@ -139,9 +140,9 @@ void SectorTemplate::addWormHoles() {
 
 		// And give it their position
 		*_wormHoles[i]->transform->position = wormHolePos;
-		//printf("[SectorTemplate] wormhole.x[ %f ] wormhole.y[ %f ] wormhole.z[ %f ] \n",_wormHoles[i]->transform->position->X,_wormHoles[i]->transform->position->Y,_wormHoles[i]->transform->position->Z);
+		printf("[SectorTemplate] wormhole.x[ %f ] wormhole.y[ %f ] wormhole.z[ %f ] \n",_wormHoles[i]->transform->position->X,_wormHoles[i]->transform->position->Y,_wormHoles[i]->transform->position->Z);
 	}
-	//printf("[SectorTemplate] -=*[End of add WormHole]*=- \n");
+	printf("[SectorTemplate] -=*[End of add WormHole]*=- \n");
 }
 
 int timer = 0;
@@ -185,10 +186,11 @@ void SectorTemplate::update(){
 	{
 		if(Network::GetInstance()->IsServer())
 		{
-			packet.clear();
-			packet << _enemyList;
+			//packet.clear();
+			//packet << _enemyList;
 
-			Network::GetInstance()->SendServerPacket(packet);
+			//Network::GetInstance()->SendServerPacket(packet);
+			SendAndReceivePackets::sendEnemyPacket(_enemyList);
 		}
 		timer = 0;
 	}
@@ -201,14 +203,15 @@ void SectorTemplate::HandleNetworkMessage(NetworkPacket packet)
 {
 	if(packet.GetType() == SERVER_ENEMY)
 	{
-		if(!Network::GetInstance()->IsServer())
+		_enemyList = SendAndReceivePackets::receiveEnemyPacket(packet, this, _enemyList);
+		/*if(!Network::GetInstance()->IsServer())
 		{
 			vector<Enemy> serverEnemies = vector<Enemy>();
 
 			packet >> serverEnemies;
 
 
-			for(unsigned j = 0; j < _enemyList.size(); j++)
+			for(unsigned int j = 0; j < _enemyList.size(); j++)
 			{
 				bool isAtServer = false;
 				for(unsigned k = 0; k < serverEnemies.size(); k++)
@@ -261,7 +264,7 @@ void SectorTemplate::HandleNetworkMessage(NetworkPacket packet)
 					this->addChild(_enemyList.back());
 				}
 			}
-		}
+		}*/
 	}
 }
 
@@ -269,29 +272,32 @@ void SectorTemplate::HandleNetworkMessage(NetworkPacket packet)
 //creating enemies, in further sprints they can be moved to the correct sector
 void SectorTemplate::createEnemies()
 {
-	for(int i = 0; i < 20; i++)
+	int droneLimit = (rand() % 25);
+	for(int i = 0; i < droneLimit; i++)
 	{
-		_enemyList.push_back(new EnemyDrone(irr::core::vector3df(0,0,(irr::f32)(i + (i * i)))));
+			irr::core::vector3df pos = irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
+			_enemyList.push_back(new EnemyDrone(pos));
+		
+		addChild(_enemyList.back());
+	}
+	int fighterLimit = (rand() % 15);
+	for(int j = 2; j < fighterLimit; j++)
+	{
+		irr::core::vector3df pos = irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750));
+		_enemyList.push_back(new EnemyFighter(pos));
 		
 		addChild(_enemyList.back());
 	}
 
-	for(int j = 2; j < 10; j++)
-	{
-		_enemyList.push_back(new EnemyFighter(irr::core::vector3df(0,(irr::f32)(j + (j * j)),0)));
-		
-		addChild(_enemyList.back());
-	}
-
-	for(int k = 2; k < 30; k++)
-	{
-		_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df((irr::f32)(k + (k * k)),0,0), irr::core::vector3df(0,0,0.01f)));
-		
-		addChild(_enemyList.back());
-	}
-
-	_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-10,0,0), irr::core::vector3df(0.02f,0,0)));
-	addChild(_enemyList.back());
+	//for(int k = 2; k < 30; k++)
+	//{
+	//	_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df((irr::f32)(k + (k * k)),0,0), irr::core::vector3df(0,0,0.01f)));
+	//	
+	//	addChild(_enemyList.back());
+	//}
+	//
+	//_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(-10,0,0), irr::core::vector3df(0.02f,0,0)));
+	//addChild(_enemyList.back());
 
 	//_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(10,0,0), irr::core::vector3df(-0.02f,0,0)));
 	//addChild(_enemyList.back());

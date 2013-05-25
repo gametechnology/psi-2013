@@ -11,11 +11,14 @@
 #include "ShipMover.h"
 #include "BasicMoverComponent.h"
 #include "Stations\Station.h"
+#include "Laser.h"
+#include "ObjectPool.h"
+#include "NetworkInterface.h"
 
 // Forward declare Shipmap
 class Shipmap;
 
-class GameScene : public Scene, public INetworkListener {
+class GameScene : public Scene, INetworkListener {
 public:
 	GameScene(std::list<Player*>, bool isTestMap = false);
 	virtual ~GameScene();
@@ -24,14 +27,15 @@ public:
 	void onAdd();
 	void update();
 	void switchStation(StationType type);
-	void HandleNetworkMessage(NetworkPacket packet); 
+	void HandleNetworkMessage(NetworkPacket packet);
 private:
 	bool testMap;
-
+	Camera *_camera;
 	Shipmap* _shipmap;
-	Camera* _player;
+	int _sendLasersTimer;
+	ObjectPool<Laser>* _laserPool;
 	Ship* _ship;
-	Ship* _ship2;
+	Ship* _shipEnemy;
 
 	std::list<Player*> _playerList;
 };

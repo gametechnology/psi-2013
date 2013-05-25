@@ -28,5 +28,12 @@ void Transform::update() {
 }
 
 Transform::~Transform() {
+	delete position;
+	delete rotation;
+	delete velocity;
+	delete acceleration;
+	delete angularVelocity;
+	delete angularAccelaration;
+	delete radii;
 
 }

@@ -13,6 +13,29 @@ void MainMenuScene::init() {
 	guiEnv = game->guiEnv;
 	playerlist = std::list<Player*>();
 
+	this->addGuiElements();
+
+	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
+	Network::GetInstance()->AddListener(START_GAME, this);
+	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
+	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
+	Network::GetInstance()->AddListener(HOST_DISCONNECT, this);
+	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
+
+	// Store the appropriate data in a context structure.
+	SAppContext context;
+	context.game = game;
+	context.counter = 0;
+
+	// Then create the event receiver, giving it that context structure.
+	eventReceiver = new MainMenuEventReceiver(context);
+
+	// And tell the device to use our custom event receiver.
+	game->input->setCustomEventReceiver(eventReceiver);
+}
+
+void MainMenuScene::addGuiElements()
+{
 
 	///////////////////////////////////////////
 	// MainMenu
@@ -48,23 +71,7 @@ void MainMenuScene::init() {
 	waitinglabel = guiEnv->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainMenuWindow);
 	waitinglabel->setVisible(false);
 
-	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
-	Network::GetInstance()->AddListener(START_GAME, this);
-	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
-	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
-	Network::GetInstance()->AddListener(HOST_DISCONNECT, this);
-	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
-
-	// Store the appropriate data in a context structure.
-	SAppContext context;
-	context.game = game;
-	context.counter = 0;
-
-	// Then create the event receiver, giving it that context structure.
-	eventReceiver = new MainMenuEventReceiver(context);
-
-	// And tell the device to use our custom event receiver.
-	game->input->setCustomEventReceiver(eventReceiver);
+	Scene::addGuiElements();
 }
 
 void MainMenuScene::update(){
@@ -130,6 +137,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 
 	NetworkPacket deniedpack(CLIENT_JOIN_DENIED);
 	NetworkPacket packetsend(ClIENT_IN_LOBBY);
+
 	switch(packet.GetType())
 	{
 	case ClIENT_IN_LOBBY:
@@ -169,14 +177,14 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		if(checksum != Network::GetInstance()->GetPacketTypeChecksum())
 		{
 			deniedpack << L"Your version does not match with the version of the host";
-			deniedpack << packet.ipadress;
+			deniedpack << packet.GetSender().address.host;
 			Network::GetInstance()->SendServerPacket(deniedpack, true);
 			return;
 		}
 		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-			if((*iterator)->Ipadres == packet.ipadress){
+			if((*iterator)->Ipadres == packet.GetSender().address.host){
 				deniedpack << L"Your pc is already connected to the host";
-				deniedpack << packet.ipadress;
+				deniedpack << packet.GetSender().address.host;
 				Network::GetInstance()->SendServerPacket(deniedpack, true);
 
 				return;
@@ -187,7 +195,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			team = 2;
 		else
 			team = 1;
-		newplayer = new Player( name,  packet.ipadress, team);
+		newplayer = new Player( name,  packet.GetSender().address.host, team);
 		playerlist.push_back(newplayer);
 
 		lenght = playerlist.size();
@@ -202,7 +210,7 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		break;
 	case CLIENT_QUIT:
 		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-			if((*iterator)->Ipadres == packet.ipadress)
+			if((*iterator)->Ipadres == packet.GetSender().address.host)
 				newplayer = (*iterator);
 
 		}

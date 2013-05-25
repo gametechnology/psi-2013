@@ -69,14 +69,12 @@ void Shipmap::onAdd()
 
 	playerBox = new irr::core::rect<s32>();
 
-	/*
-	* Temporary station occupied state
-	* TODO remove this and replace it with each individual station's hasPlayer boolean when implementing!
-	*/
+	
+	// Temporary station occupied state
 	for (int i = 0; i < 5; i++)
 		stationOccupied[i] = false;
 
-	// Player starting position
+	// Player starting position - should start in the middle of the plane
 	this->transform->position->X = (float)((playerTile.x * tileSize) + offsetX);
 	this->transform->position->Y = (float)((playerTile.y * tileSize) + offsetY + 20);
 }
@@ -89,33 +87,27 @@ void Shipmap::draw()
 {
 	Entity::draw();
 
-	// ship map
 	game->driver->draw2DImage(bg, core::position2d<s32>(0,0),
 		irr::core::rect<s32>(0,0,bg->getOriginalSize().Width,bg->getOriginalSize().Height),
 		0, video::SColor(255,255,255,255), true);
 
-	// helm station icon
-	game->driver->draw2DImage(icon_helm, core::position2d<s32>(boundingBoxes[4]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[4]->UpperLeftCorner.Y+stationIconDrawOffset),
+	game->driver->draw2DImage(icon_navigation, core::position2d<s32>(boundingBoxes[4]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[4]->UpperLeftCorner.Y+stationIconDrawOffset),
 		irr::core::rect<s32>(stationIconOffset[0]-55, 0, stationIconOffset[0], icon_helm->getOriginalSize().Height),
 		0, video::SColor(255,255,255,255), true);
 
-	// defense station icon
-	game->driver->draw2DImage(icon_defense, core::position2d<s32>(boundingBoxes[2]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[2]->UpperLeftCorner.Y+stationIconDrawOffset),
+	game->driver->draw2DImage(icon_weapons, core::position2d<s32>(boundingBoxes[2]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[2]->UpperLeftCorner.Y+stationIconDrawOffset),
 		irr::core::rect<s32>(stationIconOffset[1]-55, 0, stationIconOffset[1], icon_defense->getOriginalSize().Height),
 		0, video::SColor(255,255,255,255), true);
 
-	// weapons station icon
-	game->driver->draw2DImage(icon_weapons, core::position2d<s32>(boundingBoxes[0]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[0]->UpperLeftCorner.Y+stationIconDrawOffset),
+	game->driver->draw2DImage(icon_engine, core::position2d<s32>(boundingBoxes[0]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[0]->UpperLeftCorner.Y+stationIconDrawOffset),
 		irr::core::rect<s32>(stationIconOffset[2]-55, 0, stationIconOffset[2], icon_weapons->getOriginalSize().Height),
 		0, video::SColor(255,255,255,255), true);
 
-	// navigation station icon
-	game->driver->draw2DImage(icon_navigation, core::position2d<s32>(boundingBoxes[3]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[3]->UpperLeftCorner.Y+stationIconDrawOffset),
+	game->driver->draw2DImage(icon_helm, core::position2d<s32>(boundingBoxes[3]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[3]->UpperLeftCorner.Y+stationIconDrawOffset),
 		irr::core::rect<s32>(stationIconOffset[3]-55, 0, stationIconOffset[3], icon_navigation->getOriginalSize().Height),
 		0, video::SColor(255,255,255,255), true);
 
-	// engine station icon
-	game->driver->draw2DImage(icon_engine, core::position2d<s32>(boundingBoxes[1]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[1]->UpperLeftCorner.Y+stationIconDrawOffset),
+	game->driver->draw2DImage(icon_defense, core::position2d<s32>(boundingBoxes[1]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[1]->UpperLeftCorner.Y+stationIconDrawOffset),
 		irr::core::rect<s32>(stationIconOffset[4]-55, 0, stationIconOffset[4], icon_engine->getOriginalSize().Height),
 		0, video::SColor(255,255,255,255), true);
 
@@ -157,65 +149,34 @@ void Shipmap::update()
 	playerTile.x = (int)((this->transform->position->X - offsetX) / tileSize);
 	playerTile.y = (int)((this->transform->position->Y - offsetY) / tileSize);
 
-	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_A))
-	{
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_A)) {
 		isMoving = true;
-		this->transform->position->X -= playerSpeed;
+		this->transform->position->X -= playerSpeed; 
 	}
-	else if (game->input->isKeyboardButtonDown(irr::KEY_KEY_D))
-	{
+
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_D)) {
 		isMoving = true;
 		this->transform->position->X += playerSpeed;
 	}
-	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_W))
-	{
+
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_W)) {
 		isMoving = true;
 		this->transform->position->Y -= playerSpeed;
 	}
-	else if (game->input->isKeyboardButtonDown(irr::KEY_KEY_S))
-	{
+
+	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_S)){
 		isMoving = true;
 		this->transform->position->Y += playerSpeed;
 	}
 
-	// TODO remove this when implementing stations - it's merely for testing purposes to see if station occupied state works
-	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_0))
-	{
-		stationOccupied[0] = !stationOccupied[0];
-	}
-	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_1))
-	{
-		stationOccupied[1] = !stationOccupied[1];
-	}
-	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_2))
-	{
-		stationOccupied[2] = !stationOccupied[2];
-	}
-	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_3))
-	{
-		stationOccupied[3] = !stationOccupied[3];
-	}
-	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_4))
-	{
-		stationOccupied[4] = !stationOccupied[4];
-	}
-	if (game->input->isKeyboardButtonPressed(irr::KEY_KEY_5))
-	{
-		stationOccupied[5] = !stationOccupied[5];
-	}
-
 	// TODO replace stationOccupied[i] with the hasPlayer booleans of each individual station!
-	for(int i = 0; i < 5; i++)
-	{
-		if(playerBox->isRectCollided(*boundingBoxes[i]))
-		{
-			if (stationOccupied[i])
-			{
+	for(int i = 0; i < 5; i++) {
+		if(playerBox->isRectCollided(*boundingBoxes[i])) {
+			if (stationOccupied[i]) {
 				onOccupiedStation = true;
 				onStation = false;
 			}
-			else
-			{
+			else {
 				onOccupiedStation = false;
 				onStation = true;
 			}
@@ -223,40 +184,30 @@ void Shipmap::update()
 	}
 
 	// Enter a station
-	// TODO implement with stations, enter the correct station on pressing E by checking position against boundingboxes
-	if (onStation && (game->input->isKeyboardButtonDown(irr::KEY_KEY_E) || game->input->isKeyboardButtonDown(irr::KEY_KEY_F)))
-	{
+	if (onStation && (game->input->isKeyboardButtonDown(irr::KEY_KEY_E) || game->input->isKeyboardButtonDown(irr::KEY_KEY_F))) {
 			enterStation(_intersectingStation);
 			return;
 	}
 	
-
-	if (isMoving)
-	{
+	if (isMoving) {
 		int leftTile = (int)((this->transform->position->X - offsetX) / tileSize);
 		int rightTile = (int)(((this->transform->position->X + iconRadius * 2) - offsetX) / tileSize);
 		int topTile = (int)((this->transform->position->Y - offsetY) / tileSize);
 		int bottomTile = (int)(((this->transform->position->Y + iconRadius * 2) - offsetY) / tileSize);
 
-		if (tiles[topTile][leftTile] == 1 || tiles[bottomTile][leftTile] == 1 || tiles[topTile][rightTile] == 1 || tiles[bottomTile][rightTile] == 1)
-		{
+		if (tiles[topTile][leftTile] == 1 || tiles[bottomTile][leftTile] == 1 || tiles[topTile][rightTile] == 1 || tiles[bottomTile][rightTile] == 1) {
 			isIntersecting = true;
 		}
 
 		// TODO replace stationOccupied[i] with the hasPlayer booleans of each individual station!
-		if (tiles[topTile][leftTile] == 2 || tiles[bottomTile][leftTile] == 2 || tiles[topTile][rightTile] == 2 || tiles[bottomTile][rightTile] == 2)
-		{
-			for(int i = 0; i < 5; i++)
-			{
-				if(playerBox->isRectCollided(*boundingBoxes[i]))
-				{
-					if (stationOccupied[i])
-					{
+		if (tiles[topTile][leftTile] == 2 || tiles[bottomTile][leftTile] == 2 || tiles[topTile][rightTile] == 2 || tiles[bottomTile][rightTile] == 2) {
+			for(int i = 0; i < 5; i++) {
+				if(playerBox->isRectCollided(*boundingBoxes[i])) {
+					if (stationOccupied[i]) {
 						onOccupiedStation = true;
 						onStation = false;
 					}
-					else
-					{
+					else {
 						onOccupiedStation = false;
 						onStation = true;
 						_intersectingStation = (StationType)i;
@@ -264,14 +215,12 @@ void Shipmap::update()
 				}
 			}
 		} 
-		else 
-		{
+		else {
 			onOccupiedStation = false;
 			onStation = false;
 		}
 
-		if (isIntersecting)
-		{
+		if (isIntersecting) {
 			this->transform->position->X = savedPosX;
 			this->transform->position->Y = savedPosY;
 		}
@@ -293,8 +242,7 @@ void Shipmap::update()
 	then = now;
 }
 
-void Shipmap::enterStation(StationType station)
-{
+void Shipmap::enterStation(StationType station) {
 	NetworkPacket packet(PacketType::CLIENT_SWITCH_STATION);
 	packet << station;
 	Network::GetInstance()->SendPacket(packet, true);

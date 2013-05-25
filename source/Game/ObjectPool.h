@@ -2,12 +2,13 @@
 #define OBJECT_POOL_H
 
 #include "Engine/Entity.h"
+#include "NetworkInterface.h"
 
 template<class T> class ObjectPool 
 {
 private:
 	std::vector<T*> _objectList; 
-	int _objectCount, _top;
+	int _objectCount;
 
 	void FreeAll()
 	{
@@ -19,7 +20,6 @@ private:
 
 public:
 
-	
 	T* GetFreeObject()
 	{
 		for(int i = 0; i < _objectCount; i++)
@@ -32,7 +32,7 @@ public:
 
 	ObjectPool() {};
 
-	ObjectPool(int count)
+	ObjectPool(Entity& parent, int count)
 	{
 		_objectList = std::vector<T*>();
 		_objectCount = count;
@@ -40,16 +40,37 @@ public:
 		for(int i = 0; i < _objectCount; i++)
 		{
 			_objectList.push_back(new T());
+			_objectList.back()->disable();
+			parent.addChild(_objectList.back());
 		}
 
 		FreeAll();
 	}
 
+	//returns the list of the objects in the pool
+	std::vector<T*> getAllObjects()
+	{
+		return this->_objectList;
+	}
+
+	//only sets the list when it is a client
+	void setAllObjects(std::vector<T*> lazerList)
+	{
+		if(!Network::GetInstance()->IsServer())
+		{
+			this->_objectCount = lazerList.size();
+			this->_objectList = lazerList;
+		}
+	}
+
+	/* TODO:
+	Make sure the destructor is only called once
+	*/
 	virtual ~ObjectPool()
 	{
 		FreeAll();
 
-		for(int i = 0; i < _objectList.size(); i++)
+		for(unsigned i = 0; i < _objectList.size(); i++)
 		{
 			delete _objectList[i];
 		}

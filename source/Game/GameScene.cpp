@@ -2,8 +2,7 @@
 #include "MapGenerator.h"
 #include "SectorManager.h"
 #include "Shipmap.h"
-#include "ObjectPool.h"
-#include "Laser.h"
+#include "SendAndReceivePackets.h"
 
 GameScene::GameScene(std::list<Player*> playerList, bool isTestMap) : Scene()
 {
@@ -13,33 +12,32 @@ GameScene::GameScene(std::list<Player*> playerList, bool isTestMap) : Scene()
 }
 
 void GameScene::onAdd() {
-	ObjectPool<Laser>* laserPool = new ObjectPool<Laser>(50);
-	EnemyFighter::laserPool = *laserPool;
-	// The player
-	_ship = new Ship(vector3df(0,0,-100), vector3df(0,0,0));
+	this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
+	SendAndReceivePackets::staticGame = this->game;
+	Network::GetInstance()->AddListener(SERVER_LASER, this);
+	Network::GetInstance()->AddListener(SERVER_WINLOSE, this);
 
-	_player = new Camera(); //TODO: Make the camera work correctly according to station
-	
+	this->_sendLasersTimer = 0;
+	this->_laserPool = new ObjectPool<Laser>(*this, 100);
+	EnemyFighter::laserPool = _laserPool;
+	Ship::laserPool = _laserPool;
 
-	_ship2 = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
+	_ship = new Ship(vector3df(0,0,0), vector3df(0,0,0));
 	addChild(_ship);
-	_ship->addChild(_player);
-	//TODO: Disabled this Caused errors 
-	//_player->setTarget(vector3df(0, 0, -100));
-	//_player->setUpVector(*_ship->transform->position);
 
-	ShipMover* mover = new ShipMover(_ship);
-	_ship->addComponent(mover);
+	_camera = new Camera(); 
+	_ship->addChild(_camera);
+	_camera->init();
 
-	addChild(_ship2);
+	_shipEnemy = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
+	addChild(_shipEnemy);
 
 	BasicMoverComponent* movComp = new BasicMoverComponent();
-	movComp->thrust = 0.01f;
-	_ship2->addComponent(movComp);
+	_shipEnemy->addComponent(movComp);
 
 	//Creates Map & SectorManager
 	GalaxyMap* galaxyMap = new GalaxyMap(300, 300, 15);
-	
+
 	if (!testMap) {
 		galaxyMap->createMap(20, 2, 5);
 	} else {
@@ -59,32 +57,40 @@ void GameScene::init() {
 }
 
 void GameScene::update() {
-	Scene::update();
-}
-
-void GameScene::switchStation(StationType type)
-{
-	this->removeChild(_shipmap);
-
-	_ship->GetStation(type)->enable();
-
-	switch(type)
+	if(Network::GetInstance()->IsServer())
 	{
-		case ST_DEFENCE:
-			break;
-		case ST_HELM:
-			break;
-		case ST_NAVIGATION:
-			break;
-		case ST_POWER:
-			break;
-		case ST_WEAPON:
-			break;
+		this->_sendLasersTimer++;
+		if(this->_sendLasersTimer > 50)
+		{
+			SendAndReceivePackets::sendLazerPacket(this->_laserPool->getAllObjects());
+			this->_sendLasersTimer = 0;
+		}
+		/*
+		TODO:
+		Edit code below to make it send a winlose packet when one of the ship reaches health of 0
+		and give the right team id as the parameter
+		*/
+		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z) || this->_ship->getShipHealth() <= 0 || this->_shipEnemy->getShipHealth() <= 0)
+		{
+			SendAndReceivePackets::sendWinLosePacket(1);
+			SendAndReceivePackets::handleWinLose(1, 2, this);
+		}
 	}
+
+	Scene::update();
 }
 
 void GameScene::HandleNetworkMessage(NetworkPacket packet)
 {
+	std::cout<< packet.GetType() << endl;
+	if(packet.GetType() == SERVER_LASER)
+	{
+		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacket(packet, this->_laserPool->getAllObjects(), this));
+	}
+	if(packet.GetType() == SERVER_WINLOSE)
+	{
+		SendAndReceivePackets::receiveWinLosePacket(packet, 1, this);
+	}
 	// TODO fix the packet data so it actually holds the ip adress of the sender.
 	if(packet.GetType() == PacketType::CLIENT_SWITCH_STATION)
 	{
@@ -94,6 +100,14 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 	}
 }
 
-GameScene::~GameScene() {
+void GameScene::switchStation(StationType type)
+{
+	this->removeChild(_shipmap);
 
+	_ship->SwitchToStation(type);
+}
+
+GameScene::~GameScene() 
+{
+	delete _laserPool;
 }

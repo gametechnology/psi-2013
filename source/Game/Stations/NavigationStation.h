@@ -11,6 +11,7 @@ public:
 	~NavigationStation(void);
 
 	void DoCameraShake();
+	void enable();
 	void OnEnabled();
 	void OnDisabled();
 };

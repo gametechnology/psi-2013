@@ -1,20 +1,24 @@
 #include "Station.h"
 #include "PowerStation.h"
 #include "DefenceStation.h"
-#include "../StationStats.h"
-
+#include "../HealthComponent.h"
+#include "../PowerComponent.h"
+#include "../ShieldComponent.h"
 
 Station :: Station( Ship *ship, int startHealth ) : Entity()
 {
 	this ->	_ship	= ship;
 
-	//Add astationstats component to this station
-	this->_stationStats = new StationStats();
-	addComponent(_stationStats);
+	//Stations stats exist out of heath, power and shield
+	this->_healthComponent = new HealthComponent();
+	this->_powerComponent = new PowerComponent();
+	this->_shieldComponent = new ShieldComponent();
+	addComponent(_healthComponent);
+	addComponent(_powerComponent);
+	addComponent(_shieldComponent);
 	
 	//this -> _switchTime = 4.0f;
 	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
-
 }
 
 Station :: Station( Ship * ship ) : Entity()
@@ -22,23 +26,20 @@ Station :: Station( Ship * ship ) : Entity()
 	this -> _ship   = ship;
 	this -> _tempTimer = 0;
 
-	//Add astationstats component to this station
-	this->_stationStats = new StationStats();
-	addComponent(_stationStats);
+	//Stations stats exist out of heath, power and shield
+	this->_healthComponent = new HealthComponent();
+	this->_powerComponent = new PowerComponent();
+	this->_shieldComponent = new ShieldComponent();
+	addComponent(_healthComponent);
+	addComponent(_powerComponent);
+	addComponent(_shieldComponent);
 
 	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
-	
 }
 
 void Station::onAdd()
 {
 	Entity::onAdd();
-
-	// ?? This was also done in onAdd()
-	// End energy testing variable for hud.
-	//this->hud = new HudComposite(&_totalHealth, &energy, rect<s32>(10,680,210,680 + 32), &helpTextString);
-	//this->addChild(hud);
-	
 }
 
 void Station :: init() 
@@ -52,12 +53,9 @@ void Station :: init()
 	this -> _stunTime = 0;
 	this -> _switchTime = 0;
 
-	if ( this -> _stationType != ST_POWER )		this -> _ship -> _powerStation		-> SubscribeStation( this );
-	//if ( this -> _stationType != ST_DEFENCE )	this -> _ship -> _defenceStation	-> SubscribeStation( this );
+	this->hud = new HudComposite(&(_healthComponent->health), &(_powerComponent->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
+	this->addChild(hud);
 
-	// ?? This is also done in onAdd()
-	//this->hud = new HudComposite(&(_stationStats->health), &(_stationStats->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
-	//this->addChild(hud);
 }
 
 Station :: ~Station(void)
@@ -96,35 +94,31 @@ bool Station::IsStunned()
 void Station::update()
 {
 	Entity::update();
-	// NOTE Component update goes automatic
-	//Component::update();
 
 	// Test code for testing energy of a station.
-	if(game->input->isKeyboardButtonDown(KEY_ADD) && _stationStats->power < 50)
-		_stationStats->power += 1;
-	if(game->input->isKeyboardButtonDown(KEY_SUBTRACT) && _stationStats->power > 0)
-		_stationStats->power -= 1;
+	if(game->input->isKeyboardButtonDown(KEY_ADD) && _powerComponent->power < 50)
+		_powerComponent->power += 1;
+	if(game->input->isKeyboardButtonDown(KEY_SUBTRACT) && _powerComponent->power > 0)
+		_powerComponent->power -= 1;
 	// End test code for testing energy of a station.
 
 	updateHealth();
-	//Update Stun Time
-	//Update player on station time	
-}
 
-void Station::handleMessage(unsigned int message)
-{
-	switch(message)
-	{
-	case 0:
-		
-		break;
-	case 1:
-		break;
+	if (game->input->isKeyboardButtonDown(KEY_ESCAPE)){
+	// Load Shipmap
 	}
-
 }
 
 
+void Station :: draw( )
+{	
+	
+	Entity::draw();
+}
+
+void Station::handleMessage(unsigned int message,  void* data)
+{
+}
 
 void Station :: OnDamage( )
 {	
@@ -134,12 +128,12 @@ void Station :: OnDamage( )
 
 bool Station::HasPower( )
 {
-	return (_stationStats->power > 0);
+	return (_powerComponent->power > 0);
 }
 
 bool Station::HasShield( )
 {
-	return (_stationStats->shield > 0);
+	return (_shieldComponent->shield > 0);
 }
 
 bool Station::getStationDestroyed( )
@@ -156,6 +150,7 @@ void Station::updateHealth()
 {
 	if(!this->getStationDestroyed())
 	{
+		//Temporary timer to test health increase and decrease.
 		this->_tempTimer++;
 		if(this->_tempTimer >= 300)
 		{
@@ -174,13 +169,13 @@ void Station::updateHealth()
 
 int Station :: getHealth()
 {
-	return (_stationStats->health > 0);
+	return (_healthComponent->health > 0);
 }
 
 void Station::decreaseHealth(int health)
 {
-	_stationStats->health -= health;
-	if(_stationStats->health <= 0)
+	_healthComponent->decreaseHealth(health);
+	if(_healthComponent->health <= 0)
 	{
 		setStationDestroyed(true);
 	}
@@ -189,15 +184,41 @@ void Station::decreaseHealth(int health)
 //The stations health is increased
 void Station::increaseHealth(int health)
 {
-	_stationStats->health += health;
-	if(_stationStats->health >=  StationStats::maxHealth)
-	{
-		_stationStats->health = StationStats::maxHealth;
-	}
+	_healthComponent->increaseHealth(health);
 }
+
+void Station::updatePower(int power)
+{
+	_powerComponent->increasePower(power);
+}
+
+int Station :: getPower()
+{
+	return _powerComponent->power;
+}
+
+void Station::decreasePower(int power)
+{
+	_powerComponent->decreasePower(power);
+	
+}
+
+//The stations power is increased
+void Station::increasePower(int power)
+{
+	_powerComponent->increasePower(power);
+}
+
 
 void Station::repairStation(int health)
 {
 	this->setStationDestroyed(false);
-	_stationStats->health = health;
+	_healthComponent->health = health;
+}
+
+void Station::leaveStation(StationType station)
+{
+	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
+	packet << station;
+	Network::GetInstance()->SendPacket(packet, true);
 }
