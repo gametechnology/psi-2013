@@ -24,6 +24,11 @@ void Laser::onAdd() {
 
 		this->_hasAnIrrlichtNode = true;
 		this->init();
+
+		for(unsigned i = 0; i < this->children.size(); i++)
+		{
+			this->children[i]->update();
+		}
 	}
 	Entity::onAdd();
 }
