@@ -86,6 +86,10 @@ void Laser::contactResolverA(Enemy* input)
 	input->setHealth(input->getHealth() - this->_damage);
 	std::printf("HIT on Enemy!");
 	this->disable();
+	for(unsigned i = 0; i < this->children.size(); i++)
+	{
+		this->children[i]->update();
+	}
 //	delete(this); //'kill' this projectile
 }
 
@@ -94,5 +98,9 @@ void Laser::contactResolverA(DefenceStation* input)
 	input->Damage();
 	std::printf("HIT on Defence station!");
 	this->disable();
+	for(unsigned i = 0; i < this->children.size(); i++)
+	{
+		this->children[i]->update();
+	}
 //	delete(this); //'kill' this projectile
 }
