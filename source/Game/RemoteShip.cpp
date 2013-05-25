@@ -1,8 +1,8 @@
 #include "RemoteShip.h"
 #include "ShipMover.h"
 
-vector3df startPosition;
-vector3df startRotation;
+vector3df _startPosition;
+vector3df _startRotation;
 
 RemoteShip::RemoteShip(vector3df position, vector3df rotation) : Entity ()
 {
@@ -32,10 +32,10 @@ void RemoteShip::onAdd() {
 	irr::core::stringw strShipHealth			= "ship health: "; 
 	strShipHealth +	irr::core::stringw();
 
-	startPosition = vector3df(0,0,-100);
-	startRotation = vector3df(0,0,0);
-	this->transform->position = &startPosition;
-	this->transform->rotation = &startRotation;
+	_startPosition = vector3df(0,0,-100);
+	_startRotation = vector3df(0,0,0);
+	this->transform->position = &_startPosition;
+	this->transform->rotation = &_startRotation;
 
 	_laserCount = 10;
 
@@ -73,9 +73,9 @@ void RemoteShip :: update()
 	Entity :: update();
 
 	//If the ship has no more health and is not already destroyed, destroy it
-	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
-		this->_shipDestroyed = true;
-	}
+	//if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
+	//	this->_shipDestroyed = true;
+	//}
 }
 
 Thruster** RemoteShip :: GetThrusters()
@@ -112,8 +112,8 @@ void RemoteShip::setInertiaMatrix(float h, float w, float d, float m)
 
 void RemoteShip::fireLaser()
 {
-	_laser[_laserCounter++]->fire(this, _camera->getCameraNode()->getTarget(), 1.0);
-
-	if(_laserCounter >= _laserCount)
-		_laserCounter = 0;
+	//_laser[_laserCounter++]->fire(this, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
+	//
+	//if(_laserCounter >= _laserCount)
+	//	_laserCounter = 0;
 }
