@@ -4,27 +4,37 @@
 #include "Engine\Game.h"
 #include "Irrlicht\irrlicht.h"
 
-#include "StateSwitch.h"
+#include "IStateSwitch.h"
 #include "Enemy.h"
 
-class StateSwitchDrone : public StateSwitch
+class StateSwitchDrone : public IStateSwitch
 {
 
 public:
 
-	virtual void handleIdle();
+	enum States
+	{ 
+		STATE_IDLE = 0,
 
-	virtual void handleWander();
+		STATE_WANDER = 1,
 
-	virtual void handleFollow();
+		STATE_OFFENSIVE = 2,
 
-	virtual void handleOffensive();
+		STATE_DEATH = 3
+	};
 
-	virtual void handleDefensive();
+	void setState(States state);
 
-	virtual void handleFleeing();
+	void update();
 
-	StateSwitchDrone(StateSwitch::States startState, Enemy* parent);
+	Enemy* getParent();
+
+	void handleIdle();
+	void handleWander();
+	void handleOffensive();
+	void handleDeath();
+
+	StateSwitchDrone(States startState, Enemy* parent);
 
 	StateSwitchDrone(Enemy* parent);
 
@@ -33,6 +43,12 @@ public:
 private:
 	int randomInt;
 	float randomFloat;
+
+	States _currentState;
+	States _newState;
+	States _oldState;
+
+	Enemy* _parent;
 };
 
 #endif

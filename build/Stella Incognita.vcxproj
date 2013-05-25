@@ -167,6 +167,7 @@
     <ClInclude Include="..\source\Game\HealthComponent.h" />
     <ClInclude Include="..\source\Game\HudComposite.h" />
     <ClInclude Include="..\source\Game\HudHelpText.h" />
+    <ClInclude Include="..\source\Game\IStateSwitch.h" />
     <ClInclude Include="..\source\Game\ObjectPool.h" />
     <ClInclude Include="..\source\Game\SendAndReceivePackets.h" />
     <ClInclude Include="..\source\Game\PowerComponent.h" />
@@ -215,7 +216,6 @@
     <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
     <ClCompile Include="..\source\Game\Ship.cpp" />
     <ClCompile Include="..\source\Game\Skybox.cpp" />
-    <ClCompile Include="..\source\Game\StateSwitch.cpp" />
     <ClCompile Include="..\source\Game\StateSwitchDrone.cpp" />
     <ClCompile Include="..\source\Game\StateSwitchFighter.cpp" />
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp" />

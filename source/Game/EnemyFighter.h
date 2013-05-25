@@ -14,6 +14,7 @@ public:
 
 	void SetTarget(vector3df target);
 	virtual void chase(vector3df target);
+	void fireLaserAt(vector3df target);
 	
 	virtual void init();
 	virtual void onAdd();
@@ -21,7 +22,6 @@ public:
 
 	static ObjectPool<Laser>* laserPool;
 private:
-	void		fireLaserAt(vector3df target);
 	int			_fireTime;
 	vector3df	_target;
 	vector3df	_endPosition;
