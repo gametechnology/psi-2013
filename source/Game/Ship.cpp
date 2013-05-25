@@ -257,10 +257,11 @@ void Ship::setInertiaMatrix(float h, float w, float d, float m)
 
 void Ship::fireLaser()
 {
-	Laser laser = *this->laserPool->GetFreeObject();
+	Laser* laser = this->laserPool->GetFreeObject();
 	if(&laser != NULL)
 	{
-		laser.fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
+		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
+		std::cout << "weapon fired" << std::endl;
 	}
 }
 void Ship::HandleNetworkMessage(NetworkPacket packet)
