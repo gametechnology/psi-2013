@@ -265,6 +265,7 @@ void Ship::fireLaser()
 		if(!Network::GetInstance()->IsServer()){
 			NetworkPacket firepacket = NetworkPacket(PacketType::CLIENT_FIRE_LASER);
 			firepacket << *transform->rotation;
+			firepacket <<  this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget();
 			Network::GetInstance()->SendPacket(firepacket, true);
 
 		}
@@ -272,16 +273,30 @@ void Ship::fireLaser()
 		std::cout << "weapon fired" << std::endl;
 	}
 }
+
+void Ship::fireLaser(vector3df rot ,vector3df camtar)
+{
+	Laser* laser = this->laserPool->GetFreeObject();
+	if(laser != NULL)
+	{
+		Transform *trans = new Transform();
+		*trans->position = *this->transform->position;
+		*trans->rotation = rot;
+
+		laser->fire(trans,camtar, 1.0);
+		std::cout << "weapon fired" << std::endl;
+		delete trans;
+	}
+}
+
 void Ship::HandleNetworkMessage(NetworkPacket packet)
 {
 	if(packet.GetType() == PacketType::CLIENT_FIRE_LASER){
 		irr::core::vector3df rotationweapon;
-		irr::core::vector3df rotationreal;
+		irr::core::vector3df camtar;
 		packet >> rotationweapon;
-		rotationreal = *transform->rotation;
-		*transform->rotation = rotationweapon; 
-		fireLaser();
-		*transform->rotation = rotationreal;
+		packet >> camtar;
+		fireLaser(rotationweapon,camtar);
 	}
 		
 	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)

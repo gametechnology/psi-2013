@@ -74,6 +74,7 @@ public:
 	static ObjectPool<Laser>* laserPool;
 
 	void fireLaser();
+	void fireLaser(vector3df rot, vector3df camtar);
 	
 	void HandleNetworkMessage(NetworkPacket packet);
 private:
