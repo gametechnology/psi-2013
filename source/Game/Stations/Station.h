@@ -3,6 +3,7 @@
 
 #include "../HudComposite.h"
 #include "../Player.h"
+
 #include <Engine/Entity.h>
 #include <Engine/Component.h>
 #include <Engine/Game.h>
@@ -13,7 +14,7 @@ class Ship;
 class HealthComponent;
 class PowerComponent;
 class ShieldComponent;
-	
+
 enum StationType
 {
 	ST_POWER		= 0,
@@ -33,12 +34,25 @@ public:
 	virtual ~Station(void);
 
 	StationType GetStationType();
-	bool HasPlayer();
 	bool SwitchTimePassed();
 	bool IsStunned();
 
 	bool HasPower();
 	bool HasShield();
+
+	/*
+	* Set the player for occupating this station.
+	*
+	* @return boolean
+	* The returned boolean tells you if the set was succesfull or not. It will
+	* fail if the station is already occupied.
+	*/
+	bool setPlayerOccupation(Player* player);
+	/*
+	* Resets the station it's occupation. Simultaneously setting the player pointer
+	* and occupied boolean to NULL and 'false' respectively.
+	*/
+	void resetPlayerOccupation();
 
 	std::string helpTextString;
 
@@ -50,7 +64,7 @@ public:
 	void increaseHealth(int health);
 	void decreaseHealth(int health);
 
-	
+
 	int getPower();
 	void updatePower(int power);
 	void increasePower(int power);
@@ -67,7 +81,7 @@ public:
 	virtual void OnDamage( );
 	virtual void OnEnabled() = 0;
 	virtual void OnDisabled() = 0;
-	
+
 	HudComposite* hud;
 	StationType _stationType;
 protected:
@@ -79,14 +93,15 @@ protected:
 	time_t *_switchTime;			//the time that the player switched to this station
 	time_t *_playerOnStationTime;	//the time that the player has spent on this station (since he switched)
 	time_t *_stunTime;				//if a station fot stunned, the time it happened will be stored here.
-	
+
 private:
-	
+
 	int _tempTimer;
 	int _totalHealth;
 	HealthComponent* _healthComponent;
 	PowerComponent* _powerComponent;
 	ShieldComponent* _shieldComponent;
 	bool _stationDestroyed;
+	bool _isOccupied;
 };
 #endif

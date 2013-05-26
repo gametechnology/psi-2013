@@ -110,6 +110,8 @@ public:
 	*/
 	void InitializeServer(size_t maxPlayers = 16);
 
+	const enet_uint32 GetLocalAddress();
+
 	/* 
 	* Deinitialize as server or as client
 	*/

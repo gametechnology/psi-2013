@@ -83,23 +83,39 @@ void GameScene::update() {
 void GameScene::HandleNetworkMessage(NetworkPacket packet)
 {
 	std::cout<< packet.GetType() << endl;
-	if(packet.GetType() == SERVER_LASER)
+
+	switch(packet.GetType())
 	{
+	case SERVER_LASER:
 		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacket(packet, this->_laserPool->getAllObjects(), this));
-	}
-	if(packet.GetType() == SERVER_WINLOSE)
-	{
+		break;
+	case SERVER_WINLOSE:
 		SendAndReceivePackets::receiveWinLosePacket(packet, 1, this);
-	}
-	// TODO fix the packet data so it actually holds the ip adress of the sender.
-	if(packet.GetType() == PacketType::CLIENT_SWITCH_STATION)
-	{
+		break;
+	case CLIENT_SWITCH_STATION:
 		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
-		{
+		{			
+			if((*i)->Ipadres == packet.GetSender().address.host)
+			{
+				unsigned int receivedStationType;
+				packet >> receivedStationType;
+				if(_ship->GetStation((StationType)receivedStationType)->setPlayerOccupation((*i)) == false)
+					printf("Code is not handling stations correctly. This error originates in [GameScene.cpp] in function [HandleNetworkMessage].\n");
+			}
 		}
-	}
-	if(packet.GetType() == CLIENT_FIRE_LASER)
-	{
+		break;
+	case CLIENT_LEAVE_STATION:
+		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
+		{			
+			if((*i)->Ipadres == packet.GetSender().address.host)
+			{
+				unsigned int receivedStationType;
+				packet >> receivedStationType;
+				_ship->GetStation((StationType)receivedStationType)->resetPlayerOccupation();
+			}
+		}
+		break;
+	case CLIENT_FIRE_LASER:
 		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacketFromClient(packet, this->_laserPool->getAllObjects(), this));
 	}
 }

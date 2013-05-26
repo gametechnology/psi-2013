@@ -103,6 +103,13 @@ void Network::InitializeServer(size_t maxPlayers)
 		
 	}	
 }
+
+const enet_uint32 Network::GetLocalAddress()
+{
+	std::cout<<_host->receivedAddress.host;
+	return _host->receivedAddress.host;
+}
+
 void Network::DeInitialize(){
 	_mutex.lock();
 	if (IsServer())

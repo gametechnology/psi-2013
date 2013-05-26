@@ -108,6 +108,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					newplayer = new Player();
 					newplayer->Name = namewchar;
 					newplayer->Team = 1;
+					newplayer->Ipadres = Network::GetInstance()->GetLocalAddress();
 					mainmenu->playerlist.push_back(newplayer);
 					return true;
 				}
