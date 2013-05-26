@@ -22,7 +22,6 @@ public:
 		PlayerData( ) { };
 		PlayerData( const wchar_t *name, int team_id, ENetPeer peer ) 
 		{
-			uniqueId	= 0;
 			this ->	id				= uniqueId++;
 			this -> name			= name;
 			this -> team_id			= team_id;
@@ -31,7 +30,6 @@ public:
 
 		PlayerData( const wchar_t *name, int team_id ) 
 		{
-			uniqueId	= 0;
 			this ->	id				= uniqueId++;
 			this -> name			= name;
 			this -> team_id			= team_id;
