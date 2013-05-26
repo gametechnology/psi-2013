@@ -30,10 +30,7 @@ enum PacketType
 	CLIENT_SWITCH_STATION,
 	CLIENT_LEAVE_STATION,
 	CLIENT_POWER_CHANGED,
-	CLIENT_UPDATE_PLAYER_DATA,
-    CLIENT_ADD_PLAYER_DATA,
-    CLIENT_REMOVE_PLAYER_DATA,
-
+	
 	SERVER_ALL_PLAYERS,
 	CLIENT_GET_ALL_PLAYERS,
 
@@ -50,9 +47,6 @@ enum PacketType
 
 	//Add new PacketTypes above
 	LAST_TYPE,
-
-	
-
 };
 
 
@@ -69,9 +63,24 @@ inline char* getPacketTypeName(PacketType type)
 		case START_GAME: { return "START_GAME"; break; }
 		case SERVER_ENEMY: { return "SERVER_ENEMY"; break; }
 		case SHIP_ACCELERATION: { return "SHIP_ACCELERATION"; break; }
+
 		case CLIENT_SWITCH_STATION: { return "CLIENT_SWITCH_STATION"; break; }
 		case CLIENT_LEAVE_STATION: { return "CLIENT_LEAVE_STATION"; break; }
 		case CLIENT_POWER_CHANGED: { return "CLIENT_POWER_CHANGED"; break; }
+
+		case SERVER_ALL_PLAYERS: return "SERVER_ALL_PLAYERS";
+		case CLIENT_GET_ALL_PLAYERS: return "CLIENT_GET_ALL_PLAYERS";
+
+		case SERVER_JOIN_DENIED: { return "SERVER_JOIN_DENIED"; }
+		case SERVER_LOBBY_STATUS: return "SERVER_LOBBY_STATUS";
+
+		case CLIENT_REQUEST_JOIN_SERVER: { return "CLIENT_REQUEST_JOIN_SERVER"; }
+		case CLIENT_UPDATE_LOBBY_STATUS: { return "CLIENT_UPDATE_LOBBY_STATUS"; }
+
+		case SERVER_REQUEST_ACCEPTED: { return "SERVER_REQUEST_ACCEPTED"; }
+		case SERVER_REQUEST_DENIED: { return "SERVER_REQUEST_DENIED"; }
+		case SERVER_LOBBY_STATUS_CHANGED: { return "SERVER_LOBBY_STATUS_CHANGED"; }
+
 		default: { throw "Tried to get string from non-existing packet type"; }
 	}
 }

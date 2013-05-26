@@ -12,21 +12,22 @@ enum CLIENT_STATUS_UPDATE
 struct PlayerData
 {
 public:
-		static int		uniqueId = 0;		
-        int				id;			//only sync this
+		static int		uniqueId;
+		int				id;			//only sync this
         int				team_id;
-		ENetPeer		peer;
+		ENetPeer		*peer;
         const wchar_t	*name;
 		StationType		stationType;
 
 		PlayerData( ) { };
-		PlayerData( const wchar_t *name, int team_id, ENetPeer peer ) 
+		PlayerData( const wchar_t *name, int team_id, ENetPeer *peer = NULL ) 
 		{
+			uniqueId	= 0;
 			this ->	id				= uniqueId++;
 			this -> name			= name;
 			this -> team_id			= team_id;
 			this -> peer			= peer;
-			this -> stationType		= StationType::ST_NONE;
+			this -> stationType		= StationType :: ST_NONE;
 		}
 };
 #endif

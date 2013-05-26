@@ -94,7 +94,7 @@ void MainMenuScene::update(){
 
 	//Ask playermanager to get all player info from the server, when L is pressed
 	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_L))
-		player_manage->SendPlayerInfoRequest();
+		player_manager->SendPlayerInfoRequest();
 }
 
 void MainMenuScene::StartGame()

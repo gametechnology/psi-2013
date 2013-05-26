@@ -1,16 +1,17 @@
 #include "PlayerManager.h"
 #include "Stations\Station.h"
 
-
+PlayerManager *player_manager	= new PlayerManager( );
+int PlayerData :: uniqueId		= 0;
 
 PlayerManager :: PlayerManager( ) : INetworkListener( )
 {
 	if ( player_manager != NULL ) return;
-	PlayerManager *player_manager = new PlayerManager( );
-
+	
 	this -> _isServer	= Network :: GetInstance( ) -> IsServer( );
 	this -> _serverPlayerData = new irr :: core :: map<int, PlayerData*>( );
-
+	//set the unique ID of the playerData's to be 0.
+	
 	if ( this -> _isServer )
 	{
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_REQUEST_ACCEPTED, this );
@@ -20,11 +21,6 @@ PlayerManager :: PlayerManager( ) : INetworkListener( )
 	} else
 	{
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
-
-		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_ADD_PLAYER_DATA,	this );
-		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_UPDATE_PLAYER_DATA, this );
-		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REMOVE_PLAYER_DATA, this );
-	
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this);
 	}
 	//we want to receive messages when players are added, when they are updating their info and when they leave again
@@ -40,10 +36,6 @@ PlayerManager :: ~PlayerManager( )
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_ALL_PLAYERS, this );
 	} else
 	{
-		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_ADD_PLAYER_DATA, this );
-		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_UPDATE_PLAYER_DATA, this );
-		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_REMOVE_PLAYER_DATA, this );
-	
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 	}
@@ -70,17 +62,17 @@ void PlayerManager :: UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_
 /**
 * only when a player joins the already existing game, we will be inside this function.
 */
-void PlayerManager :: RequestJoinServer( const wchar_t *player_name, int team_id, ENetPeer peer )
+void PlayerManager :: RequestJoinServer( const wchar_t *player_name, int team_id )
 {
 	//TODO: find out how the server holds his own local data and accesses it.
 	if ( this -> _isServer ) return;
 	
 	//here, we received a message from a player that they want to join our game and they have sent some information regarding their data.
-	this ->	_localPlayerData = new PlayerData( player_name, team_id, peer );
+	this ->	_localPlayerData = new PlayerData( player_name, team_id );
 	//create a new packet that we are going to send to the server.
 	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_JOIN_SERVER );
 	//TODO: find out what we need to send the peer over the network.
-	packet << ( wstring ) player_name << team_id << ( int ) peer.address.host << ( int ) peer.address.port;
+	packet << ( wstring ) player_name << team_id;
 	Network :: GetInstance( ) -> SendPacket( packet, true );
 }
 
@@ -92,7 +84,7 @@ void PlayerManager :: OnClientJoinRequestReceived( const wchar_t *player_name, i
 	//if this is not the server, we do nothing. This is not a message for us.
 	if ( !this -> _isServer )	return;
 	//create a new PlayerData.
-	PlayerData *p = new PlayerData( player_name, team_id, peer );
+	PlayerData *p = new PlayerData( player_name, team_id, &peer );
 	//and add it to our list of playerData's
 	this -> _serverPlayerData -> insert( p -> id, p );
 
@@ -117,7 +109,7 @@ void PlayerManager :: OnJoinAcceptedReceived( int player_id )
 	this ->	_localPlayerData -> id = player_id;
 }
 
-void PlayerManager :: OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id = -1 )
+void PlayerManager :: OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id )
 {
 	if ( !this -> _isServer ) return;
 	switch( update )
@@ -161,25 +153,16 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	int			player_station_type;
 
 	int			update;
-	int			port;
-	int			host;
-
-
+	
 	//first, we get the player_id	
 	switch ( packet.GetType( ) )
 	{
 	case PacketType :: CLIENT_REQUEST_JOIN_SERVER:
 
-		packet >> player_name >> player_team_id >> port >> host;
+		packet >> player_name >> player_team_id;
 
 		//we need to know the peer of the player. We reconstruct it using it's host and port numbers.
-		ENetPeer peer	= ENetPeer( );
-		ENetAddress a	= ENetAddress( );
-		a.host			= host;
-		a.port			= port;
-
-		peer.address	= a;
-		this -> OnClientJoinRequestReceived( player_name.c_str( ), player_team_id, peer );
+		this -> OnClientJoinRequestReceived( player_name.c_str( ), player_team_id, packet.GetSender( ) );
 		break;
 
 	case PacketType :: SERVER_REQUEST_ACCEPTED:

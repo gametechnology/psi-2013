@@ -17,19 +17,18 @@ private:
 	bool _isServer;
 
 	//these are client side functions. 
-	void RequestJoinServer( const wchar_t *player_name, int team_id, ENetPeer peer );
+	void RequestJoinServer( const wchar_t *player_name, int team_id );
 	void OnJoinAcceptedReceived( int player_player_id );
 	void OnJoinDeniedReceived( );
 	//whenever something changes for any player, he will send something to the server.	
 
 	//these are the server-side functions
 	void OnClientJoinRequestReceived( const wchar_t *player_name, int team_id, ENetPeer peer );
-	void OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id = -1 );
-
-	PlayerManager( );
+	void OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id );
 
 public:
-	
+
+	PlayerManager( );
 	~PlayerManager( );	
 
 	void HandleNetworkMessage( NetworkPacket p );
