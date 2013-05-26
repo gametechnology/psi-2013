@@ -8,7 +8,6 @@ PlayerManager :: PlayerManager( ) : INetworkListener( )
 {
 	if ( player_manager != NULL ) return;
 	
-	this -> _isServer	= Network :: GetInstance( ) -> IsServer( );
 	this -> _serverPlayerData = new irr :: core :: map<int, PlayerData*>( );
 	//set the unique ID of the playerData's to be 0.
 	
@@ -65,6 +64,7 @@ void PlayerManager :: RequestJoinServer( const wchar_t *player_name, int team_id
 {
 	//here, we received a message from a player that they want to join our game and they have sent some information regarding their data.
 	this ->	_localPlayerData = new PlayerData( player_name, team_id );
+	this -> _isServer = Network :: GetInstance( ) -> IsServer( );
 
 	if ( this -> _isServer ) return;	
 	//create a new packet that we are going to send to the server.
@@ -78,6 +78,7 @@ void PlayerManager :: RequestJoinServer( const wchar_t *player_name, int team_id
 */
 void PlayerManager :: OnClientJoinRequestReceived( const wchar_t *player_name, int team_id, ENetPeer peer )
 {
+	cout << "I received a message from player " << player_name;
 	//if this is not the server, we do nothing. This is not a message for us.
 	if ( !this -> _isServer )	return;
 	//create a new PlayerData.

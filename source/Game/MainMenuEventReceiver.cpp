@@ -2,6 +2,7 @@
 #include "MainMenuScene.h"
 #include "Engine\Network.h"
 #include "NetworkInterface.h"
+#include "PlayerManager.h"
 
 MainMenuEventReceiver::MainMenuEventReceiver(SAppContext & context) : Context(context) {
 	this->contextGame = context.game;
@@ -74,8 +75,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->waitinglabel = env->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainmenu->mainMenuWindow);
 						mainmenu->Nameinput->setVisible(false);
 						mainmenu->quit_button->setVisible(true);
-						mainmenu->waitinglabel->setVisible(true);
-
+						mainmenu->waitinglabel->setVisible(true);						
 					}
 
 
@@ -109,6 +109,10 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					newplayer->Name = namewchar;
 					newplayer->Team = 1;
 					mainmenu->playerlist.push_back(newplayer);
+
+					//the host is always on team 1
+					player_manager -> RequestJoinServer( namewchar, 1 );
+
 					return true;
 				}
 			case 3: // Start

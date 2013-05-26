@@ -17,7 +17,6 @@ private:
 	bool _isServer;
 
 	//these are client side functions. 
-	void RequestJoinServer( const wchar_t *player_name, int team_id );
 	void OnJoinAcceptedReceived( int player_player_id );
 	void OnJoinDeniedReceived( );
 	//whenever something changes for any player, he will send something to the server.	
@@ -31,6 +30,7 @@ public:
 	PlayerManager( );
 	~PlayerManager( );	
 
+	void RequestJoinServer( const wchar_t *player_name, int team_id );
 	void HandleNetworkMessage( NetworkPacket p );
 	void UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_id );
 	void SendPlayerInfoRequest();
