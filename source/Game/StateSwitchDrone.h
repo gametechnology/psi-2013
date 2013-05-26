@@ -41,8 +41,6 @@ public:
 	~StateSwitchDrone();
 
 private:
-	int randomInt;
-	float randomFloat;
 
 	States _currentState;
 	States _newState;

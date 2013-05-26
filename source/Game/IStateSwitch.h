@@ -14,12 +14,6 @@ public:
 	void update();
 
 	Enemy* getParent();
-
-private:
-
-	States _currentState;
-	States _newState;
-	States _oldState;
 };
 
 #endif
