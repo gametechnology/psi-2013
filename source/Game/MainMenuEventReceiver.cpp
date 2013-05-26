@@ -94,8 +94,8 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					mainmenu->messagebox->setDraggable(false);
 					return false;
 				}else{
-					player_manager->Init();
 					Network::GetInstance()->InitializeServer();
+					player_manager->Init();
 					mainmenu->createServerWindow_Button->setVisible(false);
 					mainmenu->joinServerWindow_Button->setVisible(false);
 					mainmenu->Ipadresinput->setVisible(false);
