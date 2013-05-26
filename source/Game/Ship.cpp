@@ -175,7 +175,7 @@ void Ship :: update()
 	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
 		this->_shipDestroyed = true;
 	}
-	player_manager -> CheckInput( game -> input -> isKeyboardButtonPressed( KEY_KEY_Q ) );
+	PlayerManager::GetInstance() -> CheckInput( game -> input -> isKeyboardButtonPressed( KEY_KEY_Q ) );
 }
 
 Thruster** Ship :: GetThrusters()

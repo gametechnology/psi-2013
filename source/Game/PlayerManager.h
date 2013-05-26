@@ -11,10 +11,13 @@
 class PlayerManager : public INetworkListener
 {
 private:
+	static PlayerManager* _instance;
 	irr :: core :: map<int, PlayerData*>	*_serverPlayerData;
 	PlayerData								*_localPlayerData;
 	
 	bool _isServer;
+	
+	PlayerManager( );
 
 	//these are client side functions. 
 	void OnJoinAcceptedReceived( int player_player_id );
@@ -26,8 +29,7 @@ private:
 	void OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id );
 
 public:
-
-	PlayerManager( );
+	static PlayerManager* GetInstance();
 	~PlayerManager( );	
 	
 	void Init();
@@ -40,5 +42,4 @@ public:
 	void SyncLocalPlayerData( StationType currentStation );
 	void CheckInput( bool isDebugKeyPressed );
 };
-extern PlayerManager *player_manager;
 #endif

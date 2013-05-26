@@ -63,7 +63,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Not able to connect to server",true,1,mainmenu->mainMenuWindow);
 						mainmenu->messagebox->setDraggable(false);
 					}else{
-						player_manager->Init();
+						PlayerManager::GetInstance()->Init();
 						//TODO: package met naam en checksum: Network->getinstance->GetPacketTypeChecksum
 						namepacket << namewchar << Network::GetInstance()->GetPacketTypeChecksum();
 						Network::GetInstance()->SendPacket(namepacket, true);
@@ -77,7 +77,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->Nameinput->setVisible(false);
 						mainmenu->quit_button->setVisible(true);
 						mainmenu->waitinglabel->setVisible(true);
-						player_manager -> RequestJoinServer( namewchar, 1 );
+						PlayerManager::GetInstance() -> RequestJoinServer( namewchar, 1 );
 					}
 				}
 
@@ -95,7 +95,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					return false;
 				}else{
 					Network::GetInstance()->InitializeServer();
-					player_manager->Init();
+					PlayerManager::GetInstance()->Init();
 					mainmenu->createServerWindow_Button->setVisible(false);
 					mainmenu->joinServerWindow_Button->setVisible(false);
 					mainmenu->Ipadresinput->setVisible(false);
@@ -111,7 +111,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					mainmenu->playerlist.push_back(newplayer);
 
 					//the host is always on team 1
-					player_manager -> RequestJoinServer( namewchar, 1 );
+					PlayerManager::GetInstance() -> RequestJoinServer( namewchar, 1 );
 
 					return true;
 				}

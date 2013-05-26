@@ -1,14 +1,21 @@
 #include "PlayerManager.h"
 #include "Stations\Station.h"
 
-PlayerManager *player_manager	= new PlayerManager( );
 int PlayerData :: uniqueId		= 0;
+PlayerManager* PlayerManager::_instance = 0;
 
 PlayerManager :: PlayerManager( ) : INetworkListener( )
 {
-	if ( player_manager != NULL ) return;
-	
-	
+}
+
+PlayerManager* PlayerManager::GetInstance()
+{
+	if(_instance == 0)
+	{
+		_instance = new PlayerManager();
+	}
+
+	return _instance;
 }
 
 void PlayerManager::Init()
