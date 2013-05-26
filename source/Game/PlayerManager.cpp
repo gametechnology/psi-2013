@@ -3,6 +3,7 @@
 
 int PlayerData :: uniqueId		= 0;
 PlayerManager* PlayerManager::_instance = 0;
+wstring localName;
 
 PlayerManager :: PlayerManager( ) : INetworkListener( )
 {
@@ -74,6 +75,7 @@ void PlayerManager :: RequestJoinServer( const wchar_t *player_name, int team_id
 {
 	cout << "I would like to join this game.\n";
 	//here, we received a message from a player that they want to join our game and they have sent some information regarding their data.
+	localName = player_name;
 	this ->	_localPlayerData = new PlayerData( player_name, team_id );
 	
 	//create a new packet that we are going to send to the server.
@@ -96,7 +98,7 @@ void PlayerManager :: OnClientJoinRequestReceived( const wchar_t *player_name, i
 
 	//then, we generate a new packet
 	NetworkPacket packet = NetworkPacket( PacketType :: SERVER_REQUEST_ACCEPTED );
-	packet << p -> id;
+	packet << player_name << p -> id ;
 
 	//and we send the packet back to the client (and only to that client, the rest of the clients do not need to know abot ths message)
 	Network :: GetInstance( ) -> SendServerPacket( packet, true );
@@ -172,36 +174,41 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 
 	int			update;
 	
-	//first, we get the player_id	
-	switch ( packet.GetType( ) )
-	{
-	case PacketType :: CLIENT_REQUEST_JOIN_SERVER:
 
-		packet >> player_name >> player_team_id;
+	
 
-		//we need to know the peer of the player. We reconstruct it using it's host and port numbers.
-		this -> OnClientJoinRequestReceived( player_name.c_str( ), player_team_id, packet.GetSender( ) );
-		break;
+		//first, we get the player_id	
+		switch ( packet.GetType( ) )
+		{
+		case PacketType :: CLIENT_REQUEST_JOIN_SERVER:
 
-	case PacketType :: SERVER_REQUEST_ACCEPTED:
+			packet >> player_name >> player_team_id;
 
-		packet >> player_id;
-		this -> OnJoinAcceptedReceived( player_id );
-		break;
+			//we need to know the peer of the player. We reconstruct it using it's host and port numbers.
+			this -> OnClientJoinRequestReceived( player_name.c_str( ), player_team_id, packet.GetSender( ) );
+			break;
 
-	case PacketType :: SERVER_REQUEST_DENIED:
+		case PacketType :: SERVER_REQUEST_ACCEPTED:
+			packet >> player_name;
+			if ( localName != player_name){
+			packet >> player_id;
+			this -> OnJoinAcceptedReceived( player_id );
+			}
+			break;
 
-		this -> OnJoinDeniedReceived( );
-		break;
+		case PacketType :: SERVER_REQUEST_DENIED:
 
-	case PacketType :: CLIENT_UPDATE_LOBBY_STATUS:
+			this -> OnJoinDeniedReceived( );
+			break;
 
-		packet >> player_id >> update >> player_team_id;
-		this -> OnClientStatusUpdateReceived( player_id, ( CLIENT_STATUS_UPDATE ) update, player_team_id );
+		case PacketType :: CLIENT_UPDATE_LOBBY_STATUS:
 
-	case PacketType :: SERVER_ALL_PLAYERS:
-		packet >> allPlayersMessage;
-		cout << "\nAll Player Message: \n" << allPlayersMessage.c_str() << endl;
-		break;
-	}
+			packet >> player_id >> update >> player_team_id;
+			this -> OnClientStatusUpdateReceived( player_id, ( CLIENT_STATUS_UPDATE ) update, player_team_id );
+
+		case PacketType :: SERVER_ALL_PLAYERS:
+			packet >> allPlayersMessage;
+			cout << "\nAll Player Message: \n" << allPlayersMessage.c_str() << endl;
+			break;
+		}
 }
