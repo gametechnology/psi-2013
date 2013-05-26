@@ -1,6 +1,9 @@
 #include "Laser.h"
 #include "Engine\IrrlichtNode.h"
 #include "EnemyDrone.h"
+#include "EnemyAsteroid.h"
+#include "EnemyFighter.h"
+#include "DummyShip.h"
 
 int Laser::newLaserId = 0;
 
@@ -99,25 +102,31 @@ void Laser::contactResolverA(Entity* input)
 {
 	Enemy* tempEnemy = dynamic_cast<Enemy*>(input);
 	tempEnemy->setHealth(tempEnemy->getHealth() - this->_damage);
-	//if(tempEnemy->getType()==tempEnemy->ASTROID)
-	//{
-	//	std::printf("HIT on ASTROID!");
-	//}
-	//if(tempEnemy->getType()==tempEnemy->DRONE)
-	//{
-	//	std::printf("HIT on DRONE!");
-	//}
-	//if(tempEnemy->getType()==tempEnemy->FIGHTER)
-	//{
-	//	std::printf("HIT on FIGHTER!");
-	//}
+	/*
+	 if(dynamic_cast<EnemyAsteroid*>(input) != NULL)
+	 {
+	  std::printf("HIT on Asteroid! \n");
+	 }
+	  if(dynamic_cast<EnemyFighter*>(input) != NULL)
+	 {
+	  std::printf("HIT on Fighter! \n");
+	 }
+	   if(dynamic_cast<EnemyDrone*>(input) != NULL)
+	 {
+	  std::printf("HIT on Drone! \n");
+	 }
+	   if(dynamic_cast<DummyShip*>(input) != NULL)
+	 {
+	  std::printf("HIT on ship! \n");
+	 }*/
 	//input->setHealth(input->getHealth() - this->_damage);
 	std::printf("HIT on Enemy! \n");
 	this->disable();
 	for(unsigned i = 0; i < this->children.size(); i++)
 	{
 		this->children[i]->update();
-	}
+	}	
+	input->contactResolverA(this); //call the contactresolver from the other item as well
 //	delete(this); //'kill' this projectile
 }
 
