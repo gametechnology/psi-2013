@@ -75,11 +75,9 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->waitinglabel = env->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainmenu->mainMenuWindow);
 						mainmenu->Nameinput->setVisible(false);
 						mainmenu->quit_button->setVisible(true);
-						mainmenu->waitinglabel->setVisible(true);						
+						mainmenu->waitinglabel->setVisible(true);
+						player_manager -> RequestJoinServer( namewchar, 1 );
 					}
-
-
-
 				}
 
 

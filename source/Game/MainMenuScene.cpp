@@ -204,7 +204,6 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			packetsend << (*iterator);
 		}
 		Network::GetInstance()->SendServerPacket(packetsend, true);
-		player_manager -> RequestJoinServer( name, team );
 		delete name;
 		break;
 	case CLIENT_QUIT:

@@ -11,7 +11,7 @@ PlayerManager :: PlayerManager( ) : INetworkListener( )
 	this -> _serverPlayerData = new irr :: core :: map<int, PlayerData*>( );
 	//set the unique ID of the playerData's to be 0.
 	
-	if ( this -> _isServer )
+	if ( !Network :: GetInstance( ) -> IsServer( ) )
 	{
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_REQUEST_ACCEPTED, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_REQUEST_DENIED, this );
@@ -27,7 +27,7 @@ PlayerManager :: PlayerManager( ) : INetworkListener( )
 
 PlayerManager :: ~PlayerManager( )
 {
-	if ( this -> _isServer )
+	if ( !Network :: GetInstance( ) -> IsServer( ) )
 	{
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_REQUEST_DENIED, this );
@@ -47,7 +47,7 @@ PlayerManager :: ~PlayerManager( )
 void PlayerManager :: UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_id )
 {
 	//if we are the server, we will only update our local info.
-	if ( !this -> _isServer )	return;
+	if ( !Network :: GetInstance( ) -> IsServer( ) )	return;
 	
 	//we create a new packet.
 	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_UPDATE_LOBBY_STATUS );
@@ -65,8 +65,7 @@ void PlayerManager :: RequestJoinServer( const wchar_t *player_name, int team_id
 	cout << "I would like to join this game.\n";
 	//here, we received a message from a player that they want to join our game and they have sent some information regarding their data.
 	this ->	_localPlayerData = new PlayerData( player_name, team_id );
-	this -> _isServer = Network :: GetInstance( ) -> IsServer( );
-
+	
 	if ( this -> _isServer ) return;
 	//create a new packet that we are going to send to the server.
 	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_JOIN_SERVER );	
@@ -79,7 +78,7 @@ void PlayerManager :: RequestJoinServer( const wchar_t *player_name, int team_id
 */
 void PlayerManager :: OnClientJoinRequestReceived( const wchar_t *player_name, int team_id, ENetPeer peer )
 {
-	cout << "I received a message from player " << *player_name << " that he would like to join.\n";
+	cout << "I received a message from player " << player_name << " that he would like to join.\n";
 	//if this is not the server, we do nothing. This is not a message for us.
 	if ( !this -> _isServer )	return;
 	//create a new PlayerData.
@@ -92,9 +91,8 @@ void PlayerManager :: OnClientJoinRequestReceived( const wchar_t *player_name, i
 	packet << p -> id;
 
 	//and we send the packet back to the client (and only to that client, the rest of the clients do not need to know abot ths message)
-	Network :: GetInstance( ) -> SendServerPacket( packet, &peer, true );
-
-
+	//Network :: GetInstance( ) -> SendServerPacket( packet, &peer, true );
+	Network :: GetInstance( ) -> SendPacket( packet, true );
 	//TODO: sort of error handling when things go wrong and send a CLIENT_REQUEST_DENIED packet	
 }
 
@@ -105,14 +103,14 @@ void PlayerManager :: OnJoinAcceptedReceived( int player_id )
 {
 	cout << "Yay! I now am in the game. this is my id: " << player_id;
 	//if this machine is flagged as server, we do nothing.
-	if ( this -> _isServer ) return;
+	if ( Network :: GetInstance( ) -> IsServer( ) ) return;
 	//otherwise, we are going to set the player id in our local playerData.
 	this ->	_localPlayerData -> id = player_id;
 }
 
 void PlayerManager :: OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id )
 {
-	if ( !this -> _isServer ) return;
+	if ( !Network :: GetInstance( ) -> IsServer( ) ) return;
 	switch( update )
 	{
 	case CLIENT_STATUS_UPDATE :: CHANGED_TEAM:
@@ -158,6 +156,7 @@ void PlayerManager:: SendPlayerInfoRequest()
 //handles all incoming messages of type Update player, remove player and add player
 void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 {
+	cout << "kankah!";
 	int			player_id;
 	wstring		player_name;
 	wstring		allPlayersMessage;
