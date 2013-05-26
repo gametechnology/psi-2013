@@ -29,7 +29,8 @@ public:
 
 	PlayerManager( );
 	~PlayerManager( );	
-
+	
+	void Init();
 	void RequestJoinServer( const wchar_t *player_name, int team_id );
 	void HandleNetworkMessage( NetworkPacket p );
 	void UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_id );

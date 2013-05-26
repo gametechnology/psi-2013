@@ -8,6 +8,11 @@ PlayerManager :: PlayerManager( ) : INetworkListener( )
 {
 	if ( player_manager != NULL ) return;
 	
+	
+}
+
+void PlayerManager::Init()
+{
 	this -> _serverPlayerData = new irr :: core :: map<int, PlayerData*>( );
 	//set the unique ID of the playerData's to be 0.
 	
@@ -91,8 +96,8 @@ void PlayerManager :: OnClientJoinRequestReceived( const wchar_t *player_name, i
 	packet << p -> id;
 
 	//and we send the packet back to the client (and only to that client, the rest of the clients do not need to know abot ths message)
-	//Network :: GetInstance( ) -> SendServerPacket( packet, peer, true );
-	Network :: GetInstance( ) -> SendPacket( packet, true );
+	Network :: GetInstance( ) -> SendServerPacket( packet, &p->peer, true );
+	//Network :: GetInstance( ) -> SendPacket( packet, true );
 	//TODO: sort of error handling when things go wrong and send a CLIENT_REQUEST_DENIED packet	
 }
 

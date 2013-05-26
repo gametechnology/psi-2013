@@ -63,6 +63,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Not able to connect to server",true,1,mainmenu->mainMenuWindow);
 						mainmenu->messagebox->setDraggable(false);
 					}else{
+						player_manager->Init();
 						//TODO: package met naam en checksum: Network->getinstance->GetPacketTypeChecksum
 						namepacket << namewchar << Network::GetInstance()->GetPacketTypeChecksum();
 						Network::GetInstance()->SendPacket(namepacket, true);
@@ -93,6 +94,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					mainmenu->messagebox->setDraggable(false);
 					return false;
 				}else{
+					player_manager->Init();
 					Network::GetInstance()->InitializeServer();
 					mainmenu->createServerWindow_Button->setVisible(false);
 					mainmenu->joinServerWindow_Button->setVisible(false);
