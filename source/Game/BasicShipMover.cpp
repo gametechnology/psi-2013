@@ -16,9 +16,12 @@ BasicShipMover::~BasicShipMover() {
 
 }
 
-
+bool BasicShipMover::energyChecker(){
+	if(_ship->GetStation(ST_HELM)->HasPower()) return true;
+	else return false;
+}
 void BasicShipMover::update() {
-
+	if(energyChecker){ //power to steer
 	//FORWARD/BACKWARD
 	if (getGame()->input->isKeyboardButtonDown(KEY_KEY_W))
 		move(_ship, core::vector3df(0, 0, 2.0));
@@ -42,6 +45,8 @@ void BasicShipMover::update() {
 		roll(_ship, 1.0);
 	if (getGame()->input->isKeyboardButtonDown(KEY_KEY_D))
 		roll(_ship, -1.0);
+
+	}//endif of the power to steer
 
 	//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
 	NetworkPacket movementPacket = NetworkPacket(PacketType::CLIENT_SHIP_MOVEMENT);
