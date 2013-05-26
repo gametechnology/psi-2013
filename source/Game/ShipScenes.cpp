@@ -10,10 +10,10 @@ ShipScenes::~ShipScenes(void) { Scene::~Scene(); }
 void ShipScenes::init()
 {
 	
-	EnemyManager* manager;
-	manager = new EnemyManager();
+	//EnemyManager* manager;
+	//manager = new EnemyManager();
 
 	addChild(new Player());
 	addChild(new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0)));
-	addComponent(manager);
+	//addComponent(manager);
 }

@@ -28,10 +28,6 @@ void CollisionTestScene::init() {
 	this->game->device->getSceneManager()->addCameraSceneNodeFPS();
 	
 	removeenemytestinitiationcheck = true;
-	//createTestEnemies();
-	//dummyFighter->setVelocity(irr::core::vector3df(0.01f,0,0));
-	//addChild(dummyFighter);
-	//addChild(_ship);
 	Scene::init();
 }
 
@@ -75,13 +71,11 @@ void CollisionTestScene::update() {
 		RemoveAllEnemies();
 	}
 
-	//std::cout<<"target " << target<<endl;
 	//Tell the other EnemyFighters to shoot at target 	
 	for(int l = 0; l < _enemyList.size(); l++)
 	{
 		if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
 		{
-			//_enemyList[l]->inRangeList.push_back(dummyFighter);
 			if(_enemyList.size() >= 2)
 			{
 				switch(target)
