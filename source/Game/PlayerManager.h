@@ -37,6 +37,7 @@ public:
 
 	//this makes sure that the local data is sent to all the other players on the network (only local data)
 	void SyncLocalPlayerData( StationType currentStation );
+	void CheckInput( bool isDebugKeyPressed );
 };
 extern PlayerManager *player_manager;
 #endif

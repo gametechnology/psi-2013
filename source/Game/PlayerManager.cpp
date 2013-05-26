@@ -62,11 +62,12 @@ void PlayerManager :: UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_
 */
 void PlayerManager :: RequestJoinServer( const wchar_t *player_name, int team_id )
 {
+	cout << "I would like to join this game.\n";
 	//here, we received a message from a player that they want to join our game and they have sent some information regarding their data.
 	this ->	_localPlayerData = new PlayerData( player_name, team_id );
 	this -> _isServer = Network :: GetInstance( ) -> IsServer( );
 
-	if ( this -> _isServer ) return;	
+	if ( this -> _isServer ) return;
 	//create a new packet that we are going to send to the server.
 	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_JOIN_SERVER );	
 	packet << ( wstring ) player_name << team_id;
@@ -78,7 +79,7 @@ void PlayerManager :: RequestJoinServer( const wchar_t *player_name, int team_id
 */
 void PlayerManager :: OnClientJoinRequestReceived( const wchar_t *player_name, int team_id, ENetPeer peer )
 {
-	cout << "I received a message from player " << player_name;
+	cout << "I received a message from player " << *player_name << " that he would like to join.\n";
 	//if this is not the server, we do nothing. This is not a message for us.
 	if ( !this -> _isServer )	return;
 	//create a new PlayerData.
@@ -102,6 +103,7 @@ void PlayerManager :: OnClientJoinRequestReceived( const wchar_t *player_name, i
 */
 void PlayerManager :: OnJoinAcceptedReceived( int player_id )
 {
+	cout << "Yay! I now am in the game. this is my id: " << player_id;
 	//if this machine is flagged as server, we do nothing.
 	if ( this -> _isServer ) return;
 	//otherwise, we are going to set the player id in our local playerData.
@@ -131,6 +133,17 @@ void PlayerManager :: OnJoinDeniedReceived( )
 	//TODO: Some shit.
 }
 
+void PlayerManager :: CheckInput( bool isDebugKeyPressed )
+{
+	if ( isDebugKeyPressed )
+	{
+		cout << "name: " << _localPlayerData -> name << ":\n";
+		cout << "\tID: " << _localPlayerData -> id << "\n";
+		cout << "\tteam_id: " << _localPlayerData -> team_id << "\n";
+		//cout << "\tip address: " << _localPlayerData -> peer -> ( int ) outgoingPeerID << "\n";
+		cout << "\tstation type: " << _localPlayerData -> stationType << "\n";
+	}
+}
 
 /*void PlayerManager :: OnLobbyStatusReceived( int player_id, int team_id )
 {
