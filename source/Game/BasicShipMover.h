@@ -16,5 +16,6 @@ public:
 	virtual void handleMessage(unsigned int message, void* data = 0){};
 private:
 	Ship *_ship;
+	virtual bool energyChecker();
 };
 
