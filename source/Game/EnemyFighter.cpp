@@ -23,8 +23,8 @@ void EnemyFighter::init()
 {
 	Enemy::init();
 
-	EnemyFighter::inRangeList = vector<Entity*>();
-	EnemyFighter::stateSwitch = new StateSwitchFighter(StateSwitch::STATE_WANDER,this);
+	inRangeList = vector<Entity*>();
+	stateSwitch = new StateSwitchFighter(StateSwitchFighter::States::STATE_WANDER,this);
 }
 
 void EnemyFighter::onAdd() 
@@ -44,7 +44,7 @@ void EnemyFighter::chase(vector3df target)
 
 void EnemyFighter::update()
 {
-	EnemyFighter::stateSwitch->updateState();
+	EnemyFighter::stateSwitch->update();
 
 	if(game->input->isKeyboardButtonPressed(irr::KEY_KEY_M))
 	{
@@ -60,7 +60,7 @@ void EnemyFighter::update()
 		//}
 	}
 
-	if(EnemyFighter::stateSwitch->getState() == StateSwitch::STATE_OFFENSIVE)
+	/*if(EnemyFighter::stateSwitch->getState() == STATE_OFFENSIVE)
 	{
 		//Should be activated when in current state
 		this->_fireTime++;
@@ -71,7 +71,7 @@ void EnemyFighter::update()
 			this->fireLaserAt(this->getTarget());
 			this->_fireTime = 0;
 		}
-	}
+	}*/
 
 	EnemyFighter::inRangeList.clear();
 
@@ -80,7 +80,7 @@ void EnemyFighter::update()
 
 EnemyFighter::~EnemyFighter(void)
 {
-	delete EnemyFighter::stateSwitch;
+	//delete EnemyFighter::stateSwitch;
 
 	Entity::~Entity();
 }

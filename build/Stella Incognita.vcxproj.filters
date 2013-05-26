@@ -60,9 +60,6 @@
     <ClCompile Include="..\source\Game\RandomGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\StateSwitch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\StateSwitchFighter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -262,7 +259,7 @@
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\BasicShipMover.cpp">
-    	<Filter>Source Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\EndSceneEventReceiver.cpp">
       <Filter>Source Files</Filter>
@@ -468,10 +465,10 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\BasicShipMover.h">
-    	<Filter>Header Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\EndScene.h">
-      <Filter>Header Files\Scenes</Filter>    
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\HealthComponent.h">
       <Filter>Header Files</Filter>
@@ -483,6 +480,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\PowerComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\IStateSwitch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

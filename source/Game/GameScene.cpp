@@ -12,7 +12,6 @@ GameScene::GameScene(std::list<Player*> playerList, bool isTestMap) : Scene()
 }
 
 void GameScene::onAdd() {
-	this->getIrrlichtSceneManager()->addCameraSceneNodeFPS();
 	SendAndReceivePackets::staticGame = this->game;
 	Network::GetInstance()->AddListener(SERVER_LASER, this);
 	Network::GetInstance()->AddListener(SERVER_WINLOSE, this);
