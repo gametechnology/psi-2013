@@ -1,6 +1,7 @@
 #include "StateSwitchFighter.h"
 #include "EnemyFighter.h"
 #include "RandomGenerator.h"
+#include "Engine\IrrlichtNode.h"
 #include <iostream>
 
 StateSwitchFighter::StateSwitchFighter(States startState, Enemy* parent)
@@ -153,13 +154,13 @@ void StateSwitchFighter::handleFollow()
 		setState(STATE_OFFENSIVE);
 	}
 
-	if(_parent->inRangeList.back() == NULL)
+	if(_parent->inRangeList.back() == NULL || _parent->inRangeList.back()->destroyed)
 		return;
 
 	if((*_parent->inRangeList.back()->transform->position - *_parent->transform->position).getLength() > 10)
 	{
 		_parent->chase(*_parent->inRangeList.back()->transform->position);
-		}
+	}
 }
 
 void StateSwitchFighter::handleOffensive()
@@ -168,8 +169,9 @@ void StateSwitchFighter::handleOffensive()
 	{
 		if(StateSwitchFighter::getParent()->inRangeList.back()->transform->position == NULL)
 		{
-		setState(STATE_DEATH);
-		return;
+			setState(STATE_DEATH);
+			return;
+		}
 	}
 
 	if(_parent->inRangeList.size() <= 0)
@@ -183,7 +185,7 @@ void StateSwitchFighter::handleOffensive()
 		setState(STATE_DEFENSIVE);
 	}
 
-	if(_parent->inRangeList.back() == NULL)
+	if(_parent->inRangeList.back() == NULL || _parent->inRangeList.back()->destroyed)
 		return;
 
 	if(!_parent->inRangeList.empty())
@@ -218,7 +220,7 @@ void StateSwitchFighter::handleDefensive()
 		setState(STATE_FLEEING);
 	}
 
-	if(_parent->inRangeList.back() == NULL)
+	if(_parent->inRangeList.back() == NULL || _parent->inRangeList.back()->destroyed)
 		return;
 
 	if(!_parent->inRangeList.empty())
@@ -249,7 +251,7 @@ void StateSwitchFighter::handleFleeing()
 		setState(STATE_IDLE);
 	}
 
-	if(_parent->inRangeList.back() == NULL)
+	if(_parent->inRangeList.back() == NULL || _parent->inRangeList.back()->destroyed)
 		return;
 
 	if(!_parent->inRangeList.empty())
@@ -266,4 +268,12 @@ void StateSwitchFighter::handleFleeing()
 void StateSwitchFighter::handleDeath()
 {
 	_parent->destroyed = true;
+	_parent->disable();
+	for(unsigned i = 0; i < _parent->children.size(); i++)
+	{
+		if(dynamic_cast<IrrlichtNode*>(_parent->children[i]) != NULL)
+		{
+			_parent->children[i]->update();
+		}
+	}
 }
