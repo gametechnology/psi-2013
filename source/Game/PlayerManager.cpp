@@ -39,7 +39,6 @@ PlayerManager :: ~PlayerManager( )
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 	}
-
 	//delete all the other crap.
 }
 
@@ -64,14 +63,12 @@ void PlayerManager :: UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_
 */
 void PlayerManager :: RequestJoinServer( const wchar_t *player_name, int team_id )
 {
-	//TODO: find out how the server holds his own local data and accesses it.
-	if ( this -> _isServer ) return;
-	
 	//here, we received a message from a player that they want to join our game and they have sent some information regarding their data.
 	this ->	_localPlayerData = new PlayerData( player_name, team_id );
+
+	if ( this -> _isServer ) return;	
 	//create a new packet that we are going to send to the server.
-	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_JOIN_SERVER );
-	//TODO: find out what we need to send the peer over the network.
+	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_JOIN_SERVER );	
 	packet << ( wstring ) player_name << team_id;
 	Network :: GetInstance( ) -> SendPacket( packet, true );
 }
@@ -92,9 +89,10 @@ void PlayerManager :: OnClientJoinRequestReceived( const wchar_t *player_name, i
 	NetworkPacket packet = NetworkPacket( PacketType :: SERVER_REQUEST_ACCEPTED );
 	packet << p -> id;
 
-	//and we send the packet back to the client
-	//TODO: make sure that the packet is sent only to the client that requested the join.
-	Network :: GetInstance( ) -> SendPacket( packet, true );
+	//and we send the packet back to the client (and only to that client, the rest of the clients do not need to know abot ths message)
+	Network :: GetInstance( ) -> SendServerPacket( packet, &peer, true );
+
+
 	//TODO: sort of error handling when things go wrong and send a CLIENT_REQUEST_DENIED packet	
 }
 
@@ -140,7 +138,7 @@ void PlayerManager :: OnJoinDeniedReceived( )
 
 void PlayerManager:: SendPlayerInfoRequest()
 {
-	Network :: GetInstance() -> SendPacket( NetworkPacket(PacketType :: CLIENT_GET_ALL_PLAYERS) );
+	Network :: GetInstance( ) -> SendPacket( NetworkPacket(PacketType :: CLIENT_GET_ALL_PLAYERS) );
 }
 
 //handles all incoming messages of type Update player, remove player and add player
@@ -179,7 +177,6 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	case PacketType :: CLIENT_UPDATE_LOBBY_STATUS:
 
 		packet >> player_id >> update >> player_team_id;
-		//TODO: check that the player_team_id does not crash the game. 
 		this -> OnClientStatusUpdateReceived( player_id, ( CLIENT_STATUS_UPDATE ) update, player_team_id );
 
 	case PacketType :: SERVER_ALL_PLAYERS:
