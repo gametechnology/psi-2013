@@ -1,5 +1,6 @@
 #include "StateSwitchDrone.h"
 #include "RandomGenerator.h"
+#include "Engine\IrrlichtNode.h"
 #include <iostream>
 
 void StateSwitchDrone::setState(States state)
@@ -81,7 +82,7 @@ void StateSwitchDrone::handleOffensive()
 		setState(STATE_IDLE);
 	}
 
-	if(_parent->inRangeList.back() == NULL)
+	if(_parent->inRangeList.back() == NULL || _parent->inRangeList.back()->destroyed)
 		return;
 
 	if(!_parent->inRangeList.empty())
@@ -91,6 +92,14 @@ void StateSwitchDrone::handleOffensive()
 void StateSwitchDrone::handleDeath()
 {
 	_parent->destroyed = true;
+	_parent->disable();
+	for(unsigned i = 0; i < _parent->children.size(); i++)
+	{
+		if(dynamic_cast<IrrlichtNode*>(_parent->children[i]) != NULL)
+		{
+			_parent->children[i]->update();
+		}
+	}
 }
 
 StateSwitchDrone::StateSwitchDrone(States startState, Enemy* parent)
