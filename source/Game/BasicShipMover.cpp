@@ -16,12 +16,9 @@ BasicShipMover::~BasicShipMover() {
 
 }
 
-bool BasicShipMover::energyChecker(){
-	if(_ship->GetStation(ST_HELM)->HasPower()) return true;
-	else return false;
-}
+
 void BasicShipMover::update() {
-	if(energyChecker){ //power to steer
+	if(_ship->GetStation(ST_HELM)->HasPower()){ //power to steer
 	//FORWARD/BACKWARD
 	if (getGame()->input->isKeyboardButtonDown(KEY_KEY_W))
 		move(_ship, core::vector3df(0, 0, 2.0));
