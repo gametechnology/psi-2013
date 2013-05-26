@@ -28,10 +28,11 @@ enum PacketType
 	SERVER_ENEMY,
 	SERVER_LASER,
 	SERVER_WINLOSE,
-	SHIP_ACCELERATION,
+
 	CLIENT_SWITCH_STATION,
 	CLIENT_LEAVE_STATION,
 	CLIENT_POWER_CHANGED,
+	CLIENT_FIRE_LASER,
 	//Add new PacketTypes above
 	LAST_TYPE
 };
@@ -51,10 +52,12 @@ inline char* getPacketTypeName(PacketType type)
 		case SERVER_ENEMY: { return "SERVER_ENEMY"; break; }
 		case SERVER_LASER: { return "SERVER_LASER"; break; }
 		case SERVER_WINLOSE: { return "SERVER_WINLOSE"; break; }
-		case SHIP_ACCELERATION: { return "SHIP_ACCELERATION"; break; }
+	
 		case CLIENT_SWITCH_STATION: { return "CLIENT_SWITCH_STATION"; break; }
 		case CLIENT_LEAVE_STATION: { return "CLIENT_LEAVE_STATION"; break; }
 		case CLIENT_POWER_CHANGED: { return "CLIENT_POWER_CHANGED"; break; }
+		case CLIENT_FIRE_LASER: { return "CLIENT_FIRE_LASER"; break; }
+
 		default: { throw "Tried to get string from non-existing packet type"; }
 	}
 }

@@ -12,6 +12,7 @@ Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 	this->transform->position = &position;
 	this->transform->rotation = &rotation;
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
+	Network::GetInstance()->AddListener(PacketType::CLIENT_FIRE_LASER, this);
 }
 
 Ship::~Ship(void)
@@ -266,6 +267,16 @@ void Ship::fireLaser()
 }
 void Ship::HandleNetworkMessage(NetworkPacket packet)
 {
+	if(packet.GetType() == PacketType::CLIENT_FIRE_LASER){
+		irr::core::vector3df rotationweapon;
+		irr::core::vector3df rotationreal;
+		packet >> rotationweapon;
+		rotationreal = *transform->rotation;
+		*transform->rotation = rotationweapon; 
+		fireLaser();
+		*transform->rotation = rotationreal;
+	}
+		
 	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
 	{
 		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
