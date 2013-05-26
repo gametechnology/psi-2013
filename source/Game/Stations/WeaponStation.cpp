@@ -6,7 +6,7 @@ WeaponStation::WeaponStation(Ship *ship) : Station(ship)
 {
 	_stationType = ST_WEAPON;
 	setStationDestroyed(false);
-	
+
 }
 
 WeaponStation::~WeaponStation()
@@ -31,7 +31,7 @@ void WeaponStation::update()
 {
 	Station::update();
 
-	if(game->input->isKeyboardButtonPressed(KEY_SPACE)){
+	if(game->input->isKeyboardButtonPressed(KEY_SPACE) && getPower()){
 		_ship->fireLaser();
 	}
 
@@ -65,7 +65,7 @@ void WeaponStation::draw()
 
 void WeaponStation::enable()
 {
-	
+
 	rotationForeign	= *_ship->transform->rotation;
 	((Ship*)parent)->help->setHelpText(L"Shoot: 'space'\ntodo: Exit station: 'Esc'");
 
