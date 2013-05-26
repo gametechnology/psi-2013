@@ -102,11 +102,24 @@ void Laser::contactResolverA(Entity* input)
 {
 	Enemy* tempEnemy = dynamic_cast<Enemy*>(input);
 	tempEnemy->setHealth(tempEnemy->getHealth() - this->_damage);
-	 }
-	   if(dynamic_cast<DummyShip*>(input) != NULL)
+	 
+	/*   if(dynamic_cast<DummyShip*>(input) != NULL)
 	 {
 	  std::printf("HIT on ship! \n");
+	 }
+	      if(dynamic_cast<EnemyFighter*>(input) != NULL)
+	 {
+	  std::printf("HIT on fighter! \n");
+	 }
+		     if(dynamic_cast<EnemyAsteroid*>(input) != NULL)
+	 {
+	  std::printf("HIT on asteroid! \n");
+	 }
+			    if(dynamic_cast<EnemyDrone*>(input) != NULL)
+	 {
+	  std::printf("HIT on drone! \n");
 	 }*/
+
 	std::printf("HIT on Enemy! \n");
 	this->disable();
 	for(unsigned i = 0; i < this->children.size(); i++)
