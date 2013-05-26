@@ -16,7 +16,7 @@ Station :: Station( Ship *ship, int startHealth ) : Entity()
 	addComponent(_healthComponent);
 	addComponent(_powerComponent);
 	addComponent(_shieldComponent);
-	
+
 	//this -> _switchTime = 4.0f;
 	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
 }
@@ -52,6 +52,8 @@ void Station :: init()
 	this -> _playerOnStationTime = 0;
 	this -> _stunTime = 0;
 	this -> _switchTime = 0;
+	_isOccupied = false;
+	_player = NULL;
 
 	this->hud = new HudComposite(&(_healthComponent->health), &(_powerComponent->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
 	this->addChild(hud);
@@ -60,16 +62,6 @@ void Station :: init()
 
 Station :: ~Station(void)
 {
-	//delete _ship;
-	//delete _player;
-	//delete _switchTime;
-	//delete _playerOnStationTime;
-	//delete _stunTime;
-}
-
-bool Station::HasPlayer()
-{
-	return ( this -> _player != NULL );
 }
 
 bool Station::SwitchTimePassed()
@@ -91,9 +83,37 @@ bool Station::IsStunned()
 	return difftime( *_stunTime, *t ) <= STUN_TIME;
 }
 
+bool Station::setPlayerOccupation(Player* player)
+{
+	if(_isOccupied)
+		return false;
+
+	_player = player;
+	_player->setStation(_stationType);
+
+	_isOccupied = true;	
+	return true;
+}
+
+void Station::resetPlayerOccupation()
+{
+	_player->resetStation();
+	_player = NULL;
+	_isOccupied = false;
+}
+
 void Station::update()
 {
 	Entity::update();
+
+	if(_player != NULL)
+	{
+		if(_player->getCurrentStation() == _stationType)
+		{
+			_isOccupied = false;
+			_player = NULL;
+		}
+	}
 
 	// Test code for testing energy of a station.
 	if(game->input->isKeyboardButtonDown(KEY_ADD) && _powerComponent->power < 50)
@@ -105,14 +125,14 @@ void Station::update()
 	updateHealth();
 
 	if (game->input->isKeyboardButtonDown(KEY_ESCAPE)){
-	// Load Shipmap
+		// Load Shipmap
 	}
 }
 
 
 void Station :: draw( )
 {	
-	
+
 	Entity::draw();
 }
 
@@ -200,7 +220,7 @@ int Station :: getPower()
 void Station::decreasePower(int power)
 {
 	_powerComponent->decreasePower(power);
-	
+
 }
 
 //The stations power is increased
