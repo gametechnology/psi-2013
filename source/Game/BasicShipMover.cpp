@@ -18,7 +18,9 @@ BasicShipMover::~BasicShipMover() {
 
 
 void BasicShipMover::update() {
-	if(_ship->GetStation(ST_HELM)->HasPower()){ //power to steer
+	powerEnable = _ship->GetStation(ST_HELM)->HasPower();
+	powerEnable = true; //workAround to be commented when the switch between stations is working 
+	if(powerEnable){ //power to steer
 	//FORWARD/BACKWARD
 	if (getGame()->input->isKeyboardButtonDown(KEY_KEY_W))
 		move(_ship, core::vector3df(0, 0, 2.0));
