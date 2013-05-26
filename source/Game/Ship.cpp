@@ -261,6 +261,13 @@ void Ship::fireLaser()
 	Laser* laser = this->laserPool->GetFreeObject();
 	if(laser != NULL)
 	{
+		
+		if(!Network::GetInstance()->IsServer()){
+			NetworkPacket firepacket = NetworkPacket(PacketType::CLIENT_FIRE_LASER);
+			firepacket << *transform->rotation;
+			Network::GetInstance()->SendPacket(firepacket, true);
+
+		}
 		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
 		std::cout << "weapon fired" << std::endl;
 	}

@@ -35,7 +35,8 @@ void WeaponStation::update()
 		_ship->fireLaser();
 		NetworkPacket firepacket = NetworkPacket(PacketType::CLIENT_FIRE_LASER);
 		firepacket << *_ship->transform->rotation;
-		Network::GetInstance()->SendPacket(firepacket, true);
+		if(!Network::GetInstance()->IsServer())
+			Network::GetInstance()->SendPacket(firepacket, true);
 	}
 
 	if (game->input->isKeyboardButtonDown(KEY_RIGHT) || game->input->isKeyboardButtonDown(KEY_KEY_D)){
