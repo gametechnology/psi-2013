@@ -97,6 +97,10 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 		{
 		}
 	}
+	if(packet.GetType() == CLIENT_FIRE_LASER)
+	{
+		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacketFromClient(packet, this->_laserPool->getAllObjects(), this));
+	}
 }
 
 void GameScene::switchStation(StationType type)

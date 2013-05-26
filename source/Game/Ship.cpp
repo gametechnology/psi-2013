@@ -261,43 +261,20 @@ void Ship::fireLaser()
 	Laser* laser = this->laserPool->GetFreeObject();
 	if(laser != NULL)
 	{
-		
+		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
+		std::cout << "weapon fired" << std::endl;
+
 		if(!Network::GetInstance()->IsServer()){
 			NetworkPacket firepacket = NetworkPacket(PacketType::CLIENT_FIRE_LASER);
-			firepacket << *transform->rotation;
-			firepacket <<  this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget();
+			firepacket << laser;
 			Network::GetInstance()->SendPacket(firepacket, true);
 
 		}
-		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
-		std::cout << "weapon fired" << std::endl;
-	}
-}
-
-void Ship::fireLaser(vector3df rot ,vector3df camtar)
-{
-	Laser* laser = this->laserPool->GetFreeObject();
-	if(laser != NULL)
-	{
-		Transform *trans = new Transform();
-		*trans->position = *this->transform->position;
-		*trans->rotation = rot;
-
-		laser->fire(trans,camtar, 1.0);
-		std::cout << "weapon fired" << std::endl;
-		delete trans;
 	}
 }
 
 void Ship::HandleNetworkMessage(NetworkPacket packet)
 {
-	if(packet.GetType() == PacketType::CLIENT_FIRE_LASER){
-		irr::core::vector3df rotationweapon;
-		irr::core::vector3df camtar;
-		packet >> rotationweapon;
-		packet >> camtar;
-		fireLaser(rotationweapon,camtar);
-	}
 		
 	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
 	{
