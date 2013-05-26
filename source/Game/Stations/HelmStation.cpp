@@ -32,6 +32,11 @@ void HelmStation::init()
 void HelmStation::update()
 {
 	Station::update();
+
+	NetworkPacket packet = NetworkPacket(PacketType::OTHER_SHIP_POSITION);
+	packet << transform->position;
+
+	Network::GetInstance()->SendPacketToAllClients(packet);
 }
 
 void HelmStation::draw()

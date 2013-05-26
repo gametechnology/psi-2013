@@ -149,7 +149,6 @@ void Network::SendPacketToAllClients(NetworkPacket packet, const bool reliable){
 		if(_isConnected)
 		{	
 			ENetPacket* enetPacket = enet_packet_create(packet.GetBytes(), packet.GetSize(), reliable);
-
 			enet_host_broadcast(_host, 0, enetPacket);
 		}
 	}

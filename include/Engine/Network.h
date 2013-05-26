@@ -30,6 +30,7 @@ enum PacketType
 	CLIENT_SWITCH_STATION,
 	CLIENT_LEAVE_STATION,
 	CLIENT_POWER_CHANGED,
+	OTHER_SHIP_POSITION,
 	//Add new PacketTypes above
 	LAST_TYPE
 };
@@ -51,6 +52,7 @@ inline char* getPacketTypeName(PacketType type)
 		case CLIENT_SWITCH_STATION: { return "CLIENT_SWITCH_STATION"; break; }
 		case CLIENT_LEAVE_STATION: { return "CLIENT_LEAVE_STATION"; break; }
 		case CLIENT_POWER_CHANGED: { return "CLIENT_POWER_CHANGED"; break; }
+		case OTHER_SHIP_POSITION: { return "OTHER_SHIP_POSITION"; break; }
 		default: { throw "Tried to get string from non-existing packet type"; }
 	}
 }

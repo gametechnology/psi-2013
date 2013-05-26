@@ -113,6 +113,7 @@
     <ClCompile Include="..\source\Game\HealthComponent.cpp" />
     <ClCompile Include="..\source\Game\HudComposite.cpp" />
     <ClCompile Include="..\source\Game\HudHelpText.cpp" />
+    <ClCompile Include="..\source\Game\NetworkMover.cpp" />
     <ClCompile Include="..\source\Game\RemoteShip.cpp" />
     <ClCompile Include="..\source\Game\PowerComponent.cpp" />
     <ClCompile Include="..\source\Game\ShieldComponent.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="..\source\Game\HealthComponent.h" />
     <ClInclude Include="..\source\Game\HudComposite.h" />
     <ClInclude Include="..\source\Game\HudHelpText.h" />
+    <ClInclude Include="..\source\Game\NetworkMover.h" />
     <ClInclude Include="..\source\Game\RemoteShip.h" />
     <ClInclude Include="..\source\Game\PowerComponent.h" />
     <ClInclude Include="..\source\Game\ShieldComponent.h" />

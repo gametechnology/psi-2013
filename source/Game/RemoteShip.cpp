@@ -1,5 +1,6 @@
 #include "RemoteShip.h"
 #include "ShipMover.h"
+#include "NetworkMover.h"
 
 vector3df _startPosition;
 vector3df _startRotation;
@@ -32,10 +33,12 @@ void RemoteShip::onAdd() {
 	irr::core::stringw strShipHealth			= "ship health: "; 
 	strShipHealth +	irr::core::stringw();
 
-	_startPosition = vector3df(0,0,-100);
-	_startRotation = vector3df(0,0,0);
-	this->transform->position = &_startPosition;
-	this->transform->rotation = &_startRotation;
+	//_startPosition = vector3df(0,0,-100);
+	//_startRotation = vector3df(0,0,0);
+	//this->transform->position = &_startPosition;
+	//this->transform->rotation = &_startRotation;
+
+	addComponent(new NetworkMover());
 
 	_laserCount = 10;
 
