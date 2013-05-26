@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.0">
+  <zoom_level>8</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>0</x>
+      <y>384</y>
+      <w>280</w>
+      <h>208</h>
+    </coordinates>
+    <panel_attributes>StateSwitchDrone
+--
+- _currentState:States
+- _newState:States
+- _oldState:States
+- _parent:Enemy*
+--
++ StateSwitchDrone(States startState, Enemy* parent)
++ StateSwitchDrone(Enemy* parent)
++ ~StateSwitchDrone()
++ setState(States state):void
++ update():void
++ getParent():Enemy*
++ handleIdle():void
++ handleWander():void
++ handleOffensive():void
++ handleDeath():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>312</x>
+      <y>160</y>
+      <w>64</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>24;24;48;176</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>128</x>
+      <y>160</y>
+      <w>144</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>128;24;24;224</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>440</x>
+      <y>176</y>
+      <w>120</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+States
+--
+STATE_IDLE
+STATE_WANDER
+STATE_FOLLOW
+STATE_OFFENSIVE
+STATE_DEFENSIVE
+STATE_FLEEING
+STATE_DEATH
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>224</x>
+      <y>24</y>
+      <w>104</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+States
+--
+ 
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>296</x>
+      <y>336</y>
+      <w>288</w>
+      <h>272</h>
+    </coordinates>
+    <panel_attributes>StateSwitchFighter
+--
+- _currentState:States
+- _newState:States
+- _oldState:States
+
+- _parent:Enemy*
+- _fireTimeCount:int
+- _fireTime:int
+--
++ StateSwitchFighter(States startState, Enemy* parent)
++ StateSwitchFighter(Enemy* parent)
++ ~StateSwitchFighter()
++ setState(States state):void
++ update():void
++ getParent():Enemy*
++ handleIdle():void
++ handleWander():void
++ handleFollow():void
++ handleOffensive():void
++ handleDefensive():void
++ handleFleeing():void
++ handleDeath():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>200</x>
+      <y>88</y>
+      <w>160</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;interface&gt;&gt;
+IStateSwitch
+--
+ 
+--
++ setState(States state) : void
++ update() : void
++ getParent() : Enemy*</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>32</x>
+      <y>264</y>
+      <w>120</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;enumeration&gt;&gt;
+States
+--
+STATE_IDLE
+STATE_WANDER
+STATE_OFFENSIVE
+STATE_DEATH
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
