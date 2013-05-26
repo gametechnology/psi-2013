@@ -9,12 +9,13 @@ GameScene::GameScene(std::list<Player*> playerList, bool isTestMap) : Scene()
 	this->testMap = isTestMap;
 	_playerList = playerList;
 	Network::GetInstance()->AddListener(CLIENT_SWITCH_STATION, this);
+	Network::GetInstance()->AddListener(PacketType::CLIENT_FIRE_LASER, this);
+	Network::GetInstance()->AddListener(SERVER_LASER, this);
+	Network::GetInstance()->AddListener(SERVER_WINLOSE, this);
 }
 
 void GameScene::onAdd() {
 	SendAndReceivePackets::staticGame = this->game;
-	Network::GetInstance()->AddListener(SERVER_LASER, this);
-	Network::GetInstance()->AddListener(SERVER_WINLOSE, this);
 
 	this->_sendLasersTimer = 0;
 	this->_laserPool = new ObjectPool<Laser>(*this, 100);
@@ -96,6 +97,10 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
 		{
 		}
+	}
+	if(packet.GetType() == CLIENT_FIRE_LASER)
+	{
+		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacketFromClient(packet, this->_laserPool->getAllObjects(), this));
 	}
 }
 

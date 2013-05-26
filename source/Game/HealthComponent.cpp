@@ -11,13 +11,13 @@ HealthComponent::HealthComponent(): Component()
 //increase
 void HealthComponent::increaseHealth(int health)
 {
-	(this->health + health) > maxHealth ? this->health = maxHealth : this->health + health;
+	this->health = (this->health + health) > maxHealth ? maxHealth : this->health + health;
 }
 
 //decrease
 void HealthComponent::decreaseHealth(int health)
 {
-	(this->health - health) < 0 ? this->health = 0 : this->health - health;
+	this->health = (this->health - health) < 0 ? 0 : this->health - health;
 }
 
 //Handle messages

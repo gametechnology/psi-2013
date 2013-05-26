@@ -28,5 +28,4 @@ void BillBoardNode::update(){
 
 BillBoardNode::~BillBoardNode()
 {
-	IrrlichtNode::~IrrlichtNode();
 }

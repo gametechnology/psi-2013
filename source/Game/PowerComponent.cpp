@@ -10,13 +10,13 @@ PowerComponent::PowerComponent(): Component()
 //increase power
 void PowerComponent::increasePower(int power)
 {
-	(this->power + power) > maxPower ? this->power = maxPower : this->power + power;
+	this->power = (this->power + power) > maxPower ? maxPower : this->power + power;
 }
 
 //decrease power
 void PowerComponent::decreasePower(int power)
 {
-	(this->power - power) < 0 ? this->power = 0 : this->power - power;
+	this->power = (this->power - power) < 0 ? 0 : this->power - power;
 }
 
 //handle messages
