@@ -22,7 +22,7 @@ void EnemyDrone::init()
 	Enemy::init();
 
 	EnemyDrone::inRangeList = vector<Entity*>();
-	EnemyDrone::stateSwitch = new StateSwitchDrone(StateSwitch::STATE_WANDER, this);
+	EnemyDrone::stateSwitch = new StateSwitchDrone(StateSwitchDrone::States::STATE_WANDER, this);
 }
 
 void EnemyDrone::onAdd()
@@ -37,7 +37,9 @@ void EnemyDrone::onAdd()
 
 EnemyDrone::~EnemyDrone(void)
 {
-	EnemyDrone::stateSwitch->~StateSwitchDrone();
+	delete this->stateSwitch;
+	
+	Enemy::~Enemy();
 }
 
 void EnemyDrone::chase(vector3df target)
@@ -50,7 +52,13 @@ void EnemyDrone::wander()
 }
 void EnemyDrone::update()
 {
-	EnemyDrone::stateSwitch->updateState();
+	EnemyDrone::stateSwitch->update();
 	EnemyDrone::inRangeList.clear();
 	Enemy::update();
+}
+
+void EnemyDrone::contactResolverA(Entity* input)
+{
+	std::printf("HIT on DRONE! \n");
+	Entity::contactResolverA(input);
 }

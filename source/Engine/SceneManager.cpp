@@ -10,7 +10,6 @@ void SceneManager::init(){
 
 void SceneManager::drawAll() {
 	for(unsigned int i = 0; i < nameScenes.size(); i++) {
-		
 		if (nameScenes[i].scene->enabled)
 			nameScenes[i].scene->getIrrlichtSceneManager()->drawAll();
 	}
@@ -29,8 +28,7 @@ void SceneManager::addScene(char* name,Scene* scene){
 void SceneManager::removeScene(char* name) {
 	if (exists(name)) {
 		for(unsigned int i = 0; i< nameScenes.size(); i++){
-			if (*nameScenes[i].name == *name)
-			{
+			if (*nameScenes[i].name == *name){
 				nameScenes.erase(nameScenes.begin() + i);
 			}
 		} 
@@ -68,19 +66,15 @@ NameScene* SceneManager::getNameScene(char* name){
 				return &nameScenes[i];
 			}
 		} 
-	}else
-	{
+	}else{
 		return NULL;
 	}
 }
 
 //return the NameScene of a scene, so you'll get the name & scene object
-NameScene* SceneManager::getNameScene(Scene* scene)
-{
-	for(unsigned int i = 0; i < nameScenes.size(); i++)
-	{
-		if(nameScenes[i].scene == scene)
-		{
+NameScene* SceneManager::getNameScene(Scene* scene) {
+	for(unsigned int i = 0; i < nameScenes.size(); i++) {
+		if(nameScenes[i].scene == scene) {
 			return &nameScenes[i];
 		}
 	}
@@ -102,31 +96,24 @@ Scene* SceneManager::getScene(char* name){
 
 //Destroys Scene, Deletes the scene properly
 bool SceneManager::destroyScene(char* name){
-	if (exists(name)) {		//exists(name)
+	if (exists(name)) {	
 		for(unsigned int i = 0; i < nameScenes.size(); i++){
 			//Checks for the right scene
 			if (*nameScenes[i].name == *name) {
-				// delete nameScenes[i].name;
-				// nameScenes[i].scene->destroy();
 				if( entity->removeChild(nameScenes[i].scene) ){
-					printf("Deleted correctly the entity\n");
 					nameScenes.erase(nameScenes.begin() + i);
 					return true;
 				}else
 					return false;
-				
-				// delete nameScenes[i].scene;
-				// delete &nameScenes[i];
 			}
-			return false;
 		}
-	}else
 		return false;
+	}else{
+		return false;
+	}
 }
 
 bool SceneManager::exists(char* name){
-	//NameScene namesc = getNameScene(name);
-	//printf("[SceneManager]Size: %i",nameScenes.size());
 	for(unsigned int i = 0; i<nameScenes.size(); i++){
 		if (*nameScenes[i].name == *name)
 			return true;

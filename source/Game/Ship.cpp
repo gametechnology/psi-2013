@@ -1,6 +1,7 @@
 #include "Ship.h"
 #include "Stations/Station.h"
 #include "ShipMover.h"
+#include "SendAndReceivePackets.h"
 
 vector3df startPosition;
 vector3df startRotation;
@@ -258,14 +259,23 @@ void Ship::setInertiaMatrix(float h, float w, float d, float m)
 void Ship::fireLaser()
 {
 	Laser* laser = this->laserPool->GetFreeObject();
-	if(&laser != NULL)
+	if(laser != NULL)
 	{
 		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
 		std::cout << "weapon fired" << std::endl;
+
+		if(!Network::GetInstance()->IsServer()){
+			NetworkPacket firepacket = NetworkPacket(PacketType::CLIENT_FIRE_LASER);
+			firepacket << *laser;
+			Network::GetInstance()->SendPacket(firepacket, true);
+
+		}
 	}
 }
+
 void Ship::HandleNetworkMessage(NetworkPacket packet)
 {
+		
 	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
 	{
 		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
@@ -288,7 +298,7 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 			*transform->velocity = velocity;
 			
 		//Apply updates 
-		if(_currentStation->GetStationType() == ST_WEAPON){
+		if(_currentStation != NULL && _currentStation->GetStationType() == ST_WEAPON){
 			((WeaponStation*)_currentStation)->rotationForeign = rotation;
 		}
 		else{

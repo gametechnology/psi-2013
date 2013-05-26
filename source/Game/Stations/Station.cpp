@@ -55,6 +55,7 @@ void Station :: init()
 
 	this->hud = new HudComposite(&(_healthComponent->health), &(_powerComponent->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
 	this->addChild(hud);
+
 }
 
 Station :: ~Station(void)

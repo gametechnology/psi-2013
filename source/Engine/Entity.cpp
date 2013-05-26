@@ -163,14 +163,14 @@ bool Entity::removeChild(Entity* child, bool deleteChild) {
 				if(children.size()>0) {
 					// Deleting the Entitys of this Child
 					int childIndex = child->children.size()-1;
-					while(childIndex > 0){
+					while(childIndex > -1){
 						child->removeChild( child->children[childIndex],true );
 						childIndex = child->children.size()-1;
 					}
 
 					// Deleting the Components of this Child
 					int componentIndex = child->components.size()-1;
-					while(componentIndex > 0){
+					while(componentIndex > -1){
 						child->removeComponent( child->components[componentIndex] );
 						componentIndex = child->components.size()-1;
 					}
@@ -186,6 +186,18 @@ bool Entity::removeChild(Entity* child, bool deleteChild) {
 	}
 
 	return false;
+}
+
+void Entity::destroy()
+{
+	//removes the object from the scene as well as all it's children
+	destroyed = true;
+	this->disable();
+	for (int i = 0; i < this->children.size(); i++)
+	{
+		this->children[i]->update();
+	}
+	this->parent->removeChild(this,true);
 }
 
 void Entity::contactResolverA(Entity* _input)

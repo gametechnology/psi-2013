@@ -10,13 +10,13 @@ ShieldComponent::ShieldComponent(): Component()
 //increase
 void ShieldComponent::increaseShield(int shield)
 {
-	(this->shield + shield) > maxShield ? this->shield = maxShield : this->shield + shield;
+	this->shield = (this->shield + shield) > maxShield ? maxShield : this->shield + shield;
 }
 
 //decrease
 void ShieldComponent::decreaseShield(int shield)
 {
-	(this->shield - shield) < 0 ? this->shield = 0 : this->shield - shield;
+	this->shield = (this->shield - shield) < 0 ? 0 : this->shield - shield;
 }
 
 //Handle messages

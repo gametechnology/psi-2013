@@ -40,6 +40,7 @@ public:
 		for(int i = 0; i < _objectCount; i++)
 		{
 			_objectList.push_back(new T());
+			_objectList.back()->disable();
 			parent.addChild(_objectList.back());
 		}
 

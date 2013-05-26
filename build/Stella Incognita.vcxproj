@@ -99,6 +99,8 @@
     <ClCompile Include="..\source\Game\BasicMoverComponent.cpp" />
     <ClCompile Include="..\source\Game\BasicShipMover.cpp" />
     <ClCompile Include="..\source\Game\CalculateRotation.cpp" />
+    <ClCompile Include="..\source\Game\CollisionTestScene.cpp" />
+    <ClCompile Include="..\source\Game\DummyShip.cpp" />
     <ClCompile Include="..\source\Game\EmptyTestScene.cpp" />
     <ClCompile Include="..\source\Game\EndScene.cpp" />
     <ClCompile Include="..\source\Game\EndSceneEventReceiver.cpp" />
@@ -150,7 +152,8 @@
     <ClInclude Include="..\source\Game\BasicMoverComponent.h" />
     <ClInclude Include="..\source\Game\BasicShipMover.h" />
     <ClInclude Include="..\source\Game\CalculateRotation.h" />
-    <ClInclude Include="..\source\Game\Collision.h" />
+    <ClInclude Include="..\source\Game\CollisionTestScene.h" />
+    <ClInclude Include="..\source\Game\DummyShip.h" />
     <ClInclude Include="..\source\Game\EmptyTestScene.h" />
     <ClInclude Include="..\source\Game\EndScene.h" />
     <ClInclude Include="..\source\Game\EndSceneEventReceiver.h" />
@@ -167,6 +170,7 @@
     <ClInclude Include="..\source\Game\HealthComponent.h" />
     <ClInclude Include="..\source\Game\HudComposite.h" />
     <ClInclude Include="..\source\Game\HudHelpText.h" />
+    <ClInclude Include="..\source\Game\IStateSwitch.h" />
     <ClInclude Include="..\source\Game\ObjectPool.h" />
     <ClInclude Include="..\source\Game\SendAndReceivePackets.h" />
     <ClInclude Include="..\source\Game\PowerComponent.h" />
@@ -215,7 +219,6 @@
     <ClCompile Include="..\source\Game\SectorTemplate.cpp" />
     <ClCompile Include="..\source\Game\Ship.cpp" />
     <ClCompile Include="..\source\Game\Skybox.cpp" />
-    <ClCompile Include="..\source\Game\StateSwitch.cpp" />
     <ClCompile Include="..\source\Game\StateSwitchDrone.cpp" />
     <ClCompile Include="..\source\Game\StateSwitchFighter.cpp" />
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp" />

@@ -1,14 +1,14 @@
 #include "Laser.h"
 #include "Engine\IrrlichtNode.h"
-#include "NetworkInterface.h"
+#include "EnemyDrone.h"
 
 int Laser::newLaserId = 0;
 
-Laser::Laser() : Entity()
-{
+Laser::Laser() : Enemy()
+{	
 	this->_currentLife = 0;
 	this->_timeofLife = 250;
-	this->_damage = 1;
+	this->_damage = 10;
 	this->disable();
 	this->scene = NULL;
 	this->_hasAnIrrlichtNode = false;
@@ -24,7 +24,14 @@ void Laser::onAdd() {
 
 		this->_hasAnIrrlichtNode = true;
 		this->init();
+
+		for(unsigned i = 0; i < this->children.size(); i++)
+		{
+			this->children[i]->update();
+		}
 	}
+	Collision *coll = new Collision();
+	this->addComponent(coll);
 	Entity::onAdd();
 }
 
@@ -44,12 +51,19 @@ void Laser::fire(Transform* transform, vector3df target, f32 speed)
 
 	*this->transform->position = *transform->position;
 	*this->transform->rotation = *transform->rotation;
-	*this->transform->rotation += 90;
 	
 	this->_direction = target - *this->transform->position;
 	this->_direction.normalize();
+	this->transform->position->dotProduct(this->_direction);
+	this->transform->position->operator+=(this->_direction);
+	this->transform->position->operator+=(this->_direction);
+	this->transform->position->operator+=(this->_direction);
+	this->transform->position->operator+=(this->_direction);
+	*this->transform->rotation = this->_direction;
 
-	*this->transform->velocity = _direction * speed;
+	//*this->transform->rotation += 90;
+
+	*this->transform->velocity = this->_direction * speed;
 }
 
 int Laser::getId()
@@ -81,18 +95,25 @@ void Laser::update()
 	Entity::update();
 }
 
-void Laser::contactResolverA(Enemy* input)
+void Laser::contactResolverA(Entity* input)
 {
-	input->setHealth(input->getHealth() - this->_damage);
-	std::printf("HIT on Enemy!");
+	Enemy* tempEnemy = dynamic_cast<Enemy*>(input);
+	tempEnemy->setHealth(tempEnemy->getHealth() - this->_damage);
+	std::printf("HIT on Enemy! \n");
 	this->disable();
-//	delete(this); //'kill' this projectile
+	for(unsigned i = 0; i < this->children.size(); i++)
+	{
+		this->children[i]->update();
+	}
 }
 
 void Laser::contactResolverA(DefenceStation* input)
 {
 	input->Damage();
-	std::printf("HIT on Defence station!");
+	std::printf("HIT on Defence station! \n");
 	this->disable();
-//	delete(this); //'kill' this projectile
+	for(unsigned i = 0; i < this->children.size(); i++)
+	{
+		this->children[i]->update();
+	}
 }

@@ -23,9 +23,9 @@ void Collision::NarrowPhaseDetection(vector<Entity*> _input)
 {
 	for(int i = 0; i < (int)(_input.size()); i++)
 	{
-		for(int j = i; j < (int)(_input.size()); j++)
+		for(int j = 0; j < (int)(_input.size()); j++)
 		{
-			if(i != j && (_input[i]->enabled && _input[j]->enabled))
+			if(i != j && (_input[i]->enabled && _input[j]->enabled) && (!_input[i]->destroyed && !_input[j]->destroyed))
 			{
 				float distance = _input[i]->transform->position->getDistanceFrom(irr::core::vector3df(_input[j]->transform->position->X,_input[j]->transform->position->Y,_input[j]->transform->position->Z));
 				if (distance < (_input[i]->transform->radii->Z + _input[j]->transform->radii->Z))

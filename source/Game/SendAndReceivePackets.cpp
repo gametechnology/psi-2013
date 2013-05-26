@@ -1,4 +1,5 @@
 #include "SendAndReceivePackets.h"
+#include "Engine\IrrlichtNode.h"
 
 
 Game* SendAndReceivePackets::staticGame;
@@ -140,6 +141,42 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& pac
 	return laserList;
 }
 
+std::vector<Laser*> SendAndReceivePackets::receiveLaserPacketFromClient(NetworkPacket& packet, std::vector<Laser*> laserList, Scene* scene)
+{
+	Laser clientLaser;
+	packet >> clientLaser;
+	for(unsigned j = 0; j < laserList.size(); j++)
+	{
+		if(clientLaser.getId() == laserList[j]->getId())
+		{
+			if(laserList[j]->scene != scene)
+			{
+				laserList[j]->scene->removeChild(laserList[j], false);
+				scene->addChild(laserList[j]);
+			}
+
+			if(clientLaser.enabled)
+			{
+				laserList[j]->enable();
+			}else
+			{
+				laserList[j]->disable();
+				for(unsigned k = 0; k < laserList[j]->children.size(); k++)
+				{
+					laserList[j]->children[k]->update();
+				}
+			}
+
+			*laserList[j]->transform->position = *clientLaser.transform->position;
+			*laserList[j]->transform->velocity = *clientLaser.transform->velocity;
+			*laserList[j]->transform->rotation = *clientLaser.transform->rotation;
+
+		}
+	}
+
+	return laserList;
+}
+
 void SendAndReceivePackets::sendWinLosePacket(int LosingteamId)
 {
 	NetworkPacket packet(SERVER_WINLOSE);
@@ -243,6 +280,13 @@ sf::Packet& operator >>(sf::Packet& in, Laser& out)
 	}else
 	{
 		out.disable();
+		for(unsigned int i = 0; i < out.children.size(); i++)
+		{
+			if(dynamic_cast<IrrlichtNode*>(out.children[i]) != NULL)
+			{
+				out.children[i]->update();
+			}
+		}
 	}
 	*out.transform->position = position;
 	*out.transform->velocity = velocity;
@@ -254,7 +298,7 @@ sf::Packet& operator >>(sf::Packet& in, Laser& out)
 sf::Packet& operator <<(sf::Packet& out, std::vector<Laser*>& in)
 {
 	out << in.size();
-	for(int i = 0; i < in.size(); i++)
+	for(unsigned int i = 0; i < in.size(); i++)
 	{
 		out << *in[i];
 	}

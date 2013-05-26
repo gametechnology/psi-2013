@@ -7,7 +7,6 @@ WormHole::WormHole( unsigned int id ) : BillBoardNode("../assets/Textures/Wormho
 }
 
 void WormHole::init() {
-	//BillBoardNode::createNode( );
 	BillBoardNode::init();
 }
 
@@ -16,5 +15,4 @@ void WormHole::handleMessage(unsigned int message, void* data) {
 }
 
 WormHole::~WormHole() {
-	BillBoardNode::~BillBoardNode();
 }

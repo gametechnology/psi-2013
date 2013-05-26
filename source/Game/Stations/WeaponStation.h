@@ -3,13 +3,14 @@
 
 class WeaponStation : public Station {
 public:
+	irr::core::vector3df rotationForeign;
+
 	WeaponStation(Ship *ship);
 	~WeaponStation();
 
 	void onAdd();
 	void init();
-	irr::core::vector3df rotationForeign;
-	
+
 	void update();
 	void draw();
 
@@ -20,8 +21,6 @@ public:
 	void OnDisabled(){};
 	void DoCameraShake(){};
 private:
-	
 	irr::video::ITexture *_stationTexture;
 	irr::core::vector3df rotationOwn;
-	
 };
