@@ -280,7 +280,7 @@ sf::Packet& operator >>(sf::Packet& in, Laser& out)
 	}else
 	{
 		out.disable();
-		for(int i = 0; i < out.children.size(); i++)
+		for(unsigned int i = 0; i < out.children.size(); i++)
 		{
 			if(dynamic_cast<IrrlichtNode*>(out.children[i]) != NULL)
 			{
@@ -298,7 +298,7 @@ sf::Packet& operator >>(sf::Packet& in, Laser& out)
 sf::Packet& operator <<(sf::Packet& out, std::vector<Laser*>& in)
 {
 	out << in.size();
-	for(int i = 0; i < in.size(); i++)
+	for(unsigned int i = 0; i < in.size(); i++)
 	{
 		out << *in[i];
 	}
