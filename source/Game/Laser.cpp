@@ -102,24 +102,11 @@ void Laser::contactResolverA(Entity* input)
 {
 	Enemy* tempEnemy = dynamic_cast<Enemy*>(input);
 	tempEnemy->setHealth(tempEnemy->getHealth() - this->_damage);
-	/*
-	 if(dynamic_cast<EnemyAsteroid*>(input) != NULL)
-	 {
-	  std::printf("HIT on Asteroid! \n");
-	 }
-	  if(dynamic_cast<EnemyFighter*>(input) != NULL)
-	 {
-	  std::printf("HIT on Fighter! \n");
-	 }
-	   if(dynamic_cast<EnemyDrone*>(input) != NULL)
-	 {
-	  std::printf("HIT on Drone! \n");
 	 }
 	   if(dynamic_cast<DummyShip*>(input) != NULL)
 	 {
 	  std::printf("HIT on ship! \n");
 	 }*/
-	//input->setHealth(input->getHealth() - this->_damage);
 	std::printf("HIT on Enemy! \n");
 	this->disable();
 	for(unsigned i = 0; i < this->children.size(); i++)
@@ -127,7 +114,6 @@ void Laser::contactResolverA(Entity* input)
 		this->children[i]->update();
 	}	
 	input->contactResolverA(this); //call the contactresolver from the other item as well
-//	delete(this); //'kill' this projectile
 }
 
 void Laser::contactResolverA(DefenceStation* input)
@@ -139,5 +125,4 @@ void Laser::contactResolverA(DefenceStation* input)
 	{
 		this->children[i]->update();
 	}
-//	delete(this); //'kill' this projectile
 }

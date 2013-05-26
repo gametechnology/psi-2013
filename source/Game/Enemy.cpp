@@ -63,14 +63,12 @@ void Enemy::pathFinding()
 
 void Enemy::update()
 {
-	//std::cout << "Health of Enemy: " << this->getHealth() << "on positionX " << this->position.X << ", positionY " << this->position.Y << ", positionZ " << this->position.Z << "\n" ;
 	applySpeed();
 	Entity::update();
 	if (0 > this->getHealth())
 	{
 		this->destroy();
 	}
-	//updateHealth();
 }
 
 void Enemy::updateHealth()
@@ -205,48 +203,6 @@ void Enemy::steering(irr::core::vector3df rotational, irr::core::vector3df playe
 		this->transform->rotation->Y = RADTODEG * acos(diffPos.X);
 }
 
-	    /*float magnitude = sqrt(pow(velocity.X,2) + pow(velocity.Y,2) + pow(velocity.Z,2));
-
-		magnitude = sqrt(pow(originalvelocity_.X,2) + pow(originalvelocity_.Y,2) + pow(originalvelocity_.Z,2));
-		vector3df normalizeoriginal = vector3df((originalvelocity_.X/magnitude),(originalvelocity_.Y/magnitude),(originalvelocity_.Z/magnitude));
-	
-		if(normalizeoriginal == normalizedvelocity)
-		{
-			this->setOriginalVelocity(*this->transform->velocity);
-			return;
-		}
-
-		if(rotational.X < 0)
-		{
-			rotational.X *= -1;
-			this->transform->rotation->X -= rotational.X/60;
-		}
-		else
-		{
-			this->transform->rotation->X += rotational.X/60;
-		}	
-
-		if(rotational.Y < 0)
-		{
-				rotational.Y *= -1;
-				this->transform->rotation->Y -= rotational.Y/60;
-		}
-		else
-		{
-			this->transform->rotation->Y += rotational.Y/60;
-		}
-		
-		if(rotational.Z < 0)
-		{
-			rotational.Z *= -1;
-			this->transform->rotation->Z -= rotational.Z/60;
-		}
-		else
-		{
-			this->transform->rotation->Z += rotational.Z/60;
-		}
-}
-*/
 void Enemy::contactResolverA(Enemy* _input)
 {
     double deltamass = (this->getRadius() / _input->getRadius());
@@ -261,34 +217,8 @@ void Enemy::contactResolverA(Enemy* _input)
 	_input->setRadius(this->getRadius());
 }
 
-/*void Enemy::contactResolverB()
-{
-	*this->transform->velocity *= -1;
-}
-
-void Enemy::contactGenerator(Player* input)
-{
-	float distance = position.getDistanceFrom(input->position);
-	float radii = input->radius_ + radius_;
-	if (distance < radii)
-	{
-		contactResolverB();
-	}
-}*/
-
-/*void Enemy::contactGenerator(Enemy* input)
-{
-	float distance = transform->position->getDistanceFrom(input->getPosition());
-	int radii = (int)(input->getRadius() + radius_);
-	if (distance < radii)
-	{
-		contactResolverB();
-	}
-}*/
-
 void Enemy::setVisualWithPath(const irr::io::path& path)
 {
-	//this->createNode(path);
 	this->addChild(new IrrlichtNode(path));
 }
 
@@ -483,7 +413,6 @@ void Enemy::wander()
 	int velY = rand()%20-10;
 	int velZ = rand()%20-10;
 
-	//std::cout << this->_wanderTime << std::endl;
 	if(this->_wanderTime >= 1000)
 	{
 		this->transform->velocity->X +=velX * 0.1f;
