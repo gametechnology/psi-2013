@@ -1,10 +1,9 @@
-#ifndef TRANSFORMCOMPONENT
-#define TRANSFORMCOMPONENT
+#ifndef PSI_TRANSFORM_COMPONENT
+#define PSI_TRANSFORM_COMPONENT
 
-#include "Irrlicht\irrlicht.h"
 #include "Engine\Component.h"
 
-class Transform : public Component {
+class TransformComponent : public Component {
 public:
 	irr::core::vector3df* position;
 	irr::core::vector3df* rotation;
@@ -17,10 +16,10 @@ public:
 	float mass;
 	irr::core::vector3df force;
 
-	Transform();
+	TransformComponent();
 	virtual void init();
 	virtual void update();
-	virtual ~Transform();
+	virtual ~TransformComponent();
 };
 
 #endif

@@ -1,34 +1,51 @@
+#ifndef PSI_COMPOSITE
+#define PSI_COMPOSITE
 
-#ifndef COMPOSITE
-#define COMPOSITE
-#pragma once
+#include "Component.h"
+#include <list>
 
-#include <string>
-#include <vector>
-
-using namespace std;
-
-class Composite {
+class Composite : public Component 
+{
 public:
-	Composite();
-	virtual ~Composite() = 0;
-	
-	bool initialized;
-	bool destroyed;
-	bool enabled;
-	
-	virtual void onAdd();
-	virtual void init();
+	virtual ~Composite()
+	{
+		for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
+		{
+			delete *i;
+		}
+	}
 
-	virtual void update();
-	virtual void lateUpdate();
-	virtual void draw();
+	virtual void update()
+	{
+		for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
+		{
+			(*i)->update();
+		}
+	}
 
-	virtual void handleMessage(unsigned int message)=0;
+	virtual void handleMessage(unsigned int message, void* data)
+	{
+		std::list<Component*>::iterator i;
+		for (i = components.begin(); i != components.end(); ++i)
+		{
+			(*i)->handleMessage(message, data);
+		}
+		delete *i;
+	}
 
-	virtual void disable();
-	virtual void enable();
-	virtual void destroy();
+	virtual void addComponent(Component* component) 
+	{
+		components.push_back(component);
+	}
+
+	virtual void removeComponent(Component* component)
+	{
+		components.remove(component);
+	}
+protected:
+	std::list<Component*> components;
+
+	Composite(const char* name) : Component(name) { };
 };
 
 #endif

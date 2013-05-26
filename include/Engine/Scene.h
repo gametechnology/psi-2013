@@ -1,28 +1,20 @@
-#ifndef SCENE
-#define SCENE
+#ifndef PSI_SCENE
+#define PSI_SCENE
 
-#include "Entity.h"
-#include "Irrlicht\irrlicht.h"
+#include "Composite.h"
 
-class Scene : public Entity {
+class Scene : public Composite
+{
 public:
-	Scene();
-	virtual ~Scene();
+	virtual void update() = 0;
+	virtual void init() = 0;
+	virtual void requestNextScene() = 0;
+	virtual void notify(void* data) = 0;
 
-	void onAdd();
-
-	virtual void addGuiElements();
-
-	irr::scene::ISceneManager* getIrrlichtSceneManager();
-
-	enum State {
-		LOADING,
-		PLAYING,
-		PAUSED,
-		EXITING
-	};
-
-	State state;
+	virtual void addComponent(Component*);
+	virtual void removeComponent(Component*);
+protected:
+	Scene(const char*);
 };
 
 #endif

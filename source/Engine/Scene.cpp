@@ -1,24 +1,24 @@
 #include <Engine\Scene.h>
-#include <Engine\Game.h>
 
-Scene::Scene() : Entity() {
-	// Set the state
-	state = LOADING;
-}
-
-void Scene::onAdd() {
-	Entity::onAdd();
-}
-
-void Scene::addGuiElements()
+Scene::Scene(const char* name) : Composite(name)
 {
-
+	/*
+	* This doesn't do jack on its own.
+	* That's why you have to extend it for your own scenes!
+	*/
 }
 
-irr::scene::ISceneManager* Scene::getIrrlichtSceneManager() {
-	return game->device->getSceneManager();
+void Scene::update()
+{
+	Composite::update();
 }
 
-Scene::~Scene() {
-	Entity::~Entity();
+void Scene::addComponent(Component* component)
+{
+	Composite::addComponent(component);
+}
+
+void Scene::removeComponent(Component* component)
+{
+	Composite::removeComponent(component);
 }

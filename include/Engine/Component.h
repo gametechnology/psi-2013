@@ -1,32 +1,21 @@
-#ifndef COMPONENT
-#define COMPONENT
-#pragma once
+#ifndef PSI_COMPONENT
+#define PSI_COMPONENT
 
-#include "Composite.h"
+#include <Irrlicht/irrlicht.h>
 
-class Entity;
-class Scene;
-class Game;
-
-class Component : public Composite {
+class Component {
 public:
-	Component();
-	virtual ~Component();
+	virtual ~Component() { };
 
-	Entity* entity;
+	const char* getName() { return _name; }
 
-	Game* getGame();
-	Scene* getScene();
-
-	virtual void onAdd();
 	virtual void init();
 	virtual void update();
-	virtual void draw();
-
-	virtual void onEnabled();
-	virtual void onDisabled();
-
-	virtual void handleMessage(unsigned int message);
+	virtual void handleMessage(unsigned int, void* data = 0) { };
+protected:
+	Component(const char*) { };
+private:
+	const char* _name;
 };
 
 
