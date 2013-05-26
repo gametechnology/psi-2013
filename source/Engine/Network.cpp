@@ -255,13 +255,15 @@ void Network::DistributePacket(NetworkPacket networkPacket)
 		bool sendall;
 		networkPacket >> sendall;
 		if(IsServer() && sendall){
-			sf::Packet tempPacket = networkPacket;
-			networkPacket.clear();
-			networkPacket << true;
-			networkPacket << networkPacket.GetSender().address.host;
-			networkPacket.append(tempPacket.getData(), tempPacket.getDataSize());
-			ENetPacket* enetPacket = enet_packet_create(networkPacket.GetBytes(), networkPacket.GetSize(), true);
+		
+			NetworkPacket sendpack = networkPacket;
+			sendpack.clear();
+			sendpack << true;
+			sendpack << networkPacket.GetSender().address.host;
+			sendpack.append(networkPacket.getData(), networkPacket.getDataSize());
+			ENetPacket* enetPacket = enet_packet_create(sendpack.GetBytes(), sendpack.GetSize(), true);
 				enet_host_broadcast(_host, 0, enetPacket);
+			
 		}
 		if(!IsServer() && sendall)
 		{
