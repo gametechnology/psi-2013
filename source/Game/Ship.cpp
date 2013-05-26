@@ -1,6 +1,7 @@
 #include "Ship.h"
 #include "Stations/Station.h"
 #include "ShipMover.h"
+#include "SendAndReceivePackets.h"
 
 vector3df startPosition;
 vector3df startRotation;
@@ -12,7 +13,6 @@ Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 	this->transform->position = &position;
 	this->transform->rotation = &rotation;
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
-	Network::GetInstance()->AddListener(PacketType::CLIENT_FIRE_LASER, this);
 }
 
 Ship::~Ship(void)
@@ -266,7 +266,7 @@ void Ship::fireLaser()
 
 		if(!Network::GetInstance()->IsServer()){
 			NetworkPacket firepacket = NetworkPacket(PacketType::CLIENT_FIRE_LASER);
-			firepacket << laser;
+			firepacket << *laser;
 			Network::GetInstance()->SendPacket(firepacket, true);
 
 		}
