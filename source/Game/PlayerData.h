@@ -15,12 +15,21 @@ public:
 		static int		uniqueId;
 		int				id;			//only sync this
         int				team_id;
-		ENetPeer		*peer;
+		ENetPeer		peer;
         const wchar_t	*name;
 		StationType		stationType;
 
 		PlayerData( ) { };
-		PlayerData( const wchar_t *name, int team_id, ENetPeer *peer = NULL ) 
+		PlayerData( const wchar_t *name, int team_id, ENetPeer peer ) 
+		{
+			uniqueId	= 0;
+			this ->	id				= uniqueId++;
+			this -> name			= name;
+			this -> team_id			= team_id;
+			this -> stationType		= StationType :: ST_NONE;
+		}
+
+		PlayerData( const wchar_t *name, int team_id ) 
 		{
 			uniqueId	= 0;
 			this ->	id				= uniqueId++;

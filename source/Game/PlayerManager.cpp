@@ -82,7 +82,7 @@ void PlayerManager :: OnClientJoinRequestReceived( const wchar_t *player_name, i
 	//if this is not the server, we do nothing. This is not a message for us.
 	if ( !this -> _isServer )	return;
 	//create a new PlayerData.
-	PlayerData *p = new PlayerData( player_name, team_id, &peer );
+	PlayerData *p = new PlayerData( player_name, team_id, peer );
 	//and add it to our list of playerData's
 	this -> _serverPlayerData -> insert( p -> id, p );
 
@@ -91,7 +91,7 @@ void PlayerManager :: OnClientJoinRequestReceived( const wchar_t *player_name, i
 	packet << p -> id;
 
 	//and we send the packet back to the client (and only to that client, the rest of the clients do not need to know abot ths message)
-	//Network :: GetInstance( ) -> SendServerPacket( packet, &peer, true );
+	//Network :: GetInstance( ) -> SendServerPacket( packet, peer, true );
 	Network :: GetInstance( ) -> SendPacket( packet, true );
 	//TODO: sort of error handling when things go wrong and send a CLIENT_REQUEST_DENIED packet	
 }
