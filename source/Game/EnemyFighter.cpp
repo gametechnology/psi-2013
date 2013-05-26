@@ -80,9 +80,9 @@ void EnemyFighter::update()
 
 EnemyFighter::~EnemyFighter(void)
 {
-	//delete EnemyFighter::stateSwitch;
+	delete stateSwitch;
 
-	Entity::~Entity();
+	Enemy::~Enemy();
 }
 
 void EnemyFighter::fireLaserAt(vector3df target)
