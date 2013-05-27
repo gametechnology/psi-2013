@@ -46,20 +46,20 @@
     <Filter Include="Source Files\Network">
       <UniqueIdentifier>{63a6de1d-d9a3-4e10-9e54-099d1063a166}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Interface">
+      <UniqueIdentifier>{053d6d5b-4bd8-4f48-a532-2ad978e83404}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Interface">
+      <UniqueIdentifier>{f54bec1a-434d-430d-8690-3b4d6741365d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{87ffe026-ece7-4fe9-86b4-ec6186e4af20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Input">
+      <UniqueIdentifier>{f549b9b9-f148-4635-af9a-3c54b7458bc5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Engine\Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Engine\Network.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Engine\InputManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\Engine\SceneManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\include\Engine\Component.h">
       <Filter>Header Files\Component\Base</Filter>
     </ClInclude>
@@ -96,20 +96,20 @@
     <ClInclude Include="..\..\include\Engine\PrimitiveComponent.h">
       <Filter>Header Files\Component</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\Engine\Core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Engine\Interface.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Engine\InputManager.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\Engine\Network.h">
+      <Filter>Header Files\Network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\source\Engine\Game.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Engine\SceneManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Engine\InputManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Engine\Network.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="BillboardComponent.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
@@ -117,9 +117,6 @@
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Engine\CameraComponent.cpp">
-      <Filter>Source Files\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\source\Engine\CollisionComponent.cpp">
       <Filter>Source Files\Component</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Engine\CollisionSystem.cpp">
@@ -136,6 +133,18 @@
     </ClCompile>
     <ClCompile Include="..\..\source\Engine\NetworkPacket.cpp">
       <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Engine\Network.cpp">
+      <Filter>Source Files\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Engine\Core.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Engine\Interface.cpp">
+      <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\source\Engine\InputManager.cpp">
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
     <ClCompile Include="..\..\source\Engine\Network.cpp">
       <Filter>Source Files\Network</Filter>

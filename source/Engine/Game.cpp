@@ -1,5 +1,4 @@
 #include "Engine\Game.h"
-#include "Engine\Hierarchy.h"
 #include "../source/Game/NetworkInterface.h"
 
 #pragma comment(lib, "Irrlicht.lib")

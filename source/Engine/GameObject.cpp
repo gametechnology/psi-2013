@@ -29,7 +29,7 @@ void GameObject::update()
 	*_angularVelocity += *_angularAcceleration;
 	*_rotation += *_angularVelocity;
 
-	*_acceleration = (1 / this->mass).operator*(this->_force);
+	*_acceleration = (1 / this->mass)**(this->_force);
 	*_velocity += *_acceleration;
 	*_position += *_velocity;
 
@@ -52,7 +52,7 @@ void GameObject::contactResolver(GameObject* otherObject)
 
 	otherObject->setVelocity(&(balMassComponent + *otherObject->getVelocity()));
 	_radius->X = (_radius->X*2 - _position->getDistanceFrom(*otherObject->getPosition()));
-	otherObject->getRadius->X = (_radius->X);
+	otherObject->getRadius()->X = (_radius->X);
 }
 
 irr::core::vector3df GameObject::componentOnto(irr::core::vector3df input, irr::core::vector3df deltavelocity)

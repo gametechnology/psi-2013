@@ -93,8 +93,9 @@
     <ClInclude Include="..\..\include\Engine\CollisionSystem.h" />
     <ClInclude Include="..\..\include\Engine\Component.h" />
     <ClInclude Include="..\..\include\Engine\Composite.h" />
+    <ClInclude Include="..\..\include\Engine\Core.h" />
+    <ClInclude Include="..\..\include\Engine\Interface.h" />
     <ClInclude Include="..\..\include\Engine\PrimitiveComponent.h" />
-    <ClInclude Include="..\..\include\Engine\Game.h" />
     <ClInclude Include="..\..\include\Engine\GameObject.h" />
     <ClInclude Include="..\..\include\Engine\INetworkListener.h" />
     <ClInclude Include="..\..\include\Engine\InputManager.h" />
@@ -102,21 +103,19 @@
     <ClInclude Include="..\..\include\Engine\Network.h" />
     <ClInclude Include="..\..\include\Engine\NetworkPacket.h" />
     <ClInclude Include="..\..\include\Engine\Scene.h" />
-    <ClInclude Include="..\..\include\Engine\SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\source\Engine\CameraComponent.cpp" />
-    <ClCompile Include="..\..\source\Engine\CollisionComponent.cpp" />
     <ClCompile Include="..\..\source\Engine\CollisionSystem.cpp" />
+    <ClCompile Include="..\..\source\Engine\Core.cpp" />
+    <ClCompile Include="..\..\source\Engine\Interface.cpp" />
     <ClCompile Include="..\..\source\Engine\PrimitiveComponent.cpp" />
-    <ClCompile Include="..\..\source\Engine\Game.cpp" />
     <ClCompile Include="..\..\source\Engine\GameObject.cpp" />
     <ClCompile Include="..\..\source\Engine\InputManager.cpp" />
     <ClCompile Include="..\..\source\Engine\MeshComponent.cpp" />
     <ClCompile Include="..\..\source\Engine\Network.cpp" />
     <ClCompile Include="..\..\source\Engine\NetworkPacket.cpp" />
     <ClCompile Include="..\..\source\Engine\Scene.cpp" />
-    <ClCompile Include="..\..\source\Engine\SceneManager.cpp" />
     <ClCompile Include="BillboardComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
