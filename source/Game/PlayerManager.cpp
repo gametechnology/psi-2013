@@ -1,9 +1,10 @@
 #include "PlayerManager.h"
 #include "Stations\Station.h"
+#include "Player.h"
 
-int PlayerData :: uniqueId		= 0;
+int PlayerData :: uniqueId		= 1;
 PlayerManager* PlayerManager::_instance = 0;
-wstring localName;
+char *localName;
 
 PlayerManager :: PlayerManager( ) : INetworkListener( )
 {
@@ -71,23 +72,24 @@ void PlayerManager :: UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_
 /**
 * only when a player joins the already existing game, we will be inside this function.
 */
-void PlayerManager :: RequestJoinServer( const wchar_t *player_name, int team_id )
+void PlayerManager :: RequestJoinServer( char *player_name, int team_id )
 {
-	cout << "I would like to join this game.\n";
+	cout << "I would like to join this game. My name is: " <<player_name <<"\n";
 	//here, we received a message from a player that they want to join our game and they have sent some information regarding their data.
-	localName = player_name;
+	//localName = player_name;
+	
 	this ->	_localPlayerData = new PlayerData( player_name, team_id );
 	
 	//create a new packet that we are going to send to the server.
 	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_JOIN_SERVER );	
-	packet << ( wstring ) player_name << team_id;
+	packet << player_name << team_id;
 	Network :: GetInstance( ) -> SendPacket( packet, true );
 }
 
 /**
 *here, the server receives a request from a client.
 */
-void PlayerManager :: OnClientJoinRequestReceived( const wchar_t *player_name, int team_id, ENetPeer peer )
+void PlayerManager :: OnClientJoinRequestReceived( char *player_name, int team_id, ENetPeer peer )
 {
 	cout << "I received a message from player " << player_name << " that he would like to join.\n";
 	//if this is not the server, we do nothing. This is not a message for us.
@@ -111,7 +113,7 @@ void PlayerManager :: OnClientJoinRequestReceived( const wchar_t *player_name, i
 */
 void PlayerManager :: OnJoinAcceptedReceived( int player_id )
 {
-	cout << "Yay! I now am in the game. this is my id: " << player_id;
+	cout << "Yay! I now am in the game. this is my id: " << player_id << endl;
 	//if this machine is flagged as server, we do nothing.
 	//otherwise, we are going to set the player id in our local playerData.
 	this ->	_localPlayerData -> id = player_id;
@@ -165,9 +167,8 @@ void PlayerManager:: SendPlayerInfoRequest()
 //handles all incoming messages of type Update player, remove player and add player
 void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 {
-	cout << "kankah!";
 	int			player_id;
-	wstring		player_name;
+	char		*player_name;
 	wstring		allPlayersMessage;
 	int			player_team_id = -1;
 	int			player_station_type;
@@ -177,38 +178,35 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 
 	
 
-		//first, we get the player_id	
-		switch ( packet.GetType( ) )
-		{
-		case PacketType :: CLIENT_REQUEST_JOIN_SERVER:
+	//first, we get the player_id	
+	switch ( packet.GetType( ) )
+	{
+	case PacketType :: CLIENT_REQUEST_JOIN_SERVER:
 
-			packet >> player_name >> player_team_id;
+		packet >> player_name >> player_team_id;
 
-			//we need to know the peer of the player. We reconstruct it using it's host and port numbers.
-			this -> OnClientJoinRequestReceived( player_name.c_str( ), player_team_id, packet.GetSender( ) );
-			break;
+		//we need to know the peer of the player. We reconstruct it using it's host and port numbers.
+		this -> OnClientJoinRequestReceived( player_name, player_team_id, packet.GetSender( ) );
+		break;
 
-		case PacketType :: SERVER_REQUEST_ACCEPTED:
-			packet >> player_name;
-			if ( localName != player_name){
-			packet >> player_id;
-			this -> OnJoinAcceptedReceived( player_id );
-			}
-			break;
-
-		case PacketType :: SERVER_REQUEST_DENIED:
-
-			this -> OnJoinDeniedReceived( );
-			break;
-
-		case PacketType :: CLIENT_UPDATE_LOBBY_STATUS:
-
-			packet >> player_id >> update >> player_team_id;
-			this -> OnClientStatusUpdateReceived( player_id, ( CLIENT_STATUS_UPDATE ) update, player_team_id );
-
-		case PacketType :: SERVER_ALL_PLAYERS:
-			packet >> allPlayersMessage;
-			cout << "\nAll Player Message: \n" << allPlayersMessage.c_str() << endl;
-			break;
+	case PacketType :: SERVER_REQUEST_ACCEPTED:
+		packet >> player_name;
+		if ( localName == player_name){
+		packet >> player_id;
+		this -> OnJoinAcceptedReceived( player_id );
 		}
+		break;
+
+	case PacketType :: SERVER_REQUEST_DENIED:
+
+		this -> OnJoinDeniedReceived( );
+		break;
+		case PacketType :: CLIENT_UPDATE_LOBBY_STATUS:
+			packet >> player_id >> update >> player_team_id;
+		this -> OnClientStatusUpdateReceived( player_id, ( CLIENT_STATUS_UPDATE ) update, player_team_id );
+		case PacketType :: SERVER_ALL_PLAYERS:
+		packet >> allPlayersMessage;
+		cout << "\nAll Player Message: \n" << allPlayersMessage.c_str() << endl;
+		break;
+	}
 }

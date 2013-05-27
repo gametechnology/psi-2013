@@ -25,7 +25,7 @@ private:
 	//whenever something changes for any player, he will send something to the server.	
 
 	//these are the server-side functions
-	void OnClientJoinRequestReceived( const wchar_t *player_name, int team_id, ENetPeer peer );
+	void OnClientJoinRequestReceived( char *player_name, int team_id, ENetPeer peer );
 	void OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id );
 
 public:
@@ -33,7 +33,7 @@ public:
 	~PlayerManager( );	
 	
 	void Init();
-	void RequestJoinServer( const wchar_t *player_name, int team_id );
+	void RequestJoinServer( char *player_name, int team_id );
 	void HandleNetworkMessage( NetworkPacket p );
 	void UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_id );
 	void SendPlayerInfoRequest();

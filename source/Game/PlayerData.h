@@ -16,11 +16,11 @@ public:
 		int				id;			//only sync this
         int				team_id;
 		ENetPeer		peer;
-        const wchar_t	*name;
+		char			*name;
 		StationType		stationType;
 
 		PlayerData( ) { };
-		PlayerData( const wchar_t *name, int team_id, ENetPeer peer ) 
+		PlayerData( char *name, int team_id, ENetPeer peer ) 
 		{
 			this ->	id				= uniqueId++;
 			this -> name			= name;
@@ -28,7 +28,7 @@ public:
 			this -> stationType		= StationType :: ST_NONE;
 		}
 
-		PlayerData( const wchar_t *name, int team_id ) 
+		PlayerData( char *name, int team_id ) 
 		{
 			this ->	id				= uniqueId++;
 			this -> name			= name;
