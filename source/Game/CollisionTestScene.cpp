@@ -72,7 +72,7 @@ void CollisionTestScene::update() {
 	}
 
 	//Tell the other EnemyFighters to shoot at target 	
-	for(int l = 0; l < _enemyList.size(); l++)
+	for(unsigned int l = 0; l < _enemyList.size(); l++)
 	{
 		if(_enemyList[l]->getType() == _enemyList[l]->FIGHTER)
 		{
@@ -206,7 +206,7 @@ void CollisionTestScene::RemoveAllEnemies()
 	//won't try to remove an already removed enemy
 	if (_enemyList.size() != 0)
 	{
-		for (int i = 0; i < _enemyList.size(); i++)
+		for (unsigned int i = 0; i < _enemyList.size(); i++)
 		{
 			_enemyList[i]->destroy();
 		}

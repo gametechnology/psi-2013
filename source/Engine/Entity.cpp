@@ -193,8 +193,7 @@ void Entity::destroy()
 	//removes the object from the scene as well as all it's children
 	destroyed = true;
 	this->disable();
-	for (int i = 0; i < this->children.size(); i++)
-	{
+	for (unsigned int i = 0; i < this->children.size(); i++) {
 		this->children[i]->update();
 	}
 	this->parent->removeChild(this,true);

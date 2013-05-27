@@ -13,7 +13,7 @@ void CollisionSystem::update()
 
 bool CollisionSystem::isNotAdded(Entity* entity)
 {
-	for(int i = 0; i < listeners.size(); i++)
+	for(unsigned int i = 0; i < listeners.size(); i++)
 	{
 		if(listeners[i] == entity)
 		{
@@ -33,7 +33,7 @@ void CollisionSystem::addListener(Entity* entity)
 
 void CollisionSystem::removeListener(Entity* entity)
 {
-	for(int i = 0; i < listeners.size(); i++)
+	for(unsigned int i = 0; i < listeners.size(); i++)
 	{
 		if(listeners[i] == entity)
 		{
