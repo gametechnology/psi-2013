@@ -11,7 +11,7 @@ void PowerStationData :: SubscribeStation( Station *s )
 	this -> _stationsPowerUsage	-> insert( s -> GetStationType( ), s );
 }
 
-void PowerStationData :: UpdatePowerUsage(StationType s, int newValue )
+void PowerStationData :: UpdatePowerUsage(StationType s, int newValue, bool sentByServer )
 {
 	Station *station = this -> _stationsPowerUsage -> find( s ) -> getValue();
 
@@ -26,9 +26,13 @@ void PowerStationData :: UpdatePowerUsage(StationType s, int newValue )
 	
 	station->updatePower(newValue);
 
-	NetworkPacket packet(PacketType::CLIENT_POWER_CHANGED);
-	packet << s << newValue;
-	Network::GetInstance()->SendPacket(packet, true);
+	if(!sentByServer)
+	{
+		NetworkPacket packet(PacketType::CLIENT_POWER_CHANGED);
+		packet << s;
+		packet << newValue;
+		Network::GetInstance()->SendPacket(packet, true);
+	}
 
 }
 

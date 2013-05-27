@@ -33,6 +33,10 @@ void PowerStation :: init() {
 	SubscribeStation(this->_ship->GetStation(ST_NAVIGATION) );
 	SubscribeStation(this->_ship->GetStation(ST_WEAPON) );
 	SubscribeStation(this);
+
+	Network::GetInstance()->AddListener(CLIENT_POWER_CHANGED, this);
+	Network::GetInstance()->AddListener(SERVER_POWER_CHANGED, this);
+
 }
 
 PowerStation :: ~PowerStation()
@@ -42,7 +46,23 @@ PowerStation :: ~PowerStation()
 
 void PowerStation::HandleNetworkMessage(NetworkPacket packet)
 {
+	unsigned int stationName;
+	unsigned int stationValue;
+	packet >> stationName;
+	packet >> stationValue;
 
+	StationType s = (StationType)stationName;
+	unsigned int newValue = stationValue;
+
+	UpdateStationPower(s, newValue, true);
+
+	if(packet.GetType() == CLIENT_POWER_CHANGED)
+	{
+		NetworkPacket serverPacket(SERVER_POWER_CHANGED);
+		serverPacket << s;
+		serverPacket << newValue;
+		Network::GetInstance()->SendPacketToAllClients(serverPacket, true);
+	}
 }
 
 void PowerStation :: SubscribeStation( Station *s )
@@ -55,10 +75,10 @@ int PowerStation :: GetPower(StationType type)
 	return this->context.GetPower(type);
 }
 
-void PowerStation :: UpdateStationPower(StationType s, int newValue )
+void PowerStation :: UpdateStationPower(StationType s, int newValue, bool sentByServer )
 {
 	if ( s == ST_POWER )	return;	//we do nothing when the power station is selected.
-	this -> context.UpdatePowerUsage( s, newValue );
+	this -> context.UpdatePowerUsage( s, newValue, sentByServer );
 }
 
 void PowerStation :: DoCameraShake( )
@@ -116,21 +136,21 @@ public:
 				if(_context.selectedStation == 1)
 				{
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();					
-					_context.UpdatePowerUsage(ST_HELM, POWER_MAX - pos );
+					_context.UpdatePowerUsage(ST_HELM, POWER_MAX - pos, false );
 				}
 				else if(_context.selectedStation == 2){
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-					_context.UpdatePowerUsage(ST_DEFENCE, POWER_MAX - pos );
+					_context.UpdatePowerUsage(ST_DEFENCE, POWER_MAX - pos, false );
 				}
 				else if(_context.selectedStation == 3){
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-					_context.UpdatePowerUsage(ST_NAVIGATION, POWER_MAX - pos );
+					_context.UpdatePowerUsage(ST_NAVIGATION, POWER_MAX - pos, false );
 				}
 				else if(_context.selectedStation == 4){
 					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
 
 					((IGUIScrollBar*)event.GUIEvent.Caller)->setPos( irr :: s32( ) );
-					_context.UpdatePowerUsage(ST_WEAPON, POWER_MAX - pos );
+					_context.UpdatePowerUsage(ST_WEAPON, POWER_MAX - pos, false );
 				}
 				break;
 
