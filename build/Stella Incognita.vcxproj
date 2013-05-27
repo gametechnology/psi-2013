@@ -94,7 +94,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Game\AsteroidSector.cpp" />
-    <ClCompile Include="..\source\Game\BackButton.cpp" />
     <ClCompile Include="..\source\Game\BaseSector.cpp" />
     <ClCompile Include="..\source\Game\BasicMoverComponent.cpp" />
     <ClCompile Include="..\source\Game\BasicShipMover.cpp" />
@@ -108,13 +107,10 @@
     <ClCompile Include="..\source\Game\EnemyFighter.cpp" />
     <ClCompile Include="..\source\Game\EnemyManager.cpp" />
     <ClCompile Include="..\source\Game\EnemyPlayer.cpp" />
-    <ClCompile Include="..\source\Game\EnemySceneTest.cpp" />
     <ClCompile Include="..\source\Game\GalaxyMap.cpp" />
     <ClCompile Include="..\source\Game\GameScene.cpp" />
-    <ClCompile Include="..\source\Game\HealthBar.cpp" />
     <ClCompile Include="..\source\Game\HealthComponent.cpp" />
-    <ClCompile Include="..\source\Game\HudComposite.cpp" />
-    <ClCompile Include="..\source\Game\HudHelpText.cpp" />
+    <ClCompile Include="..\source\Game\LobbyScene.cpp" />
     <ClCompile Include="..\source\Game\SendAndReceivePackets.cpp" />
     <ClCompile Include="..\source\Game\PowerComponent.cpp" />
     <ClCompile Include="..\source\Game\ShieldComponent.cpp" />
@@ -137,7 +133,6 @@
     <ClCompile Include="..\source\Game\Stations\PowerStation.cpp" />
     <ClCompile Include="..\source\Game\Stations\Station.cpp" />
     <ClCompile Include="..\source\Game\Stations\PowerStationData.cpp" />
-    <ClCompile Include="..\source\Game\TestScene.cpp" />
     <ClCompile Include="..\source\Game\WormHole.cpp" />
     <None Include="..\assets\sydney.bmp" />
     <None Include="..\assets\sydney.md2" />
@@ -145,12 +140,10 @@
   <ItemGroup>
     <ClInclude Include="..\source\Game\ArrayList.h" />
     <ClInclude Include="..\source\Game\AsteroidSector.h" />
-    <ClInclude Include="..\source\Game\BackButton.h" />
     <ClInclude Include="..\source\Game\BaseSector.h" />
     <ClInclude Include="..\source\Game\BasicMoverComponent.h" />
     <ClInclude Include="..\source\Game\BasicShipMover.h" />
     <ClInclude Include="..\source\Game\CalculateRotation.h" />
-    <ClInclude Include="..\source\Game\Collision.h" />
     <ClInclude Include="..\source\Game\EmptyTestScene.h" />
     <ClInclude Include="..\source\Game\EndScene.h" />
     <ClInclude Include="..\source\Game\EndSceneEventReceiver.h" />
@@ -160,15 +153,11 @@
     <ClInclude Include="..\source\Game\EnemyFighter.h" />
     <ClInclude Include="..\source\Game\EnemyManager.h" />
     <ClInclude Include="..\source\Game\EnemyPlayer.h" />
-    <ClInclude Include="..\source\Game\EnemySceneTest.h" />
     <ClInclude Include="..\source\Game\GalaxyMap.h" />
     <ClInclude Include="..\source\Game\GameScene.h" />
-    <ClInclude Include="..\source\Game\HealthBar.h" />
     <ClInclude Include="..\source\Game\HealthComponent.h" />
-    <ClInclude Include="..\source\Game\HudComposite.h" />
-    <ClInclude Include="..\source\Game\HudHelpText.h" />
     <ClInclude Include="..\source\Game\IStateSwitch.h" />
-    <ClInclude Include="..\source\Game\ObjectPool.h" />
+    <ClInclude Include="..\source\Game\LobbyScene.h" />
     <ClInclude Include="..\source\Game\SendAndReceivePackets.h" />
     <ClInclude Include="..\source\Game\PowerComponent.h" />
     <ClInclude Include="..\source\Game\ShieldComponent.h" />
@@ -204,7 +193,6 @@
     <ClInclude Include="..\source\Game\Stations\PowerStationData.h" />
     <ClInclude Include="..\source\Game\Stations\WeaponStation.h" />
     <ClInclude Include="..\source\Game\Team.h" />
-    <ClInclude Include="..\source\Game\TestScene.h" />
     <ClInclude Include="..\source\Game\Thruster.h" />
     <ClInclude Include="..\source\Game\WormHole.h" />
   </ItemGroup>

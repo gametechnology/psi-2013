@@ -4,6 +4,7 @@
 #include <Irrlicht/irrlicht.h>
 #include "Scene.h"
 #include "InputManager.h"
+#include "CollisionSystem.h"
 
 typedef irr::IrrlichtDevice IrrDevice;
 typedef irr::video::IVideoDriver IrrDriver;
@@ -23,6 +24,7 @@ private:
 	irr::u32 width, height, bitDepth;
 
 	InputManager* appReceiver;
+	CollisionSystem* collisionSystem;
 public:
 	/*!
 	* @function Core 

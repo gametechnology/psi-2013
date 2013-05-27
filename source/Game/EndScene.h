@@ -1,7 +1,7 @@
 #ifndef ENDSCENE_H
 #define ENDSCENE_H
 
-#include "Engine\Game.h"
+#include <Engine\Core.h>
 #include "EndSceneEventReceiver.h"
 
 using namespace irr;

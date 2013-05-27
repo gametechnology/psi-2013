@@ -1,54 +1,36 @@
-#include <Engine/Game.h>
+#include <Engine/Core.h>
+#include <Engine/Interface.h>
 #include <Irrlicht/driverChoice.h>
 
-#include "EnemySceneTest.h"
 #include "MainMenuScene.h"
-#include "GameScene.h"
-
-#include "NetworkInterface.h"
-#include "EmptyTestScene.h"
-#include "EnemySceneTest.h"
-
-
-// Include memory leak detection files.
-#ifdef _DEBUG
-	#define _CRTDBG_MAP_ALLOC
-	#include <stdlib.h>
-	#include <crtdbg.h>
-#endif
 
 using namespace irr;
-using namespace core;
-using namespace scene;
-using namespace video;
-using namespace io;
-using namespace gui;
 
 int main()
 {
-	// Create engine
-	Game* game = new Game();
-	//Enemy::newEnemyId = 0;
-	//Add the MainMenu
-	//Scene* scene = new EnemySceneTest();
-	//Scene* scene = new EmptyTestScene();
-	Scene* scene = new MainMenuScene();
+	Core* core = new Core(800, 600, 32);
 
-	game->sceneManager->addScene("MainMenuScene", scene);
+	Interface* f_interface = new Interface(core->getGuiEnv(), core->getDriver());
 
-	//Create ship
-	//Ship* ship = new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0));
-	//scene->addChild(ship);
-	// Initialize game
-	game->init();
+	core->setActiveScene(new MainMenuScene(core, f_interface));	
 
-	// Start the main loop
-	game->run();
+	irr::u32 then = core->getDevice()->getTimer()->getTime();
 
-	// Debug for memory leaks
-	#ifdef _DEBUG
-	//_CrtDumpMemoryLeaks();
-	#endif
+	while (core->getDevice()->run())
+	{
+		const irr::u32 now = core->getDevice()->getTimer()->getTime();
+		const irr::f32 frameDeltaTime = (irr::f32)(now - then) / 1000.f; // Time in seconds
+		then = now;
 
+		if (core->getDevice()->isWindowActive())
+		{
+			core->update(frameDeltaTime);
+			core->draw(255, 255, 255, 255);
+			int fps = core->getDriver()->getFPS();
+		}
+		else
+			core->getDevice()->yield();
+	}
+	core->getDevice()->drop();
 	return 0;
 }

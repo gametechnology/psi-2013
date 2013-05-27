@@ -1,7 +1,5 @@
 #include <Engine/Interface.h>
 
-using namespace fancy::gui;
-
 using namespace irr;
 using namespace irr::core;
 using namespace irr::gui;
@@ -42,6 +40,11 @@ void Interface::addEditBox(s32 x, s32 y, s32 width, s32 height, s32 id, IGUIElem
 void Interface::addListBox(s32 x, s32 y, s32 width, s32 height, s32 id, IGUIElement* parent, bool showBackground)
 {
 	_interfaceElements.push_back(_guiEnv->addListBox(rect<s32>(x, y, x+width, y+height), parent, id, showBackground));
+}
+
+void Interface::addStaticText(const wchar_t* text, s32 x, s32 y, s32 width, s32 height, s32 id, bool border, bool wordWrap, bool fillBackground, IGUIElement* parent)
+{
+	_interfaceElements.push_back(_guiEnv->addStaticText(text, rect<s32>(x, y, x+width, y+height), border, wordWrap, parent, id, fillBackground));
 }
 
 void Interface::addMessageBox(const wchar_t* caption, const wchar_t* message, bool blocking, s32 flags, IGUIElement* parent, io::path imagePath, s32 id)

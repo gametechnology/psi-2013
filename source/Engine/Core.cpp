@@ -11,6 +11,7 @@ Core::Core(u32 width, u32 height, u32 bitDepth)
 	this->bitDepth = bitDepth;
 	
 	appReceiver = new InputManager();
+	collisionSystem = new CollisionSystem();
 
 	device = createDevice(EDT_OPENGL, dimension2d<u32>(width, height), bitDepth, false, false, true, appReceiver);
 
@@ -43,6 +44,7 @@ void Core::draw(u32 alpha, u32 red, u32 green, u32 blue)
 
 void Core::update(s32 duration)
 {
+	collisionSystem->update();
 	activeScene->update();
 }
 

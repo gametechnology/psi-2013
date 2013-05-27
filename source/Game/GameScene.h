@@ -5,7 +5,7 @@
 #include <Engine\NetworkPacket.h>
 #include <Engine\INetworkListener.h>
 #include <Engine\Scene.h>
-#include <Engine\Camera.h>
+#include <Engine\CameraComponent.h>
 
 #include "Ship.h"
 #include "ShipMover.h"
@@ -30,7 +30,7 @@ public:
 	void HandleNetworkMessage(NetworkPacket packet);
 private:
 	bool testMap;
-	Camera *_camera;
+	CameraComponent *_camera;
 	Shipmap* _shipmap;
 	int _sendLasersTimer;
 	ObjectPool<Laser>* _laserPool;

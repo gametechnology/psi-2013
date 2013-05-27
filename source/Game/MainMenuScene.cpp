@@ -1,130 +1,62 @@
 #include "MainMenuScene.h"
-#include "GameScene.h"
-#include "EnemySceneTest.h"
 
-MainMenuScene::MainMenuScene() : Scene() {
+MainMenuScene::MainMenuScene(Core* core, Interface* f_interface) : Scene("MainmenuScene") 
+{
+	_core = core;
+	_interface = f_interface;
 }
-MainMenuScene::~MainMenuScene() {
 
+MainMenuScene::~MainMenuScene() 
+{
+	_interface->resetInterface();
 }
 
 void MainMenuScene::init() {
-	//Get the device
-	guiEnv = game->guiEnv;
 	playerlist = std::list<Player*>();
 
-	this->addGuiElements();
+	_interface->createButton(50, 135, 150, 110, 0, 0, L"Create a game");
+	_interface->createButton(50, 165, 150, 110, 0, 0, L"Join a game");
 
-	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
-	Network::GetInstance()->AddListener(START_GAME, this);
-	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
-	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
-	Network::GetInstance()->AddListener(HOST_DISCONNECT, this);
-	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
+	_interface->addStaticText(L"Port:", 50, 65, 50, 40, false, true, false, 0);
+	_interface->addStaticText(L"Host ip:", 50, 65, 50, 40, false, true, false, 0);
+	_interface->addStaticText(L"Port:", 50, 65, 50, 40, false, true, false, 0);
+
+	_interface->addEditBox(50, 80, 50, 55, PORT_INPUT_BOX, 0, L"", true);
+	_interface->addEditBox(175, 80, 50, 55, IP_INPUT_BOX, 0, L"", true);
+	_interface->addEditBox(300, 80, 50, 55, NAME_INPUT_BOX, 0, L"", true);
 
 	// Store the appropriate data in a context structure.
 	SAppContext context;
-	context.game = game;
+	context.core = _core;
 	context.counter = 0;
 
 	// Then create the event receiver, giving it that context structure.
 	eventReceiver = new MainMenuEventReceiver(context);
 
 	// And tell the device to use our custom event receiver.
-	game->input->setCustomEventReceiver(eventReceiver);
+	_core->addCustomReceiver(eventReceiver);
 }
 
-void MainMenuScene::addGuiElements()
+void MainMenuScene::update()
 {
 
-	///////////////////////////////////////////
-	// MainMenu
-	//////////////////////////////////////////
-	//Creat the main menu window
-	mainMenuWindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"Main menu",0,100);
-	mainMenuWindow->getCloseButton()->remove();
-
-	//Add text and button
-	createServerWindow_Button = guiEnv->addButton(rect<s32>(position2di(50,135),dimension2di(200,25)),mainMenuWindow,2, L"Create a game");
-	joinServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,1,L"Join a game");
-		
-	portLabel = guiEnv->addStaticText(L"Port:",rect<s32>(position2di(50,65),dimension2di(100,25)),false,true,mainMenuWindow);
-	ipLabel	= guiEnv->addStaticText(L"Host ip:",rect<s32>(position2di(175,65),dimension2di(100,25)),false,true,mainMenuWindow);
-	Namelabel = guiEnv->addStaticText(L"Name:",rect<s32>(position2di(300,65),dimension2di(100,25)),false,true,mainMenuWindow);
-
-	hostPortInput = guiEnv->addEditBox(L"",rect<s32>(position2di(50, 80),dimension2di(100,25)),true,mainMenuWindow);
-	Ipadresinput = guiEnv->addEditBox(L"",rect<s32>(position2di(175, 80),dimension2di(100,25)),true,mainMenuWindow);
-	Nameinput = guiEnv->addEditBox(L"",rect<s32>(position2di(300, 80),dimension2di(100,25)),true,mainMenuWindow);
-
-	Clientlist = guiEnv->addStaticText(L"",rect<s32>(position2di(300,105),dimension2di(200,200)),false,true,mainMenuWindow);
-	Clientlist->setVisible(false);
-
-	start_button = guiEnv->addButton(rect<s32>(position2di(350,330),dimension2di(200,25)),mainMenuWindow,3, L"Start Game");
-	start_button->setVisible(false);
-
-	startStatic_button = guiEnv->addButton(rect<s32>(position2di(350,300),dimension2di(200,25)),mainMenuWindow,4, L"Start Test Game");
-	startStatic_button->setVisible(false);
-
-	quit_button	= guiEnv->addButton(rect<s32>(position2di(50,330),dimension2di(200,25)),mainMenuWindow,5, L"Quit game");
-	quit_button->setVisible(false);
-
-	waitinglabel = guiEnv->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainMenuWindow);
-	waitinglabel->setVisible(false);
-
-	Scene::addGuiElements();
 }
 
-void MainMenuScene::update(){
-
-	std::wstringstream ssp;
-	ssp << L"Team 1              Team2\n";
-	std::list<Player*>::const_iterator iterator;
-	for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-		Player *play = (*iterator);
-
-		ssp << play->Name;
-		if(play->Team == 1)
-			ssp << L"              ";
-		else
-			ssp << L"\n";
-
-
-
-
-	}
-
-	const std::wstring& tmpp = ssp.str();
-	Clientlist->setText(tmpp.c_str());
-
-
-}
-
-void MainMenuScene::StartGame()
+void MainMenuScene::requestNextScene()
 {
-	cout << endl << "MainMenuScene::StartGame() - not yet implemented" << endl;
-	/*MapGenerator mapGen;
-	mainMenuWindow->remove();
-	mapGen.init(20, 2, 5);
-	GalaxyMap* galaxyMap = mapGen.createNewMap(300, 300, 15);
-	galaxyMap->transform->position->set(vector3df(100, 670, 0));
-	SectorManager sectorManager(galaxyMap);
-	sectorManager.init();*/
-	//TODO: Previous scene still displayed, shouldn't be the case
-	this->game->guiEnv->clear();
-	this->game->sceneManager->deactivateScene("MainMenuScene");
-	this->game->sceneManager->addScene("GameScene",new GameScene(playerlist));
+	_core->setActiveScene(new LobbyScene(_core, _interface));
 }
 
-void MainMenuScene::StartTestGame()
+void MainMenuScene::requestPreviousScene()
 {
-	cout << endl << "MainMenuScene::StartGame() - not yet implemented" << endl;
-	//TODO: Previous scene still displayed, shouldn't be the case
-	this->game->guiEnv->clear();
-	this->game->sceneManager->deactivateScene("MainMenuScene");
-	this->game->sceneManager->addScene("GameScene",new GameScene(playerlist, true));
+	// No way back.
 }
 
-void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
+void MainMenuScene::notify(void* data)
+{
+}
+
+void MainMenuScene::handleNetworkMessage(NetworkPacket packet)
 {
 	wchar_t *  name ;
 	int lenght;
@@ -156,18 +88,12 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		name = new wchar_t[500];
 		packet >> name;
 		packet >> ipclientaffect;
-		localip = sf::IpAddress::getLocalAddress();
-		checksum = localip.m_address;
-
-		if (ipclientaffect == checksum){
-			BackToMainMenu();
-			Network::GetInstance()->DeInitialize();
-			messagebox =  game->guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
-		}
-		delete name;
+		requestPreviousScene();
+		Network::GetInstance()->DeInitialize();
+		_interface->addMessageBox(L"Message", name, true, 1, 0);
 		break;
 	case START_GAME:
-		StartGame();
+		requestNextScene();
 		break;
 	case CLIENT_JOIN:
 		name = new wchar_t[500];
@@ -230,33 +156,18 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		}
 		Network::GetInstance()->SendServerPacket(packetsend, true);
 		break;
-		break;
 	case HOST_DISCONNECT:
 		name = new wchar_t[500];
 		packet >> name;
 		playerlist.clear();
-		messagebox =  game->guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
+		_interface->addMessageBox(L"Message", name, true, 1, 0);
 		Network::GetInstance()->DeInitialize();
-		BackToMainMenu();
+		requestPreviousScene();
 		delete name;
 		break;
 	default:
 		break;
 	}
-}
-
-void MainMenuScene::BackToMainMenu()
-{
-	createServerWindow_Button->setVisible(true);
-	joinServerWindow_Button->setVisible(true);
-	Ipadresinput->setVisible(true);
-	Namelabel->setVisible(true);
-	Nameinput->setVisible(true);
-	Clientlist->setVisible(false);
-	start_button->setVisible(false);
-	startStatic_button->setVisible(false);
-	quit_button->setVisible(false);
-	waitinglabel->setVisible(false);
 }
 
 

@@ -1,25 +1,22 @@
-#ifndef MAINMENUSCENE
-#define MAINMENUSCENE
+#ifndef LOBBY_SCENE
+#define LOBBY_SCENE
 
-#include <sstream>
-
-#include <Irrlicht\irrlicht.h>
-#include <Engine/Scene.h>
-#include <Engine/Network.h>
-#include <Engine/NetworkPacket.h>
-#include <Engine/INetworkListener.h>
-#include <Engine/Interface.h>
 #include <Engine/Core.h>
+#include <Engine/Interface.h>
+#include <Engine/Scene.h>
+#include <Engine/INetworkListener.h>
+
+#include <list>
+#include <sstream>
 
 #include "MainMenuEventReceiver.h"
 #include "Player.h"
-#include "LobbyScene.h"
 
-class MainMenuScene: public Scene, public INetworkListener 
+class LobbyScene : public Scene, public INetworkListener
 {
 public:
-	MainMenuScene(Core* core, Interface* ui);
-	~MainMenuScene();
+	LobbyScene(Core* core, Interface* ui);
+	~LobbyScene();
 
 	void init();
 	void update();
@@ -42,4 +39,3 @@ private:
 };
 
 #endif
-

@@ -9,7 +9,7 @@ class NetworkPacket;
 class INetworkListener
 {
 public:
-	virtual void HandleNetworkMessage(NetworkPacket packet) = 0;
+	virtual void handleNetworkMessage(NetworkPacket packet) = 0;
 
 	~INetworkListener()
 	{

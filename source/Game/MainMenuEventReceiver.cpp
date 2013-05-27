@@ -1,10 +1,11 @@
 #include "MainMenuEventReceiver.h"
-#include "MainMenuScene.h"
-#include "Engine\Network.h"
-#include "NetworkInterface.h"
 
-MainMenuEventReceiver::MainMenuEventReceiver(SAppContext & context) : Context(context) {
-	this->contextGame = context.game;
+using namespace irr;
+using namespace irr::gui;
+using namespace irr::core;
+
+MainMenuEventReceiver::MainMenuEventReceiver(SAppContext & context) : context(context) 
+{
 }
 
 bool MainMenuEventReceiver::OnEvent(const SEvent& event)
@@ -12,8 +13,6 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 	if (event.EventType == EET_GUI_EVENT)
 	{
 		s32 id = event.GUIEvent.Caller->getID();
-		IGUIEnvironment* env = this->contextGame->guiEnv;
-		MainMenuScene* mainmenu = ((MainMenuScene*)this->contextGame->sceneManager->getLastScene());
 		char* ipadress;
 		wchar_t* inputwchar;
 
@@ -23,7 +22,6 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 		stringc portInput;
 		short port;
 
-		Player* newplayer;
 		NetworkPacket packet(START_GAME);
 		NetworkPacket namepacket(CLIENT_JOIN);
 		NetworkPacket quitpacket(CLIENT_QUIT);
@@ -34,111 +32,65 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 		case EGET_BUTTON_CLICKED:
 			switch(id)
 			{
-			case 1: // Join
-				inputwchar = (wchar_t*)mainmenu->Ipadresinput->getText();
+			case JOIN_GAME_BUTTON:
+				inputwchar = (wchar_t*)context.u_interface->getElementWithId(IP_INPUT_BOX)->getText();
 				ipadress = (char*)malloc(wcslen(inputwchar)+ 1);
 				wcstombs(ipadress, inputwchar, wcslen(inputwchar));
 				ipadress[wcslen(inputwchar)] = 0;
 
-				portInput = mainmenu->hostPortInput->getText();
+				portInput = context.u_interface->getElementWithId(PORT_INPUT_BOX)->getText();
 				port = atof(portInput.c_str());
 
-				namewchar = (wchar_t*)mainmenu->Nameinput->getText();
+				namewchar = (wchar_t*)context.u_interface->getElementWithId(NAME_INPUT_BOX)->getText();
 				playername = (char*)malloc(wcslen(namewchar)+ 1);
 				wcstombs(playername, namewchar, wcslen(namewchar));
 				playername[wcslen(namewchar)] = 0;
 
 				if((*ipadress == ' ' || *ipadress == NULL) || (*playername == ' ' || *playername == NULL) || (port == 0)){
-					if(*ipadress == ' ' || *ipadress == NULL || port == 0){
-						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Fill in an Ipadress and port",true,1,mainmenu->mainMenuWindow);
-						mainmenu->messagebox->setDraggable(false);
-					}else{
-						mainmenu->messagebox = this->contextGame->guiEnv->addMessageBox(L"Message",L"Fill in an Name",true,1,mainmenu->mainMenuWindow);
-						mainmenu->messagebox->setDraggable(false);
-					}
+					if(*ipadress == ' ' || *ipadress == NULL || port == 0)
+						context.u_interface->addMessageBox(L"Messsage", L"Fill in an Ipadress and port", true, 1, 0);
+					else
+						context.u_interface->addMessageBox(L"Message", L"Fill in an Name", true, 1, 0);
 				}else{
 					Network::GetInstance()->InitializeClient(ipadress, port);
 					if(!Network::GetInstance()->IsConnected()){
-						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Not able to connect to server",true,1,mainmenu->mainMenuWindow);
-						mainmenu->messagebox->setDraggable(false);
+						context.u_interface->addMessageBox(L"Messsage", L"Not able to connect to server", true, 1, 0);
 					}else{
-						//TODO: package met naam en checksum: Network->getinstance->GetPacketTypeChecksum
 						namepacket << namewchar << Network::GetInstance()->GetPacketTypeChecksum();
 						Network::GetInstance()->SendPacket(namepacket, true);
-						mainmenu->createServerWindow_Button->setVisible(false);
-						mainmenu->joinServerWindow_Button->setVisible(false);
-						mainmenu->Clientlist->setVisible(true);
-						mainmenu->Ipadresinput->setVisible(false);
-						mainmenu->Namelabel->setVisible(false);
-						// TODO check merge Both??
-						mainmenu->waitinglabel = env->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainmenu->mainMenuWindow);
-						mainmenu->Nameinput->setVisible(false);
-						mainmenu->quit_button->setVisible(true);
-						mainmenu->waitinglabel->setVisible(true);
-
 					}
-
-
-
 				}
-
-
 				return true;
-			case 2: // Create
-				namewchar = (wchar_t*)mainmenu->Nameinput->getText();
+			case CREATE_GAME_BUTTON:
+				namewchar = (wchar_t*)context.u_interface->getElementWithId(NAME_INPUT_BOX)->getText();;
 				playername = (char*)malloc(wcslen(namewchar)+ 1);
 				wcstombs(playername, namewchar, wcslen(namewchar));
 				playername[wcslen(namewchar)] = 0;
 
 				if(*playername == ' ' || *playername == NULL){
-					mainmenu->messagebox = this->contextGame->guiEnv->addMessageBox(L"Message",L"Fill in a name",true,1,mainmenu->mainMenuWindow);
-					mainmenu->messagebox->setDraggable(false);
+					context.u_interface->addMessageBox(L"Message", L"Fill in a name", true, 1, 0);
 					return false;
-				}else{
+				} else {
 					Network::GetInstance()->InitializeServer();
-					mainmenu->createServerWindow_Button->setVisible(false);
-					mainmenu->joinServerWindow_Button->setVisible(false);
-					mainmenu->Ipadresinput->setVisible(false);
-					mainmenu->Namelabel->setVisible(false);
-					mainmenu->Nameinput->setVisible(false);
-					mainmenu->start_button->setVisible(true);
-					mainmenu->startStatic_button->setVisible(true);
-					mainmenu->quit_button->setVisible(true);
-					mainmenu->Clientlist->setVisible(true);
-					newplayer = new Player();
-					newplayer->Name = namewchar;
-					newplayer->Team = 1;
-					newplayer->Ipadres = Network::GetInstance()->GetLocalAddress();
-					mainmenu->playerlist.push_back(newplayer);
 					return true;
 				}
-			case 3: // Start
-				mainmenu->StartGame();
+			case START_GAME_BUTTON:
 				Network::GetInstance()->SendServerPacket(packet, true);
 				return true;
-			case 4: // Start Test Map
-				mainmenu->StartTestGame();
-				Network::GetInstance()->SendServerPacket(packet, true);
-				return true;
-			case 5: // Quit
+			case QUIT_GAME_BUTTON:
 				if(!Network::GetInstance()->IsServer())
 				{
 					Network::GetInstance()->SendPacket(quitpacket, true);
 				}
 				else
 				{
-					hostquitpacket << L"The host got disconnected";
 					Network::GetInstance()->SendServerPacket(hostquitpacket, true);
-
 				}
-				mainmenu->playerlist.clear();
 				Network::GetInstance()->DeInitialize();
-				mainmenu->BackToMainMenu();
 				return true;
 			default:
 				return false;
 			}
-
 			break;
 		}
 	}

@@ -31,15 +31,6 @@
     <Filter Include="Header Files\Scenes">
       <UniqueIdentifier>{f01cd9da-eb66-4983-9106-4351db4e019d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Networking">
-      <UniqueIdentifier>{7ddc756e-99c4-4f8b-821e-979591bf9626}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Hud">
-      <UniqueIdentifier>{0df8ed24-8fcd-423c-92f0-11028da12138}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Hud">
-      <UniqueIdentifier>{a6bc21e1-73c1-47d4-8b26-2f75fcd82beb}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Game\main.cpp">
@@ -114,9 +105,6 @@
     <ClCompile Include="..\source\Game\EnemyPlayer.cpp">
       <Filter>Source Files\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\EnemySceneTest.cpp">
-      <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -152,9 +140,6 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\TestScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\NavigationStation.cpp">
       <Filter>Source Files\Stations</Filter>
@@ -234,18 +219,6 @@
     <ClCompile Include="..\source\Game\Stations\PowerStationData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\HealthBar.cpp">
-      <Filter>Source Files\Hud</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\HudComposite.cpp">
-      <Filter>Source Files\Hud</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\HudHelpText.cpp">
-      <Filter>Source Files\Hud</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\BackButton.cpp">
-      <Filter>Source Files\Hud</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
@@ -272,6 +245,9 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\PowerComponent.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\LobbyScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -371,9 +347,6 @@
     <ClInclude Include="..\source\Game\ShipScenes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\TestScene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\BasicMoverComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -437,27 +410,6 @@
     <ClInclude Include="..\source\Game\Stations\PowerStationData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\Collision.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EnemySceneTest.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\HudComposite.h">
-      <Filter>Header Files\Hud</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\HealthBar.h">
-      <Filter>Header Files\Hud</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\HudHelpText.h">
-      <Filter>Header Files\Hud</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\BackButton.h">
-      <Filter>Header Files\Hud</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\ObjectPool.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\StationStats.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -484,6 +436,9 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\IStateSwitch.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\LobbyScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -515,9 +470,6 @@
     </Filter>
     <Filter Include="Source files\Sector">
       <UniqueIdentifier>{3e3a723b-5b4f-41e3-8d8d-d030934b7e86}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header files\Network">
-      <UniqueIdentifier>{5ee92249-8d63-4246-b8af-bbaee9d76d57}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
