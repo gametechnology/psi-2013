@@ -34,7 +34,7 @@ int main()
 	//Scene* scene = new EmptyTestScene();
 	Scene* scene = new MainMenuScene();
 	//Scene* scene = new CollisionTestScene();
-
+	
 	game->sceneManager->addScene("MainmenuScene", scene);
 
 	//Create ship

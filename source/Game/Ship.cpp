@@ -2,6 +2,7 @@
 #include "Stations/Station.h"
 #include "ShipMover.h"
 #include "SendAndReceivePackets.h"
+#include "PlayerManager.h"
 
 vector3df startPosition;
 vector3df startRotation;
@@ -114,7 +115,6 @@ void Ship::init()
 
 Station *Ship :: GetStation( StationType s )
 {
-
 	switch( s )
 	{
 	case ST_DEFENCE:
@@ -174,6 +174,7 @@ void Ship :: update()
 	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
 		this->_shipDestroyed = true;
 	}
+	PlayerManager::GetInstance() -> CheckInput( game -> input -> isKeyboardButtonPressed( KEY_KEY_Q ) );
 }
 
 Thruster** Ship :: GetThrusters()
@@ -197,11 +198,15 @@ void Ship :: CheckChangeInput()
 
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_5))
 		SwitchToStation(ST_POWER);
+
+
 }
 
 //Swith to a specific station
 void Ship :: SwitchToStation(StationType stationType)
 {
+
+
 	//Check if we are already on this station
 	if (_currentStation != NULL)
 	{
@@ -217,6 +222,7 @@ void Ship :: SwitchToStation(StationType stationType)
 
 	//Init and add the new station
 	_currentStation->enable();
+	PlayerManager::GetInstance() ->stationUpdated(stationType);
 }
 
 void Ship :: draw()

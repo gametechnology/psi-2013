@@ -118,6 +118,7 @@
     <ClCompile Include="..\source\Game\HudComposite.cpp" />
     <ClCompile Include="..\source\Game\HudHelpText.cpp" />
     <ClCompile Include="..\source\Game\SendAndReceivePackets.cpp" />
+    <ClCompile Include="..\source\Game\PlayerManager.cpp" />
     <ClCompile Include="..\source\Game\PowerComponent.cpp" />
     <ClCompile Include="..\source\Game\ShieldComponent.cpp" />
     <ClCompile Include="..\source\Game\ShipMover.cpp" />
@@ -172,6 +173,8 @@
     <ClInclude Include="..\source\Game\HudHelpText.h" />
     <ClInclude Include="..\source\Game\IStateSwitch.h" />
     <ClInclude Include="..\source\Game\ObjectPool.h" />
+    <ClInclude Include="..\source\Game\PlayerData.h" />
+    <ClInclude Include="..\source\Game\PlayerManager.h" />
     <ClInclude Include="..\source\Game\SendAndReceivePackets.h" />
     <ClInclude Include="..\source\Game\PowerComponent.h" />
     <ClInclude Include="..\source\Game\ShieldComponent.h" />
