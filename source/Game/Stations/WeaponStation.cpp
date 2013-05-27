@@ -1,6 +1,10 @@
 #include "WeaponStation.h"
 
-#define ANGLESPEED = 1
+#define ANGLESPEED 3
+#define MOUSE_ACTIVE_X 400
+#define MOUSE_ACTIVE_Y 300
+#define SCREEN_X 1280
+#define SCREEN_Y 720
 
 WeaponStation::WeaponStation(Ship *ship) : Station(ship)
 {
@@ -31,22 +35,35 @@ void WeaponStation::update()
 {
 	Station::update();
 
-	if(game->input->isKeyboardButtonPressed(KEY_SPACE) && getPower()){
+	if((game->input->isKeyboardButtonPressed(KEY_SPACE) || game->input->isMouseButtonPressed(LEFT_MB)) && getPower()){
 		_ship->fireLaser();
 	}
 
 	if (game->input->isKeyboardButtonDown(KEY_RIGHT) || game->input->isKeyboardButtonDown(KEY_KEY_D)){
 		if(rotationOwn.Y <= 90)
-			rotationOwn.Y++;}
+			rotationOwn.Y += ANGLESPEED;}
 	if (game->input->isKeyboardButtonDown(KEY_LEFT) || game->input->isKeyboardButtonDown(KEY_KEY_A)){
 		if(rotationOwn.Y >= -90)
-			rotationOwn.Y--;}
+			rotationOwn.Y -= ANGLESPEED;}
 	if (game->input->isKeyboardButtonDown(KEY_UP) || game->input->isKeyboardButtonDown(KEY_KEY_W)){
 		if(rotationOwn.X >= -90)
-			rotationOwn.X--;}
+			rotationOwn.X -= ANGLESPEED;}
 	if (game->input->isKeyboardButtonDown(KEY_DOWN) || game->input->isKeyboardButtonDown(KEY_KEY_S)){
 		if(rotationOwn.X <= 90)
-			rotationOwn.X++;}
+			rotationOwn.X += ANGLESPEED;}
+
+	if(game->input->getMouseX() < MOUSE_ACTIVE_X){
+		if(rotationOwn.Y >= -90)
+			rotationOwn.Y -= ANGLESPEED;}
+	if(game->input->getMouseX() > SCREEN_X - MOUSE_ACTIVE_X){
+		if(rotationOwn.Y <= 90)
+			rotationOwn.Y += ANGLESPEED;}
+	if(game->input->getMouseY() < MOUSE_ACTIVE_Y){
+		if(rotationOwn.X >= -90)
+			rotationOwn.X -= ANGLESPEED;}
+	if(game->input->getMouseY() > SCREEN_Y - MOUSE_ACTIVE_Y){
+		if(rotationOwn.X <= 90)
+			rotationOwn.X += ANGLESPEED;}
 
 	*_ship->transform->rotation = rotationForeign + rotationOwn;
 }
