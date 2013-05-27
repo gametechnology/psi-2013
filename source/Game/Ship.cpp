@@ -206,6 +206,8 @@ void Ship :: CheckChangeInput()
 //Swith to a specific station
 void Ship :: SwitchToStation(StationType stationType)
 {
+
+
 	//Check if we are already on this station
 	if (_currentStation != NULL)
 	{
@@ -221,6 +223,7 @@ void Ship :: SwitchToStation(StationType stationType)
 
 	//Init and add the new station
 	_currentStation->enable();
+	PlayerManager::GetInstance() ->stationUpdated(stationType);
 }
 
 void Ship :: draw()

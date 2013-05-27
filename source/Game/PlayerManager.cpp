@@ -1,6 +1,7 @@
 #include "PlayerManager.h"
 #include "Stations\Station.h"
 #include "Player.h"
+#include "Ship.h"
 
 int PlayerData :: uniqueId		= 1;
 PlayerManager* PlayerManager::_instance = 0;
@@ -53,6 +54,9 @@ PlayerManager :: ~PlayerManager( )
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 	}
 	//delete all the other crap.
+}
+void PlayerManager :: stationUpdated(StationType stationType){
+	_localPlayerData ->stationType = stationType;
 }
 
 /**
@@ -143,14 +147,37 @@ void PlayerManager :: OnJoinDeniedReceived( )
 }
 
 void PlayerManager :: CheckInput( bool isDebugKeyPressed )
-{
+{	const char *stationInfo;
 	if ( isDebugKeyPressed )
 	{
+		switch ( _localPlayerData -> stationType ) {
+			case -1:
+				stationInfo = "Hallway";
+				break;
+			case 0:
+				stationInfo = "Power Station";
+				break;
+			case 1:
+				stationInfo = "Defence Station";
+				break;
+			case 2:
+				stationInfo = "Weapon Station";
+				break;
+			case 3:
+				stationInfo = "Helm Station";
+				break;
+			case 4:
+				stationInfo = "Navigation Station";
+				break;
+		}
+
+
+
 		cout << "name: " << _localPlayerData -> name << ":\n";
 		cout << "\tID: " << _localPlayerData -> id << "\n";
 		cout << "\tteam_id: " << _localPlayerData -> team_id << "\n";
 		//cout << "\tip address: " << _localPlayerData -> peer -> ( int ) outgoingPeerID << "\n";
-		cout << "\tstation type: " << _localPlayerData -> stationType << "\n";
+		cout << "\tstation type: " << stationInfo << "\n";
 	}
 }
 

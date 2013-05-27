@@ -37,7 +37,7 @@ public:
 	void HandleNetworkMessage( NetworkPacket p );
 	void UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_id );
 	void SendPlayerInfoRequest();
-
+	void PlayerManager :: stationUpdated(StationType stationType);
 	//this makes sure that the local data is sent to all the other players on the network (only local data)
 	void SyncLocalPlayerData( StationType currentStation );
 	void CheckInput( bool isDebugKeyPressed );
