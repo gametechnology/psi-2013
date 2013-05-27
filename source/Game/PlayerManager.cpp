@@ -4,7 +4,7 @@
 
 int PlayerData :: uniqueId		= 1;
 PlayerManager* PlayerManager::_instance = 0;
-char *localName;
+char *localName = new char;
 
 PlayerManager :: PlayerManager( ) : INetworkListener( )
 {
@@ -76,7 +76,7 @@ void PlayerManager :: RequestJoinServer( char *player_name, int team_id )
 {
 	cout << "I would like to join this game. My name is: " <<player_name <<"\n";
 	//here, we received a message from a player that they want to join our game and they have sent some information regarding their data.
-	//localName = player_name;
+	localName = player_name;
 	
 	this ->	_localPlayerData = new PlayerData( player_name, team_id );
 	
@@ -191,7 +191,7 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 
 	case PacketType :: SERVER_REQUEST_ACCEPTED:
 		packet >> player_name;
-		if ( localName == player_name){
+		if ( *localName == *player_name){
 		packet >> player_id;
 		this -> OnJoinAcceptedReceived( player_id );
 		}
