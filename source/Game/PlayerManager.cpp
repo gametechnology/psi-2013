@@ -168,7 +168,7 @@ void PlayerManager:: SendPlayerInfoRequest()
 void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 {
 	int			player_id;
-	char		*player_name;
+	char		*player_name = new char;
 	wstring		allPlayersMessage;
 	int			player_team_id = -1;
 	int			player_station_type;

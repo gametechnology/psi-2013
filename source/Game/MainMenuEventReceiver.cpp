@@ -77,6 +77,8 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->Nameinput->setVisible(false);
 						mainmenu->quit_button->setVisible(true);
 						mainmenu->waitinglabel->setVisible(true);
+
+						//TODO Proper team implementation
 						PlayerManager::GetInstance() -> RequestJoinServer( playername, 2 );
 					}
 				}
