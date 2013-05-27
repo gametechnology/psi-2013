@@ -1,13 +1,13 @@
 #include "Player.h"
-#include "Messages.h"
 
-Player::Player() : Entity()
+Player::Player() : GameObject()
 {
 	Name = new wchar_t[500];
 	_station = 999;
 }
+
 // TODO Check merge
-Player::Player( wchar_t *namec, enet_uint32 ipadressc,int teamc ) : Entity()
+Player::Player( wchar_t *namec, enet_uint32 ipadressc,int teamc ) : GameObject()
 {
 	wcsncpy(Name, namec, wcslen(namec));
 	Name[wcslen(namec)] = 0;
@@ -16,7 +16,8 @@ Player::Player( wchar_t *namec, enet_uint32 ipadressc,int teamc ) : Entity()
 }
 
 
-void Player::handleMessage(unsigned int message, void* data) {
+void Player::handleMessage(unsigned int message, void* data) 
+{
 	delete data;
 }
 
@@ -37,7 +38,7 @@ void Player::resetStation()
 
 Player::~Player()
 {
-	Entity::~Entity();
+	GameObject::~GameObject();
 }
 
 sf::Packet& operator >>(sf::Packet& in, Player * out)

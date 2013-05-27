@@ -1,8 +1,11 @@
-#pragma once
-#include "Engine\Game.h"
-#include "Engine\Entity.h"
-#include "Irrlicht\irrlicht.h"
-class Thruster : public Entity
+#ifndef THRUSTER
+#define THRUSTER
+
+#include <Engine/Core.h>
+#include <Engine\GameObject.h>
+#include <Irrlicht/irrlicht.h>
+
+class Thruster : public GameObject
 {
 public:
 	Thruster(irr::core::vector3df position, irr::core::vector3df initialDirection);
@@ -15,9 +18,7 @@ public:
 
 	void printAng();
 	irr::core::vector3df UpdateDirection();
-	float force_;
 
-	irr::core::vector3df position;
 	irr::core::vector3df nPosition;
 	irr::core::vector3df direction;
 	irr::core::vector3df nDirection;
@@ -27,10 +28,11 @@ public:
 
 	irr::core::vector3df linearForce;
 	irr::core::vector3df angularForce;
-	Entity * parent;
+	GameObject* parent;
 	irr::core::vector3df torque;
 
 	irr::core::vector3df pushDirection();
-
 };
+
+#endif
 

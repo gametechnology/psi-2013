@@ -1,6 +1,4 @@
 #include "StateSwitchDrone.h"
-#include "RandomGenerator.h"
-#include <iostream>
 
 void StateSwitchDrone::setState(States state)
 {
@@ -44,7 +42,7 @@ void StateSwitchDrone::handleIdle()
 		setState(STATE_DEATH);
 		return;
 	}
-	_parent->setVelocity(vector3df(0,0,0));
+	_parent->setVelocity(&irr::core::vector3df(0,0,0));
 
 	if(_parent->inRangeList.size() > 0)
 	{
@@ -85,12 +83,12 @@ void StateSwitchDrone::handleOffensive()
 		return;
 
 	if(!_parent->inRangeList.empty())
-		_parent->chase(*_parent->inRangeList.back()->transform->position);
+		_parent->chase(*_parent->inRangeList.back()->getPosition());
 }
 
 void StateSwitchDrone::handleDeath()
 {
-	_parent->destroyed = true;
+	delete _parent;
 }
 
 StateSwitchDrone::StateSwitchDrone(States startState, Enemy* parent)

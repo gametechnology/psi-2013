@@ -31,45 +31,66 @@
     <Filter Include="Header Files\Scenes">
       <UniqueIdentifier>{f01cd9da-eb66-4983-9106-4351db4e019d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Stations\Base">
+      <UniqueIdentifier>{2c4f9579-a88b-41cf-9e34-d51a84ed15fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Misc">
+      <UniqueIdentifier>{4a8d5fdf-1bf1-4baf-821e-46a2e6f011f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{8a3b8225-58b4-4813-a4c3-fa86dd818e6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameObjects">
+      <UniqueIdentifier>{c1c05b09-4806-4df6-966a-1cd52d4ea8ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\EventReceivers">
+      <UniqueIdentifier>{e15e53bb-e956-46de-ba58-c23c72092f89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Map">
+      <UniqueIdentifier>{c320d1f7-cf42-4e42-b36e-cb9cb510e1c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Movers">
+      <UniqueIdentifier>{90edb8a5-4a75-49c4-a7ec-b016b7454897}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Movers\Base">
+      <UniqueIdentifier>{a2e9a0f1-4beb-400d-b44e-00482abc2855}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Enemies\States">
+      <UniqueIdentifier>{3bd3f83a-7691-43ce-8b63-d52b566f42ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Enemies\States">
+      <UniqueIdentifier>{0576808f-5db5-4731-bd27-e6eb04e4b105}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{08e99cf5-4238-4a06-9a19-63cba5c026b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EventReceivers">
+      <UniqueIdentifier>{a98132c7-e298-4ace-9589-e3f2549faf91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameObjects">
+      <UniqueIdentifier>{176cd181-a8bd-4722-bf60-91cd8fba424d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Map">
+      <UniqueIdentifier>{e2fbb6a9-d3b6-40e5-94a5-e4621709c979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Movers">
+      <UniqueIdentifier>{26b0d46f-7288-4e3a-bee3-6a56b0814d1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Movers\Base">
+      <UniqueIdentifier>{5cf4ff8c-a22d-46f6-a3e5-a97f106a7197}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Stations\Base">
+      <UniqueIdentifier>{e9244796-178f-4947-a82d-44d7e73d57b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Game\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Ship.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Thruster.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\HelmStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\RandomGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\StateSwitchFighter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\MapSector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Laser.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\GalaxyMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\MapGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Shipmap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
@@ -114,16 +135,7 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\MainMenuEventReceiver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Sprite.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\StateSwitchDrone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
@@ -170,15 +182,6 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\WeaponStation.cpp">
       <Filter>Source Files\Stations</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\ShipScenes.cpp">
-      <Filter>Source files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\BasicMoverComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\ShipMover.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\NebulaSector.cpp">
       <Filter>Source files\Sector</Filter>
@@ -195,26 +198,14 @@
     <ClCompile Include="..\source\Game\Mist.cpp">
       <Filter>Source files\Sector</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\WormHole.cpp">
-      <Filter>Source files\Sector</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\AsteroidSector.cpp">
       <Filter>Source files\Sector</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\BaseSector.cpp">
       <Filter>Source files\Sector</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Skybox.cpp">
-      <Filter>Source files\Sector</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\GameScene.cpp">
       <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\EmptyTestScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\CalculateRotation.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\PowerStationData.cpp">
       <Filter>Source Files</Filter>
@@ -225,44 +216,86 @@
     <ClCompile Include="..\source\Game\SendAndReceivePackets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\StationStats.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\EndScene.cpp">
       <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\BasicShipMover.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\EndSceneEventReceiver.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\HealthComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\ShieldComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\PowerComponent.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\LobbyScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\StateSwitchFighter.cpp">
+      <Filter>Source Files\Enemies\States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\StateSwitchDrone.cpp">
+      <Filter>Source Files\Enemies\States</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\GalaxyMap.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\HealthComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\PowerComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\ShieldComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Shipmap.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Sprite.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\EndSceneEventReceiver.cpp">
+      <Filter>Source Files\EventReceivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\MainMenuEventReceiver.cpp">
+      <Filter>Source Files\EventReceivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Laser.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Ship.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Player.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Thruster.cpp">
+      <Filter>Source Files\GameObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\MapGenerator.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\MapSector.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\BasicShipMover.cpp">
+      <Filter>Source Files\Movers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\ShipMover.cpp">
+      <Filter>Source Files\Movers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\BasicMoverComponent.cpp">
+      <Filter>Source Files\Movers\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\ShipScenes.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\CalculateRotation.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\WormHole.cpp">
+      <Filter>Source files\Sector</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\StationStats.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\Station.cpp">
+      <Filter>Source Files\Stations\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\source\Game\GalaxyMap.h">
-      <Filter>Header files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Player.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Thruster.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Ship.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
       <Filter>Header Files\Stations</Filter>
     </ClInclude>
@@ -275,40 +308,13 @@
     <ClInclude Include="..\source\Game\Stations\PowerStation.h">
       <Filter>Header Files\Stations</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\Stations\Station.h">
-      <Filter>Header Files\Stations</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\RandomGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\StateSwitch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\WeaponStation.h">
       <Filter>Header Files\Stations</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\StateSwitchDrone.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\MapSector.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\StateSwitchFighter.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\GalaxyMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\ArrayList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\MapGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Laser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Shipmap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Enemy.h">
@@ -332,41 +338,20 @@
     <ClInclude Include="..\source\Game\MainMenuScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\MainMenuEventReceiver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Sprite.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\Team.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\NetworkInterface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\ShipScenes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\BasicMoverComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\ShipMover.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\NetworkInterface.h">
       <Filter>Header files\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Messages.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\AsteroidSector.h">
       <Filter>Header files\Sector</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\BaseSector.h">
       <Filter>Header files\Sector</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EmptyTestScene.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Mist.h">
       <Filter>Header files\Sector</Filter>
@@ -384,9 +369,6 @@
       <Filter>Header files\Sector</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\SectorManager.h">
-      <Filter>Header files\Sector</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\Skybox.h">
       <Filter>Header files\Sector</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\WormHole.h">
@@ -410,35 +392,89 @@
     <ClInclude Include="..\source\Game\Stations\PowerStationData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\StationStats.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\SendAndReceivePackets.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\BasicShipMover.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\EndScene.h">
       <Filter>Header Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\HealthComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\EndSceneEventReceiver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\ShieldComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\PowerComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\IStateSwitch.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\LobbyScene.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\Station.h">
+      <Filter>Header Files\Stations\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ArrayList.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\EndSceneEventReceiver.h">
+      <Filter>Header Files\EventReceivers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\GalaxyMap.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HealthComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Laser.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\MainMenuEventReceiver.h">
+      <Filter>Header Files\EventReceivers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\MapGenerator.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\MapSector.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Messages.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Player.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\PowerComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ShieldComponent.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Ship.h">
+      <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Shipmap.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\BasicShipMover.h">
+      <Filter>Header Files\Movers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ShipMover.h">
+      <Filter>Header Files\Movers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\BasicMoverComponent.h">
+      <Filter>Header Files\Movers\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ShipScenes.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Sprite.h">
+      <Filter>Header Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\IStateSwitch.h">
+      <Filter>Header Files\Enemies\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\StateSwitchDrone.h">
+      <Filter>Header Files\Enemies\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\StateSwitchFighter.h">
+      <Filter>Header Files\Enemies\States</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\StationStats.h">
+      <Filter>Header Files\Stations</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Thruster.h">
+      <Filter>Header Files\GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

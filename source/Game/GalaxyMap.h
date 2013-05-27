@@ -1,19 +1,24 @@
 #ifndef GALAXYMAP
 #define GALAXYMAP
 
-#include "Engine/Entity.h"
+#include <Engine/Composite.h>
+#include <Engine/Core.h>
+
 #include <vector>
 #include <iostream>
-#include "MapSector.h"
 
-class GalaxyMap : public Entity  {
+#include "MapSector.h"
+#include "MapGenerator.h"
+
+
+class GalaxyMap : public Composite
+{
 public:
 	irr::f32 width;
 	irr::f32 height;
-	irr::f32 radius;
+	irr::f32 radius;	
 
-	std::vector<MapSector*> sectors;
-	GalaxyMap(irr::f32 width, irr::f32 height, irr::f32 radiusSector);
+	GalaxyMap(Core* core, irr::f32 width, irr::f32 height, irr::f32 radiusSector);
 	virtual ~GalaxyMap();
 
 	virtual void onAdd();
@@ -22,7 +27,10 @@ public:
 	void loadMap();
 	void saveMap();
 	
-	void draw();
+	virtual void update();
+private:
+	Core* _core;
+	std::list<MapSector*> sectors;
 };
 
 #endif

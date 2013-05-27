@@ -1,20 +1,23 @@
 #ifndef HEALTHCOMPONENT
 #define HEALTHCOMPONENT
 
-#include "../../include/Engine/Component.h"
+#include <Engine/Component.h>
+
 #include "Stations/Station.h"
+#include "Messages.h"
 
 class HealthComponent : public Component
 {
 public:
 	HealthComponent();
-	~HealthComponent();
+	virtual ~HealthComponent();
+
 	void increaseHealth(int health);
 	void decreaseHealth(int health);
 	void handleMessage(unsigned int message, void* data);
 
-	//Station information
-	const static int maxHealth = 100;
+private:
+	const int maxHealth = 100;
 	int health;
 };
 

@@ -1,15 +1,20 @@
-#pragma once
-#include "Engine\Scene.h"
+#ifndef SHIP_SCENES
+#define SHIP_SCENES
 
-class ShipScenes :
-	public Scene
+#include <Engine/Scene.h>
+#include <Engine/GameObject.h>
+#include <Engine/CameraComponent.h>
+
+class ShipScenes :	public Scene
 {
 public:
 	ShipScenes(void);
 	~ShipScenes(void);
 	void init();
 
-	Entity* ship;
-	Entity* camera;
+	GameObject* ship;
+	CameraComponent* camera;
 };
+
+#endif
 

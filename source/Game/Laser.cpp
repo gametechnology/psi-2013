@@ -1,41 +1,31 @@
 #include "Laser.h"
-#include "Engine\IrrlichtNode.h"
-#include "NetworkInterface.h"
+
+using namespace irr;
+using namespace irr::core;
 
 int Laser::newLaserId = 0;
 
-Laser::Laser() : Entity()
+Laser::Laser(irr::scene::ISceneManager* smgr) : GameObject()
 {
-	this->_currentLife = 0;
-	this->_timeofLife = 250;
-	this->_damage = 1;
-	this->disable();
-	this->scene = NULL;
-	this->_hasAnIrrlichtNode = false;
-	this->_id = this->newLaserId++;
-
-	//the addchild is located in the constructor because a laser is being added more than once
+	_currentLife = 0;
+	_timeofLife = 250;
+	_damage = 1;
+	_hasAnIrrlichtNode = false;
+	_id = newLaserId++;
+	_smgr = smgr;
 }
 
-void Laser::onAdd() {
-	if(!this->_hasAnIrrlichtNode)
-	{
-		addChild(new IrrlichtNode("../assets/Models/laser.3ds"));
-
-		this->_hasAnIrrlichtNode = true;
-		this->init();
-
-		for(unsigned i = 0; i < this->children.size(); i++)
-		{
-			this->children[i]->update();
-		}
-	}
-	Entity::onAdd();
+void Laser::onAdd() 
+{
+	_mesh = new MeshComponent(_smgr);
+	addComponent(_mesh);
+	_mesh->createMeshNode("../assets/Models/laser.3ds");
+	init();
 }
 
-void Laser::init() {
-	Entity::init();
-
+void Laser::init() 
+{
+	GameObject::init();
 }
 
 Laser::~Laser() 
@@ -43,18 +33,16 @@ Laser::~Laser()
 
 }
 
-void Laser::fire(Transform* transform, vector3df target, f32 speed)
+void Laser::fire(vector3df* position, vector3df* rotation, vector3df target, f32 speed)
 {
-	this->enable();
-
-	*this->transform->position = *transform->position;
-	*this->transform->rotation = *transform->rotation;
-	*this->transform->rotation += 90;
+	_position = position;
+	_rotation = rotation;
+	_rotation += 90;
 	
-	this->_direction = target - *this->transform->position;
-	this->_direction.normalize();
+	_direction = target - *_position;
+	_direction.normalize();
 
-	*this->transform->velocity = _direction * speed;
+	*_velocity = _direction * speed;
 }
 
 int Laser::getId()
@@ -69,43 +57,20 @@ void Laser::setId(int id)
 
 void Laser::update()
 {
-	if(this->enabled)
-	{
-		this->_currentLife++;
-		if(this->_currentLife >= this->_timeofLife)
-		{
-			this->disable();
-			for(unsigned i = 0; i < this->children.size(); i++)
-			{
-				this->children[i]->update();
-			}
-			_currentLife = 0;
-		}
-	}
-
-	Entity::update();
+	_mesh->update(_position, _rotation);
+	GameObject::update();
 }
 
 void Laser::contactResolverA(Enemy* input)
 {
 	input->setHealth(input->getHealth() - this->_damage);
 	std::printf("HIT on Enemy!");
-	this->disable();
-	for(unsigned i = 0; i < this->children.size(); i++)
-	{
-		this->children[i]->update();
-	}
-//	delete(this); //'kill' this projectile
+	delete this;
 }
 
 void Laser::contactResolverA(DefenceStation* input)
 {
 	input->Damage();
 	std::printf("HIT on Defence station!");
-	this->disable();
-	for(unsigned i = 0; i < this->children.size(); i++)
-	{
-		this->children[i]->update();
-	}
-//	delete(this); //'kill' this projectile
+	delete this;
 }

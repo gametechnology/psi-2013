@@ -45,6 +45,7 @@ public:
 	IrrDriver* getDriver() { return driver; };
 	IrrGuiEnv* getGuiEnv() { return guiEnv; };
 	IrrSmgr* getSmgr() { return smgr; };
+	InputManager* getInput() { return appReceiver; };
 };
 
 #endif

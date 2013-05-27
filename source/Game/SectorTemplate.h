@@ -1,49 +1,60 @@
 #ifndef SECTOR_TEMPLATE
 #define SECTOR_TEMPLATE
 
-#include "Engine/Scene.h"
+/*
+* TODO This class is a mess. Refactor this.
+* There are too many includes and its intent
+* is unclear.
+*/ 
+#include <Engine/Scene.h>
+#include <Engine/Core.h>
+#include <vector>
+
 #include "SectorManager.h"
 #include "WormHole.h"
 #include "Mist.h"
 #include "Messages.h"
-#include "Engine/Game.h"
 #include "EnemyManager.h"
-#include <vector>
 #include "NetworkInterface.h"
 #include "EnemyAsteroid.h"
 #include "EnemyDrone.h"
 #include "EnemyFighter.h"
 
-class SectorManager;
-class SectorTemplate : public Scene, public INetworkListener  {
-protected:
+/*
+* This is not a scene, if it is; change the name.
+* TODO Document this class, it's a disaster.
+*/
+
+class SectorTemplate : public Scene, public INetworkListener  
+{
+public:
+	SectorTemplate(SectorManager* sectormanager, std::string skyBoxTexture, float boundry, unsigned int amountWormHoles );
+	virtual ~SectorTemplate();
+
+	virtual void handleMessage( unsigned int message, void* data = 0 );
+	virtual void update();
+	virtual void init();
+
+	void createWormHoles( unsigned int amountOfWormHoles );
+	void createEnemies();
+	void addWormHoles();
+
+	/*
+	* TODO This is obviously an obscene hack, just to get access
+	* to network packages. Fix this class as soon as possible.
+	*/
+	virtual void handleNetworkMessage(NetworkPacket packet);
+private:
+	SectorManager* _sectormanager;
+
+	std::vector<Enemy*> _enemyList;
+	irr::core::vector3df* _playerPosition;
+	irr::scene::ICameraSceneNode* _camera;
 	std::vector<WormHole*> _wormHoles;
+
 	float _boundry;
 	WormHole* wormHole;
-	vector3df* _playerPosition;
-	// Camera Placeholder instead of player
-	irr::scene::ICameraSceneNode *_camera;
-	Entity* _skybox;
 	Mist* _fog;
-	vector<Enemy*> _enemyList;
-public:
-	SectorManager* _sectormanager;
-	SectorTemplate(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundry, unsigned int amountWormHoles );
-	virtual ~SectorTemplate();
-	
-	//void handleMessage( unsigned int message, void* data = 0 );
-	virtual void update();
-	virtual void onAdd();
-	virtual void init();
-	void createWormHoles( unsigned int amountOfWormHoles );
-	void addWormHoles();
-	
-	virtual void createEnemies();
-
-	void HandleNetworkMessage(NetworkPacket packet);
-	
-	
-private:
 };
 
 #endif

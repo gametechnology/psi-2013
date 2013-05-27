@@ -1,8 +1,10 @@
 #include "EndSceneEventReceiver.h"
 
-EndSceneEventReceiver::EndSceneEventReceiver(Game* game)
+using namespace irr;
+using namespace irr::gui;
+
+EndSceneEventReceiver::EndSceneEventReceiver(SAppContext& context) : _context(context)
 {
-	this->_contextGame = game;
 }
 
 bool EndSceneEventReceiver::OnEvent(const SEvent& event)
@@ -13,9 +15,8 @@ bool EndSceneEventReceiver::OnEvent(const SEvent& event)
 		switch(id)
 		{
 		case 0:
-			this->_contextGame->guiEnv->clear();
-			this->_contextGame->sceneManager->activateScene("MainMenuScene");
-			this->_contextGame->sceneManager->destroyScene("EndScene");
+			_context.u_interface->resetInterface();
+			_context.core->setActiveScene(new MainMenuScene(_context.core, _context.u_interface));
 			break;
 		}
 	}

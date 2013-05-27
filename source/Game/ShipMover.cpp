@@ -26,44 +26,17 @@ void ShipMover::onAdd(){
 void ShipMover::init() { }
 
 void ShipMover::update() {
-	//set the current rotation matrix which will be used to transform the local acceleration into world acceleration
 	this->shipRotation_= *(entity->transform->rotation);
-	//rotationMatrix.setRotationDegrees(shipRotation_);
-	
-	//handle input.
-	//when a button is pressed, the linear and angular of the used thrusters will be added up	d'alemberts principle
-	
+
 	if(input->isKeyboardButtonDown(irr::KEY_KEY_W)){
-		std::cout << "[ShipMover] W IS PRESSED";
-		//localAngForce_ += thrusters_[3]->angularForce;			<----- THIS PART BREAKS STUFF
-		//localAngForce_ += thrusters_[4]->angularForce;
-		//localLinForce_ += thrusters_[3]->linearForce;
-		//localLinForce_ += thrusters_[4]->linearForce;
+		std::cout << "[ShipMover] W IS PRESSED";	
 	}
 
-	/*because of the thruster implentation, these forces will assume the ship has no rotation. Hence local forces.
-	the local forces will be transformed into world forces by getting the ships rotation, make a rotationMatrix out of it
-	and rotate the accumulated force.*/
-	worldLinForce_ = this->LocalToWorld(&localLinForce_, &rotationMatrix);		//i think it breaks here, with the fucntion and rotation
+	worldLinForce_ = this->LocalToWorld(&localLinForce_, &rotationMatrix);
 	worldAngForce_ = this->LocalToWorld(&localAngForce_, &rotationMatrix);
 
-	*shipLinAcc_ += worldLinForce_; //force should be divided by mass. but the ship has no mass, I think.
+	*shipLinAcc_ += worldLinForce_;
 	*shipAngAcc_ += worldAngForce_;
-
-	/*this method is used because it uses the least amount of complicated calculations I could think of.
-	the complicated math is only done once in the thruster, and only simple adding and matrix transformations
-	are done each frame.*/
-	
-
-
-	//seriously guys. Why did you use my shipmover component for something that isn't even moving the ship?
-	//shipmover moves the ship. That's all functionality it has and needs. Or put it in something similar like BasicMoverComponent,
-	//only name it NetMovementComponent!
-	//hey, that would make a hell lotta sense
-	//just think about it.
-	//you can use the same component for every moving object that needs to be updated over the network
-	//like enemies, asstroids, missiles
-	//I am such a genius. I expect full credits of this amazing idea.
 }
 void ShipMover::ResetForces(){
 	localAngForce_ = vector3df(0,0,0);
@@ -71,17 +44,17 @@ void ShipMover::ResetForces(){
 	worldAngForce_ = vector3df(0,0,0);
 	worldLinForce_ = vector3df(0,0,0);
 }
-vector3df ShipMover::LocalToWorld(vector3df* local, matrix4* rMatrix){
+
+vector3df ShipMover::LocalToWorld(vector3df* local, matrix4* rMatrix)
+{
 	vector3df temp = vector3df(0,0,0);
-	//rMatrix->transformVect(temp, *local);
 	return temp;
 }
 void ShipMover::NotMovementStuff(){
 	BasicMoverComponent::update();
 
-	//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
 	NetworkPacket movementPacket = NetworkPacket(PacketType::CLIENT_SHIP_MOVEMENT);
-	//movementPacket << id; // ID van het ship
+
 	movementPacket << entity->transform->position;
 	movementPacket << entity->transform->rotation;
 	movementPacket << entity->transform->velocity; 
@@ -89,12 +62,10 @@ void ShipMover::NotMovementStuff(){
 	movementPacket << entity->transform->angularAccelaration; 
 	movementPacket << entity->transform->angularVelocity;
 	
-	//Send packet to server
-	
-		if (lastsend + 1 < time(0) ){
-			Network::GetInstance()->SendPacketToAllClients(movementPacket, false);
-			lastsend = time(0) ;
-		}
-	
+	if (lastsend + 1 < time(0) ){
+		Network::GetInstance()->SendPacketToAllClients(movementPacket, false);
+		lastsend = time(0) ;
+	}
+
 }
 

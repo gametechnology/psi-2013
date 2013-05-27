@@ -2,16 +2,17 @@
 #define SECTOR_NEBULA
 
 #include "SectorTemplate.h"
-#include "Engine/Game.h"
+#include <Engine/Core.h>
 
-class NebulaSector : public SectorTemplate  {
+class NebulaSector : public SectorTemplate
+{
 public:
-
-	NebulaSector(SectorManager* parent, const io::path& skyBoxTexture, float boundry, unsigned int amountWormHoles);
-	void NebulaSector::handleMessage(unsigned int message, void* data = 0);
-	virtual void NebulaSector::update();
-	void NebulaSector::init();
+	NebulaSector(SectorManager* parent, std::string skyBoxTexture, float boundry, unsigned int amountWormHoles);
 	virtual ~NebulaSector();
+
+	virtual void update();
+	virtual void init();	
+	virtual void handleMessage(unsigned int message, void* data = 0);
 };
 
 #endif

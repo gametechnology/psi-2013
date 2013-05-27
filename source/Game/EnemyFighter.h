@@ -6,15 +6,17 @@
 #include "ObjectPool.h"
 #include "Laser.h"
 
+#include <Engine/GameObject.h>
+
 class EnemyFighter : public Enemy
 {
 public:
-	EnemyFighter(irr::core::vector3df position);
+	EnemyFighter(irr::scene::ISceneManager*, irr::core::vector3df position);
 	~EnemyFighter(void);
 
-	void SetTarget(vector3df target);
-	virtual void chase(vector3df target);
-	void fireLaserAt(vector3df target);
+	void SetTarget(irr::core::vector3df target);
+	virtual void chase(irr::core::vector3df target);
+	void fireLaserAt(irr::core::vector3df target);
 	
 	virtual void init();
 	virtual void onAdd();
@@ -22,9 +24,9 @@ public:
 
 	static ObjectPool<Laser>* laserPool;
 private:
-	int			_fireTime;
-	vector3df	_target;
-	vector3df	_endPosition;
+	int	_fireTime;
+	irr::core::vector3df	_target;
+	irr::core::vector3df	_endPosition;
 	StateSwitchFighter* stateSwitch;
 };
 

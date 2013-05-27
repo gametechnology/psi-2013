@@ -1,32 +1,30 @@
 #ifndef ENTITY_SHIP
 #define ENTITY_SHIP
-#pragma once
+
+/*
+* TODO Clearly a God-Class. This
+* needs thorough refactoring.
+*/
+
+
+#include <Irrlicht/irrlicht.h>
+#include <Engine/GameObject.h>
+#include <Engine/CameraComponent.h>
+
+#include "Player.h"
+#include "Thruster.h"
+#include "ShipMover.h"
+#include "Laser.h"
+#include "ObjectPool.h"
+#include "HudHelpText.h"
 
 #include "Stations\DefenceStation.h"
 #include "Stations\HelmStation.h"
 #include "Stations\NavigationStation.h"
 #include "Stations\PowerStation.h"
 #include "Stations\WeaponStation.h"
-#include "Irrlicht\irrlicht.h"
 
-#include "Stations\Station.h"
-#include "Engine/Entity.h"
-#include "Engine/IrrlichtNode.h"
-#include "Player.h"
-#include "Thruster.h"
-#include "Engine\Camera.h"
-#include "ShipMover.h"
-#include "Laser.h"
-#include "ObjectPool.h"
-#include "HudHelpText.h"
-
-class DefenceStation;
-class HelmStation;
-class NavigationStation;
-class PowerStation;
-class WeaponStation;
-
-class Ship : public Entity, public INetworkListener
+class Ship : public GameObject, public INetworkListener
 {
 public:
 	HudHelpText* help;
@@ -46,7 +44,9 @@ public:
 	irr::gui::IGUIStaticText *navigationStationHealth;
 	irr::gui::IGUIStaticText *powerStationHealth;
 	irr::gui::IGUIStaticText *weaponStationHealth;
-
+	
+	Ship(irr::core::vector3df position, irr::core::vector3df rotation);
+	virtual ~Ship();
 
 	bool _shipDestroyed;
 
@@ -60,11 +60,8 @@ public:
 
 	void CheckChangeInput();
 
-	Ship(vector3df position, vector3df rotation);
-	virtual ~Ship(void);
-
-	Station*	GetStation(StationType);
-	Thruster**	GetThrusters();
+	Station* GetStation(StationType);
+	Thruster** GetThrusters();
 
 	int getShipHealth();
 	bool getShipDestroyed();
@@ -78,12 +75,12 @@ public:
 	void HandleNetworkMessage(NetworkPacket packet);
 private:
 
-	Station				*_currentStation;
-	Thruster			*_thrusters[4];
-	matrix4				*_inertiaMatrix;
+	Station	*_currentStation;
+	Thruster *_thrusters[4];
+	irr::core::matrix4 *_inertiaMatrix;
 
-	stringw varToString(stringw str1, float var, stringw str2);
-	stringw varToString(stringw str1, float var);
+	irr::core::stringw varToString(irr::core::stringw str1, float var, irr::core::stringw str2);
+	irr::core::stringw varToString(irr::core::stringw str1, float var);
 
 	void setInertiaMatrix(float h, float w, float d, float m);
 };

@@ -1,30 +1,28 @@
 #ifndef END_SCENE_EVENT_RECEIVER_H
 #define END_SCENE_EVENT_RECEIVER_H
 
-#include "Irrlicht\irrlicht.h"
-#include "Engine\Game.h"
-#include "Engine\Scene.h"
+#include <Irrlicht\irrlicht.h>
+#include <Engine\Core.h>
+#include <Engine\Scene.h>
+#include <Engine\Interface.h>
 
-// irrlicht namespaces
-using namespace irr;
-using namespace core;
-using namespace scene;
-using namespace video;
-using namespace io;
-using namespace gui;
+#include "MainMenuScene.h"
 
-// standard namespace
-using namespace std;
+struct SAppContext
+{
+	Core* core;
+	irr::s32 counter;
+	Interface* u_interface;
+};
 
 class EndSceneEventReceiver : public IEventReceiver
 {
 public:
-	EndSceneEventReceiver(Game* game);
+	EndSceneEventReceiver(SAppContext& context);
 
 	virtual bool OnEvent(const SEvent& event);
-
 private:
-	Game* _contextGame;
+	SAppContext& _context;
 };
 
 #endif

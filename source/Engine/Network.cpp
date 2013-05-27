@@ -282,7 +282,7 @@ void Network::DistributePacket(NetworkPacket networkPacket)
 		}
 		std::list<INetworkListener*>::const_iterator iterator;
 		for (iterator = _listeners[type]->begin(); iterator != _listeners[type]->end(); ++iterator)
-			(*iterator)->HandleNetworkMessage(networkPacket);
+			(*iterator)->handleNetworkMessage(networkPacket);
 	}
 	else
 		printf("Unknown PacketType '%s' received", type);

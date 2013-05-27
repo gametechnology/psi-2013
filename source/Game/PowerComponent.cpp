@@ -1,8 +1,6 @@
 #include "PowerComponent.h"
-#include "../../include/Engine/Composite.h"
-#include "Messages.h"
 
-PowerComponent::PowerComponent(): Component()
+PowerComponent::PowerComponent(): Component("PowerComponent")
 {
 	power = 0;
 }

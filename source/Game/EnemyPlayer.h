@@ -3,14 +3,16 @@
 
 #include "Enemy.h"
 
+#include <iostream>
+
 class EnemyPlayer : public Enemy
 {
 public:
-	EnemyPlayer(irr::core::vector3df position, vector3df speed);
+	EnemyPlayer(irr::scene::ISceneManager*, irr::core::vector3df position, irr::core::vector3df speed);
+	~EnemyPlayer();
+
 	void init();
-	void onAdd();
-	~EnemyPlayer(void);
-private:
+	void onAdd();	
 };
 
 #endif

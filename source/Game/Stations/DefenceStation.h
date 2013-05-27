@@ -5,8 +5,8 @@
 #include <time.h>
 #include <map>
 
-class DefenceStation : public Station {
-	
+class DefenceStation : public Station 
+{
 public:
 	DefenceStation(Ship* ship);
 	~DefenceStation();

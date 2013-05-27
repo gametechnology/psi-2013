@@ -1,15 +1,21 @@
 #ifndef STATION_BASE
 #define STATION_BASE
 
-#include "../HudComposite.h"
 #include "../Player.h"
 
-#include <Engine/Entity.h>
+/*
+* TODO An object is either a Component
+* or a GameObject, not both. Make a choice
+* and refactor accordingly.
+*/
+#include <Engine/GameObject.h>
 #include <Engine/Component.h>
-#include <Engine/Game.h>
+#include <Engine/Core.h>
 #include <Irrlicht/irrlicht.h>
 
-#define STUN_TIME 4.0
+// Use constants over Defines.
+const float STUN_TIME = 4.0f;
+
 class Ship;
 class HealthComponent;
 class PowerComponent;
@@ -24,10 +30,8 @@ enum StationType
 	ST_NAVIGATION	= 4
 };
 
-class Station : public Entity
+class Station : public Component
 {
-	void leaveStation(StationType station);
-
 public:
 	Station( Ship *ship, int startHealth );
 	Station( Ship *ship );
@@ -81,6 +85,8 @@ public:
 	virtual void OnDamage( );
 	virtual void OnEnabled() = 0;
 	virtual void OnDisabled() = 0;
+
+	void leaveStation(StationType station);
 
 	HudComposite* hud;
 	StationType _stationType;

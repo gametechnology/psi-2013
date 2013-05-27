@@ -1,12 +1,14 @@
 #ifndef SPRITE_H
 #define SPRITE_H
 
-#include "Engine\Entity.h"
-#include "Irrlicht\irrlicht.h"
+#include <Engine/Core.h>
+#include <Engine/GameObject.h>
+#include <Irrlicht/irrlicht.h>
 
-class Sprite : public Entity {
+class Sprite : public GameObject
+{
 public:
-	Sprite();
+	Sprite(Core* core);
 	virtual ~Sprite();
 
 	virtual void draw();
@@ -14,6 +16,8 @@ public:
 private:
 	irr::video::ITexture* _texture;
 	irr::core::rect<irr::s32> _size;
+
+	Core* _core;
 };
 
 #endif // SPRITE_H

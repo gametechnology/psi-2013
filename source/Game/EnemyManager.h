@@ -1,28 +1,30 @@
 #ifndef ENEMYMANAGER_H
 #define ENEMYMANAGER_H
 
-#include "Engine/Component.h"
-#include "Engine/Game.h"
+#include <Engine/Composite.h>
 
 #include "Enemy.h"
 #include "EnemyDrone.h"
 #include "EnemyFighter.h"
+#include "EnemyPlayer.h"
 #include "EnemyAsteroid.h"
 #include "NetworkInterface.h"
 
-class EnemyManager : public Component
+
+class EnemyManager : public Composite
 {
 	public:
-		EnemyManager(void);
-		~EnemyManager(void);
+		EnemyManager(irr::scene::ISceneManager*);
+		~EnemyManager();
 
 		void createEnemies();
 		virtual void onAdd();
 		virtual void update();
-		void NarrowPhaseDetection(array<Enemy*> _input);
-		void LaserNarrowPhase(array<Enemy*> _enput, array<Laser*> _laput);
+		void narrowPhaseDetection(std::list<Component*> _input);
+		void laserNarrowPhase(std::list<Component*> _input, std::list<Laser*> _laput);
 
+		irr::core::vector3df* createBoundingBox(Enemy* object);
 	private:
-		array<Enemy*> _enemyList;
+		irr::scene::ISceneManager* _smgr;
 };
 #endif

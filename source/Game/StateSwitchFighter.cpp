@@ -1,7 +1,4 @@
 #include "StateSwitchFighter.h"
-#include "EnemyFighter.h"
-#include "RandomGenerator.h"
-#include <iostream>
 
 StateSwitchFighter::StateSwitchFighter(States startState, Enemy* parent)
 {
@@ -14,7 +11,7 @@ StateSwitchFighter::StateSwitchFighter(States startState, Enemy* parent)
 
 StateSwitchFighter::StateSwitchFighter(Enemy* parent)
 {
-	StateSwitchFighter::setState(STATE_IDLE);
+	setState(STATE_IDLE);
 	this->_parent = parent;
 
 	this->_fireTimeCount = 0;
@@ -76,7 +73,7 @@ void StateSwitchFighter::handleIdle()
 		setState(STATE_DEATH);
 		return;
 	}
-	_parent->setVelocity(vector3df(0,0,0));
+	_parent->setVelocity(irr::core::vector3df(0,0,0));
 
 	if(_parent->inRangeList.size() > 0)
 	{
@@ -157,9 +154,9 @@ void StateSwitchFighter::handleFollow()
 	if(_parent->inRangeList.back() == NULL)
 		return;
 
-	if((*_parent->inRangeList.back()->transform->position - *_parent->transform->position).getLength() > 10)
+	if((*_parent->inRangeList.back()->getPosition() - _parent->getPosition()).getLength() > 10)
 	{
-		_parent->chase(*_parent->inRangeList.back()->transform->position);
+		_parent->chase(*_parent->inRangeList.back()->getPosition());
 	}
 }
 
@@ -187,11 +184,11 @@ void StateSwitchFighter::handleOffensive()
 
 	if(!_parent->inRangeList.empty())
 	{
-		if((*_parent->inRangeList.back()->transform->position - *_parent->transform->position).getLength() > 10)
+		if((*_parent->inRangeList.back()->getPosition() - _parent->getPosition()).getLength() > 10)
 		{
-			_parent->chase(*_parent->inRangeList.back()->transform->position);
+			_parent->chase(*_parent->inRangeList.back()->getPosition());
 		}
-		_parent->setTarget(*_parent->inRangeList.back()->transform->position);
+		_parent->setTarget(*_parent->inRangeList.back()->getPosition());
 		if(this->_fireTimeCount >= this->_fireTime)
 		{
 			((EnemyFighter*)_parent)->fireLaserAt(_parent->getTarget());
@@ -222,11 +219,11 @@ void StateSwitchFighter::handleDefensive()
 
 	if(!_parent->inRangeList.empty())
 	{
-		if((*_parent->inRangeList.back()->transform->position - *_parent->transform->position).getLength() > 20)
+		if((*_parent->inRangeList.back()->getPosition() - _parent->getPosition()).getLength() > 20)
 		{
-			_parent->chase(*_parent->inRangeList.back()->transform->position);
+			_parent->chase(*_parent->inRangeList.back()->getPosition());
 		}
-		_parent->setTarget(*_parent->inRangeList.back()->transform->position);
+		_parent->setTarget(*_parent->inRangeList.back()->getPosition());
 		if(this->_fireTimeCount >= this->_fireTime)
 		{
 			((EnemyFighter*)_parent)->fireLaserAt(_parent->getTarget());
@@ -253,16 +250,16 @@ void StateSwitchFighter::handleFleeing()
 
 	if(!_parent->inRangeList.empty())
 	{
-		if((*_parent->inRangeList.back()->transform->position - *_parent->transform->position).getLength() > 20)
+		if((*_parent->inRangeList.back()->getPosition() - _parent->getPosition()).getLength() > 20)
 		{
-			vector3df fleetarget = (*_parent->inRangeList.back()->transform->position) + (*_parent->transform->position);
+			irr::core::vector3df fleetarget = (*_parent->inRangeList.back()->getPosition()) + (_parent->getPosition());
 			fleetarget = fleetarget.normalize()*50;
-			StateSwitchFighter::getParent()->flee(fleetarget);
+			getParent()->flee(fleetarget);
 		}
 	}
 }
 
 void StateSwitchFighter::handleDeath()
 {
-	_parent->destroyed = true;
+	delete _parent;
 }

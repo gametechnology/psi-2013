@@ -1,6 +1,4 @@
 #include "ShieldComponent.h"
-#include "../../include/Engine/Composite.h"
-#include "Messages.h"
 
 ShieldComponent::ShieldComponent(): Component()
 {

@@ -1,9 +1,7 @@
 #include "HealthComponent.h"
-#include "../../include/Engine/Composite.h"
-#include "Messages.h"
 
 
-HealthComponent::HealthComponent(): Component()
+HealthComponent::HealthComponent(): Component("HealthComponent")
 {
 	health = maxHealth;
 }

@@ -1,11 +1,13 @@
 #ifndef STATE_SWITCH_DRONE_H
 #define STATE_SWITCH_DRONE_H
 
-#include "Engine\Game.h"
-#include "Irrlicht\irrlicht.h"
+#include <Engine\Core.h>
+#include <Irrlicht\irrlicht.h>
+#include <iostream>
 
 #include "IStateSwitch.h"
 #include "Enemy.h"
+#include "RandomGenerator.h"
 
 class StateSwitchDrone : public IStateSwitch
 {

@@ -1,8 +1,8 @@
 #include "Shipmap.h"
 
-Shipmap::Shipmap(GameScene* scene): _scene(scene), Entity()
+Shipmap::Shipmap(Core* core, Scene* scene): _scene(scene), GameObject()
 {
-	
+	_core = core;
 }
 
 Shipmap::~Shipmap()
@@ -12,21 +12,21 @@ Shipmap::~Shipmap()
 void Shipmap::onAdd()
 {
 	// Assets
-	bg = game->driver->getTexture("../assets/shipmap/map.png");
-	icon = game->driver->getTexture("../assets/shipmap/icon.png");
+	bg = _core->getDriver()->getTexture("../assets/shipmap/map.png");
+	icon = _core->getDriver()->getTexture("../assets/shipmap/icon.png");
 
-	icon_helm = game->driver->getTexture("../assets/shipmap/icon_helm.png");
-	icon_defense = game->driver->getTexture("../assets/shipmap/icon_defense.png");
-	icon_weapons = game->driver->getTexture("../assets/shipmap/icon_weapons.png");
-	icon_navigation = game->driver->getTexture("../assets/shipmap/icon_navigation.png");
-	icon_engine = game->driver->getTexture("../assets/shipmap/icon_engine.png");
+	icon_helm = _core->getDriver()->getTexture("../assets/shipmap/icon_helm.png");
+	icon_defense = _core->getDriver()->getTexture("../assets/shipmap/icon_defense.png");
+	icon_weapons = _core->getDriver()->getTexture("../assets/shipmap/icon_weapons.png");
+	icon_navigation = _core->getDriver()->getTexture("../assets/shipmap/icon_navigation.png");
+	icon_engine = _core->getDriver()->getTexture("../assets/shipmap/icon_engine.png");
 
-	font = game->device->getGUIEnvironment()->getBuiltInFont();
+	font = _core->getDevice()->getGUIEnvironment()->getBuiltInFont();
 
 	iconRadius = (float)icon->getOriginalSize().Height/2;
 	isMoving = isIntersecting = blockedE = onStation = onOccupiedStation = false;
 
-	then = game->device->getTimer()->getTime();
+	then = _core->getDevice()->getTimer()->getTime();
 	iconOffset = 30;
 	stationNumber = 0;
 	duration = savedPosX = savedPosY = 0.f;
@@ -75,8 +75,8 @@ void Shipmap::onAdd()
 		stationOccupied[i] = false;
 
 	// Player starting position - should start in the middle of the plane
-	this->transform->position->X = (float)((playerTile.x * tileSize) + offsetX);
-	this->transform->position->Y = (float)((playerTile.y * tileSize) + offsetY + 20);
+	_position->X = (float)((playerTile.x * tileSize) + offsetX);
+	_position->Y = (float)((playerTile.y * tileSize) + offsetY + 20);
 }
 
 void Shipmap::init()
@@ -85,8 +85,6 @@ void Shipmap::init()
 
 void Shipmap::draw()
 {
-	Entity::draw();
-
 	game->driver->draw2DImage(bg, core::position2d<s32>(0,0),
 		irr::core::rect<s32>(0,0,bg->getOriginalSize().Width,bg->getOriginalSize().Height),
 		0, video::SColor(255,255,255,255), true);
@@ -134,39 +132,39 @@ void Shipmap::draw()
 
 void Shipmap::update()
 {
-	now = game->device->getTimer()->getTime();
+	now = _core->getDevice()->getTimer()->getTime();
 
 	playerSpeed = 1.7f;
 
-	savedPosX = this->transform->position->X;
-	savedPosY = this->transform->position->Y;
+	savedPosX = _position->X;
+	savedPosY = _position->Y;
 
-	playerBox->UpperLeftCorner.X = (int)this->transform->position->X;
-	playerBox->UpperLeftCorner.Y = (int)this->transform->position->Y;
-	playerBox->LowerRightCorner.X = (int)(this->transform->position->X + iconRadius*2);
-	playerBox->LowerRightCorner.Y = (int)(this->transform->position->Y + iconRadius*2);
+	playerBox->UpperLeftCorner.X = (int)_position->X;
+	playerBox->UpperLeftCorner.Y = (int)_position->Y;
+	playerBox->LowerRightCorner.X = (int)(_position->X + iconRadius*2);
+	playerBox->LowerRightCorner.Y = (int)(_position->Y + iconRadius*2);
 
-	playerTile.x = (int)((this->transform->position->X - offsetX) / tileSize);
-	playerTile.y = (int)((this->transform->position->Y - offsetY) / tileSize);
+	playerTile.x = (int)((_position->X - offsetX) / tileSize);
+	playerTile.y = (int)((_position->Y - offsetY) / tileSize);
 
-	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_A)) {
+	if (_core->getInput()->isKeyboardButtonDown(irr::KEY_KEY_A)) {
 		isMoving = true;
-		this->transform->position->X -= playerSpeed; 
+		_position->X -= playerSpeed; 
 	}
 
-	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_D)) {
+	if (_core->getInput()->isKeyboardButtonDown(irr::KEY_KEY_D)) {
 		isMoving = true;
-		this->transform->position->X += playerSpeed;
+		_position->X += playerSpeed;
 	}
 
-	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_W)) {
+	if (_core->getInput()->isKeyboardButtonDown(irr::KEY_KEY_W)) {
 		isMoving = true;
-		this->transform->position->Y -= playerSpeed;
+		_position->Y -= playerSpeed;
 	}
 
-	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_S)){
+	if (_core->getInput()->isKeyboardButtonDown(irr::KEY_KEY_S)){
 		isMoving = true;
-		this->transform->position->Y += playerSpeed;
+		_position->Y += playerSpeed;
 	}
 
 	// TODO replace stationOccupied[i] with the hasPlayer booleans of each individual station!
@@ -184,16 +182,16 @@ void Shipmap::update()
 	}
 
 	// Enter a station
-	if (onStation && (game->input->isKeyboardButtonDown(irr::KEY_KEY_E) || game->input->isKeyboardButtonDown(irr::KEY_KEY_F))) {
+	if (onStation && (_core->getInput()->isKeyboardButtonDown(irr::KEY_KEY_E) || _core->getInput()->isKeyboardButtonDown(irr::KEY_KEY_F))) {
 			enterStation(_intersectingStation);
 			return;
 	}
 	
 	if (isMoving) {
-		int leftTile = (int)((this->transform->position->X - offsetX) / tileSize);
-		int rightTile = (int)(((this->transform->position->X + iconRadius * 2) - offsetX) / tileSize);
-		int topTile = (int)((this->transform->position->Y - offsetY) / tileSize);
-		int bottomTile = (int)(((this->transform->position->Y + iconRadius * 2) - offsetY) / tileSize);
+		int leftTile = (int)((_position->X - offsetX) / tileSize);
+		int rightTile = (int)(((_position->X + iconRadius * 2) - offsetX) / tileSize);
+		int topTile = (int)((_position->Y - offsetY) / tileSize);
+		int bottomTile = (int)(((_position->Y + iconRadius * 2) - offsetY) / tileSize);
 
 		if (tiles[topTile][leftTile] == 1 || tiles[bottomTile][leftTile] == 1 || tiles[topTile][rightTile] == 1 || tiles[bottomTile][rightTile] == 1) {
 			isIntersecting = true;
@@ -221,8 +219,8 @@ void Shipmap::update()
 		}
 
 		if (isIntersecting) {
-			this->transform->position->X = savedPosX;
-			this->transform->position->Y = savedPosY;
+			_position->X = savedPosX;
+			_position->Y = savedPosY;
 		}
 	}
 
@@ -240,6 +238,8 @@ void Shipmap::update()
 	}
 
 	then = now;
+
+	draw();
 }
 
 void Shipmap::enterStation(StationType station) {
@@ -247,5 +247,5 @@ void Shipmap::enterStation(StationType station) {
 	packet << station;
 	Network::GetInstance()->SendPacket(packet, true);
 
-	this->_scene->switchStation(station);
+	//this->_scene->switchStation(station);
 }

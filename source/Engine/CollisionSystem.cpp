@@ -73,7 +73,7 @@ void CollisionSystem::narrowPhaseDetection(GameObject* objectA, GameObject* obje
 
 irr::core::vector3df* CollisionSystem::createBoundingBox(GameObject* object)
 {
-	irr::core::vector3df box[8];
+	irr::core::vector3df* box = new irr::core::vector3df[8];
 
 	box[0] = irr::core::vector3df(object->getPosition()->X - object->getRadius()->X, 
 		object->getPosition()->Y + object->getRadius()->X,

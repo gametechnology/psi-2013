@@ -1,19 +1,23 @@
 #include "GalaxyMap.h"
-#include "Engine/Game.h"
-#include "MapGenerator.h"
 
-GalaxyMap::GalaxyMap(irr::f32 width, irr::f32 height, irr::f32 radius) : Entity()
+using namespace irr;
+using namespace irr::video;
+using namespace irr::core;
+
+GalaxyMap::GalaxyMap(Core* core, irr::f32 width, irr::f32 height, irr::f32 radius) : Composite("GalaxyMap")
 {
 	this->width = width;
 	this->height = height;
 	this->radius = radius;
+	_core = core;
 }
 
 void GalaxyMap::onAdd(){
-	for(unsigned int i = 0; i < sectors.size(); i++) {
-		addChild(sectors[i]);
+	for(std::list<MapSector*>::iterator it = sectors.begin(); it != sectors.end(); it++)
+	{
+		addComponent((*it));
 	}
-	Entity::onAdd();
+	onAdd();
 }
 
 void GalaxyMap::loadMap()
@@ -43,25 +47,22 @@ GalaxyMap::~GalaxyMap() {
 	sectors.clear();
 }
 
-void GalaxyMap::draw()
+void GalaxyMap::update()
 {
 	//TODO: uncomment code to make sectors and connections invissible if not visited yet
 
-	video::ITexture* bgMap = game->driver->getTexture("../assets/galaxy.jpg");
-	game->driver->draw2DImage(bgMap, irr::core::rect<s32>(0, 300, (int)width, 300+(int)height), irr::core::rect<s32>(0, 0, bgMap->getOriginalSize().Width, bgMap->getOriginalSize().Height));
+	ITexture* bgMap = _core->getDriver()->getTexture("../assets/galaxy.jpg");
+	_core->getDriver()->draw2DImage(bgMap, rect<s32>(0, 300, (int)width, 300+(int)height), rect<s32>(0, 0, bgMap->getOriginalSize().Width, bgMap->getOriginalSize().Height));
+	gui::IGUIFont* font = _core->getDevice()->getGUIEnvironment()->getBuiltInFont();
+	rect<s32> imp1(349,15,385,78);
 
-	for(unsigned int i = 0; i < sectors.size(); i++) {
-		for(unsigned int j = 0; j != sectors[i]->connections.size(); j++) {
-			game->driver->draw2DLine(irr::core::vector2d<irr::s32>((int)(sectors[i]->transform->position->X), (int)(sectors[i]->transform->position->Y)), core::vector2d<irr::s32>((int)(sectors[i]->connections[j]->transform->position->X), (int)(sectors[i]->connections[j]->transform->position->Y)));
+	for(std::list<MapSector*>::iterator it = sectors.begin(); it != sectors.end(); it++)
+	{
+		for(unsigned int j = 0; j != (*it)->connections.size(); j++) {
+			_core->getDriver()->draw2DLine(vector2d<s32>((int)((*it)->getPosition()->X), (int)((*it)->getPosition()->Y)), vector2d<s32>((int)((*it)->connections[j]->getPosition()->X), (int)((*it)->connections[j]->getPosition()->Y)));
 		}
-	}
-	
-	gui::IGUIFont* font = game->device->getGUIEnvironment()->getBuiltInFont();
-	core::rect<s32> imp1(349,15,385,78);
-	
-	for(unsigned int i = 0; i < sectors.size(); i++) {
-		font->draw(irr::core::stringw(sectors[i]->name.c_str()), core::rect<s32>((int)(sectors[i]->transform->position->X), (int)(sectors[i]->transform->position->Y - (1.5f*radius)), 300, 50), video::SColor(255,255,255,255));
+		font->draw(irr::core::stringw((*it)->name.c_str()), rect<s32>((int)((*it)->getPosition()->X), (int)((*it)->getPosition()->Y - (1.5f*radius)), 300, 50), SColor(255,255,255,255));
 	}
 
-	Entity::draw();
+	Composite::update();
 }

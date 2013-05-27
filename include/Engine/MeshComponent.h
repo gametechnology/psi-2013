@@ -12,6 +12,8 @@ public:
 
 	void createMeshNode(std::string modelPath);
 	void createAnimatedMeshNode(std::string modelPath);
+
+	virtual void update(irr::core::vector3df* position, irr::core::vector3df* rotation);
 protected:
 private:
 	irr::scene::ISceneManager* _smgr;

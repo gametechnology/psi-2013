@@ -18,7 +18,7 @@ MeshComponent::~MeshComponent()
 void MeshComponent::createMeshNode(std::string modelPath)
 {
 	_mesh = _smgr->getMesh(modelPath.c_str());
-	
+
 	_node = _smgr->addMeshSceneNode(_mesh);
 	_node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 }
@@ -29,4 +29,11 @@ void MeshComponent::createAnimatedMeshNode(std::string modelPath)
 	
 	_node = _smgr->addMeshSceneNode(_mesh);
 	_node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
+}
+
+void MeshComponent::update(irr::core::vector3df* position, irr::core::vector3df* rotation)
+{
+	_node->setPosition(*position);
+	_node->setRotation(*rotation);
+	Component::update();
 }

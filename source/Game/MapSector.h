@@ -1,13 +1,24 @@
 #ifndef MAPSECTOR
 #define MAPSECTOR
-#include "Engine\Entity.h"
+
+#include <Engine\GameObject.h>
 #include <string>
 #include <vector>
 
-enum typeSector {EMPTY = 0, ASTEROID = 1, NEBULA = 2, SOLAR = 3, HOME_BLUE = 4, HOME_RED = 5, TOTALTYPES = 6};
-class MapSector : public Entity {
-public:
-	
+enum typeSector
+{
+	EMPTY = 0,
+	ASTEROID, 
+	NEBULA, 
+	SOLAR, 
+	HOME_BLUE, 
+	HOME_RED, 
+	TOTALTYPES
+};
+
+class MapSector : public GameObject
+{
+public:	
 	std::vector<MapSector*> connections;
 	std::string name;
 	typeSector type;
@@ -15,7 +26,7 @@ public:
 	float radius;
 	int distToBlueBase;
 
-	MapSector(std::string name,typeSector type, float radius);
+	MapSector(std::string name, typeSector type, float radius);
 	~MapSector(void);
 
 	virtual void onAdd();

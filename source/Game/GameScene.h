@@ -23,11 +23,16 @@ public:
 	GameScene(std::list<Player*>, bool isTestMap = false);
 	virtual ~GameScene();
 
-	void init();
-	void onAdd();
-	void update();
+	virtual void init();
+	virtual void update();
+
+	virtual void requestNextScene();
+	virtual void requestPreviousScene();
+
+	virtual void notify(void* data);
+
 	void switchStation(StationType type);
-	void HandleNetworkMessage(NetworkPacket packet);
+	void handleNetworkMessage(NetworkPacket packet);
 private:
 	bool testMap;
 	CameraComponent *_camera;

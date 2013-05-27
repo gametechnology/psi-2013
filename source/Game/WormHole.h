@@ -2,12 +2,16 @@
 #define WORMHOLE
 
 #include "Messages.h"
-#include "Engine/BillBoardNode.h"
+#include <Engine/BillboardComponent.h>
 
-class WormHole : public BillBoardNode  {
-private:
-	unsigned int id;
+/* 
+* TODO Consider using the BillboardComponent
+* directly instead of extending it. See the
+* engine documentation.
+*/
 
+class WormHole : public BillboardComponent  
+{
 public:
 	WormHole( unsigned int id );
 	virtual ~WormHole();
@@ -17,6 +21,8 @@ public:
 	virtual void init();
 
 	unsigned int getId(){ return this->id; }
+private:
+	unsigned int id;
 };
 
 #endif

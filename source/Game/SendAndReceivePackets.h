@@ -2,20 +2,17 @@
 #define SEND_AND_RECEIVE_PACKETS_H
 
 #include "NetworkInterface.h"
-#include "Engine\Scene.h"
+#include <Engine\Scene.h>
 #include "Enemy.h"
 #include "EnemyAsteroid.h"
 #include "EnemyDrone.h"
 #include "EnemyFighter.h"
 #include "Laser.h"
-#include "Engine\Scene.h"
 #include "EndScene.h"
 
 static class SendAndReceivePackets
 {
 public:
-
-	static Game* staticGame;
 	//sends a packet to the server
 	static void sendPacket(NetworkPacket packet, const bool reliable = false);
 
@@ -38,13 +35,13 @@ public:
 
 	friend sf::Packet& operator <<(sf::Packet& out, Enemy& in);
 	friend sf::Packet& operator >>(sf::Packet& in, Enemy& out);
-	friend sf::Packet& operator <<(sf::Packet& out, vector<Enemy*>& in);
-	friend sf::Packet& operator >>(sf::Packet& in, vector<Enemy>& out);
+	friend sf::Packet& operator <<(sf::Packet& out, std::vector<Enemy*>& in);
+	friend sf::Packet& operator >>(sf::Packet& in, std::vector<Enemy>& out);
 
 	friend sf::Packet& operator <<(sf::Packet& out, Laser& in);
 	friend sf::Packet& operator >>(sf::Packet& in, Laser& out);
-	friend sf::Packet& operator <<(sf::Packet& out, vector<Laser*>& in);
-	friend sf::Packet& operator >>(sf::Packet& in, vector<Laser>& out);
+	friend sf::Packet& operator <<(sf::Packet& out, std::vector<Laser*>& in);
+	friend sf::Packet& operator >>(sf::Packet& in, std::vector<Laser>& out);
 };
 
 #endif

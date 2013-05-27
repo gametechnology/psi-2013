@@ -1,9 +1,13 @@
 #ifndef PLAYER
 #define PLAYER
 
-#include "Engine/Entity.h"
-#include "Engine/NetworkPacket.h"
-class Player : public Entity  {
+#include <Engine/GameObject.h>
+#include <Engine/NetworkPacket.h>
+
+#include "Messages.h"
+
+class Player : public GameObject
+{
 public:
 	wchar_t* Name;
 	int Team;
@@ -25,7 +29,7 @@ public:
 
 	/*
 	* Sets the stationtype this player is currently using.
-	* -
+	* 
 	* DO NOT use this function directly. The station code uses this function.
 	* It will not break the code but it will give strange behaviour.
 	*/
@@ -35,7 +39,7 @@ public:
 	* Reset the occupational variables of this Player instance.
 	* The getCurrentStation function will return 999 if called straight
 	* after this function.
-	* -
+	* 
 	* DO NOT use this function directly. The station code uses this function.
 	* It will not break the code but it will give strange behaviour.
 	*/

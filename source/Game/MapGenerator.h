@@ -6,10 +6,6 @@
 #include <vector>
 #include <string>
 
-#include "GalaxyMap.h"
-
-using namespace std;
-
 class MapGenerator {
 public:
 	MapGenerator(int sectorCount, int minWormholes, int maxWormholes);
@@ -41,6 +37,11 @@ private:
 	irr::core::vector3df randomPosition();
 	bool collisionLineBetweenSectors(MapSector* sector1, MapSector* sector2);
 	std::string nameGenerator(typeSector type);
+
+	/*
+	* Dijkstra, nice. Bob, it's just as ambiguous. Refactor this function.
+	* What does it do? Why does it return an int? Document this.
+	*/
 	int dijkstra();
 };
 

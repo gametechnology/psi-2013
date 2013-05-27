@@ -1,8 +1,10 @@
 #ifndef SHIELDCOMPONENT
 #define SHIELDCOMPONENT
 
-#include "../../include/Engine/Component.h"
+#include <Engine/Component.h>
+
 #include "Stations/Station.h"
+#include "Messages.h"
 
 class ShieldComponent : public Component
 {

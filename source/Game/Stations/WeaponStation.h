@@ -1,7 +1,10 @@
-#pragma once
+#ifndef WEAPON_STATION
+#define WEAPON_STATION
+
 #include "../Ship.h"
 
-class WeaponStation : public Station {
+class WeaponStation : public Station 
+{
 public:
 	irr::core::vector3df rotationForeign;
 
@@ -24,3 +27,5 @@ private:
 	irr::video::ITexture *_stationTexture;
 	irr::core::vector3df rotationOwn;
 };
+
+#endif

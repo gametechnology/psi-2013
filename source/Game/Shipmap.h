@@ -1,12 +1,15 @@
-#pragma once
-#include "Engine\Entity.h"
-#include "Shipmap.h"
-#include "Engine/Game.h"
+#ifndef SHIP_MAP
+#define SHIP_MAP
+
+#include <Engine/Core.h>
+#include <Engine/GameObject.h>
+
 #include <math.h>
+
 #include "Stations\Station.h"
 #include "GameScene.h"
 
-class Shipmap : public Entity
+class Shipmap : public GameObject
 {
 	void enterStation(StationType station);
 
@@ -15,21 +18,23 @@ class Shipmap : public Entity
 		int y;
 	} playerTile;
 
-	gui::IGUIFont* font;
+	irr::gui::IGUIFont* font;
 
-	video::ITexture* bg;
-	video::ITexture* icon;
+	irr::video::ITexture* bg;
+	irr::video::ITexture* icon;
 
-	video::ITexture* icon_helm;
-	video::ITexture* icon_defense;
-	video::ITexture* icon_weapons;
-	video::ITexture* icon_navigation;
-	video::ITexture* icon_engine;
+	irr::video::ITexture* icon_helm;
+	irr::video::ITexture* icon_defense;
+	irr::video::ITexture* icon_weapons;
+	irr::video::ITexture* icon_navigation;
+	irr::video::ITexture* icon_engine;
 
 	float iconRadius, duration, savedPosX, savedPosY, playerSpeed;
+
 	irr::core::rect<s32> *boundingBoxes[5];
 	irr::core::rect<s32> *playerBox;
-	u32 now, then;
+	
+	irr::u32 now, then;
 
 	bool isMoving, isIntersecting, onStation, blockedE, onOccupiedStation, stationOccupied[5];
 	StationType _intersectingStation;
@@ -40,13 +45,15 @@ class Shipmap : public Entity
 
 	int tiles[7][12];
 
-	GameScene* _scene;
-
+	Scene* _scene;
+	Core* _core;
 public:
-	Shipmap(GameScene* scene);
+	Shipmap(Core*, Scene*);
 	~Shipmap();
 	void onAdd();
 	void init();
 	void draw();
 	void update();
 };
+
+#endif

@@ -2,6 +2,9 @@
 #define STATE_SWITCH_FIGHTER_H
 
 #include "IStateSwitch.h"
+#include "EnemyFighter.h"
+#include "RandomGenerator.h"
+#include <iostream>
 
 class StateSwitchFighter : public IStateSwitch
 {

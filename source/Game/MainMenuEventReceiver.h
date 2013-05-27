@@ -1,10 +1,11 @@
 #ifndef MAINMENUEVENTRECEIVER
 #define MAINMENUEVENTRECEIVER
 
-#include "Irrlicht\irrlicht.h"
-#include <Engine\Core.h>
+#include <Irrlicht\irrlicht.h>
+#include <Engine/Core.h>
 #include <Engine/Network.h>
 #include <Engine/Interface.h>
+
 #include "NetworkInterface.h"
 
 enum InterfaceElement

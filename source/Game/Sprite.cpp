@@ -1,27 +1,26 @@
 #include "Sprite.h"
-#include "Engine\Game.h"
 
-Sprite::Sprite() : Entity() {
+using namespace irr;
+using namespace irr::core;
 
+Sprite::Sprite(Core* core) : GameObject() 
+{
+	_core = core;
 }
 
 Sprite::~Sprite()
 {
-	Entity::~Entity();
+	
 }
 
 void Sprite::draw()
 {
 	if(_texture != 0)
 	{
-		irr::core::position2d<irr::s32> twodposition = irr::core::position2d<irr::s32>(transform->position->X, transform->position->Y);
+		position2d<s32> twodposition = position2d<s32>(_position->X, _position->Y);
 
-		game->driver->draw2DImage(_texture,
-		twodposition,
-		irr::core::rect<irr::s32>(0, 0, _texture->getSize().Width, _texture->getSize().Height),
-		0,
-		video::SColor(255,255,255,255),
-		true);
+		_core->getDriver()->draw2DImage(_texture, twodposition,	rect<s32>(0, 0, _texture->getSize().Width, _texture->getSize().Height),
+		0, video::SColor(255,255,255,255), true);
 	}
 }
 
