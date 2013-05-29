@@ -19,7 +19,7 @@ int main()
 	while (core->getDevice()->run())
 	{
 		const irr::u32 now = core->getDevice()->getTimer()->getTime();
-		const irr::f32 frameDeltaTime = (irr::f32)(now - then) / 1000.f; // Time in seconds
+		const irr::s32 frameDeltaTime = (now - then) / 1000.f; // Time in seconds
 		then = now;
 
 		if (core->getDevice()->isWindowActive())

@@ -82,8 +82,6 @@ void InputManager::unsetCustomEventReceiver()
 
 bool InputManager::OnEvent(const SEvent &event)
 {
-	if(customEventReceiver != NULL && customEventReceiver->OnEvent(event))
-		return true;
 	switch (event.EventType) 
 	{
 	case EET_KEY_INPUT_EVENT: // Keyboard event.
@@ -126,5 +124,10 @@ bool InputManager::OnEvent(const SEvent &event)
 	default:
 		break;
 	}
+
+	if(customEventReceiver != NULL)
+		if(customEventReceiver->OnEvent(event))
+			return true;
+
 	return false;
 }

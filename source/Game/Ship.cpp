@@ -20,6 +20,8 @@ Ship::Ship(Core* core, Interface* ui, vector3df position, vector3df rotation) : 
 	_position = &position;
 	_rotation = &rotation;
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
+
+	init();
 }
 
 Ship::~Ship(void)
@@ -28,6 +30,11 @@ Ship::~Ship(void)
 }
 
 void Ship::onAdd() {
+
+}
+
+void Ship::init() 
+{	
 	startPosition = vector3df(0,0,-100);
 	startRotation = vector3df(0,0,0);
 	_position = &startPosition;
@@ -45,7 +52,7 @@ void Ship::onAdd() {
 	addComponent(_helmStation = new HelmStation(_core, this));
 	addComponent(_navigationStation = new NavigationStation(_core, this));
 	addComponent(_weaponStation	= new WeaponStation(_core, this));
-	addComponent(_powerStation = new PowerStation(_core, this, NULL));
+	addComponent(_powerStation = new PowerStation(_core, this, _interface));
 
 	_defenceStation->init();
 	_helmStation->init();
@@ -99,10 +106,6 @@ void Ship::onAdd() {
 	addComponent(help);
 	help->init();
 	//Todo: Reset the helptext to above text when you leave a station without entering another!
-}
-
-void Ship::init() 
-{	
 	GameObject::init();
 }
 

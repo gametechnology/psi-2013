@@ -14,18 +14,20 @@ Laser::Laser(irr::scene::ISceneManager* smgr) : GameObject()
 	_hasAnIrrlichtNode = false;
 	_id = newLaserId++;
 	_smgr = smgr;
+
+	init();
 }
 
 void Laser::onAdd() 
 {
-	_mesh = new MeshComponent(_smgr);
-	addComponent(_mesh);
-	_mesh->createMeshNode("../assets/Models/laser.3ds");
-	init();
+
 }
 
 void Laser::init() 
 {
+	_mesh = new MeshComponent(_smgr);
+	addComponent(_mesh);
+	_mesh->createMeshNode("../assets/Models/laser.3ds");
 	GameObject::init();
 }
 

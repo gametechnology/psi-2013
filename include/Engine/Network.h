@@ -162,6 +162,8 @@ public:
 	*/
 	void RemoveListener(PacketType packetType, INetworkListener* listener);
 
+	void resetListeners();
+
 	/*
 	* Distributes all buffered packets that are received by the Network interface.
 	*/

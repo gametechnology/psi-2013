@@ -10,6 +10,7 @@ GameObject::GameObject() : Composite("GameObject")
 	_acceleration = new irr::core::vector3df();
 	_angularVelocity = new irr::core::vector3df();
 	_angularAcceleration = new irr::core::vector3df();
+	_force = new irr::core::vector3df();
 	_radius = new irr::core::vector3df(1,1,1);
 }
 

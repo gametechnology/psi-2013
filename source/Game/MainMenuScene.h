@@ -41,6 +41,8 @@ private:
 	Interface* _interface;
 
 	SAppContext context;
+
+	bool nextSceneRequested, nextSceneAllowed;
 };
 
 #endif

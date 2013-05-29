@@ -15,7 +15,7 @@
 class LobbyScene : public Scene, public INetworkListener
 {
 public:
-	LobbyScene(Core* core, Interface* ui);
+	LobbyScene(Core* core, Interface* ui, std::list<Player*>);
 	~LobbyScene();
 
 	void init();
@@ -36,6 +36,9 @@ private:
 
 	Core* _core;
 	Interface* _interface;
+
+	SAppContext context;
+	bool nextSceneRequested, nextSceneAllowed;
 };
 
 #endif

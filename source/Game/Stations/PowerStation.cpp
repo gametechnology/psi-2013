@@ -22,9 +22,7 @@ void PowerStation :: init() {
 	else
 		skin->setFont(_core->getGuiEnv()->getBuiltInFont(), EGDF_TOOLTIP);
 
-	createUI();
-
-	Station::init();
+	createUI();	
 
 	SubscribeStation(_ship->GetStation(ST_DEFENCE) );
 	SubscribeStation(_ship->GetStation(ST_HELM) );
@@ -32,6 +30,8 @@ void PowerStation :: init() {
 	SubscribeStation(_ship->GetStation(ST_WEAPON) );
 
 	SubscribeStation(this);
+
+	Station::init();
 }
 
 PowerStation :: ~PowerStation()
@@ -65,124 +65,6 @@ void PowerStation :: DoCameraShake( )
 {
 }
 
-enum
-{
-	GUI_ID_LEAVE_BUTTON = 101,
-	GUI_ID_POWER_DEFENCE,
-	GUI_ID_POWER_HELM,
-	GUI_ID_POWER_WEAPON,
-	GUI_ID_POWER_NAVIGATION,
-	GUI_ID_SCROLL_BAR
-};
-
-/*
-The Event Receiver is not only capable of getting keyboard and
-mouse input events, but also events of the graphical user interface
-(gui). There are events for almost everything: Button click,
-Listbox selection change, events that say that a element was hovered
-and so on. To be able to react to some of these events, we create
-an event receiver.
-We only react to gui events, and if it's such an event, we get the
-id of the caller (the gui element which caused the event) and get
-the pointer to the gui environment.
-*/
-class MyEventReceiver : public IEventReceiver
-{
-public:
-	IrrlichtDevice *device;
-
-	MyEventReceiver(PowerStationData& context, IrrlichtDevice *device) : _context(context) 
-	{ 
-		device = device; 
-	}
-
-	virtual bool OnEvent(const SEvent& event)
-	{
-		if (event.EventType == EET_GUI_EVENT)
-		{
-			s32 id = event.GUIEvent.Caller->getID();
-			IGUIEnvironment* env = this->device->getGUIEnvironment();
-
-			switch(event.GUIEvent.EventType)
-			{
-
-				/*
-				If a scrollbar changed its scroll position, and it is
-				'our' scrollbar (the one with id GUI_ID_SCROLL_BAR), then we update the power usage of that station.
-				*/
-			case EGET_SCROLL_BAR_CHANGED:
-				s32 pos;
-
-				if(_context.selectedStation == 1)
-				{
-					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();					
-					_context.UpdatePowerUsage(ST_HELM, POWER_MAX - pos );
-				}
-				else if(_context.selectedStation == 2){
-					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-					_context.UpdatePowerUsage(ST_DEFENCE, POWER_MAX - pos );
-				}
-				else if(_context.selectedStation == 3){
-					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-					_context.UpdatePowerUsage(ST_NAVIGATION, POWER_MAX - pos );
-				}
-				else if(_context.selectedStation == 4){
-					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-
-					((IGUIScrollBar*)event.GUIEvent.Caller)->setPos( irr :: s32( ) );
-					_context.UpdatePowerUsage(ST_WEAPON, POWER_MAX - pos );
-				}
-				break;
-
-				//If the user selected a button, check to see which button was clicked.
-			case EGET_BUTTON_CLICKED:
-				switch(id)
-				{
-				case GUI_ID_LEAVE_BUTTON:
-					this->device->closeDevice();
-					return true;
-				case GUI_ID_POWER_HELM:
-					_context.scrollBar->setVisible(true);
-					_context.scrollBar->setPos(POWER_MAX - _context.GetPower(ST_HELM) );
-					_context.selectedStation = 1;
-
-					break;
-				case GUI_ID_POWER_DEFENCE:
-					_context.scrollBar->setVisible(true);
-					_context.scrollBar->setPos(POWER_MAX - _context.GetPower(ST_DEFENCE));
-					_context.selectedStation = 2;
-					break;
-				case GUI_ID_POWER_NAVIGATION:
-					_context.scrollBar->setVisible(true);
-					_context.scrollBar->setPos(POWER_MAX - _context.GetPower(ST_NAVIGATION));
-					_context.selectedStation = 3;
-					break;
-				case GUI_ID_POWER_WEAPON:
-					_context.scrollBar->setVisible(true);
-					_context.scrollBar->setPos(POWER_MAX - _context.GetPower(ST_WEAPON));
-					_context.selectedStation = 4;
-					break;
-					//TODO: change name
-				case GUI_ID_SCROLL_BAR:
-					break;
-				default:
-					_context.selectedStation = 0;
-					_context.scrollBar->setVisible(false);
-					break;
-				}
-				break;
-			}
-		}
-
-		return false;
-	}
-
-private:
-	PowerStationData & _context;
-};
-
-
-
 void PowerStation::OnEnabled(){
 	createUI();
 }
@@ -204,7 +86,7 @@ void PowerStation::createUI()
 	createCurrentSelectedStationText();
 
 	// Create the event receiver, giving it that context structure.
-	MyEventReceiver *receiver = new MyEventReceiver(context, _core->getDevice());
+	receiver = new MyEventReceiver(context, _core->getDevice());
 	// And tell the device to use our custom event receiver.
 	_core->getInput()->setCustomEventReceiver(receiver);
 }

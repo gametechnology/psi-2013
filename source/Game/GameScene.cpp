@@ -67,7 +67,7 @@ void GameScene::update() {
 		Edit code below to make it send a winlose packet when one of the ship reaches health of 0
 		and give the right team id as the parameter
 		*/
-		if(_core->getInput()->isKeyboardButtonDown(KEY_KEY_Z) || this->_ship->getShipHealth() <= 0 || this->_shipEnemy->getShipHealth() <= 0)
+		if(_core->getInput()->isKeyboardButtonDown(KEY_KEY_Z) || _ship->getShipHealth() <= 0 || _shipEnemy->getShipHealth() <= 0)
 		{
 			SendAndReceivePackets::sendWinLosePacket(1);
 			SendAndReceivePackets::handleWinLose(1, 2, this);

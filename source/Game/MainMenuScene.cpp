@@ -4,11 +4,14 @@ MainMenuScene::MainMenuScene(Core* core, Interface* f_interface) : Scene("Mainme
 {
 	_core = core;
 	_interface = f_interface;
+	nextSceneRequested = nextSceneAllowed = false;
 }
 
 MainMenuScene::~MainMenuScene() 
 {
 	_interface->resetInterface();
+	_core->resetReceiver();
+	Network::GetInstance()->resetListeners();
 }
 
 void MainMenuScene::init() {
@@ -26,10 +29,6 @@ void MainMenuScene::init() {
 	_interface->addEditBox(300, 80, 100, 25, NAME_INPUT_BOX, 0, L"", true);
 
 	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
-	Network::GetInstance()->AddListener(START_GAME, this);
-	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
-	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
-	Network::GetInstance()->AddListener(HOST_DISCONNECT, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
 
 	// Store the appropriate data in a context structure.
@@ -46,12 +45,24 @@ void MainMenuScene::init() {
 
 void MainMenuScene::update()
 {
-
+	if(nextSceneRequested && nextSceneAllowed)
+	{
+		_core->setActiveScene(new LobbyScene(_core, _interface, playerlist));
+	}
 }
 
 void MainMenuScene::requestNextScene()
 {
-	_core->setActiveScene(new LobbyScene(_core, _interface));
+	if(Network::GetInstance()->IsServer()) 
+	{
+		playerlist.push_back(new Player(
+		(wchar_t*)context.u_interface->getElementWithId(NAME_INPUT_BOX)->getText(), 
+		Network::GetInstance()->GetLocalAddress(), 
+		1));
+		nextSceneRequested = nextSceneAllowed = true;
+	}
+	else
+		nextSceneRequested = true;
 }
 
 void MainMenuScene::requestPreviousScene()
@@ -69,10 +80,8 @@ void MainMenuScene::handleNetworkMessage(NetworkPacket packet)
 	int lenght;
 	int team;
 	unsigned int ipclientaffect;
-	unsigned int checksum;
-	sf::IpAddress localip;
+
 	Player* newplayer;
-	std::list<Player*>::const_iterator iterator;
 
 	NetworkPacket deniedpack(CLIENT_JOIN_DENIED);
 	NetworkPacket packetsend(ClIENT_IN_LOBBY);
@@ -90,6 +99,7 @@ void MainMenuScene::handleNetworkMessage(NetworkPacket packet)
 				playerlist.push_back(newplayer);
 			}
 		}
+		nextSceneAllowed = true;
 		break;
 	case CLIENT_JOIN_DENIED:
 		name = new wchar_t[500];
@@ -98,9 +108,6 @@ void MainMenuScene::handleNetworkMessage(NetworkPacket packet)
 		requestPreviousScene();
 		Network::GetInstance()->DeInitialize();
 		_interface->addMessageBox(L"Message", name, true, 1, 0);
-		break;
-	case START_GAME:
-		requestNextScene();
 		break;
 	default:
 		break;

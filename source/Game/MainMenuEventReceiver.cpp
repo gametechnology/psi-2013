@@ -56,6 +56,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					if(!Network::GetInstance()->IsConnected()){
 						context.u_interface->addMessageBox(L"Messsage", L"Not able to connect to server", true, 1, 0);
 					}else{
+						context.core->getActiveScene()->requestNextScene();
 						namepacket << namewchar << Network::GetInstance()->GetPacketTypeChecksum();
 						Network::GetInstance()->SendPacket(namepacket, true);
 					}
@@ -77,6 +78,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 				}
 			case START_GAME_BUTTON:
 				Network::GetInstance()->SendServerPacket(packet, true);
+				context.core->getActiveScene()->requestNextScene();
 				return true;
 			case QUIT_GAME_BUTTON:
 				if(!Network::GetInstance()->IsServer())
@@ -88,6 +90,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					Network::GetInstance()->SendServerPacket(hostquitpacket, true);
 				}
 				Network::GetInstance()->DeInitialize();
+				context.core->getActiveScene()->requestPreviousScene();
 				return true;
 			default:
 				return false;

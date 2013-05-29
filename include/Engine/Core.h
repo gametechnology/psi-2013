@@ -5,6 +5,7 @@
 #include "Scene.h"
 #include "InputManager.h"
 #include "CollisionSystem.h"
+#include "Network.h"
 
 typedef irr::IrrlichtDevice IrrDevice;
 typedef irr::video::IVideoDriver IrrDriver;

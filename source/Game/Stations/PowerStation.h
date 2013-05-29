@@ -13,6 +13,7 @@
 #include "../NetworkInterface.h"
 
 #include "../Ship.h"
+#include "../MyEventReceiver.h"
 
 /*
 * TODO Refactor the station. There
@@ -73,6 +74,8 @@ private:
 	void UpdateStationPower(StationType, int newValue );
 
 	Interface* _interface;
+
+	MyEventReceiver* receiver;
 };
 
 #endif

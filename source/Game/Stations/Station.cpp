@@ -247,7 +247,7 @@ void Station::repairStation(int health)
 
 void Station::leaveStation(StationType station)
 {
-	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
+	NetworkPacket packet(CLIENT_LEAVE_STATION);
 	packet << station;
 	Network::GetInstance()->SendPacket(packet, true);
 }

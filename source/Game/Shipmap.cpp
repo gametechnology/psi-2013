@@ -5,6 +5,8 @@ using namespace irr;
 Shipmap::Shipmap(Core* core, Scene* scene): _scene(scene), GameObject()
 {
 	_core = core;
+
+	init();
 }
 
 Shipmap::~Shipmap()
@@ -13,7 +15,11 @@ Shipmap::~Shipmap()
 
 void Shipmap::onAdd()
 {
-	// Assets
+}
+
+void Shipmap::init()
+{
+		// Assets
 	bg = _core->getDriver()->getTexture("../assets/shipmap/map.png");
 	icon = _core->getDriver()->getTexture("../assets/shipmap/icon.png");
 
@@ -79,10 +85,6 @@ void Shipmap::onAdd()
 	// Player starting position - should start in the middle of the plane
 	_position->X = (float)((playerTile.x * tileSize) + offsetX);
 	_position->Y = (float)((playerTile.y * tileSize) + offsetY + 20);
-}
-
-void Shipmap::init()
-{
 }
 
 void Shipmap::draw()

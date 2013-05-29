@@ -10,10 +10,10 @@ Network::Network() : _port(ENET_PORT_ANY)
 {
 	_isServer = false;
 	_isConnected = false;
-	
+
 	for (int i = 0; i < LAST_TYPE; i++)
 		_listeners[i] = new std::list<INetworkListener*>();
-	
+
 	if (enet_initialize() != 0)
 		std::cout << "An error occurred while initializing ENet.\n";
 
@@ -86,7 +86,7 @@ void Network::InitializeServer(size_t maxPlayers)
 {
 	_address.host = ENET_HOST_ANY;
 	_address.port = 1234;
-	
+
 	_host = enet_host_create(&_address, maxPlayers, 2, 0, 0);
 	std::cout << "Initializing server at port " << _address.port << ".\n";
 	if (_host == NULL)
@@ -99,8 +99,7 @@ void Network::InitializeServer(size_t maxPlayers)
 		std::cout << "Succesfully creatinga ENet server host; server now running.\n";
 		_isServer = true;
 		_isConnected = true;
-		StartThreads();
-		
+		StartThreads();		
 	}	
 }
 
@@ -149,6 +148,7 @@ NetworkPacket Network::AddSendAll(NetworkPacket packet, bool sendall){
 	packet.append(tempPacket.getData(), tempPacket.getDataSize());
 	return packet;
 }
+
 void Network::SendPacketToAllClients(NetworkPacket packet, const bool reliable){
 	packet = AddSendAll(packet, true);
 	if(Network::GetInstance()->IsServer())
@@ -209,6 +209,14 @@ void Network::RemoveListener(PacketType packetType, INetworkListener* listener)
 	_listeners[packetType]->remove(listener);
 }
 
+void Network::resetListeners()
+{
+	for (int i = 0; i < LAST_TYPE; i++)
+	{
+		_listeners[i]->clear();
+	}
+}
+
 void Network::PacketReciever()
 {
 	while (true)
@@ -230,7 +238,7 @@ void Network::PacketReciever()
 			break;
 		case ENET_EVENT_TYPE_RECEIVE:
 			//printf ("A packet of length %u containing %s was received from %s on channel %u.\n",
-				Network::GetInstance()->_event.packet -> dataLength,
+			Network::GetInstance()->_event.packet -> dataLength,
 				Network::GetInstance()->_event.packet -> data,
 				Network::GetInstance()->_event.peer -> data,
 				Network::GetInstance()->_event.channelID;
@@ -255,32 +263,31 @@ void Network::PacketReciever()
 
 void Network::DistributePacket(NetworkPacket networkPacket)
 {
-
 	int type = networkPacket.GetType();
 	if (type >= 0 && type < LAST_TYPE)
 	{
 		bool sendall;
 		networkPacket >> sendall;
 		if(IsServer() && sendall){
-		
+
 			NetworkPacket sendpack = networkPacket;
 			sendpack.clear();
 			sendpack << true;
 			sendpack << networkPacket.GetSender().address.host;
 			sendpack.append(networkPacket.getData(), networkPacket.getDataSize());
 			ENetPacket* enetPacket = enet_packet_create(sendpack.GetBytes(), sendpack.GetSize(), true);
-				enet_host_broadcast(_host, 0, enetPacket);
-			
+			enet_host_broadcast(_host, 0, enetPacket);
+
 		}
 		if(!IsServer() && sendall)
 		{
 			int ipadress;
 			networkPacket >> ipadress;
 			if(ipadress ==  sf::IpAddress::getLocalAddress().m_address)
-				return;
-			
+				return;			
 		}
 		std::list<INetworkListener*>::const_iterator iterator;
+
 		for (iterator = _listeners[type]->begin(); iterator != _listeners[type]->end(); ++iterator)
 			(*iterator)->handleNetworkMessage(networkPacket);
 	}
@@ -293,8 +300,8 @@ void Network::DistributeReceivedPackets()
 	_mutex.lock();
 
 	std::vector<NetworkPacket>::const_iterator iterator;
-	for (iterator = _receivedPackets.begin(); iterator != _receivedPackets.end(); ++iterator) {
-		
+
+	for (iterator = _receivedPackets.begin(); iterator != _receivedPackets.end(); ++iterator) {		
 		this->DistributePacket(*iterator);
 	}
 	_receivedPackets.clear();

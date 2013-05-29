@@ -318,6 +318,9 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations\Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\MyEventReceiver.cpp">
+      <Filter>Source Files\EventReceivers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
@@ -514,6 +517,9 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\GalaxyMap.h">
       <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\MyEventReceiver.h">
+      <Filter>Header Files\EventReceivers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

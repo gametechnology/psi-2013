@@ -258,7 +258,7 @@ bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* se
 				double x = ax + (i * vx * t);
 				double y = ay + (i * vy * t);
 				// If one of them is in the boundaries of the segment, it collides
-				if (x >= std::min(ax, bx) && x <= std::max(ax, bx) && y >= std::min(ay, by) && y <= std::max(ay, by))
+				if (x >= min(ax, bx) && x <= max(ax, bx) && y >= min(ay, by) && y <= max(ay, by))
 				{
 					return true;
 				}

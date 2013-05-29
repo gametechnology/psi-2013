@@ -1,41 +1,58 @@
 #include "LobbyScene.h"
+#include "MainMenuScene.h"
+#include "GameScene.h"
 
-LobbyScene::LobbyScene(Core* core, Interface* ui) : Scene("LobbyScene")
+LobbyScene::LobbyScene(Core* core, Interface* ui, std::list<Player*> playerlist) : Scene("LobbyScene")
 {
 	_core = core;
 	_interface = ui;
+	this->playerlist = playerlist;
+
+	nextSceneRequested = nextSceneAllowed = false;
 }
 
 LobbyScene::~LobbyScene()
 {
 	_interface->resetInterface();
+	_core->resetReceiver();
+	Network::GetInstance()->resetListeners();
 }
 
 void LobbyScene::init()
 {
-	_interface->addStaticText(L"", 300, 105, 100, 95, CLIENT_LIST, false, true, false, 0);
-	_interface->createButton(350, 330, 150, 25, START_GAME_BUTTON, 0, L"Start Game");
-	_interface->createButton(50, 330, 150, 305, QUIT_GAME_BUTTON, 0, L"Quit game");
-	_interface->addStaticText(L"Waiting for host to start the game", 300, 165, 100, 140, -1, false, true, false);
+	_interface->addStaticText(L"", 300, 105, 200, 200, CLIENT_LIST, false, true, false, 0);
+	_interface->createButton(50, 330, 200, 25, QUIT_GAME_BUTTON, 0, L"Quit game");
 
-	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
+	if(Network::GetInstance()->IsServer())
+		_interface->createButton(350, 330, 200, 25, START_GAME_BUTTON, 0, L"Start Game");
+	else
+		_interface->addStaticText(L"Waiting for host to start the game", 300, 165, 100, 140, -1, false, true, false);
+
 	Network::GetInstance()->AddListener(START_GAME, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
 	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
 	Network::GetInstance()->AddListener(HOST_DISCONNECT, this);
-	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
+
+	// Store the appropriate data in a context structure.
+	context.core = _core;
+	context.u_interface = _interface;
+	context.counter = 0;
+
+	// Then create the event receiver, giving it that context structure.
+	eventReceiver = new MainMenuEventReceiver(context);
+
+	// And tell the device to use our custom event receiver.
+	_core->addCustomReceiver(eventReceiver);
 }
 
 void LobbyScene::update()
 {
 	std::wstringstream ssp;
 	ssp << L"Team 1              Team2\n";
-	std::list<Player*>::const_iterator iterator;
-	for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-		Player *play = (*iterator);
 
-		ssp << play->Name;
-		if(play->Team == 1)
+	for (std::list<Player*>::iterator it = playerlist.begin(); it != playerlist.end(); ++it){
+		ssp << (*it)->Name;
+		if((*it)->Team == 1)
 			ssp << L"              ";
 		else
 			ssp << L"\n";
@@ -44,6 +61,11 @@ void LobbyScene::update()
 	const std::wstring& tmpp = ssp.str();
 
 	_interface->getElementWithId(CLIENT_LIST)->setText(tmpp.c_str());
+
+	if(nextSceneRequested && nextSceneAllowed)
+	{
+		_core->setActiveScene(new GameScene(_core, _interface, playerlist));
+	}
 }
 
 void LobbyScene::notify(void* data)
@@ -52,10 +74,12 @@ void LobbyScene::notify(void* data)
 
 void LobbyScene::requestNextScene()
 {
+	nextSceneRequested = nextSceneAllowed = true;
 }
 
 void LobbyScene::requestPreviousScene()
 {
+	_core->setActiveScene(new MainMenuScene(_core, _interface));
 }
 
 void LobbyScene::handleNetworkMessage(NetworkPacket packet)
@@ -66,7 +90,7 @@ void LobbyScene::handleNetworkMessage(NetworkPacket packet)
 	unsigned int checksum;
 
 	Player* newplayer;
-	std::list<Player*>::const_iterator iterator;
+	std::list<Player*>::iterator iterator;
 
 	wchar_t* name = new wchar_t[500];
 
@@ -79,7 +103,7 @@ void LobbyScene::handleNetworkMessage(NetworkPacket packet)
 		requestNextScene();
 		break;
 	case CLIENT_JOIN:
-		
+
 		packet >> name;
 		packet >> checksum;
 
@@ -99,20 +123,22 @@ void LobbyScene::handleNetworkMessage(NetworkPacket packet)
 				return;
 			}
 		}
+
 		if((playerlist.size()) % 2 != 0)
 			team = 2;
 		else
 			team = 1;
-		newplayer = new Player( name,  packet.GetSender().address.host, team);
+
+		newplayer = new Player(name,  packet.GetSender().address.host, team);
 		playerlist.push_back(newplayer);
 
 		lenght = playerlist.size();
 		packetsend << lenght;
 
 		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-
 			packetsend << (*iterator);
 		}
+
 		Network::GetInstance()->SendServerPacket(packetsend, true);
 		delete name;
 		break;

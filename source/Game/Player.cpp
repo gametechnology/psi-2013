@@ -9,6 +9,7 @@ Player::Player() : GameObject()
 // TODO Check merge
 Player::Player( wchar_t *namec, enet_uint32 ipadressc,int teamc ) : GameObject()
 {
+	Name = new wchar_t[500];
 	wcsncpy(Name, namec, wcslen(namec));
 	Name[wcslen(namec)] = 0;
 	Ipadres = ipadressc;
