@@ -1,7 +1,11 @@
 #include "Mist.h"
 
-Mist::Mist(video::SColor color, float nearDistance, float farDistance, video::E_FOG_TYPE fogType) : Entity()
+using namespace irr;
+using namespace irr::video;
+
+Mist::Mist(Core* core, SColor color, float nearDistance, float farDistance, E_FOG_TYPE fogType) : GameObject()
 {
+	_core = core;
 	_color = color;
 	_nearDistance = nearDistance;
 	_farDistance = farDistance;
@@ -9,7 +13,7 @@ Mist::Mist(video::SColor color, float nearDistance, float farDistance, video::E_
 }
 
 void Mist::init() {
-	game->driver->setFog(_color, _fogType, _nearDistance, _farDistance);
+	_core->getDriver()->setFog(_color, _fogType, _nearDistance, _farDistance);
 }
 
 void Mist::update()
@@ -17,29 +21,29 @@ void Mist::update()
 	if (_valueChanged) 
 	{
 		_valueChanged = false;
-		game->driver->setFog(_color, _fogType, _nearDistance, _farDistance);
+		_core->getDriver()->setFog(_color, _fogType, _nearDistance, _farDistance);
 	}
 }
 
-void Mist::SetColor(video::SColor color) 
+void Mist::setColor(video::SColor color) 
 {
 	_valueChanged = true;
 	_color = color;
 }
 
-void Mist::SetNearDistance(float nearDistance) 
+void Mist::setNearDistance(float nearDistance) 
 {
 	_valueChanged = true;
 	_nearDistance = nearDistance;
 }
 
-void Mist::SetFarDistance(float farDistance)
+void Mist::setFarDistance(float farDistance)
 {
 	_valueChanged = true;
 	_farDistance = farDistance;
 }
 
-void Mist::SetFogType(video::E_FOG_TYPE fogType) 
+void Mist::setFogType(video::E_FOG_TYPE fogType) 
 {
 	_valueChanged = true;
 	_fogType = fogType;
@@ -47,5 +51,5 @@ void Mist::SetFogType(video::E_FOG_TYPE fogType)
 
 Mist::~Mist(void)
 {
-	game->driver->setFog();
+	_core->getDriver()->setFog();
 }

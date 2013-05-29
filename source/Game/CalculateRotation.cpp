@@ -1,5 +1,8 @@
 #include "CalculateRotation.h"
 
+using namespace irr;
+using namespace irr::core;
+
 matrix4 CalculateRotation::CreateFromQuaternion(quaternion quat)
 {
 	matrix4 matrix;

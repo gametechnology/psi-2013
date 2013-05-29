@@ -1,94 +1,91 @@
 #include "SectorManager.h"
-#include "Messages.h"
-#include <algorithm>
-#include  "AsteroidSector.h"
-#include  "NebulaSector.h"
-#include  "SectorHomeBase.h"
-#include  "BaseSector.h"
+#include "GameScene.h"
 
-SectorManager::SectorManager(GalaxyMap* map,Ship* ship) : Component() {
+SectorManager::SectorManager(GameScene* gameScene, Core* core, GalaxyMap* map,Ship* ship) : Composite("SectorManager") 
+{
 	_map=map;
 	_ship=ship;
-	for (unsigned int i = 0; i < map->sectors.size(); i++) {
-		if(map->sectors[i]->type == HOME_BLUE){
-			//delete _mapSector;
-			_mapSector = map->sectors[i];
+	_gameScene = gameScene;
+	_core = core;
+
+	for(std::list<MapSector*>::iterator it = map->getSectors()->begin(); it != map->getSectors()->end(); it++)
+	{
+		if((*it)->type == HOME_BLUE){
+			_mapSector = (*it);
 		}
 	}
 }
 
-void SectorManager::onAdd() {
-	activeSceneName = "SectorHomeBase";
-	this->getGame()->sceneManager->addScene(activeSceneName, new SectorHomeBase(this,"skybox02.png",2000.0,_mapSector->connections.size()));
+void SectorManager::init() {
+	_activeSector = new SectorHomeBase(_core, this, "skybox02.png",2000.0,_mapSector->connections.size());
+	addComponent(_activeSector);
+}
+
+void SectorManager::update()
+{
 }
 
 void SectorManager::handleMessage(unsigned int message, void* data) {
 	switch(message) {
-		case NEXT_SECTOR: //Switch Sector 
-			//Determen which is the new sector
-			int index = (int)data;
-			std::vector<MapSector*>::iterator temp = _mapSector->connections.begin();
-			
-			try{
-				std::advance(temp,index);
-			}catch(char * str){
-				printf("[SectorManager] Something went wrong... : %c", str);
-			}
-			
-			_mapSector = *temp;//change the _mapSector to the sector the data tells him to be
-			
-			char * tempName = activeSceneName;
+	case NEXT_SECTOR: 
+		int index = (int)data;
+		std::vector<MapSector*>::iterator temp = _mapSector->connections.begin();
 
-			// Checks if the scene is destroyed 
-			if ( this->getGame()->sceneManager->destroyScene( tempName ) ) {
-			
-				//Creates new Sector
-				switch (_mapSector->type){ 
-					case EMPTY:
-						//delete _currentSector;
-						printf("[SectorTemplate] EMPTY \n");
-						activeSceneName = "BaseSector";
-						this->getGame()->sceneManager->addScene(activeSceneName,new BaseSector(this,"skybox02.png",2000.0,_mapSector->connections.size()));
-						break;
-					case ASTEROID:
-						printf("[SectorTemplate] ASTEROID \n");
-						//delete _currentSector;
-						activeSceneName = "AsteroidSector";
-						this->getGame()->sceneManager->addScene(activeSceneName,new AsteroidSector(this,"skybox02.png",2000.0,_mapSector->connections.size()));
-						break;
-					case NEBULA:
-						printf("[SectorTemplate] NEBULA \n");
-						//delete _currentSector;
-						activeSceneName = "NebulaSector";
-						this->getGame()->sceneManager->addScene(activeSceneName,new NebulaSector(this,"skybox02.png",2000.0,_mapSector->connections.size()));
-						break;
-					case SOLAR: 
-						printf("[SectorTemplate] SOLAR \n");
-						//delete _currentSector;
-						activeSceneName = "BaseSector";
-						this->getGame()->sceneManager->addScene(activeSceneName,new BaseSector(this,"skybox02.png",2000.0,_mapSector->connections.size()));
-						break;
-					case HOME_BLUE:
-						printf("[SectorTemplate] HOME_BLUE \n");
-						//delete _currentSector;
-						activeSceneName = "SectorHomeBase";
-						this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,"skybox02.png",2000.0,_mapSector->connections.size()));
-						break;
-					case HOME_RED:
-						printf("[SectorTemplate] HOME_RED \n");
-						//delete _currentSector;
-						activeSceneName = "SectorHomeBase";
-						this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,"skybox02.png",2000.0,_mapSector->connections.size()));
-						break;
-				}		
-			}
+		try{
+			std::advance(temp,index);
+		}catch(char * str){
+			printf("[SectorManager] Something went wrong... : %c", str);
+		}
+
+		_mapSector = *temp;
+
+		switch (_mapSector->type){ 
+		case EMPTY:
+			printf("[SectorTemplate] EMPTY \n");
+			removeComponent(_activeSector);
+			delete _activeSector;
+			_activeSector = new BaseSector(_core, this,"skybox02.png",2000.0,_mapSector->connections.size());
+			addComponent(_activeSector);
 			break;
+		case ASTEROID:
+			printf("[SectorTemplate] ASTEROID \n");
+			removeComponent(_activeSector);
+			delete _activeSector;
+			_activeSector = new AsteroidSector(_core, this,"skybox02.png",2000.0,_mapSector->connections.size());
+			addComponent(_activeSector);
+			break;
+		case NEBULA:
+			printf("[SectorTemplate] NEBULA \n");
+			removeComponent(_activeSector);
+			delete _activeSector;
+			_activeSector = new NebulaSector(_core, this,"skybox02.png",2000.0,_mapSector->connections.size());
+			addComponent(_activeSector);
+			break;
+		case SOLAR: 
+			printf("[SectorTemplate] SOLAR \n");
+			removeComponent(_activeSector);
+			delete _activeSector;
+			_activeSector = new BaseSector(_core, this,"skybox02.png",2000.0,_mapSector->connections.size());
+			addComponent(_activeSector);
+			break;
+		case HOME_BLUE:
+			printf("[SectorTemplate] HOME_BLUE \n");
+			removeComponent(_activeSector);
+			delete _activeSector;
+			_activeSector = new SectorHomeBase(_core, this,"skybox02.png",2000.0,_mapSector->connections.size());
+			addComponent(_activeSector);
+			break;
+		case HOME_RED:
+			printf("[SectorTemplate] HOME_RED \n");
+			removeComponent(_activeSector);
+			delete _activeSector;
+			_activeSector = new SectorHomeBase(_core, this,"skybox02.png",2000.0,_mapSector->connections.size());
+			addComponent(_activeSector);
+			break;
+		}
 	}
-	//delete data;
 }
-Ship* SectorManager::getShip(){
-	return _ship;
-}
+
 SectorManager::~SectorManager() {
-	
+
 }

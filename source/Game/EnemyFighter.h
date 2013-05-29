@@ -2,11 +2,12 @@
 #define ENEMY_FIGHTER_H
 
 #include "Enemy.h"
-#include "StateSwitchFighter.h"
 #include "ObjectPool.h"
 #include "Laser.h"
 
 #include <Engine/GameObject.h>
+
+class StateSwitchFighter;
 
 class EnemyFighter : public Enemy
 {
@@ -21,6 +22,8 @@ public:
 	virtual void init();
 	virtual void onAdd();
 	virtual void update();
+
+	virtual void handleMessage(unsigned int, void* data = 0) { };
 
 	static ObjectPool<Laser>* laserPool;
 private:

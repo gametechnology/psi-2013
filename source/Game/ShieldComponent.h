@@ -3,8 +3,9 @@
 
 #include <Engine/Component.h>
 
-#include "Stations/Station.h"
 #include "Messages.h"
+
+class Station;
 
 class ShieldComponent : public Component
 {

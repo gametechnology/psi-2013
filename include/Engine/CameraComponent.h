@@ -15,6 +15,8 @@ public:
 	CameraComponent(irr::scene::ISceneManager*, CameraType type);
 	~CameraComponent();
 
+	virtual void handleMessage(unsigned int, void* data = 0) { };
+
 	irr::scene::ICameraSceneNode* getCameraNode();
 private:
 	irr::SKeyMap keyMap[8];

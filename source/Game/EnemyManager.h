@@ -25,6 +25,7 @@ class EnemyManager : public Composite
 
 		irr::core::vector3df* createBoundingBox(Enemy* object);
 	private:
+		Enemy* player;
 		irr::scene::ISceneManager* _smgr;
 };
 #endif

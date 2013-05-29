@@ -39,10 +39,7 @@ public:
 	void setRadius(float radius) { _radius = new irr::core::vector3df(radius, radius, radius); };
 
 	irr::core::vector3df* getForce() { return _force; };
-	bool isEnabled() { return _enabled; };
 protected:
-	bool _enabled;
-
 	float mass;
 
 	irr::core::vector3df* _position;

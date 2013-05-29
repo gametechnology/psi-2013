@@ -7,7 +7,7 @@
 class NebulaSector : public SectorTemplate
 {
 public:
-	NebulaSector(SectorManager* parent, std::string skyBoxTexture, float boundry, unsigned int amountWormHoles);
+	NebulaSector(Core*, SectorManager* parent, std::string skyBoxTexture, float boundry, unsigned int amountWormHoles);
 	virtual ~NebulaSector();
 
 	virtual void update();

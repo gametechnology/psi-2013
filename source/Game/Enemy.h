@@ -85,6 +85,7 @@ public:
 
 	void updateHealth();
 	virtual void update();
+	virtual void handleMessage(unsigned int, void* data = 0) { };
 protected:
 	EnemyType _type;
 private:

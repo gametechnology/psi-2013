@@ -1,8 +1,6 @@
-#include "Station.h"
 #include "NavigationStation.h"
-#include "..\Ship.h"
 
-NavigationStation::NavigationStation(Ship *ship) : Station( ship )
+NavigationStation::NavigationStation(Core* core, Ship *ship) : Station(core, ship)
 {
 	this->_stationType = ST_NAVIGATION;
 	this -> setStationDestroyed(false);
@@ -27,7 +25,12 @@ void NavigationStation :: OnDisabled(){
 }
 
 void NavigationStation::enable() {
-	((Ship*)parent)->help->setHelpText(L"todo: Exit station: 'Esc'");
+	(_ship)->help->setHelpText(L"todo: Exit station: 'Esc'");
 
 	Station::enable();
+}
+
+void NavigationStation::disable()
+{
+	Station::disable();
 }

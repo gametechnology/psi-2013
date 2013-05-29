@@ -1,7 +1,7 @@
 #include "HealthComponent.h"
 
 
-HealthComponent::HealthComponent(): Component("HealthComponent")
+HealthComponent::HealthComponent(): Component("HealthComponent"), maxHealth(100)
 {
 	health = maxHealth;
 }

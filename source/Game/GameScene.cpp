@@ -1,59 +1,56 @@
 #include "GameScene.h"
-#include "MapGenerator.h"
-#include "SectorManager.h"
-#include "Shipmap.h"
-#include "SendAndReceivePackets.h"
 
-GameScene::GameScene(std::list<Player*> playerList, bool isTestMap) : Scene()
+using namespace irr;
+using namespace irr::core;
+
+GameScene::GameScene(Core* core, Interface* ui, std::list<Player*> playerList, bool isTestMap) : Scene("GameScene")
 {
 	this->testMap = isTestMap;
+	
 	_playerList = playerList;
+	_core = core;
+	_interface = ui;
+
 	Network::GetInstance()->AddListener(CLIENT_SWITCH_STATION, this);
 	Network::GetInstance()->AddListener(PacketType::CLIENT_FIRE_LASER, this);
 	Network::GetInstance()->AddListener(SERVER_LASER, this);
 	Network::GetInstance()->AddListener(SERVER_WINLOSE, this);
 }
 
-void GameScene::onAdd() {
-	SendAndReceivePackets::staticGame = this->game;
+void GameScene::init() {
+	SendAndReceivePackets::core = _core;
 
-	this->_sendLasersTimer = 0;
-	this->_laserPool = new ObjectPool<Laser>(*this, 100);
+	_sendLasersTimer = 0;
+	_laserPool = new ObjectPool<Laser>(*this, _core->getSmgr(), 100);
+	
 	EnemyFighter::laserPool = _laserPool;
 	Ship::laserPool = _laserPool;
 
-	_ship = new Ship(vector3df(0,0,0), vector3df(0,0,0));
-	addChild(_ship);
+	_ship = new Ship(_core, _interface, vector3df(0,0,0), vector3df(0,0,0));
+	addComponent(_ship);
 
-	_camera = new Camera(); 
-	_ship->addChild(_camera);
-	_camera->init();
+	addComponent(new CameraComponent(_core->getSmgr(), CameraComponent::CameraType::FIRST_PERSON));
 
-	_shipEnemy = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
-	addChild(_shipEnemy);
+	_shipEnemy = new Ship(_core, _interface, vector3df(0,0,-100), vector3df(180,0,0));
+	addComponent(_shipEnemy);
 
-	BasicMoverComponent* movComp = new BasicMoverComponent();
+	BasicMoverComponent* movComp = new BasicMoverComponent(_ship);
 	_shipEnemy->addComponent(movComp);
 
 	//Creates Map & SectorManager
-	GalaxyMap* galaxyMap = new GalaxyMap(300, 300, 15);
+	GalaxyMap* galaxyMap = new GalaxyMap(_core, 300, 300, 15);
 
 	if (!testMap) {
 		galaxyMap->createMap(20, 2, 5);
 	} else {
 		galaxyMap->createStaticMap();
 	}
-	galaxyMap->transform->position = new vector3df(100, 670, 0);
+	galaxyMap->setPosition(new vector3df(100, 670, 0));
 	printf("-----------Added SectorManager----------\n\n");
-	addComponent(new SectorManager(galaxyMap,_ship));
+	addComponent(new SectorManager(this, _core, galaxyMap, _ship));
 
-	_shipmap = new Shipmap(this);
-	addChild(_shipmap);
-
-}
-
-void GameScene::init() {
-	Scene::init();
+	_shipmap = new Shipmap(_core, this);
+	addComponent(_shipmap);
 }
 
 void GameScene::update() {
@@ -70,7 +67,7 @@ void GameScene::update() {
 		Edit code below to make it send a winlose packet when one of the ship reaches health of 0
 		and give the right team id as the parameter
 		*/
-		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z) || this->_ship->getShipHealth() <= 0 || this->_shipEnemy->getShipHealth() <= 0)
+		if(_core->getInput()->isKeyboardButtonDown(KEY_KEY_Z) || this->_ship->getShipHealth() <= 0 || this->_shipEnemy->getShipHealth() <= 0)
 		{
 			SendAndReceivePackets::sendWinLosePacket(1);
 			SendAndReceivePackets::handleWinLose(1, 2, this);
@@ -80,9 +77,21 @@ void GameScene::update() {
 	Scene::update();
 }
 
-void GameScene::HandleNetworkMessage(NetworkPacket packet)
+void GameScene::requestNextScene()
 {
-	std::cout<< packet.GetType() << endl;
+}
+
+void GameScene::requestPreviousScene()
+{
+}
+
+void GameScene::notify(void* data)
+{
+}
+
+void GameScene::handleNetworkMessage(NetworkPacket packet)
+{
+	std::cout<< packet.GetType() << std::endl;
 
 	switch(packet.GetType())
 	{
@@ -116,13 +125,13 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 		}
 		break;
 	case CLIENT_FIRE_LASER:
-		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacketFromClient(packet, this->_laserPool->getAllObjects(), this));
+		_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacketFromClient(packet, _laserPool->getAllObjects(), this));
 	}
 }
 
 void GameScene::switchStation(StationType type)
 {
-	this->removeChild(_shipmap);
+	removeComponent(_shipmap);
 
 	_ship->SwitchToStation(type);
 }
@@ -130,4 +139,5 @@ void GameScene::switchStation(StationType type)
 GameScene::~GameScene() 
 {
 	delete _laserPool;
+	Scene::~Scene();
 }

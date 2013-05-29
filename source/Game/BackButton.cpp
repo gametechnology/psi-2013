@@ -1,8 +1,11 @@
 #include "BackButton.h"
 
+using namespace irr;
+using namespace irr::core;
+using namespace irr::gui;
 
-
-enum{
+enum
+{
 		GUI_ID_BACK_BUTTON = 101
 };
 
@@ -38,22 +41,20 @@ private:
 
 };
 
-BackButton::BackButton(rect< s32 > position) : Component()
+BackButton::BackButton(Core* core, rect<s32> position) : Component("BackButton")
 {
 	position_ = position;
-	
-	
-	//button->setImage(video::ITexture("../assets/Textures/Stations/backButton.png");
+	_core = core;
 }
 
-
-BackButton::~BackButton(void){
+BackButton::~BackButton(){
 	visible = false;
-	this->getGame()->input->unsetCustomEventReceiver();
+	_core->resetReceiver();
 }
+
 bool BackButton::isButtonPressed(){
 	//ESC key
-	if(this->getGame()->input->isKeyboardButtonPressed(irr::KEY_ESCAPE)){
+	if(_core->getInput()->isKeyboardButtonDown(irr::KEY_ESCAPE)){
 		BackButton::pressed = true;
 		return true;
 	}else BackButton::pressed = false;
@@ -62,26 +63,28 @@ bool BackButton::isButtonPressed(){
 
 	//button clicked
 	SAppContext context;
-	context.env = getGame()->guiEnv;
+	context.env = _core->getGuiEnv();
 	context.buttonFlag = false;
 	ButtonEventReceiver receiver(context);
 
-	this->getGame()->input->setCustomEventReceiver(&receiver);
+	_core->addCustomReceiver(&receiver);
 	BackButton::pressed = context.buttonFlag;
 
 	
 	return BackButton::pressed;
 }
 
-void BackButton::update(){
+void BackButton::update()
+{
 	
 }
 
 void BackButton::init(){
-	button = getGame()->guiEnv->addButton(position_,0,GUI_ID_BACK_BUTTON,L"Esc to Back",L"Go back to 2d shipmap");
+	button = _core->getGuiEnv()->addButton(position_,0,GUI_ID_BACK_BUTTON,L"Esc to Back",L"Go back to 2d shipmap");
 	BackButton::pressed = false;
 	BackButton::visible = true;
 }
+
 void BackButton::draw(){
 
 }

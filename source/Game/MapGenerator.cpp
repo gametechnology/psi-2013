@@ -2,7 +2,7 @@
 #include "MapSector.h"
 #include <math.h>
 
-MapGenerator::MapGenerator(int sectorCount, int minWormholes, int maxWormholes)
+MapGenerator::MapGenerator(Core* core, int sectorCount, int minWormholes, int maxWormholes)
 {
 	nameprefix.push_back("Dagobah");
 	nameprefix.push_back("Bespin");
@@ -29,7 +29,7 @@ MapGenerator::MapGenerator(int sectorCount, int minWormholes, int maxWormholes)
 	nameprefix.push_back("Urmottastinx");
 	nameprefix.push_back("Unicorn");
 	nameprefix.push_back("Yousougly");
-	
+
 	nameaddon.push_back("Alpha");
 	nameaddon.push_back("Beta");
 	nameaddon.push_back("Gamma");
@@ -46,10 +46,12 @@ MapGenerator::MapGenerator(int sectorCount, int minWormholes, int maxWormholes)
 	this->sectorCount = sectorCount;
 	this->minWormholes = minWormholes;
 	this->maxWormholes = maxWormholes;
-	
+
 	for(int i = 0; i < TOTALTYPES - 2; i++) {
 		this->typeChances.push_back(100/(TOTALTYPES - 2));
 	}
+
+	_core = core;
 }
 
 MapGenerator::~MapGenerator()
@@ -59,7 +61,7 @@ MapGenerator::~MapGenerator()
 
 void MapGenerator::init()
 {
-	
+
 }
 
 void MapGenerator::setBalanceChances(std::vector<float> chancesType)
@@ -67,7 +69,7 @@ void MapGenerator::setBalanceChances(std::vector<float> chancesType)
 	this->typeChances = chancesType;
 }
 
-std::vector<MapSector*>* MapGenerator::createNewMap(float width, float height, float sectorRadius)
+std::list<MapSector*>* MapGenerator::createNewMap(float width, float height, float sectorRadius)
 {
 	_width = width;
 	_height = height;
@@ -77,26 +79,26 @@ std::vector<MapSector*>* MapGenerator::createNewMap(float width, float height, f
 		i += (*l);
 	}
 
-	if(i < 99) return new std::vector<MapSector*>();
+	if(i < 99) return new std::list<MapSector*>();
 
 	this->createSectors();
 	this->createConnections();
 
 	return &sectors;
 }
-std::vector<MapSector*>* MapGenerator::createStaticMap(float width, float height, float sectorRadius)
+std::list<MapSector*>* MapGenerator::createStaticMap(float width, float height, float sectorRadius)
 {
-	std::vector<MapSector*>* map = new std::vector<MapSector*>();
-	MapSector* homeBlue = new MapSector(nameGenerator(HOME_BLUE), HOME_BLUE, 30);
-	MapSector* homeRed = new MapSector(nameGenerator(HOME_RED), HOME_RED, 30);
-	MapSector* empty = new MapSector(nameGenerator(EMPTY), EMPTY, 30);
+	std::list<MapSector*>* map = new std::list<MapSector*>();
+	MapSector* homeBlue = new MapSector(_core, nameGenerator(HOME_BLUE), HOME_BLUE, 30);
+	MapSector* homeRed = new MapSector(_core, nameGenerator(HOME_RED), HOME_RED, 30);
+	MapSector* empty = new MapSector(_core, nameGenerator(EMPTY), EMPTY, 30);
 	map->push_back(homeBlue);
 	map->push_back(empty);
 	map->push_back(homeRed);
-	
+
 	homeBlue->connections.push_back(empty);
 	empty->connections.push_back(homeBlue);
-	
+
 	empty->connections.push_back(homeRed);
 	homeRed->connections.push_back(empty);
 
@@ -105,23 +107,24 @@ std::vector<MapSector*>* MapGenerator::createStaticMap(float width, float height
 
 void MapGenerator::createSectors()
 {
-	MapSector* homeBlue = new MapSector(nameGenerator(HOME_BLUE), HOME_BLUE, _sectorRadius);
+	MapSector* homeBlue = new MapSector(_core, nameGenerator(HOME_BLUE), HOME_BLUE, _sectorRadius);
 	sectors.push_back(homeBlue);
 
-	MapSector* homeRed = new MapSector(nameGenerator(HOME_RED), HOME_RED, _sectorRadius);
+	MapSector* homeRed = new MapSector(_core, nameGenerator(HOME_RED), HOME_RED, _sectorRadius);
 	sectors.push_back(homeRed);
-	
+
 	typeSector j;
+
 	for(int i = 0; i < sectorCount - 2; i++)
 	{
 		j = getRandomType();
-		MapSector* sector = new MapSector(nameGenerator(j), j, _sectorRadius);
+		MapSector* sector = new MapSector(_core, nameGenerator(j), j, _sectorRadius);
 		sectors.push_back(sector);
 	}
 }
 
 typeSector MapGenerator::getRandomType()
-{//(typeSector)(rand() % (TOTALTYPES - 2));
+{
 	int i = rand() % 100;
 	for(int j = 0; j < TOTALTYPES - 2; j++)
 	{
@@ -135,9 +138,9 @@ irr::core::vector3df MapGenerator::randomPosition()
 {
 	irr::core::vector3df randPos(_sectorRadius + rand() % ((int)(_width - (_sectorRadius * 2))), _sectorRadius + rand() % ((int)(_height - (_sectorRadius * 2))), 0);
 
-	for (unsigned int i = 0; i < sectors.size(); i++)
+	for(std::list<MapSector*>::iterator it = sectors.begin(); it != sectors.end(); it++)
 	{
-		if (sectors[i]->transform->position->getDistanceFrom(randPos) <  _sectorRadius * 2)
+		if ((*it)->getPosition()->getDistanceFrom(randPos) <  _sectorRadius * 2)
 		{
 			randPos = randomPosition();
 		}
@@ -147,32 +150,36 @@ irr::core::vector3df MapGenerator::randomPosition()
 
 void MapGenerator::createConnections()
 {
-	for (unsigned int i = 0; i < sectors.size(); i++) {
-		sectors[i]->connections.clear();
+	for(std::list<MapSector*>::iterator it = sectors.begin(); it != sectors.end(); it++)
+	{
+		(*it)->connections.clear();
 	}
 
-	for (unsigned int i = 0; i < sectors.size(); i++) {
-		for (unsigned int j = i + 1; j < sectors.size(); j++) {
-
-			if (!collisionLineBetweenSectors(sectors[i], sectors[j])) {
+	for(std::list<MapSector*>::iterator it = sectors.begin(); it != sectors.end(); it++)
+	{
+		for(std::list<MapSector*>::iterator it2 = it; it2 != sectors.end(); it2++)
+		{
+			if (!collisionLineBetweenSectors((*it), (*it2))) {
 				int wormholeCount = minWormholes + (rand() % (maxWormholes - minWormholes));
-				if ((int)(sectors[i]->connections.size()) < maxWormholes - 1 && (int)(sectors[j]->connections.size()) < maxWormholes - 1) {
-					sectors[i]->connections.push_back(sectors[j]);
-					sectors[j]->connections.push_back(sectors[i]);
+				if ((int)((*it)->connections.size()) < maxWormholes - 1 && (int)((*it2)->connections.size()) < maxWormholes - 1) {
+					(*it)->connections.push_back((*it2));
+					(*it2)->connections.push_back((*it));
 				}
 			}
 		}
 	}
-	
-	for (unsigned int i = 0; i < sectors.size(); i++) {
-		if ((int)(sectors[i])->connections.size() <= minWormholes) {
 
-			for (unsigned int j = i + 1; j < sectors.size(); j++) {
-				if (!collisionLineBetweenSectors(sectors[i], sectors[j])) {
-					sectors[i]->connections.push_back(sectors[j]);
-					sectors[j]->connections.push_back(sectors[i]);
+	for(std::list<MapSector*>::iterator it = sectors.begin(); it != sectors.end(); it++)
+	{
+		if ((int)((*it))->connections.size() <= minWormholes) 
+		{
+			for(std::list<MapSector*>::iterator it2 = it; it2 != sectors.end(); it2++)
+			{
+				if (!collisionLineBetweenSectors((*it), (*it2))) {
+					(*it)->connections.push_back((*it2));
+					(*it2)->connections.push_back((*it));
 
-					if ((int)(sectors[i]->connections.size()) >= minWormholes) {
+					if ((int)((*it)->connections.size()) >= minWormholes) {
 						break;
 					}
 				}
@@ -180,26 +187,27 @@ void MapGenerator::createConnections()
 		}
 	}
 
-	//Fill in the distance to blue base for every sector
+	// Fill in the distance to blue base for every sector
 	dijkstra();
-	
-	//Place the red base as far as possible from the blue base
+
+	// Place the red base as far as possible from the blue base
 	MapSector* away = sectors.back();
 	MapSector* red;
 
 	std::string tempName;
 	typeSector tempType;
 
-	//Find the red base and the base furthest from blue base
-	for	(unsigned i = 0; i < sectors.size(); i++) {
-		if (sectors[i]->type == HOME_RED) {
-			red = sectors[i];
-		} else if (sectors[i]->distToBlueBase > away->distToBlueBase && sectors[i]->distToBlueBase != INT_MAX && sectors[i]->type != HOME_RED) {
-			away = sectors[i];
+	// Find the red base and the base furthest from blue base
+	for(std::list<MapSector*>::iterator it = sectors.begin(); it != sectors.end(); it++)
+	{
+		if ((*it)->type == HOME_RED) {
+			red = (*it);
+		} else if ((*it)->distToBlueBase > away->distToBlueBase && (*it)->distToBlueBase != INT_MAX && (*it)->type != HOME_RED) {
+			away = (*it);
 		}
 	}
-	
-	//Swap HOME_RED with furthest MapSector and reset the textures;
+
+	// Swap HOME_RED with furthest MapSector and reset the textures;
 	tempName = away->name;
 	tempType = away->type;
 	away->name = red->name;
@@ -207,7 +215,7 @@ void MapGenerator::createConnections()
 	red->name = tempName;
 	red->type = tempType;
 
-	//Redo the distance to blue base calculation
+	// Redo the distance to blue base calculation
 	int j = dijkstra();
 }
 
@@ -215,21 +223,21 @@ bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* se
 {
 	float ax, ay, bx, by, cx, cy, cr;
 
-	ax = sector1->transform->position->X;
-	ay = sector1->transform->position->Y;
-	bx = sector2->transform->position->X;
-	by = sector2->transform->position->Y;
-	
+	ax = sector1->getPosition()->X;
+	ay = sector1->getPosition()->Y;
+	bx = sector2->getPosition()->X;
+	by = sector2->getPosition()->Y;
+
 	cr = _sectorRadius;
 
-	for(unsigned i=0;i<sectors.size();i++)
+	for(std::list<MapSector*>::iterator it = sectors.begin(); it != sectors.end(); it++)
 	{
-		if (sectors[i] == sector1 || sectors[i] == sector2)
+		if ((*it) == sector1 || (*it) == sector2)
 		{
 			continue;
 		}
-		cx = sectors[i]->transform->position->X;
-		cy = sectors[i]->transform->position->Y;
+		cx = (*it)->getPosition()->X;
+		cy = (*it)->getPosition()->Y;
 
 		double vx = bx - ax;
 		double vy = by - ay;
@@ -250,7 +258,7 @@ bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* se
 				double x = ax + (i * vx * t);
 				double y = ay + (i * vy * t);
 				// If one of them is in the boundaries of the segment, it collides
-				if (x >= min(ax, bx) && x <= max(ax, bx) && y >= min(ay, by) && y <= max(ay, by))
+				if (x >= std::min(ax, bx) && x <= std::max(ax, bx) && y >= std::min(ay, by) && y <= std::max(ay, by))
 				{
 					return true;
 				}
@@ -276,33 +284,33 @@ std::string MapGenerator::nameGenerator(typeSector type)
 	//End the name with the name for the type of the sector
 	switch(type)
 	{
-		case EMPTY:
-			name += this->nametype.at(0);
-			break;
-		case ASTEROID:
-			name += this->nametype.at(1);
-			break;
-		case NEBULA:
-			name += this->nametype.at(2);
-			break;
-		case SOLAR:
-			name += this->nametype.at(3);
-			break;
-		case HOME_BLUE:
-		case HOME_RED:
-			name += this->nametype.at(4);
-			break;
-		default:
-			name += this->nametype.at(0);
+	case EMPTY:
+		name += this->nametype.at(0);
+		break;
+	case ASTEROID:
+		name += this->nametype.at(1);
+		break;
+	case NEBULA:
+		name += this->nametype.at(2);
+		break;
+	case SOLAR:
+		name += this->nametype.at(3);
+		break;
+	case HOME_BLUE:
+	case HOME_RED:
+		name += this->nametype.at(4);
+		break;
+	default:
+		name += this->nametype.at(0);
 	}
 	return name;
 }
 
 int MapGenerator::dijkstra()
 {
-	for(unsigned i = 0; i < sectors.size(); i++)
+	for(std::list<MapSector*>::iterator it = sectors.begin(); it != sectors.end(); it++)
 	{
-		sectors[i]->distToBlueBase = INT_MAX;
+		(*it)->distToBlueBase = INT_MAX;
 	}
 
 	std::vector<MapSector*> openConnections;
@@ -329,11 +337,12 @@ int MapGenerator::dijkstra()
 
 		curDist++;
 	}
-	for(unsigned i=0;i<sectors.size();i++)
+
+	for(std::list<MapSector*>::iterator it = sectors.begin(); it != sectors.end(); it++)
 	{
-		if (sectors[i]->type == HOME_RED)
+		if ((*it)->type == HOME_RED)
 		{
-			return sectors[i]->distToBlueBase;
+			return (*it)->distToBlueBase;
 		}
 	}
 	return 0;

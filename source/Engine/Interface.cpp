@@ -42,6 +42,11 @@ void Interface::addListBox(s32 x, s32 y, s32 width, s32 height, s32 id, IGUIElem
 	_interfaceElements.push_back(_guiEnv->addListBox(rect<s32>(x, y, x+width, y+height), parent, id, showBackground));
 }
 
+void Interface::addWindow(s32 x, s32 y, s32 width, s32 height, bool blocking, const wchar_t* text, IGUIElement* parent, s32 id)
+{
+	_interfaceElements.push_back(_guiEnv->addWindow(rect<s32>(x, y, x+width, y+height), blocking, text, parent, id));
+}
+
 void Interface::addStaticText(const wchar_t* text, s32 x, s32 y, s32 width, s32 height, s32 id, bool border, bool wordWrap, bool fillBackground, IGUIElement* parent)
 {
 	_interfaceElements.push_back(_guiEnv->addStaticText(text, rect<s32>(x, y, x+width, y+height), border, wordWrap, parent, id, fillBackground));
@@ -82,6 +87,5 @@ IGUIElement* Interface::getElementWithId(s32 id)
 			return *iter;
 		}
 	}
-
 	return NULL;
 }

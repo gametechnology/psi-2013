@@ -1,48 +1,51 @@
 #include "EndScene.h"
 
-
-EndScene::EndScene(bool lostGame)
+EndScene::EndScene(Core* core, Interface* ui, bool lostGame) : Scene("EndScene")
 {
+	_core = core;
+	_interface = ui;
 	this->_didWeLose = lostGame;
 }
 
 void EndScene::init()
-{
-	guiEnv = game->guiEnv;
+{	
+	_interface->addWindow(80, 30, 520, 520, false, L"End of Game", 0, END_GAME_WINDOW);
 
-	this->addGuiElements();
-	
-	// Then create the event receiver, giving it that context structure.
-	eventReceiver = new EndSceneEventReceiver(this->game);
+	// Bit of a hack, sorry for that.
+	dynamic_cast<irr::gui::IGUIWindow*>(_interface->getElementWithId(END_GAME_WINDOW))->getCloseButton()->remove();
 
-	// And tell the device to use our custom event receiver.
-	game->input->setCustomEventReceiver(eventReceiver);
-}
-
-void EndScene::addGuiElements()
-{
-	endGameWindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"End of Game",0,100);
-	endGameWindow->getCloseButton()->remove();
-
-	if(this->_didWeLose)
+	if(_didWeLose)
 	{
-		winOrLoseMessage = guiEnv->addStaticText(L"Your team lost",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,endGameWindow);
+		_interface->addStaticText(L"Your team lost", 300, 165, 100, 140, WIN_LOSE_MESSAGE, false, true, false, _interface->getElementWithId(END_GAME_WINDOW));
 	}else
 	{
-		winOrLoseMessage = guiEnv->addStaticText(L"Your team won!",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,endGameWindow);
+		_interface->addStaticText(L"Your team won!", 300, 165, 100, 140, WIN_LOSE_MESSAGE, false, true, false, _interface->getElementWithId(END_GAME_WINDOW));
 	}
 
-	backbutton	= guiEnv->addButton(rect<s32>(position2di(50,105),dimension2di(200,25)),endGameWindow,0, L"Back to Main Menu");
+	_interface->createButton(50, 105, 150, 80, BACK_BUTTON, _interface->getElementWithId(END_GAME_WINDOW), L"Back to Main Menu");
+
+	// Then create the event receiver, giving it that context structure.
+	eventReceiver = new EndSceneEventReceiver(_context);
+
+	// And tell the device to use our custom event receiver.
+	_core->addCustomReceiver(eventReceiver);
 }
 
 void EndScene::update()
 {
-
 }
 
-void EndScene::BackToMainMenu()
+void EndScene::notify(void* data)
 {
-	endGameWindow->setVisible(false);
+}
+
+void EndScene::requestNextScene()
+{
+}
+
+void EndScene::requestPreviousScene()
+{
+	_interface->getElementWithId(END_GAME_WINDOW)->setVisible(false);
 }
 
 EndScene::~EndScene()

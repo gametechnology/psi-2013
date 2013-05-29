@@ -31,8 +31,8 @@ class Shipmap : public GameObject
 
 	float iconRadius, duration, savedPosX, savedPosY, playerSpeed;
 
-	irr::core::rect<s32> *boundingBoxes[5];
-	irr::core::rect<s32> *playerBox;
+	irr::core::rect<irr::s32> *boundingBoxes[5];
+	irr::core::rect<irr::s32> *playerBox;
 	
 	irr::u32 now, then;
 
@@ -51,9 +51,10 @@ public:
 	Shipmap(Core*, Scene*);
 	~Shipmap();
 	void onAdd();
-	void init();
+	virtual void init();
 	void draw();
-	void update();
+	virtual void update();
+	virtual void handleMessage(unsigned int, void* data = 0) { };
 };
 
 #endif

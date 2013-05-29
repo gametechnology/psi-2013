@@ -4,13 +4,16 @@
 #include <Engine\Network.h>
 #include <Engine\NetworkPacket.h>
 
+#include "Station.h"
+
 #include "../Ship.h"
+
 #include "../BasicShipMover.h"
 
 class HelmStation : public Station 
 {
 public:
-	HelmStation(Ship *ship);
+	HelmStation(Core* core, Ship *ship);
 	~HelmStation();
 	void update();
 

@@ -14,20 +14,27 @@ MainMenuScene::~MainMenuScene()
 void MainMenuScene::init() {
 	playerlist = std::list<Player*>();
 
-	_interface->createButton(50, 135, 150, 110, 0, 0, L"Create a game");
-	_interface->createButton(50, 165, 150, 110, 0, 0, L"Join a game");
+	_interface->createButton(50, 135, 200, 25, CREATE_GAME_BUTTON, 0, L"Create a game");
+	_interface->createButton(50, 165, 200, 25, JOIN_GAME_BUTTON, 0, L"Join a game");
 
-	_interface->addStaticText(L"Port:", 50, 65, 50, 40, false, true, false, 0);
-	_interface->addStaticText(L"Host ip:", 50, 65, 50, 40, false, true, false, 0);
-	_interface->addStaticText(L"Port:", 50, 65, 50, 40, false, true, false, 0);
+	_interface->addStaticText(L"Port:", 50, 65, 100, 25, false, true, false, 0);
+	_interface->addStaticText(L"Host ip:", 175, 65, 100, 25, false, true, false, 0);
+	_interface->addStaticText(L"Name:", 300, 65, 100, 25, false, true, false, 0);
 
-	_interface->addEditBox(50, 80, 50, 55, PORT_INPUT_BOX, 0, L"", true);
-	_interface->addEditBox(175, 80, 50, 55, IP_INPUT_BOX, 0, L"", true);
-	_interface->addEditBox(300, 80, 50, 55, NAME_INPUT_BOX, 0, L"", true);
+	_interface->addEditBox(50, 80, 100, 25, PORT_INPUT_BOX, 0, L"", false);
+	_interface->addEditBox(175, 80, 100, 25, IP_INPUT_BOX, 0, L"", true);
+	_interface->addEditBox(300, 80, 100, 25, NAME_INPUT_BOX, 0, L"", true);
+
+	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
+	Network::GetInstance()->AddListener(START_GAME, this);
+	Network::GetInstance()->AddListener(CLIENT_JOIN, this);
+	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
+	Network::GetInstance()->AddListener(HOST_DISCONNECT, this);
+	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
 
 	// Store the appropriate data in a context structure.
-	SAppContext context;
 	context.core = _core;
+	context.u_interface = _interface;
 	context.counter = 0;
 
 	// Then create the event receiver, giving it that context structure.
@@ -94,76 +101,6 @@ void MainMenuScene::handleNetworkMessage(NetworkPacket packet)
 		break;
 	case START_GAME:
 		requestNextScene();
-		break;
-	case CLIENT_JOIN:
-		name = new wchar_t[500];
-		packet >> name;
-		packet >> checksum;
-
-		if(checksum != Network::GetInstance()->GetPacketTypeChecksum())
-		{
-			deniedpack << L"Your version does not match with the version of the host";
-			deniedpack << packet.GetSender().address.host;
-			Network::GetInstance()->SendServerPacket(deniedpack, true);
-			return;
-		}
-		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-			if((*iterator)->Ipadres == packet.GetSender().address.host){
-				deniedpack << L"Your pc is already connected to the host";
-				deniedpack << packet.GetSender().address.host;
-				Network::GetInstance()->SendServerPacket(deniedpack, true);
-
-				return;
-			}
-
-		}
-		if((playerlist.size()) % 2 != 0)
-			team = 2;
-		else
-			team = 1;
-		newplayer = new Player( name,  packet.GetSender().address.host, team);
-		playerlist.push_back(newplayer);
-
-		lenght = playerlist.size();
-		packetsend << lenght;
-
-		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-
-			packetsend << (*iterator);
-		}
-		Network::GetInstance()->SendServerPacket(packetsend, true);
-		delete name;
-		break;
-	case CLIENT_QUIT:
-		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-			if((*iterator)->Ipadres == packet.GetSender().address.host)
-				newplayer = (*iterator);
-
-		}
-		if(newplayer == NULL)
-			return;
-		playerlist.remove(newplayer);
-		lenght = playerlist.size();
-		packetsend << lenght;
-		lenght = 0;
-		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-			if(lenght != 0 && (lenght) % 2 != 0)
-				(*iterator)->Team = 2;
-			else
-				(*iterator)->Team = 1;
-			packetsend << (*iterator);
-			lenght++;
-		}
-		Network::GetInstance()->SendServerPacket(packetsend, true);
-		break;
-	case HOST_DISCONNECT:
-		name = new wchar_t[500];
-		packet >> name;
-		playerlist.clear();
-		_interface->addMessageBox(L"Message", name, true, 1, 0);
-		Network::GetInstance()->DeInitialize();
-		requestPreviousScene();
-		delete name;
 		break;
 	default:
 		break;

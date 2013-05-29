@@ -1,18 +1,18 @@
 #include "Station.h"
-#include "PowerStation.h"
-#include "DefenceStation.h"
-#include "../HealthComponent.h"
-#include "../PowerComponent.h"
-#include "../ShieldComponent.h"
 
-Station :: Station( Ship *ship, int startHealth ) : Entity()
+using namespace irr;
+
+Station::Station(Core* core, Ship *ship, int startHealth) : Composite("Station")
 {
-	this ->	_ship	= ship;
+	_core = core;
+
+	_ship = ship;
 
 	//Stations stats exist out of heath, power and shield
-	this->_healthComponent = new HealthComponent();
-	this->_powerComponent = new PowerComponent();
-	this->_shieldComponent = new ShieldComponent();
+	_healthComponent = new HealthComponent();
+	_powerComponent = new PowerComponent();
+	_shieldComponent = new ShieldComponent();
+
 	addComponent(_healthComponent);
 	addComponent(_powerComponent);
 	addComponent(_shieldComponent);
@@ -21,15 +21,18 @@ Station :: Station( Ship *ship, int startHealth ) : Entity()
 	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
 }
 
-Station :: Station( Ship * ship ) : Entity()
+Station::Station(Core* core, Ship * ship) : Composite("Station")
 {
-	this -> _ship   = ship;
-	this -> _tempTimer = 0;
+	_core = core;
+
+	_ship   = ship;
+	_tempTimer = 0;
 
 	//Stations stats exist out of heath, power and shield
-	this->_healthComponent = new HealthComponent();
-	this->_powerComponent = new PowerComponent();
-	this->_shieldComponent = new ShieldComponent();
+	_healthComponent = new HealthComponent();
+	_powerComponent = new PowerComponent();
+	_shieldComponent = new ShieldComponent();
+
 	addComponent(_healthComponent);
 	addComponent(_powerComponent);
 	addComponent(_shieldComponent);
@@ -37,29 +40,43 @@ Station :: Station( Ship * ship ) : Entity()
 	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
 }
 
+Station::~Station()
+{
+}
+
+void Station::enable()
+{
+	setEnabled(true);
+	OnEnabled();
+}
+
+void Station::disable()
+{
+	setEnabled(false);
+	OnDisabled();
+}
+
+void Station::init() 
+{
+	Composite::init();
+
+	driver = _core->getDriver();
+
+	_player = NULL;
+	_playerOnStationTime = 0;
+	_stunTime = 0;
+	_switchTime = 0;
+	_isOccupied = false;
+
+	//this->hud = new HudComposite(&(_healthComponent->health), &(_powerComponent->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
+	//this->addChild(hud);
+}
+
 void Station::onAdd()
 {
-	Entity::onAdd();
 }
 
-void Station :: init() 
-{
-	Entity::init();
-
-	driver = this->game->driver;
-
-	this -> _player = NULL;
-	this -> _playerOnStationTime = 0;
-	this -> _stunTime = 0;
-	this -> _switchTime = 0;
-	_isOccupied = false;
-	_player = NULL;
-
-	this->hud = new HudComposite(&(_healthComponent->health), &(_powerComponent->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
-	this->addChild(hud);
-}
-
-Station :: ~Station(void)
+void Station::draw()
 {
 }
 
@@ -103,7 +120,7 @@ void Station::resetPlayerOccupation()
 
 void Station::update()
 {
-	Entity::update();
+	Composite::update();
 
 	if(_player != NULL)
 	{
@@ -115,24 +132,17 @@ void Station::update()
 	}
 
 	// Test code for testing energy of a station.
-	if(game->input->isKeyboardButtonDown(KEY_ADD) && _powerComponent->power < 50)
+	if(_core->getInput()->isKeyboardButtonDown(KEY_ADD) && _powerComponent->power < 50)
 		_powerComponent->power += 1;
-	if(game->input->isKeyboardButtonDown(KEY_SUBTRACT) && _powerComponent->power > 0)
+	if(_core->getInput()->isKeyboardButtonDown(KEY_SUBTRACT) && _powerComponent->power > 0)
 		_powerComponent->power -= 1;
 	// End test code for testing energy of a station.
 
 	updateHealth();
 
-	if (game->input->isKeyboardButtonDown(KEY_ESCAPE)){
+	if (_core->getInput()->isKeyboardButtonDown(KEY_ESCAPE)){
 		// Load Shipmap
 	}
-}
-
-
-void Station :: draw( )
-{	
-
-	Entity::draw();
 }
 
 void Station::handleMessage(unsigned int message,  void* data)

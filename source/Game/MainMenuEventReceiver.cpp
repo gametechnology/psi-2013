@@ -4,7 +4,7 @@ using namespace irr;
 using namespace irr::gui;
 using namespace irr::core;
 
-MainMenuEventReceiver::MainMenuEventReceiver(SAppContext & context) : context(context) 
+MainMenuEventReceiver::MainMenuEventReceiver(SAppContext& _context) : context(_context) 
 {
 }
 
@@ -72,6 +72,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					return false;
 				} else {
 					Network::GetInstance()->InitializeServer();
+					context.core->getActiveScene()->requestNextScene();
 					return true;
 				}
 			case START_GAME_BUTTON:

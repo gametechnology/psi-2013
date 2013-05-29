@@ -1,4 +1,5 @@
 #include "Laser.h"
+#include "Stations/DefenceStation.h"
 
 using namespace irr;
 using namespace irr::core;

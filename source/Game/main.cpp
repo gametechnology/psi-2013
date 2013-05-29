@@ -8,7 +8,7 @@ using namespace irr;
 
 int main()
 {
-	Core* core = new Core(800, 600, 32);
+	Core* core = new Core(1280, 720, 32);
 
 	Interface* f_interface = new Interface(core->getGuiEnv(), core->getDriver());
 
@@ -25,7 +25,7 @@ int main()
 		if (core->getDevice()->isWindowActive())
 		{
 			core->update(frameDeltaTime);
-			core->draw(255, 255, 255, 255);
+			core->draw(255, 100, 101, 140);
 			int fps = core->getDriver()->getFPS();
 		}
 		else

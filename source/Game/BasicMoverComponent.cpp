@@ -1,9 +1,12 @@
 #include "BasicMoverComponent.h"
 
-BasicMoverComponent::BasicMoverComponent() : Component()
+using namespace irr;
+using namespace irr::core;
+
+BasicMoverComponent::BasicMoverComponent(GameObject* parent) : Component("BasicMoverComponent")
 {
-	thrust = 0;
-	
+	_parent = parent;
+	thrust = 0;	
 }
 
 BasicMoverComponent::~BasicMoverComponent()
@@ -13,44 +16,39 @@ BasicMoverComponent::~BasicMoverComponent()
 
 void BasicMoverComponent::update()
 {
-	irr::core::vector3df direction = entity->transform->rotation->rotationToDirection();
-	entity->transform->velocity->set(direction * thrust);
+	vector3df direction = _parent->getRotation()->rotationToDirection();
+	_parent->setVelocity(&(direction * thrust));
 }
 
-
-
-
-void BasicMoverComponent::move(Entity *entity, irr::core::vector3df vel)
+void BasicMoverComponent::move(vector3df vel)
 {
-	irr::core::matrix4 m;
-	m.setRotationDegrees(*entity->transform->rotation);
+	matrix4 m;
+	m.setRotationDegrees(*_parent->getRotation());
 	m.transformVect(vel);
-	entity->transform->position->set(*entity->transform->position + vel);
-	entity->transform->position;
-
+	_parent->setPosition(&(*_parent->getPosition() + vel));
 }
 
-void BasicMoverComponent::rotate(Entity *entity, irr::core::vector3df rot)
+void BasicMoverComponent::rotate(vector3df rot)
 {
-	irr::core::matrix4 m;
-	m.setRotationDegrees(*entity->transform->rotation);
-	irr::core::matrix4 n;
+	matrix4 m;
+	m.setRotationDegrees(*_parent->getRotation());
+	matrix4 n;
 	n.setRotationDegrees(rot);
 	m *= n;
-	entity->transform->rotation->set(m.getRotationDegrees());
+	_parent->setRotation(&m.getRotationDegrees());
 }
 
-void BasicMoverComponent::turn(Entity *entity, irr::f32 rot)
+void BasicMoverComponent::turn(f32 rot)
 {
-	rotate(entity, irr::core::vector3df(0.0f, rot, 0.0f));
+	rotate(vector3df(0.0f, rot, 0.0f));
 }
 
-void BasicMoverComponent::pitch(Entity *entity, irr::f32 rot)
+void BasicMoverComponent::pitch(f32 rot)
 {
-	rotate(entity, irr::core::vector3df(rot, 0.0f, 0.0f));
+	rotate(vector3df(rot, 0.0f, 0.0f));
 }
 
-void BasicMoverComponent::roll(Entity *entity, irr::f32 rot)
+void BasicMoverComponent::roll(f32 rot)
 {
-	rotate(entity, irr::core::vector3df(0.0f, 0.0f, rot));
+	rotate(vector3df(0.0f, 0.0f, rot));
 }

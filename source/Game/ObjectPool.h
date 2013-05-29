@@ -1,7 +1,8 @@
 #ifndef OBJECT_POOL_H
 #define OBJECT_POOL_H
 
-#include "Engine/Entity.h"
+#include <Engine/GameObject.h>
+
 #include "NetworkInterface.h"
 
 template<class T> class ObjectPool 
@@ -14,7 +15,7 @@ private:
 	{
 		for(int i = 0; i < _objectCount; i++)
 		{
-			_objectList[i]->disable();
+			_objectList[i]->setEnabled(false);
 		}
 	}
 
@@ -24,7 +25,7 @@ public:
 	{
 		for(int i = 0; i < _objectCount; i++)
 		{
-			if(!_objectList[i]->enabled)
+			if(!_objectList[i]->isEnabled())
 			return _objectList[i];
 		}
 		return 0;
@@ -32,16 +33,16 @@ public:
 
 	ObjectPool() {};
 
-	ObjectPool(Entity& parent, int count)
+	ObjectPool(Composite& parent, irr::scene::ISceneManager* smgr, int count)
 	{
 		_objectList = std::vector<T*>();
 		_objectCount = count;
 
 		for(int i = 0; i < _objectCount; i++)
 		{
-			_objectList.push_back(new T());
-			_objectList.back()->disable();
-			parent.addChild(_objectList.back());
+			_objectList.push_back(new T(smgr));
+			_objectList.back()->setEnabled(false);
+			parent.addComponent(_objectList.back());
 		}
 
 		FreeAll();

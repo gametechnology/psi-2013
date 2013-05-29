@@ -11,7 +11,7 @@ public:
 
 	static irr::core::matrix4 CreateFromQuaternion(irr::core::quaternion quat);
 
-	vector3df calcAngularMotion(irr::core::matrix4 inertiaMatrix, irr::core::vector3df torque);
+	irr::core::vector3df calcAngularMotion(irr::core::matrix4 inertiaMatrix, irr::core::vector3df torque);
 
 };
 

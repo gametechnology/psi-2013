@@ -1,18 +1,26 @@
 #ifndef SECTOR_MANAGER
 #define SECTOR_MANAGER
 
-#include <Engine/Component.h>
-#include "SectorTemplate.h"
+#include <Engine/Composite.h>
+#include <algorithm>
+
 #include "GalaxyMap.h"
 #include "MapSector.h"
 #include "Ship.h"
+#include "Messages.h"
+#include "AsteroidSector.h"
+#include "NebulaSector.h"
+#include "SectorHomeBase.h"
+#include "BaseSector.h"
 
-class SectorManager : public Component
+class GameScene;
+
+class SectorManager : public Composite
 {
 public:
-	SectorManager(GalaxyMap* map, Ship* ship);
+	SectorManager(GameScene*, Core*, GalaxyMap*, Ship*);
 	virtual ~SectorManager();
-	
+
 	virtual void init();
 	virtual void update();
 
@@ -23,7 +31,9 @@ private:
 	GalaxyMap* _map;
 	Ship* _ship;
 	MapSector* _mapSector;
-	char* _activeSceneName;	
+	SectorTemplate* _activeSector;
+	GameScene* _gameScene;
+	Core* _core;
 };
 
 #endif

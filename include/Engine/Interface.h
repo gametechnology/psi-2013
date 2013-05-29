@@ -16,6 +16,8 @@ public:
 	void addEditBox(irr::s32 x, irr::s32 y, irr::s32 width, irr::s32 height, irr::s32 id, irr::gui::IGUIElement* parent, const wchar_t* text, bool border);
 	void addListBox(irr::s32 x, irr::s32 y, irr::s32 width, irr::s32 height, irr::s32 id, irr::gui::IGUIElement* parent = 0, bool showBackground = false);
 
+	void addWindow(irr::s32 x, irr::s32 y, irr::s32 width, irr::s32 height, bool blocking, const wchar_t* text, irr::gui::IGUIElement* parent, irr::s32 id);
+
 	void addStaticText(const wchar_t* text, irr::s32 x, irr::s32 y, irr::s32 width, irr::s32 height, irr::s32 id, bool border, bool wordWrap, bool fillBackground, irr::gui::IGUIElement* parent = 0);
 	void addMessageBox(const wchar_t* caption, const wchar_t* message, bool blocking, irr::s32 flags, irr::gui::IGUIElement* parent, irr::io::path imagePath = "", irr::s32 id = 999);
 	void addImage(irr::io::path, int x, int y);

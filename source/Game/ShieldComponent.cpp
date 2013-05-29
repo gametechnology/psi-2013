@@ -1,6 +1,6 @@
 #include "ShieldComponent.h"
 
-ShieldComponent::ShieldComponent(): Component()
+ShieldComponent::ShieldComponent(): Component("ShieldComponent")
 {
 	shield = 0;
 }

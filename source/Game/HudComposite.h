@@ -1,22 +1,19 @@
 #ifndef HUDCOMPOSITE
 #define HUDCOMPOSITE
 
-#include "Engine/Entity.h"
-#include "../source/Game/HealthBar.h"
-#include"BackButton.h"
-#include "../../include/Irrlicht/IGUIEnvironment.h"
-#include "HudHelpText.h"
+#include <Engine/Composite.h>
 #include <iostream>
-#include "../../include/Irrlicht/irrlicht.h"
-#pragma once
+#include <Irrlicht/irrlicht.h>
 
+#include "HealthBar.h"
+#include "BackButton.h"
+#include "HudHelpText.h"
 
-class HudComposite : public Entity
+class HudComposite : public Composite
 {
 public:
-
-	HudComposite( int* health, int* power, rect<s32> buttonPos, std::string* helpText); //this change was necessary to get the game IGUIEnviroment
-	~HudComposite(void); 
+	HudComposite(Core*, int* health, int* power, irr::core::rect<irr::s32> buttonPos, std::string* helpText); //this change was necessary to get the game IGUIEnviroment
+	~HudComposite(); 
 
 	virtual void onAdd();
 
@@ -25,11 +22,8 @@ public:
 	HudHelpText* hudHelpText;
 	BackButton* backButton; //if I let it here is giving errors
 	irr::gui::IGUIEnvironment* guiEnviroment;
-	 
-	//helptext
-
-
-	
+private:
+	Core* _core;
 };
 
 #endif

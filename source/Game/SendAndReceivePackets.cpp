@@ -1,8 +1,8 @@
 #include "SendAndReceivePackets.h"
-#include "Engine\IrrlichtNode.h"
+#include "Laser.h"
 
 
-Game* SendAndReceivePackets::staticGame;
+Core* SendAndReceivePackets::core;
 
 void SendAndReceivePackets::sendPacket(NetworkPacket packet, const bool reliable)
 {
@@ -29,7 +29,7 @@ std::vector<Enemy*> SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& pac
 {
 	if(!Network::GetInstance()->IsServer())
 	{
-		vector<Enemy> serverEnemies = vector<Enemy>();
+		std::vector<Enemy> serverEnemies = std::vector<Enemy>();
 
 		packet >> serverEnemies;
 
@@ -49,7 +49,7 @@ std::vector<Enemy*> SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& pac
 			{
 				Enemy* enemy = enemyList[j];
 				enemyList.erase(enemyList.begin() + j);
-				enemy->destroy();
+				delete enemy;
 			}
 		}
 
@@ -70,13 +70,13 @@ std::vector<Enemy*> SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& pac
 				switch(serverEnemies[i].getType())
 				{
 				case Enemy::ASTROID:
-					enemyList.push_back(new EnemyAsteroid(serverEnemies[i].getPosition(), serverEnemies[i].getVelocity()));
+					enemyList.push_back(new EnemyAsteroid(core->getSmgr(), *serverEnemies[i].getPosition(), *serverEnemies[i].getVelocity()));
 					break;
 				case Enemy::DRONE:
-					enemyList.push_back(new EnemyDrone(serverEnemies[i].getPosition()));
+					enemyList.push_back(new EnemyDrone(core->getSmgr(), *serverEnemies[i].getPosition()));
 					break;
 				case Enemy::FIGHTER:
-					enemyList.push_back(new EnemyFighter(serverEnemies[i].getPosition()));
+					enemyList.push_back(new EnemyFighter(core->getSmgr(), *serverEnemies[i].getPosition()));
 					break;
 				}
 
@@ -84,7 +84,7 @@ std::vector<Enemy*> SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& pac
 				enemyList.back()->setPosition(serverEnemies[i].getPosition());
 				enemyList.back()->setVelocity(serverEnemies[i].getVelocity());
 				enemyList.back()->setRotation(serverEnemies[i].getRotation());
-				scene->addChild(enemyList.back());
+				scene->addComponent(enemyList.back());
 			}
 		}
 	}
@@ -106,7 +106,7 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& pac
 	std::vector<Laser> serverList;
 	packet >> serverList;
 
-	for(unsigned i = 0; i < serverList.size(); i++)
+	/*for(unsigned i = 0; i < serverList.size(); i++)
 	{
 		for(unsigned j = 0; j < laserList.size(); j++)
 		{
@@ -136,15 +136,15 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& pac
 
 			}
 		}
-	}
+	}*/
 
 	return laserList;
 }
 
 std::vector<Laser*> SendAndReceivePackets::receiveLaserPacketFromClient(NetworkPacket& packet, std::vector<Laser*> laserList, Scene* scene)
 {
-	Laser clientLaser;
-	packet >> clientLaser;
+	Laser clientLaser();
+	/*packet >> clientLaser;
 	for(unsigned j = 0; j < laserList.size(); j++)
 	{
 		if(clientLaser.getId() == laserList[j]->getId())
@@ -172,7 +172,7 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacketFromClient(NetworkP
 			*laserList[j]->transform->rotation = *clientLaser.transform->rotation;
 
 		}
-	}
+	}*/
 
 	return laserList;
 }
@@ -194,20 +194,13 @@ void SendAndReceivePackets::receiveWinLosePacket(NetworkPacket& packet, int team
 
 void SendAndReceivePackets::handleWinLose(int losingTeam, int teamId, Scene* currentScene)
 {
-	
-	SceneManager sceneManager = *currentScene->game->sceneManager;
-	char nameCurrentScene = *sceneManager.getNameScene(currentScene)->name;
-
 	if(losingTeam == teamId)
 	{
-		sceneManager.addScene("EndScene", new EndScene(true));
-		sceneManager.activateScene("EndScene");
+		currentScene->requestNextScene();
 	}else
 	{
-		sceneManager.addScene("EndScene", new EndScene(false));
-		sceneManager.activateScene("EndScene");
+		currentScene->requestNextScene();
 	}
-		sceneManager.deactivateScene(&nameCurrentScene);
 }
 
 sf::Packet& operator <<(sf::Packet& out, Enemy& in)
@@ -227,14 +220,14 @@ sf::Packet& operator >>(sf::Packet& in, Enemy& out)
 
 	out.setId(id);
 	out.setType((Enemy::EnemyType)type);
-	out.setPosition(position);
-	out.setVelocity(velocity);
-	out.setRotation(rotation);
+	out.setPosition(&position);
+	out.setVelocity(&velocity);
+	out.setRotation(&rotation);
 
 	return in;
 }
 
-sf::Packet& operator <<(sf::Packet& out, vector<Enemy*>& in)
+sf::Packet& operator <<(sf::Packet& out, std::vector<Enemy*>& in)
 {
 	out << in.size();
 	for(unsigned i = 0; i < in.size(); i++)
@@ -244,22 +237,23 @@ sf::Packet& operator <<(sf::Packet& out, vector<Enemy*>& in)
 	return out;
 }
 
-sf::Packet& operator >>(sf::Packet& in, vector<Enemy>& out)
+sf::Packet& operator >>(sf::Packet& in, std::vector<Enemy>& out)
 {
-	int size;
+	/*int size;
 	in >> size;
 	for(int i = 0; i < size; i++)
 	{
 		Enemy enemy;
 		in >> enemy;
 		out.push_back(enemy);
-	}
+	}*/
 	return in;
 }
 
 sf::Packet& operator <<(sf::Packet& out, Laser& in)
 {
-	return out << in.getId() << in.enabled << *in.transform->position << *in.transform->velocity << *in.transform->rotation;
+	return out;
+	//return out << in.getId() << in.enabled << *in.transform->position << *in.transform->velocity << *in.transform->rotation;
 }
 
 sf::Packet& operator >>(sf::Packet& in, Laser& out)
@@ -274,7 +268,7 @@ sf::Packet& operator >>(sf::Packet& in, Laser& out)
 	in >> id >> enabled >> position >> velocity >> rotation;
 
 	out.setId(id);
-	if(enabled)
+	/*if(enabled)
 	{
 		out.enable();
 	}else
@@ -287,10 +281,10 @@ sf::Packet& operator >>(sf::Packet& in, Laser& out)
 				out.children[i]->update();
 			}
 		}
-	}
-	*out.transform->position = position;
-	*out.transform->velocity = velocity;
-	*out.transform->rotation = rotation;
+	}*/
+	out.setPosition(&position);
+	out.setVelocity(&velocity);
+	out.setRotation(&rotation);
 
 	return in;
 }
@@ -307,13 +301,13 @@ sf::Packet& operator <<(sf::Packet& out, std::vector<Laser*>& in)
 
 sf::Packet& operator >>(sf::Packet& in, std::vector<Laser>& out)
 {
-	int size;
+	/*int size;
 	in >> size;
 	for(int i = 0; i < size; i++)
 	{
 		Laser laser;
 		in >> laser;
 		out.push_back(laser);
-	}
+	}*/
 	return in;
 }

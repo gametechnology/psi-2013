@@ -1,55 +1,63 @@
 #include "Ship.h"
-#include "Stations/Station.h"
-#include "ShipMover.h"
-#include "SendAndReceivePackets.h"
+#include "Stations\DefenceStation.h"
+#include "Stations\HelmStation.h"
+#include "Stations\NavigationStation.h"
+#include "Stations\PowerStation.h"
+#include "Stations\WeaponStation.h"
+
+using namespace irr;
+using namespace irr::core;
 
 vector3df startPosition;
 vector3df startRotation;
 
 ObjectPool<Laser>* Ship::laserPool;
 
-Ship::Ship(vector3df position, vector3df rotation) : Entity ()
+Ship::Ship(Core* core, Interface* ui, vector3df position, vector3df rotation) : GameObject()
 {
-	this->transform->position = &position;
-	this->transform->rotation = &rotation;
+	_core = core;
+	_interface = ui;
+	_position = &position;
+	_rotation = &rotation;
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
 }
 
 Ship::~Ship(void)
 {
-	Entity::~Entity();
+	GameObject::~GameObject();
 }
 
 void Ship::onAdd() {
-	Entity::onAdd();
 	startPosition = vector3df(0,0,-100);
 	startRotation = vector3df(0,0,0);
-	this->transform->position = &startPosition;
-	this->transform->rotation = &startRotation;
-//	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
-	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
-	addChild(model);
+	_position = &startPosition;
+	_rotation = &startRotation;
 
-	this->env = game->device->getGUIEnvironment();
-	this->_currentStation = NULL;
 
-	addChild(_defenceStation		= new DefenceStation(this));
-	addChild(_helmStation			= new HelmStation(this));
-	addChild(_navigationStation		= new NavigationStation(this));
-	addChild(_weaponStation			= new WeaponStation(this));
-	addChild(_powerStation			= new PowerStation(this));
+	MeshComponent* _mesh = new MeshComponent(_core->getSmgr());
+	addComponent(_mesh);
+	_mesh->createMeshNode("../assets/Models/myship.obj");
 
-	this->_defenceStation->init();
-	this->_helmStation->init();
-	this->_navigationStation->init();
-	this->_weaponStation->init();
-	this->_powerStation->init();
+	env = _core->getGuiEnv();
+	_currentStation = NULL;
 
-	this->_defenceStation->disable();
-	this->_helmStation->disable();
-	this->_navigationStation->disable();
-	this->_weaponStation->disable();
-	this->_powerStation->disable();
+	addComponent(_defenceStation = new DefenceStation(_core, this));
+	addComponent(_helmStation = new HelmStation(_core, this));
+	addComponent(_navigationStation = new NavigationStation(_core, this));
+	addComponent(_weaponStation	= new WeaponStation(_core, this));
+	addComponent(_powerStation = new PowerStation(_core, this, NULL));
+
+	_defenceStation->init();
+	_helmStation->init();
+	_navigationStation->init();
+	_weaponStation->init();
+	_powerStation->init();
+
+	_defenceStation->disable();
+	_helmStation->disable();
+	_navigationStation->disable();
+	_weaponStation->disable();
+	_powerStation->disable();
 
 	
 	//Thrusters
@@ -61,55 +69,41 @@ void Ship::onAdd() {
 	irr::core::stringw strShipHealth			= "ship health: "; 
 	strShipHealth +	irr::core::stringw();
 
-	irr::core::stringw strDefenceHealth			= "Defence Station health: "		+ this->_defenceStation->getHealth();
-	irr::core::stringw strHelmHealth			= "Helm Station health: "			+ this->_helmStation->getHealth();
-	irr::core::stringw strNavigationHealth		= "Navigation Station health: "		+ this->_navigationStation-> getHealth();
-	irr::core::stringw strPowerHealth			= "Power Station health: "			+ this->_powerStation->getHealth();
-	irr::core::stringw strWeaponHealth			= "Weapon Station health: "			+ this->_weaponStation->getHealth();
-	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->helmStationHealth			= env->addStaticText(strHelmHealth.c_str(),			rect<s32>(40, 120, 300, 140), false);	this->helmStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->navigationStationHealth	= env->addStaticText(strNavigationHealth.c_str(),	rect<s32>(40, 140, 300, 160), false);	this->navigationStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+	irr::core::stringw strDefenceHealth			= "Defence Station health: "		+ _defenceStation->getHealth();
+	irr::core::stringw strHelmHealth			= "Helm Station health: "			+ _helmStation->getHealth();
+	irr::core::stringw strNavigationHealth		= "Navigation Station health: "		+ _navigationStation-> getHealth();
+	irr::core::stringw strPowerHealth			= "Power Station health: "			+ _powerStation->getHealth();
+	irr::core::stringw strWeaponHealth			= "Weapon Station health: "			+ _weaponStation->getHealth();
 
-	
+	shipHealth = env->addStaticText(strShipHealth.c_str(), rect<s32>(40,  80, 300, 100), false);	
+	shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+
+	defenceStationHealth = env->addStaticText(strDefenceHealth.c_str(),	rect<s32>(40, 100, 300, 120), false);	
+	defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+
+	helmStationHealth = env->addStaticText(strHelmHealth.c_str(), rect<s32>(40, 120, 300, 140), false);	
+	helmStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+
+	navigationStationHealth = env->addStaticText(strNavigationHealth.c_str(), rect<s32>(40, 140, 300, 160), false);	
+	navigationStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+
+	powerStationHealth = env->addStaticText(strPowerHealth.c_str(), rect<s32>(40, 160, 300, 180), false);	
+	powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+
+	weaponStationHealth = env->addStaticText(strWeaponHealth.c_str(), rect<s32>(40, 180, 300, 200), false);	
+	weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 
 	
 	//Todo: Remove debug info from helptext!
-	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
+	help = new HudHelpText(_core, _interface, L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
 	addComponent(help);
 	help->init();
 	//Todo: Reset the helptext to above text when you leave a station without entering another!
 }
 
 void Ship::init() 
-{
-	//Isn't called
-	/*irr::core::stringw strShipHealth			= "ship health: "; 
-	strShipHealth +	irr::core::stringw();
-
-	irr::core::stringw strDefenceHealth			= "Defence Station health: "		+ this->_defenceStation->getHealth();
-	irr::core::stringw strHelmHealth			= "Helm Station health: "			+ this->_helmStation->getHealth();
-	irr::core::stringw strNavigationHealth		= "Navigation Station health: "	+ this->_navigationStation-> getHealth();
-	irr::core::stringw strPowerHealth			= "Power Station health: "		+ this->_powerStation->getHealth();
-	irr::core::stringw strWeaponHealth			= "Weapon Station health: "		+ this->_weaponStation->getHealth();
-	this->shipHealth				= env->addStaticText(strShipHealth.c_str(),			rect<s32>(40,  80, 300, 100), false);	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->defenceStationHealth		= env->addStaticText(strDefenceHealth.c_str(),		rect<s32>(40, 100, 300, 120), false);	this->defenceStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->helmStationHealth			= env->addStaticText(strHelmHealth.c_str(),			rect<s32>(40, 120, 300, 140), false);	this->helmStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->navigationStationHealth	= env->addStaticText(strNavigationHealth.c_str(),	rect<s32>(40, 140, 300, 160), false);	this->navigationStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-
-	this->updateShipHealth();
-
-	startPosition = vector3df(0,0,-100);
-	startRotation = vector3df(0,0,0);
-	this->transform->position = &startPosition;
-	this->transform->rotation = &startRotation;*/
-	
-	Entity::init();
-
+{	
+	GameObject::init();
 }
 
 Station *Ship :: GetStation( StationType s )
@@ -152,23 +146,23 @@ irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::co
 
 void Ship :: update()
 {
-	Entity :: update();
+	GameObject::update();
 	CheckChangeInput();
 
 	//updating the text for testing the health
-	stringw strShipHealth		= "ship health: "				+ this->getShipHealth();
-	stringw strDefenceHealth	= "Defence Station health: "	+ this->_defenceStation->getHealth();
-	stringw strHelmHealth		= "Helm Station health: "		+ this->_helmStation->getHealth();
-	stringw strNavigationHealth = "Navigation Station health: " + this->_navigationStation-> getHealth();
-	stringw strPowerHealth		= "Power Station health: "		+ this->_powerStation->getHealth();
-	stringw strWeaponHealth		= "Weapon Station health: "		+ this->_weaponStation->getHealth();
+	stringw strShipHealth = "ship health: " + getShipHealth();
+	stringw strDefenceHealth = "Defence Station health: " + _defenceStation->getHealth();
+	stringw strHelmHealth = "Helm Station health: " + _helmStation->getHealth();
+	stringw strNavigationHealth = "Navigation Station health: " + _navigationStation->getHealth();
+	stringw strPowerHealth = "Power Station health: " + _powerStation->getHealth();
+	stringw strWeaponHealth = "Weapon Station health: "	+ _weaponStation->getHealth();
 
-	this->shipHealth->setText(				(varToString("Ship HP : ",		(float)this->getShipHealth())					).c_str());
-	this->defenceStationHealth->setText(	(varToString("Defence HP: ",	(float)this->_defenceStation->getHealth())		).c_str());
-	this->helmStationHealth->setText(		(varToString("Helm HP: ",		(float)this->_helmStation->getHealth())		).c_str());
-	this->navigationStationHealth->setText(	(varToString("Navigation HP: ",	(float)this->_navigationStation->getHealth())	).c_str());
-	this->powerStationHealth->setText(		(varToString("Power HP: ",		(float)this->_powerStation->getHealth())		).c_str());
-	this->weaponStationHealth->setText(		(varToString("Weapon HP: ",		(float)this->_weaponStation->getHealth())		).c_str());
+	shipHealth->setText((varToString("Ship HP : ", (float)getShipHealth())).c_str());
+	defenceStationHealth->setText((varToString("Defence HP: ", (float)_defenceStation->getHealth())).c_str());
+	helmStationHealth->setText((varToString("Helm HP: ", (float)_helmStation->getHealth())).c_str());
+	navigationStationHealth->setText((varToString("Navigation HP: ", (float)_navigationStation->getHealth())).c_str());
+	powerStationHealth->setText((varToString("Power HP: ", (float)_powerStation->getHealth())).c_str());
+	weaponStationHealth->setText((varToString("Weapon HP: ", (float)_weaponStation->getHealth())).c_str());
 
 	//If the ship has no more health and is not already destroyed, destroy it
 	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
@@ -183,19 +177,19 @@ Thruster** Ship :: GetThrusters()
 
 void Ship :: CheckChangeInput()
 {
-	if (game->input->isKeyboardButtonPressed(KEY_KEY_1))
+	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_1))
 		SwitchToStation(ST_DEFENCE);
 
-	if (game->input->isKeyboardButtonPressed(KEY_KEY_2))
+	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_2))
 		SwitchToStation(ST_HELM);
 
-	if (game->input->isKeyboardButtonPressed(KEY_KEY_3))
+	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_3))
 		SwitchToStation(ST_WEAPON);
 
-	if (game->input->isKeyboardButtonPressed(KEY_KEY_4))
+	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_4))
 		SwitchToStation(ST_NAVIGATION);
 
-	if (game->input->isKeyboardButtonPressed(KEY_KEY_5))
+	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_5))
 		SwitchToStation(ST_POWER);
 }
 
@@ -213,25 +207,19 @@ void Ship :: SwitchToStation(StationType stationType)
 	}
 
 	//Find the new station
-	_currentStation = this->GetStation(stationType);
+	_currentStation = GetStation(stationType);
 
 	//Init and add the new station
 	_currentStation->enable();
 }
 
-void Ship :: draw()
-{
-	Entity :: draw();
-}
-
 int Ship :: getShipHealth()
 {
-
-	return (this->_defenceStation->getHealth() +
-		this->_helmStation->getHealth() +
-		this->_navigationStation->getHealth() +
-		this->_powerStation->getHealth() +
-		this->_weaponStation->getHealth());
+	return(_defenceStation->getHealth() +
+		_helmStation->getHealth() +
+		_navigationStation->getHealth() +
+		_powerStation->getHealth() +
+		_weaponStation->getHealth());
 }
 
 bool Ship :: getShipDestroyed()
@@ -261,7 +249,7 @@ void Ship::fireLaser()
 	Laser* laser = this->laserPool->GetFreeObject();
 	if(laser != NULL)
 	{
-		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
+		laser->fire(_position, _rotation, _core->getSmgr()->getActiveCamera()->getTarget(), 1.0);
 		std::cout << "weapon fired" << std::endl;
 
 		if(!Network::GetInstance()->IsServer()){
@@ -273,7 +261,7 @@ void Ship::fireLaser()
 	}
 }
 
-void Ship::HandleNetworkMessage(NetworkPacket packet)
+void Ship::handleNetworkMessage(NetworkPacket packet)
 {
 		
 	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
@@ -291,11 +279,11 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 			packet >> acceleration;
 			packet >> angularAcceleration;
 			packet >> angularVelocity;
-			*transform->acceleration = acceleration;
-			*transform->angularAccelaration = angularAcceleration;
-			*transform->angularVelocity = angularVelocity;
-			*transform->position = position;
-			*transform->velocity = velocity;
+			*_acceleration = acceleration;
+			*_angularAcceleration = angularAcceleration;
+			*_angularVelocity = angularVelocity;
+			*_position = position;
+			*_velocity = velocity;
 			
 		//Apply updates 
 		if(_currentStation != NULL && _currentStation->GetStationType() == ST_WEAPON){
@@ -303,7 +291,7 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 		}
 		else{
 			//Read the information from the network packet
-			*transform->rotation = rotation;
+			*_rotation = rotation;
 			
 		
 			

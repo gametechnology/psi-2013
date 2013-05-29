@@ -11,6 +11,10 @@ public:
 	virtual ~BillboardComponent();
 
 	virtual void setTexture(irr::video::IVideoDriver* driver, std::string texturePath);
+
+	virtual void handleMessage(unsigned int, void* data = 0) { };
+
+	irr::core::vector3df* getPosition();
 private:
 	irr::scene::ISceneManager* _smgr;
 	irr::scene::ISceneNode* _node;

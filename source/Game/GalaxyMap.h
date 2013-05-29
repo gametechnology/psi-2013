@@ -2,6 +2,7 @@
 #define GALAXYMAP
 
 #include <Engine/Composite.h>
+#include <Engine/GameObject.h>
 #include <Engine/Core.h>
 
 #include <vector>
@@ -11,7 +12,7 @@
 #include "MapGenerator.h"
 
 
-class GalaxyMap : public Composite
+class GalaxyMap : public GameObject
 {
 public:
 	irr::f32 width;
@@ -28,6 +29,9 @@ public:
 	void saveMap();
 	
 	virtual void update();
+	virtual void handleMessage(unsigned int, void* data = 0) { };
+
+	std::list<MapSector*>* getSectors() { return &sectors; };
 private:
 	Core* _core;
 	std::list<MapSector*> sectors;

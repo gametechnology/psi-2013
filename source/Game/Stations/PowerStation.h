@@ -1,17 +1,18 @@
 #ifndef POWER_STATION
 #define POWER_STATION
 
-#include <Irrlicht/irrlicht.h>
-#include <Engine/Core.h>
+#include <Engine/Interface.h>
 
 #include <time.h>
 #include <iostream>
+#include <math.h>
 
 #include "Station.h"
-#include "../Ship.h"
+
 #include "PowerStationData.h"
 #include "../NetworkInterface.h"
-#include "../HudHelpText.h"
+
+#include "../Ship.h"
 
 /*
 * TODO Refactor the station. There
@@ -25,14 +26,11 @@ class PowerStation : public Station, public INetworkListener
 {
 public:
 	//Power Station Impl	
-	irr::video::IVideoDriver *driver;
-	irr::IrrlichtDevice *device;
-	irr::gui::IGUIEnvironment *env;
 	irr::gui::IGUISkin *skin;
 	irr::gui::IGUIFont *font;
 	PowerStationData context;
 
-	PowerStation(Ship* ship);
+	PowerStation(Core*, Ship*, Interface*);
 	~PowerStation();
 
 	bool IsPoolEmpty();
@@ -45,7 +43,6 @@ public:
 	void enable();
 	void disable();
 	void createUI();
-	void removeUI();
 	void addImages();
 	void removeImages();
 
@@ -57,7 +54,7 @@ public:
 	void createGeneralPowerTexts();
 	void createCurrentSelectedStationText();
 
-	void HandleNetworkMessage(NetworkPacket packet);
+	virtual void handleNetworkMessage(NetworkPacket packet);
 	irr::core::stringw varToString(irr::core::stringw str1, float var, irr::core::stringw str2 = L"");
 	
 	virtual void init();
@@ -74,6 +71,8 @@ public:
 private:	
 	//checks if the new value can be matched (cannot be lower than 0 or higher than the total energy in our pool) and then updates the value of the station's energy pool.
 	void UpdateStationPower(StationType, int newValue );
+
+	Interface* _interface;
 };
 
 #endif

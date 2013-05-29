@@ -12,15 +12,17 @@ public:
 	float mass;
 	float thrust;
 
-	BasicMoverComponent();
+	BasicMoverComponent(GameObject* parent);
 	virtual ~BasicMoverComponent();
 	virtual void update();
 protected:
-	void move(GameObject*, irr::core::vector3df vel);
-	void rotate(GameObject*, irr::core::vector3df rot);
-	void turn(GameObject*, irr::f32 rot);
-	void pitch(GameObject*, irr::f32 rot);
-	void roll(GameObject*, irr::f32 rot);
+	GameObject* _parent;
+
+	void move(irr::core::vector3df vel);
+	void rotate(irr::core::vector3df rot);
+	void turn(irr::f32 rot);
+	void pitch(irr::f32 rot);
+	void roll(irr::f32 rot);
 };
 
 #endif

@@ -6,12 +6,12 @@
 * There are too many includes and its intent
 * is unclear.
 */ 
-#include <Engine/Scene.h>
+#include <Engine/Composite.h>
+#include <Engine/BillboardComponent.h>
+#include <Engine/Skybox.h>
 #include <Engine/Core.h>
 #include <vector>
 
-#include "SectorManager.h"
-#include "WormHole.h"
 #include "Mist.h"
 #include "Messages.h"
 #include "EnemyManager.h"
@@ -20,40 +20,44 @@
 #include "EnemyDrone.h"
 #include "EnemyFighter.h"
 
+#include "SendAndReceivePackets.h"
+
+class SectorManager;
+
 /*
 * This is not a scene, if it is; change the name.
 * TODO Document this class, it's a disaster.
 */
 
-class SectorTemplate : public Scene, public INetworkListener  
+class SectorTemplate : public Composite, public INetworkListener  
 {
 public:
-	SectorTemplate(SectorManager* sectormanager, std::string skyBoxTexture, float boundry, unsigned int amountWormHoles );
+	SectorTemplate(Core*, SectorManager* sectormanager, std::string skyBoxTexture, float boundry, unsigned int amountWormHoles );
 	virtual ~SectorTemplate();
 
-	virtual void handleMessage( unsigned int message, void* data = 0 );
+	virtual void handleMessage( unsigned int message, void* data = 0) { };
 	virtual void update();
 	virtual void init();
 
 	void createWormHoles( unsigned int amountOfWormHoles );
 	void createEnemies();
-	void addWormHoles();
 
 	/*
 	* TODO This is obviously an obscene hack, just to get access
 	* to network packages. Fix this class as soon as possible.
 	*/
 	virtual void handleNetworkMessage(NetworkPacket packet);
-private:
+protected:
+	Core* _core;
 	SectorManager* _sectormanager;
+
+	std::string _skyboxPath;
 
 	std::vector<Enemy*> _enemyList;
 	irr::core::vector3df* _playerPosition;
-	irr::scene::ICameraSceneNode* _camera;
-	std::vector<WormHole*> _wormHoles;
+	std::vector<BillboardComponent*> _wormHoles;
 
 	float _boundry;
-	WormHole* wormHole;
 	Mist* _fog;
 };
 

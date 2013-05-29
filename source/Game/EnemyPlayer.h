@@ -11,8 +11,9 @@ public:
 	EnemyPlayer(irr::scene::ISceneManager*, irr::core::vector3df position, irr::core::vector3df speed);
 	~EnemyPlayer();
 
-	void init();
+	virtual void init();
 	void onAdd();	
+	virtual void handleMessage(unsigned int, void* data = 0) { };
 };
 
 #endif

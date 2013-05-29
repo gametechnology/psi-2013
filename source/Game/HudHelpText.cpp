@@ -1,7 +1,15 @@
 #include "HudHelpText.h"
 
-HudHelpText::HudHelpText(const wchar_t* helpText, irr::core::vector2df position, irr::core::vector2df size)
+using namespace irr;
+using namespace irr::core;
+using namespace irr::video;
+using namespace irr::gui;
+
+HudHelpText::HudHelpText(Core* core, Interface* ui, const wchar_t* helpText, irr::core::vector2df position, irr::core::vector2df size) : Component("HudHelpText")
 {
+	_core = core;
+	_interface = ui;
+
 	visible = false;
 	_helpTextStr = helpText;
 	_position = position;
@@ -14,13 +22,14 @@ HudHelpText::~HudHelpText(void)
 }
 
 void HudHelpText::init() {
-	stringObj = getGame()->guiEnv->addStaticText(L"", irr::core::rect<irr::s32>(_position.X, _position.Y, _position.X + _size.X, _position.Y + _size.Y), false, true,(irr::gui::IGUIElement*)0, -1, true);
-	stringObj->setOverrideColor(video::SColor(255, 0,0,0));
+	_interface->addStaticText(L"", _position.X, _position.Y, _size.X, _size.Y, 100, false, true, true, 0);
+	stringObj = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(100));
+	stringObj->setOverrideColor(SColor(255, 0,0,0));
 	stringObj->setBackgroundColor(video::SColor(200, 255, 255, 255));
 }
 
 void HudHelpText::update() {
-	if (getGame()->input->isKeyboardButtonReleased(KEY_KEY_P)) {
+	if (!_core->getInput()->isKeyboardButtonDown(KEY_KEY_P)) {
 		visible = !visible;
 	}
 }
@@ -28,13 +37,13 @@ void HudHelpText::update() {
 void HudHelpText::draw() {
 	if (!visible)  {
 		stringObj->setText(L"Press 'P' to show help");
-		stringObj->setMaxSize(irr::core::dimension2du(300, 40));
+		stringObj->setMaxSize(dimension2du(300, 40));
 		return;
 	}
 	
 	if (_helpTextStr != L"") {
 		stringObj->setText(_helpTextStr);
-		stringObj->setMaxSize(irr::core::dimension2du(_size.X, _size.Y));
+		stringObj->setMaxSize(dimension2du(_size.X, _size.Y));
 	}
 }
 

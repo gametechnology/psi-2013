@@ -94,6 +94,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Game\AsteroidSector.cpp" />
+    <ClCompile Include="..\source\Game\BackButton.cpp" />
     <ClCompile Include="..\source\Game\BaseSector.cpp" />
     <ClCompile Include="..\source\Game\BasicMoverComponent.cpp" />
     <ClCompile Include="..\source\Game\BasicShipMover.cpp" />
@@ -108,7 +109,10 @@
     <ClCompile Include="..\source\Game\EnemyPlayer.cpp" />
     <ClCompile Include="..\source\Game\GalaxyMap.cpp" />
     <ClCompile Include="..\source\Game\GameScene.cpp" />
+    <ClCompile Include="..\source\Game\HealthBar.cpp" />
     <ClCompile Include="..\source\Game\HealthComponent.cpp" />
+    <ClCompile Include="..\source\Game\HudComposite.cpp" />
+    <ClCompile Include="..\source\Game\HudHelpText.cpp" />
     <ClCompile Include="..\source\Game\LobbyScene.cpp" />
     <ClCompile Include="..\source\Game\SendAndReceivePackets.cpp" />
     <ClCompile Include="..\source\Game\PowerComponent.cpp" />
@@ -139,6 +143,7 @@
   <ItemGroup>
     <ClInclude Include="..\source\Game\ArrayList.h" />
     <ClInclude Include="..\source\Game\AsteroidSector.h" />
+    <ClInclude Include="..\source\Game\BackButton.h" />
     <ClInclude Include="..\source\Game\BaseSector.h" />
     <ClInclude Include="..\source\Game\BasicMoverComponent.h" />
     <ClInclude Include="..\source\Game\BasicShipMover.h" />
@@ -153,9 +158,13 @@
     <ClInclude Include="..\source\Game\EnemyPlayer.h" />
     <ClInclude Include="..\source\Game\GalaxyMap.h" />
     <ClInclude Include="..\source\Game\GameScene.h" />
+    <ClInclude Include="..\source\Game\HealthBar.h" />
     <ClInclude Include="..\source\Game\HealthComponent.h" />
+    <ClInclude Include="..\source\Game\HudComposite.h" />
+    <ClInclude Include="..\source\Game\HudHelpText.h" />
     <ClInclude Include="..\source\Game\IStateSwitch.h" />
     <ClInclude Include="..\source\Game\LobbyScene.h" />
+    <ClInclude Include="..\source\Game\ObjectPool.h" />
     <ClInclude Include="..\source\Game\SendAndReceivePackets.h" />
     <ClInclude Include="..\source\Game\PowerComponent.h" />
     <ClInclude Include="..\source\Game\ShieldComponent.h" />

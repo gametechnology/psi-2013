@@ -35,7 +35,6 @@ void EnemyManager::createEnemies()
 	EnemyDrone* kamikaze3;
 	EnemyDrone* kamikaze4;
 	EnemyDrone* kamikaze5;
-	Enemy* player;
 
 	EnemyDrone* test;
 
@@ -81,7 +80,7 @@ void EnemyManager::createEnemies()
 	addComponent(kamikaze5);
 
 	//dummyplayer
-	player = new EnemyPlayer(vector3df(0,0,10), vector3df(0,0.0f,0));
+	player = new EnemyPlayer(_smgr, vector3df(0,0,10), vector3df(0,0.0f,0));
 	addComponent(player);
 }
 

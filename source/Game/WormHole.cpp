@@ -1,13 +1,14 @@
 #include "WormHole.h"
-#include "Engine/Game.h"
 
-WormHole::WormHole( unsigned int id ) : BillBoardNode("../assets/Textures/Wormholes/WormHole.png", irr::core::dimension2df (80,100) ) {
+WormHole::WormHole( unsigned int id ) : Component("WormHole")
+{
+	//BillboardNode("../assets/Textures/Wormholes/WormHole.png", irr::core::dimension2df (80,100) ) {
 	// Setting id and position
 	this->id = id;
 }
 
 void WormHole::init() {
-	BillBoardNode::init();
+	Component::init();
 }
 
 void WormHole::handleMessage(unsigned int message, void* data) {

@@ -39,6 +39,8 @@ private:
 
 	Core* _core;
 	Interface* _interface;
+
+	SAppContext context;
 };
 
 #endif

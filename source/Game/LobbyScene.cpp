@@ -8,22 +8,15 @@ LobbyScene::LobbyScene(Core* core, Interface* ui) : Scene("LobbyScene")
 
 LobbyScene::~LobbyScene()
 {
+	_interface->resetInterface();
 }
 
 void LobbyScene::init()
 {
 	_interface->addStaticText(L"", 300, 105, 100, 95, CLIENT_LIST, false, true, false, 0);
-
-	_interface->createButton(350, 330, 150, 25, 0, 0, L"Start Game");
-
-	startStatic_button = guiEnv->addButton(rect<s32>(position2di(350,300),dimension2di(200,25)),mainMenuWindow,4, L"Start Test Game");
-	startStatic_button->setVisible(false);
-
-	quit_button	= guiEnv->addButton(rect<s32>(position2di(50,330),dimension2di(200,25)),mainMenuWindow,5, L"Quit game");
-	quit_button->setVisible(false);
-
-	waitinglabel = guiEnv->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainMenuWindow);
-	waitinglabel->setVisible(false);*/
+	_interface->createButton(350, 330, 150, 25, START_GAME_BUTTON, 0, L"Start Game");
+	_interface->createButton(50, 330, 150, 305, QUIT_GAME_BUTTON, 0, L"Quit game");
+	_interface->addStaticText(L"Waiting for host to start the game", 300, 165, 100, 140, -1, false, true, false);
 
 	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	Network::GetInstance()->AddListener(START_GAME, this);
@@ -31,7 +24,6 @@ void LobbyScene::init()
 	Network::GetInstance()->AddListener(CLIENT_QUIT, this);
 	Network::GetInstance()->AddListener(HOST_DISCONNECT, this);
 	Network::GetInstance()->AddListener(CLIENT_JOIN_DENIED, this);
-
 }
 
 void LobbyScene::update()
@@ -54,15 +46,40 @@ void LobbyScene::update()
 	_interface->getElementWithId(CLIENT_LIST)->setText(tmpp.c_str());
 }
 
+void LobbyScene::notify(void* data)
+{
+}
+
+void LobbyScene::requestNextScene()
+{
+}
+
+void LobbyScene::requestPreviousScene()
+{
+}
+
 void LobbyScene::handleNetworkMessage(NetworkPacket packet)
 {
+	int lenght;
+	int team;
+	unsigned int ipclientaffect;
+	unsigned int checksum;
+
+	Player* newplayer;
+	std::list<Player*>::const_iterator iterator;
+
+	wchar_t* name = new wchar_t[500];
+
+	NetworkPacket deniedpack(CLIENT_JOIN_DENIED);
+	NetworkPacket packetsend(ClIENT_IN_LOBBY);
+
 	switch(packet.GetType())
 	{
 	case START_GAME:
 		requestNextScene();
 		break;
 	case CLIENT_JOIN:
-		name = new wchar_t[500];
+		
 		packet >> name;
 		packet >> checksum;
 
@@ -81,7 +98,6 @@ void LobbyScene::handleNetworkMessage(NetworkPacket packet)
 
 				return;
 			}
-
 		}
 		if((playerlist.size()) % 2 != 0)
 			team = 2;

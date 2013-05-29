@@ -7,8 +7,9 @@
 #include <Engine/MeshComponent.h>
 
 #include "Enemy.h"
-#include "Stations\DefenceStation.h"
 #include "NetworkInterface.h"
+
+class DefenceStation;
 
 class Laser : public GameObject
 {
@@ -20,6 +21,7 @@ class Laser : public GameObject
 
 		virtual void init();
 		virtual void onAdd();
+		virtual void handleMessage(unsigned int, void* data = 0) { };
 
 		void fire(irr::core::vector3df* position, irr::core::vector3df* rotation, irr::core::vector3df target, irr::f32 speed);
 		void update();

@@ -2,38 +2,36 @@
 
 PowerStationData :: PowerStationData( )
 {
-	this -> _stationsPowerUsage	= new irr::core::map<StationType, Station*>( );
-	this -> powerPool	= POWER_MAX;
+	_stationsPowerUsage	= new irr::core::map<StationType, Station*>( );
+	powerPool = POWER_MAX;
 }
 
 void PowerStationData :: SubscribeStation( Station *s )
 {
-	this -> _stationsPowerUsage	-> insert( s -> GetStationType( ), s );
+	_stationsPowerUsage->insert(s->GetStationType(), s);
 }
 
-void PowerStationData :: UpdatePowerUsage(StationType s, int newValue )
+void PowerStationData :: UpdatePowerUsage(StationType s, int newValue)
 {
-	Station *station = this -> _stationsPowerUsage -> find( s ) -> getValue();
+	Station *station = _stationsPowerUsage->find(s)->getValue();
 
-	int prevValue		= station->getPower();
-	powerPool			+= prevValue;
+	int prevValue = station->getPower();
+	powerPool += prevValue;
 
 	//we want a value that is equal to or larger than 0, but smaller than or equal to the total amount of power.
-	newValue			= MIN_INT( MAX_INT( 0, newValue ), powerPool );
+	newValue = MIN_INT(MAX_INT(0, newValue), powerPool);
 
-	this -> powerPool	-= newValue;
-	this -> _powerUsed	=  POWER_MAX - this -> powerPool;
+	powerPool -= newValue;
+	_powerUsed = POWER_MAX - powerPool;
 	
 	station->updatePower(newValue);
 
 	NetworkPacket packet(PacketType::CLIENT_POWER_CHANGED);
 	packet << s << newValue;
 	Network::GetInstance()->SendPacket(packet, true);
-
 }
 
-int PowerStationData :: GetPower(StationType s )
-{
-	
-	return this -> _stationsPowerUsage -> find( s ) -> getValue( )->getPower();
+int PowerStationData :: GetPower(StationType s)
+{	
+	return _stationsPowerUsage->find(s)->getValue()->getPower();
 }

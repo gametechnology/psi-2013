@@ -1,24 +1,16 @@
 #ifndef BACK_BUTTON_H
 #define BACK_BUTTON_H
-#pragma once
 
-#include "Engine\Component.h"
-#include "Engine\Composite.h"
-#include "Engine/Entity.h"
-#include "Irrlicht\irrlicht.h"
-#include "Engine\Game.h"
+#include <Engine/Core.h>
+#include <Engine/Component.h>
+#include <Engine/Composite.h>
+#include <Irrlicht/irrlicht.h>
 
-
-using namespace irr::core; 
-using namespace irr::gui;
-
-class BackButton :
-	public Component
-	
+class BackButton : public Component	
 {
 public:
-	BackButton(irr::core::rect< s32 > position);
-	~BackButton(void);
+	BackButton(Core*, irr::core::rect<irr::s32> position);
+	~BackButton();
 
 	bool isButtonPressed(); 
 	void update();
@@ -27,10 +19,12 @@ public:
 	bool visible;
 
 private:
-	irr::core::rect<s32> position_;
-	rect<s32> posRect;
+	Core* _core;
+
+	irr::core::rect<irr::s32> position_;
+	irr::core::rect<irr::s32> posRect;
 	irr::video::ITexture* escButton;
 	bool pressed;
-	IGUIButton *button;
+	irr::gui::IGUIButton *button;
 };
 #endif

@@ -1,8 +1,6 @@
 #ifndef STATION_BASE
 #define STATION_BASE
 
-#include "../Player.h"
-
 /*
 * TODO An object is either a Component
 * or a GameObject, not both. Make a choice
@@ -13,13 +11,15 @@
 #include <Engine/Core.h>
 #include <Irrlicht/irrlicht.h>
 
-// Use constants over Defines.
-const float STUN_TIME = 4.0f;
+#include "../Player.h"
+#include "../HealthComponent.h"
+#include "../PowerComponent.h"
+#include "../ShieldComponent.h"
 
 class Ship;
-class HealthComponent;
-class PowerComponent;
-class ShieldComponent;
+
+// Use constants over Defines.
+const float STUN_TIME = 4.0f;
 
 enum StationType
 {
@@ -30,12 +30,15 @@ enum StationType
 	ST_NAVIGATION	= 4
 };
 
-class Station : public Component
+class Station : public Composite
 {
 public:
-	Station( Ship *ship, int startHealth );
-	Station( Ship *ship );
+	Station(Core*, Ship *ship, int startHealth );
+	Station(Core*, Ship *ship );
 	virtual ~Station(void);
+
+	virtual void enable();
+	virtual void disable();
 
 	StationType GetStationType();
 	bool SwitchTimePassed();
@@ -88,10 +91,11 @@ public:
 
 	void leaveStation(StationType station);
 
-	HudComposite* hud;
+	//HudComposite* hud;
 	StationType _stationType;
 protected:
-	video::IVideoDriver *driver;
+	Core* _core;
+	irr::video::IVideoDriver *driver;
 
 	Ship	*_ship;
 	Player	*_player;
@@ -99,9 +103,7 @@ protected:
 	time_t *_switchTime;			//the time that the player switched to this station
 	time_t *_playerOnStationTime;	//the time that the player has spent on this station (since he switched)
 	time_t *_stunTime;				//if a station fot stunned, the time it happened will be stored here.
-
 private:
-
 	int _tempTimer;
 	int _totalHealth;
 	HealthComponent* _healthComponent;

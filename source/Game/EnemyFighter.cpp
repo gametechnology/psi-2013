@@ -1,4 +1,5 @@
 #include "EnemyFighter.h"
+#include "StateSwitchFighter.h"
 
 using namespace irr;
 using namespace irr::core;

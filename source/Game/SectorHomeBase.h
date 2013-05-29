@@ -2,19 +2,23 @@
 #define SECTOR_HOMEBASE
 
 #include <Engine/Core.h>
+#include <Engine/PrimitiveComponent.h>
 
 #include "SectorTemplate.h"
-#include "SectorManager.h"
+
+#include "Messages.h"
 
 class SectorHomeBase : public SectorTemplate
 {
 public:
-	SectorHomeBase(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundry, unsigned int amountWormHoles);
+	SectorHomeBase(Core*, SectorManager* sectormanager, std::string skyBoxTexture, float boundry, unsigned int amountWormHoles);
 	virtual ~SectorHomeBase();
 
-	virtual void handleMessage(unsigned int message, void* data = 0);
-	virtual void onAdd();
+	virtual void handleMessage(unsigned int message, void* data = 0) { };
+	virtual void init();
 	virtual void update();
+private:
+	Core* _core;
 };
 
 #endif
@@ -29,9 +33,12 @@ public:
 class BasePlaceholder : public GameObject
 {
 public:
-	BasePlaceholder();
+	BasePlaceholder(Core*);
 	virtual ~BasePlaceholder();
+
+	virtual void init();
 private:
+	Core* _core;
 	irr::scene::IMeshSceneNode *node;
 };
 

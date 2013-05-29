@@ -12,8 +12,9 @@ public:
 	EnemyAsteroid(irr::scene::ISceneManager*, irr::core::vector3df position, irr::core::vector3df velocity);
 	~EnemyAsteroid();
 	
-	void init();
+	virtual void init();
 	void onAdd();
+	virtual void handleMessage(unsigned int, void* data = 0) { };
 };
 
 #endif

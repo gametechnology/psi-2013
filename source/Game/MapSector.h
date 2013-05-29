@@ -1,6 +1,7 @@
 #ifndef MAPSECTOR
 #define MAPSECTOR
 
+#include <Engine/Core.h>
 #include <Engine\GameObject.h>
 #include <string>
 #include <vector>
@@ -26,14 +27,16 @@ public:
 	float radius;
 	int distToBlueBase;
 
-	MapSector(std::string name, typeSector type, float radius);
+	MapSector(Core*, std::string name, typeSector type, float radius);
 	~MapSector(void);
 
 	virtual void onAdd();
 	virtual void draw();
 	void resetTexture();
 
+	virtual void handleMessage(unsigned int, void* data = 0) { };
 private:
+	Core* _core;
 	irr::video::ITexture* _mapSectorTexture;
 };
 

@@ -46,6 +46,7 @@ public:
 	IrrGuiEnv* getGuiEnv() { return guiEnv; };
 	IrrSmgr* getSmgr() { return smgr; };
 	InputManager* getInput() { return appReceiver; };
+	Scene* getActiveScene() { return activeScene; };
 };
 
 #endif

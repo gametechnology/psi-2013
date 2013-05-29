@@ -1,8 +1,10 @@
 #include "WeaponStation.h"
 
+using namespace irr;
+
 #define ANGLESPEED = 1
 
-WeaponStation::WeaponStation(Ship *ship) : Station(ship)
+WeaponStation::WeaponStation(Core* core, Ship *ship) : Station(core, ship)
 {
 	_stationType = ST_WEAPON;
 	setStationDestroyed(false);
@@ -23,39 +25,39 @@ void WeaponStation::init()
 {
 	Station::init();
 
-	_stationTexture = game->driver->getTexture("../assets/Textures/Stations/WeaponStation/weapon_station.png");
-	game->driver->makeColorKeyTexture(_stationTexture, irr::core::vector2d<irr::s32>(0, 0));
+	_stationTexture = _core->getDriver()->getTexture("../assets/Textures/Stations/WeaponStation/weapon_station.png");
+	_core->getDriver()->makeColorKeyTexture(_stationTexture, irr::core::vector2d<irr::s32>(0, 0));
 }
 
 void WeaponStation::update()
 {
 	Station::update();
 
-	if(game->input->isKeyboardButtonPressed(KEY_SPACE) && getPower()){
+	if(_core->getInput()->isKeyboardButtonDown(KEY_SPACE) && getPower()){
 		_ship->fireLaser();
 	}
 
-	if (game->input->isKeyboardButtonDown(KEY_RIGHT) || game->input->isKeyboardButtonDown(KEY_KEY_D)){
+	if (_core->getInput()->isKeyboardButtonDown(KEY_RIGHT) || _core->getInput()->isKeyboardButtonDown(KEY_KEY_D)){
 		if(rotationOwn.Y <= 90)
 			rotationOwn.Y++;}
-	if (game->input->isKeyboardButtonDown(KEY_LEFT) || game->input->isKeyboardButtonDown(KEY_KEY_A)){
+	if (_core->getInput()->isKeyboardButtonDown(KEY_LEFT) || _core->getInput()->isKeyboardButtonDown(KEY_KEY_A)){
 		if(rotationOwn.Y >= -90)
 			rotationOwn.Y--;}
-	if (game->input->isKeyboardButtonDown(KEY_UP) || game->input->isKeyboardButtonDown(KEY_KEY_W)){
+	if (_core->getInput()->isKeyboardButtonDown(KEY_UP) || _core->getInput()->isKeyboardButtonDown(KEY_KEY_W)){
 		if(rotationOwn.X >= -90)
 			rotationOwn.X--;}
-	if (game->input->isKeyboardButtonDown(KEY_DOWN) || game->input->isKeyboardButtonDown(KEY_KEY_S)){
+	if (_core->getInput()->isKeyboardButtonDown(KEY_DOWN) || _core->getInput()->isKeyboardButtonDown(KEY_KEY_S)){
 		if(rotationOwn.X <= 90)
 			rotationOwn.X++;}
 
-	*_ship->transform->rotation = rotationForeign + rotationOwn;
+	_ship->setRotation(&(rotationForeign + rotationOwn));
 }
 
 void WeaponStation::draw()
 {
 	Station::draw();
 
-	game->driver->draw2DImage(_stationTexture,
+	_core->getDriver()->draw2DImage(_stationTexture,
 		irr::core::vector2d<s32>(0, 0),
 		irr::core::rect<s32>(0, 0, 1280, 720),
 		0,
@@ -66,14 +68,14 @@ void WeaponStation::draw()
 void WeaponStation::enable()
 {
 
-	rotationForeign	= *_ship->transform->rotation;
-	((Ship*)parent)->help->setHelpText(L"Shoot: 'space'\ntodo: Exit station: 'Esc'");
+	rotationForeign	= *_ship->getRotation();
+	_ship->help->setHelpText(L"Shoot: 'space'\ntodo: Exit station: 'Esc'");
 
 	Station::enable();
 }
 
 void WeaponStation::disable()
 {
-	_ship->transform->rotation->set( rotationForeign);
+	_ship->setRotation(&rotationForeign);
 	Station::disable();
 }

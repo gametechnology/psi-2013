@@ -1,19 +1,26 @@
 #include "ShipScenes.h"
-#include "Player.h"
-#include "Ship.h"
-#include "EnemyManager.h"
 
-ShipScenes::ShipScenes(void) {}
-ShipScenes::~ShipScenes(void) { Scene::~Scene(); }
+using namespace irr;
+using namespace irr::core;
+
+ShipScenes::ShipScenes(Core* core, Interface* ui) : Scene("ShipScenes")
+{
+	_core = core;
+	_interface = ui;
+}
+
+ShipScenes::~ShipScenes() 
+{ 
+	Scene::~Scene(); 
+}
 
 
 void ShipScenes::init()
 {
-	
 	EnemyManager* manager;
-	manager = new EnemyManager();
+	manager = new EnemyManager(_core->getSmgr());
 
-	addChild(new Player());
-	addChild(new Ship(irr::core::vector3df(0,0,0), irr::core::vector3df(0,0,0)));
+	addComponent(new Player());
+	addComponent(new Ship(_core, _interface, vector3df(0,0,0), vector3df(0,0,0)));
 	addComponent(manager);
 }

@@ -14,6 +14,8 @@ public:
 
 	virtual void addComponent(Component*);
 	virtual void removeComponent(Component*);
+
+	virtual void handleMessage(unsigned int, void* data = 0) { };
 protected:
 	Scene(const char*);
 };

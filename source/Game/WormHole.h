@@ -3,6 +3,7 @@
 
 #include "Messages.h"
 #include <Engine/BillboardComponent.h>
+#include <Engine/Component.h>
 
 /* 
 * TODO Consider using the BillboardComponent
@@ -10,7 +11,7 @@
 * engine documentation.
 */
 
-class WormHole : public BillboardComponent  
+class WormHole : public Component
 {
 public:
 	WormHole( unsigned int id );

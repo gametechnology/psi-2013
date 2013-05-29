@@ -4,7 +4,7 @@ using namespace irr;
 using namespace irr::video;
 using namespace irr::core;
 
-GalaxyMap::GalaxyMap(Core* core, irr::f32 width, irr::f32 height, irr::f32 radius) : Composite("GalaxyMap")
+GalaxyMap::GalaxyMap(Core* core, irr::f32 width, irr::f32 height, irr::f32 radius) : GameObject()
 {
 	this->width = width;
 	this->height = height;
@@ -31,19 +31,21 @@ void GalaxyMap::saveMap()
 }
 
 void GalaxyMap::createMap(int sectorCount, int minWormholes, int maxWormholes) {
-	MapGenerator mapGenerator = MapGenerator(sectorCount, minWormholes, maxWormholes);
+	MapGenerator mapGenerator = MapGenerator(_core, sectorCount, minWormholes, maxWormholes);
 	sectors = *mapGenerator.createNewMap(width, height, radius);
 }
 
 void GalaxyMap::createStaticMap() {
-	MapGenerator mapGenerator = MapGenerator(0,0,0);
+	MapGenerator mapGenerator = MapGenerator(_core, 0, 0, 0);
 	sectors = *mapGenerator.createStaticMap(width, height, radius);
 }
 
 GalaxyMap::~GalaxyMap() {
-	for(unsigned i =0;i<sectors.size();i++) {
-		delete sectors[i];
+	for(std::list<MapSector*>::iterator it = sectors.begin(); it != sectors.end(); it++)
+	{
+		delete (*it);
 	}
+
 	sectors.clear();
 }
 

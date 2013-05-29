@@ -24,6 +24,16 @@ GameObject::~GameObject()
 	delete _radius;
 }
 
+void GameObject::addComponent(Component* component)
+{
+	Composite::addComponent(component);
+}
+
+void GameObject::removeComponent(Component* component)
+{
+	Composite::removeComponent(component);
+}
+
 void GameObject::update()
 {
 	*_angularVelocity += *_angularAcceleration;
@@ -34,6 +44,14 @@ void GameObject::update()
 	*_position += *_velocity;
 
 	Component::update();
+}
+
+void GameObject::init()
+{
+}
+
+void GameObject::handleMessage(unsigned int message, void* data)
+{
 }
 
 void GameObject::contactResolver(GameObject* otherObject)

@@ -1,8 +1,6 @@
 #include "StationStats.h"
-#include "../../include/Engine/Composite.h"
 
-
-StationStats::StationStats(): Component()
+StationStats::StationStats(): Component("StationStats")
 {
 	health = maxHealth;
 	power = 0;

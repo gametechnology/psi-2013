@@ -1,29 +1,37 @@
 #ifndef MAPGENERATOR
 #define MAPGENERATOR
 
+#include <Engine/Core.h>
+#include "MapSector.h"
+
 #include <stdio.h>
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 class MapGenerator {
 public:
-	MapGenerator(int sectorCount, int minWormholes, int maxWormholes);
+	MapGenerator(Core*, int sectorCount, int minWormholes, int maxWormholes);
 	virtual ~MapGenerator();
 
 	void init();
 	void setBalanceChances(std::vector<float> chancesType);
-	std::vector<MapSector*>* createNewMap(float width = 300, float height = 300, float sectorRadius = 15);
+	
 	void createSectors();
 	void createConnections();
-	std::vector<MapSector*>* createStaticMap(float width = 300, float height = 300, float sectorRadius = 15);
+
+	std::list<MapSector*>* createNewMap(float width = 300, float height = 300, float sectorRadius = 15);
+	std::list<MapSector*>* createStaticMap(float width = 300, float height = 300, float sectorRadius = 15);
 
 private:
+	Core* _core;
+
 	std::vector<std::string> nameprefix;
 	std::vector<std::string> nameaddon;
 	std::vector<std::string> nametype;
 	std::vector<float> typeChances;
-	std::vector<MapSector*> sectors;
+	std::list<MapSector*> sectors;
 
 	int sectorCount;
 	int minWormholes;

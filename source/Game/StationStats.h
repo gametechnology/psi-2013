@@ -1,8 +1,6 @@
 #ifndef STATIONSTATS
 #define STATIONSTATS
 
-#include <Engine/Component.h>
-
 #include "Stations/Station.h"
 
 class StationStats : public Component

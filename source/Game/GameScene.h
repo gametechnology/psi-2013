@@ -1,6 +1,7 @@
 #ifndef GAMESCENE
 #define GAMESCENE
 
+#include <Engine/Interface.h>
 #include <Engine\Network.h>
 #include <Engine\NetworkPacket.h>
 #include <Engine\INetworkListener.h>
@@ -15,12 +16,17 @@
 #include "ObjectPool.h"
 #include "NetworkInterface.h"
 
+#include "MapGenerator.h"
+#include "SectorManager.h"
+#include "Shipmap.h"
+#include "SendAndReceivePackets.h"
+
 // Forward declare Shipmap
 class Shipmap;
 
 class GameScene : public Scene, INetworkListener {
 public:
-	GameScene(std::list<Player*>, bool isTestMap = false);
+	GameScene(Core*, Interface*, std::list<Player*>, bool isTestMap = false);
 	virtual ~GameScene();
 
 	virtual void init();
@@ -34,6 +40,9 @@ public:
 	void switchStation(StationType type);
 	void handleNetworkMessage(NetworkPacket packet);
 private:
+	Core* _core;
+	Interface* _interface;
+
 	bool testMap;
 	CameraComponent *_camera;
 	Shipmap* _shipmap;

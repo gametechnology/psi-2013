@@ -82,6 +82,18 @@
     <Filter Include="Source Files\Stations\Base">
       <UniqueIdentifier>{e9244796-178f-4947-a82d-44d7e73d57b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header files\Sector\Base">
+      <UniqueIdentifier>{2c99941b-9a6f-45d7-b2bf-b863f78a4c2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source files\Sector\Base">
+      <UniqueIdentifier>{f7d77bfd-6406-4945-9350-6106705f2e5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Hud">
+      <UniqueIdentifier>{ea67d24d-f944-4994-a0c7-b3c3f4714318}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Hud">
+      <UniqueIdentifier>{00cd636d-d6b8-4ebe-8a85-0c761d1cc57d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Game\main.cpp">
@@ -125,12 +137,6 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\EnemyPlayer.cpp">
       <Filter>Source Files\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\Station.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\Station.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
@@ -192,9 +198,6 @@
     <ClCompile Include="..\source\Game\SectorManager.cpp">
       <Filter>Source files\Sector</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\SectorTemplate.cpp">
-      <Filter>Source files\Sector</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Mist.cpp">
       <Filter>Source files\Sector</Filter>
     </ClCompile>
@@ -227,9 +230,6 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\StateSwitchDrone.cpp">
       <Filter>Source Files\Enemies\States</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\GalaxyMap.cpp">
-      <Filter>Source Files\Components</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\HealthComponent.cpp">
       <Filter>Source Files\Components</Filter>
@@ -294,6 +294,30 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations\Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\GalaxyMap.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\SectorTemplate.cpp">
+      <Filter>Source files\Sector\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\Station.cpp">
+      <Filter>Source Files\Stations\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\HudHelpText.cpp">
+      <Filter>Source Files\Hud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\HudComposite.cpp">
+      <Filter>Source Files\Hud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\HealthBar.cpp">
+      <Filter>Source Files\Hud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\BackButton.cpp">
+      <Filter>Source Files\Hud</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\Station.cpp">
+      <Filter>Source Files\Stations\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
@@ -313,9 +337,6 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\WeaponStation.h">
       <Filter>Header Files\Stations</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\GalaxyMap.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Enemy.h">
       <Filter>Header Files\Enemies</Filter>
@@ -362,9 +383,6 @@
     <ClInclude Include="..\source\Game\NebulaSector.h">
       <Filter>Header files\Sector</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\SectorTemplate.h">
-      <Filter>Header files\Sector</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\SectorHomeBase.h">
       <Filter>Header files\Sector</Filter>
     </ClInclude>
@@ -409,9 +427,6 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\EndSceneEventReceiver.h">
       <Filter>Header Files\EventReceivers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\GalaxyMap.h">
-      <Filter>Header Files\Components</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\HealthComponent.h">
       <Filter>Header Files\Components</Filter>
@@ -475,6 +490,30 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\Thruster.h">
       <Filter>Header Files\GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\GalaxyMap.h">
+      <Filter>Header Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\SectorTemplate.h">
+      <Filter>Header files\Sector\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HudComposite.h">
+      <Filter>Header Files\Hud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HudHelpText.h">
+      <Filter>Header Files\Hud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\BackButton.h">
+      <Filter>Header Files\Hud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\HealthBar.h">
+      <Filter>Header Files\Hud</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ObjectPool.h">
+      <Filter>Header Files\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\GalaxyMap.h">
+      <Filter>Header Files\Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

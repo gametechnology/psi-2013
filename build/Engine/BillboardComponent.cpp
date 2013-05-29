@@ -25,3 +25,8 @@ void BillboardComponent::createBillboardNode(irr::core::vector3df position) {
 	_node->setMaterialFlag(irr::video::EMF_FOG_ENABLE, true);
 	_node->setMaterialType(irr::video::EMT_TRANSPARENT_ALPHA_CHANNEL);	
 }
+
+irr::core::vector3df* BillboardComponent::getPosition()
+{
+	return &_node->getAbsolutePosition();
+}

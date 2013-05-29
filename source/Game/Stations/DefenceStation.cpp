@@ -1,11 +1,9 @@
 #include "DefenceStation.h"
-#include "Station.h"
-#include "..\Ship.h"
 
-DefenceStation::DefenceStation(Ship* ship) : Station(ship)
+
+DefenceStation::DefenceStation(Core* core, Ship* ship) : Station(core, ship)
 {
-	this->_stationType	= ST_DEFENCE;
-	//this->_stations		= new irr::core::map<StationType, DefenceStation::DefenceStats>();
+	this->_stationType = ST_DEFENCE;
 	this->setStationDestroyed(false);
 	std::srand((unsigned int)time(NULL));
 }
@@ -41,7 +39,12 @@ void DefenceStation::OnDisabled(){
 }
 
 void DefenceStation::enable() {
-	((Ship*)parent)->help->setHelpText(L"todo: Exit station: 'Esc'");
+	(_ship)->help->setHelpText(L"todo: Exit station: 'Esc'");
 
 	Station::enable();
+}
+
+void DefenceStation::disable()
+{
+	Station::disable();
 }

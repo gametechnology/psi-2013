@@ -13,6 +13,8 @@ public:
 
 	virtual void draw();
 	virtual void setTexture(irr::video::ITexture* texture);
+
+	virtual void handleMessage(unsigned int, void* data = 0) { };
 private:
 	irr::video::ITexture* _texture;
 	irr::core::rect<irr::s32> _size;

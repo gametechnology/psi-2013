@@ -48,6 +48,10 @@ public:
 	*/
 	PrimitiveComponent(irr::scene::ISceneManager*, PrimitiveType, irr::f32, irr::scene::ISceneNode*, irr::core::vector3df = irr::core::vector3df(0, 0, 0));
 	~PrimitiveComponent();
+
+	virtual void handleMessage(unsigned int, void* data = 0) { };
+
+	irr::scene::ISceneNode* getNode() { return node; };
 };
 
 #endif

@@ -8,21 +8,28 @@
 
 #include "MainMenuScene.h"
 
-struct SAppContext
+struct EndAppContext
 {
 	Core* core;
 	irr::s32 counter;
 	Interface* u_interface;
 };
 
-class EndSceneEventReceiver : public IEventReceiver
+enum InterfaceElements
+{
+	END_GAME_WINDOW = 0,
+	WIN_LOSE_MESSAGE,
+	BACK_BUTTON
+};
+
+class EndSceneEventReceiver : public irr::IEventReceiver
 {
 public:
-	EndSceneEventReceiver(SAppContext& context);
+	EndSceneEventReceiver(EndAppContext& context);
 
-	virtual bool OnEvent(const SEvent& event);
+	virtual bool OnEvent(const irr::SEvent& event);
 private:
-	SAppContext& _context;
+	EndAppContext& _context;
 };
 
 #endif

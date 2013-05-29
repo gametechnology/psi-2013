@@ -13,7 +13,7 @@
 class ShipMover : public BasicMoverComponent
 {
 public:
-	ShipMover(Ship* ship);
+	ShipMover(Core*, Ship*);
 	~ShipMover(void);
 	void Activate();
 	Ship* _ship;
@@ -24,8 +24,10 @@ public:
 	virtual void draw();
 	virtual void handleMessage(unsigned int message, void* data = 0){};
 private:
+	Core* _core;
+
 	void ResetForces();
-	InputManager* input;
+
 	Thruster** thrusters_;
 	irr::core::matrix4* inertiaMatrix_;
 	irr::core::vector3df shipRotation_;

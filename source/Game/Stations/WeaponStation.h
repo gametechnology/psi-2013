@@ -1,6 +1,8 @@
 #ifndef WEAPON_STATION
 #define WEAPON_STATION
 
+#include "Station.h"
+
 #include "../Ship.h"
 
 class WeaponStation : public Station 
@@ -8,7 +10,7 @@ class WeaponStation : public Station
 public:
 	irr::core::vector3df rotationForeign;
 
-	WeaponStation(Ship *ship);
+	WeaponStation(Core*, Ship*);
 	~WeaponStation();
 
 	void onAdd();

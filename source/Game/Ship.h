@@ -6,35 +6,39 @@
 * needs thorough refactoring.
 */
 
-
 #include <Irrlicht/irrlicht.h>
+#include <Engine/Core.h>
 #include <Engine/GameObject.h>
 #include <Engine/CameraComponent.h>
+#include <Engine/MeshComponent.h>
+#include <Engine/Interface.h>
 
 #include "Player.h"
 #include "Thruster.h"
-#include "ShipMover.h"
 #include "Laser.h"
 #include "ObjectPool.h"
+
+#include "SendAndReceivePackets.h"
 #include "HudHelpText.h"
 
-#include "Stations\DefenceStation.h"
-#include "Stations\HelmStation.h"
-#include "Stations\NavigationStation.h"
-#include "Stations\PowerStation.h"
-#include "Stations\WeaponStation.h"
+#include "Stations/Station.h"
+
+class DefenceStation;
+class HelmStation;
+class NavigationStation;
+class PowerStation;
+class WeaponStation;
 
 class Ship : public GameObject, public INetworkListener
 {
 public:
 	HudHelpText* help;
 
-	//Player *players;
-	DefenceStation		*_defenceStation;
-	HelmStation			*_helmStation;
-	NavigationStation	*_navigationStation;
-	PowerStation		*_powerStation;
-	WeaponStation		*_weaponStation;
+	DefenceStation *_defenceStation;
+	HelmStation *_helmStation;
+	NavigationStation *_navigationStation;
+	PowerStation *_powerStation;
+	WeaponStation *_weaponStation;
 
 	//to test the ship health and station health
 	irr::gui::IGUIEnvironment *env;
@@ -45,7 +49,7 @@ public:
 	irr::gui::IGUIStaticText *powerStationHealth;
 	irr::gui::IGUIStaticText *weaponStationHealth;
 	
-	Ship(irr::core::vector3df position, irr::core::vector3df rotation);
+	Ship(Core*, Interface*, irr::core::vector3df position, irr::core::vector3df rotation);
 	virtual ~Ship();
 
 	bool _shipDestroyed;
@@ -72,8 +76,11 @@ public:
 
 	void fireLaser();
 	
-	void HandleNetworkMessage(NetworkPacket packet);
+	virtual void handleMessage(unsigned int, void* data = 0) { };
+	virtual void handleNetworkMessage(NetworkPacket packet);
 private:
+	Core* _core;
+	Interface* _interface;
 
 	Station	*_currentStation;
 	Thruster *_thrusters[4];
@@ -84,4 +91,5 @@ private:
 
 	void setInertiaMatrix(float h, float w, float d, float m);
 };
+
 #endif

@@ -31,12 +31,12 @@ struct SAppContext
 	Interface* u_interface;
 };
 
-class MainMenuEventReceiver : public IEventReceiver
+class MainMenuEventReceiver : public irr::IEventReceiver
 {
 public:
 	MainMenuEventReceiver(SAppContext & context);
 
-	virtual bool OnEvent(const SEvent& event);
+	virtual bool OnEvent(const irr::SEvent& event);
 private:
 	SAppContext& context;
 };

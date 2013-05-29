@@ -5,6 +5,8 @@
 #include <Engine\GameObject.h>
 #include <Irrlicht/irrlicht.h>
 
+#include <iostream>
+
 class Thruster : public GameObject
 {
 public:

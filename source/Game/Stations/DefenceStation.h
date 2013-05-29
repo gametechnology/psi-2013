@@ -2,13 +2,16 @@
 #define DEFENCE_STATION
 
 #include "Station.h"
+
+#include "../Ship.h"
+
 #include <time.h>
 #include <map>
 
 class DefenceStation : public Station 
 {
 public:
-	DefenceStation(Ship* ship);
+	DefenceStation(Core* core, Ship* ship);
 	~DefenceStation();
 	
 	void DoCameraShake();
@@ -18,6 +21,7 @@ public:
 	Station *station;
 
 	void enable();
+	void disable();
 
 	void OnEnabled();
 	void OnDisabled();

@@ -1,6 +1,6 @@
 #include "BaseSector.h"
 
-BaseSector::BaseSector(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : SectorTemplate(sectormanager, skyBoxTexture,boundryRadius,amountWormHoles) {
+BaseSector::BaseSector(Core* core, SectorManager* sectormanager, std::string skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : SectorTemplate(core, sectormanager, skyBoxTexture,boundryRadius,amountWormHoles) {
 	//init();
 
 }
@@ -15,8 +15,8 @@ void BaseSector::update(){
 	SectorTemplate::update();
 }
 
-void BaseSector::handleMessage(unsigned int message, void* data) {
-	
+void BaseSector::handleMessage(unsigned int message, void* data) 
+{	
 	delete data;
 }
 

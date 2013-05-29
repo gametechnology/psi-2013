@@ -13,6 +13,7 @@ public:
 	virtual ~CollisionSystem();
 
 	virtual void update();
+	virtual void handleMessage(unsigned int, void* data = 0) { };
 
 	void registerComponent(GameObject* object);
 	void unregisterComponent(GameObject* object);

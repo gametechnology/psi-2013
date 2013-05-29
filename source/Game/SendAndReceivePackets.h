@@ -3,16 +3,25 @@
 
 #include "NetworkInterface.h"
 #include <Engine\Scene.h>
+#include <Engine/Core.h>
+
 #include "Enemy.h"
 #include "EnemyAsteroid.h"
 #include "EnemyDrone.h"
 #include "EnemyFighter.h"
-#include "Laser.h"
 #include "EndScene.h"
+
+class Laser;
+
+/*
+* Statics are evil, for the love of god; refactor this.
+*/
 
 static class SendAndReceivePackets
 {
 public:
+	static Core* core;
+
 	//sends a packet to the server
 	static void sendPacket(NetworkPacket packet, const bool reliable = false);
 

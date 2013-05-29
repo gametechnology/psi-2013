@@ -3,7 +3,7 @@
 using namespace irr;
 using namespace irr::gui;
 
-EndSceneEventReceiver::EndSceneEventReceiver(SAppContext& context) : _context(context)
+EndSceneEventReceiver::EndSceneEventReceiver(EndAppContext& context) : _context(context)
 {
 }
 

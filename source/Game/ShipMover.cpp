@@ -1,34 +1,41 @@
 #include "ShipMover.h"
-#include "Engine\Entity.h"
-#include "Ship.h"
-#include "BasicMoverComponent.h"
+
+using namespace irr;
+using namespace irr::core;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////// To test the ship's movement the powerstation needs to be commented in ship.cpp and in station.cpp!! ///////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-ShipMover::ShipMover(Ship* _ship) : BasicMoverComponent() {
-	this->_ship = _ship;
+ShipMover::ShipMover(Core* core, Ship* ship) : BasicMoverComponent(ship) {
+	_ship = ship;
+	_core = core;
+
 	lastsend = time(0);
 	maxFwdSpeed = 10.f;
 	maxBwdSpeed = -10.f;
 }
 
-ShipMover::~ShipMover() { }
-void ShipMover::draw() { }
+ShipMover::~ShipMover() 
+{
+}
+
+void ShipMover::draw() 
+{
+}
+
 void ShipMover::onAdd(){
-	input = getGame()->input;
 	thrusters_ = _ship->GetThrusters();
-	shipAngAcc_ = _ship->transform->angularAccelaration;
-	shipLinAcc_ = _ship->transform->acceleration;
+	shipAngAcc_ = _ship->getAngularAcceleration();
+	shipLinAcc_ = _ship->getAcceleration();
 }
 
 void ShipMover::init() { }
 
 void ShipMover::update() {
-	this->shipRotation_= *(entity->transform->rotation);
+	this->shipRotation_= *(_parent->getRotation());
 
-	if(input->isKeyboardButtonDown(irr::KEY_KEY_W)){
+	if(_core->getInput()->isKeyboardButtonDown(irr::KEY_KEY_W)){
 		std::cout << "[ShipMover] W IS PRESSED";	
 	}
 
@@ -55,12 +62,12 @@ void ShipMover::NotMovementStuff(){
 
 	NetworkPacket movementPacket = NetworkPacket(PacketType::CLIENT_SHIP_MOVEMENT);
 
-	movementPacket << entity->transform->position;
-	movementPacket << entity->transform->rotation;
-	movementPacket << entity->transform->velocity; 
-	movementPacket << entity->transform->acceleration; 
-	movementPacket << entity->transform->angularAccelaration; 
-	movementPacket << entity->transform->angularVelocity;
+	movementPacket << _parent->getPosition();
+	movementPacket << _parent->getRotation();
+	movementPacket << _parent->getVelocity(); 
+	movementPacket << _parent->getAcceleration(); 
+	movementPacket << _parent->getAngularAcceleration(); 
+	movementPacket << _parent->getAngularVelocity();
 	
 	if (lastsend + 1 < time(0) ){
 		Network::GetInstance()->SendPacketToAllClients(movementPacket, false);

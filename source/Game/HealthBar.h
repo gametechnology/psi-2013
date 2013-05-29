@@ -1,29 +1,30 @@
 #ifndef HEALTH_BAR_H
 #define HEALTH_BAR_H
-#pragma once
 
-#include "Engine\Component.h"
-#include "Engine\Composite.h"
-#include "Engine/Entity.h"
-#include "Irrlicht\irrlicht.h"
-#include "Engine\Game.h"
+#include <Engine/Core.h>
+#include <Engine/Component.h>
+#include <Engine/Composite.h>
+#include <Irrlicht/irrlicht.h>
 
-class HealthBar : public Component {
+class HealthBar : public Component 
+{
 public:
-	HealthBar(irr::core::vector2df position, int* stat);
-	HealthBar(irr::core::vector2df position, int* stat, irr::core::vector2df size, int barHeight, irr::video::SColor colour);
+	HealthBar(Core*, irr::core::vector2df position, int* stat);
+	HealthBar(Core*, irr::core::vector2df position, int* stat, irr::core::vector2df size, int barHeight, irr::video::SColor colour);
 	~HealthBar(void);
 
 	void init();
 	
 	void update();
 	void draw();
-
 private:
+	Core* _core;
+
 	int* stat_;
-	irr::core::vector2df position_;
-	irr::core::vector2df size_;
 	int barHeight_;
+
+	irr::core::vector2df position_;
+	irr::core::vector2df size_;	
 	irr::video::ITexture* pipTexture_;
 	irr::video::SColor color;	
 };

@@ -2,16 +2,20 @@
 #define NAVIGATION_STATION
 
 #include "Station.h"
-#include "..\Ship.h"
+
+#include "../Ship.h"
 
 class NavigationStation : public Station
 {
 public:
-	NavigationStation(Ship* ship);
+	NavigationStation(Core*, Ship* ship);
 	~NavigationStation();
 
 	void DoCameraShake();
+
 	void enable();
+	void disable();
+
 	void OnEnabled();
 	void OnDisabled();
 };
