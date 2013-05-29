@@ -48,6 +48,7 @@ public:
 	IrrSmgr* getSmgr() { return smgr; };
 	InputManager* getInput() { return appReceiver; };
 	Scene* getActiveScene() { return activeScene; };
+	CollisionSystem* getCollisionSystem() { return collisionSystem; };
 };
 
 #endif

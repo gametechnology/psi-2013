@@ -12,7 +12,7 @@ void CollisionSystem::update()
 {
 	for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
 	{
-		for (std::list<Component*>::iterator j = components.begin(); j != components.end(); ++i)
+		for (std::list<Component*>::iterator j = components.begin(); j != components.end(); ++j)
 		{
 			if(*i == *j)
 				continue;
