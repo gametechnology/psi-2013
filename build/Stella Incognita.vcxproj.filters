@@ -141,9 +141,6 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\Station.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\Stations\PowerStation.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
@@ -320,6 +317,9 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\MyEventReceiver.cpp">
       <Filter>Source Files\EventReceivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\Station.cpp">
+      <Filter>Source Files\Stations\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -13,8 +13,10 @@ public:
 	void setFont(irr::io::path fontPath);
 
 	void createButton(irr::s32 x, irr::s32 y, irr::s32 width, irr::s32 height, irr::s32 id, irr::gui::IGUIElement* parent, const wchar_t* text);
+
 	void addEditBox(irr::s32 x, irr::s32 y, irr::s32 width, irr::s32 height, irr::s32 id, irr::gui::IGUIElement* parent, const wchar_t* text, bool border);
 	void addListBox(irr::s32 x, irr::s32 y, irr::s32 width, irr::s32 height, irr::s32 id, irr::gui::IGUIElement* parent = 0, bool showBackground = false);
+	void addScrollBar(bool horizontal, irr::s32 x, irr::s32 y, irr::s32 width, irr::s32 height, irr::gui::IGUIElement* parent, irr::s32 id);
 
 	void addWindow(irr::s32 x, irr::s32 y, irr::s32 width, irr::s32 height, bool blocking, const wchar_t* text, irr::gui::IGUIElement* parent, irr::s32 id);
 

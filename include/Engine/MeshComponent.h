@@ -13,6 +13,7 @@ public:
 	void createMeshNode(std::string modelPath);
 	void createAnimatedMeshNode(std::string modelPath);
 
+	virtual void update();
 	virtual void update(irr::core::vector3df* position, irr::core::vector3df* rotation);
 	virtual void handleMessage(unsigned int, void* data = 0) { };
 protected:

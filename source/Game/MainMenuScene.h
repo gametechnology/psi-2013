@@ -21,8 +21,9 @@ public:
 	MainMenuScene(Core* core, Interface* ui);
 	~MainMenuScene();
 
-	void init();
-	void update();
+	virtual void init();
+	virtual void update();
+	virtual void draw();
 
 	virtual void requestNextScene();
 	virtual void requestPreviousScene();

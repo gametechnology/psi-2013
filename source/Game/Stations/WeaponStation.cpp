@@ -4,21 +4,15 @@ using namespace irr;
 
 #define ANGLESPEED = 1
 
-WeaponStation::WeaponStation(Core* core, Ship *ship) : Station(core, ship)
+WeaponStation::WeaponStation(Core* core, Interface* ui, Ship *ship) : Station(core, ui, ship)
 {
 	_stationType = ST_WEAPON;
 	setStationDestroyed(false);
-
 }
 
 WeaponStation::~WeaponStation()
 {
 	Station::~Station();
-}
-
-void WeaponStation::onAdd()
-{
-	Station::onAdd();
 }
 
 void WeaponStation::init()
@@ -67,7 +61,6 @@ void WeaponStation::draw()
 
 void WeaponStation::enable()
 {
-
 	rotationForeign	= *_ship->getRotation();
 	_ship->help->setHelpText(L"Shoot: 'space'\ntodo: Exit station: 'Esc'");
 

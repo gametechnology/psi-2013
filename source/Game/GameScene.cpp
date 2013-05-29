@@ -12,7 +12,7 @@ GameScene::GameScene(Core* core, Interface* ui, std::list<Player*> playerList, b
 	_interface = ui;
 
 	Network::GetInstance()->AddListener(CLIENT_SWITCH_STATION, this);
-	Network::GetInstance()->AddListener(PacketType::CLIENT_FIRE_LASER, this);
+	Network::GetInstance()->AddListener(CLIENT_FIRE_LASER, this);
 	Network::GetInstance()->AddListener(SERVER_LASER, this);
 	Network::GetInstance()->AddListener(SERVER_WINLOSE, this);
 }
@@ -29,7 +29,7 @@ void GameScene::init() {
 	_ship = new Ship(_core, _interface, vector3df(0,0,0), vector3df(0,0,0));
 	addComponent(_ship);
 
-	addComponent(new CameraComponent(_core->getSmgr(), CameraComponent::CameraType::FIRST_PERSON));
+	addComponent(new CameraComponent(_core->getSmgr(), CameraComponent::THIRD_PERSON));
 
 	_shipEnemy = new Ship(_core, _interface, vector3df(0,0,-100), vector3df(180,0,0));
 	addComponent(_shipEnemy);
@@ -40,17 +40,20 @@ void GameScene::init() {
 	//Creates Map & SectorManager
 	GalaxyMap* galaxyMap = new GalaxyMap(_core, 300, 300, 15);
 
-	if (!testMap) {
+	if (!testMap)
 		galaxyMap->createMap(20, 2, 5);
-	} else {
+	else
 		galaxyMap->createStaticMap();
-	}
+
 	galaxyMap->setPosition(new vector3df(100, 670, 0));
+
 	printf("-----------Added SectorManager----------\n\n");
 	addComponent(new SectorManager(this, _core, galaxyMap, _ship));
 
 	_shipmap = new Shipmap(_core, this);
 	addComponent(_shipmap);
+
+	Scene::init();
 }
 
 void GameScene::update() {
@@ -75,6 +78,11 @@ void GameScene::update() {
 	}
 
 	Scene::update();
+}
+
+void GameScene::draw()
+{
+	Scene::draw();
 }
 
 void GameScene::requestNextScene()
@@ -131,9 +139,9 @@ void GameScene::handleNetworkMessage(NetworkPacket packet)
 
 void GameScene::switchStation(StationType type)
 {
-	removeComponent(_shipmap);
+	_shipmap->setEnabled(false);
 
-	_ship->SwitchToStation(type);
+	_ship->SwitchToStation(type, *_playerList.begin());
 }
 
 GameScene::~GameScene() 

@@ -2,7 +2,7 @@
 
 using namespace irr;
 
-HelmStation::HelmStation(Core* core, Ship *ship) : Station(core, ship)
+HelmStation::HelmStation(Core* core, Interface* ui, Ship *ship) : Station(core, ui, ship)
 {
 	_core = core;
 	_stationType = ST_HELM;
@@ -15,20 +15,15 @@ HelmStation::~HelmStation()
 	Station::~Station();
 }
 
-void HelmStation::onAdd()
-{
-	Station::onAdd();
-
-	//ShipMover* mover = new ShipMover(_ship); // Ship mover with thrusters.
-	BasicShipMover* mover = new BasicShipMover(_core, _ship); // Ship mover without thrusters.
-	addComponent(mover);
-}
-
 void HelmStation::init()
 {
-	Station::init();
+	BasicShipMover* mover = new BasicShipMover(_core, _ship); // Ship mover without thrusters.
+	addComponent(mover);
+	
 	_stationTexture = _core->getDriver()->getTexture("../assets/Textures/Stations/HelmStation/helm_station.png");
 	_core->getDriver()->makeColorKeyTexture(_stationTexture, irr::core::vector2d<irr::s32>(0, 0));
+
+	Station::init();
 }
 
 

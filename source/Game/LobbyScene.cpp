@@ -68,6 +68,11 @@ void LobbyScene::update()
 	}
 }
 
+void LobbyScene::draw()
+{
+	Scene::draw();
+}
+
 void LobbyScene::notify(void* data)
 {
 }

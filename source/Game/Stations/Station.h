@@ -12,6 +12,7 @@
 #include <Irrlicht/irrlicht.h>
 
 #include "../Player.h"
+#include "../HudComposite.h"
 #include "../HealthComponent.h"
 #include "../PowerComponent.h"
 #include "../ShieldComponent.h"
@@ -33,8 +34,8 @@ enum StationType
 class Station : public Composite
 {
 public:
-	Station(Core*, Ship *ship, int startHealth );
-	Station(Core*, Ship *ship );
+	Station(Core*, Interface*, Ship*, int startHealth);
+	Station(Core*, Interface*, Ship*);
 	virtual ~Station(void);
 
 	virtual void enable();
@@ -80,21 +81,20 @@ public:
 	void repairStation(int health);
 	void handleMessage(unsigned int message, void* data);
 
-	virtual void onAdd();
 	virtual void init();
 	virtual void update();
 	virtual void draw();
 
-	virtual void OnDamage( );
-	virtual void OnEnabled() = 0;
-	virtual void OnDisabled() = 0;
+	virtual void OnDamage();
 
 	void leaveStation(StationType station);
 
-	//HudComposite* hud;
+	HudComposite* hud;
 	StationType _stationType;
 protected:
 	Core* _core;
+	Interface* _interface;
+
 	irr::video::IVideoDriver *driver;
 
 	Ship	*_ship;

@@ -5,9 +5,12 @@ using namespace irr::gui;
 using namespace irr::video;
 using namespace irr::core;
 
-PowerStation::PowerStation(Core* core, Ship *ship, Interface* ui) : Station(core, ship)
+PowerStation::PowerStation(Core* core, Interface* ui, Ship *ship) : Station(core, ui, ship)
 {
 	_interface = ui;
+
+	context.counter = 0;
+	context.powerPool = 100;
 }
 
 void PowerStation :: init() {
@@ -22,13 +25,10 @@ void PowerStation :: init() {
 	else
 		skin->setFont(_core->getGuiEnv()->getBuiltInFont(), EGDF_TOOLTIP);
 
-	createUI();	
-
 	SubscribeStation(_ship->GetStation(ST_DEFENCE) );
 	SubscribeStation(_ship->GetStation(ST_HELM) );
 	SubscribeStation(_ship->GetStation(ST_NAVIGATION) );
 	SubscribeStation(_ship->GetStation(ST_WEAPON) );
-
 	SubscribeStation(this);
 
 	Station::init();
@@ -65,19 +65,9 @@ void PowerStation :: DoCameraShake( )
 {
 }
 
-void PowerStation::OnEnabled(){
-	createUI();
-}
-
-void PowerStation::OnDisabled(){
-	//TODO: Make a remove UI.
-	_interface->resetInterface();
-}
-
 //Creates the User Interface. Is a helper method. Also initializes the event receiver.
 void PowerStation::createUI()
 {
-	declareUIData();
 	addImages();
 	createPowerPool();
 	createScrollbar();
@@ -85,9 +75,8 @@ void PowerStation::createUI()
 	createGeneralPowerTexts();
 	createCurrentSelectedStationText();
 
-	// Create the event receiver, giving it that context structure.
 	receiver = new MyEventReceiver(context, _core->getDevice());
-	// And tell the device to use our custom event receiver.
+	_core->getInput()->unsetCustomEventReceiver();
 	_core->getInput()->setCustomEventReceiver(receiver);
 }
 
@@ -95,28 +84,23 @@ void PowerStation::enable()
 {
 	(_ship)->help->setHelpText(L"Select a station by clicking on it's button\nGive power to the selected station by adjusting the slider.\ntodo: Exit station: 'Esc'");
 
-	Station::enable();
-
 	createUI();
+	Station::enable();
 }
 
 void PowerStation::disable()
 {
+	_interface->resetInterface();
 	Station::disable();
 }
 
-//Defines the used driver and some UI data values.
-void PowerStation::declareUIData()
-{
-	context.counter = 0;
-	context.powerPool = 100;
-}
-
 //Creates the text for the power pool along with its value.
-void PowerStation::createPowerPool(){
+void PowerStation::createPowerPool()
+{
 	stringw str = varToString("Power Pool:\n", POWER_MAX, "%");
 
-	context.powerPoolText = _core->getGuiEnv()->addStaticText(str.c_str(), rect<s32>(40, 40, 200, 100), false);
+	_interface->addStaticText(str.c_str(), 40, 40, 200, 100, POWER_POOL_STATUS, false, true, false);
+	context.powerPoolText = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(POWER_POOL_STATUS));
 	context.powerPoolText->setOverrideColor(video::SColor(255, 0, 255, 0));
 }
 
@@ -138,7 +122,8 @@ void PowerStation::addImages()
 
 //Creates the power scrollbar. 
 void PowerStation::createScrollbar(){
-	context.scrollBar = _core->getGuiEnv()->addScrollBar(false, rect<s32>(1200, 20, 1230, 260), 0, GUI_ID_SCROLL_BAR);
+	_interface->addScrollBar(false, 1200, 20, 30, 240, 0, GUI_ID_SCROLL_BAR);
+	context.scrollBar = dynamic_cast<IGUIScrollBar*>(_interface->getElementWithId(GUI_ID_SCROLL_BAR));
 	context.scrollBar->setMax(100);
 	context.scrollBar->setSmallStep(1);
 	context.scrollBar->setLargeStep(10);
@@ -147,19 +132,24 @@ void PowerStation::createScrollbar(){
 
 //Creates the station buttons.
 void PowerStation::createButtons(){
-	_interface->createButton(870, 460, 930, 520, GUI_ID_POWER_HELM, 0, L"Helm Station");
-	_interface->createButton(700, 560, 790, 660, GUI_ID_POWER_WEAPON, 0, L"Weapons Station");
-	_interface->createButton(700, 310, 790, 410, GUI_ID_POWER_DEFENCE, 0, L"Defence Station");
-	_interface->createButton(490, 310, 580, 410, GUI_ID_POWER_NAVIGATION, 0, L"Navigation Station");
+	_interface->createButton(870, 460, 60, 60, GUI_ID_POWER_HELM, 0, L"Helm Station");
+	_interface->createButton(700, 560, 60, 60, GUI_ID_POWER_WEAPON, 0, L"Weapons Station");
+	_interface->createButton(700, 310, 60, 60, GUI_ID_POWER_DEFENCE, 0, L"Defence Station");
+	_interface->createButton(490, 310, 60, 60, GUI_ID_POWER_NAVIGATION, 0, L"Navigation Station");
 }
 
 //Creates the power status texts for the different stations.
-void PowerStation::createGeneralPowerTexts(){
+void PowerStation::createGeneralPowerTexts()
+{
+	_interface->addStaticText(L"Helm power status: ", 300, 40, 500, 20, HELM_POWER_STATUS, false, true, false);
+	_interface->addStaticText(L"Defense power status: ", 300, 70, 500, 20, DEFENSE_POWER_STATUS, false, true, false);
+	_interface->addStaticText(L"Weapon power status: ", 300, 100, 500, 20, WEAPON_POWER_STATUS, false, true, false);
+	_interface->addStaticText(L"Navigation power status: ", 300, 130, 500, 20, NAVIGATION_POWER_STATUS, false, true, false);
 
-	context.helmStatus = _core->getGuiEnv()->addStaticText(L"Helm power status: ", rect<s32>(300, 40, 800, 60), false);
-	context.defenceStatus = _core->getGuiEnv()->addStaticText(L"defence power status: ", rect<s32>(300, 70, 800, 90), false);
-	context.weaponStatus = _core->getGuiEnv()->addStaticText(L"Weapon power status: ", rect<s32>(300, 100, 800, 120), false);
-	context.navigationStatus = _core->getGuiEnv()->addStaticText(L"Navigation power status: ", rect<s32>(300, 130, 800, 150), false);
+	context.helmStatus = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(HELM_POWER_STATUS));
+	context.defenceStatus = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(DEFENSE_POWER_STATUS));
+	context.weaponStatus = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(WEAPON_POWER_STATUS));
+	context.navigationStatus = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(NAVIGATION_POWER_STATUS));
 
 	context.helmStatus->setOverrideColor(video::SColor(255, 0, 255, 0));
 	context.defenceStatus->setOverrideColor(video::SColor(255, 0, 255, 0));
@@ -168,8 +158,11 @@ void PowerStation::createGeneralPowerTexts(){
 }
 
 //Creates the "Station selected: " text.
-void PowerStation::createCurrentSelectedStationText(){
-	context.stationSelectedText = _core->getGuiEnv()->addStaticText(L"Station selected: ", rect<s32>(800, 40, 1200, 120), false);
+void PowerStation::createCurrentSelectedStationText()
+{
+	_interface->addStaticText(L"Station selected: ", 800, 40, 400, 80, SELECTED_STATION, false, true, false);
+
+	context.stationSelectedText = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(SELECTED_STATION));
 	context.stationSelectedText->setOverrideColor(video::SColor(255, 100, 125, 255));
 }
 
@@ -179,7 +172,7 @@ void PowerStation::createCurrentSelectedStationText(){
 void PowerStation::update()
 {
 	Station::update();
-
+	std::cout<<isEnabled();
 	int helm = context.GetPower(ST_HELM);
 	int defence	= context.GetPower(ST_DEFENCE);
 	int weapon = context.GetPower(ST_WEAPON);
@@ -203,8 +196,6 @@ void PowerStation::update()
 
 void PowerStation::draw()
 {
-	Station::draw();
-
 	_core->getDriver()->draw2DImage(_core->getDriver()->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), 
 		position2d<s32>(0,0), 
 		rect<s32>(0, 0, 1280, 720), 
@@ -217,6 +208,8 @@ void PowerStation::draw()
 		0,
 		SColor(255, 255, 255, 255),
 		true);
+
+	Station::draw();
 }
 
 

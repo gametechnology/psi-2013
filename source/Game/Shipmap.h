@@ -50,9 +50,9 @@ class Shipmap : public GameObject
 public:
 	Shipmap(Core*, Scene*);
 	~Shipmap();
-	void onAdd();
+
 	virtual void init();
-	void draw();
+	virtual void draw();
 	virtual void update();
 	virtual void handleMessage(unsigned int, void* data = 0) { };
 };

@@ -1,7 +1,7 @@
 #include "DefenceStation.h"
 
 
-DefenceStation::DefenceStation(Core* core, Ship* ship) : Station(core, ship)
+DefenceStation::DefenceStation(Core* core, Interface* ui, Ship* ship) : Station(core, ui, ship)
 {
 	this->_stationType = ST_DEFENCE;
 	this->setStationDestroyed(false);
@@ -11,6 +11,15 @@ DefenceStation::DefenceStation(Core* core, Ship* ship) : Station(core, ship)
 DefenceStation::~DefenceStation()
 {
 	
+}
+
+void DefenceStation::init()
+{
+}
+
+void DefenceStation::update()
+{
+	Station::update();
 }
 
 void DefenceStation::Damage()
@@ -28,14 +37,6 @@ int DefenceStation :: GetDamage(StationType stationType)
 {
 	//Needs to return the DefenceStats data !!!!
 	return 0;
-}
-
-void DefenceStation::OnEnabled(){
-
-}
-
-void DefenceStation::OnDisabled(){
-
 }
 
 void DefenceStation::enable() {

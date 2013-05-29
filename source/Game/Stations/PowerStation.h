@@ -31,7 +31,7 @@ public:
 	irr::gui::IGUIFont *font;
 	PowerStationData context;
 
-	PowerStation(Core*, Ship*, Interface*);
+	PowerStation(Core*, Interface*, Ship*);
 	~PowerStation();
 
 	bool IsPoolEmpty();
@@ -41,13 +41,11 @@ public:
 	//shakes the camera whenever the station is hurt (aaaahh)
 	void DoCameraShake( );
 	
-	void enable();
-	void disable();
+	virtual void enable();
+	virtual void disable();
 	void createUI();
 	void addImages();
 	void removeImages();
-
-	void declareUIData();
 
 	void createPowerPool();
 	void createScrollbar();
@@ -72,8 +70,6 @@ public:
 private:	
 	//checks if the new value can be matched (cannot be lower than 0 or higher than the total energy in our pool) and then updates the value of the station's energy pool.
 	void UpdateStationPower(StationType, int newValue );
-
-	Interface* _interface;
 
 	MyEventReceiver* receiver;
 };

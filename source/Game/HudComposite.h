@@ -12,10 +12,10 @@
 class HudComposite : public Composite
 {
 public:
-	HudComposite(Core*, int* health, int* power, irr::core::rect<irr::s32> buttonPos, std::string* helpText); //this change was necessary to get the game IGUIEnviroment
+	HudComposite(Core*, Interface*, int* health, int* power, irr::core::rect<irr::s32> buttonPos, std::string* helpText); //this change was necessary to get the game IGUIEnviroment
 	~HudComposite(); 
 
-	virtual void onAdd();
+	virtual void init();
 
 	HealthBar* energyBar;
 	HealthBar* healthBar;
@@ -24,6 +24,7 @@ public:
 	irr::gui::IGUIEnvironment* guiEnviroment;
 private:
 	Core* _core;
+	Interface* _interface;
 };
 
 #endif

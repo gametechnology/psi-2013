@@ -5,15 +5,9 @@ using namespace irr;
 Shipmap::Shipmap(Core* core, Scene* scene): _scene(scene), GameObject()
 {
 	_core = core;
-
-	init();
 }
 
 Shipmap::~Shipmap()
-{
-}
-
-void Shipmap::onAdd()
 {
 }
 
@@ -242,8 +236,6 @@ void Shipmap::update()
 	}
 
 	then = now;
-
-	draw();
 }
 
 void Shipmap::enterStation(StationType station) {
@@ -251,5 +243,5 @@ void Shipmap::enterStation(StationType station) {
 	packet << station;
 	Network::GetInstance()->SendPacket(packet, true);
 
-	//this->_scene->switchStation(station);
+	dynamic_cast<GameScene*>(_scene)->switchStation(station);
 }

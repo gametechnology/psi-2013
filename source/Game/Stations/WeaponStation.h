@@ -10,7 +10,7 @@ class WeaponStation : public Station
 public:
 	irr::core::vector3df rotationForeign;
 
-	WeaponStation(Core*, Ship*);
+	WeaponStation(Core*, Interface*, Ship*);
 	~WeaponStation();
 
 	void onAdd();

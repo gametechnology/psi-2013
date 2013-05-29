@@ -20,17 +20,11 @@ Ship::Ship(Core* core, Interface* ui, vector3df position, vector3df rotation) : 
 	_position = &position;
 	_rotation = &rotation;
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
-
-	init();
 }
 
-Ship::~Ship(void)
+Ship::~Ship()
 {
 	GameObject::~GameObject();
-}
-
-void Ship::onAdd() {
-
 }
 
 void Ship::init() 
@@ -48,11 +42,17 @@ void Ship::init()
 	env = _core->getGuiEnv();
 	_currentStation = NULL;
 
-	addComponent(_defenceStation = new DefenceStation(_core, this));
-	addComponent(_helmStation = new HelmStation(_core, this));
-	addComponent(_navigationStation = new NavigationStation(_core, this));
-	addComponent(_weaponStation	= new WeaponStation(_core, this));
-	addComponent(_powerStation = new PowerStation(_core, this, _interface));
+	_defenceStation = new DefenceStation(_core, _interface, this);
+	_helmStation = new HelmStation(_core, _interface, this);
+	_navigationStation = new NavigationStation(_core, _interface, this);
+	_weaponStation	= new WeaponStation(_core, _interface, this);
+	_powerStation = new PowerStation(_core, _interface, this);
+
+	addComponent(_defenceStation);
+	addComponent(_helmStation);
+	addComponent(_navigationStation);
+	addComponent(_weaponStation);
+	addComponent(_powerStation);
 
 	_defenceStation->init();
 	_helmStation->init();
@@ -66,7 +66,7 @@ void Ship::init()
 	_weaponStation->disable();
 	_powerStation->disable();
 
-	
+
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
 	_thrusters[1] = new Thruster(vector3df(0,-2, 4), vector3df(0, 4, 4 ));
@@ -81,6 +81,10 @@ void Ship::init()
 	irr::core::stringw strNavigationHealth		= "Navigation Station health: "		+ _navigationStation-> getHealth();
 	irr::core::stringw strPowerHealth			= "Power Station health: "			+ _powerStation->getHealth();
 	irr::core::stringw strWeaponHealth			= "Weapon Station health: "			+ _weaponStation->getHealth();
+
+	//Todo: Remove debug info from helptext!
+	help = new HudHelpText(_core, _interface, "Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
+	addComponent(help);
 
 	shipHealth = env->addStaticText(strShipHealth.c_str(), rect<s32>(40,  80, 300, 100), false);	
 	shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
@@ -100,18 +104,12 @@ void Ship::init()
 	weaponStationHealth = env->addStaticText(strWeaponHealth.c_str(), rect<s32>(40, 180, 300, 200), false);	
 	weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 
-	
-	//Todo: Remove debug info from helptext!
-	help = new HudHelpText(_core, _interface, L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
-	addComponent(help);
-	help->init();
 	//Todo: Reset the helptext to above text when you leave a station without entering another!
 	GameObject::init();
 }
 
 Station *Ship :: GetStation( StationType s )
 {
-
 	switch( s )
 	{
 	case ST_DEFENCE:
@@ -173,6 +171,10 @@ void Ship :: update()
 	}
 }
 
+void Ship::draw()
+{
+}
+
 Thruster** Ship :: GetThrusters()
 {
 	return this->_thrusters;
@@ -180,7 +182,7 @@ Thruster** Ship :: GetThrusters()
 
 void Ship :: CheckChangeInput()
 {
-	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_1))
+	/*if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_1))
 		SwitchToStation(ST_DEFENCE);
 
 	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_2))
@@ -193,26 +195,21 @@ void Ship :: CheckChangeInput()
 		SwitchToStation(ST_NAVIGATION);
 
 	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_5))
-		SwitchToStation(ST_POWER);
+		SwitchToStation(ST_POWER);*/
 }
 
 //Swith to a specific station
-void Ship :: SwitchToStation(StationType stationType)
+void Ship :: SwitchToStation(StationType stationType, Player* player)
 {
-	//Check if we are already on this station
 	if (_currentStation != NULL)
 	{
 		if (_currentStation->GetStationType() == stationType)
 			return;
-
-		//First remove the currentStation from the shipComponents
 		_currentStation->disable();
 	}
 
-	//Find the new station
 	_currentStation = GetStation(stationType);
-
-	//Init and add the new station
+	_currentStation->setPlayerOccupation(player);
 	_currentStation->enable();
 }
 
@@ -266,28 +263,28 @@ void Ship::fireLaser()
 
 void Ship::handleNetworkMessage(NetworkPacket packet)
 {
-		
+
 	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
 	{
 		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
-			irr::core::vector3df position;
-			irr::core::vector3df rotation;
-			irr::core::vector3df velocity;
-			irr::core::vector3df acceleration;
-			irr::core::vector3df angularAcceleration;
-			irr::core::vector3df angularVelocity;
-			packet >> position;
-			packet >> rotation;
-			packet >> velocity;
-			packet >> acceleration;
-			packet >> angularAcceleration;
-			packet >> angularVelocity;
-			*_acceleration = acceleration;
-			*_angularAcceleration = angularAcceleration;
-			*_angularVelocity = angularVelocity;
-			*_position = position;
-			*_velocity = velocity;
-			
+		irr::core::vector3df position;
+		irr::core::vector3df rotation;
+		irr::core::vector3df velocity;
+		irr::core::vector3df acceleration;
+		irr::core::vector3df angularAcceleration;
+		irr::core::vector3df angularVelocity;
+		packet >> position;
+		packet >> rotation;
+		packet >> velocity;
+		packet >> acceleration;
+		packet >> angularAcceleration;
+		packet >> angularVelocity;
+		*_acceleration = acceleration;
+		*_angularAcceleration = angularAcceleration;
+		*_angularVelocity = angularVelocity;
+		*_position = position;
+		*_velocity = velocity;
+
 		//Apply updates 
 		if(_currentStation != NULL && _currentStation->GetStationType() == ST_WEAPON){
 			((WeaponStation*)_currentStation)->rotationForeign = rotation;
@@ -295,11 +292,11 @@ void Ship::handleNetworkMessage(NetworkPacket packet)
 		else{
 			//Read the information from the network packet
 			*_rotation = rotation;
-			
-		
-			
-			
-			
+
+
+
+
+
 		}
 	}
 }

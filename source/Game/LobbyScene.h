@@ -18,8 +18,9 @@ public:
 	LobbyScene(Core* core, Interface* ui, std::list<Player*>);
 	~LobbyScene();
 
-	void init();
-	void update();
+	virtual void init();
+	virtual void update();
+	virtual void draw();
 
 	virtual void requestNextScene();
 	virtual void requestPreviousScene();

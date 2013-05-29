@@ -1,9 +1,11 @@
 #include <Engine\BillboardComponent.h>
 
-BillboardComponent::BillboardComponent(irr::scene::ISceneManager* smgr, irr::core::vector3df position, irr::core::dimension2df size) : Component("BillboardNode")
+BillboardComponent::BillboardComponent(irr::scene::ISceneManager* smgr, irr::core::vector3df* position, irr::core::dimension2df size) : Component("BillboardNode")
 {
 	_size = size;
-	createBillboardNode(position);
+	_position = *position;
+	_smgr = smgr;
+	createBillboardNode();
 }
 
 BillboardComponent::~BillboardComponent()
@@ -17,8 +19,8 @@ void BillboardComponent::setTexture(irr::video::IVideoDriver* driver, std::strin
 	_node->setMaterialTexture(0, driver->getTexture(texturePath.c_str()));
 }
 
-void BillboardComponent::createBillboardNode(irr::core::vector3df position) {
-	_node = _smgr->addBillboardSceneNode(0, _size, position);
+void BillboardComponent::createBillboardNode() {
+	_node = _smgr->addBillboardSceneNode(0, _size, _position);
 	
 	// Setting materials
 	_node->setMaterialFlag(irr::video::EMF_LIGHTING, false);

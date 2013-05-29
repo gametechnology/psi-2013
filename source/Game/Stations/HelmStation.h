@@ -13,7 +13,7 @@
 class HelmStation : public Station 
 {
 public:
-	HelmStation(Core* core, Ship *ship);
+	HelmStation(Core*, Interface*, Ship*);
 	~HelmStation();
 	void update();
 

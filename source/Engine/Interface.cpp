@@ -42,6 +42,11 @@ void Interface::addListBox(s32 x, s32 y, s32 width, s32 height, s32 id, IGUIElem
 	_interfaceElements.push_back(_guiEnv->addListBox(rect<s32>(x, y, x+width, y+height), parent, id, showBackground));
 }
 
+void Interface::addScrollBar(bool horizontal, s32 x, s32 y, s32 width, s32 height, IGUIElement* parent, s32 id)
+{
+	_interfaceElements.push_back(_guiEnv->addScrollBar(horizontal, rect<s32>(x, y, x+width, y+height), parent, id));
+}
+
 void Interface::addWindow(s32 x, s32 y, s32 width, s32 height, bool blocking, const wchar_t* text, IGUIElement* parent, s32 id)
 {
 	_interfaceElements.push_back(_guiEnv->addWindow(rect<s32>(x, y, x+width, y+height), blocking, text, parent, id));

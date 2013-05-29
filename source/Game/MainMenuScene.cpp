@@ -51,6 +51,11 @@ void MainMenuScene::update()
 	}
 }
 
+void MainMenuScene::draw()
+{
+	Scene::draw();
+}
+
 void MainMenuScene::requestNextScene()
 {
 	if(Network::GetInstance()->IsServer()) 

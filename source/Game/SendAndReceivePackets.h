@@ -17,7 +17,7 @@ class Laser;
 * Statics are evil, for the love of god; refactor this.
 */
 
-static class SendAndReceivePackets
+class SendAndReceivePackets
 {
 public:
 	static Core* core;

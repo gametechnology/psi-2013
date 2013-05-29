@@ -11,7 +11,7 @@
 class DefenceStation : public Station 
 {
 public:
-	DefenceStation(Core* core, Ship* ship);
+	DefenceStation(Core*, Interface*, Ship*);
 	~DefenceStation();
 	
 	void DoCameraShake();
@@ -20,11 +20,10 @@ public:
 
 	Station *station;
 
-	void enable();
-	void disable();
-
-	void OnEnabled();
-	void OnDisabled();
+	virtual void enable();
+	virtual void disable();
+	virtual void update();
+	virtual void init();
 };
 
 #endif

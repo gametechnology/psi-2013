@@ -7,7 +7,9 @@ using namespace irr::core;
 NetworkPacket packet(SERVER_ENEMY);
 
 // Constructor
-SectorTemplate::SectorTemplate(Core* core, SectorManager* sectormanager, std::string skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : Composite("SectorTemplate") {
+SectorTemplate::SectorTemplate(Core* core, SectorManager* sectormanager, std::string skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : Composite("SectorTemplate") 
+{
+	_core = core;
 	_sectormanager = sectormanager;	
 	_skyboxPath = skyBoxTexture;
 
@@ -26,7 +28,7 @@ SectorTemplate::SectorTemplate(Core* core, SectorManager* sectormanager, std::st
 
 void SectorTemplate::init() 
 {
-	addComponent(new Skybox(_core->getSmgr(), _core->getDriver(), _skyboxPath));
+	_core->getActiveScene()->addComponent(new Skybox(_core->getSmgr(), _core->getDriver(), _skyboxPath));
 	addComponent(_fog );
 
 	if(Network::GetInstance()->IsServer())
@@ -34,6 +36,7 @@ void SectorTemplate::init()
 		createEnemies();
 		SendAndReceivePackets::sendEnemyPacket(_enemyList);
 	}
+
 	Composite::init();
 }
 
@@ -42,16 +45,12 @@ void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ) {
 	
 	for(unsigned int i = 0; i < amountOfWormHoles; i++) 
 	{
-		vector3df wormHolePos(1,0,0);
-		
-		wormHolePos = wormHolePos.setLength(10);
+		vector3df* wormHolePos = new vector3df(1,0,0);
 
-		f64 rotation = (PI * 360 / _wormHoles.size() ) * i;
+		wormHolePos->setLength((float)(rand() % int(_boundry* 0.2) + int(_boundry* 0.8)));
 
-		wormHolePos.rotateXZBy(rotation, vector3df( 0 ) );
-		wormHolePos = wormHolePos.setLength((float)(rand() % int(_boundry* 0.2) + int(_boundry* 0.8)));
-
-		addComponent(new BillboardComponent(_core->getSmgr(), wormHolePos, dimension2df(1, 1)));
+		_wormHoles.push_back(new BillboardComponent(_core->getSmgr(), wormHolePos, dimension2df(1, 1)));
+		addComponent(_wormHoles[i]);
 	}
 }
 

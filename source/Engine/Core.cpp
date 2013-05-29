@@ -39,6 +39,7 @@ void Core::draw(u32 alpha, u32 red, u32 green, u32 blue)
 	driver->beginScene(true, true, video::SColor(alpha, red, green, blue));
 	smgr->drawAll();
 	guiEnv->drawAll();
+	activeScene->draw();
 	driver->endScene();
 }
 

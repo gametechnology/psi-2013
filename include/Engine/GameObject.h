@@ -9,6 +9,8 @@ public:
 	GameObject();
 	virtual ~GameObject();
 
+	virtual void setEnabled(bool enabled);
+
 	virtual void addComponent(Component* component);
 	virtual void removeComponent(Component* component);
 

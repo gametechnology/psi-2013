@@ -8,7 +8,7 @@
 class NavigationStation : public Station
 {
 public:
-	NavigationStation(Core*, Ship* ship);
+	NavigationStation(Core*, Interface*, Ship*);
 	~NavigationStation();
 
 	void DoCameraShake();

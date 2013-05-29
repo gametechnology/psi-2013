@@ -8,9 +8,19 @@ Scene::Scene(const char* name) : Composite(name)
 	*/
 }
 
+void Scene::init()
+{
+	Composite::init();
+}
+
 void Scene::update()
 {
 	Composite::update();
+}
+
+void Scene::draw()
+{
+	Composite::draw();
 }
 
 void Scene::addComponent(Component* component)

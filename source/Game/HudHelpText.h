@@ -1,8 +1,6 @@
 #ifndef HUDHELPTEXT
 #define HUDHELPTEXT
 
-#include <string>
-#include <iostream>
 #include <Irrlicht/Irrlicht.h>
 #include <Engine/Component.h>
 #include <Engine/Core.h>
@@ -11,11 +9,13 @@
 class HudHelpText : public Component
 {
 public:
-	HudHelpText(Core*, Interface*, const wchar_t* helpText, irr::core::vector2df position, irr::core::vector2df size);
-	~HudHelpText(void); 
-	void update();
-	void draw();
-	void init();
+	HudHelpText(Core*, Interface*, std::string helpText, irr::core::vector2df position, irr::core::vector2df size);
+	~HudHelpText();
+
+	virtual void update();
+	virtual void draw();
+	virtual void init();
+
 	void setVisibility(bool visible);
 	bool isVisible();
 	void setHelpText(const wchar_t* text);

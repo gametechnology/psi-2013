@@ -6,7 +6,6 @@ using namespace irr::video;
 
 SectorHomeBase::SectorHomeBase(Core* core, SectorManager* sectormanager, std::string skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : SectorTemplate(core, sectormanager, skyBoxTexture,boundryRadius,amountWormHoles) {
 	_core = core;
-	init();
 }
 void SectorHomeBase::init(){
 	//TODO causes memory leak should create entity's
@@ -15,6 +14,8 @@ void SectorHomeBase::init(){
 
 	base->setPosition(new vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250)));
 	base->setRotation(new vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90)));
+
+	SectorTemplate::init();
 }
 
 void SectorHomeBase::update() {
@@ -33,7 +34,6 @@ SectorHomeBase::~SectorHomeBase() {
 BasePlaceholder::BasePlaceholder(Core* core) : GameObject() 
 {
 	_core = core;
-	init();	
 }
 
 void BasePlaceholder::init() {

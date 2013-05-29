@@ -2,11 +2,13 @@
 
 using namespace irr;
 
-Station::Station(Core* core, Ship *ship, int startHealth) : Composite("Station")
+Station::Station(Core* core, Interface* ui, Ship *ship, int startHealth) : Composite("Station")
 {
 	_core = core;
-
+	_interface = ui;
 	_ship = ship;
+
+	_player = NULL;
 
 	//Stations stats exist out of heath, power and shield
 	_healthComponent = new HealthComponent();
@@ -21,12 +23,14 @@ Station::Station(Core* core, Ship *ship, int startHealth) : Composite("Station")
 	helpTextString = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras fringilla consectetur mauris id rutrum. Vestibulum ante ipsum primis in faucibus.";
 }
 
-Station::Station(Core* core, Ship * ship) : Composite("Station")
+Station::Station(Core* core, Interface* ui, Ship * ship) : Composite("Station")
 {
 	_core = core;
-
+	_interface = ui;
 	_ship   = ship;
+
 	_tempTimer = 0;
+	_player = NULL;
 
 	//Stations stats exist out of heath, power and shield
 	_healthComponent = new HealthComponent();
@@ -46,14 +50,12 @@ Station::~Station()
 
 void Station::enable()
 {
-	setEnabled(true);
-	OnEnabled();
+	Composite::setEnabled(true);
 }
 
 void Station::disable()
 {
-	setEnabled(false);
-	OnDisabled();
+	Composite::setEnabled(false);
 }
 
 void Station::init() 
@@ -62,18 +64,13 @@ void Station::init()
 
 	driver = _core->getDriver();
 
-	_player = NULL;
 	_playerOnStationTime = 0;
 	_stunTime = 0;
 	_switchTime = 0;
 	_isOccupied = false;
 
-	//this->hud = new HudComposite(&(_healthComponent->health), &(_powerComponent->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
-	//this->addChild(hud);
-}
-
-void Station::onAdd()
-{
+	hud = new HudComposite(_core, _interface, &(_healthComponent->health), &(_powerComponent->power), irr::core::rect<irr::s32>(10,680,210,680 + 32), &helpTextString);
+	addComponent(hud);
 }
 
 void Station::draw()
@@ -120,8 +117,6 @@ void Station::resetPlayerOccupation()
 
 void Station::update()
 {
-	Composite::update();
-
 	if(_player != NULL)
 	{
 		if(_player->getCurrentStation() == _stationType)
@@ -143,6 +138,8 @@ void Station::update()
 	if (_core->getInput()->isKeyboardButtonDown(KEY_ESCAPE)){
 		// Load Shipmap
 	}
+
+	Composite::update();
 }
 
 void Station::handleMessage(unsigned int message,  void* data)

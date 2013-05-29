@@ -14,15 +14,20 @@ SectorManager::SectorManager(GameScene* gameScene, Core* core, GalaxyMap* map,Sh
 			_mapSector = (*it);
 		}
 	}
+
+	init();
 }
 
 void SectorManager::init() {
-	_activeSector = new SectorHomeBase(_core, this, "skybox02.png",2000.0,_mapSector->connections.size());
-	addComponent(_activeSector);
+	_activeSector = new SectorHomeBase(_core, this, "sky", 2000.0, _mapSector->connections.size());
+	addComponent(_activeSector);	
+
+	Composite::init();
 }
 
 void SectorManager::update()
 {
+	Composite::update();
 }
 
 void SectorManager::handleMessage(unsigned int message, void* data) {

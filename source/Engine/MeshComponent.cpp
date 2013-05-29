@@ -31,6 +31,11 @@ void MeshComponent::createAnimatedMeshNode(std::string modelPath)
 	_node->setMaterialFlag(irr::video::EMF_LIGHTING, false);
 }
 
+void MeshComponent::update()
+{
+	Component::update();
+}
+
 void MeshComponent::update(irr::core::vector3df* position, irr::core::vector3df* rotation)
 {
 	_node->setPosition(*position);

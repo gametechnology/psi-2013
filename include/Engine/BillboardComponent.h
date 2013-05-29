@@ -7,7 +7,7 @@
 
 class BillboardComponent : public Component {
 public:
-	BillboardComponent(irr::scene::ISceneManager* smgr, irr::core::vector3df position, irr::core::dimension2df size);
+	BillboardComponent(irr::scene::ISceneManager* smgr, irr::core::vector3df* position, irr::core::dimension2df size);
 	virtual ~BillboardComponent();
 
 	virtual void setTexture(irr::video::IVideoDriver* driver, std::string texturePath);
@@ -20,8 +20,9 @@ private:
 	irr::scene::ISceneNode* _node;
 
 	irr::core::dimension2df _size;
+	irr::core::vector3df _position;
 
-	void createBillboardNode(irr::core::vector3df position);
+	void createBillboardNode();
 };
 
 

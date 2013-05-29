@@ -11,12 +11,16 @@ public:
 
 	virtual void init() { };
 	virtual void update() { };
+	virtual void draw() { };
 	virtual void handleMessage(unsigned int, void* data = 0) { };
 
 	void setEnabled(bool enabled) { _enabled = enabled; };
 	bool isEnabled() { return _enabled; };
 protected:
-	Component(const char*) { };
+	Component(const char* name) { 
+		_name = name;
+		_enabled = true;
+	};
 private:
 	bool _enabled;
 	const char* _name;

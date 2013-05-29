@@ -56,11 +56,10 @@ public:
 
 	bool _sitOnStation;
 
-	void onAdd();
-	void init();
+	virtual void init();
 
-	void update();
-	void draw();
+	virtual void update();
+	virtual void draw();
 
 	void CheckChangeInput();
 
@@ -70,7 +69,7 @@ public:
 	int getShipHealth();
 	bool getShipDestroyed();
 
-	void SwitchToStation(StationType stationType);
+	void SwitchToStation(StationType stationType, Player*);
 
 	static ObjectPool<Laser>* laserPool;
 

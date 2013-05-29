@@ -1,6 +1,6 @@
 #include "NavigationStation.h"
 
-NavigationStation::NavigationStation(Core* core, Ship *ship) : Station(core, ship)
+NavigationStation::NavigationStation(Core* core, Interface* ui, Ship *ship) : Station(core, ui, ship)
 {
 	this->_stationType = ST_NAVIGATION;
 	this -> setStationDestroyed(false);

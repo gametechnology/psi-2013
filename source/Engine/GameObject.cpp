@@ -25,6 +25,11 @@ GameObject::~GameObject()
 	delete _radius;
 }
 
+void GameObject::setEnabled(bool enabled)
+{
+	Composite::setEnabled(enabled);
+}
+
 void GameObject::addComponent(Component* component)
 {
 	Composite::addComponent(component);
@@ -44,7 +49,7 @@ void GameObject::update()
 	*_velocity += *_acceleration;
 	*_position += *_velocity;
 
-	Component::update();
+	Composite::update();
 }
 
 void GameObject::init()
