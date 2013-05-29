@@ -22,7 +22,7 @@ public:
 	GalaxyMap(Core* core, irr::f32 width, irr::f32 height, irr::f32 radiusSector);
 	virtual ~GalaxyMap();
 
-	virtual void onAdd();
+	virtual void init();
 	void createMap(int sectorCount, int minWormholes, int maxWormholes);
 	void createStaticMap();
 	void loadMap();

@@ -26,15 +26,9 @@ void EnemyFighter::init()
 	Enemy::init();
 
 	inRangeList = std::vector<GameObject*>();
-	stateSwitch = new StateSwitchFighter(StateSwitchFighter::States::STATE_WANDER,this);
-}
+	stateSwitch = new StateSwitchFighter(StateSwitchFighter::STATE_WANDER,this);
 
-void EnemyFighter::onAdd() 
-{
-	Enemy::onAdd();
-	
 	setMesh("../assets/Models/Space_Fighter.dae");
-
 	this->_fireTime = 0;
 }
 
@@ -50,7 +44,7 @@ void EnemyFighter::update()
 	// Ugly hack. 
 	/*if(game->input->isKeyboardButtonPressed(irr::KEY_KEY_M))
 	{
-		this->fireLaserAt(vector3df(200));
+	this->fireLaserAt(vector3df(200));
 	}*/
 
 	EnemyFighter::inRangeList.clear();

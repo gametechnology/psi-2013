@@ -13,7 +13,7 @@ EnemyManager::~EnemyManager()
 
 }
 
-void EnemyManager::onAdd() {
+void EnemyManager::init() {
 	createEnemies();
 }
 
@@ -35,8 +35,6 @@ void EnemyManager::createEnemies()
 	EnemyDrone* kamikaze3;
 	EnemyDrone* kamikaze4;
 	EnemyDrone* kamikaze5;
-
-	EnemyDrone* test;
 
 	drone1 = new EnemyDrone(_smgr, vector3df(0,0,40));
 	drone1->setVelocity(&vector3df(0.0005f,0,0));

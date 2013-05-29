@@ -23,6 +23,7 @@ class Enemy : public GameObject
 public:
 	static int newEnemyId;
 
+	Enemy();
 	Enemy(irr::scene::ISceneManager*);
 	~Enemy();
 
@@ -35,7 +36,6 @@ public:
 	};
 
 	virtual void init();
-	virtual void onAdd();
 
 	bool isWithinLoS(/*playership class*/);
 
@@ -89,6 +89,7 @@ public:
 protected:
 	EnemyType _type;
 private:
+	MeshComponent* component;
 	irr::scene::ISceneManager* _smgr;
 	void applySpeed();
 

@@ -60,7 +60,7 @@ vector3df ShipMover::LocalToWorld(vector3df* local, matrix4* rMatrix)
 void ShipMover::NotMovementStuff(){
 	BasicMoverComponent::update();
 
-	NetworkPacket movementPacket = NetworkPacket(PacketType::CLIENT_SHIP_MOVEMENT);
+	NetworkPacket movementPacket = NetworkPacket(CLIENT_SHIP_MOVEMENT);
 
 	movementPacket << _parent->getPosition();
 	movementPacket << _parent->getRotation();

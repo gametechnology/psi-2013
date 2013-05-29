@@ -14,7 +14,6 @@ public:
 	~EnemyDrone(void);
 
 	virtual void init();
-	void onAdd();
 	virtual void handleMessage(unsigned int, void* data = 0) { };
 
 	virtual void chase(irr::core::vector3df target);

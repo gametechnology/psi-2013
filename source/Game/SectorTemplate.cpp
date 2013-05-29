@@ -59,8 +59,8 @@ int timer = 0;
 void SectorTemplate::update()
 {
 	if( _sectormanager->getShip()->getPosition()->getLength() > _boundry ){
-		printf("\n OUT OF BOUNDS!");
-	}
+		//printf("\n OUT OF BOUNDS!"); < ---- This is always printing. Very annoying.
+ 	}
 
 	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
 		irr::core::vector3df deltaPos = *_wormHoles[i]->getPosition() - *_sectormanager->getShip()->getPosition();
@@ -89,7 +89,7 @@ void SectorTemplate::handleNetworkMessage(NetworkPacket packet)
 {
 	if(packet.GetType() == SERVER_ENEMY)
 	{
-		_enemyList = SendAndReceivePackets::receiveEnemyPacket(packet, NULL, _enemyList);
+		_enemyList = SendAndReceivePackets::receiveEnemyPacket(packet, _core->getActiveScene(), _enemyList);
 	}
 }
 

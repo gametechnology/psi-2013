@@ -91,7 +91,6 @@ void LobbyScene::handleNetworkMessage(NetworkPacket packet)
 {
 	int lenght;
 	int team;
-	unsigned int ipclientaffect;
 	unsigned int checksum;
 
 	Player* newplayer;

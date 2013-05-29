@@ -26,7 +26,7 @@ void PowerStationData :: UpdatePowerUsage(StationType s, int newValue)
 	
 	station->updatePower(newValue);
 
-	NetworkPacket packet(PacketType::CLIENT_POWER_CHANGED);
+	NetworkPacket packet(CLIENT_POWER_CHANGED);
 	packet << s << newValue;
 	Network::GetInstance()->SendPacket(packet, true);
 }

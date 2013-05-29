@@ -47,8 +47,6 @@ void Core::update(s32 duration)
 {
 	collisionSystem->update();
 	activeScene->update();
-
-	Network::GetInstance()->DistributeReceivedPackets();
 }
 
 void Core::addCustomReceiver(irr::IEventReceiver* receiver)

@@ -25,7 +25,7 @@ void SendAndReceivePackets::sendEnemyPacket(std::vector<Enemy*> enemyList, const
 }
 
 std::vector<Enemy*> SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& packet, Scene* scene, 
-	std::vector<Enemy*> enemyList)
+															  std::vector<Enemy*> enemyList)
 {
 	if(!Network::GetInstance()->IsServer())
 	{
@@ -44,7 +44,7 @@ std::vector<Enemy*> SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& pac
 					isAtServer = true;
 				}
 			}
-				
+
 			if(!isAtServer)
 			{
 				Enemy* enemy = enemyList[j];
@@ -106,73 +106,66 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& pac
 	std::vector<Laser> serverList;
 	packet >> serverList;
 
-	/*for(unsigned i = 0; i < serverList.size(); i++)
+	for(unsigned i = 0; i < serverList.size(); i++)
 	{
 		for(unsigned j = 0; j < laserList.size(); j++)
 		{
 			if(serverList[i].getId() == laserList[j]->getId())
 			{
-				if(laserList[j]->scene != scene)
+				if(laserList[j]->getScene() != scene)
 				{
-					laserList[j]->scene->removeChild(laserList[j], false);
-					scene->addChild(laserList[j]);
+					laserList[j]->getScene()->removeComponent(laserList[j]);
+					scene->addComponent(laserList[j]);
 				}
 
-				if(serverList[i].enabled)
+				if(serverList[i].isEnabled())
+					laserList[j]->setEnabled(true);
+				else
 				{
-					laserList[j]->enable();
-				}else
-				{
-					laserList[j]->disable();
-					for(unsigned k = 0; k < laserList[j]->children.size(); k++)
-					{
-						laserList[j]->children[k]->update();
-					}
+					laserList[j]->setEnabled(false);
+					laserList[j]->update();
 				}
 
-				*laserList[j]->transform->position = *serverList[i].transform->position;
-				*laserList[j]->transform->velocity = *serverList[i].transform->velocity;
-				*laserList[j]->transform->rotation = *serverList[i].transform->rotation;
+				laserList[j]->setPosition(serverList[i].getPosition());
+				laserList[j]->setVelocity(serverList[i].getVelocity());
+				laserList[j]->setRotation(serverList[i].getRotation());
 
 			}
 		}
-	}*/
-
+	}
 	return laserList;
 }
 
-std::vector<Laser*> SendAndReceivePackets::receiveLaserPacketFromClient(NetworkPacket& packet, std::vector<Laser*> laserList, Scene* scene)
+std::vector<Laser*> SendAndReceivePackets::receiveLaserPacketFromClient(NetworkPacket& packet, std::vector<Laser*> laserList, Scene* scene, irr::scene::ISceneManager* smgr)
 {
-	Laser clientLaser();
-	/*packet >> clientLaser;
+	Laser clientLaser = Laser(smgr);
+	packet >> clientLaser;
 	for(unsigned j = 0; j < laserList.size(); j++)
 	{
 		if(clientLaser.getId() == laserList[j]->getId())
 		{
-			if(laserList[j]->scene != scene)
+			if(laserList[j]->getScene() != scene)
 			{
-				laserList[j]->scene->removeChild(laserList[j], false);
-				scene->addChild(laserList[j]);
+				// This will crash. If the active Laser Scene is not the current scene of the client
+				// it will mean that that scene does not exist for this client
+				// so removing components of that scene will result in a null pointer.
+				laserList[j]->getScene()->removeComponent(laserList[j]);
+				scene->addComponent(laserList[j]);
 			}
 
-			if(clientLaser.enabled)
+			if(clientLaser.isEnabled())
+				laserList[j]->setEnabled(true);
+			else
 			{
-				laserList[j]->enable();
-			}else
-			{
-				laserList[j]->disable();
-				for(unsigned k = 0; k < laserList[j]->children.size(); k++)
-				{
-					laserList[j]->children[k]->update();
-				}
+				laserList[j]->setEnabled(false);
+				laserList[j]->update();
 			}
 
-			*laserList[j]->transform->position = *clientLaser.transform->position;
-			*laserList[j]->transform->velocity = *clientLaser.transform->velocity;
-			*laserList[j]->transform->rotation = *clientLaser.transform->rotation;
-
+			laserList[j]->setPosition(clientLaser.getPosition());
+			laserList[j]->setVelocity(clientLaser.getVelocity());
+			laserList[j]->setRotation(clientLaser.getRotation());
 		}
-	}*/
+	}
 
 	return laserList;
 }
@@ -237,23 +230,24 @@ sf::Packet& operator <<(sf::Packet& out, std::vector<Enemy*>& in)
 	return out;
 }
 
+
+
 sf::Packet& operator >>(sf::Packet& in, std::vector<Enemy>& out)
 {
-	/*int size;
+	int size;
 	in >> size;
 	for(int i = 0; i < size; i++)
 	{
-		Enemy enemy;
-		in >> enemy;
-		out.push_back(enemy);
-	}*/
+		Enemy* enemy = new Enemy();
+		in >> *enemy;
+		out.push_back(*enemy);
+	}
 	return in;
 }
 
 sf::Packet& operator <<(sf::Packet& out, Laser& in)
 {
-	return out;
-	//return out << in.getId() << in.enabled << *in.transform->position << *in.transform->velocity << *in.transform->rotation;
+	return out << in.getId() << in.isEnabled() << *in.getPosition() << *in.getVelocity() << *in.getRotation();
 }
 
 sf::Packet& operator >>(sf::Packet& in, Laser& out)
@@ -268,20 +262,15 @@ sf::Packet& operator >>(sf::Packet& in, Laser& out)
 	in >> id >> enabled >> position >> velocity >> rotation;
 
 	out.setId(id);
-	/*if(enabled)
+	if(enabled)
 	{
-		out.enable();
+		out.setEnabled(true);
 	}else
 	{
-		out.disable();
-		for(unsigned int i = 0; i < out.children.size(); i++)
-		{
-			if(dynamic_cast<IrrlichtNode*>(out.children[i]) != NULL)
-			{
-				out.children[i]->update();
-			}
-		}
-	}*/
+		out.setEnabled(false);
+		out.update();
+	}
+
 	out.setPosition(&position);
 	out.setVelocity(&velocity);
 	out.setRotation(&rotation);
@@ -299,15 +288,16 @@ sf::Packet& operator <<(sf::Packet& out, std::vector<Laser*>& in)
 	return out;
 }
 
+Laser laser;
+
 sf::Packet& operator >>(sf::Packet& in, std::vector<Laser>& out)
 {
-	/*int size;
+	int size;
 	in >> size;
 	for(int i = 0; i < size; i++)
 	{
-		Laser laser;
 		in >> laser;
 		out.push_back(laser);
-	}*/
+	}
 	return in;
 }

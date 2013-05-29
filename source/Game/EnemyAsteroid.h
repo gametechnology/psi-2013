@@ -13,7 +13,6 @@ public:
 	~EnemyAsteroid();
 	
 	virtual void init();
-	void onAdd();
 	virtual void handleMessage(unsigned int, void* data = 0) { };
 };
 

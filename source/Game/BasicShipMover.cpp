@@ -49,7 +49,7 @@ void BasicShipMover::update() {
 		roll(-1.0);
 
 	//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
-	NetworkPacket movementPacket = NetworkPacket(PacketType::CLIENT_SHIP_MOVEMENT);
+	NetworkPacket movementPacket = NetworkPacket(CLIENT_SHIP_MOVEMENT);
 	//movementPacket << id; // ID van het ship
 	movementPacket << *_ship->getPosition();
 	movementPacket << *_ship->getRotation();

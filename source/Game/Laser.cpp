@@ -6,6 +6,10 @@ using namespace irr::core;
 
 int Laser::newLaserId = 0;
 
+Laser::Laser()
+{
+}
+
 Laser::Laser(irr::scene::ISceneManager* smgr) : GameObject()
 {
 	_currentLife = 0;
@@ -14,13 +18,7 @@ Laser::Laser(irr::scene::ISceneManager* smgr) : GameObject()
 	_hasAnIrrlichtNode = false;
 	_id = newLaserId++;
 	_smgr = smgr;
-
-	init();
-}
-
-void Laser::onAdd() 
-{
-
+	setEnabled(false);
 }
 
 void Laser::init() 
@@ -38,6 +36,7 @@ Laser::~Laser()
 
 void Laser::fire(vector3df* position, vector3df* rotation, vector3df target, f32 speed)
 {
+	setEnabled(true);
 	_position = position;
 	_rotation = rotation;
 	_rotation += 90;
@@ -64,16 +63,26 @@ void Laser::update()
 	GameObject::update();
 }
 
+void Laser::setScene(Scene& scene)
+{
+	_scene = &scene;
+}
+
+Scene* Laser::getScene()
+{
+	return _scene;
+}
+
 void Laser::contactResolverA(Enemy* input)
 {
 	input->setHealth(input->getHealth() - this->_damage);
 	std::printf("HIT on Enemy!");
-	delete this;
+	setEnabled(false);
 }
 
 void Laser::contactResolverA(DefenceStation* input)
 {
 	input->Damage();
 	std::printf("HIT on Defence station!");
-	delete this;
+	setEnabled(false);
 }

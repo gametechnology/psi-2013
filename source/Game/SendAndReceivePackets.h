@@ -35,7 +35,7 @@ public:
 	//send and receive laser packets
 	static void sendLazerPacket(std::vector<Laser*> laserList, const bool reliable = false);
 	static std::vector<Laser*> receiveLaserPacket(NetworkPacket& packet, std::vector<Laser*> laserList, Scene* scene);
-	static std::vector<Laser*> SendAndReceivePackets::receiveLaserPacketFromClient(NetworkPacket& packet, std::vector<Laser*> laserList, Scene* scene);
+	static std::vector<Laser*> receiveLaserPacketFromClient(NetworkPacket& packet, std::vector<Laser*> laserList, Scene* scene, irr::scene::ISceneManager*);
 
 	static void sendWinLosePacket(int LosingteamId);
 	static void receiveWinLosePacket(NetworkPacket& packet, int teamId, Scene* currentScene);

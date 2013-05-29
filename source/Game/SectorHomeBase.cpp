@@ -39,7 +39,7 @@ BasePlaceholder::BasePlaceholder(Core* core) : GameObject()
 void BasePlaceholder::init() {
 	PrimitiveComponent* cube;
 
-	cube = new PrimitiveComponent(_core->getSmgr(), PrimitiveComponent::PrimitiveType::PRIM_CUBE, 2, 
+	cube = new PrimitiveComponent(_core->getSmgr(), PrimitiveComponent::PRIM_CUBE, 2, 
 		vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750)));
 
 	addComponent(cube);

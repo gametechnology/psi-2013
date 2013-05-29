@@ -12,12 +12,12 @@ GalaxyMap::GalaxyMap(Core* core, irr::f32 width, irr::f32 height, irr::f32 radiu
 	_core = core;
 }
 
-void GalaxyMap::onAdd(){
+void GalaxyMap::init(){
 	for(std::list<MapSector*>::iterator it = sectors.begin(); it != sectors.end(); it++)
 	{
 		addComponent((*it));
 	}
-	onAdd();
+	GameObject::init();
 }
 
 void GalaxyMap::loadMap()

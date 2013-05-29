@@ -20,16 +20,9 @@ EnemyDrone::EnemyDrone(irr::scene::ISceneManager* smgr, vector3df position) : En
 void EnemyDrone::init()
 {
 	Enemy::init();
-
-	EnemyDrone::inRangeList = std::vector<GameObject*>();
-	EnemyDrone::stateSwitch = new StateSwitchDrone(StateSwitchDrone::States::STATE_WANDER, this);
-}
-
-void EnemyDrone::onAdd()
-{
-	Enemy::onAdd();
-
 	setMesh("../assets/Models/Space_Drone.dae");
+	EnemyDrone::inRangeList = std::vector<GameObject*>();
+	EnemyDrone::stateSwitch = new StateSwitchDrone(StateSwitchDrone::STATE_WANDER, this);
 }
 
 EnemyDrone::~EnemyDrone(void)

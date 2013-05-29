@@ -1,9 +1,9 @@
 #ifndef OBJECT_POOL_H
 #define OBJECT_POOL_H
 
-#include <Engine/GameObject.h>
-
 #include "NetworkInterface.h"
+
+class Scene;
 
 template<class T> class ObjectPool 
 {
@@ -33,7 +33,7 @@ public:
 
 	ObjectPool() {};
 
-	ObjectPool(Composite& parent, irr::scene::ISceneManager* smgr, int count)
+	ObjectPool(Scene& parent, irr::scene::ISceneManager* smgr, int count)
 	{
 		_objectList = std::vector<T*>();
 		_objectCount = count;
@@ -41,6 +41,7 @@ public:
 		for(int i = 0; i < _objectCount; i++)
 		{
 			_objectList.push_back(new T(smgr));
+			_objectList.back()->setScene(parent);
 			_objectList.back()->setEnabled(false);
 			parent.addComponent(_objectList.back());
 		}

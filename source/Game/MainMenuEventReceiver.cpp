@@ -39,7 +39,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 				ipadress[wcslen(inputwchar)] = 0;
 
 				portInput = context.u_interface->getElementWithId(PORT_INPUT_BOX)->getText();
-				port = atof(portInput.c_str());
+				port = atoi(portInput.c_str());
 
 				namewchar = (wchar_t*)context.u_interface->getElementWithId(NAME_INPUT_BOX)->getText();
 				playername = (char*)malloc(wcslen(namewchar)+ 1);

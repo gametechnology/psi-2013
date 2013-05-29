@@ -23,7 +23,6 @@ public:
 	{
 		for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
 		{
-			std::cout << "Currently updating enabled state of: " << (*i)->getName() << " from: " << (*i)->isEnabled() << " to: " << enabled << std::endl;
 			(*i)->setEnabled(enabled);
 		}
 

@@ -18,13 +18,7 @@ EnemyPlayer::EnemyPlayer(irr::scene::ISceneManager* smgr, vector3df position, ve
 
 void EnemyPlayer::init()
 {
-	
-}
-
-void EnemyPlayer::onAdd()
-{
-	Enemy::onAdd();
-
+	Enemy::init();
 	setMesh("../assets/Models/Space_Fighter.dae");
 }
 

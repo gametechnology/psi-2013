@@ -172,7 +172,7 @@ void PowerStation::createCurrentSelectedStationText()
 void PowerStation::update()
 {
 	Station::update();
-	std::cout<<isEnabled();
+
 	int helm = context.GetPower(ST_HELM);
 	int defence	= context.GetPower(ST_DEFENCE);
 	int weapon = context.GetPower(ST_WEAPON);

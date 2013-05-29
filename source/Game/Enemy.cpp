@@ -5,7 +5,12 @@ using namespace irr::core;
 
 int Enemy::newEnemyId = 0;
 
-Enemy::Enemy(irr::scene::ISceneManager* smgr): GameObject()
+Enemy::Enemy() : GameObject()
+{
+
+}
+
+Enemy::Enemy(irr::scene::ISceneManager* smgr) : GameObject()
 {
 	_smgr = smgr;
 }
@@ -21,10 +26,6 @@ void Enemy::init()
 	{
 		this->_id = this->newEnemyId++;
 	}
-}
-
-void Enemy::onAdd()
-{
 }
 
 int Enemy::getId()
@@ -198,9 +199,9 @@ void Enemy::steering(vector3df rotational, vector3df playerPos)
 
 void Enemy::setMesh(std::string path)
 {
-	MeshComponent component(_smgr);
-	addComponent(&component);
-	component.createMeshNode(path);
+	component = new MeshComponent(_smgr);
+	addComponent(component);
+	component->createMeshNode(path);
 }
 void Enemy::setPath(vector3df destination)
 {
@@ -359,7 +360,6 @@ void Enemy::wander()
 }
 
 
-Enemy::~Enemy(void)
+Enemy::~Enemy()
 {
-	GameObject::~GameObject();
 }

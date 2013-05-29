@@ -43,7 +43,7 @@ void AstroidPlaceholder::onAdd()
 {
 	PrimitiveComponent* sphere;
 	
-	sphere = new PrimitiveComponent(_core->getSmgr(), PrimitiveComponent::PrimitiveType::PRIM_SPHERE, 2, 
+	sphere = new PrimitiveComponent(_core->getSmgr(), PrimitiveComponent::PRIM_SPHERE, 2, 
 		vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750)));
 
 	addComponent(sphere);

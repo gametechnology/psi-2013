@@ -299,7 +299,7 @@ void Network::DistributeReceivedPackets()
 {
 	_mutex.lock();
 
-	std::vector<NetworkPacket>::const_iterator iterator;
+	std::vector<NetworkPacket>::iterator iterator;
 
 	for (iterator = _receivedPackets.begin(); iterator != _receivedPackets.end(); ++iterator) {		
 		this->DistributePacket(*iterator);

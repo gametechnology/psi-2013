@@ -20,7 +20,6 @@ public:
 	void fireLaserAt(irr::core::vector3df target);
 	
 	virtual void init();
-	virtual void onAdd();
 	virtual void update();
 
 	virtual void handleMessage(unsigned int, void* data = 0) { };

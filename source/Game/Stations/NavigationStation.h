@@ -15,9 +15,8 @@ public:
 
 	void enable();
 	void disable();
-
-	void OnEnabled();
-	void OnDisabled();
+private:
+	CameraComponent* _navCamera;
 };
 
 #endif

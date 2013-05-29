@@ -57,7 +57,7 @@ void GameScene::init() {
 }
 
 void GameScene::update() {
-	if(Network::GetInstance()->IsServer())
+	/*if(Network::GetInstance()->IsServer())
 	{
 		this->_sendLasersTimer++;
 		if(this->_sendLasersTimer > 50)
@@ -65,17 +65,17 @@ void GameScene::update() {
 			SendAndReceivePackets::sendLazerPacket(this->_laserPool->getAllObjects());
 			this->_sendLasersTimer = 0;
 		}
-		/*
+		
 		TODO:
 		Edit code below to make it send a winlose packet when one of the ship reaches health of 0
 		and give the right team id as the parameter
-		*/
+		
 		if(_core->getInput()->isKeyboardButtonDown(KEY_KEY_Z) || _ship->getShipHealth() <= 0 || _shipEnemy->getShipHealth() <= 0)
 		{
 			SendAndReceivePackets::sendWinLosePacket(1);
 			SendAndReceivePackets::handleWinLose(1, 2, this);
 		}
-	}
+	}*/
 
 	Scene::update();
 }
@@ -133,7 +133,7 @@ void GameScene::handleNetworkMessage(NetworkPacket packet)
 		}
 		break;
 	case CLIENT_FIRE_LASER:
-		_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacketFromClient(packet, _laserPool->getAllObjects(), this));
+		_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacketFromClient(packet, _laserPool->getAllObjects(), this, _core->getSmgr()));
 	}
 }
 

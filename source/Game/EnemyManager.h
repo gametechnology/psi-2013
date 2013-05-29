@@ -18,8 +18,10 @@ class EnemyManager : public Composite
 		~EnemyManager();
 
 		void createEnemies();
-		virtual void onAdd();
+		
+		virtual void init();
 		virtual void update();
+
 		void narrowPhaseDetection(std::list<Component*> _input);
 		void laserNarrowPhase(std::list<Component*> _input, std::list<Laser*> _laput);
 

@@ -16,15 +16,18 @@ class Laser : public GameObject
 	public:
 		static int newLaserId;
 
+		Laser();
 		Laser(irr::scene::ISceneManager*);
 		~Laser();
 
 		virtual void init();
-		virtual void onAdd();
 		virtual void handleMessage(unsigned int, void* data = 0) { };
+		virtual void update();
+
+		void setScene(Scene&);
+		Scene* getScene();
 
 		void fire(irr::core::vector3df* position, irr::core::vector3df* rotation, irr::core::vector3df target, irr::f32 speed);
-		void update();
 		void contactResolverA(Enemy* input);
 		void contactResolverA(DefenceStation* input);
 
@@ -36,7 +39,9 @@ class Laser : public GameObject
 		irr::core::vector3df _direction;
 		
 		MeshComponent* _mesh;
+		Scene* _scene;
 		irr::scene::ISceneManager* _smgr;
+
 
 		unsigned int _damage;
 		bool _hasAnIrrlichtNode;

@@ -19,7 +19,7 @@ Ship::Ship(Core* core, Interface* ui, vector3df position, vector3df rotation) : 
 	_interface = ui;
 	_position = &position;
 	_rotation = &rotation;
-	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
+	Network::GetInstance()->AddListener(CLIENT_SHIP_MOVEMENT, this);
 }
 
 Ship::~Ship()
@@ -253,7 +253,7 @@ void Ship::fireLaser()
 		std::cout << "weapon fired" << std::endl;
 
 		if(!Network::GetInstance()->IsServer()){
-			NetworkPacket firepacket = NetworkPacket(PacketType::CLIENT_FIRE_LASER);
+			NetworkPacket firepacket = NetworkPacket(CLIENT_FIRE_LASER);
 			firepacket << *laser;
 			Network::GetInstance()->SendPacket(firepacket, true);
 
@@ -264,7 +264,7 @@ void Ship::fireLaser()
 void Ship::handleNetworkMessage(NetworkPacket packet)
 {
 
-	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
+	if(packet.GetType() == CLIENT_SHIP_MOVEMENT)
 	{
 		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
 		irr::core::vector3df position;

@@ -20,12 +20,6 @@ EnemyAsteroid::EnemyAsteroid(irr::scene::ISceneManager* smgr, vector3df position
 void EnemyAsteroid::init()
 {
 	Enemy::init();
-}
-
-void EnemyAsteroid::onAdd()
-{
-	Enemy::onAdd();
-
 	setMesh("../assets/Models/Space_Asteroid.dae");
 }
 

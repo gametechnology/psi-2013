@@ -81,9 +81,8 @@ void MainMenuScene::notify(void* data)
 
 void MainMenuScene::handleNetworkMessage(NetworkPacket packet)
 {
-	wchar_t *  name ;
+	wchar_t*  name ;
 	int lenght;
-	int team;
 	unsigned int ipclientaffect;
 
 	Player* newplayer;
@@ -98,7 +97,6 @@ void MainMenuScene::handleNetworkMessage(NetworkPacket packet)
 			playerlist.clear();
 			packet >> lenght;
 			for (int i = 0;i < lenght;i++){
-				Player * newplayer;
 				newplayer = new Player();
 				packet >> newplayer;
 				playerlist.push_back(newplayer);
