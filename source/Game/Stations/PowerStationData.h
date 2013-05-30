@@ -4,6 +4,7 @@
 #include <Irrlicht\irrlicht.h>
 #include "Station.h"
 #include <iostream>
+#include <vector> 
 
 #define MAX_INT(a, b) a > b ? a : b
 #define MIN_INT(a, b) a < b ? a : b
@@ -22,12 +23,8 @@ public:
 	int selectedStation;
 
 	irr::gui::IGUIStaticText* powerPoolText;
-	irr::gui::IGUIStaticText* stationSelectedText;
-	irr::gui::IGUIStaticText* helmStatus;
-	irr::gui::IGUIStaticText* defenceStatus;
-	irr::gui::IGUIStaticText* weaponStatus;
-	irr::gui::IGUIStaticText* navigationStatus;
-	irr::gui::IGUIScrollBar* scrollBar;
+	std::vector<irr::gui::IGUIStaticText*> stationsText;
+	std::vector<irr::gui::IGUIScrollBar*> scrollBars;
 		
 	irr::s32 counter;
 	irr::gui::IGUIListBox* listbox;

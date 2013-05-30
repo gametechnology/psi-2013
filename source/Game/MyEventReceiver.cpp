@@ -50,6 +50,7 @@ bool MyEventReceiver::OnEvent(const irr::SEvent& event)
 			case GUI_ID_LEAVE_BUTTON:
 				this->device->closeDevice();
 				return true;
+				/*
 			case GUI_ID_POWER_HELM:
 				_context.scrollBar->setVisible(true);
 				_context.scrollBar->setPos(POWER_MAX - _context.GetPower(ST_HELM) );
@@ -71,12 +72,7 @@ bool MyEventReceiver::OnEvent(const irr::SEvent& event)
 				_context.selectedStation = 4;
 				break;
 				//TODO: change name
-			case GUI_ID_SCROLL_BAR:
-				break;
-			default:
-				_context.selectedStation = 0;
-				_context.scrollBar->setVisible(false);
-				break;
+				*/
 			}
 			break;
 		}

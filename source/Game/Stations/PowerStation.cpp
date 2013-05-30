@@ -70,10 +70,15 @@ void PowerStation::createUI()
 {
 	addImages();
 	createPowerPool();
-	createScrollbar();
-	createButtons();
-	createGeneralPowerTexts();
-	createCurrentSelectedStationText();
+	
+	//create the panels (scrollbar and text) for every station
+	createPowerStatusPanel(GUI_ID_SCROLL_BAR_DEFENCE, 60, 600, 200, 30, 60, GUI_ID_TEXT_DEFENCE);
+	createPowerStatusPanel(GUI_ID_SCROLL_BAR_HELM, 320, 600, 200, 30, 60, GUI_ID_TEXT_HELM);
+	createPowerStatusPanel(GUI_ID_SCROLL_BAR_WEAPON, 580, 600, 200, 30, 60, GUI_ID_TEXT_WEAPON);
+	createPowerStatusPanel(GUI_ID_SCROLL_BAR_NAVIGATION, 840, 600, 200, 30, 60, GUI_ID_TEXT_NAVIGATION);
+
+	//TODO: Create images instead of buttons
+	//createButtons();
 
 	receiver = new MyEventReceiver(context, _core->getDevice());
 	_core->getInput()->unsetCustomEventReceiver();
@@ -82,7 +87,7 @@ void PowerStation::createUI()
 
 void PowerStation::enable()
 {
-	_ship->help->setHelpText(L"Select a station by clicking on it's button\nGive power to the selected station by adjusting the slider.\ntodo: Exit station: 'Esc'");
+	(_ship)->help->setHelpText(L"Drag sliders to adjust power for its station.");
 
 	createUI();
 	Station::enable();
@@ -118,18 +123,38 @@ void PowerStation::addImages()
 {
 	_interface->addImage("../assets/Textures/Stations/PowerStation/black_bg.png", 0,0);
 	_interface->addImage("../assets/Textures/Stations/PowerStation/spaceship.png", 190, 266);
+
+
+	_interface->addImage("../assets/shipmap/icon_helm.png", 890, 460);
+	_interface->addImage("../assets/shipmap/icon_defense.png", 520, 610);
+	_interface->addImage("../assets/shipmap/icon_weapons.png", 590, 330);
+	_interface->addImage("../assets/shipmap/icon_navigation.png", 705, 595);
+	_interface->addImage("../assets/shipmap/icon_engine.png", 260, 460);
+
+}
+
+void PowerStation::createPowerStatusPanel(int scrollBarID, int x, int y, int width, int height, int textOffset, int staticTextID)
+{
+	//create a scrollbar
+	createScrollbar(scrollBarID, x, y, width, height);
+
+	//Create a static text above the scrollbar
+	createText(staticTextID, x, y - textOffset, width, height);
+
+	//Create images for stations
 }
 
 //Creates the power scrollbar. 
-void PowerStation::createScrollbar(){
-	_interface->addScrollBar(false, 1200, 20, 30, 240, 0, GUI_ID_SCROLL_BAR);
-	context.scrollBar = dynamic_cast<IGUIScrollBar*>(_interface->getElementWithId(GUI_ID_SCROLL_BAR));
-	context.scrollBar->setMax(100);
-	context.scrollBar->setSmallStep(1);
-	context.scrollBar->setLargeStep(10);
-	context.scrollBar->setPos(100);
+void PowerStation::createScrollbar(int scrollBarID, int x, int y, int width, int height){
+	_interface->addScrollBar(true, x, y, width, height, 0, scrollBarID);
+	context.scrollBars.push_back(dynamic_cast<IGUIScrollBar*>(_interface->getElementWithId(scrollBarID)));
+	context.scrollBars.back()->setMax(100);
+	context.scrollBars.back()->setSmallStep(1);
+	context.scrollBars.back()->setLargeStep(100);
+	context.scrollBars.back()->setPos(100);
+	context.scrollBars.back()->setVisible(true);	
 }
-
+/*
 //Creates the station buttons.
 void PowerStation::createButtons(){
 	_interface->createButton(870, 460, 60, 60, GUI_ID_POWER_HELM, 0, L"Helm Station");
@@ -137,34 +162,15 @@ void PowerStation::createButtons(){
 	_interface->createButton(700, 310, 60, 60, GUI_ID_POWER_DEFENCE, 0, L"Defence Station");
 	_interface->createButton(490, 310, 60, 60, GUI_ID_POWER_NAVIGATION, 0, L"Navigation Station");
 }
-
+*/
 //Creates the power status texts for the different stations.
-void PowerStation::createGeneralPowerTexts()
+void PowerStation::createText(int staticTextID, int x, int y , int width, int height)
 {
-	_interface->addStaticText(L"Helm power status: ", 300, 40, 500, 20, HELM_POWER_STATUS, false, true, false);
-	_interface->addStaticText(L"Defense power status: ", 300, 70, 500, 20, DEFENSE_POWER_STATUS, false, true, false);
-	_interface->addStaticText(L"Weapon power status: ", 300, 100, 500, 20, WEAPON_POWER_STATUS, false, true, false);
-	_interface->addStaticText(L"Navigation power status: ", 300, 130, 500, 20, NAVIGATION_POWER_STATUS, false, true, false);
-
-	context.helmStatus = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(HELM_POWER_STATUS));
-	context.defenceStatus = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(DEFENSE_POWER_STATUS));
-	context.weaponStatus = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(WEAPON_POWER_STATUS));
-	context.navigationStatus = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(NAVIGATION_POWER_STATUS));
-
-	context.helmStatus->setOverrideColor(video::SColor(255, 0, 255, 0));
-	context.defenceStatus->setOverrideColor(video::SColor(255, 0, 255, 0));
-	context.weaponStatus->setOverrideColor(video::SColor(255, 0, 255, 0));
-	context.navigationStatus->setOverrideColor(video::SColor(255, 0, 255, 0));
+	_interface->addStaticText(L"TEST", x, y, width, height, staticTextID, false, true, false);
+	context.stationsText.push_back(dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(staticTextID)));
+	context.stationsText.back()->setOverrideColor(video::SColor(255, 0, 255, 0));
 }
 
-//Creates the "Station selected: " text.
-void PowerStation::createCurrentSelectedStationText()
-{
-	_interface->addStaticText(L"Station selected: ", 800, 40, 400, 80, SELECTED_STATION, false, true, false);
-
-	context.stationSelectedText = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(SELECTED_STATION));
-	context.stationSelectedText->setOverrideColor(video::SColor(255, 100, 125, 255));
-}
 
 
 //This method needs to be called every frame. It displays and updates the power status numbers of the different stations.
@@ -172,26 +178,26 @@ void PowerStation::createCurrentSelectedStationText()
 void PowerStation::update()
 {
 	Station::update();
-
+	
 	int helm = context.GetPower(ST_HELM);
 	int defence	= context.GetPower(ST_DEFENCE);
 	int weapon = context.GetPower(ST_WEAPON);
 	int navigation = context.GetPower(ST_NAVIGATION);
 
 	context.powerPoolText->setText((varToString("Power Pool:\n", (float)context.powerPool, "%")).c_str());
-
-	context.helmStatus->setText((varToString(		"Helm power status: ", (float)helm, "%")).c_str());
-	context.defenceStatus->setText((varToString(	"Defence power status: ", (float)defence, "%")).c_str());
-	context.weaponStatus->setText((varToString(		"Weapon power status: ", (float)weapon, "%")).c_str());
-	context.navigationStatus->setText((varToString(	"Navigation power status: ", (float)navigation, "%")).c_str());
-
-	//Checks the power percentage and assigns the text a color indicating the amount of power available to that station.
-	changeColorAccordingToPowerStatus(*context.helmStatus, (float)helm);
-	changeColorAccordingToPowerStatus(*context.defenceStatus, (float)defence);
-	changeColorAccordingToPowerStatus(*context.weaponStatus, (float)weapon);
-	changeColorAccordingToPowerStatus(*context.navigationStatus, (float)navigation);
-
-	selectedStation();
+	/*
+	//Set text to stationtexts
+	context.stationsText.at(0)->setText((varToString("Helm power: ", (float)helm, "%")).c_str());
+	context.stationsText.at(1)->setText((varToString("Defence power: ", (float)defence, "%")).c_str());
+	context.stationsText.at(2)->setText((varToString("Weapon power: ", (float)weapon, "%")).c_str());
+	context.stationsText.at(3)->setText((varToString("Navigation power: ", (float)navigation, "%")).c_str());
+	
+	Checks the power percentage and assigns the text a color indicating the amount of power available to that station.
+	changeColorAccordingToPowerStatus(*context.stationsText.at(0), (float)helm);
+	changeColorAccordingToPowerStatus(*context.stationsText.at(1), (float)defence);
+	changeColorAccordingToPowerStatus(*context.stationsText.at(2), (float)weapon);
+	changeColorAccordingToPowerStatus(*context.stationsText.at(3), (float)navigation);
+	*/
 }
 
 void PowerStation::draw()

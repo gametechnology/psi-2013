@@ -12,8 +12,11 @@
 #include "PowerStationData.h"
 #include "../NetworkInterface.h"
 
+
 #include "../Ship.h"
 #include "../MyEventReceiver.h"
+
+using namespace irr::core;
 
 /*
 * TODO Refactor the station. There
@@ -47,11 +50,14 @@ public:
 	void addImages();
 	void removeImages();
 
+	//New interface
+	void createPowerStatusPanel(int scrollBarID, int x, int y, int width, int height, int textOffset, int staticTextID);
+	void createScrollbar(int scrollBarID, int x, int y, int width, int height);
+	void createText(int staticTextID, int x, int y , int width, int height);
+
 	void createPowerPool();
-	void createScrollbar();
-	void createButtons();
-	void createGeneralPowerTexts();
-	void createCurrentSelectedStationText();
+	//void createButtons();
+	
 
 	virtual void handleNetworkMessage(NetworkPacket packet);
 	irr::core::stringw varToString(irr::core::stringw str1, float var, irr::core::stringw str2 = L"");
@@ -60,8 +66,6 @@ public:
 	virtual void update();
 	virtual void draw();
 
-
-	void selectedStation();
 	void changeColorAccordingToPowerStatus(irr::gui::IGUIStaticText& staticText, float powerAmount);
 
 	int GetPower(StationType type);
