@@ -218,33 +218,6 @@ void PowerStation::draw()
 	Station::draw();
 }
 
-//This method displays the selected station. We're using an integer which indicates which station is currently selected. 
-//context.selectedStation gets changed by the EventListener when the user presses of the station buttons.
-void PowerStation::selectedStation(){
-	stringw str = L"";
-	switch ( context.selectedStation )
-	{
-	case 1:
-		str += "Station selected: \nHelm";
-		break;
-	case 2:
-		str += "Station selected: \nDefence";
-		break;
-	case 3:
-		str += "Station selected: \nNavigation";
-		break;
-	case 4:
-		str += "Station selected: \nWeapon";
-		break;
-	default:
-		str += "Station selected: ";
-		break;
-	}
-	context.stationSelectedText->setText(str.c_str());
-	context.stationSelectedText->setOverrideColor(video::SColor(255, 100, 125, 255));
-}
-
-
 //This Method changes the color according to power status by looking at the amount of power a station has. 
 //changeColorAccordingToPowerStatus needs to be called once every frame. This is done by the updateAll() method.
 void PowerStation::changeColorAccordingToPowerStatus(IGUIStaticText &stcTxt, float powerAmount){
