@@ -40,9 +40,9 @@ void GameScene::init() {
 	//Creates Map & SectorManager
 	GalaxyMap* galaxyMap = new GalaxyMap(_core, 300, 300, 15);
 
-	if (!testMap)
+	/*if (!testMap)
 		galaxyMap->createMap(20, 2, 5);
-	else
+	else*/
 		galaxyMap->createStaticMap();
 
 	galaxyMap->setPosition(new vector3df(100, 670, 0));
