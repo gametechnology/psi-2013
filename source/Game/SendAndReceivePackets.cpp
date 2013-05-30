@@ -59,9 +59,9 @@ std::vector<Enemy*> SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& pac
 			{
 				if(enemyList[j]->getId() == serverEnemies[i].getId())
 				{
-					enemyList[j]->setPosition(serverEnemies[i].getPosition());
+					enemyList[j]->setPosition(*serverEnemies[i].getPosition());
 					enemyList[j]->setVelocity(serverEnemies[i].getVelocity());
-					enemyList[j]->setRotation(serverEnemies[i].getRotation());
+					enemyList[j]->setRotation(*serverEnemies[i].getRotation());
 					continue;
 				}
 			}
@@ -81,9 +81,9 @@ std::vector<Enemy*> SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& pac
 				}
 
 				enemyList.back()->setId(serverEnemies[i].getId());
-				enemyList.back()->setPosition(serverEnemies[i].getPosition());
+				enemyList.back()->setPosition(*serverEnemies[i].getPosition());
 				enemyList.back()->setVelocity(serverEnemies[i].getVelocity());
-				enemyList.back()->setRotation(serverEnemies[i].getRotation());
+				enemyList.back()->setRotation(*serverEnemies[i].getRotation());
 				scene->addComponent(enemyList.back());
 			}
 		}
@@ -126,9 +126,9 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& pac
 					laserList[j]->update();
 				}
 
-				laserList[j]->setPosition(serverList[i].getPosition());
+				laserList[j]->setPosition(*serverList[i].getPosition());
 				laserList[j]->setVelocity(serverList[i].getVelocity());
-				laserList[j]->setRotation(serverList[i].getRotation());
+				laserList[j]->setRotation(*serverList[i].getRotation());
 
 			}
 		}
@@ -161,9 +161,9 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacketFromClient(NetworkP
 				laserList[j]->update();
 			}
 
-			laserList[j]->setPosition(clientLaser.getPosition());
+			laserList[j]->setPosition(*clientLaser.getPosition());
 			laserList[j]->setVelocity(clientLaser.getVelocity());
-			laserList[j]->setRotation(clientLaser.getRotation());
+			laserList[j]->setRotation(*clientLaser.getRotation());
 		}
 	}
 
@@ -213,9 +213,9 @@ sf::Packet& operator >>(sf::Packet& in, Enemy& out)
 
 	out.setId(id);
 	out.setType((Enemy::EnemyType)type);
-	out.setPosition(&position);
+	out.setPosition(position);
 	out.setVelocity(&velocity);
-	out.setRotation(&rotation);
+	out.setRotation(rotation);
 
 	return in;
 }
@@ -271,9 +271,9 @@ sf::Packet& operator >>(sf::Packet& in, Laser& out)
 		out.update();
 	}
 
-	out.setPosition(&position);
+	out.setPosition(position);
 	out.setVelocity(&velocity);
-	out.setRotation(&rotation);
+	out.setRotation(rotation);
 
 	return in;
 }

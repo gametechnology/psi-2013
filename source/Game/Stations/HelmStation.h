@@ -28,6 +28,8 @@ public:
 	void OnDisabled(){};
 	void DoCameraShake(){};
 private:
+	CameraComponent* _helmCamera;
+	BasicShipMover* _mover;
 	irr::video::ITexture *_stationTexture;
 };
 

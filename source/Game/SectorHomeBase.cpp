@@ -12,8 +12,8 @@ void SectorHomeBase::init(){
 	BasePlaceholder* base = new BasePlaceholder(_core);
 	addComponent(base);
 
-	base->setPosition(new vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250)));
-	base->setRotation(new vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90)));
+	base->setPosition(vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250)));
+	base->setRotation(vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90)));
 
 	SectorTemplate::init();
 }

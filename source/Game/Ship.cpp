@@ -8,9 +8,6 @@
 using namespace irr;
 using namespace irr::core;
 
-vector3df startPosition;
-vector3df startRotation;
-
 ObjectPool<Laser>* Ship::laserPool;
 
 Ship::Ship(Core* core, Interface* ui, vector3df position, vector3df rotation) : GameObject()
@@ -29,18 +26,16 @@ Ship::~Ship()
 
 void Ship::init() 
 {	
-	startPosition = vector3df(0,0,-100);
-	startRotation = vector3df(0,0,0);
-	_position = &startPosition;
-	_rotation = &startRotation;
-
-
-	MeshComponent* _mesh = new MeshComponent(_core->getSmgr());
-	addComponent(_mesh);
-	_mesh->createMeshNode("../assets/Models/myship.obj");
-
 	env = _core->getGuiEnv();
 	_currentStation = NULL;
+
+	//Todo: Remove debug info from helptext!
+	help = new HudHelpText(_core, _interface, L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
+	addComponent(help);
+
+	_mesh = new MeshComponent(_core->getSmgr());
+	addComponent(_mesh);
+	_mesh->createMeshNode("../assets/Models/myship.obj");
 
 	_defenceStation = new DefenceStation(_core, _interface, this);
 	_helmStation = new HelmStation(_core, _interface, this);
@@ -66,7 +61,6 @@ void Ship::init()
 	_weaponStation->disable();
 	_powerStation->disable();
 
-
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
 	_thrusters[1] = new Thruster(vector3df(0,-2, 4), vector3df(0, 4, 4 ));
@@ -82,10 +76,7 @@ void Ship::init()
 	irr::core::stringw strPowerHealth			= "Power Station health: "			+ _powerStation->getHealth();
 	irr::core::stringw strWeaponHealth			= "Weapon Station health: "			+ _weaponStation->getHealth();
 
-	//Todo: Remove debug info from helptext!
 	help = new HudHelpText(_core, _interface, L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
-	addComponent(help);
-
 	shipHealth = env->addStaticText(strShipHealth.c_str(), rect<s32>(40,  80, 300, 100), false);	
 	shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 
@@ -147,9 +138,6 @@ irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::co
 
 void Ship :: update()
 {
-	GameObject::update();
-	CheckChangeInput();
-
 	//updating the text for testing the health
 	stringw strShipHealth = "ship health: " + getShipHealth();
 	stringw strDefenceHealth = "Defence Station health: " + _defenceStation->getHealth();
@@ -169,6 +157,11 @@ void Ship :: update()
 	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
 		this->_shipDestroyed = true;
 	}
+
+	_mesh->getNode()->setPosition(*_position);
+	_mesh->getNode()->setPosition(*_rotation);
+
+	GameObject::update();
 }
 
 void Ship::draw()
@@ -184,19 +177,19 @@ Thruster** Ship :: GetThrusters()
 void Ship :: CheckChangeInput()
 {
 	/*if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_1))
-		SwitchToStation(ST_DEFENCE);
+	SwitchToStation(ST_DEFENCE);
 
 	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_2))
-		SwitchToStation(ST_HELM);
+	SwitchToStation(ST_HELM);
 
 	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_3))
-		SwitchToStation(ST_WEAPON);
+	SwitchToStation(ST_WEAPON);
 
 	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_4))
-		SwitchToStation(ST_NAVIGATION);
+	SwitchToStation(ST_NAVIGATION);
 
 	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_5))
-		SwitchToStation(ST_POWER);*/
+	SwitchToStation(ST_POWER);*/
 }
 
 //Swith to a specific station
@@ -264,7 +257,6 @@ void Ship::fireLaser()
 
 void Ship::handleNetworkMessage(NetworkPacket packet)
 {
-
 	if(packet.GetType() == CLIENT_SHIP_MOVEMENT)
 	{
 		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity

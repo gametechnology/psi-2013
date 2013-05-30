@@ -14,7 +14,6 @@ using namespace irr::core;
 BasicShipMover::BasicShipMover(Core* core, Ship *ship) : BasicMoverComponent(ship) 
 {
 	_core = core;
-	this->_ship = ship;
 }
 
 BasicShipMover::~BasicShipMover() { 
@@ -22,8 +21,8 @@ BasicShipMover::~BasicShipMover() {
 }
 
 
-void BasicShipMover::update() {
-
+void BasicShipMover::update()
+{
 	//FORWARD/BACKWARD
 	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_W))
 		move(vector3df(0, 0, 2.0));
@@ -47,18 +46,21 @@ void BasicShipMover::update() {
 		roll(1.0);
 	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_D))
 		roll(-1.0);
+	
 
 	//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
-	NetworkPacket movementPacket = NetworkPacket(CLIENT_SHIP_MOVEMENT);
+	/*NetworkPacket movementPacket = NetworkPacket(CLIENT_SHIP_MOVEMENT);
 	//movementPacket << id; // ID van het ship
-	movementPacket << *_ship->getPosition();
-	movementPacket << *_ship->getRotation();
-	movementPacket << *_ship->getVelocity(); 
-	movementPacket << *_ship->getAcceleration(); 
-	movementPacket << *_ship->getAngularAcceleration(); 
-	movementPacket << *_ship->getAngularVelocity();
+	movementPacket << *_parent->getPosition();
+	movementPacket << *_parent->getRotation();
+	movementPacket << *_parent->getVelocity(); 
+	movementPacket << *_parent->getAcceleration(); 
+	movementPacket << *_parent->getAngularAcceleration(); 
+	movementPacket << *_parent->getAngularVelocity();*/
 
 	//Send packet to server
 	//if(Network::GetInstance()->IsServer())
-		Network::GetInstance()->SendPacketToAllClients(movementPacket, false);
+	//Network::GetInstance()->SendPacketToAllClients(movementPacket, false);
+
+	BasicMoverComponent::update();
 }

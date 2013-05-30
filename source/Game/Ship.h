@@ -18,10 +18,10 @@
 #include "Laser.h"
 #include "ObjectPool.h"
 
+#include "Stations\Station.h"
+
 #include "SendAndReceivePackets.h"
 #include "HudHelpText.h"
-
-#include "Stations/Station.h"
 
 class DefenceStation;
 class HelmStation;
@@ -80,6 +80,8 @@ public:
 private:
 	Core* _core;
 	Interface* _interface;
+
+	MeshComponent* _mesh;
 
 	Station	*_currentStation;
 	Thruster *_thrusters[4];

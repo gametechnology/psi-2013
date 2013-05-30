@@ -25,7 +25,7 @@ void BasicMoverComponent::move(vector3df vel)
 	matrix4 m;
 	m.setRotationDegrees(*_parent->getRotation());
 	m.transformVect(vel);
-	_parent->setPosition(&(*_parent->getPosition() + vel));
+	_parent->setVelocity(&vel);
 }
 
 void BasicMoverComponent::rotate(vector3df rot)
@@ -35,7 +35,7 @@ void BasicMoverComponent::rotate(vector3df rot)
 	matrix4 n;
 	n.setRotationDegrees(rot);
 	m *= n;
-	_parent->setRotation(&m.getRotationDegrees());
+	_parent->setRotation(m.getRotationDegrees());
 }
 
 void BasicMoverComponent::turn(f32 rot)

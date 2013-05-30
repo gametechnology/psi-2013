@@ -8,7 +8,7 @@ ObjectPool<Laser>* EnemyFighter::laserPool;
 
 EnemyFighter::EnemyFighter(irr::scene::ISceneManager* smgr, irr::core::vector3df position) : Enemy(smgr)
 {
-	setPosition(&position);
+	setPosition(position);
 	setMaxHealth(50);
 	setAgility(2);
 	setMaxSpeed(400);
@@ -23,13 +23,13 @@ EnemyFighter::EnemyFighter(irr::scene::ISceneManager* smgr, irr::core::vector3df
 
 void EnemyFighter::init()
 {
-	Enemy::init();
-
 	inRangeList = std::vector<GameObject*>();
 	stateSwitch = new StateSwitchFighter(StateSwitchFighter::STATE_WANDER,this);
 
 	setMesh("../assets/Models/Space_Fighter.dae");
 	this->_fireTime = 0;
+
+	Enemy::init();
 }
 
 void EnemyFighter::chase(vector3df target)
@@ -39,7 +39,7 @@ void EnemyFighter::chase(vector3df target)
 
 void EnemyFighter::update()
 {
-	EnemyFighter::stateSwitch->update();
+	stateSwitch->update();
 
 	// Ugly hack. 
 	/*if(game->input->isKeyboardButtonPressed(irr::KEY_KEY_M))
@@ -47,7 +47,7 @@ void EnemyFighter::update()
 	this->fireLaserAt(vector3df(200));
 	}*/
 
-	EnemyFighter::inRangeList.clear();
+	inRangeList.clear();
 
 	Enemy::update();
 }

@@ -5,7 +5,7 @@ using namespace irr::core;
 
 EnemyAsteroid::EnemyAsteroid(irr::scene::ISceneManager* smgr, vector3df position, vector3df velocity) : Enemy(smgr)
 {
-	setPosition(&position);
+	setPosition(position);
 	setMaxHealth(25);
 	setAgility(1);
 	setMaxSpeed(100);	

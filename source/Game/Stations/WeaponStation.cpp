@@ -41,7 +41,7 @@ void WeaponStation::update()
 		if(rotationOwn.X <= 90)
 			rotationOwn.X++;}
 
-	_ship->setRotation(&(rotationForeign + rotationOwn));
+	//_ship->setRotation(&(rotationForeign + rotationOwn));
 
 	Station::update();
 }
@@ -68,6 +68,6 @@ void WeaponStation::enable()
 
 void WeaponStation::disable()
 {
-	_ship->setRotation(&rotationForeign);
+	//_ship->setRotation(&rotationForeign);
 	Station::disable();
 }

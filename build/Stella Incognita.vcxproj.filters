@@ -529,6 +529,7 @@
     <None Include="..\assets\sydney.md2">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header files">

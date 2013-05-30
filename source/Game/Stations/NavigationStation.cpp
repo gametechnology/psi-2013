@@ -21,6 +21,8 @@ void NavigationStation::enable() {
 	(_ship)->help->setHelpText(L"todo: Exit station: 'Esc'");
 		
 	_navCamera = new CameraComponent(_core->getSmgr(), CameraComponent::FIRST_PERSON);
+	_navCamera->init();
+
 	_core->getActiveScene()->addComponent(_navCamera);
 	
 	Station::enable();

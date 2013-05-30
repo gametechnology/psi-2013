@@ -3,6 +3,8 @@
 
 #include "Component.h"
 
+class GameObject;
+
 class CameraComponent : public Component
 {
 public:
@@ -13,8 +15,11 @@ public:
 	};
 
 	CameraComponent(irr::scene::ISceneManager*, CameraType type);
+	CameraComponent(irr::scene::ISceneManager*, CameraType type, GameObject* parent);
 	~CameraComponent();
 
+	virtual void update();
+	virtual void init();
 	virtual void handleMessage(unsigned int, void* data = 0) { };
 
 	irr::scene::ICameraSceneNode* getCameraNode();
@@ -23,7 +28,10 @@ private:
 	irr::scene::ISceneManager* smgr;
 	irr::scene::ICameraSceneNode* cameraNode;
 
-	void createCamera(CameraType type, irr::scene::ISceneNode* parent = 0, irr::f32 rotateSpeed = 50.0f, irr::f32 moveSpeed = 0.15f);
+	GameObject* _parent;
+	unsigned int _type;
+
+	void createCamera(unsigned int type, irr::scene::ISceneNode* parent = 0, irr::f32 rotateSpeed = 50.0f, irr::f32 moveSpeed = 0.15f);
 };
 
 

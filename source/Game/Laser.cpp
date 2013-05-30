@@ -26,6 +26,7 @@ void Laser::init()
 	_mesh = new MeshComponent(_smgr);
 	addComponent(_mesh);
 	_mesh->createMeshNode("../assets/Models/laser.3ds");
+
 	GameObject::init();
 }
 
@@ -59,7 +60,6 @@ void Laser::setId(int id)
 
 void Laser::update()
 {
-	_mesh->update(_position, _rotation);
 	GameObject::update();
 }
 

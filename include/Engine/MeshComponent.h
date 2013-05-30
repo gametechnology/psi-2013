@@ -14,13 +14,13 @@ public:
 	void createAnimatedMeshNode(std::string modelPath);
 
 	virtual void update();
-	virtual void update(irr::core::vector3df* position, irr::core::vector3df* rotation);
 	virtual void handleMessage(unsigned int, void* data = 0) { };
+	irr::scene::ISceneNode* getNode() { return _node; }; 
 protected:
 private:
 	irr::scene::ISceneManager* _smgr;
-	irr::scene::ISceneNode* _node;
 
+	irr::scene::ISceneNode* _node;
 	irr::scene::IMesh* _mesh;
 };
 

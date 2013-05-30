@@ -15,6 +15,8 @@ EnemyManager::~EnemyManager()
 
 void EnemyManager::init() {
 	createEnemies();
+
+	Composite::init();
 }
 
 void EnemyManager::createEnemies()
@@ -38,7 +40,7 @@ void EnemyManager::createEnemies()
 
 	drone1 = new EnemyDrone(_smgr, vector3df(0,0,40));
 	drone1->setVelocity(&vector3df(0.0005f,0,0));
-	drone1->setRotation(&vector3df(0,1,0));
+	drone1->setRotation(vector3df(0,1,0));
 	addComponent(drone1);
 
 	fighter1 = new EnemyFighter(_smgr, vector3df(100,0,0));
@@ -103,6 +105,8 @@ void EnemyManager::update() {
 			}
 		}
 	}
+
+	Composite::update();
 }
 
 /*

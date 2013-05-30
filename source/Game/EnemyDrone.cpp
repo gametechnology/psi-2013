@@ -5,7 +5,7 @@ using namespace irr::core;
 
 EnemyDrone::EnemyDrone(irr::scene::ISceneManager* smgr, vector3df position) : Enemy(smgr)
 {
-	setPosition(&position);
+	setPosition(position);
 	setMaxHealth(25);
 	setAgility(3);
 	setMaxSpeed(250);

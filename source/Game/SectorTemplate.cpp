@@ -49,7 +49,8 @@ void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ) {
 
 		wormHolePos->setLength((float)(rand() % int(_boundry* 0.2) + int(_boundry* 0.8)));
 
-		_wormHoles.push_back(new BillboardComponent(_core->getSmgr(), wormHolePos, dimension2df(1, 1)));
+		_wormHoles.push_back(new BillboardComponent(_core->getSmgr(), wormHolePos, dimension2df(100, 100)));
+		_wormHoles[i]->setTexture(_core->getDriver(), "../assets/Textures/Wormholes/WormHole.png");
 		addComponent(_wormHoles[i]);
 	}
 }

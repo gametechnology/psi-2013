@@ -23,10 +23,10 @@ public:
 	virtual void contactResolver(GameObject*);
 
 	irr::core::vector3df* getPosition() { return _position; };
-	void setPosition(irr::core::vector3df* position) { _position = position; };
+	void setPosition(irr::core::vector3df position) { _position = &position; };
 
 	irr::core::vector3df* getRotation() { return _rotation; };
-	void setRotation(irr::core::vector3df* rotation) { _rotation = rotation; };
+	void setRotation(irr::core::vector3df rotation) { _rotation = &rotation; };
 	
 	irr::core::vector3df* getVelocity() { return _velocity; };
 	void setVelocity(irr::core::vector3df* velocity) { _velocity = velocity; };
@@ -42,6 +42,7 @@ public:
 	void setRadius(float radius) { _radius = new irr::core::vector3df(radius, radius, radius); };
 
 	irr::core::vector3df* getForce() { return _force; };
+	irr::scene::ISceneNode* getNode() { return _node; };
 protected:
 	float mass;
 
@@ -53,6 +54,8 @@ protected:
 	irr::core::vector3df* _angularAcceleration;
 	irr::core::vector3df* _radius;
 	irr::core::vector3df* _force;
+
+	irr::scene::ISceneNode* _node;
 
 	irr::core::vector3df componentOnto(irr::core::vector3df input, irr::core::vector3df deltavelocity);
 };

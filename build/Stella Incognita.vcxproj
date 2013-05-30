@@ -140,6 +140,7 @@
     <ClCompile Include="..\source\Game\WormHole.cpp" />
     <None Include="..\assets\sydney.bmp" />
     <None Include="..\assets\sydney.md2" />
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\ArrayList.h" />

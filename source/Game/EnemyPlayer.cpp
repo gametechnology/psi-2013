@@ -5,7 +5,7 @@ using namespace irr::core;
 
 EnemyPlayer::EnemyPlayer(irr::scene::ISceneManager* smgr, vector3df position, vector3df speed) : Enemy(smgr)
 {
-	setPosition(&position);
+	setPosition(position);
 	setMaxHealth(100);
 	setAgility(1);
 	setMaxSpeed(400);	

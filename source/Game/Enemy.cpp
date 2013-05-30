@@ -17,8 +17,6 @@ Enemy::Enemy(irr::scene::ISceneManager* smgr) : GameObject()
 
 void Enemy::init()
 {
-	GameObject::init();
-
 	this->_wanderTime = 0;
 	this->healthTimer = 0;
 	this->_isAlive = true;
@@ -26,6 +24,8 @@ void Enemy::init()
 	{
 		this->_id = this->newEnemyId++;
 	}
+
+	GameObject::init();
 }
 
 int Enemy::getId()
@@ -64,6 +64,10 @@ void Enemy::pathFinding()
 void Enemy::update()
 {
 	applySpeed();
+
+	component->getNode()->setPosition(*_position);
+	component->getNode()->setRotation(*_rotation);
+
 	GameObject::update();
 }
 

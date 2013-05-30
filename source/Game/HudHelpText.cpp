@@ -1,17 +1,16 @@
 #include "HudHelpText.h"
+#include <iostream>
 
 using namespace irr;
 using namespace irr::core;
 using namespace irr::video;
 using namespace irr::gui;
-
-#include <iostream>
 using namespace std;
 
-HudHelpText::HudHelpText(Core* core, Interface* _interface, const wchar_t* helpText, irr::core::vector2df position, irr::core::vector2df size) : Component("HudHelpText")
+HudHelpText::HudHelpText(Core* core, Interface* ui, const wchar_t* helpText, irr::core::vector2df position, irr::core::vector2df size) : Component("HudHelpText")
 {
 	_core = core;
-	this->_interface = _interface;
+	_interface = ui;
 
 	visible = false;
 	_helpTextStr = helpText;
@@ -27,8 +26,8 @@ HudHelpText::~HudHelpText()
 void HudHelpText::init() 
 {
 	_interface->addStaticText(L"", _position.X, _position.Y, _size.X, _size.Y, 100, false, true, true, 0);
-
 	stringObj = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(100));
+
 	stringObj->setOverrideColor(SColor(255, 0,0,0));
 	stringObj->setBackgroundColor(video::SColor(200, 255, 255, 255));
 }

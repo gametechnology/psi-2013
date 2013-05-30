@@ -4,14 +4,15 @@ GameObject::GameObject() : Composite("GameObject")
 {
 	mass = 1;
 
-	_position = new irr::core::vector3df();
-	_rotation = new irr::core::vector3df();
-	_velocity = new irr::core::vector3df();
-	_acceleration = new irr::core::vector3df();
-	_angularVelocity = new irr::core::vector3df();
-	_angularAcceleration = new irr::core::vector3df();
-	_force = new irr::core::vector3df();
+	_position = new irr::core::vector3df(0);
+	_rotation = new irr::core::vector3df(0);
+	_velocity = new irr::core::vector3df(0);
+	_acceleration = new irr::core::vector3df(0);
+	_angularVelocity = new irr::core::vector3df(0);
+	_angularAcceleration = new irr::core::vector3df(0);
+	_force = new irr::core::vector3df(0);
 	_radius = new irr::core::vector3df(1,1,1);
+	_node = NULL;
 }
 
 GameObject::~GameObject()
@@ -48,6 +49,12 @@ void GameObject::update()
 	*_acceleration = (1 / this->mass)**(this->_force);
 	*_velocity += *_acceleration;
 	*_position += *_velocity;
+
+	if(_node != NULL)
+	{
+		_node->setPosition(*_position);
+		_node->setRotation(*_rotation);
+	}
 
 	Composite::update();
 }

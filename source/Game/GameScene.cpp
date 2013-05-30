@@ -26,16 +26,11 @@ void GameScene::init() {
 	EnemyFighter::laserPool = _laserPool;
 	Ship::laserPool = _laserPool;
 
-	_ship = new Ship(_core, _interface, vector3df(0,0,0), vector3df(0,0,0));
+	_ship = new Ship(_core, _interface, vector3df(10,0,0), vector3df(7,0,0));
 	addComponent(_ship);
-
-	addComponent(new CameraComponent(_core->getSmgr(), CameraComponent::THIRD_PERSON));
 
 	_shipEnemy = new Ship(_core, _interface, vector3df(0,0,-100), vector3df(180,0,0));
 	addComponent(_shipEnemy);
-
-	BasicMoverComponent* movComp = new BasicMoverComponent(_ship);
-	_shipEnemy->addComponent(movComp);
 
 	//Creates Map & SectorManager
 	GalaxyMap* galaxyMap = new GalaxyMap(_core, 300, 300, 15);
@@ -45,13 +40,15 @@ void GameScene::init() {
 	else*/
 		galaxyMap->createStaticMap();
 
-	galaxyMap->setPosition(new vector3df(100, 670, 0));
+	galaxyMap->setPosition(vector3df(100, 670, 0));
 
 	printf("-----------Added SectorManager----------\n\n");
 	addComponent(new SectorManager(this, _core, galaxyMap, _ship));
 
 	_shipmap = new Shipmap(_core, this);
 	addComponent(_shipmap);
+
+	addComponent(new CameraComponent(_core->getSmgr(), CameraComponent::THIRD_PERSON));
 
 	Scene::init();
 }
