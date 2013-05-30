@@ -9,7 +9,7 @@
 class HudHelpText : public Component
 {
 public:
-	HudHelpText(Core*, Interface*, std::string helpText, irr::core::vector2df position, irr::core::vector2df size);
+	HudHelpText(Core* core, Interface* _interface, const wchar_t* helpText, irr::core::vector2df position, irr::core::vector2df size);
 	~HudHelpText();
 
 	virtual void update();

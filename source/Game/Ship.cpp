@@ -83,7 +83,7 @@ void Ship::init()
 	irr::core::stringw strWeaponHealth			= "Weapon Station health: "			+ _weaponStation->getHealth();
 
 	//Todo: Remove debug info from helptext!
-	help = new HudHelpText(_core, _interface, "Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
+	help = new HudHelpText(_core, _interface, L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
 	addComponent(help);
 
 	shipHealth = env->addStaticText(strShipHealth.c_str(), rect<s32>(40,  80, 300, 100), false);	

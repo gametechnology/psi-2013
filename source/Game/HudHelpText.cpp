@@ -5,13 +5,16 @@ using namespace irr::core;
 using namespace irr::video;
 using namespace irr::gui;
 
-HudHelpText::HudHelpText(Core* core, Interface* ui, std::string helpText, irr::core::vector2df position, irr::core::vector2df size) : Component("HudHelpText")
+#include <iostream>
+using namespace std;
+
+HudHelpText::HudHelpText(Core* core, Interface* _interface, const wchar_t* helpText, irr::core::vector2df position, irr::core::vector2df size) : Component("HudHelpText")
 {
 	_core = core;
-	_interface = ui;
+	this->_interface = _interface;
 
 	visible = false;
-	_helpTextStr = (wchar_t*)helpText.c_str();
+	_helpTextStr = helpText;
 	_position = position;
 	_size = size;
 }
@@ -46,8 +49,8 @@ void HudHelpText::draw()
 		stringObj->setMaxSize(dimension2du(300, 40));
 		return;
 	}
-	
-	if (_helpTextStr != L"") {
+	else
+	{
 		stringObj->setText(_helpTextStr);
 		stringObj->setMaxSize(dimension2du(_size.X, _size.Y));
 	}

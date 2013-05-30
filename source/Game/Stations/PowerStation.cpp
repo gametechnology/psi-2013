@@ -82,7 +82,7 @@ void PowerStation::createUI()
 
 void PowerStation::enable()
 {
-	(_ship)->help->setHelpText(L"Select a station by clicking on it's button\nGive power to the selected station by adjusting the slider.\ntodo: Exit station: 'Esc'");
+	_ship->help->setHelpText(L"Select a station by clicking on it's button\nGive power to the selected station by adjusting the slider.\ntodo: Exit station: 'Esc'");
 
 	createUI();
 	Station::enable();

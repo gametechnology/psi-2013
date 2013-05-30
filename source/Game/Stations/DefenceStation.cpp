@@ -40,7 +40,7 @@ int DefenceStation :: GetDamage(StationType stationType)
 }
 
 void DefenceStation::enable() {
-	(_ship)->help->setHelpText(L"todo: Exit station: 'Esc'");
+	_ship->help->setHelpText(L"todo: Exit station: 'Esc'");
 
 	Station::enable();
 }
