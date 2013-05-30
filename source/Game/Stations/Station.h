@@ -24,11 +24,12 @@ const float STUN_TIME = 4.0f;
 
 enum StationType
 {
+	ST_NONE			= -1,
 	ST_POWER		= 0,
 	ST_DEFENCE		= 1,
 	ST_WEAPON		= 2,
-	ST_HELM		= 3,
-	ST_NAVIGATION	= 4
+	ST_HELM			= 3,
+	ST_NAVIGATION	= 4,
 };
 
 class Station : public Composite

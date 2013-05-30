@@ -31,7 +31,10 @@ void PowerStation :: init() {
 	SubscribeStation(_ship->GetStation(ST_WEAPON) );
 	SubscribeStation(this);
 
+	Network::GetInstance()->AddListener(CLIENT_POWER_CHANGED, this);
 	Station::init();
+	Network::GetInstance()->AddListener(SERVER_POWER_CHANGED, this);
+
 }
 
 PowerStation :: ~PowerStation()
@@ -41,7 +44,23 @@ PowerStation :: ~PowerStation()
 
 void PowerStation::handleNetworkMessage(NetworkPacket packet)
 {
+	unsigned int stationName;
+	unsigned int stationValue;
+	packet >> stationName;
+	packet >> stationValue;
 
+	StationType s = (StationType)stationName;
+	unsigned int newValue = stationValue;
+
+	UpdateStationPower(s, newValue, true);
+
+	if(packet.GetType() == CLIENT_POWER_CHANGED)
+	{
+		NetworkPacket serverPacket(SERVER_POWER_CHANGED);
+		serverPacket << s;
+		serverPacket << newValue;
+		Network::GetInstance()->SendPacketToAllClients(serverPacket, true);
+	}
 }
 
 void PowerStation :: SubscribeStation( Station *s )
@@ -54,15 +73,26 @@ int PowerStation :: GetPower(StationType type)
 	return context.GetPower(type);
 }
 
-void PowerStation :: UpdateStationPower(StationType s, int newValue )
+void PowerStation :: UpdateStationPower(StationType s, int newValue, bool sentByServer )
 {
 	if ( s == ST_POWER )
 		return;
-	context.UpdatePowerUsage( s, newValue );
+	context.UpdatePowerUsage(s, newValue, sentByServer);
 }
 
 void PowerStation :: DoCameraShake( )
 {
+	//here, we are going to do the Harlem Shake
+}
+
+
+void PowerStation::OnEnabled(){
+	createUI();
+}
+
+void PowerStation::OnDisabled(){
+	//TODO: Make a remove UI.
+	_interface->resetInterface();
 }
 
 //Creates the User Interface. Is a helper method. Also initializes the event receiver.

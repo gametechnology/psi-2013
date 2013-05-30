@@ -21,7 +21,6 @@ public:
 	
 	virtual void init();
 	virtual void update();
-
 	virtual void handleMessage(unsigned int, void* data = 0) { };
 
 	static ObjectPool<Laser>* laserPool;

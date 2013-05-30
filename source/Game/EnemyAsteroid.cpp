@@ -1,4 +1,5 @@
 #include "EnemyAsteroid.h"
+#include "Laser.h"
 
 using namespace irr;
 using namespace irr::core;

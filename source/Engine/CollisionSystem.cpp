@@ -57,7 +57,7 @@ void CollisionSystem::narrowPhaseDetection(GameObject* objectA, GameObject* obje
 						boxB[k].X > boxA[l].X - objectA->getRadius()->X ||
 						boxB[k].Y > boxA[l].Y - objectA->getRadius()->X ||
 						boxB[k].Z > boxA[l].Z - objectA->getRadius()->X 
-					)
+						)
 					{
 						objectA->contactResolver(objectB);
 					}

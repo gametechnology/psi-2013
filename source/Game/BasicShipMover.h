@@ -20,6 +20,7 @@ public:
 	virtual void handleMessage(unsigned int message, void* data = 0){};
 private:
 	Core* _core;
+	bool powerEnable;
 };
 
 #endif

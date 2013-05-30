@@ -1,7 +1,6 @@
 #ifndef LASER_H
 #define LASER_H
 
-#include <Engine/GameObject.h>
 #include <Engine/Core.h>
 #include <Engine/Scene.h>
 #include <Engine/MeshComponent.h>
@@ -11,7 +10,7 @@
 
 class DefenceStation;
 
-class Laser : public GameObject
+class Laser : public Enemy
 {
 	public:
 		static int newLaserId;
@@ -28,7 +27,6 @@ class Laser : public GameObject
 		Scene* getScene();
 
 		void fire(irr::core::vector3df* position, irr::core::vector3df* rotation, irr::core::vector3df target, irr::f32 speed);
-		void contactResolverA(Enemy* input);
 		void contactResolverA(DefenceStation* input);
 
 		int getId();

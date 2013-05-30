@@ -71,6 +71,7 @@ void Station::init()
 
 	hud = new HudComposite(_core, _interface, &(_healthComponent->health), &(_powerComponent->power), irr::core::rect<irr::s32>(10,680,210,680 + 32), &helpTextString);
 	addComponent(hud);
+
 }
 
 void Station::draw()
@@ -196,7 +197,7 @@ void Station::updateHealth()
 
 int Station :: getHealth()
 {
-	return (_healthComponent->health > 0);
+	return _healthComponent->health;
 }
 
 void Station::decreaseHealth(int health)
@@ -219,7 +220,7 @@ void Station::updatePower(int power)
 	_powerComponent->power = power;
 }
 
-int Station :: getPower()
+int Station::getPower()
 {
 	return _powerComponent->power;
 }

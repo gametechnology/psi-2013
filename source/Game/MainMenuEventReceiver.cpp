@@ -56,7 +56,6 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					if(!Network::GetInstance()->IsConnected()){
 						context.u_interface->addMessageBox(L"Messsage", L"Not able to connect to server", true, 1, 0);
 					}else{
-						context.core->getActiveScene()->requestNextScene();
 						namepacket << namewchar << Network::GetInstance()->GetPacketTypeChecksum();
 						Network::GetInstance()->SendPacket(namepacket, true);
 					}

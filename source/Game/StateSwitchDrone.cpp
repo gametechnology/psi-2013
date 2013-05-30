@@ -79,7 +79,7 @@ void StateSwitchDrone::handleOffensive()
 		setState(STATE_IDLE);
 	}
 
-	if(_parent->inRangeList.back() == NULL)
+	if(_parent->inRangeList.back() == NULL || _parent->inRangeList.back()->isEnabled())
 		return;
 
 	if(!_parent->inRangeList.empty())
@@ -87,20 +87,21 @@ void StateSwitchDrone::handleOffensive()
 }
 
 void StateSwitchDrone::handleDeath()
-{
+{	
+	_parent->setEnabled(true);
 	delete _parent;
 }
 
 StateSwitchDrone::StateSwitchDrone(States startState, Enemy* parent)
 {
 	StateSwitchDrone::setState(startState);
-	this->_parent = parent;
+	_parent = parent;
 }
 
 StateSwitchDrone::StateSwitchDrone(Enemy* parent)
 {
 	StateSwitchDrone::setState(STATE_IDLE);
-	this->_parent = parent;
+	_parent = parent;
 }
 
 StateSwitchDrone::~StateSwitchDrone()

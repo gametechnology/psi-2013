@@ -22,5 +22,5 @@ void ShipScenes::init()
 
 	addComponent(new Player());
 	addComponent(new Ship(_core, _interface, vector3df(0,0,0), vector3df(0,0,0)));
-	addComponent(manager);
+	//addComponent(manager);
 }

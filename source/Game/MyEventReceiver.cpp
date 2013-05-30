@@ -25,21 +25,21 @@ bool MyEventReceiver::OnEvent(const irr::SEvent& event)
 			if(_context.selectedStation == 1)
 			{
 				pos = ((irr::gui::IGUIScrollBar*)event.GUIEvent.Caller)->getPos();					
-				_context.UpdatePowerUsage(ST_HELM, POWER_MAX - pos );
+				_context.UpdatePowerUsage(ST_HELM, POWER_MAX - pos, false);
 			}
 			else if(_context.selectedStation == 2){
 				pos = ((irr::gui::IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-				_context.UpdatePowerUsage(ST_DEFENCE, POWER_MAX - pos );
+				_context.UpdatePowerUsage(ST_DEFENCE, POWER_MAX - pos, false);
 			}
 			else if(_context.selectedStation == 3){
 				pos = ((irr::gui::IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-				_context.UpdatePowerUsage(ST_NAVIGATION, POWER_MAX - pos );
+				_context.UpdatePowerUsage(ST_NAVIGATION, POWER_MAX - pos, false);
 			}
 			else if(_context.selectedStation == 4){
 				pos = ((irr::gui::IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
 
 				((irr::gui::IGUIScrollBar*)event.GUIEvent.Caller)->setPos( irr :: s32( ) );
-				_context.UpdatePowerUsage(ST_WEAPON, POWER_MAX - pos );
+				_context.UpdatePowerUsage(ST_WEAPON, POWER_MAX - pos, false);
 			}
 			break;
 

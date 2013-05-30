@@ -1,4 +1,5 @@
 #include "MainMenuScene.h"
+#include "PlayerManager.h"
 
 MainMenuScene::MainMenuScene(Core* core, Interface* f_interface) : Scene("MainmenuScene") 
 {
@@ -55,7 +56,7 @@ void MainMenuScene::draw()
 {
 	Scene::draw();
 }
-
+	
 void MainMenuScene::requestNextScene()
 {
 	if(Network::GetInstance()->IsServer()) 

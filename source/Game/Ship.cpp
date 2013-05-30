@@ -190,11 +190,15 @@ void Ship :: CheckChangeInput()
 
 	if (_core->getInput()->isKeyboardButtonDown(KEY_KEY_5))
 	SwitchToStation(ST_POWER);*/
+
+
 }
 
 //Swith to a specific station
 void Ship :: SwitchToStation(StationType stationType, Player* player)
 {
+
+
 	if (_currentStation != NULL)
 	{
 		if (_currentStation->GetStationType() == stationType)
@@ -205,6 +209,7 @@ void Ship :: SwitchToStation(StationType stationType, Player* player)
 	_currentStation = GetStation(stationType);
 	_currentStation->setPlayerOccupation(player);
 	_currentStation->enable();
+	//PlayerManager::GetInstance() ->stationUpdated(stationType);
 }
 
 int Ship :: getShipHealth()

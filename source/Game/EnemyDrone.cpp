@@ -27,7 +27,9 @@ void EnemyDrone::init()
 
 EnemyDrone::~EnemyDrone(void)
 {
-	EnemyDrone::stateSwitch->~StateSwitchDrone();
+	delete this->stateSwitch;
+	
+	Enemy::~Enemy();
 }
 
 void EnemyDrone::chase(vector3df target)

@@ -1,8 +1,13 @@
 #include "WeaponStation.h"
 
 using namespace irr;
+using namespace irr::gui;
 
-#define ANGLESPEED = 1
+#define ANGLESPEED 3
+#define MOUSE_ACTIVE_X 400
+#define MOUSE_ACTIVE_Y 300
+#define SCREEN_X 1280
+#define SCREEN_Y 720
 
 WeaponStation::WeaponStation(Core* core, Interface* ui, Ship *ship) : Station(core, ui, ship)
 {
@@ -24,22 +29,35 @@ void WeaponStation::init()
 
 void WeaponStation::update()
 {
-	if(_core->getInput()->isKeyboardButtonDown(KEY_SPACE) && getPower()){
+	if((_core->getInput()->isKeyboardButtonDown(KEY_SPACE) || _core->getInput()->isMouseButtonDown(LEFT_MB)) && getPower()){
 		_ship->fireLaser();
 	}
 
 	if (_core->getInput()->isKeyboardButtonDown(KEY_RIGHT) || _core->getInput()->isKeyboardButtonDown(KEY_KEY_D)){
 		if(rotationOwn.Y <= 90)
-			rotationOwn.Y++;}
+			rotationOwn.Y += ANGLESPEED;}
 	if (_core->getInput()->isKeyboardButtonDown(KEY_LEFT) || _core->getInput()->isKeyboardButtonDown(KEY_KEY_A)){
 		if(rotationOwn.Y >= -90)
-			rotationOwn.Y--;}
+			rotationOwn.Y -= ANGLESPEED;}
 	if (_core->getInput()->isKeyboardButtonDown(KEY_UP) || _core->getInput()->isKeyboardButtonDown(KEY_KEY_W)){
 		if(rotationOwn.X >= -90)
-			rotationOwn.X--;}
+			rotationOwn.X -= ANGLESPEED;}
 	if (_core->getInput()->isKeyboardButtonDown(KEY_DOWN) || _core->getInput()->isKeyboardButtonDown(KEY_KEY_S)){
 		if(rotationOwn.X <= 90)
-			rotationOwn.X++;}
+			rotationOwn.X += ANGLESPEED;}
+
+	if(_core->getInput()->getMouseX() < MOUSE_ACTIVE_X){
+		if(rotationOwn.Y >= -90)
+			rotationOwn.Y -= ANGLESPEED;}
+	if(_core->getInput()->getMouseX() > SCREEN_X - MOUSE_ACTIVE_X){
+		if(rotationOwn.Y <= 90)
+			rotationOwn.Y += ANGLESPEED;}
+	if(_core->getInput()->getMouseY() < MOUSE_ACTIVE_Y){
+		if(rotationOwn.X >= -90)
+			rotationOwn.X -= ANGLESPEED;}
+	if(_core->getInput()->getMouseY() > SCREEN_Y - MOUSE_ACTIVE_Y){
+		if(rotationOwn.X <= 90)
+			rotationOwn.X += ANGLESPEED;}
 
 	//_ship->setRotation(&(rotationForeign + rotationOwn));
 

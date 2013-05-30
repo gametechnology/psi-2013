@@ -69,6 +69,10 @@ void Enemy::update()
 	component->getNode()->setRotation(*_rotation);
 
 	GameObject::update();
+	if (0 > this->getHealth())
+	{
+		delete this;
+	}
 }
 
 void Enemy::updateHealth()
@@ -351,7 +355,6 @@ void Enemy::wander()
 	int velY = rand()%20-10;
 	int velZ = rand()%20-10;
 
-	//std::cout << this->_wanderTime << std::endl;
 	if(_wanderTime >= 1000)
 	{
 		_velocity->X +=velX * 0.1f;

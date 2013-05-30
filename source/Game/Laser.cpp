@@ -1,16 +1,18 @@
 #include "Laser.h"
 #include "Stations/DefenceStation.h"
+#include "EnemyDrone.h"
 
 using namespace irr;
 using namespace irr::core;
 
 int Laser::newLaserId = 0;
 
-Laser::Laser()
-{
+Laser::Laser() : Enemy()
+{	
+	this->_damage = 10;
 }
 
-Laser::Laser(irr::scene::ISceneManager* smgr) : GameObject()
+Laser::Laser(irr::scene::ISceneManager* smgr) : Enemy()
 {
 	_currentLife = 0;
 	_timeofLife = 250;
@@ -27,7 +29,7 @@ void Laser::init()
 	addComponent(_mesh);
 	_mesh->createMeshNode("../assets/Models/laser.3ds");
 
-	GameObject::init();
+	Enemy::init();
 }
 
 Laser::~Laser() 
@@ -44,18 +46,27 @@ void Laser::fire(vector3df* position, vector3df* rotation, vector3df target, f32
 	
 	_direction = target - *_position;
 	_direction.normalize();
+	_position->dotProduct(_direction);
+	_position->operator+=(_direction);
+	_position->operator+=(_direction);
+	_position->operator+=(_direction);
+	_position->operator+=(_direction);
+	*_rotation = _direction;
+
+	*_velocity = _direction * speed;
 
 	*_velocity = _direction * speed;
 }
 
 int Laser::getId()
 {
-	return this->_id;
+	return _id;
 }
 
 void Laser::setId(int id)
 {
-	this->_id = id;
+	// FFS STOP ALL THE this->
+	_id = id;
 }
 
 void Laser::update()
@@ -73,16 +84,16 @@ Scene* Laser::getScene()
 	return _scene;
 }
 
-void Laser::contactResolverA(Enemy* input)
+/*void Laser::contactResolverA(Enemy* input)
 {
-	input->setHealth(input->getHealth() - this->_damage);
-	std::printf("HIT on Enemy!");
+	Enemy* tempEnemy = dynamic_cast<Enemy*>(input);
+	tempEnemy->setHealth(tempEnemy->getHealth() - this->_damage);
 	setEnabled(false);
-}
+}*/
 
 void Laser::contactResolverA(DefenceStation* input)
 {
 	input->Damage();
-	std::printf("HIT on Defence station!");
+	std::printf("HIT on Defence station! \n");
 	setEnabled(false);
 }

@@ -46,7 +46,6 @@ void EnemyFighter::update()
 	{
 	this->fireLaserAt(vector3df(200));
 	}*/
-
 	inRangeList.clear();
 
 	Enemy::update();
@@ -65,4 +64,5 @@ void EnemyFighter::fireLaserAt(vector3df target)
 		laser->fire(_position, _rotation, target, 1.0f);
 	}
 }
+
 

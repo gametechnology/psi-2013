@@ -73,7 +73,7 @@ public:
 	void OnDisabled();
 private:	
 	//checks if the new value can be matched (cannot be lower than 0 or higher than the total energy in our pool) and then updates the value of the station's energy pool.
-	void UpdateStationPower(StationType, int newValue );
+	void UpdateStationPower(StationType, int newValue, bool sentByServer);
 
 	MyEventReceiver* receiver;
 };

@@ -135,7 +135,6 @@ void StateSwitchFighter::handleFollow()
 	{
 		setState(STATE_IDLE);
 	}
-
 	if(_parent->getHealth() <= 0)
 	{
 		setState(STATE_DEATH);
@@ -151,7 +150,7 @@ void StateSwitchFighter::handleFollow()
 		setState(STATE_OFFENSIVE);
 	}
 
-	if(_parent->inRangeList.back() == NULL)
+	if(_parent->inRangeList.back() == NULL || _parent->inRangeList.back()->isEnabled())
 		return;
 
 	if((*_parent->inRangeList.back()->getPosition() - *_parent->getPosition()).getLength() > 10)
@@ -164,8 +163,11 @@ void StateSwitchFighter::handleOffensive()
 {
 	if(_parent->getHealth() <= 0)
 	{
-		setState(STATE_DEATH);
-		return;
+		if(StateSwitchFighter::getParent()->inRangeList.back()->getPosition() == NULL)
+		{
+			setState(STATE_DEATH);
+			return;
+		}
 	}
 
 	if(_parent->inRangeList.size() <= 0)
@@ -179,7 +181,7 @@ void StateSwitchFighter::handleOffensive()
 		setState(STATE_DEFENSIVE);
 	}
 
-	if(_parent->inRangeList.back() == NULL)
+	if(_parent->inRangeList.back() == NULL || _parent->inRangeList.back()->isEnabled())
 		return;
 
 	if(!_parent->inRangeList.empty())
@@ -214,7 +216,7 @@ void StateSwitchFighter::handleDefensive()
 		setState(STATE_FLEEING);
 	}
 
-	if(_parent->inRangeList.back() == NULL)
+	if(_parent->inRangeList.back() == NULL || _parent->inRangeList.back()->isEnabled())
 		return;
 
 	if(!_parent->inRangeList.empty())
@@ -245,7 +247,7 @@ void StateSwitchFighter::handleFleeing()
 		setState(STATE_IDLE);
 	}
 
-	if(_parent->inRangeList.back() == NULL)
+	if(_parent->inRangeList.back() == NULL || _parent->inRangeList.back()->isEnabled())
 		return;
 
 	if(!_parent->inRangeList.empty())
@@ -261,5 +263,6 @@ void StateSwitchFighter::handleFleeing()
 
 void StateSwitchFighter::handleDeath()
 {
+	_parent->setEnabled(false);
 	delete _parent;
 }
