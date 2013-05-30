@@ -17,16 +17,13 @@ WeaponStation::~WeaponStation()
 
 void WeaponStation::init()
 {
-	Station::init();
-
 	_stationTexture = _core->getDriver()->getTexture("../assets/Textures/Stations/WeaponStation/weapon_station.png");
 	_core->getDriver()->makeColorKeyTexture(_stationTexture, irr::core::vector2d<irr::s32>(0, 0));
+	Station::init();
 }
 
 void WeaponStation::update()
 {
-	Station::update();
-
 	if(_core->getInput()->isKeyboardButtonDown(KEY_SPACE) && getPower()){
 		_ship->fireLaser();
 	}
@@ -45,18 +42,20 @@ void WeaponStation::update()
 			rotationOwn.X++;}
 
 	_ship->setRotation(&(rotationForeign + rotationOwn));
+
+	Station::update();
 }
 
 void WeaponStation::draw()
 {
-	Station::draw();
-
 	_core->getDriver()->draw2DImage(_stationTexture,
 		irr::core::vector2d<s32>(0, 0),
 		irr::core::rect<s32>(0, 0, 1280, 720),
 		0,
 		irr::video::SColor(255, 255, 255, 255),
 		true);
+
+	Station::draw();
 }
 
 void WeaponStation::enable()

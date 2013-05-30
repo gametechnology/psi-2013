@@ -173,6 +173,7 @@ void Ship :: update()
 
 void Ship::draw()
 {
+	GameObject::draw();
 }
 
 Thruster** Ship :: GetThrusters()
@@ -292,11 +293,6 @@ void Ship::handleNetworkMessage(NetworkPacket packet)
 		else{
 			//Read the information from the network packet
 			*_rotation = rotation;
-
-
-
-
-
 		}
 	}
 }

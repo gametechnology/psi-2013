@@ -7,7 +7,6 @@ HelmStation::HelmStation(Core* core, Interface* ui, Ship *ship) : Station(core, 
 	_core = core;
 	_stationType = ST_HELM;
 	setStationDestroyed(false);
-
 }
 
 HelmStation::~HelmStation()
@@ -34,14 +33,14 @@ void HelmStation::update()
 
 void HelmStation::draw()
 {
-	Station::draw();
-
 	_core->getDriver()->draw2DImage(_stationTexture,
 		irr::core::vector2d<s32>(0, 0),
 		irr::core::rect<s32>(0, 0, 1280, 720),
 		0,
 		irr::video::SColor(255, 255, 255, 255),
 		true);
+
+	Station::draw();
 }
 
 void HelmStation::enable()

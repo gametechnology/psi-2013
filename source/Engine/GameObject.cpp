@@ -52,8 +52,14 @@ void GameObject::update()
 	Composite::update();
 }
 
+void GameObject::draw()
+{
+	Composite::draw();
+}
+
 void GameObject::init()
 {
+	Composite::init();
 }
 
 void GameObject::handleMessage(unsigned int message, void* data)

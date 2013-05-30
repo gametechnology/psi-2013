@@ -75,6 +75,7 @@ void Station::init()
 
 void Station::draw()
 {
+	Composite::draw();
 }
 
 bool Station::SwitchTimePassed()

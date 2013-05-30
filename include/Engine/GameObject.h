@@ -19,6 +19,7 @@ public:
 	virtual void handleMessage(unsigned int message, void* data);
 
 	virtual void update();
+	virtual void draw();
 	virtual void contactResolver(GameObject*);
 
 	irr::core::vector3df* getPosition() { return _position; };

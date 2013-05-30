@@ -196,7 +196,7 @@ void PowerStation::update()
 
 void PowerStation::draw()
 {
-	_core->getDriver()->draw2DImage(_core->getDriver()->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), 
+	/*_core->getDriver()->draw2DImage(_core->getDriver()->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), 
 		position2d<s32>(0,0), 
 		rect<s32>(0, 0, 1280, 720), 
 		0,
@@ -207,13 +207,10 @@ void PowerStation::draw()
 		rect<s32>(0, 0, 1280, 720), 
 		0,
 		SColor(255, 255, 255, 255),
-		true);
+		true);*/
 
 	Station::draw();
 }
-
-
-
 
 //This method displays the selected station. We're using an integer which indicates which station is currently selected. 
 //context.selectedStation gets changed by the EventListener when the user presses of the station buttons.

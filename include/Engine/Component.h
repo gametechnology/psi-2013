@@ -3,7 +3,8 @@
 
 #include <Irrlicht/irrlicht.h>
 
-class Component {
+class Component 
+{
 public:
 	virtual ~Component() { };
 

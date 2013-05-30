@@ -58,7 +58,9 @@ public:
 		for (std::list<Component*>::iterator i = components.begin(); i != components.end(); ++i)
 		{
 			if((*i)->isEnabled())
+			{
 				(*i)->draw();
+			}
 		}
 
 		Component::draw();

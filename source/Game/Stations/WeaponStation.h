@@ -13,17 +13,14 @@ public:
 	WeaponStation(Core*, Interface*, Ship*);
 	~WeaponStation();
 
-	void onAdd();
-	void init();
+	virtual void init();
 
-	void update();
-	void draw();
+	virtual void update();
+	virtual void draw();
 
-	void enable();
-	void disable();
+	virtual void enable();
+	virtual void disable();
 
-	void OnEnabled(){};
-	void OnDisabled(){};
 	void DoCameraShake(){};
 private:
 	irr::video::ITexture *_stationTexture;
