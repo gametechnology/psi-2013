@@ -7,7 +7,7 @@
 class IrrlichtNode : public Entity {
 public:
 	IrrlichtNode(const irr::io::path& modelPath);
-	~IrrlichtNode();
+	virtual ~IrrlichtNode();
 
 	virtual void init();
 	virtual void update();

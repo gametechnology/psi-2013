@@ -14,19 +14,27 @@ DummyShip::~DummyShip(void)
 void DummyShip::onAdd() {
 	//Creates the visual feedback of health. The ship, the GUIenviroment to display the feed back, adds the collision component and handles everything to at it to the scene
 	this->setHealth(100);
+	//the the GUIEnvironment of the Game
 	this->env = game->device->getGUIEnvironment();
+
+	//Create a string with the health of the dummyship
 	irr::core::stringw strShipHealth = "ship health: "; 
 	this->shipHealth = env->addStaticText(strShipHealth.c_str(), rect<s32>(40,80,300,100), false);
 	this->shipHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+
+	//Add the model
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(model);
 	Entity::onAdd();
+
+	//Make it collision
 	Collision* collision = new Collision();
 	addComponent(collision);
 }
 
 void DummyShip::init() 
 {
+	//Place the DummyShip in the Scene
 	startPosition = vector3df(0,0,-100);
 	startRotation = vector3df(0,0,0);
 	this->transform->position = &startPosition;

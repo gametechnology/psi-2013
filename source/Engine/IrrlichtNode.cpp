@@ -32,8 +32,8 @@ void IrrlichtNode::update() {
 
 IrrlichtNode::~IrrlichtNode() {
 	if (node != NULL) {
-		node->remove();
-		//delete node;
+		this->scene->getIrrlichtSceneManager()->addToDeletionQueue(node);
+		node = NULL;
 	}
 	Entity::~Entity();
 }

@@ -24,13 +24,13 @@ public:
 	void addScene(char* name,Scene* scene);
 	void removeScene(char* name);
 	void activateScene(char* name);
-	void deactivateScene(char* name);
-	NameScene* getNameScene(char* name);
+	void deactivateScene( char* name);
+	NameScene* getNameScene( char* name);
 	NameScene* getNameScene(Scene* scene);
 	Scene* getLastScene();
-	Scene* getScene(char* name);
-	bool destroyScene(char* name);
-	bool exists(char* name);
+	Scene* getScene( char* name);
+	bool destroyScene( char* name);
+	bool exists( char* name);
 };
 
 

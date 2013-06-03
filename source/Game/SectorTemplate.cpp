@@ -108,9 +108,8 @@ void SectorTemplate::init(){
 	Scene::init();
 }
 
+// This function will create the wormholes needed for the current sector
 void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ) {
-	//printf("[SectorTemplate] -=*[Begin of Create WormHole]*=- \n");
-	//printf("[SectorTemplate] -=*[Amount of wormholes %i]*=- \n", amountOfWormHoles);
 	
 	for(unsigned int i = 0; i < amountOfWormHoles; i++) {
 		// Creating a wormhole and giving it the pos we just calculated
@@ -119,21 +118,25 @@ void SectorTemplate::createWormHoles( unsigned int amountOfWormHoles ) {
 		// Pushing to the wormhole list
 		this->_wormHoles.push_back( wormHole );
 	}
-
 	int size = _wormHoles.size();
-	
-	//printf("[SectorTemplate] -=*[Size array %i ]*=- \n" , size);
-	//printf("[SectorTemplate] -=*[End of Create WormHole]*=- \n");
 }
 
+// The function will set the wormholes on their place and add them
 void SectorTemplate::addWormHoles() {
 	printf("[SectorTemplate] -=*[Begin of Add WormHole]*=- \n");
 	for(unsigned int i = 0; i < _wormHoles.size(); i++) {
 		// Calculating the pos in the sector
-		irr::core::vector3df wormHolePos((float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)));
+		//irr::core::vector3df wormHolePos((float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)), (float)(rand() % int(_boundry*2) - int(_boundry)));
+		irr::core::vector3df wormHolePos(1,0,0);
 		
 		// Making sure that the wormhole isn't spawned between 0% and 80% from the zero point to the radius of the sector
-		wormHolePos.setLength((float)(rand() % int(_boundry* 0.2) + int(_boundry* 0.8)));
+		wormHolePos = wormHolePos.setLength(10);
+
+		irr::f64 rotation = (PI * 360 / _wormHoles.size() ) * i;
+
+		wormHolePos.rotateXZBy(rotation, irr::core::vector3df( 0 ) );
+
+		wormHolePos = wormHolePos.setLength((float)(rand() % int(_boundry* 0.2) + int(_boundry* 0.8)));
 
 		// Adding the worm holes to the scene
 		addChild(_wormHoles[i]);
@@ -148,22 +151,6 @@ void SectorTemplate::addWormHoles() {
 int timer = 0;
 
 void SectorTemplate::update(){
-	/* Original when player is done
-	// Checking if the player isn't going out side of the radius of the sector
-	if( this->_player->position.getLength() > _boundry ){
-		this->_player->handleMessage(OUT_OF_BOUNDS, NULL);
-	}
-
-	// Checking for collision with a wormhole
-	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
-		irr::core::vector3df deltaPos = _wormHoles[i]->position - this->_player->position;
-		if( deltaPos.getLength() < 10 ){			
-			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
-			break;
-		}
-	}
-	*/
-
 	// Placeholder because there is no player yet
 	/*To use Fps camera:
 	replace:
@@ -302,11 +289,6 @@ void SectorTemplate::createEnemies()
 	//_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(10,0,0), irr::core::vector3df(-0.02f,0,0)));
 	//addChild(_enemyList.back());
 }
-
-//void SectorTemplate::handleMessage(unsigned int message, void* data) {
-//	
-//	delete data;
-//}
 
 SectorTemplate::~SectorTemplate() {
 	//_camera->drop();
