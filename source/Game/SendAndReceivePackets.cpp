@@ -33,7 +33,8 @@ std::vector<Enemy*> SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& pac
 
 		packet >> serverEnemies;
 
-
+		//check if the enemies exist on the server
+		//If not, delete the enemy
 		for(unsigned j = 0; j < enemyList.size(); j++)
 		{
 			bool isAtServer = false;
@@ -53,6 +54,7 @@ std::vector<Enemy*> SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& pac
 			}
 		}
 
+		//synchronize the enemies on the client with the enemies on the server
 		for(unsigned i = 0; i < serverEnemies.size(); i++)
 		{
 			for(unsigned j = 0; j < enemyList.size(); j++)
@@ -65,6 +67,7 @@ std::vector<Enemy*> SendAndReceivePackets::receiveEnemyPacket(NetworkPacket& pac
 					continue;
 				}
 			}
+			//if the enemy is not on the client, but is on the server, create and add a new enemy on the client side
 			if(serverEnemies.size() > enemyList.size())
 			{
 				switch(serverEnemies[i].getType())
