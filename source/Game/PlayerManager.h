@@ -7,6 +7,9 @@
 #include "Engine\INetworkListener.h"
 #include "Engine\NetworkPacket.h"
 #include "Stations\Station.h"
+#include <time.h>
+
+#pragma comment(lib, "winmm.lib"); 
 
 class PlayerManager : public INetworkListener
 {
@@ -16,6 +19,8 @@ private:
 	PlayerData								*_localPlayerData;
 	
 	bool _isServer;
+	double timeSent, timeTaken;
+	int ticker;
 	
 	PlayerManager( );
 
@@ -27,6 +32,9 @@ private:
 	//these are the server-side functions
 	void OnClientJoinRequestReceived( char *player_name, int team_id, ENetPeer peer );
 	void OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id );
+
+	void PingSend();
+	void PongReceived();
 
 public:
 	static PlayerManager* GetInstance();

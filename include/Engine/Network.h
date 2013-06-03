@@ -26,15 +26,15 @@ enum PacketType
         HOST_DISCONNECT,
         START_GAME,
         SERVER_ENEMY,
-	SHIP_ACCELERATION,
-	SERVER_LASER,
-	SERVER_WINLOSE,
-	SERVER_POWER_CHANGED,
+		SHIP_ACCELERATION,
+		SERVER_LASER,
+		SERVER_WINLOSE,
+		SERVER_POWER_CHANGED,
 
         CLIENT_SWITCH_STATION,
         CLIENT_LEAVE_STATION,
         CLIENT_POWER_CHANGED,
-	CLIENT_FIRE_LASER,
+		CLIENT_FIRE_LASER,
         SERVER_ALL_PLAYERS,
         CLIENT_GET_ALL_PLAYERS,
  
@@ -53,7 +53,10 @@ enum PacketType
 		CLIENT_PING,
  
         //Add new PacketTypes above
-        LAST_TYPE
+        LAST_TYPE,
+
+		CLIENT_PING,
+		SERVER_PONG
 };
  
  
@@ -69,16 +72,16 @@ inline char* getPacketTypeName(PacketType type)
                 case HOST_DISCONNECT: { return "HOST_DISCONNECT"; break; }
                 case START_GAME: { return "START_GAME"; break; }
                 case SERVER_ENEMY: { return "SERVER_ENEMY"; break; }
-		case SHIP_ACCELERATION: { return "SHIP_ACCELERATION"; break; }
-		case SERVER_LASER: { return "SERVER_LASER"; break; }
-		case SERVER_WINLOSE: { return "SERVER_WINLOSE"; break; }
+				case SHIP_ACCELERATION: { return "SHIP_ACCELERATION"; break; }
+				case SERVER_LASER: { return "SERVER_LASER"; break; }
+				case SERVER_WINLOSE: { return "SERVER_WINLOSE"; break; }
  
-		case SERVER_POWER_CHANGED: { return "SERVER_POWER_CHANGED"; break; }
+				case SERVER_POWER_CHANGED: { return "SERVER_POWER_CHANGED"; break; }
 	
                 case CLIENT_SWITCH_STATION: { return "CLIENT_SWITCH_STATION"; break; }
                 case CLIENT_LEAVE_STATION: { return "CLIENT_LEAVE_STATION"; break; }
                 case CLIENT_POWER_CHANGED: { return "CLIENT_POWER_CHANGED"; break; }
-		case CLIENT_FIRE_LASER: { return "CLIENT_FIRE_LASER"; break; }
+				case CLIENT_FIRE_LASER: { return "CLIENT_FIRE_LASER"; break; }
 
  
                 case SERVER_ALL_PLAYERS: {return "SERVER_ALL_PLAYERS"; break;}
@@ -93,6 +96,9 @@ inline char* getPacketTypeName(PacketType type)
                 case SERVER_REQUEST_ACCEPTED: { return "SERVER_REQUEST_ACCEPTED"; break; }
                 case SERVER_REQUEST_DENIED: { return "SERVER_REQUEST_DENIED"; break; }
                 case SERVER_LOBBY_STATUS_CHANGED: { return "SERVER_LOBBY_STATUS_CHANGED"; break; }
+				
+				case CLIENT_PING: { return "CLIENT_PING"; break; }
+				case SERVER_PONG: { return "SERVER_PONG"; break; }
  
                 default: { throw "Tried to get string from non-existing packet type"; }
         }

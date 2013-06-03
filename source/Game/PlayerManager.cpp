@@ -1,5 +1,4 @@
 #include "PlayerManager.h"
-#include "Stations\Station.h"
 #include "Player.h"
 #include "Ship.h"
 
@@ -196,16 +195,12 @@ void PlayerManager:: SendPlayerInfoRequest()
 void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 {
 	int			player_id;
-	char		*player_name = new char;
-	wstring		allPlayersMessage;
 	int			player_team_id = -1;
 	int			player_station_type;
-
 	int			update;
+	char		*player_name = new char;
+	wstring		allPlayersMessage;
 	
-
-	
-
 	//first, we get the player_id	
 	switch ( packet.GetType( ) )
 	{
@@ -241,5 +236,32 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		packet >> allPlayersMessage;
 		cout << "\nAll Player Message: \n" << allPlayersMessage.c_str() << endl;
 		break;
+
+	case PacketType :: SERVER_PONG:
+		PongReceived();
+		break;
 	}
+}
+
+void PlayerManager :: PingSend()
+{
+	ticker++;
+
+	if (ticker >= 1000)
+	{
+		cout << "Ping sent!" << endl;
+		timeSent = timeGetTime();
+
+		NetworkPacket packet = NetworkPacket(PacketType::CLIENT_PING);
+		packet << _localPlayerData->name;
+		Network :: GetInstance() -> SendServerPacket(packet, false);
+
+		ticker = 0;
+	}
+}
+
+void PlayerManager :: PongReceived()
+{
+	timeTaken = timeGetTime() - timeSent;
+	cout << "Ping received and time taken is: " << timeTaken << " ms!" << endl;
 }
