@@ -257,23 +257,23 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 
 void PlayerManager :: PingSend()
 {
-	ticker++;
+	 ticker++;
 
-	if (ticker >= 500)
-	{
-		cout << "Ping sent!" << endl;
-		timeSent = timeGetTime();
+	 if (ticker >= 10)
+	 {
+		  cout << "Ping sent!" << endl;
+		  timeSent = timeGetTime();
 
-		NetworkPacket packet = NetworkPacket(PacketType::CLIENT_PING);
-		packet << _localPlayerData->name;
-		Network :: GetInstance() -> SendServerPacket(packet, false);
+		  NetworkPacket packet = NetworkPacket(PacketType::CLIENT_PING);
+		  packet << _localPlayerData->name;
+		  Network :: GetInstance() -> SendServerPacket(packet, false);
 
-		ticker = 0;
-	}
+		  ticker = 0;
+	 }
 }
 
 void PlayerManager :: PongReceived()
 {
-	timeTaken = timeGetTime() - timeSent;
-	cout << "Pong received and time taken is: " << timeTaken << " ms!" << endl;
+	 timeTaken = timeGetTime() - timeSent;
+	 cout << "Ping received and time taken is: " << timeTaken << " ms!" << endl;
 }
