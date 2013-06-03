@@ -283,6 +283,8 @@ void PlayerManager :: PongReceived(char	*player_name)
 
 void PlayerManager :: ServerSendPong(char* player_name)
 {
+	if (player_name != _localPlayerData->name)
+		return;
 	cout << "Ping received from " << player_name << " sending back SERVER_PONG" << endl;
 	NetworkPacket nwp = NetworkPacket(PacketType::SERVER_PONG);
 	nwp << player_name;
