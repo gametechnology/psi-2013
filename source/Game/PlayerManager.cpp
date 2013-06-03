@@ -66,6 +66,7 @@ PlayerManager :: ~PlayerManager( )
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_PING, this );
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_PONG, this );
 	}
 	//delete all the other crap.
 }
@@ -220,8 +221,7 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	{
 	case PacketType :: CLIENT_PING:
 		packet >> player_name;
-		cout << "Ping received from " << player_name << " sending back SERVER_PONG" << endl;
-		Network ::GetInstance()->SendServerPacket(NetworkPacket(PacketType::SERVER_PONG), &packet.GetSender());
+		ServerSendPong(player_name);
 		break;
 	case PacketType :: CLIENT_REQUEST_JOIN_SERVER:
 
@@ -252,7 +252,8 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		break;
 
 	case PacketType :: SERVER_PONG:
-		PongReceived();
+		packet >> player_name;
+		PongReceived(player_name);
 		break;
 	}
 }
@@ -274,8 +275,16 @@ void PlayerManager :: PingSend()
 	 }
 }
 
-void PlayerManager :: PongReceived()
+void PlayerManager :: PongReceived(char	*player_name)
 {
 	 timeTaken = timeGetTime() - timeSent;
-	 cout << "Ping received and time taken is: " << timeTaken << " ms!" << endl;
+	 cout << "Ping received for " << player_name << " and time taken is: " << timeTaken << " ms!" << endl;
+}
+
+void PlayerManager :: ServerSendPong(char* player_name)
+{
+	cout << "Ping received from " << player_name << " sending back SERVER_PONG" << endl;
+	NetworkPacket nwp = NetworkPacket(PacketType::SERVER_PONG);
+	nwp << player_name;
+	Network ::GetInstance()->SendServerPacket(nwp);
 }
