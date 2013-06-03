@@ -208,9 +208,9 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	//first, we get the player_id	
 	switch ( packet.GetType( ) )
 	{
-	case PacketType :: SERVER_PONG:
+	case PacketType :: CLIENT_PING:
 		packet >> player_name;
-		cout << "Ping received from " << player_name << " sending back CLIENT_PONG" << endl;
+		cout << "Ping received from " << player_name << " sending back SERVER_PONG" << endl;
 		Network ::GetInstance()->SendServerPacket(NetworkPacket(PacketType::SERVER_PONG), &packet.GetSender());
 		break;
 	case PacketType :: CLIENT_REQUEST_JOIN_SERVER:
@@ -241,7 +241,7 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		cout << "\nAll Player Message: \n" << allPlayersMessage.c_str() << endl;
 		break;
 
-	case PacketType :: CLIENT_PING:
+	case PacketType :: SERVER_PONG:
 		PongReceived();
 		break;
 	}
