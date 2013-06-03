@@ -94,6 +94,12 @@
     <Filter Include="Source Files\Hud">
       <UniqueIdentifier>{00cd636d-d6b8-4ebe-8a85-0c761d1cc57d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{8a40bf33-7616-4151-801f-4d0270d7bed8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Managers">
+      <UniqueIdentifier>{2e2e1d6c-1b66-407e-b9b4-d526223e1250}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Game\main.cpp">
@@ -321,6 +327,9 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations\Base</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\PlayerManager.cpp">
+      <Filter>Source Files\Managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\Stations\DefenceStation.h">
@@ -520,6 +529,9 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\MyEventReceiver.h">
       <Filter>Header Files\EventReceivers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\PlayerManager.h">
+      <Filter>Header Files\Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

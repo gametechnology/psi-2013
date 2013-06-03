@@ -115,6 +115,7 @@
     <ClCompile Include="..\source\Game\HudHelpText.cpp" />
     <ClCompile Include="..\source\Game\LobbyScene.cpp" />
     <ClCompile Include="..\source\Game\MyEventReceiver.cpp" />
+    <ClCompile Include="..\source\Game\PlayerManager.cpp" />
     <ClCompile Include="..\source\Game\SendAndReceivePackets.cpp" />
     <ClCompile Include="..\source\Game\PowerComponent.cpp" />
     <ClCompile Include="..\source\Game\ShieldComponent.cpp" />
@@ -168,6 +169,7 @@
     <ClInclude Include="..\source\Game\LobbyScene.h" />
     <ClInclude Include="..\source\Game\MyEventReceiver.h" />
     <ClInclude Include="..\source\Game\ObjectPool.h" />
+    <ClInclude Include="..\source\Game\PlayerManager.h" />
     <ClInclude Include="..\source\Game\SendAndReceivePackets.h" />
     <ClInclude Include="..\source\Game\PowerComponent.h" />
     <ClInclude Include="..\source\Game\ShieldComponent.h" />
