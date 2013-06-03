@@ -48,6 +48,9 @@ enum PacketType
         SERVER_REQUEST_ACCEPTED,
         SERVER_REQUEST_DENIED, 
         SERVER_LOBBY_STATUS_CHANGED,
+
+		SERVER_PONG,
+		CLIENT_PING,
  
         //Add new PacketTypes above
         LAST_TYPE

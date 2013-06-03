@@ -32,6 +32,7 @@ void PlayerManager::Init()
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_REQUEST_DENIED, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_LOBBY_STATUS, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ALL_PLAYERS, this );
+		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_PONG, this );
 	} else
 	{
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
@@ -208,6 +209,11 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	//first, we get the player_id	
 	switch ( packet.GetType( ) )
 	{
+	case PacketType :: CLIENT_PING:
+		packet >> player_name;
+		cout << "Ping received from " << player_name << " sending back SERVER_PONG";
+		Network ::GetInstance()->SendServerPacket(NetworkPacket(PacketType::SERVER_PONG));
+		break;
 	case PacketType :: CLIENT_REQUEST_JOIN_SERVER:
 
 		packet >> player_name >> player_team_id;
