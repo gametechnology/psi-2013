@@ -34,7 +34,7 @@ public:
 	
 	void Init();
 	void RequestJoinServer( char *player_name, int team_id );
-	void HandleNetworkMessage( NetworkPacket p );
+	void handleNetworkMessage( NetworkPacket p );
 	void UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_id );
 	void SendPlayerInfoRequest();
 	void stationUpdated(StationType stationType);
