@@ -43,7 +43,7 @@ MapGenerator::MapGenerator(int sectorCount, int minWormholes, int maxWormholes)
 	nametype.push_back("System");	//Solar
 	nametype.push_back("Sector");	//Home
 
-	nameskybox.push_back("skybox02.png");
+	nameskybox.push_back("skybox01.png");
 	nameskybox.push_back("skybox02.png");
 	nameskybox.push_back("skybox02.png");
 	nameskybox.push_back("skybox02.png");

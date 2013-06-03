@@ -8,6 +8,7 @@ MapSector::MapSector(std::string name,typeSector type, float radius) : Entity()
 	this->explored = false;
 	this->radius = radius;
 	this->distToBlueBase = INT_MAX;
+	this->skyboxTexture = "";
 }
 
 void MapSector::onAdd() {

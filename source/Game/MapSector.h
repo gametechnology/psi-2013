@@ -14,7 +14,7 @@ public:
 	bool explored;
 	float radius;
 	int distToBlueBase;
-	const io::path & skyboxTexture;
+	irr::io::path skyboxTexture;
 
 	MapSector(std::string name,typeSector type, float radius);
 	~MapSector(void);
