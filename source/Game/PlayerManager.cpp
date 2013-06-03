@@ -31,11 +31,12 @@ void PlayerManager::Init()
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_REQUEST_DENIED, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_LOBBY_STATUS, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ALL_PLAYERS, this );
-		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_PONG, this );
+		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_PING, this );
 	} else
 	{
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this);
+		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_PONG, this);
 	}
 	//we want to receive messages when players are added, when they are updating their info and when they leave again
 }
@@ -48,10 +49,12 @@ PlayerManager :: ~PlayerManager( )
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_REQUEST_DENIED, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_LOBBY_STATUS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_ALL_PLAYERS, this );
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_PING, this );
 	} else
 	{
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_PONG, this );
 	}
 	//delete all the other crap.
 }
@@ -204,10 +207,10 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	//first, we get the player_id	
 	switch ( packet.GetType( ) )
 	{
-	case PacketType :: CLIENT_PING:
+	case PacketType :: SERVER_PING:
 		packet >> player_name;
-		cout << "Ping received from " << player_name << " sending back SERVER_PONG";
-		Network ::GetInstance()->SendServerPacket(NetworkPacket(PacketType::SERVER_PONG));
+		cout << "Ping received from " << player_name << " sending back CLIENT_PONG";
+		Network ::GetInstance()->SendServerPacket(NetworkPacket(PacketType::CLIENT_PONG));
 		break;
 	case PacketType :: CLIENT_REQUEST_JOIN_SERVER:
 
@@ -237,7 +240,7 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		cout << "\nAll Player Message: \n" << allPlayersMessage.c_str() << endl;
 		break;
 
-	case PacketType :: SERVER_PONG:
+	case PacketType :: CLIENT_PONG:
 		PongReceived();
 		break;
 	}
@@ -252,7 +255,7 @@ void PlayerManager :: PingSend()
 		cout << "Ping sent!" << endl;
 		timeSent = timeGetTime();
 
-		NetworkPacket packet = NetworkPacket(PacketType::CLIENT_PING);
+		NetworkPacket packet = NetworkPacket(PacketType::SERVER_PING);
 		packet << _localPlayerData->name;
 		Network :: GetInstance() -> SendServerPacket(packet, false);
 

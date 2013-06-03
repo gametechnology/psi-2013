@@ -49,8 +49,8 @@ enum PacketType
         SERVER_REQUEST_DENIED, 
         SERVER_LOBBY_STATUS_CHANGED,
 
-		SERVER_PONG,
-		CLIENT_PING,
+		SERVER_PING,
+		CLIENT_PONG,
  
         //Add new PacketTypes above
         LAST_TYPE
@@ -94,8 +94,8 @@ inline char* getPacketTypeName(PacketType type)
                 case SERVER_REQUEST_DENIED: { return "SERVER_REQUEST_DENIED"; break; }
                 case SERVER_LOBBY_STATUS_CHANGED: { return "SERVER_LOBBY_STATUS_CHANGED"; break; }
 				
-				case CLIENT_PING: { return "CLIENT_PING"; break; }
-				case SERVER_PONG: { return "SERVER_PONG"; break; }
+				case SERVER_PING: { return "SERVER_PING"; break; }
+				case CLIENT_PONG: { return "CLIENT_PONG"; break; }
  
                 default: { throw "Tried to get string from non-existing packet type"; }
         }

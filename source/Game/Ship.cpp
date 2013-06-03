@@ -52,6 +52,7 @@ void Ship::onAdd() {
 	this->_weaponStation->disable();
 	this->_powerStation->disable();
 
+	PlayerManager ::GetInstance()->PingSend();
 	
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
