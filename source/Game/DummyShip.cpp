@@ -65,9 +65,18 @@ void DummyShip :: update()
 	{
 		setHealth(0);
 	}
-	if (getHealth() == 0)
+	if (getHealth() == 0 && !this->destroyed)
 	{
 		std::cout<<"DummyShip is destroyed!!!";
+		this->destroyed = true;
+		this->disable();
+		for(unsigned i = 0; i < this->children.size(); i++)
+		{
+			if(dynamic_cast<IrrlichtNode*>(this->children[i]) != NULL)
+			{
+				this->children[i]->update();
+			}
+		}
 	}
 	stringw strShipHealth = "ship health: "	+ this->getHealth();
 	this->shipHealth->setText((varToString("Ship HP : ",(float)this->getHealth())).c_str());

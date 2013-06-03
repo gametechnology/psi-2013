@@ -35,7 +35,7 @@ int Enemy::getId()
 
 bool Enemy::isAlive()
 {
-	return this->_isAlive;
+	return !this->destroyed;
 }
 
 Enemy::EnemyType Enemy::getType()

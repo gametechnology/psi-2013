@@ -193,8 +193,9 @@ void StateSwitchFighter::handleOffensive()
 		if((*_parent->inRangeList.back()->transform->position - *_parent->transform->position).getLength() > 10)
 		{
 			_parent->chase(*_parent->inRangeList.back()->transform->position);
+			_parent->setTarget(*_parent->inRangeList.back()->transform->position);
 		}
-		_parent->setTarget(*_parent->inRangeList.back()->transform->position);
+	//	_parent->setTarget(*_parent->inRangeList.back()->transform->position);
 		if(this->_fireTimeCount >= this->_fireTime)
 		{
 			((EnemyFighter*)_parent)->fireLaserAt(_parent->getTarget());

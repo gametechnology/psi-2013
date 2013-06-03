@@ -208,6 +208,7 @@ void CollisionTestScene::RemoveAllEnemies()
 	{
 		for (int i = 0; i < _enemyList.size(); i++)
 		{
+			if (_enemyList[i]->isAlive())
 			_enemyList[i]->destroy();
 		}
 		_enemyList.clear();

@@ -1,6 +1,9 @@
 #include "Laser.h"
 #include "Engine\IrrlichtNode.h"
 #include "EnemyDrone.h"
+#include "EnemyAsteroid.h"
+#include "EnemyFighter.h"
+#include "DummyShip.h"
 
 int Laser::newLaserId = 0;
 
@@ -8,7 +11,7 @@ Laser::Laser() : Enemy()
 {	
 	this->_currentLife = 0;
 	this->_timeofLife = 250;
-	this->_damage = 10;
+	this->_damage = 110;
 	this->disable();
 	this->scene = NULL;
 	this->_hasAnIrrlichtNode = false;
@@ -99,12 +102,31 @@ void Laser::contactResolverA(Entity* input)
 {
 	Enemy* tempEnemy = dynamic_cast<Enemy*>(input);
 	tempEnemy->setHealth(tempEnemy->getHealth() - this->_damage);
+	 
+	/*   if(dynamic_cast<DummyShip*>(input) != NULL)
+	 {
+	  std::printf("HIT on ship! \n");
+	 }
+	      if(dynamic_cast<EnemyFighter*>(input) != NULL)
+	 {
+	  std::printf("HIT on fighter! \n");
+	 }
+		     if(dynamic_cast<EnemyAsteroid*>(input) != NULL)
+	 {
+	  std::printf("HIT on asteroid! \n");
+	 }
+			    if(dynamic_cast<EnemyDrone*>(input) != NULL)
+	 {
+	  std::printf("HIT on drone! \n");
+	 }*/
+
 	std::printf("HIT on Enemy! \n");
 	this->disable();
 	for(unsigned i = 0; i < this->children.size(); i++)
 	{
 		this->children[i]->update();
-	}
+	}	
+	input->contactResolverA(this); //call the contactresolver from the other item as well
 }
 
 void Laser::contactResolverA(DefenceStation* input)
