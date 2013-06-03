@@ -209,7 +209,7 @@ void Station::increaseHealth(int health)
 
 void Station::updatePower(int power)
 {
-	_powerComponent->increasePower(power);
+	_powerComponent->power = power;
 }
 
 int Station::getPower()
