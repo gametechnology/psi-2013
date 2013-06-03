@@ -29,6 +29,7 @@ void PlayerManager::Init()
 	if ( !Network :: GetInstance( ) -> IsServer( ) )
 	{
 		//As a client I listen to:
+		cout << endl << endl << endl << "I am a client!" << endl << endl;
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_REQUEST_ACCEPTED, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_REQUEST_DENIED, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_LOBBY_STATUS, this );
@@ -38,6 +39,7 @@ void PlayerManager::Init()
 	else
 	{
 		//As a server I listen to:
+		cout << endl << endl << endl << "I am a server!" << endl << endl;
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this);
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_PING, this);
@@ -49,13 +51,16 @@ PlayerManager :: ~PlayerManager( )
 {
 	if ( !Network :: GetInstance( ) -> IsServer( ) )
 	{
+		//As a client stop listening to:
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_REQUEST_DENIED, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_LOBBY_STATUS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_PONG, this );
-	} else
+	} 
+	else
 	{
+		//As a server stop listining to:
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_PING, this );
