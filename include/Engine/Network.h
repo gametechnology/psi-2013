@@ -53,10 +53,7 @@ enum PacketType
 		CLIENT_PING,
  
         //Add new PacketTypes above
-        LAST_TYPE,
-
-		CLIENT_PING,
-		SERVER_PONG
+        LAST_TYPE
 };
  
  
