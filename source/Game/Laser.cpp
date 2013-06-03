@@ -100,6 +100,7 @@ void Laser::update()
 
 void Laser::contactResolverA(Entity* input)
 {
+	//cast the input to an enemy so that you can call enemy methods
 	Enemy* tempEnemy = dynamic_cast<Enemy*>(input);
 	tempEnemy->setHealth(tempEnemy->getHealth() - this->_damage);
 	 
@@ -126,7 +127,8 @@ void Laser::contactResolverA(Entity* input)
 	{
 		this->children[i]->update();
 	}	
-	input->contactResolverA(this); //call the contactresolver from the other item as well
+	//call the contactresolver from the other item as well
+	input->contactResolverA(this);
 }
 
 void Laser::contactResolverA(DefenceStation* input)

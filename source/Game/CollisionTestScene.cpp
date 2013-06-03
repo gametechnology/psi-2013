@@ -78,48 +78,57 @@ void CollisionTestScene::update() {
 		{
 			if(_enemyList.size() >= 2)
 			{
+				//switch depending on what key is pressed
 				switch(target)
 				{
 					case 1:
 					{	
+						//if enemylist is bigger than 2 and is not referencing to empty places.
 						if(_enemyList.size()>=2)
 						{
 							if(_enemyList[0] != NULL&&_enemyList[1]!=NULL)
 							{
-								_enemyList[l]->inRangeList.push_back(_enemyList[0]); //to drone 1
+								//push drones in inrangelist so that they are target
+								_enemyList[l]->inRangeList.push_back(_enemyList[0]); 
 								_enemyList[l]->inRangeList.push_back(_enemyList[1]);
 							}
 						}
 					}break;
 					case 2:
 					{
+						//see if enemylist is larger than 4 and if it doesn't reference to empty places.
 						if(_enemyList.size()>=4)
 						{
 							if(_enemyList[0] != NULL&&_enemyList[1]!=NULL&&_enemyList[2] != NULL&&_enemyList[3]!=NULL)
 							{
-								_enemyList[l]->inRangeList.push_back(_enemyList[2]); //to fighter 1
+								//push fighters in inrangelist so that they are target
+								_enemyList[l]->inRangeList.push_back(_enemyList[2]); 
 								_enemyList[l]->inRangeList.push_back(_enemyList[3]);
 							}
 						}
 					}break;
 					case 3:
 					{
+						//see if enemylist is larger than 6 and if it doesn't reference to empty places.
 						if(_enemyList.size()>=6)
 						{
 							if(_enemyList[0] != NULL&&_enemyList[1]!=NULL&&_enemyList[2] != NULL&&_enemyList[3]!=NULL&&_enemyList[4] != NULL&&_enemyList[5]!=NULL)
 							{
-								_enemyList[l]->inRangeList.push_back(_enemyList[4]); //to asteroid 1
+								//push asteroids in inrangelist so that they are target
+								_enemyList[l]->inRangeList.push_back(_enemyList[4]); 
 								_enemyList[l]->inRangeList.push_back(_enemyList[5]);
 							}
 						}
 					}break;
 					case 4:
 					{
+						//see if enemylist is larger than 7 and if it doesn't reference to empty places.
 						if(_enemyList.size()>=7)
 						{
 							if(_enemyList[0] != NULL&&_enemyList[1]!=NULL&&_enemyList[2] != NULL&&_enemyList[3]!=NULL&&_enemyList[4] != NULL&&_enemyList[5]!=NULL&&_enemyList[6] != NULL)
 							{
-								_enemyList[l]->inRangeList.push_back(_enemyList[6]); //to dummyship
+								//push dummyship in inrangelist so that it is the target
+								_enemyList[l]->inRangeList.push_back(_enemyList[6]); 
 							}
 						}
 					}break;
