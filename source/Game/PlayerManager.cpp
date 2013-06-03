@@ -28,17 +28,20 @@ void PlayerManager::Init()
 	
 	if ( !Network :: GetInstance( ) -> IsServer( ) )
 	{
+		//As a client I listen to:
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_REQUEST_ACCEPTED, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_REQUEST_DENIED, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_LOBBY_STATUS, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_PONG, this );
-	} else
+	} 
+	else
 	{
+		//As a server I listen to:
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this);
+		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_PING, this);
 	}
-	Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_PING, this);
 	//we want to receive messages when players are added, when they are updating their info and when they leave again
 }
 
