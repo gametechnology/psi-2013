@@ -51,8 +51,6 @@ void Ship::onAdd() {
 	this->_navigationStation->disable();
 	this->_weaponStation->disable();
 	this->_powerStation->disable();
-
-	PlayerManager ::GetInstance()->PingSend();
 	
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
@@ -154,6 +152,8 @@ irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::co
 void Ship :: update()
 {
 	Entity :: update();
+
+	PlayerManager ::GetInstance()->PingSend();
 	CheckChangeInput();
 
 	//updating the text for testing the health

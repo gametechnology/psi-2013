@@ -15,6 +15,7 @@ PlayerManager* PlayerManager::GetInstance()
 	if(_instance == 0)
 	{
 		_instance = new PlayerManager();
+		_instance->ticker = 0;
 	}
 
 	return _instance;
@@ -250,7 +251,7 @@ void PlayerManager :: PingSend()
 {
 	ticker++;
 
-	if (ticker >= 1000)
+	if (ticker >= 10)
 	{
 		cout << "Ping sent!" << endl;
 		timeSent = timeGetTime();
