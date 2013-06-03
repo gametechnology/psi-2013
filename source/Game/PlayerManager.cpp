@@ -35,6 +35,7 @@ void PlayerManager::Init()
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_LOBBY_STATUS, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_PONG, this );
+		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_PING, this);
 	} 
 	else
 	{
@@ -42,6 +43,7 @@ void PlayerManager::Init()
 		cout << endl << endl << endl << "I am a server!" << endl << endl;
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this);
+		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_PONG, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_PING, this);
 	}
 	//we want to receive messages when players are added, when they are updating their info and when they leave again
@@ -259,14 +261,14 @@ void PlayerManager :: PingSend()
 {
 	 ticker++;
 
-	 if (ticker >= 10)
+	 if (ticker >= 500)
 	 {
 		  cout << "Ping sent!" << endl;
 		  timeSent = timeGetTime();
 
 		  NetworkPacket packet = NetworkPacket(PacketType::CLIENT_PING);
 		  packet << _localPlayerData->name;
-		  Network :: GetInstance() -> SendServerPacket(packet, false);
+		  Network :: GetInstance() -> SendPacket(packet, false);
 
 		  ticker = 0;
 	 }
