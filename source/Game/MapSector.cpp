@@ -50,6 +50,10 @@ void MapSector::resetTexture()
 	game->driver->makeColorKeyTexture(this->_mapSectorTexture, core::position2d<s32>(0, 0));
 }
 
+void MapSector::SetSkyboxTexture(const irr::io::path & texture){
+	this->skyboxTexture = texture;
+}
+
 void MapSector::draw(){
 	game->driver->draw2DImage(this->_mapSectorTexture,
 		irr::core::rect<s32>((int)(this->transform->position->X - radius), (int)(this->transform->position->Y - radius), (int)(this->transform->position->X + radius), (int)(this->transform->position->Y + radius)),

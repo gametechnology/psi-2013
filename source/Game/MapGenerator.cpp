@@ -43,6 +43,15 @@ MapGenerator::MapGenerator(int sectorCount, int minWormholes, int maxWormholes)
 	nametype.push_back("System");	//Solar
 	nametype.push_back("Sector");	//Home
 
+	nameskybox.push_back("skybox02.png");
+	nameskybox.push_back("skybox02.png");
+	nameskybox.push_back("skybox02.png");
+	nameskybox.push_back("skybox02.png");
+	nameskybox.push_back("skybox02.png");
+	nameskybox.push_back("skybox02.png");
+	nameskybox.push_back("skybox02.png");
+	nameskybox.push_back("skybox02.png");
+
 	this->sectorCount = sectorCount;
 	this->minWormholes = minWormholes;
 	this->maxWormholes = maxWormholes;
@@ -90,6 +99,11 @@ std::vector<MapSector*>* MapGenerator::createStaticMap(float width, float height
 	MapSector* homeBlue = new MapSector(nameGenerator(HOME_BLUE), HOME_BLUE, 30);
 	MapSector* homeRed = new MapSector(nameGenerator(HOME_RED), HOME_RED, 30);
 	MapSector* empty = new MapSector(nameGenerator(EMPTY), EMPTY, 30);
+
+	homeBlue->SetSkyboxTexture(nameskybox.at(0));
+	homeRed->SetSkyboxTexture(nameskybox.at(0));
+	empty->SetSkyboxTexture(nameskybox.at(0));
+
 	map->push_back(homeBlue);
 	map->push_back(empty);
 	map->push_back(homeRed);
@@ -106,9 +120,11 @@ std::vector<MapSector*>* MapGenerator::createStaticMap(float width, float height
 void MapGenerator::createSectors()
 {
 	MapSector* homeBlue = new MapSector(nameGenerator(HOME_BLUE), HOME_BLUE, _sectorRadius);
+	homeBlue->SetSkyboxTexture(nameskybox.at(0));
 	sectors.push_back(homeBlue);
 
 	MapSector* homeRed = new MapSector(nameGenerator(HOME_RED), HOME_RED, _sectorRadius);
+	homeRed->SetSkyboxTexture(nameskybox.at(0));
 	sectors.push_back(homeRed);
 	
 	typeSector j;
@@ -116,6 +132,7 @@ void MapGenerator::createSectors()
 	{
 		j = getRandomType();
 		MapSector* sector = new MapSector(nameGenerator(j), j, _sectorRadius);
+		sector->SetSkyboxTexture(nameskybox.at(0));
 		sectors.push_back(sector);
 	}
 }
