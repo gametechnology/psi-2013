@@ -33,8 +33,8 @@ private:
 	void OnClientJoinRequestReceived( char *player_name, int team_id, ENetPeer peer );
 	void OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id );
 
-	void PongReceived(char* player_name);
-	void ServerSendPong(char* player_name);
+	void PongReceived(int player_name);
+	void ServerSendPong(int player_name);
 
 public:
 	static PlayerManager* GetInstance();

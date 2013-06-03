@@ -219,10 +219,6 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	//first, we get the player_id	
 	switch ( packet.GetType( ) )
 	{
-	case PacketType :: CLIENT_PING:
-		packet >> player_name;
-		ServerSendPong(player_name);
-		break;
 	case PacketType :: CLIENT_REQUEST_JOIN_SERVER:
 
 		packet >> player_name >> player_team_id;
@@ -252,8 +248,12 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		break;
 
 	case PacketType :: SERVER_PONG:
-		packet >> player_name;
-		PongReceived(player_name);
+		packet >> player_id;
+		PongReceived(player_id);
+		break;
+	case PacketType :: CLIENT_PING:
+		packet >> player_id;
+		ServerSendPong(player_id);
 		break;
 	}
 }
@@ -264,29 +264,33 @@ void PlayerManager :: PingSend()
 
 	 if (ticker >= 500)
 	 {
-		  cout << "Ping sent!" << endl;
+		  
 		  timeSent = timeGetTime();
 
 		  NetworkPacket packet = NetworkPacket(PacketType::CLIENT_PING);
-		  packet << _localPlayerData->name;
+		  packet << _localPlayerData->id;
 		  Network :: GetInstance() -> SendPacket(packet, false);
-
+		  cout << "CLIENT: Ping send to the server from player-" << _localPlayerData->id << "("<< _localPlayerData->name <<") !" << endl;
 		  ticker = 0;
 	 }
 }
 
-void PlayerManager :: PongReceived(char	*player_name)
+void PlayerManager :: PongReceived(int player_id)
 {
 	 timeTaken = timeGetTime() - timeSent;
-	 cout << "Ping received for " << player_name << " and time taken is: " << timeTaken << " ms!" << endl;
+	 cout << "CLIENT: Pong received from server by player-" << _localPlayerData->id << "("<< _localPlayerData->name <<")!" << endl;
+	 cout << "CLIENT: PingPong Time : " << timeTaken << " ms!" << endl << endl;
 }
 
-void PlayerManager :: ServerSendPong(char* player_name)
+void PlayerManager :: ServerSendPong(int player_id)
 {
-	if (player_name != _localPlayerData->name)
-		return;
-	cout << "Ping received from " << player_name << " sending back SERVER_PONG" << endl;
-	NetworkPacket nwp = NetworkPacket(PacketType::SERVER_PONG);
-	nwp << player_name;
-	Network ::GetInstance()->SendServerPacket(nwp);
+	cout << "SERVER: Ping received from player-" << player_id << ", sending back Pong" << endl;
+	if (Network ::GetInstance()->IsServer())
+		PongReceived(player_id);
+	else
+	{
+		NetworkPacket nwp = NetworkPacket(PacketType::SERVER_PONG);
+		nwp << player_id;
+		Network ::GetInstance()->SendServerPacket(nwp);
+	}
 }
