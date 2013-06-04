@@ -136,7 +136,7 @@ void SectorTemplate::addWormHoles() {
 
 		wormHolePos.rotateXZBy(rotation, irr::core::vector3df( 0 ) );
 
-		wormHolePos = wormHolePos.setLength((float)(rand() % int(_boundry* 0.2) + int(_boundry* 0.8)));
+		wormHolePos = wormHolePos.setLength( _boundry* 0.9 );
 
 		// Adding the worm holes to the scene
 		addChild(_wormHoles[i]);

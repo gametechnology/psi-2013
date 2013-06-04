@@ -41,7 +41,12 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 
 			// Checks if the scene is destroyed 
 			if ( this->getGame()->sceneManager->destroyScene( tempName ) ) {
-			
+				
+				// Turn Around the ship and place it closer to the center so it does not come in a endless loop of wormhole transitions
+				_ship->transform->position->setLength( _ship->transform->position->getLength() * 0.8 );
+				_ship->transform->rotation->rotateXZBy( PI * 180 );
+
+
 				//Creates new Sector
 				switch (_mapSector->type){ 
 					case EMPTY:
@@ -82,6 +87,9 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 						break;
 				}		
 			}
+			
+
+
 			break;
 	}
 	//delete data;
