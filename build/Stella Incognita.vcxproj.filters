@@ -270,9 +270,6 @@
     <ClCompile Include="..\source\Game\PlayerManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\CollisionTestScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\DummyShip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -495,9 +492,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\PlayerManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\CollisionTestScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\DummyShip.h">
