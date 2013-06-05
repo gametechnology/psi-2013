@@ -51,34 +51,34 @@ void PowerStation::HandleNetworkMessage(NetworkPacket packet)
 	packet >> stationName;
 	packet >> stationValue;
 
-	StationType s = (StationType)stationName;
+	StationType type = (StationType)stationName;
 	unsigned int newValue = stationValue;
 
-	UpdateStationPower(s, newValue, true);
+	UpdateStationPower(type, newValue, true);
 
 	if(packet.GetType() == CLIENT_POWER_CHANGED)
 	{
 		NetworkPacket serverPacket(SERVER_POWER_CHANGED);
-		serverPacket << s;
+		serverPacket << type;
 		serverPacket << newValue;
 		Network::GetInstance()->SendPacketToAllClients(serverPacket, true);
 	}
 }
 
-void PowerStation :: SubscribeStation( Station *s )
+void PowerStation :: SubscribeStation(Station *station)
 {
-	this -> context.SubscribeStation( s );
+	context.SubscribeStation(station);
 }
 
 int PowerStation :: GetPower(StationType type)
 {
-	return this->context.GetPower(type);
+	return context.GetPower(type);
 }
 
-void PowerStation :: UpdateStationPower(StationType s, int newValue, bool sentByServer )
+void PowerStation :: UpdateStationPower(StationType type, int newValue, bool sentByServer )
 {
-	if ( s == ST_POWER )	return;	//we do nothing when the power station is selected.
-	this -> context.UpdatePowerUsage( s, newValue, sentByServer );
+	if ( type == ST_POWER )	return;	//we do nothing when the power station is selected.
+	this -> context.UpdatePowerUsage( type, newValue, sentByServer );
 }
 
 void PowerStation :: DoCameraShake( )
