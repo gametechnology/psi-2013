@@ -14,8 +14,6 @@ PowerStation::PowerStation(Ship *ship) : Station(ship)
 	context.powerPool = 100;
 	shipYpos = 100;
 	scrollYpos = 266;
-
-
 }
 
 void PowerStation :: init() {
@@ -32,9 +30,9 @@ void PowerStation :: init() {
 	else
 		skin->setFont(game->guiEnv->getBuiltInFont(), EGDF_TOOLTIP);
 
-	SubscribeStation(_ship->GetStation(ST_DEFENCE) );
+	//SubscribeStation(_ship->GetStation(ST_DEFENCE) );
 	SubscribeStation(_ship->GetStation(ST_HELM) );
-	SubscribeStation(_ship->GetStation(ST_NAVIGATION) );
+	//SubscribeStation(_ship->GetStation(ST_NAVIGATION) );
 	SubscribeStation(_ship->GetStation(ST_WEAPON) );
 	SubscribeStation(this);
 
@@ -111,13 +109,11 @@ void PowerStation::createUI()
 	createPowerPoolText();
 
 	//create the panels (scrollbar and text) for every station
-	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_HELM, 60, 150, 200, 30, 60,			PSER::GUI_ID_TEXT_HELM);
-	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_DEFENCE, 320, 150, 200, 30, 60,		PSER::GUI_ID_TEXT_DEFENCE);
+	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_HELM, 840, 150, 200, 30, 60,			PSER::GUI_ID_TEXT_HELM);
+	//createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_DEFENCE, 320, 150, 200, 30, 60,		PSER::GUI_ID_TEXT_DEFENCE);
 	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_WEAPON, 580, 150, 200, 30, 60,		PSER::GUI_ID_TEXT_WEAPON);
-	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_NAVIGATION, 840, 150, 200, 30, 60,	PSER::GUI_ID_TEXT_NAVIGATION);
+	//createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_NAVIGATION, 840, 150, 200, 30, 60,	PSER::GUI_ID_TEXT_NAVIGATION);
 
-	//TODO: Create images instead of buttons
-	//createButtons();
 	receiver = new PSER(context, game->device);
 
 	game->input->unsetCustomEventReceiver();
@@ -142,10 +138,7 @@ void PowerStation::disable()
 void PowerStation::createPowerPoolText()
 {
 	stringw str = varToString("Power Pool:\n", POWER_MAX, "%");
-
-	//_interface->addStaticText(str.c_str(), 40, 40, 200, 100, POWER_POOL_STATUS, false, true, false);
 	context.powerPoolText = guiEnv->addStaticText(str.c_str(), rect<s32>(40, 40, 240, 200), false, true, NULL, PowerStationEventReveiver::POWER_POOL_STATUS, false);
-	//context.powerPoolText = dynamic_cast<IGUIStaticText*>(guiEnv-> _interface->getElementWithId(POWER_POOL_STATUS));
 	context.powerPoolText->setOverrideColor(video::SColor(255, 0, 255, 0));
 }
 
@@ -163,20 +156,18 @@ void PowerStation::addImages()
 {
 	//Load icons
 	icon_helm = game->driver->getTexture("../assets/shipmap/icon_helm.png");
-	icon_defense = game->driver->getTexture("../assets/shipmap/icon_defense.png");
+	//icon_defense = game->driver->getTexture("../assets/shipmap/icon_defense.png");
 	icon_weapons = game->driver->getTexture("../assets/shipmap/icon_weapons.png");
-	icon_navigation = game->driver->getTexture("../assets/shipmap/icon_navigation.png");
+	//icon_navigation = game->driver->getTexture("../assets/shipmap/icon_navigation.png");
 	icon_engine = game->driver->getTexture("../assets/shipmap/icon_engine.png");
 
-	float height = game->driver->getTexture("../assets/shipmap/icon_helm.png")->getOriginalSize().Height;
-	float width = game->driver->getTexture("../assets/shipmap/icon_helm.png")->getOriginalSize().Width / 2;
 	guiEnv->addImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
 	guiEnv->addImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190, 266));
 
 	guiEnv->addImage(icon_helm, position2d<int>(890, 460));
-	guiEnv->addImage(icon_defense, position2d<int>(505, 610));
+	//guiEnv->addImage(icon_defense, position2d<int>(505, 610));
 	guiEnv->addImage(icon_weapons, position2d<int>(615, 320));
-	guiEnv->addImage(icon_navigation, position2d<int>(715, 610));
+	//guiEnv->addImage(icon_navigation, position2d<int>(715, 610));
 	guiEnv->addImage(icon_engine, position2d<int>(310, 460));
 }
 
@@ -187,15 +178,11 @@ void PowerStation::createPowerStatusPanel(int scrollBarID, int x, int y, int wid
 
 	//Create a static text above the scrollbar
 	createText(staticTextID, x, y - textOffset, width, height);
-
-	//Create images for stations
 }
 
-//Creates the power scrollbar. 
+//Creates a power scrollbar. 
 void PowerStation::createScrollbar(int scrollBarID, int x, int y, int width, int height){
-	//_interface->addScrollBar(true, x, y, width, height, 0, scrollBarID);
 	context.scrollBars.push_back(guiEnv->addScrollBar(true, rect<s32>(x, y, width + x, height + y), NULL, scrollBarID));
-	//context.scrollBars.push_back(dynamic_cast<IGUIScrollBar*>(_interface->getElementWithId(scrollBarID)));
 	context.scrollBars.back()->setMax(100);
 	context.scrollBars.back()->setSmallStep(1);
 	context.scrollBars.back()->setLargeStep(100);
@@ -203,41 +190,36 @@ void PowerStation::createScrollbar(int scrollBarID, int x, int y, int width, int
 	context.scrollBars.back()->setVisible(true);	
 }
 
-//Creates the power status texts for the different stations.
+//Creates a power status texts for the different stations.
 void PowerStation::createText(int staticTextID, int x, int y , int width, int height)
 {
-	//_interface->addStaticText(L"TEST", x, y, width, height, staticTextID, false, true, false);
 	context.stationsText.push_back(guiEnv->addStaticText(L"", rect<s32>(x, y, width + x, height + y), false, true, NULL, staticTextID, false));
-	//context.stationsText.push_back(dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(staticTextID)));
 	context.stationsText.back()->setOverrideColor(video::SColor(255, 0, 255, 0));
 }
 
-
-
 //This method needs to be called every frame. It displays and updates the power status numbers of the different stations.
-//TODO: FIND OUT HOW TO UPDATE ALL
 void PowerStation::update()
 {
 	Station::update();
 
 	int helm = context.GetPower(ST_HELM);
-	int defence	= context.GetPower(ST_DEFENCE);
+	//int defence	= context.GetPower(ST_DEFENCE);
 	int weapon = context.GetPower(ST_WEAPON);
-	int navigation = context.GetPower(ST_NAVIGATION);
+	//int navigation = context.GetPower(ST_NAVIGATION);
 
 	context.powerPoolText->setText((varToString("Power Pool:\n", (float)context.powerPool, "%")).c_str());
 
 	//Set text to stationtexts
 	context.stationsText.at(0)->setText((varToString("Helm : ", (float)helm, "%")).c_str());
-	context.stationsText.at(1)->setText((varToString("Defence: ", (float)defence, "%")).c_str());
-	context.stationsText.at(2)->setText((varToString("Weapon: ", (float)weapon, "%")).c_str());
-	context.stationsText.at(3)->setText((varToString("Navigation: ", (float)navigation, "%")).c_str());
+	//context.stationsText.at(1)->setText((varToString("Defence: ", (float)defence, "%")).c_str());
+	context.stationsText.at(1)->setText((varToString("Weapon: ", (float)weapon, "%")).c_str());
+	//context.stationsText.at(3)->setText((varToString("Navigation: ", (float)navigation, "%")).c_str());
 
 	//Checks the power percentage and assigns the text a color indicating the amount of power available to that station.
 	changeColorAccordingToPowerStatus(*context.stationsText.at(0), (float)helm);
-	changeColorAccordingToPowerStatus(*context.stationsText.at(1), (float)defence);
-	changeColorAccordingToPowerStatus(*context.stationsText.at(2), (float)weapon);
-	changeColorAccordingToPowerStatus(*context.stationsText.at(3), (float)navigation);
+	//changeColorAccordingToPowerStatus(*context.stationsText.at(1), (float)defence);
+	changeColorAccordingToPowerStatus(*context.stationsText.at(1), (float)weapon);
+	//changeColorAccordingToPowerStatus(*context.stationsText.at(3), (float)navigation);
 
 	//Update sliders
 	updateSliders();
@@ -251,10 +233,10 @@ void PowerStation::updateSliders()
 		context.scrollBars.at(i)->setMax(context.scrollBars.at(i)->getPos() + context.powerPool);
 	}
 	
-	context.UpdatePowerUsage(StationType::ST_DEFENCE, context.scrollBars.at(0)->getPos(), false);
-	context.UpdatePowerUsage(StationType::ST_HELM, context.scrollBars.at(1)->getPos(), false);
-	context.UpdatePowerUsage(StationType::ST_WEAPON, context.scrollBars.at(2)->getPos(), false);
-	context.UpdatePowerUsage(StationType::ST_NAVIGATION, context.scrollBars.at(3)->getPos(), false);
+	//context.UpdatePowerUsage(StationType::ST_DEFENCE, context.scrollBars.at(0)->getPos(), false);
+	context.UpdatePowerUsage(StationType::ST_HELM, context.scrollBars.at(0)->getPos(), false);
+	context.UpdatePowerUsage(StationType::ST_WEAPON, context.scrollBars.at(1)->getPos(), false);
+	//context.UpdatePowerUsage(StationType::ST_NAVIGATION, context.scrollBars.at(3)->getPos(), false);
 
 
 
