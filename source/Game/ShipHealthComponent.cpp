@@ -13,6 +13,7 @@ void ShipHealthComponent::updateHealth(){
 	health += ship_->GetStation(ST_POWER)->getHealth();
 	health += ship_->GetStation(ST_HELM)->getHealth();
 	health += ship_->GetStation(ST_WEAPON)->getHealth();
+	health /=3;
 }
 
 //damage gets passed to the stations here. right now its random.
