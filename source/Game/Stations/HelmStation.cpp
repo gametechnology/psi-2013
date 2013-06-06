@@ -21,7 +21,6 @@ void HelmStation::onAdd()
 	//ShipMover* mover = new ShipMover(_ship); // Ship mover with thrusters.
 	mover = new BasicShipMover(_ship); // Ship mover without thrusters.
 	addComponent(mover);
-	mover->setMaxSpeed(1);
 }
 
 void HelmStation::init()
