@@ -6,14 +6,14 @@ PowerStationData :: PowerStationData( )
 	this -> powerPool	= POWER_MAX;
 }
 
-void PowerStationData :: SubscribeStation( Station *s )
+void PowerStationData :: SubscribeStation( Station *station )
 {
-	this -> _stationsPowerUsage	-> insert( s -> GetStationType( ), s );
+	this -> _stationsPowerUsage	-> insert( station -> GetStationType( ), station );
 }
 
-void PowerStationData :: UpdatePowerUsage(StationType s, int newValue, bool sentByServer )
+void PowerStationData :: UpdatePowerUsage(StationType type, int newValue, bool sentByServer )
 {
-	Station *station = this -> _stationsPowerUsage -> find( s ) -> getValue();
+	Station *station = this -> _stationsPowerUsage -> find( type ) -> getValue();
 
 	int prevValue		= station->getPower();
 	powerPool			+= prevValue;
@@ -29,15 +29,14 @@ void PowerStationData :: UpdatePowerUsage(StationType s, int newValue, bool sent
 	if(!sentByServer)
 	{
 		NetworkPacket packet(PacketType::CLIENT_POWER_CHANGED);
-		packet << s;
+		packet << type;
 		packet << newValue;
 		Network::GetInstance()->SendPacket(packet, true);
 	}
 
 }
 
-int PowerStationData :: GetPower(StationType s )
+int PowerStationData :: GetPower(StationType type)
 {
-	
-	return this -> _stationsPowerUsage -> find( s ) -> getValue( )->getPower();
+	return this -> _stationsPowerUsage -> find(type) -> getValue( )->getPower();
 }
