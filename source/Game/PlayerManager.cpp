@@ -5,6 +5,7 @@
 int PlayerData :: uniqueId		= 1;
 PlayerManager* PlayerManager::_instance = 0;
 char *localName = new char;
+bool isDisconnected = false;
 
 PlayerManager :: PlayerManager( ) : INetworkListener( )
 {
@@ -16,6 +17,7 @@ PlayerManager* PlayerManager::GetInstance()
 	{
 		_instance = new PlayerManager();
 		_instance->ticker = 0;
+		_instance->timeSent = 0;
 	}
 
 	return _instance;
@@ -265,16 +267,17 @@ void PlayerManager :: PingSend()
 	 if (timeSent == 0 && ticker >= 500)
 	 {
 		  timeSent = timeGetTime();
-
+		  isDisconnected=false;
 		  NetworkPacket packet = NetworkPacket(PacketType::CLIENT_PING);
 		  packet << _localPlayerData->id;
 		  Network :: GetInstance() -> SendPacket(packet, true);
 		  cout << "CLIENT: Ping send to the server from player-" << _localPlayerData->id << "("<< _localPlayerData->name <<") !" << endl;
 		  ticker = 0;
 	 }
-	 if (timeSent != 0 && ticker >= 5000)
-	 {
-		 cout << "CLIENT: I am disconnected!" << endl;
+	 else if (ticker >= 1000 && isDisconnected == true)
+	 {	
+		 isDisconnected = true;
+		 cout << endl <<"CLIENT: I am disconnected!" << endl;
 	 }
 }
 
