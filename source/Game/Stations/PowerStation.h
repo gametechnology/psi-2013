@@ -46,8 +46,8 @@ public:
 	void createText(int staticTextID, int x, int y , int width, int height);
 	void createPowerPoolText();
 	//void createButtons();
-
-	virtual void handleNetworkMessage(NetworkPacket packet);
+	virtual void HandleNetworkMessage(NetworkPacket packet); //Inet version
+	virtual void handleNetworkMessage(NetworkPacket packet); //Station version
 	irr::core::stringw varToString(irr::core::stringw str1, float var, irr::core::stringw str2 = L"");
 	
 	virtual void init();
@@ -61,9 +61,16 @@ public:
 	void OnDisabled();
 private:	
 	//checks if the new value can be matched (cannot be lower than 0 or higher than the total energy in our pool) and then updates the value of the station's energy pool.
-	void UpdateStationPower(StationType, int newValue );
+	void UpdateStationPower(StationType, int newValue, bool sentByServer );
 
 	PowerStationEventReveiver* receiver;
+	float shipYpos;
+	float scrollYpos;
+	video::ITexture* icon_helm;
+	video::ITexture* icon_defense;
+	video::ITexture* icon_weapons;
+	video::ITexture* icon_navigation;
+	video::ITexture* icon_engine;
 };
 
 #endif
