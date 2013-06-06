@@ -9,7 +9,7 @@
 #include "Stations\Station.h"
 #include <time.h>
 
-#pragma comment(lib, "winmm.lib"); 
+#pragma comment(lib, "winmm.lib")
 
 class PlayerManager : public INetworkListener
 {
