@@ -43,6 +43,15 @@ MapGenerator::MapGenerator(int sectorCount, int minWormholes, int maxWormholes)
 	nametype.push_back("System");	//Solar
 	nametype.push_back("Sector");	//Home
 
+	nameskybox.push_back("skybox01.png");
+	nameskybox.push_back("skybox02.png");
+	nameskybox.push_back("skybox03.png");
+	nameskybox.push_back("skybox04.png");
+	nameskybox.push_back("skybox05.png");
+	nameskybox.push_back("skybox06.png");
+	nameskybox.push_back("skybox07.png");
+	nameskybox.push_back("skybox08.png");
+
 	this->sectorCount = sectorCount;
 	this->minWormholes = minWormholes;
 	this->maxWormholes = maxWormholes;
@@ -97,6 +106,11 @@ std::vector<MapSector*>* MapGenerator::createStaticMap(float width, float height
 	MapSector* empty = new MapSector(nameGenerator(EMPTY), EMPTY, _sectorRadius);
 
 	homeBlue->transform->position->set(randomPosition());
+
+	homeBlue->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
+	homeRed->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
+	empty->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
+
 	homeRed->transform->position->set(randomPosition());
 	empty->transform->position->set(randomPosition());
 
@@ -117,10 +131,12 @@ void MapGenerator::createSectors()
 {
 	MapSector* homeBlue = new MapSector(nameGenerator(HOME_BLUE), HOME_BLUE, _sectorRadius);
 	homeBlue->transform->position->set(randomPosition());
+	homeBlue->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
 	sectors->push_back(homeBlue);
 
 	MapSector* homeRed = new MapSector(nameGenerator(HOME_RED), HOME_RED, _sectorRadius);
 	homeRed->transform->position->set(randomPosition());
+	homeRed->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
 	sectors->push_back(homeRed);
 	
 	typeSector j;
@@ -129,6 +145,7 @@ void MapGenerator::createSectors()
 		j = getRandomType();
 		MapSector* sector = new MapSector(nameGenerator(j), j, _sectorRadius);
 		sector->transform->position->set(randomPosition());
+		sector->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
 		sectors->push_back(sector);
 	}
 }
