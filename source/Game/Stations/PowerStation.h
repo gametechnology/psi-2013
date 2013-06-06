@@ -38,6 +38,7 @@ public:
 	virtual void enable();
 	virtual void disable();
 	void createUI();
+	void removeUI();
 	void addImages();
 
 	//New interface
@@ -72,6 +73,9 @@ private:
 	video::ITexture* icon_weapons;
 	video::ITexture* icon_navigation;
 	video::ITexture* icon_engine;
+	video::ITexture* bgImage;
+	video::ITexture* spaceshipImage;
+
 };
 
 #endif
