@@ -111,8 +111,8 @@ void PowerStation::createUI()
 	createPowerPoolText();
 
 	//create the panels (scrollbar and text) for every station
-	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_DEFENCE, 60, 150, 200, 30, 60,		PSER::GUI_ID_TEXT_DEFENCE);
-	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_HELM, 320, 150, 200, 30, 60,			PSER::GUI_ID_TEXT_HELM);
+	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_HELM, 60, 150, 200, 30, 60,			PSER::GUI_ID_TEXT_HELM);
+	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_DEFENCE, 320, 150, 200, 30, 60,		PSER::GUI_ID_TEXT_DEFENCE);
 	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_WEAPON, 580, 150, 200, 30, 60,		PSER::GUI_ID_TEXT_WEAPON);
 	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_NAVIGATION, 840, 150, 200, 30, 60,	PSER::GUI_ID_TEXT_NAVIGATION);
 
@@ -238,6 +238,25 @@ void PowerStation::update()
 	changeColorAccordingToPowerStatus(*context.stationsText.at(1), (float)defence);
 	changeColorAccordingToPowerStatus(*context.stationsText.at(2), (float)weapon);
 	changeColorAccordingToPowerStatus(*context.stationsText.at(3), (float)navigation);
+
+	//Update sliders
+	updateSliders();
+}
+
+void PowerStation::updateSliders()
+{
+	//Update the slider pos
+	for(int i = 0; i < context.scrollBars.size(); i++)
+	{
+		context.scrollBars.at(i)->setMax(context.scrollBars.at(i)->getPos() + context.powerPool);
+	}
+	
+	context.UpdatePowerUsage(StationType::ST_DEFENCE, context.scrollBars.at(0)->getPos(), false);
+	context.UpdatePowerUsage(StationType::ST_HELM, context.scrollBars.at(1)->getPos(), false);
+	context.UpdatePowerUsage(StationType::ST_WEAPON, context.scrollBars.at(2)->getPos(), false);
+	context.UpdatePowerUsage(StationType::ST_NAVIGATION, context.scrollBars.at(3)->getPos(), false);
+
+
 
 }
 

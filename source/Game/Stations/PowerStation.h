@@ -45,6 +45,7 @@ public:
 	void createScrollbar(int scrollBarID, int x, int y, int width, int height);
 	void createText(int staticTextID, int x, int y , int width, int height);
 	void createPowerPoolText();
+	void updateSliders();
 	//void createButtons();
 	virtual void HandleNetworkMessage(NetworkPacket packet); //Inet version
 	virtual void handleNetworkMessage(NetworkPacket packet); //Station version
