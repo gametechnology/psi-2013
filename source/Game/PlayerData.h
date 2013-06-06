@@ -36,5 +36,37 @@ public:
 			this -> peer			= peer;
 			this -> stationType		= StationType :: ST_NONE;
 		}
+
+		friend std :: ostream& operator << ( std :: ostream &os, const PlayerData &pd )
+		{
+			os << "name:\t" << pd.name << std :: endl;
+			os << "id:\t" << pd.id << std :: endl;
+			os << "\tteam id:\t" << pd.team_id << std :: endl;
+
+			char *stationInfo;
+			switch ( pd.stationType ) 
+			{
+				case -1:
+					stationInfo = "Hallway";
+					break;
+				case 0:
+					stationInfo = "Power Station";
+					break;
+				case 1:
+					stationInfo = "Defence Station";
+					break;
+				case 2:
+					stationInfo = "Weapon Station";
+					break;
+				case 3:
+					stationInfo = "Helm Station";
+					break;
+				case 4:
+					stationInfo = "Navigation Station";
+					break;
+			}
+			os << "\tstation" << stationInfo << std :: endl;
+			return os;
+		}
 };
 #endif

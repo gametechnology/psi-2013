@@ -174,8 +174,7 @@ void Ship :: update()
 	//If the ship has no more health and is not already destroyed, destroy it
 	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
 		this->_shipDestroyed = true;
-	}
-	PlayerManager::GetInstance() -> CheckInput( game -> input -> isKeyboardButtonPressed( KEY_KEY_Q ) );
+	}	
 }
 
 Thruster** Ship :: GetThrusters()
@@ -223,7 +222,7 @@ void Ship :: SwitchToStation(StationType stationType)
 
 	//Init and add the new station
 	_currentStation->enable();
-	PlayerManager::GetInstance() ->stationUpdated(stationType);
+	PlayerManager::GetInstance() -> StationUpdated( stationType );
 }
 
 void Ship :: draw()

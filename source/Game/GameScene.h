@@ -14,6 +14,7 @@
 #include "Laser.h"
 #include "ObjectPool.h"
 #include "NetworkInterface.h"
+#include "PlayerManager.h"
 
 // Forward declare Shipmap
 class Shipmap;
