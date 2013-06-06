@@ -205,15 +205,9 @@ void Ship :: CheckChangeInput()
 //Swith to a specific station
 void Ship :: SwitchToStation(StationType stationType)
 {
-
-
 	//Check if we are already on this station
 	if (_currentStation != NULL)
 	{
-		if (_currentStation->GetStationType() == stationType)
-			return;
-
-		//First remove the currentStation from the shipComponents
 		_currentStation->disable();
 	}
 
@@ -279,6 +273,37 @@ void Ship::fireLaser()
 	}
 }
 
+void Ship::addIShipListener(IShipListener* listener) {
+	listeners.push_back(listener);
+}
+
+void Ship::removeIShipListener(IShipListener* listener){
+	listeners.pop_back();
+}
+
+
+void Ship::notifyIShipListeners(ShipMessage message){
+	if(message == LEAVESTATION)
+		
+
+	for(std::list<IShipListener*>::iterator it = listeners.begin(); it != listeners.end(); ++it) {
+		(*it)->handleShipMessage(message);
+	}
+}
+
+void Ship::leaveStation(StationType station)
+{
+	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
+	packet << station;
+	Network::GetInstance()->SendPacket(packet, true);
+
+	this->_currentStation->disable();
+	this->_currentStation = NULL;
+	
+	this->notifyIShipListeners(LEAVESTATION);
+}
+
+
 void Ship::HandleNetworkMessage(NetworkPacket packet)
 {
 		
@@ -313,8 +338,7 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 			
 		
 			
-			
-			
+
 		}
 	}
 }

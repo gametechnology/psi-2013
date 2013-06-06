@@ -1,5 +1,6 @@
 #include "Shipmap.h"
 
+
 Shipmap::Shipmap(GameScene* scene): _scene(scene), Entity()
 {
 	
@@ -248,5 +249,11 @@ void Shipmap::enterStation(StationType station) {
 	packet << station;
 	Network::GetInstance()->SendPacket(packet, true);
 
-	this->_scene->switchStation(station);
+	_scene->switchStation(station);
+}
+
+void Shipmap::handleShipMessage(ShipMessage message){
+	if (message == LEAVESTATION){
+			
+	}
 }

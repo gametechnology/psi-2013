@@ -497,6 +497,9 @@
     <ClInclude Include="..\source\Game\DummyShip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\IShipListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\assets\sydney.bmp">

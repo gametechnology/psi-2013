@@ -5,10 +5,12 @@
 #include <math.h>
 #include "Stations\Station.h"
 #include "GameScene.h"
+#include "IShipListener.h" 
 
-class Shipmap : public Entity
+class Shipmap : public Entity, public IShipListener
 {
 	void enterStation(StationType station);
+	void handleShipMessage(ShipMessage message);
 
 	struct tilePos	{
 		int x;

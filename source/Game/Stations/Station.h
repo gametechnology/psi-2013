@@ -41,6 +41,11 @@ public:
 	bool HasPower();
 	bool HasShield();
 
+	// This
+	std::list<Player*> playerlist;
+
+	StationType _occupiedStation;
+
 	/*
 	* Set the player for occupating this station.
 	*

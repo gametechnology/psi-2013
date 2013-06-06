@@ -50,6 +50,7 @@ void GameScene::onAdd() {
 	_shipmap = new Shipmap(this);
 	addChild(_shipmap);
 
+	_ship->addIShipListener(this);
 }
 
 void GameScene::init() {
@@ -122,12 +123,20 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 
 void GameScene::switchStation(StationType type)
 {
-	this->removeChild(_shipmap);
+	_shipmap->disable();
 
 	_ship->SwitchToStation(type);
+}
+
+void GameScene::handleShipMessage(ShipMessage message){
+	if (message == LEAVESTATION){		
+		_shipmap->enable();
+	}
 }
 
 GameScene::~GameScene() 
 {
 	delete _laserPool;
 }
+
+
