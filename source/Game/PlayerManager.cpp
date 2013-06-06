@@ -293,7 +293,7 @@ void PlayerManager :: PongReceived(int player_id, int timePingSent)
 
 	timeTaken = timeGetTime() - timePingSent;
 	cout << "CLIENT: Pong[id=" << player_id << ", time=" << timePingSent << "] received from server by player-" << _localPlayerData->id << "("<< _localPlayerData->name <<") " << endl;
-	cout << "CLIENT: - " << timeTaken << " ms!" << endl << endl;
+	cout << "CLIENT: " << timeTaken << " ms!" << endl << endl;
 
 	timeSent = 0;
 }
