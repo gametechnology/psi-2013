@@ -10,7 +10,6 @@ WeaponStation::WeaponStation(Ship *ship) : Station(ship)
 {
 	_stationType = ST_WEAPON;
 	setStationDestroyed(false);
-
 }
 
 WeaponStation::~WeaponStation()
