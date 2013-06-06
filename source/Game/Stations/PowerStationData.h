@@ -30,7 +30,7 @@ public:
 	irr::gui::IGUIListBox* listbox;
 
 	void SubscribeStation( Station *s );
-	void UpdatePowerUsage(StationType s, int newValue );
+	void UpdatePowerUsage(StationType s, int newValue, bool sentByServer  );
 	int GetPower(StationType stationType );
 };
 

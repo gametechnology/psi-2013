@@ -1,11 +1,14 @@
 #include "PowerStation.h"
+#include "GUIEventReceiver\PowerStationEventReveiver.h"
 
 using namespace irr;
 using namespace irr::gui;
 using namespace irr::video;
 using namespace irr::core;
 
-PowerStation::PowerStation(Ship *ship) : Station(core, ui, ship)
+typedef PowerStationEventReveiver PSER;
+
+PowerStation::PowerStation(Ship *ship) : Station(ship)
 {
 	context.counter = 0;
 	context.powerPool = 100;
@@ -81,6 +84,14 @@ void PowerStation :: UpdateStationPower(StationType type, int newValue, bool sen
 	this -> context.UpdatePowerUsage( type, newValue, sentByServer );
 }
 
+void PowerStation::OnEnabled()
+{
+}
+
+void PowerStation::OnDisabled()
+{
+}
+
 void PowerStation :: DoCameraShake( )
 {
 }
@@ -90,18 +101,17 @@ void PowerStation::createUI()
 {
 	declareUIData();
 	addImages();
-	createPowerPool();
+	createPowerPoolText();
 	
 	//create the panels (scrollbar and text) for every station
-	createPowerStatusPanel(GUI_ID_SCROLL_BAR_DEFENCE, 60, 600, 200, 30, 60, GUI_ID_TEXT_DEFENCE);
-	createPowerStatusPanel(GUI_ID_SCROLL_BAR_HELM, 320, 600, 200, 30, 60, GUI_ID_TEXT_HELM);
-	createPowerStatusPanel(GUI_ID_SCROLL_BAR_WEAPON, 580, 600, 200, 30, 60, GUI_ID_TEXT_WEAPON);
-	createPowerStatusPanel(GUI_ID_SCROLL_BAR_NAVIGATION, 840, 600, 200, 30, 60, GUI_ID_TEXT_NAVIGATION);
+	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_DEFENCE, 60, 600, 200, 30, 60,		PSER::GUI_ID_TEXT_DEFENCE);
+	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_HELM, 320, 600, 200, 30, 60,			PSER::GUI_ID_TEXT_HELM);
+	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_WEAPON, 580, 600, 200, 30, 60,		PSER::GUI_ID_TEXT_WEAPON);
+	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_NAVIGATION, 840, 600, 200, 30, 60,	PSER::GUI_ID_TEXT_NAVIGATION);
 
 	//TODO: Create images instead of buttons
 	//createButtons();
-	
-	receiver = new PowerStationEventReceiver(context, game->device);
+	receiver = new PSER(context, game->device);
 
 	game->input->unsetCustomEventReceiver();
 	game->input->setCustomEventReceiver(receiver);
@@ -117,17 +127,18 @@ void PowerStation::enable()
 
 void PowerStation::disable()
 {
-	_interface->resetInterface();
+	//_interface->resetInterface();
 	Station::disable();
 }
 
 //Creates the text for the power pool along with its value.
-void PowerStation::createPowerPool()
+void PowerStation::createPowerPoolText()
 {
 	stringw str = varToString("Power Pool:\n", POWER_MAX, "%");
 
-	_interface->addStaticText(str.c_str(), 40, 40, 200, 100, POWER_POOL_STATUS, false, true, false);
-	context.powerPoolText = dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(POWER_POOL_STATUS));
+	//_interface->addStaticText(str.c_str(), 40, 40, 200, 100, POWER_POOL_STATUS, false, true, false);
+	context.powerPoolText = guiEnv->addStaticText(str.c_str(), rect<s32>(40, 40, 240, 200), false, true, NULL, PowerStationEventReveiver::POWER_POOL_STATUS, false);
+	//context.powerPoolText = dynamic_cast<IGUIStaticText*>(guiEnv-> _interface->getElementWithId(POWER_POOL_STATUS));
 	context.powerPoolText->setOverrideColor(video::SColor(255, 0, 255, 0));
 }
 
@@ -143,16 +154,13 @@ stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 //Adds the background image and the spaceship image. 
 void PowerStation::addImages()
 {
-	_interface->addImage("../assets/Textures/Stations/PowerStation/black_bg.png", 0,0);
-	_interface->addImage("../assets/Textures/Stations/PowerStation/spaceship.png", 190, 266);
-
-
-	_interface->addImage("../assets/shipmap/icon_helm.png", 890, 460);
-	_interface->addImage("../assets/shipmap/icon_defense.png", 520, 610);
-	_interface->addImage("../assets/shipmap/icon_weapons.png", 590, 330);
-	_interface->addImage("../assets/shipmap/icon_navigation.png", 705, 595);
-	_interface->addImage("../assets/shipmap/icon_engine.png", 260, 460);
-
+	guiEnv->addImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
+	guiEnv->addImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190, 266));
+	guiEnv->addImage(game->driver->getTexture("../assets/shipmap/icon_helm.png"			), position2d<int>(890, 460));
+	guiEnv->addImage(game->driver->getTexture("../assets/shipmap/icon_defense.png"		), position2d<int>(520, 610));
+	guiEnv->addImage(game->driver->getTexture("../assets/shipmap/icon_weapons.png"		), position2d<int>(590, 330));
+	guiEnv->addImage(game->driver->getTexture("../assets/shipmap/icon_navigation.png"	), position2d<int>(705, 595));
+	guiEnv->addImage(game->driver->getTexture("../assets/shipmap/icon_engine.png"		), position2d<int>(260, 460));
 }
 
 void PowerStation::createPowerStatusPanel(int scrollBarID, int x, int y, int width, int height, int textOffset, int staticTextID)
@@ -168,8 +176,9 @@ void PowerStation::createPowerStatusPanel(int scrollBarID, int x, int y, int wid
 
 //Creates the power scrollbar. 
 void PowerStation::createScrollbar(int scrollBarID, int x, int y, int width, int height){
-	_interface->addScrollBar(true, x, y, width, height, 0, scrollBarID);
-	context.scrollBars.push_back(dynamic_cast<IGUIScrollBar*>(_interface->getElementWithId(scrollBarID)));
+	//_interface->addScrollBar(true, x, y, width, height, 0, scrollBarID);
+	context.scrollBars.push_back(guiEnv->addScrollBar(true, rect<s32>(40, 40, width + x, height + y), NULL, scrollBarID));
+	//context.scrollBars.push_back(dynamic_cast<IGUIScrollBar*>(_interface->getElementWithId(scrollBarID)));
 	context.scrollBars.back()->setMax(100);
 	context.scrollBars.back()->setSmallStep(1);
 	context.scrollBars.back()->setLargeStep(100);
@@ -188,8 +197,9 @@ void PowerStation::createButtons(){
 //Creates the power status texts for the different stations.
 void PowerStation::createText(int staticTextID, int x, int y , int width, int height)
 {
-	_interface->addStaticText(L"TEST", x, y, width, height, staticTextID, false, true, false);
-	context.stationsText.push_back(dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(staticTextID)));
+	//_interface->addStaticText(L"TEST", x, y, width, height, staticTextID, false, true, false);
+	context.stationsText.push_back(guiEnv->addStaticText(L"", rect<s32>(x, y, width + x, height + y), false, true, NULL, staticTextID, false));
+	//context.stationsText.push_back(dynamic_cast<IGUIStaticText*>(_interface->getElementWithId(staticTextID)));
 	context.stationsText.back()->setOverrideColor(video::SColor(255, 0, 255, 0));
 }
 
@@ -207,65 +217,38 @@ void PowerStation::update()
 	int navigation = context.GetPower(ST_NAVIGATION);
 
 	context.powerPoolText->setText((varToString("Power Pool:\n", (float)context.powerPool, "%")).c_str());
-	/*
+	
 	//Set text to stationtexts
 	context.stationsText.at(0)->setText((varToString("Helm power: ", (float)helm, "%")).c_str());
 	context.stationsText.at(1)->setText((varToString("Defence power: ", (float)defence, "%")).c_str());
 	context.stationsText.at(2)->setText((varToString("Weapon power: ", (float)weapon, "%")).c_str());
 	context.stationsText.at(3)->setText((varToString("Navigation power: ", (float)navigation, "%")).c_str());
 	
-	Checks the power percentage and assigns the text a color indicating the amount of power available to that station.
+	//Checks the power percentage and assigns the text a color indicating the amount of power available to that station.
 	changeColorAccordingToPowerStatus(*context.stationsText.at(0), (float)helm);
 	changeColorAccordingToPowerStatus(*context.stationsText.at(1), (float)defence);
 	changeColorAccordingToPowerStatus(*context.stationsText.at(2), (float)weapon);
 	changeColorAccordingToPowerStatus(*context.stationsText.at(3), (float)navigation);
-	*/
+	
 }
 
 void PowerStation::draw()
 {
-	/*_core->getDriver()->draw2DImage(_core->getDriver()->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), 
+	game->driver->draw2DImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), 
 		position2d<s32>(0,0), 
 		rect<s32>(0, 0, 1280, 720), 
 		0,
 		SColor(255, 255, 255, 255),
 		true);
-	_core->getDriver()->draw2DImage(_core->getDriver()->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), 
+	game->driver->draw2DImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), 
 		position2d<s32>(190, 266), 
 		rect<s32>(0, 0, 1280, 720), 
 		0,
 		SColor(255, 255, 255, 255),
-		true);*/
+		true);
 
 	Station::draw();
 }
-
-//This method displays the selected station. We're using an integer which indicates which station is currently selected. 
-//context.selectedStation gets changed by the EventListener when the user presses of the station buttons.
-void PowerStation::selectedStation(){
-	stringw str = L"";
-	switch ( context.selectedStation )
-	{
-	case 1:
-		str += "Station selected: \nHelm";
-		break;
-	case 2:
-		str += "Station selected: \nDefence";
-		break;
-	case 3:
-		str += "Station selected: \nNavigation";
-		break;
-	case 4:
-		str += "Station selected: \nWeapon";
-		break;
-	default:
-		str += "Station selected: ";
-		break;
-	}
-	context.stationSelectedText->setText(str.c_str());
-	context.stationSelectedText->setOverrideColor(video::SColor(255, 100, 125, 255));
-}
-
 
 //This Method changes the color according to power status by looking at the amount of power a station has. 
 //changeColorAccordingToPowerStatus needs to be called once every frame. This is done by the updateAll() method.
