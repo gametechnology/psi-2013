@@ -87,5 +87,8 @@ private:
 	stringw varToString(stringw str1, float var);
 
 	void setInertiaMatrix(float h, float w, float d, float m);
+
+	//delete
+	int a;
 };
 #endif

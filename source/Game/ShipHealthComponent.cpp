@@ -14,6 +14,7 @@ void ShipHealthComponent::updateHealth(){
 	health += ship_->GetStation(ST_HELM)->getHealth();
 	health += ship_->GetStation(ST_WEAPON)->getHealth();
 	health /=3;
+	std::cout << "[ShipHealthComp - ShipHealth]" << health;
 }
 
 //damage gets passed to the stations here. right now its random.
@@ -37,10 +38,15 @@ void ShipHealthComponent::assignDamage(int damage){
 	case 5:
 		ship_->GetStation(ST_HELM)->decreaseHealth(damage * 0.5);
 		ship_->GetStation(ST_WEAPON)->decreaseHealth(damage * 0.5);
+
+	/*
 	default:
 		ship_->GetStation(ST_POWER)->decreaseHealth(damage);	
-		std::cout<< "[ShipHealthComponent] Switch bug";
+		std::cout<< "[ShipHealthComponent] Switch bug" << a << endl;
+		*/
 	}
+	
+	std::cout<< "[ShipHealthComponent] a = " << a << "    damage = " << damage << endl;
 	updateHealth();
 }
 

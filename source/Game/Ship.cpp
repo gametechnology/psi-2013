@@ -54,6 +54,7 @@ void Ship::onAdd() {
 
 	this->shipHealthComponent = new ShipHealthComponent(this);
 	addComponent(shipHealthComponent);
+	shipHealthComponent->updateHealth();
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
 	_thrusters[1] = new Thruster(vector3df(0,-2, 4), vector3df(0, 4, 4 ));
@@ -111,7 +112,7 @@ void Ship::init()
 	this->transform->rotation = &startRotation;*/
 	
 	Entity::init();
-
+	
 }
 
 Station *Ship :: GetStation( StationType s )
@@ -176,6 +177,12 @@ void Ship :: update()
 		this->_shipDestroyed = true;
 	}
 	PlayerManager::GetInstance() -> CheckInput( game -> input -> isKeyboardButtonPressed( KEY_KEY_Q ) );
+
+	if(game->input->isKeyboardButtonDown(KEY_KEY_S)){
+		a = rand() % 50;
+		std::cout << "Give " << a << " of damage to the ship" << endl;
+		shipHealthComponent->assignDamage(a);
+	}
 }
 
 Thruster** Ship :: GetThrusters()
