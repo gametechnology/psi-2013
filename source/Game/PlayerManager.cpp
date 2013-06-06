@@ -43,6 +43,7 @@ void PlayerManager::Init()
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this);
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_PING, this);
+		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_PONG, this);
 	}
 	//we want to receive messages when players are added, when they are updating their info and when they leave again
 }
@@ -262,32 +263,31 @@ void PlayerManager :: PingSend()
 
 	 if (ticker >= 500)
 	 {
-		  
-		  timeSent = timeGetTime();
-
 		  NetworkPacket packet = NetworkPacket(PacketType::CLIENT_PING);
 		  packet << _localPlayerData->id;
+		  packet << (double) timeGetTime();
 		  Network :: GetInstance() -> SendPacket(packet, false);
 		  cout << "CLIENT: Ping send to the server from player-" << _localPlayerData->id << "("<< _localPlayerData->name <<") !" << endl;
 		  ticker = 0;
 	 }
 }
 
-void PlayerManager :: PongReceived(int player_id)
+void PlayerManager :: PongReceived(int player_id, double timePingSend)
 {
 	if (player_id != _localPlayerData->id)
 		return;
 
-	timeTaken = timeGetTime() - timeSent;
+	timeTaken = timeGetTime() - timePingSend;
 	cout << "CLIENT: Pong received from server by player-" << _localPlayerData->id << "("<< _localPlayerData->name <<")!" << endl;
 	cout << "CLIENT: PingPong Time : " << timeTaken << " ms!" << endl << endl;
 }
 
-void PlayerManager :: ServerSendPong(int player_id)
+void PlayerManager :: ServerSendPong(int player_id, double timePingSend)
 {
 	cout << "SERVER: Ping received from player-" << player_id << ", sending back Pong" << endl;
 	NetworkPacket nwp = NetworkPacket(PacketType::SERVER_PONG);
 	nwp << player_id;
+	nwp << timePingSend;
 	Network ::GetInstance()->SendServerPacket(nwp);
 	Network ::GetInstance()->SendPacket(nwp);
 }
