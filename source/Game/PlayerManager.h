@@ -18,7 +18,7 @@ private:
 	irr :: core :: map<int, PlayerData*>	*_list_of_players;
 	int										_local_player_id;
 	
-	double timeSent, timeTaken;
+	int timeSent, timeTaken;
 	int ticker;
 	
 	PlayerManager( );
@@ -33,8 +33,8 @@ private:
 	void OnClientJoinRequestReceived( char *player_name, int team_id, ENetPeer peer );
 	void OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id );
 
-	void PongReceived(int player_name);
-	void ServerSendPong(int player_name);
+	void PongReceived(int player_name, int timePingSend);
+	void ServerSendPong(int player_name, int timePingSend);
 
 	PlayerData *GetLocalPlayerData( );
 
