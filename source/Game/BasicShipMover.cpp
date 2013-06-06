@@ -20,9 +20,7 @@ BasicShipMover::~BasicShipMover() {
 
 void BasicShipMover::update() {
 	powerEnable = _ship->GetStation(ST_HELM)->HasPower();
-	powerEnable = true; //workAround to be commented when the switch between stations is working 
-
-	std::cout << maxSpeed << "\n";
+	powerEnable = true; //workAround to be commented when the switch between stations is working
 
 	if(powerEnable){ //power to steer
 	//FORWARD/BACKWARD

@@ -170,6 +170,7 @@
     <ClInclude Include="..\source\Game\HealthComponent.h" />
     <ClInclude Include="..\source\Game\HudComposite.h" />
     <ClInclude Include="..\source\Game\HudHelpText.h" />
+    <ClInclude Include="..\source\Game\IShipListener.h" />
     <ClInclude Include="..\source\Game\IStateSwitch.h" />
     <ClInclude Include="..\source\Game\ObjectPool.h" />
     <ClInclude Include="..\source\Game\PlayerData.h" />

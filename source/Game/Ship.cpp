@@ -75,6 +75,10 @@ void Ship::onAdd() {
 	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	
+
+	
+
+	
 	//Todo: Remove debug info from helptext!
 	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
 	addComponent(help);
@@ -203,8 +207,6 @@ void Ship :: CheckChangeInput()
 //Swith to a specific station
 void Ship :: SwitchToStation(StationType stationType)
 {
-
-
 	//Check if we are already on this station
 	if (_currentStation != NULL)
 	{
@@ -276,6 +278,37 @@ void Ship::fireLaser()
 	}
 }
 
+void Ship::addIShipListener(IShipListener* listener) {
+	listeners.push_back(listener);
+}
+
+void Ship::removeIShipListener(IShipListener* listener){
+	listeners.pop_back();
+}
+
+
+void Ship::notifyIShipListeners(ShipMessage message){
+	if(message == LEAVESTATION)
+		
+
+	for(std::list<IShipListener*>::iterator it = listeners.begin(); it != listeners.end(); ++it) {
+		(*it)->handleShipMessage(message);
+	}
+}
+
+void Ship::leaveStation(StationType station)
+{
+	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
+	packet << station;
+	Network::GetInstance()->SendPacket(packet, true);
+
+	this->_currentStation->disable();
+	this->_currentStation = NULL;
+	
+	this->notifyIShipListeners(LEAVESTATION);
+}
+
+
 void Ship::HandleNetworkMessage(NetworkPacket packet)
 {
 		
@@ -307,6 +340,8 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 		else {
 			//Read the information from the network packet
 			*transform->rotation = rotation;			
+			
+			
 		}
 	}
 }

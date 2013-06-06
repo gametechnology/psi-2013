@@ -512,6 +512,9 @@
     <ClInclude Include="..\source\Game\Stations\GUIEventReceiver\PowerStationEventReveiver.h">
       <Filter>Header Files\Stations\GUIEventReceiver</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\Game\IShipListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\assets\sydney.bmp">

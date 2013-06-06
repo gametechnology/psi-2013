@@ -4,6 +4,8 @@
 #include "../HealthComponent.h"
 #include "../PowerComponent.h"
 #include "../ShieldComponent.h"
+#include "../GameScene.h"
+#include "../PlayerManager.h"
 
 Station :: Station( Ship *ship, int startHealth ) : Entity()
 {
@@ -58,6 +60,8 @@ void Station :: init()
 	this->hud = new HudComposite(&(_healthComponent->health), &(_powerComponent->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
 	this->addChild(hud);
 
+	// This
+	playerlist = std::list<Player*>();
 }
 
 Station :: ~Station(void)
@@ -126,6 +130,8 @@ void Station::update()
 
 	if (game->input->isKeyboardButtonDown(KEY_ESCAPE)){
 		// Load Shipmap
+		leaveStation(_occupiedStation);
+		cout << "Leave Station";
 	}
 }
 
@@ -238,7 +244,5 @@ void Station::repairStation(int health)
 
 void Station::leaveStation(StationType station)
 {
-	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
-	packet << station;
-	Network::GetInstance()->SendPacket(packet, true);
+	_ship->leaveStation(station);
 }

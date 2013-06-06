@@ -11,6 +11,7 @@ public:
 	irr::f32 width;
 	irr::f32 height;
 	irr::f32 radius;
+	bool visible;
 
 	std::vector<MapSector*> sectors;
 	GalaxyMap(irr::f32 width, irr::f32 height, irr::f32 radiusSector);
