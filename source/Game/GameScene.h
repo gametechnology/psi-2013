@@ -14,6 +14,7 @@
 #include "Laser.h"
 #include "ObjectPool.h"
 #include "NetworkInterface.h"
+#include "MapGenerator.h"
 
 // Forward declare Shipmap
 class Shipmap;
@@ -38,6 +39,7 @@ private:
 	ObjectPool<Laser>* _laserPool;
 	Ship* _ship;
 	Ship* _shipEnemy;
+	GalaxyMap* galaxyMap;
 
 	std::list<Player*> _playerList;
 };

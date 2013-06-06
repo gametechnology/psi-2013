@@ -36,15 +36,16 @@ void GameScene::onAdd() {
 	_shipEnemy->addComponent(movComp);
 
 	//Creates Map & SectorManager
-	GalaxyMap* galaxyMap = new GalaxyMap(300, 300, 15);
+	galaxyMap = new GalaxyMap(300, 300, 15);
 
 	if (!testMap) {
 		galaxyMap->createMap(20, 2, 5);
 	} else {
 		galaxyMap->createStaticMap();
 	}
-	galaxyMap->transform->position = new vector3df(100, 670, 0);
+	galaxyMap->transform->position = new vector3df(980, 420, 0);
 	printf("-----------Added SectorManager----------\n\n");
+	addChild(galaxyMap);
 	addComponent(new SectorManager(galaxyMap,_ship));
 
 	_shipmap = new Shipmap(this);
@@ -58,6 +59,12 @@ void GameScene::init() {
 }
 
 void GameScene::update() {
+	if (this->game->input->isKeyboardButtonDown(KEY_KEY_M)) {
+		galaxyMap->visible = true;
+	} else {
+		galaxyMap->visible = false;
+	}
+
 	if(Network::GetInstance()->IsServer())
 	{
 		this->_sendLasersTimer++;

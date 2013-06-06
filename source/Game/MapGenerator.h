@@ -27,7 +27,7 @@ private:
 	std::vector<std::string> nameaddon;
 	std::vector<std::string> nametype;
 	std::vector<float> typeChances;
-	std::vector<MapSector*> sectors;
+	std::vector<MapSector*>* sectors;
 
 	int sectorCount;
 	int minWormholes;
