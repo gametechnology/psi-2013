@@ -120,6 +120,7 @@
     <ClCompile Include="..\source\Game\PlayerManager.cpp" />
     <ClCompile Include="..\source\Game\PowerComponent.cpp" />
     <ClCompile Include="..\source\Game\ShieldComponent.cpp" />
+    <ClCompile Include="..\source\Game\ShipHealthComponent.cpp" />
     <ClCompile Include="..\source\Game\ShipMover.cpp" />
     <ClCompile Include="..\source\Game\ShipScenes.cpp" />
     <ClCompile Include="..\source\Game\Laser.cpp" />
@@ -176,6 +177,7 @@
     <ClInclude Include="..\source\Game\SendAndReceivePackets.h" />
     <ClInclude Include="..\source\Game\PowerComponent.h" />
     <ClInclude Include="..\source\Game\ShieldComponent.h" />
+    <ClInclude Include="..\source\Game\ShipHealthComponent.h" />
     <ClInclude Include="..\source\Game\ShipMover.h" />
     <ClInclude Include="..\source\Game\ShipScenes.h" />
     <ClInclude Include="..\source\Game\Laser.h" />

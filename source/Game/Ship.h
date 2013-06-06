@@ -20,6 +20,8 @@
 #include "ObjectPool.h"
 #include "HudHelpText.h"
 
+#include "ShipHealthComponent.h"
+
 class DefenceStation;
 class HelmStation;
 class NavigationStation;
@@ -30,7 +32,6 @@ class Ship : public Entity, public INetworkListener
 {
 public:
 	HudHelpText* help;
-
 	//Player *players;
 	DefenceStation		*_defenceStation;
 	HelmStation			*_helmStation;
@@ -47,7 +48,7 @@ public:
 	irr::gui::IGUIStaticText *powerStationHealth;
 	irr::gui::IGUIStaticText *weaponStationHealth;
 
-
+	ShipHealthComponent* shipHealthComponent;
 	bool _shipDestroyed;
 
 	bool _sitOnStation;

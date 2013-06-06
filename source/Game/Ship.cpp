@@ -52,7 +52,8 @@ void Ship::onAdd() {
 	this->_weaponStation->disable();
 	this->_powerStation->disable();
 
-	
+	this->shipHealthComponent = new ShipHealthComponent(this);
+	addComponent(shipHealthComponent);
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
 	_thrusters[1] = new Thruster(vector3df(0,-2, 4), vector3df(0, 4, 4 ));
@@ -232,12 +233,12 @@ void Ship :: draw()
 
 int Ship :: getShipHealth()
 {
-
-	return (this->_defenceStation->getHealth() +
+	/*return (this->_defenceStation->getHealth() +
 		this->_helmStation->getHealth() +
 		this->_navigationStation->getHealth() +
 		this->_powerStation->getHealth() +
-		this->_weaponStation->getHealth());
+		this->_weaponStation->getHealth());*/
+	return shipHealthComponent->health;
 }
 
 bool Ship :: getShipDestroyed()

@@ -279,6 +279,9 @@
     <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\ShipHealthComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\GalaxyMap.h">
@@ -495,6 +498,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\DummyShip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ShipHealthComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
