@@ -72,6 +72,16 @@ void GameScene::update() {
 		*/
 		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z) || this->_ship->getShipHealth() <= 0 || this->_shipEnemy->getShipHealth() <= 0)
 		{
+			/* if(_ship->getShipHealth()<=0)
+			{
+				SendAndReceivePackets::sendWinLosePacket(_ship->getid());
+				SendAndReceivePackets::handleWinLose(_ship->getid(), _ship->getid(), this);
+			}*/
+			/* if(_shipEnemy->getShipHealth()<=0)
+			{
+				SendAndReceivePackets::sendWinLosePacket(_shipEnemy->getid());
+				SendAndReceivePackets::handleWinLose(shipEnemy->getid(), _ship->getid(), this);
+			}*/
 			SendAndReceivePackets::sendWinLosePacket(1);
 			SendAndReceivePackets::handleWinLose(1, 2, this);
 		}
