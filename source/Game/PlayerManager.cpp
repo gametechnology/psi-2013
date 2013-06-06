@@ -279,7 +279,7 @@ void PlayerManager :: PingSend()
 		  packet << (int) timeGetTime();
 		  Network :: GetInstance() -> SendPacket(packet, true);
 	 }
-	 else if (ticker >= 1000)
+	 else if (ticker >= 1000 && !isDisconnected)
 	 {	
 		 isDisconnected = true;
 		 cout << endl <<"CLIENT: I am disconnected!" << endl;
@@ -308,4 +308,5 @@ void PlayerManager :: ServerSendPong(int player_id, int timePingSent)
 	nwp << timePingSent;
 	
     Network ::GetInstance()->SendPacket(nwp);
+    Network ::GetInstance()->SendServerPacket(nwp);
 }
