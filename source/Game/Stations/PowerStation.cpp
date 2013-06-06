@@ -97,6 +97,24 @@ void PowerStation::OnDisabled()
 {
 }
 
+void PowerStation::removeUI()
+{
+	//Remove the static texts and scrollbars
+	for (int i = 0; i < context.scrollBars.size(); i++)
+	{
+		context.scrollBars.at(i)->remove();
+		context.stationsText.at(i)->remove();
+	}
+
+	//Clear lists
+	context.scrollBars.clear();
+	context.stationsText.clear();
+
+	//Remove power text
+	if(context.powerPoolText == NULL)
+		context.powerPoolText->remove();
+}
+
 void PowerStation :: DoCameraShake( )
 {
 }
@@ -109,9 +127,9 @@ void PowerStation::createUI()
 	createPowerPoolText();
 
 	//create the panels (scrollbar and text) for every station
-	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_HELM, 840, 150, 200, 30, 60,			PSER::GUI_ID_TEXT_HELM);
+	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_HELM, 840, 150, 200, 30, 30,			PSER::GUI_ID_TEXT_HELM);
 	//createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_DEFENCE, 320, 150, 200, 30, 60,		PSER::GUI_ID_TEXT_DEFENCE);
-	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_WEAPON, 580, 150, 200, 30, 60,		PSER::GUI_ID_TEXT_WEAPON);
+	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_WEAPON, 580, 150, 200, 30, 30,		PSER::GUI_ID_TEXT_WEAPON);
 	//createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_NAVIGATION, 840, 150, 200, 30, 60,	PSER::GUI_ID_TEXT_NAVIGATION);
 
 	receiver = new PSER(context, game->device);
@@ -130,7 +148,8 @@ void PowerStation::enable()
 
 void PowerStation::disable()
 {
-	//_interface->resetInterface();
+	removeUI();
+	enabled = false;
 	Station::disable();
 }
 
@@ -154,21 +173,8 @@ stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 //Adds the background image and the spaceship image. 
 void PowerStation::addImages()
 {
-	//Load icons
-	icon_helm = game->driver->getTexture("../assets/shipmap/icon_helm.png");
-	//icon_defense = game->driver->getTexture("../assets/shipmap/icon_defense.png");
-	icon_weapons = game->driver->getTexture("../assets/shipmap/icon_weapons.png");
-	//icon_navigation = game->driver->getTexture("../assets/shipmap/icon_navigation.png");
-	icon_engine = game->driver->getTexture("../assets/shipmap/icon_engine.png");
+	spaceshipImage = game->driver->getTexture("../assets/Textures/Stations/PowerStation/powerstation.png");
 
-	guiEnv->addImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
-	guiEnv->addImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190, 266));
-
-	guiEnv->addImage(icon_helm, position2d<int>(890, 460));
-	//guiEnv->addImage(icon_defense, position2d<int>(505, 610));
-	guiEnv->addImage(icon_weapons, position2d<int>(615, 320));
-	//guiEnv->addImage(icon_navigation, position2d<int>(715, 610));
-	guiEnv->addImage(icon_engine, position2d<int>(310, 460));
 }
 
 void PowerStation::createPowerStatusPanel(int scrollBarID, int x, int y, int width, int height, int textOffset, int staticTextID)
@@ -202,27 +208,31 @@ void PowerStation::update()
 {
 	Station::update();
 
-	int helm = context.GetPower(ST_HELM);
-	//int defence	= context.GetPower(ST_DEFENCE);
-	int weapon = context.GetPower(ST_WEAPON);
-	//int navigation = context.GetPower(ST_NAVIGATION);
+	//If enabled we update sliders
+	if(enabled)
+	{
+		int helm = context.GetPower(ST_HELM);
+		//int defence	= context.GetPower(ST_DEFENCE);
+		int weapon = context.GetPower(ST_WEAPON);
+		//int navigation = context.GetPower(ST_NAVIGATION);
 
-	context.powerPoolText->setText((varToString("Power Pool:\n", (float)context.powerPool, "%")).c_str());
+		context.powerPoolText->setText((varToString("Power Pool:\n", (float)context.powerPool, "%")).c_str());
 
-	//Set text to stationtexts
-	context.stationsText.at(0)->setText((varToString("Helm : ", (float)helm, "%")).c_str());
-	//context.stationsText.at(1)->setText((varToString("Defence: ", (float)defence, "%")).c_str());
-	context.stationsText.at(1)->setText((varToString("Weapon: ", (float)weapon, "%")).c_str());
-	//context.stationsText.at(3)->setText((varToString("Navigation: ", (float)navigation, "%")).c_str());
+		//Set text to stationtexts
+		context.stationsText.at(0)->setText((varToString("Helm : ", (float)helm, "%")).c_str());
+		//context.stationsText.at(1)->setText((varToString("Defence: ", (float)defence, "%")).c_str());
+		context.stationsText.at(1)->setText((varToString("Weapon: ", (float)weapon, "%")).c_str());
+		//context.stationsText.at(3)->setText((varToString("Navigation: ", (float)navigation, "%")).c_str());
 
-	//Checks the power percentage and assigns the text a color indicating the amount of power available to that station.
-	changeColorAccordingToPowerStatus(*context.stationsText.at(0), (float)helm);
-	//changeColorAccordingToPowerStatus(*context.stationsText.at(1), (float)defence);
-	changeColorAccordingToPowerStatus(*context.stationsText.at(1), (float)weapon);
-	//changeColorAccordingToPowerStatus(*context.stationsText.at(3), (float)navigation);
+		//Checks the power percentage and assigns the text a color indicating the amount of power available to that station.
+		changeColorAccordingToPowerStatus(*context.stationsText.at(0), (float)helm);
+		//changeColorAccordingToPowerStatus(*context.stationsText.at(1), (float)defence);
+		changeColorAccordingToPowerStatus(*context.stationsText.at(1), (float)weapon);
+		//changeColorAccordingToPowerStatus(*context.stationsText.at(3), (float)navigation);
 
-	//Update sliders
-	updateSliders();
+		//Update sliders
+		updateSliders();
+	}
 }
 
 void PowerStation::updateSliders()
@@ -232,31 +242,30 @@ void PowerStation::updateSliders()
 	{
 		context.scrollBars.at(i)->setMax(context.scrollBars.at(i)->getPos() + context.powerPool);
 	}
-	
+
 	//context.UpdatePowerUsage(StationType::ST_DEFENCE, context.scrollBars.at(0)->getPos(), false);
 	context.UpdatePowerUsage(StationType::ST_HELM, context.scrollBars.at(0)->getPos(), false);
 	context.UpdatePowerUsage(StationType::ST_WEAPON, context.scrollBars.at(1)->getPos(), false);
-	//context.UpdatePowerUsage(StationType::ST_NAVIGATION, context.scrollBars.at(3)->getPos(), false);
-
 
 
 }
 
 void PowerStation::draw()
 {
-	game->driver->draw2DImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), 
-		position2d<s32>(0,0), 
-		rect<s32>(0, 0, 1280, 720), 
-		0,
-		SColor(255, 255, 255, 255),
-		true);
-	game->driver->draw2DImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), 
-		position2d<s32>(0, 0), 
-		rect<s32>(0, 0, 1280, 720), 
-		0,
-		SColor(255, 255, 255, 255),
-		true);
-
+	
+	if(enabled)
+	{
+		game->driver->draw2DImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), 
+			position2d<s32>(0,0),
+			rect<s32>(0, 0, 1280, 720), 
+			0,
+			SColor(255, 255, 255, 255),
+			true);
+		game->driver->draw2DImage(spaceshipImage, core::position2d<s32>(110,190),
+		irr::core::rect<s32>(0,0,spaceshipImage->getOriginalSize().Width, spaceshipImage->getOriginalSize().Height),
+		0, video::SColor(255,255,255,255), true);
+	}
+	
 	Station::draw();
 }
 
