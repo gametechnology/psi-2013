@@ -38,7 +38,7 @@ void PlayerManager::Init()
 	} 
 	else
 	{
-		//As a server I listen to:
+		//As a server I listexn to:
 		cout << endl << endl << endl << "I am a server!" << endl << endl;
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this);
@@ -238,10 +238,11 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 
 		this -> OnJoinDeniedReceived( );
 		break;
-		case PacketType :: CLIENT_UPDATE_LOBBY_STATUS:
+	case PacketType :: CLIENT_UPDATE_LOBBY_STATUS:
 			packet >> player_id >> update >> player_team_id;
-		this -> OnClientStatusUpdateReceived( player_id, ( CLIENT_STATUS_UPDATE ) update, player_team_id );
-		case PacketType :: SERVER_ALL_PLAYERS:
+			this -> OnClientStatusUpdateReceived( player_id, ( CLIENT_STATUS_UPDATE ) update, player_team_id );
+		break;
+	case PacketType :: SERVER_ALL_PLAYERS:
 		packet >> allPlayersMessage;
 		cout << "\nAll Player Message: \n" << allPlayersMessage.c_str() << endl;
 		break;
@@ -261,14 +262,18 @@ void PlayerManager :: PingSend()
 {
 	 ticker++;
 
-	 if (ticker >= 500)
+	 if (timeSent == 0 && ticker >= 500)
 	 {
 		  NetworkPacket packet = NetworkPacket(PacketType::CLIENT_PING);
 		  packet << _localPlayerData->id;
 		  packet << (double) timeGetTime();
-		  Network :: GetInstance() -> SendPacket(packet, false);
+		  Network :: GetInstance() -> SendPacket(packet, true);
 		  cout << "CLIENT: Ping send to the server from player-" << _localPlayerData->id << "("<< _localPlayerData->name <<") !" << endl;
 		  ticker = 0;
+	 }
+	 if (timeSent != 0 && ticker >= 5000)
+	 {
+		 cout << "CLIENT: I am disconnected!" << endl;
 	 }
 }
 
@@ -280,6 +285,8 @@ void PlayerManager :: PongReceived(int player_id, double timePingSend)
 	timeTaken = timeGetTime() - timePingSend;
 	cout << "CLIENT: Pong received from server by player-" << _localPlayerData->id << "("<< _localPlayerData->name <<")!" << endl;
 	cout << "CLIENT: PingPong Time : " << timeTaken << " ms!" << endl << endl;
+
+	timeSent = 0;
 }
 
 void PlayerManager :: ServerSendPong(int player_id, double timePingSend)
@@ -288,6 +295,7 @@ void PlayerManager :: ServerSendPong(int player_id, double timePingSend)
 	NetworkPacket nwp = NetworkPacket(PacketType::SERVER_PONG);
 	nwp << player_id;
 	nwp << timePingSend;
+	
 	Network ::GetInstance()->SendServerPacket(nwp);
-	Network ::GetInstance()->SendPacket(nwp);
+    Network ::GetInstance()->SendPacket(nwp);
 }
