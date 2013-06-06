@@ -57,7 +57,7 @@ void Station :: init()
 	_isOccupied = false;
 	_player = NULL;
 
-	this->hud = new HudComposite(&(_healthComponent->health), &(_powerComponent->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
+	this->hud = new HudComposite(_healthComponent->getPointerToHealth(), &(_powerComponent->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
 	this->addChild(hud);
 
 	// This
@@ -195,13 +195,13 @@ void Station::updateHealth()
 
 int Station :: getHealth()
 {
-	return _healthComponent->health;
+	return _healthComponent->getHealth();
 }
 
 void Station::decreaseHealth(int health)
 {
 	_healthComponent->decreaseHealth(health);
-	if(_healthComponent->health <= 0)
+	if(_healthComponent->getHealth() <= 0)
 	{
 		setStationDestroyed(true);
 	}
@@ -239,7 +239,7 @@ void Station::increasePower(int power)
 void Station::repairStation(int health)
 {
 	this->setStationDestroyed(false);
-	_healthComponent->health = health;
+	_healthComponent->setHealth(health);
 }
 
 void Station::leaveStation(StationType station)

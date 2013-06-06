@@ -290,6 +290,18 @@ void SectorTemplate::createEnemies()
 	//addChild(_enemyList.back());
 }
 
+void SectorTemplate::removeEnemyFromList(Enemy* enemy)
+{
+	for(int i = 0; i < _enemyList.size(); i++)
+	{
+		if(_enemyList[i] == enemy)
+		{
+			_enemyList.erase(_enemyList.begin() + i);
+			break;
+		}
+	}
+}
+
 SectorTemplate::~SectorTemplate() {
 	//_camera->drop();
 	Scene::~Scene();

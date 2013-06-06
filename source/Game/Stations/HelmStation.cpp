@@ -36,7 +36,7 @@ bool ding = false;
 float temp = 0;
 void HelmStation::update()
 {
-	if (this->game->input->isKeyboardButtonDown(KEY_KEY_I))
+	if (this->game->input->isKeyboardButtonPressed(KEY_KEY_I))
 	{
 		ding = !ding;
 	}	
