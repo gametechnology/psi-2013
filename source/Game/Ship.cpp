@@ -14,6 +14,7 @@ Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 	this->transform->position = &position;
 	this->transform->rotation = &rotation;
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
+
 }
 
 Ship::~Ship(void)
@@ -73,6 +74,7 @@ void Ship::onAdd() {
 	this->navigationStationHealth	= env->addStaticText(strNavigationHealth.c_str(),	rect<s32>(40, 140, 300, 160), false);	this->navigationStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+	
 
 	
 
@@ -208,6 +210,10 @@ void Ship :: SwitchToStation(StationType stationType)
 	//Check if we are already on this station
 	if (_currentStation != NULL)
 	{
+		if (_currentStation->GetStationType() == stationType)
+			return;
+
+		//First remove the currentStation from the shipComponents
 		_currentStation->disable();
 	}
 
@@ -261,14 +267,13 @@ void Ship::fireLaser()
 	Laser* laser = this->laserPool->GetFreeObject();
 	if(laser != NULL)
 	{
-		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
+		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 10 * _weaponStation->getPower()/100, 1.0);
 		std::cout << "weapon fired" << std::endl;
 
-		if(!Network::GetInstance()->IsServer()){
+		if(!Network::GetInstance()->IsServer()) {
 			NetworkPacket firepacket = NetworkPacket(PacketType::CLIENT_FIRE_LASER);
 			firepacket << *laser;
 			Network::GetInstance()->SendPacket(firepacket, true);
-
 		}
 	}
 }
@@ -332,13 +337,11 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 		if(_currentStation != NULL && _currentStation->GetStationType() == ST_WEAPON){
 			((WeaponStation*)_currentStation)->rotationForeign = rotation;
 		}
-		else{
+		else {
 			//Read the information from the network packet
-			*transform->rotation = rotation;
+			*transform->rotation = rotation;			
 			
-		
 			
-
 		}
 	}
 }

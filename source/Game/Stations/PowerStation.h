@@ -1,82 +1,77 @@
 #ifndef POWER_STATION
 #define POWER_STATION
 
-#include "Station.h"
-#include "..\Ship.h"
-#include "PowerStationData.h"
-#include <Engine\Game.h>
-#include "../NetworkInterface.h"
-#include "../HudHelpText.h"
-#include <Irrlicht\irrlicht.h>
 #include <time.h>
 #include <iostream>
+#include <math.h>
+#include "Station.h"
+#include "PowerStationData.h"
+#include "../NetworkInterface.h"
+#include "../Ship.h"
 
-#define BOOST_TIME	10
+using namespace irr::core;
+
+//Predefine classes
+class PowerStationEventReveiver;
+
+// Prefer constants over Defines.
+const int BOOST_TIME = 10;
+
 
 class PowerStation : public Station, public INetworkListener
 {
-private:
-	
-	//checks if the new value can be matched (cannot be lower than 0 or higher than the total energy in our pool) and then updates the value of the station's energy pool.
-	void UpdateStationPower(StationType, int newValue, bool sentByServer );
-
-	irr::gui::IGUIImage* bgImage;
-	irr::gui::IGUIImage* spaceshipImage;
-
-	irr::gui::IGUIButton* helmButton;
-	irr::gui::IGUIButton* weaponButton;
-	irr::gui::IGUIButton* defenseButton;
-	irr::gui::IGUIButton* navigationButton;
-
 public:
-	HudHelpText* help;
-
 	//Power Station Impl	
-	video :: IVideoDriver	*driver;
-	IrrlichtDevice			*device;
-	IGUIEnvironment			*env;
-	IGUISkin				*skin;
-	IGUIFont				*font;
-	PowerStationData		context;
+	irr::gui::IGUISkin *skin;
+	irr::gui::IGUIFont *font;
+	PowerStationData context;
+	irr::gui::IGUIEnvironment* guiEnv;
 
-	PowerStation( Ship* ship );
-	~PowerStation( void );
-	bool IsPoolEmpty( );
+	PowerStation(Ship*);
+	~PowerStation();
 
-	void SubscribeStation( Station *s );
+	void SubscribeStation(Station *s);
 
 	//shakes the camera whenever the station is hurt (aaaahh)
 	void DoCameraShake( );
 	
-	void enable();
-	void disable();
+	virtual void enable();
+	virtual void disable();
 	void createUI();
-	void removeUI();
 	void addImages();
-	void removeImages();
 
-	void declareUIData();
-
-	void createPowerPool();
-	void createScrollbar();
-	void createButtons();
-	void createGeneralPowerTexts();
-	void createCurrentSelectedStationText();
-
-	void HandleNetworkMessage(NetworkPacket packet);
-	stringw varToString(stringw str1, float var, stringw str2 = L"");
+	//New interface
+	void createPowerStatusPanel(int scrollBarID, int x, int y, int width, int height, int textOffset, int staticTextID);
+	void createScrollbar(int scrollBarID, int x, int y, int width, int height);
+	void createText(int staticTextID, int x, int y , int width, int height);
+	void createPowerPoolText();
+	void updateSliders();
+	//void createButtons();
+	virtual void HandleNetworkMessage(NetworkPacket packet); //Inet version
+	virtual void handleNetworkMessage(NetworkPacket packet); //Station version
+	irr::core::stringw varToString(irr::core::stringw str1, float var, irr::core::stringw str2 = L"");
 	
 	virtual void init();
 	virtual void update();
 	virtual void draw();
 
-
-	void selectedStation();
-	void changeColorAccordingToPowerStatus(IGUIStaticText &staticText, float powerAmount);
+	void changeColorAccordingToPowerStatus(irr::gui::IGUIStaticText& staticText, float powerAmount);
 
 	int GetPower(StationType type);
 	void OnEnabled();
 	void OnDisabled();
+private:	
+	//checks if the new value can be matched (cannot be lower than 0 or higher than the total energy in our pool) and then updates the value of the station's energy pool.
+	void UpdateStationPower(StationType, int newValue, bool sentByServer );
+
+	PowerStationEventReveiver* receiver;
+	float shipYpos;
+	float scrollYpos;
+	video::ITexture* icon_helm;
+	video::ITexture* icon_defense;
+	video::ITexture* icon_weapons;
+	video::ITexture* icon_navigation;
+	video::ITexture* icon_engine;
 };
 
 #endif

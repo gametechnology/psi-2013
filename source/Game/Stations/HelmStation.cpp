@@ -1,5 +1,7 @@
 #include "HelmStation.h"
 
+BasicShipMover* mover;
+
 HelmStation::HelmStation(Ship *ship) : Station(ship)
 {
 	_stationType = ST_HELM;
@@ -17,7 +19,7 @@ void HelmStation::onAdd()
 	Station::onAdd();
 
 	//ShipMover* mover = new ShipMover(_ship); // Ship mover with thrusters.
-	BasicShipMover* mover = new BasicShipMover(_ship); // Ship mover without thrusters.
+	mover = new BasicShipMover(_ship); // Ship mover without thrusters.
 	addComponent(mover);
 }
 
@@ -29,8 +31,27 @@ void HelmStation::init()
 }
 
 
+//TODO: remove debug variables
+bool ding = false;
+float temp = 0;
 void HelmStation::update()
 {
+	if (this->game->input->isKeyboardButtonDown(KEY_KEY_I))
+	{
+		ding = !ding;
+	}	
+	if (ding) {
+		if (this->game->input->isKeyboardButtonDown(irr::KEY_KEY_9)) {
+			temp += 0.1f;
+		} else if  (this->game->input->isKeyboardButtonDown(irr::KEY_KEY_8)) {
+			temp -= 0.1f;
+			if (temp <= 0) temp = 0;
+		}
+		mover->setMaxSpeed(temp);
+	} else {
+		mover->setMaxSpeed((float)getPower() / 100); //This is the only line of code that should stay
+	}
+
 	Station::update();
 }
 
