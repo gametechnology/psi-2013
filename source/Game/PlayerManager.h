@@ -19,7 +19,7 @@ private:
 	PlayerData								*_localPlayerData;
 	
 	bool _isServer;
-	double timeTaken;
+	int timeSent, timeTaken;
 	int ticker;
 	
 	PlayerManager( );
@@ -33,8 +33,8 @@ private:
 	void OnClientJoinRequestReceived( char *player_name, int team_id, ENetPeer peer );
 	void OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id );
 
-	void PongReceived(int player_name, double timePingSend);
-	void ServerSendPong(int player_name, double timePingSend);
+	void PongReceived(int player_name, int timePingSend);
+	void ServerSendPong(int player_name, int timePingSend);
 
 public:
 	static PlayerManager* GetInstance();

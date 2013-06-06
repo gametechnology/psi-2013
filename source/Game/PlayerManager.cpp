@@ -211,6 +211,7 @@ void PlayerManager:: SendPlayerInfoRequest()
 void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 {
 	int			player_id;
+	int			timePingSent;
 	int			player_team_id = -1;
 	int			player_station_type;
 	int			update;
@@ -251,11 +252,13 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 
 	case PacketType :: SERVER_PONG:
 		packet >> player_id;
-		PongReceived(player_id);
+		packet >> timePingSent;
+		PongReceived(player_id, timePingSent);
 		break;
 	case PacketType :: CLIENT_PING:
 		packet >> player_id;
-		ServerSendPong(player_id);
+		packet >> timePingSent;
+		ServerSendPong(player_id, timePingSent);
 		break;
 	}
 }
@@ -266,39 +269,43 @@ void PlayerManager :: PingSend()
 
 	 if (timeSent == 0 && ticker >= 500)
 	 {
-		  timeSent = timeGetTime();
-		  isDisconnected=false;
-		  NetworkPacket packet = NetworkPacket(PacketType::CLIENT_PING);
-		  packet << _localPlayerData->id;
-		  Network :: GetInstance() -> SendPacket(packet, true);
 		  cout << "CLIENT: Ping send to the server from player-" << _localPlayerData->id << "("<< _localPlayerData->name <<") !" << endl;
 		  ticker = 0;
+		  timeSent = timeGetTime();
+		  isDisconnected = false;
+
+		  NetworkPacket packet = NetworkPacket(PacketType::CLIENT_PING);
+		  packet << _localPlayerData->id;
+		  packet << (int) timeGetTime();
+		  Network :: GetInstance() -> SendPacket(packet, true);
 	 }
-	 else if (ticker >= 1000 && isDisconnected == true)
+	 else if (ticker >= 1000)
 	 {	
 		 isDisconnected = true;
 		 cout << endl <<"CLIENT: I am disconnected!" << endl;
 	 }
 }
 
-void PlayerManager :: PongReceived(int player_id)
+void PlayerManager :: PongReceived(int player_id, int timePingSent)
 {
 	if (player_id != _localPlayerData->id)
 		return;
 
-	timeTaken = timeGetTime() - timeSent;
-	cout << "CLIENT: Pong received from server by player-" << _localPlayerData->id << "("<< _localPlayerData->name <<")!" << endl;
-	cout << "CLIENT: PingPong Time : " << timeTaken << " ms!" << endl << endl;
+	timeTaken = timeGetTime() - timePingSent;
+	cout << "CLIENT: Pong[id=" << player_id << ", time=" << timePingSent << "] received from server by player-" << _localPlayerData->id << "("<< _localPlayerData->name <<") " << endl;
+	cout << "CLIENT: - " << timeTaken << " ms!" << endl << endl;
 
 	timeSent = 0;
 }
 
-void PlayerManager :: ServerSendPong(int player_id)
+void PlayerManager :: ServerSendPong(int player_id, int timePingSent)
 {
-	cout << "SERVER: Ping received from player-" << player_id << ", sending back Pong" << endl;
+	cout << "SERVER: Ping received from player-" << player_id << endl; 
+	cout << "SERVER: Sending back Pong[id=" << player_id << ", time=" << timePingSent << "]" << endl;
+	
 	NetworkPacket nwp = NetworkPacket(PacketType::SERVER_PONG);
 	nwp << player_id;
+	nwp << timePingSent;
 	
-	Network ::GetInstance()->SendServerPacket(nwp);
     Network ::GetInstance()->SendPacket(nwp);
 }
