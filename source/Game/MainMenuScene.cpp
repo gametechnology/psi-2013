@@ -8,9 +8,13 @@ MainMenuScene::MainMenuScene() : Scene() {
 MainMenuScene::~MainMenuScene() {
 
 }
+struct host{
+
+}
 
 void MainMenuScene::init() {
 	//Get the device
+	issearching = false;
 	guiEnv = game->guiEnv;
 	playerlist = std::list<Player*>();
 
@@ -44,18 +48,25 @@ void MainMenuScene::addGuiElements()
 	//Creat the main menu window
 	mainMenuWindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"Main menu",0,100);
 	mainMenuWindow->getCloseButton()->remove();
-
+	
 	//Add text and button
 	createServerWindow_Button = guiEnv->addButton(rect<s32>(position2di(50,135),dimension2di(200,25)),mainMenuWindow,2, L"Create a game");
-	joinServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,1,L"Join a game");
-		
-	portLabel = guiEnv->addStaticText(L"Port:",rect<s32>(position2di(50,65),dimension2di(100,25)),false,true,mainMenuWindow);
-	ipLabel	= guiEnv->addStaticText(L"Host ip:",rect<s32>(position2di(175,65),dimension2di(100,25)),false,true,mainMenuWindow);
-	Namelabel = guiEnv->addStaticText(L"Name:",rect<s32>(position2di(300,65),dimension2di(100,25)),false,true,mainMenuWindow);
+	joinServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,1,L"Join a game manualy");
+	findserver_Button	= guiEnv->addButton(rect<s32>(position2di(50,195),dimension2di(200,25)),mainMenuWindow,6,L"Find hosts");	
+	
+	servernames	= guiEnv->addStaticText(L"Server name:",rect<s32>(position2di(50,225),dimension2di(100,25)),false,true,mainMenuWindow);
+	serverip = guiEnv->addStaticText(L"Server Ipadress:",rect<s32>(position2di(175,225),dimension2di(100,25)),false,true,mainMenuWindow);
+	serveractions	= guiEnv->addStaticText(L"Actions:",rect<s32>(position2di(300,225),dimension2di(100,25)),false,true,mainMenuWindow);
 
-	hostPortInput = guiEnv->addEditBox(L"",rect<s32>(position2di(50, 80),dimension2di(100,25)),true,mainMenuWindow);
-	Ipadresinput = guiEnv->addEditBox(L"",rect<s32>(position2di(175, 80),dimension2di(100,25)),true,mainMenuWindow);
-	Nameinput = guiEnv->addEditBox(L"",rect<s32>(position2di(300, 80),dimension2di(100,25)),true,mainMenuWindow);
+
+
+	servernameLabel = guiEnv->addStaticText(L"Server name:",rect<s32>(position2di(50,65),dimension2di(100,25)),false,true,mainMenuWindow);
+	ipLabel	= guiEnv->addStaticText(L"Host ip:",rect<s32>(position2di(300,150),dimension2di(100,25)),false,true,mainMenuWindow);
+	Namelabel = guiEnv->addStaticText(L"Player Name:",rect<s32>(position2di(175,65),dimension2di(100,25)),false,true,mainMenuWindow);
+
+	servernameInput = guiEnv->addEditBox(L"",rect<s32>(position2di(50, 80),dimension2di(100,25)),true,mainMenuWindow);
+	Ipadresinput = guiEnv->addEditBox(L"",rect<s32>(position2di(300, 165),dimension2di(100,25)),true,mainMenuWindow);
+	Nameinput = guiEnv->addEditBox(L"",rect<s32>(position2di(175, 80),dimension2di(100,25)),true,mainMenuWindow);
 
 	Clientlist = guiEnv->addStaticText(L"",rect<s32>(position2di(300,105),dimension2di(200,200)),false,true,mainMenuWindow);
 	Clientlist->setVisible(false);
@@ -96,7 +107,31 @@ void MainMenuScene::update(){
 
 	const std::wstring& tmpp = ssp.str();
 	Clientlist->setText(tmpp.c_str());
-
+	if(Network::GetInstance()->IsServer())
+	{
+		sf::UdpSocket Socket;
+		sf::Packet sendpacket;
+		wchar_t* inputwchar = (wchar_t*)servernameInput->getText();
+		
+		sendpacket << true;
+		sendpacket << *inputwchar;
+		// Send data to "192.168.0.2" on port 4567
+		if (Socket.send(sendpacket, "192.168.", 4567) != sf::Socket::Done)
+		{
+			// Error...
+		}
+	}
+	if(issearching)
+	{
+		sf::UdpSocket Socket;
+		sf::Packet sendpacket;
+		sendpacket << false;
+		// Send data to "192.168.0.2" on port 4567
+		if (Socket.send(sendpacket, "192.168.", 4567) != sf::Socket::Done)
+		{
+			// Error...
+		}
+	}
 	
 
 	//Ask playermanager to get all player info from the server, when L is pressed
@@ -259,9 +294,46 @@ void MainMenuScene::BackToMainMenu()
 	Nameinput->setVisible(true);
 	Clientlist->setVisible(false);
 	start_button->setVisible(false);
+	servernameInput->setVisible(true);
+	servernameLabel->setVisible(true);
+	findserver_Button->setVisible(true);
 	startStatic_button->setVisible(false);
 	quit_button->setVisible(false);
 	waitinglabel->setVisible(false);
+}
+
+void serverlistreciever(void * menu){
+	sf::UdpSocket Socket;
+	MainMenuScene * mainmenu = (MainMenuScene*)menu;
+		// Bind it (listen) to the port 4567
+		if (!Socket.bind(4567))
+		{
+			// Error...
+		}
+		sf::Packet recievepacket;
+		sf::IpAddress Sender;
+		unsigned short Port;
+		std::cout << "waiting for packet...\n";
+		if (Socket.receive(recievepacket, Sender, Port) != sf::Socket::Done)
+		{
+			// Error...
+		}
+		else
+		{
+		}
+		mainmenu->servernames	= mainmenu->guiEnv->addStaticText(L"Server name:",rect<s32>(position2di(50,225),dimension2di(100,25)),false,true,mainmenu->mainMenuWindow);
+		mainmenu->serverip = mainmenu->guiEnv->addStaticText(L"Server Ipadress:",rect<s32>(position2di(175,225),dimension2di(100,25)),false,true,mainmenu->mainMenuWindow);
+		mainmenu->serveractions	= mainmenu->guiEnv->addStaticText(L"Actions:",rect<s32>(position2di(300,225),dimension2di(100,25)),false,true,mainmenu->mainMenuWindow);
+		int length;
+		 recievepacket >> length;
+		int height = 255;
+		for (int i =0;i < length; i++)
+		{
+			std::string
+			mainmenu->servernames	= mainmenu->guiEnv->addStaticText(L"Server name:",rect<s32>(position2di(50,225),dimension2di(100,25)),false,true,mainmenu->mainMenuWindow);
+			mainmenu->serverip = mainmenu->guiEnv->addStaticText(L"Server Ipadress:",rect<s32>(position2di(175,225),dimension2di(100,25)),false,true,mainmenu->mainMenuWindow);
+			height +=;
+		}
 }
 
 

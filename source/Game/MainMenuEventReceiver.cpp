@@ -21,9 +21,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 		char* playername;
 		wchar_t* namewchar;
 
-		stringc portInput;
-		short port;
-
+	wchar_t* servername;
 		Player* newplayer;
 		NetworkPacket packet(START_GAME);
 		NetworkPacket namepacket(CLIENT_JOIN);
@@ -41,24 +39,23 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 				wcstombs(ipadress, inputwchar, wcslen(inputwchar));
 				ipadress[wcslen(inputwchar)] = 0;
 
-				portInput = mainmenu->hostPortInput->getText();
-				port = atof(portInput.c_str());
+			
 
 				namewchar = (wchar_t*)mainmenu->Nameinput->getText();
 				playername = (char*)malloc(wcslen(namewchar)+ 1);
 				wcstombs(playername, namewchar, wcslen(namewchar));
 				playername[wcslen(namewchar)] = 0;
 
-				if((*ipadress == ' ' || *ipadress == NULL) || (*playername == ' ' || *playername == NULL) || (port == 0)){
-					if(*ipadress == ' ' || *ipadress == NULL || port == 0){
-						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Fill in an Ipadress and port",true,1,mainmenu->mainMenuWindow);
+				if((*ipadress == ' ' || *ipadress == NULL) || (*playername == ' ' || *playername == NULL)){
+					if(*ipadress == ' ' || *ipadress == NULL){
+						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Fill in an Ipadress",true,1,mainmenu->mainMenuWindow);
 						mainmenu->messagebox->setDraggable(false);
 					}else{
 						mainmenu->messagebox = this->contextGame->guiEnv->addMessageBox(L"Message",L"Fill in an Name",true,1,mainmenu->mainMenuWindow);
 						mainmenu->messagebox->setDraggable(false);
 					}
 				}else{
-					Network::GetInstance()->InitializeClient(ipadress, port);
+					Network::GetInstance()->InitializeClient(ipadress, 1234);
 					if(!Network::GetInstance()->IsConnected()){
 						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Not able to connect to server",true,1,mainmenu->mainMenuWindow);
 						mainmenu->messagebox->setDraggable(false);
@@ -72,6 +69,9 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->Clientlist->setVisible(true);
 						mainmenu->Ipadresinput->setVisible(false);
 						mainmenu->Namelabel->setVisible(false);
+						mainmenu->findserver_Button->setVisible(false);
+						mainmenu->servernameInput->setVisible(false);
+						mainmenu->servernameLabel->setVisible(false);
 						// TODO check merge Both??
 						mainmenu->waitinglabel = env->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainmenu->mainMenuWindow);
 						mainmenu->Nameinput->setVisible(false);
@@ -88,11 +88,12 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 			case 2: // Create
 				namewchar = (wchar_t*)mainmenu->Nameinput->getText();
 				playername = (char*)malloc(wcslen(namewchar)+ 1);
+				 servername = (wchar_t*)mainmenu->servernameInput->getText();
 				wcstombs(playername, namewchar, wcslen(namewchar));
 				playername[wcslen(namewchar)] = 0;
 
-				if(*playername == ' ' || *playername == NULL){
-					mainmenu->messagebox = this->contextGame->guiEnv->addMessageBox(L"Message",L"Fill in a name",true,1,mainmenu->mainMenuWindow);
+				if(*playername == ' ' || wcslen(servername) == 0  || *playername == NULL){
+					mainmenu->messagebox = this->contextGame->guiEnv->addMessageBox(L"Message",L"Fill in a name and server name",true,1,mainmenu->mainMenuWindow);
 					mainmenu->messagebox->setDraggable(false);
 					return false;
 				}else{
@@ -103,6 +104,9 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					mainmenu->Ipadresinput->setVisible(false);
 					mainmenu->Namelabel->setVisible(false);
 					mainmenu->Nameinput->setVisible(false);
+					mainmenu->servernameInput->setVisible(false);
+					mainmenu->servernameLabel->setVisible(false);
+					mainmenu->findserver_Button->setVisible(false);
 					mainmenu->start_button->setVisible(true);
 					mainmenu->startStatic_button->setVisible(true);
 					mainmenu->quit_button->setVisible(true);
@@ -140,6 +144,10 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 				mainmenu->playerlist.clear();
 				Network::GetInstance()->DeInitialize();
 				mainmenu->BackToMainMenu();
+				return true;
+			case 6:
+				mainmenu->issearching = true;
+				_beginthread(mainmenu->serverlistreciever,0,mainmenu);
 				return true;
 			default:
 				return false;

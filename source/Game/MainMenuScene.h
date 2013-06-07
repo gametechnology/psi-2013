@@ -36,6 +36,7 @@ public:
 	void StartGame();
 	void StartTestGame();
 	void BackToMainMenu();
+	static void serverlistreciever(void * menu);
 	void HandleNetworkMessage(NetworkPacket packet);
 	virtual void addGuiElements();
 
@@ -51,17 +52,23 @@ public:
 	IGUIButton* startStatic_button;
 	IGUIButton* quit_button;
 	IGUIButton* host_quit_button;
+	IGUIButton* findserver_Button;
 	// other items in menu
+	IGUIElement* lisitems;
 	IGUIStaticText* Clientlist;
 	IGUIStaticText* Namelabel;
-	IGUIStaticText* portLabel;
+	IGUIStaticText* servernameLabel;
 	IGUIStaticText* ipLabel;
 	IGUIStaticText* waitinglabel;
+
+	IGUIStaticText* servernames;	
+	IGUIStaticText*	serverip;
+	IGUIStaticText*	serveractions;	
 	IGUIEditBox* Ipadresinput;
-	IGUIEditBox* hostPortInput;
+	IGUIEditBox* servernameInput;
 	IGUIEditBox* Nameinput;
 	IGUIWindow* messagebox;
-
+	bool issearching;
 	//Create a gui environment
 	IGUIEnvironment* guiEnv;
 	
