@@ -176,6 +176,7 @@
     <ClInclude Include="..\source\Game\SendAndReceivePackets.h" />
     <ClInclude Include="..\source\Game\PowerComponent.h" />
     <ClInclude Include="..\source\Game\ShieldComponent.h" />
+    <ClInclude Include="..\source\Game\ShipInterface.h" />
     <ClInclude Include="..\source\Game\ShipMover.h" />
     <ClInclude Include="..\source\Game\ShipScenes.h" />
     <ClInclude Include="..\source\Game\Laser.h" />

@@ -1,5 +1,5 @@
-#ifndef PROXYSHIP_H
-#define PROXYSHIP_H
+#ifndef SERVERPROXYSHIP_H
+#define SERVERPROXYSHIP_H
 
 #include "Engine/Entity.h"
 #include "NetworkInterface.h"
@@ -7,11 +7,11 @@
 #include "BasicMoverComponent.h"
 #include "ShipInterFace.h"
 
-class ProxyShip :  public ShipInterFace, public INetworkListener
+class ServerProxyShip :  public ShipInterFace, public INetworkListener
 {
 public:
-	ProxyShip(int teamId);
-	~ProxyShip();
+	ServerProxyShip(int teamId);
+	~ServerProxyShip();
 
 	int getTeamId();
 	void HandleNetworkMessage(NetworkPacket packet);

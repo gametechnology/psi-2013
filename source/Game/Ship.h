@@ -19,6 +19,7 @@
 #include "Laser.h"
 #include "ObjectPool.h"
 #include "HudHelpText.h"
+#include "ShipInterface.h"
 
 class DefenceStation;
 class HelmStation;
@@ -26,7 +27,7 @@ class NavigationStation;
 class PowerStation;
 class WeaponStation;
 
-class Ship : public Entity, public INetworkListener
+class Ship : public ShipInterFace, public INetworkListener
 {
 public:
 	HudHelpText* help;
