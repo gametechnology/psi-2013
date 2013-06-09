@@ -101,6 +101,11 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 		SendAndReceivePackets::receiveWinLosePacket(packet, 1, this);
 		break;
 	case CLIENT_SWITCH_STATION:
+		unsigned int receivedStationType;
+		packet >> receivedStationType;
+		if(_ship->GetStation((StationType)receivedStationType)->setStationOccupation() == false)
+			printf("Could not set station to occupied!\n");
+		/* TODO: REIMPLEMENT WHEN NETWORKING AND PLAYERLISTS ARE FUNCTIONAL
 		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
 		{			
 			if((*i)->Ipadres == packet.GetSender().address.host)
@@ -110,9 +115,13 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 				if(_ship->GetStation((StationType)receivedStationType)->setPlayerOccupation((*i)) == false)
 					printf("Code is not handling stations correctly. This error originates in [GameScene.cpp] in function [HandleNetworkMessage].\n");
 			}
-		}
+		}*/
 		break;
 	case CLIENT_LEAVE_STATION:
+		unsigned int receivedStation;
+		packet >> receivedStation;
+		_ship->GetStation((StationType)receivedStation)->resetStationOccupation();
+		/* TODO: REIMPLEMENT WHEN NETWORKING AND PLAYERLISTS ARE FUNCTIONAL
 		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
 		{			
 			if((*i)->Ipadres == packet.GetSender().address.host)
@@ -121,7 +130,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 				packet >> receivedStationType;
 				_ship->GetStation((StationType)receivedStationType)->resetPlayerOccupation();
 			}
-		}
+		}*/
 		break;
 	case CLIENT_FIRE_LASER:
 		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacketFromClient(packet, this->_laserPool->getAllObjects(), this));

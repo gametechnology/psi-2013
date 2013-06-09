@@ -87,6 +87,15 @@ bool Station::IsStunned()
 	return difftime( *_stunTime, *t ) <= STUN_TIME;
 }
 
+bool Station::setStationOccupation()
+{
+	if(_isOccupied)
+		return false;
+
+	_isOccupied = true;
+	return true;
+}
+
 bool Station::setPlayerOccupation(Player* player)
 {
 	if(_isOccupied)
@@ -98,6 +107,12 @@ bool Station::setPlayerOccupation(Player* player)
 	_isOccupied = true;	
 	return true;
 }
+
+void Station::resetStationOccupation()
+{
+	_isOccupied = false;
+}
+
 
 void Station::resetPlayerOccupation()
 {
@@ -130,7 +145,7 @@ void Station::update()
 
 	if (game->input->isKeyboardButtonDown(KEY_ESCAPE)){
 		// Load Shipmap
-		leaveStation(_occupiedStation);
+		leaveStation(this->GetStationType());
 		cout << "Leave Station";
 	}
 }
