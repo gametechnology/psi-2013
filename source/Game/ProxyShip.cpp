@@ -19,7 +19,7 @@ ClientProxyShip::~ClientProxyShip()
 
 void ClientProxyShip::init()
 {
-	Entity::init();
+	ShipInterface::init();
 }
 
 void ClientProxyShip::onAdd()
@@ -28,12 +28,14 @@ void ClientProxyShip::onAdd()
 	_model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
 	addChild(_model);
 
-	Entity::onAdd();
+	this->init();
+
+	ShipInterface::onAdd();
 }
 
 void ClientProxyShip::update()
 {
-	Entity::update();
+	ShipInterface::update();
 }
 int ClientProxyShip::getTeamId()
 {
@@ -86,21 +88,23 @@ int ServerProxyShip::getHealth()
 
 void ServerProxyShip::init()
 {
-	Entity::init();
+	ShipInterface::init();
 }
 
 void ServerProxyShip::onAdd()
 {
 	this->enable();
-	_model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
-	addChild(_model);
+	this->_model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
+	this->addChild(_model);
 
-	Entity::onAdd();
+	this->init();
+
+	ShipInterface::onAdd();
 }
 
 void ServerProxyShip::update()
 {
-	Entity::update();
+	ShipInterface::update();
 }
 
 void ServerProxyShip::freeStation(StationType type)

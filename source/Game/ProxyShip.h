@@ -19,9 +19,9 @@ public:
 	int getTeamId();
 	void HandleNetworkMessage(NetworkPacket packet);
 
-	void init();
-	void onAdd();
-	void update();
+	virtual void init();
+	virtual void onAdd();
+	virtual void update();
 	
 private:
 	int _teamId;
@@ -41,9 +41,9 @@ public:
 	bool StationInUse(StationType type);
 	int getHealth();
 
-	void init();
-	void onAdd();
-	void update();
+	virtual void init();
+	virtual void onAdd();
+	virtual void update();
 
 private:
 

@@ -23,7 +23,7 @@ Ship::~Ship(void)
 }
 
 void Ship::onAdd() {
-	Entity::onAdd();
+	ShipInterface::onAdd();
 	startPosition = vector3df(0,0,-100);
 	startRotation = vector3df(0,0,0);
 	this->transform->position = &startPosition;
@@ -110,7 +110,7 @@ void Ship::init()
 	this->transform->position = &startPosition;
 	this->transform->rotation = &startRotation;*/
 	
-	Entity::init();
+	ShipInterface::init();
 
 }
 
@@ -158,7 +158,7 @@ irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::co
 
 void Ship :: update()
 {
-	Entity :: update();
+	ShipInterface :: update();
 	CheckChangeInput();
 
 	//updating the text for testing the health
@@ -233,7 +233,7 @@ void Ship :: SwitchToStation(StationType stationType)
 
 void Ship :: draw()
 {
-	Entity :: draw();
+	ShipInterface :: draw();
 }
 
 int Ship :: getShipHealth()
