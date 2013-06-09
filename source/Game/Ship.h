@@ -27,7 +27,7 @@ class NavigationStation;
 class PowerStation;
 class WeaponStation;
 
-class Ship : public ShipInterFace, public INetworkListener
+class Ship : public ShipInterface, public INetworkListener
 {
 public:
 	HudHelpText* help;

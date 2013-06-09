@@ -9,7 +9,7 @@ vector3df startRotation;
 
 ObjectPool<Laser>* Ship::laserPool;
 
-Ship::Ship(vector3df position, vector3df rotation) : ShipInterFace ()
+Ship::Ship(vector3df position, vector3df rotation) : ShipInterface ()
 {
 	this->transform->position = &position;
 	this->transform->rotation = &rotation;

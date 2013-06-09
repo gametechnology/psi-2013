@@ -3,7 +3,7 @@
 
 #include "Engine/Entity.h"
 
-class ShipInterFace : public Entity
+class ShipInterface : public Entity
 {
 public:
 	int getTeamId(int teamId);
