@@ -8,11 +8,12 @@
 #include "ShipInterface.h"
 #include "Stations\Station.h"
 #include "HealthComponent.h"
+#include "Irrlicht\irrlicht.h"
 
 class ClientProxyShip :  public ShipInterface, public INetworkListener
 {
 public:
-	ClientProxyShip(int teamId);
+	ClientProxyShip(vector3df position, vector3df rotation, int teamId);
 	~ClientProxyShip();
 
 	int getTeamId();
@@ -24,13 +25,14 @@ public:
 	
 private:
 	int _teamId;
+	IrrlichtNode* _model;
 };
 
 class ServerProxyShip : public ShipInterface, public INetworkListener
 {
 
 public:
-	ServerProxyShip(int teamId);
+	ServerProxyShip(vector3df position, vector3df rotation, int teamId);
 	~ServerProxyShip();
 
 	int getTeamId();
@@ -53,5 +55,6 @@ private:
 	int _teamId;
 	std::map<StationType, bool> _stationsInUse;
 	HealthComponent _healthComponent;
+	IrrlichtNode* _model;
 };
 #endif

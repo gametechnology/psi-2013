@@ -9,10 +9,11 @@ vector3df startRotation;
 
 ObjectPool<Laser>* Ship::laserPool;
 
-Ship::Ship(vector3df position, vector3df rotation) : ShipInterface ()
+Ship::Ship(vector3df position, vector3df rotation, int teamId) : ShipInterface ()
 {
 	this->transform->position = &position;
 	this->transform->rotation = &rotation;
+	this->_teamId = teamId;
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
 }
 
@@ -111,6 +112,11 @@ void Ship::init()
 	
 	Entity::init();
 
+}
+
+int Ship::getTeamId()
+{
+	return this->_teamId;
 }
 
 Station *Ship :: GetStation( StationType s )

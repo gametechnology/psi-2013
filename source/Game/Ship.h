@@ -58,10 +58,12 @@ public:
 
 	void update();
 	void draw();
+	
+	int getTeamId();
 
 	void CheckChangeInput();
 
-	Ship(vector3df position, vector3df rotation);
+	Ship(vector3df position, vector3df rotation, int teamId);
 	virtual ~Ship(void);
 
 	Station*	GetStation(StationType);
@@ -82,6 +84,8 @@ private:
 	Station				*_currentStation;
 	Thruster			*_thrusters[4];
 	matrix4				*_inertiaMatrix;
+
+	int _teamId;
 
 	stringw varToString(stringw str1, float var, stringw str2);
 	stringw varToString(stringw str1, float var);

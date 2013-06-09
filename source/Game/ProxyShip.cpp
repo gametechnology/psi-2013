@@ -5,9 +5,11 @@
 //Client proxyship below
 ///////////////////////////////////////////
 
-ClientProxyShip::ClientProxyShip(int teamID)
+ClientProxyShip::ClientProxyShip(vector3df position, vector3df rotation, int teamID) : ShipInterface()
 {
 	this->_teamId = teamID;
+	*this->transform->position = position;
+	*this->transform->rotation = rotation;
 }
 
 ClientProxyShip::~ClientProxyShip()
@@ -22,15 +24,16 @@ void ClientProxyShip::init()
 
 void ClientProxyShip::onAdd()
 {
-	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
-	addChild(model);
+	this->enable();
+	_model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
+	addChild(_model);
 
 	Entity::onAdd();
 }
 
 void ClientProxyShip::update()
 {
-
+	Entity::update();
 }
 int ClientProxyShip::getTeamId()
 {
@@ -48,10 +51,12 @@ void ClientProxyShip::HandleNetworkMessage(NetworkPacket packet)
 ///////////////////////////////////////////////////////
 
 
-ServerProxyShip::ServerProxyShip(int teamId)
+ServerProxyShip::ServerProxyShip(vector3df position, vector3df rotation, int teamId) : ShipInterface()
 {
 	this->_teamId = teamId;
 	this->_stationsInUse = std::map<StationType, bool>();
+	*this->transform->position = position;
+	*this->transform->rotation = rotation;
 }
 
 ServerProxyShip::~ServerProxyShip()
@@ -86,8 +91,9 @@ void ServerProxyShip::init()
 
 void ServerProxyShip::onAdd()
 {
-	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
-	addChild(model);
+	this->enable();
+	_model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
+	addChild(_model);
 
 	Entity::onAdd();
 }

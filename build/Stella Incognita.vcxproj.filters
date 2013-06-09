@@ -249,9 +249,6 @@
     <ClCompile Include="..\source\Game\EndScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\BasicShipMover.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\EndSceneEventReceiver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -286,6 +283,9 @@
       <Filter>Source Files\Ship</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\ProxyShip.cpp">
+      <Filter>Source Files\Ship</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\BasicShipMover.cpp">
       <Filter>Source Files\Ship</Filter>
     </ClCompile>
   </ItemGroup>
