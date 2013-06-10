@@ -10,6 +10,7 @@ ClientProxyShip::ClientProxyShip(vector3df position, vector3df rotation, int tea
 	this->_teamId = teamID;
 	*this->transform->position = position;
 	*this->transform->rotation = rotation;
+	Network::GetInstance()->AddListener(CLIENT_SHIP_MOVEMENT, this);
 }
 
 ClientProxyShip::~ClientProxyShip()
@@ -44,7 +45,28 @@ int ClientProxyShip::getTeamId()
 
 void ClientProxyShip::HandleNetworkMessage(NetworkPacket packet)
 {
-	
+	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
+	{
+		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
+		int id;
+		irr::core::vector3df position;
+		irr::core::vector3df rotation;
+		irr::core::vector3df velocity;
+		irr::core::vector3df acceleration;
+		irr::core::vector3df angularAcceleration;
+		irr::core::vector3df angularVelocity;
+
+		packet >> id >> position >> rotation >> velocity >> acceleration >> angularAcceleration >> angularVelocity;
+
+		if(id == this->_teamId)
+		{
+			*transform->acceleration = acceleration;
+			*transform->angularAccelaration = angularAcceleration;
+			*transform->angularVelocity = angularVelocity;
+			*transform->position = position;
+			*transform->velocity = velocity;
+		}
+	}
 }
 
 
@@ -59,6 +81,7 @@ ServerProxyShip::ServerProxyShip(vector3df position, vector3df rotation, int tea
 	this->_stationsInUse = std::map<StationType, bool>();
 	*this->transform->position = position;
 	*this->transform->rotation = rotation;
+	Network::GetInstance()->AddListener(CLIENT_SHIP_MOVEMENT, this);
 }
 
 ServerProxyShip::~ServerProxyShip()
@@ -73,7 +96,28 @@ int ServerProxyShip::getTeamId()
 
 void ServerProxyShip::HandleNetworkMessage(NetworkPacket packet)
 {
+	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
+	{
+		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
+		int id;
+		irr::core::vector3df position;
+		irr::core::vector3df rotation;
+		irr::core::vector3df velocity;
+		irr::core::vector3df acceleration;
+		irr::core::vector3df angularAcceleration;
+		irr::core::vector3df angularVelocity;
 
+		packet >> id >> position >> rotation >> velocity >> acceleration >> angularAcceleration >> angularVelocity;
+
+		if(id == this->_teamId)
+		{
+			*transform->acceleration = acceleration;
+			*transform->angularAccelaration = angularAcceleration;
+			*transform->angularVelocity = angularVelocity;
+			*transform->position = position;
+			*transform->velocity = velocity;
+		}
+	}
 }
 
 bool ServerProxyShip::StationInUse(StationType type)

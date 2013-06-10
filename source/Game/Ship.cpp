@@ -291,23 +291,24 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
 	{
 		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
+			int id;
 			irr::core::vector3df position;
 			irr::core::vector3df rotation;
 			irr::core::vector3df velocity;
 			irr::core::vector3df acceleration;
 			irr::core::vector3df angularAcceleration;
 			irr::core::vector3df angularVelocity;
-			packet >> position;
-			packet >> rotation;
-			packet >> velocity;
-			packet >> acceleration;
-			packet >> angularAcceleration;
-			packet >> angularVelocity;
-			*transform->acceleration = acceleration;
-			*transform->angularAccelaration = angularAcceleration;
-			*transform->angularVelocity = angularVelocity;
-			*transform->position = position;
-			*transform->velocity = velocity;
+
+			packet >> id >> position >> rotation >> velocity >> acceleration >> angularAcceleration >> angularVelocity;
+
+			if(id == this->_teamId)
+			{
+				*transform->acceleration = acceleration;
+				*transform->angularAccelaration = angularAcceleration;
+				*transform->angularVelocity = angularVelocity;
+				*transform->position = position;
+				*transform->velocity = velocity;
+			}
 			
 		//Apply updates 
 		if(_currentStation != NULL && _currentStation->GetStationType() == ST_WEAPON){
@@ -316,11 +317,6 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 		else{
 			//Read the information from the network packet
 			*transform->rotation = rotation;
-			
-		
-			
-			
-			
 		}
 	}
 }
