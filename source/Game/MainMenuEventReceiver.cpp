@@ -227,7 +227,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 								}
 								mainmenu->lisitems.clear();
 								//TODO Proper team implementation
-								PlayerManager::GetInstance() -> RequestJoinServer( playername, 2 );
+								PlayerManager::GetInstance() -> RequestJoinServer( playername);
 							}
 						}
 					}
