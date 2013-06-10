@@ -64,7 +64,6 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->messagebox->setDraggable(false);
 					}else{
 						PlayerManager::GetInstance()->Init();
-						PlayerManager::GetInstance()->SetGame(this->contextGame);
 						//TODO: package met naam en checksum: Network->getinstance->GetPacketTypeChecksum
 						namepacket << namewchar << Network::GetInstance()->GetPacketTypeChecksum();
 						Network::GetInstance()->SendPacket(namepacket, true);

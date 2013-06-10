@@ -11,6 +11,7 @@ bool isDisconnected = false;
 PlayerManager :: PlayerManager( ) : INetworkListener( )
 {
 	timeTaken = 0;
+	lastId = 2;
 }
 
 PlayerManager* PlayerManager::GetInstance()
@@ -23,6 +24,15 @@ PlayerManager* PlayerManager::GetInstance()
 	}
 
 	return _instance;
+}
+
+int PlayerManager::DistributeTeamId(){
+	if (lastId==1){
+		lastId=2;
+	}else{
+		lastId=1;
+	}
+	return lastId;
 }
 
 void PlayerManager::Init( )
@@ -78,11 +88,6 @@ void PlayerManager :: StationUpdated( StationType stationType )
 	this -> GetLocalPlayerData( ) -> stationType = stationType;
 }
 
-void PlayerManager :: SetGame(Game* game)
-{
-	this->game = game;
-}
-
 /**
 *here, we received a message from the client, stating that their information has changed (changed team, left game )
 */
@@ -132,6 +137,8 @@ PlayerData *PlayerManager :: GetLocalPlayerData( )
 void PlayerManager :: OnClientJoinRequestReceived( char *player_name, int team_id, ENetPeer peer )
 {
 	std :: cout << "I received a message from player " << player_name << " that he would like to join.\n";
+
+	team_id = DistributeTeamId();
 	//if this is not the server, we do nothing. This is not a message for us.
 	//create a new PlayerData.
 	PlayerData *p = new PlayerData( player_name, team_id );
@@ -237,7 +244,7 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	case PacketType :: SERVER_REQUEST_ACCEPTED:
 		packet >> player_name >> player_id >> player_team_id;
 		
-		std :: cout << "I received a message from the server, with player_id: " << player_id << endl;
+		std :: cout << "I received a message from the server, with player_id: " << player_id <<" and team id is: "<< player_team_id << endl;
 		if ( strcmp( player_name, localName ) == 0 )
 		{
 			std :: cout << player_name << " would like to join";
@@ -294,9 +301,6 @@ void PlayerManager :: PingSend()
 	 {	
 		 isDisconnected = true;
 		 cout << endl <<"CLIENT: I am disconnected!" << endl;
-		 Scene* scene = new MainMenuScene();
-		 game->sceneManager->deactivateScene("GameScene");
-		 game->sceneManager->addScene("MainmenuScene", scene);
 	 }
 }
 
