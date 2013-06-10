@@ -158,6 +158,7 @@ void Ship :: update()
 	Entity :: update();
 
 	PlayerManager ::GetInstance()->PingSend();
+	PlayerManager ::GetInstance()->NoPingCounter();
 	CheckChangeInput();
 
     stringw strPing = "Ping:" + PlayerManager::GetInstance()->getTimeTaken();

@@ -35,6 +35,23 @@ int PlayerManager::DistributeTeamId(){
 	return lastId;
 }
 
+void PlayerManager :: NoPingCounter(){
+	int size	= this -> _list_of_players -> size( ) + 1;
+	for ( int i = 1; i < size; i++ )
+	{	
+		if( this -> _list_of_players -> find( i ) -> getValue( ) -> isConnected )
+		{
+			this -> _list_of_players -> find( i ) -> getValue( ) -> pingCounter++;
+			if ( ( this -> _list_of_players -> find( i ) -> getValue( ) -> pingCounter) >= 1500 )
+			{
+				cout << this -> _list_of_players -> find( i ) -> getValue( ) -> name << " is disconnected!" << endl;
+				this -> _list_of_players -> find( i ) -> getValue( ) -> isConnected = false;
+				this -> _list_of_players -> find( i ) -> getValue( ) -> stationType = StationType :: ST_NONE;
+			}
+		}
+	}
+}
+
 void PlayerManager::Init( )
 {
 	this -> _list_of_players = new irr :: core :: map<int, PlayerData*>( );
@@ -327,6 +344,11 @@ void PlayerManager :: ServerSendPong(int player_id, int timePingSent)
 	nwp << player_id;
 	nwp << timePingSent;
 	
+	
+	this -> _list_of_players -> find( player_id ) -> getValue( ) -> pingCounter = 0;
+		
+	
+
     Network ::GetInstance()->SendPacket(nwp);
     Network ::GetInstance()->SendServerPacket(nwp);
 }

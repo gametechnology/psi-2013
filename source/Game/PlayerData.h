@@ -1,6 +1,9 @@
 #ifndef PLAYER_DATA
 #define PLAYER_DATA
 
+#include "Engine\INetworkListener.h"
+#include "Engine\NetworkPacket.h"
+#include "NetworkInterface.h"
 #include "Stations\Station.h"
 
 enum CLIENT_STATUS_UPDATE
@@ -13,11 +16,14 @@ struct PlayerData
 {
 public:
 		static int		uniqueId;
+		int				pingCounter;
 		int				id;			//only sync this
         int				team_id;
 		ENetPeer		peer;
 		char			*name;
 		StationType		stationType;
+		bool			isConnected;
+
 
 		PlayerData( ) { };
 		
@@ -28,7 +34,12 @@ public:
 			this -> team_id			= team_id;
 			this -> peer			= peer;
 			this -> stationType		= StationType :: ST_NONE;
+			this -> isConnected		= true;
 			std :: cout << "created a new playerdata";
+
+			if ( Network :: GetInstance( ) -> IsServer( ) ){
+				pingCounter = 0;
+			}
 		}
 
 		PlayerData( char *name, int team_id, int player_id ) 
@@ -38,7 +49,12 @@ public:
 			this -> team_id			= team_id;
 			this -> peer			= peer;
 			this -> stationType		= StationType :: ST_NONE;
+			this -> isConnected		= true;
 			std :: cout << "created a new playerdata";
+			
+			if ( Network :: GetInstance( ) -> IsServer( ) ){
+				pingCounter = 0;
+			}
 		}
 
 		friend std :: ostream& operator << ( std :: ostream &os, const PlayerData &pd )
