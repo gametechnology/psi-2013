@@ -102,6 +102,7 @@ void PowerStation::removeUI()
 	//Remove the static texts and scrollbars
 	for (int i = 0; i < context.scrollBars.size(); i++)
 	{
+		context.scrollBars.at(i)->setEnabled(false);
 		context.scrollBars.at(i)->remove();
 		context.stationsText.at(i)->remove();
 	}
