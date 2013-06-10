@@ -25,16 +25,16 @@ private:
 		
 	PlayerManager( );
 
-	int DistributeTeamId();
+	int DistributeTeamId( );
 
 	//these are client side functions. 
-	void OnClientJoinedGameReceived( int player_id, char *player_name, int player_team_id );
+	void OnClientJoinedGameReceived( int player_id, char *player_name, int team_id );
 	void OnJoinDeniedReceived( );	
 	
 	//whenever something changes for any player, he will send something to the server.	
 
 	//these are the server-side functions
-	void OnClientJoinRequestReceived( char *player_name, int team_id, ENetPeer peer );
+	void OnClientJoinRequestReceived( char *player_name, ENetPeer peer );
 	void OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id );
 
 	void PongReceived(int player_name, int timePingSend);
@@ -49,7 +49,7 @@ public:
 	int getTimeTaken();
 
 	void Init();
-	void RequestJoinServer( char *player_name, int team_id );
+	void RequestJoinServer( char *player_name );
 	void HandleNetworkMessage( NetworkPacket p );
 	void UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_id );
 	void SendPlayerInfoRequest();

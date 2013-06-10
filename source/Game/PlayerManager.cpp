@@ -109,7 +109,7 @@ int PlayerManager :: getTimeTaken( )
 /**
 * only when a player joins the already existing game, we will be inside this function.
 */
-void PlayerManager :: RequestJoinServer( char *player_name, int team_id )
+void PlayerManager :: RequestJoinServer( char *player_name )
 {
 	localName	= player_name;
 	cout << "I would like to join this game. My name is: " << player_name <<"\n";
@@ -117,7 +117,7 @@ void PlayerManager :: RequestJoinServer( char *player_name, int team_id )
 			
 	//create a new packet that we are going to send to the server.
 	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_JOIN_SERVER );
-	packet << player_name << team_id;
+	packet << player_name;
 	Network :: GetInstance( ) -> SendPacket( packet, true );
 
 	if ( Network :: GetInstance( ) -> IsServer( ) )
@@ -134,11 +134,11 @@ PlayerData *PlayerManager :: GetLocalPlayerData( )
 /**
 *here, the server receives a request from a client.
 */
-void PlayerManager :: OnClientJoinRequestReceived( char *player_name, int team_id, ENetPeer peer )
+void PlayerManager :: OnClientJoinRequestReceived( char *player_name, ENetPeer peer )
 {
 	std :: cout << "I received a message from player " << player_name << " that he would like to join.\n";
 
-	team_id = DistributeTeamId();
+	int team_id = DistributeTeamId();
 	//if this is not the server, we do nothing. This is not a message for us.
 	//create a new PlayerData.
 	PlayerData *p = new PlayerData( player_name, team_id );
@@ -235,10 +235,10 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	{
 	case PacketType :: CLIENT_REQUEST_JOIN_SERVER:
 
-		packet >> player_name >> player_team_id;
+		packet >> player_name;
 
 		//we need to know the peer of the player. We reconstruct it using it's host and port numbers.
-		this -> OnClientJoinRequestReceived( player_name, player_team_id, packet.GetSender( ) );
+		this -> OnClientJoinRequestReceived( player_name, packet.GetSender( ) );
 		break;
 
 	case PacketType :: SERVER_REQUEST_ACCEPTED:
