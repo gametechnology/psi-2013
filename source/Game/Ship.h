@@ -20,6 +20,7 @@
 #include "ObjectPool.h"
 #include "HudHelpText.h"
 
+#include "ShipHealthComponent.h"
 #include "IShipListener.h"
 
 class DefenceStation;
@@ -32,7 +33,6 @@ class Ship : public Entity, public INetworkListener
 {
 public:
 	HudHelpText* help;
-
 	//Player *players;
 	DefenceStation		*_defenceStation;
 	HelmStation			*_helmStation;
@@ -49,7 +49,7 @@ public:
 	irr::gui::IGUIStaticText *powerStationHealth;
 	irr::gui::IGUIStaticText *weaponStationHealth;
 
-
+	ShipHealthComponent* shipHealthComponent;
 	bool _shipDestroyed;
 
 	bool _sitOnStation;
@@ -96,5 +96,8 @@ private:
 	stringw varToString(stringw str1, float var);
 
 	void setInertiaMatrix(float h, float w, float d, float m);
+
+	//delete
+	int a;
 };
 #endif
