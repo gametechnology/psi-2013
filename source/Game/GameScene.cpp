@@ -83,7 +83,7 @@ void GameScene::update() {
 			_ship->shipHealthComponent->setHealth(0);
 		}
 
-		if(this->_ship->getShipHealth() <= 0 || this->_shipEnemy->getShipHealth() <= 0)
+		if(this->_ship->getShipHealth() <= 0 /*|| this->_shipEnemy->getShipHealth() <= 0*/)
 		{
 			int otherTeamId;
 			int myTeamId = PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> team_id;
@@ -99,11 +99,11 @@ void GameScene::update() {
 				SendAndReceivePackets::sendWinLosePacket(myTeamId);
 				SendAndReceivePackets::handleWinLose(myTeamId, myTeamId, this);
 			}
-			 if(_shipEnemy->getShipHealth()<=0)
+			 /*if(_shipEnemy->getShipHealth()<=0)
 			{
 				SendAndReceivePackets::sendWinLosePacket(otherTeamId);
 				SendAndReceivePackets::handleWinLose(otherTeamId, otherTeamId, this);
-			}
+			}*/
 			/*SendAndReceivePackets::sendWinLosePacket(1);
 			SendAndReceivePackets::handleWinLose(1, 2, this);*/
 		}		
