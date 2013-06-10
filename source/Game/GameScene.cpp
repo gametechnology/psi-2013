@@ -162,7 +162,7 @@ void GameScene::handleShipMessage(ShipMessage message){
 
 GameScene::~GameScene() 
 {
-	delete _laserPool;
+//	delete _laserPool;
 }
 
 

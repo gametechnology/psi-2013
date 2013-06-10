@@ -207,7 +207,8 @@ void SendAndReceivePackets::handleWinLose(int losingTeam, int teamId, Scene* cur
 		sceneManager.addScene("EndScene", new EndScene(false));
 		sceneManager.activateScene("EndScene");
 	}
-		sceneManager.deactivateScene(&nameCurrentScene);
+	sceneManager.deactivateScene(&nameCurrentScene);
+	sceneManager.destroyScene(&nameCurrentScene);
 }
 
 sf::Packet& operator <<(sf::Packet& out, Enemy& in)

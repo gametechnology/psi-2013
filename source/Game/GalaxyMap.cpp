@@ -39,11 +39,10 @@ void GalaxyMap::createStaticMap() {
 	sectors = *mapGenerator.createStaticMap(width, height, radius);
 }
 
-GalaxyMap::~GalaxyMap() {
-	for(unsigned i =0;i<sectors.size();i++) {
-		delete sectors[i];
-	}
-	sectors.clear();
+GalaxyMap::~GalaxyMap() 
+{
+	//keep empty
+	//Mapsectors will be deleted anyway
 }
 
 void GalaxyMap::draw()

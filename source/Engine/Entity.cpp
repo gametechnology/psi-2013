@@ -127,7 +127,7 @@ bool Entity::removeComponent(Component* component) {
 
 			components.erase(components.begin()+i);
 			component->destroy();
-			delete component;
+		//	delete component;
 			return true;
 		}
 	}
