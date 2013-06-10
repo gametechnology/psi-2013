@@ -53,6 +53,9 @@ public:
 
 	int getTimeTaken();
 
+
+	void NoPingCounter();
+
 	void Init();
 	void RequestJoinServer( char *player_name );
 	void HandleNetworkMessage( NetworkPacket p );

@@ -19,6 +19,7 @@
 #include "Laser.h"
 #include "ObjectPool.h"
 #include "HudHelpText.h"
+#include "PlayerInfoScreen.h"
 
 #include "ShipHealthComponent.h"
 #include "IShipListener.h"
@@ -33,6 +34,7 @@ class Ship : public Entity, public INetworkListener
 {
 public:
 	HudHelpText* help;
+	PlayerInfoScreen* playerInfoScreen;
 	//Player *players;
 	DefenceStation		*_defenceStation;
 	HelmStation			*_helmStation;
