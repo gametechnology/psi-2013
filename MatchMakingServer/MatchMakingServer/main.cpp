@@ -73,8 +73,8 @@ int main()
 				std::list<host>::iterator i = iplist.begin();
 				while (i != iplist.end())
 				{
-					
-					if ((time(0) - (*i).timein)  > 2000 )
+					time_t now = (time(0));
+					if ((now - (*i).timein) > 1 )
 					{
 						iplist.erase(i++);  // alternatively, i = items.erase(i);
 					}

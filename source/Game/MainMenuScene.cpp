@@ -324,6 +324,12 @@ void MainMenuScene::serverlistreciever(void * menu){
 		{
 		}
 		mainmenu->issearching = false;
+		std::list<irr::gui::IGUIElement*>::iterator iterator;
+								for (iterator = mainmenu->lisitems.begin(); iterator != mainmenu->lisitems.end(); ++iterator) {		
+									(*iterator)->remove();
+
+								}
+								mainmenu->lisitems.clear();
 		int length;
 		 recievepacket >> length;
 		int height = 255;
@@ -336,7 +342,7 @@ void MainMenuScene::serverlistreciever(void * menu){
 			wchar_t*name = new wchar_t[500];
 			
 			newhost.name = new wchar_t[500];
-			newhost.id = i;
+			newhost.id = i + 7;
 			
 			recievepacket >> newhost.ipadress;
 			recievepacket >> name;
