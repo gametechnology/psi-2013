@@ -7,11 +7,12 @@
 #include  "BaseSector.h"
 
 SectorManager::SectorManager(GalaxyMap* map,Ship* ship) : Component() {
+	Network::GetInstance()->AddListener(PacketType::CLIENT_REQUEST_NEXTSECTOR,this);
+	Network::GetInstance()->AddListener(PacketType::SERVER_SEND_NEXTSECTOR,this);
+
 	_map=map;
 	_ship=ship;
-	printf("!!![SectorManager] _map->sectors.size(): %i \n",_map->sectors.size());
 	for (unsigned int i = 0; i < _map->sectors.size(); i++) {
-			printf("!!![SectorManager] whats mapID: %i \n",_map->sectors[i]->getId());
 		if(_map->sectors[i]->type == HOME_BLUE){
 			//delete _mapSector;
 			_mapSector = _map->sectors[i];
@@ -40,8 +41,16 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 			
 			_mapSector = *temp;//change the _mapSector to the sector the data tells him to be
 			
-			char * tempName = activeSceneName;
+			/////
+			NetworkPacket sendpacket = NetworkPacket(PacketType::CLIENT_REQUEST_NEXTSECTOR);
+			//we send a vector with 3 data in it. teamnumber, mapsector ID, wormHole ID
+			irr::core::vector3df currentSectorVector = irr::core::vector3df(1,_mapSector->getId(),index);
+			sendpacket << currentSectorVector;
+			Network::GetInstance()->SendServerPacket(sendpacket,false);
+			/////
 
+			char * tempName = activeSceneName;
+			printf("[SectorManager] MapID %i",_mapSector->getId());
 			// Checks if the scene is destroyed 
 			if ( this->getGame()->sceneManager->destroyScene( tempName ) ) {
 				
@@ -96,6 +105,24 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 			break;
 	}
 	//delete data;
+}
+void SectorManager::HandleNetworkMessage(NetworkPacket packet){
+	switch(packet.GetType()){
+		case PacketType::CLIENT_REQUEST_NEXTSECTOR:
+			irr::core::vector3df packetdata;
+			packet >> packetdata;
+			SearchNextMapSector(packetdata.Y,packetdata.Z);
+			break;
+		case PacketType::SERVER_SEND_NEXTSECTOR:
+			break;
+
+	}
+}
+void SectorManager::SearchNextMapSector(int currMapId, int connectionId){
+	//looking through the map list and looks the next sector in the conectionlist
+}
+void SectorManager::SetNextSector(MapSector nextsector){
+	//gets a sector and loads the new scene etc. basicly splitting up the funtionality of handlemessage
 }
 Ship* SectorManager::getShip(){
 	return _ship;
