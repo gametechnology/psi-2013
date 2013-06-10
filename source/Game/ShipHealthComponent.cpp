@@ -1,5 +1,6 @@
 #include "ShipHealthComponent.h"
 #include "Ship.h"
+#include "Stations\Station.h"
 #include <stdlib.h>
 
 
@@ -45,10 +46,6 @@ void ShipHealthComponent::assignDamage(int damage){
 		ship_->GetStation(ST_WEAPON)->decreaseHealth(damage * 0.5);
 		break;
 	}
-	updateHealth();
-}
-void ShipHealthComponent::assignDamage(int damage, StationType type){
-	ship_->GetStation(type)->decreaseHealth(damage);
 	updateHealth();
 }
 
