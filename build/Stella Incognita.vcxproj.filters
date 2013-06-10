@@ -276,14 +276,17 @@
     <ClCompile Include="..\source\Game\PlayerManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\CollisionTestScene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\StationStats.cpp">
       <Filter>Source Files\Stations</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\GUIEventReceiver\PowerStationEventReveiver.cpp">
       <Filter>Source Files\Stations\GUIEventReceiver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\DummyShip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\ShipHealthComponent.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -333,9 +336,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\GalaxyMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\ArrayList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\MapGenerator.h">
@@ -503,7 +503,7 @@
     <ClInclude Include="..\source\Game\DummyShip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\CollisionTestScene.h">
+    <ClInclude Include="..\source\Game\ShipHealthComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\DummyShip.h">
@@ -514,6 +514,9 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\IShipListener.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ArrayList.h">
+      <Filter>Header Files\Stations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

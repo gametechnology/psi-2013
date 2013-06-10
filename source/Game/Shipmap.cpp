@@ -3,7 +3,10 @@
 
 Shipmap::Shipmap(GameScene* scene): _scene(scene), Entity()
 {
-	
+	Network::GetInstance()->AddListener(CLIENT_SWITCH_STATION, this);
+	Network::GetInstance()->AddListener(SERVER_SWITCH_STATION, this);
+	Network::GetInstance()->AddListener(CLIENT_LEAVE_STATION, this);
+	Network::GetInstance()->AddListener(SERVER_LEAVE_STATION, this);
 }
 
 Shipmap::~Shipmap()
@@ -247,9 +250,58 @@ void Shipmap::update()
 void Shipmap::enterStation(StationType station) {
 	NetworkPacket packet(PacketType::CLIENT_SWITCH_STATION);
 	packet << station;
+	// packet << (currentPlayer)->teamID; <-- when finally actually accessible
 	Network::GetInstance()->SendPacket(packet, true);
 
 	_scene->switchStation(station);
+}
+
+void Shipmap::HandleNetworkMessage(NetworkPacket packet)
+{
+	switch(packet.GetType())
+	{
+	case CLIENT_SWITCH_STATION:
+		{
+			unsigned int receivedStationType;
+			packet >> receivedStationType;
+
+			stationOccupied[receivedStationType] = true;
+
+			NetworkPacket serverPacket(SERVER_SWITCH_STATION);
+			serverPacket << receivedStationType;
+			Network::GetInstance()->SendPacketToAllClients(serverPacket, true);
+		}
+		break;
+	case SERVER_SWITCH_STATION:
+		{
+			unsigned int receivedStationType;
+			packet >> receivedStationType;
+			
+			// if (currentPlayer.teamID == teamID) <-- when this is finally possible
+			stationOccupied[receivedStationType] = true;
+		}
+		break;
+	case CLIENT_LEAVE_STATION:
+		{
+			int receivedStationType;
+			packet >> receivedStationType;
+
+			stationOccupied[receivedStationType] = false;
+
+			NetworkPacket serverPacket(SERVER_LEAVE_STATION);
+			serverPacket << receivedStationType;
+			Network::GetInstance()->SendPacketToAllClients(serverPacket, true);
+		}
+		break;
+	case SERVER_LEAVE_STATION:
+		{
+			unsigned int receivedStationType;
+			packet >> receivedStationType;
+
+			stationOccupied[receivedStationType] = false;
+		}
+		break;
+	}
 }
 
 void Shipmap::handleShipMessage(ShipMessage message){

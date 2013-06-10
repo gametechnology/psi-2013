@@ -6,11 +6,13 @@
 #include "Stations\Station.h"
 #include "GameScene.h"
 #include "IShipListener.h" 
+#include "NetworkInterface.h"
 
-class Shipmap : public Entity, public IShipListener
+class Shipmap : public Entity, public IShipListener, public INetworkListener
 {
 	void enterStation(StationType station);
 	void handleShipMessage(ShipMessage message);
+	void HandleNetworkMessage(NetworkPacket packet);
 
 	struct tilePos	{
 		int x;

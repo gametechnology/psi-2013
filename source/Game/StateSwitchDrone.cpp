@@ -5,17 +5,17 @@
 
 void StateSwitchDrone::setState(States state)
 {
-	this->_newState = state;
+	this->_currentState = state;
 }
 
 void StateSwitchDrone::update()
 {
-	if(this->_newState != this->_currentState)
-	{
-		this->_oldState = this->_currentState;
-		this->_currentState = this->_newState;
-	}
-
+	//if(this->_newState != this->_currentState)
+	//{
+	//	this->_oldState = this->_currentState;
+	//	this->_currentState = this->_newState;
+	//}
+	if(_currentState){
 	switch(this->_currentState)
 	{
 	case STATE_IDLE:
@@ -30,6 +30,7 @@ void StateSwitchDrone::update()
 	case STATE_DEATH:
 			handleDeath();
 			break;
+	}
 	}
 }
 

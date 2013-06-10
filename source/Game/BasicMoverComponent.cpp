@@ -40,14 +40,26 @@ void BasicMoverComponent::rotate(Entity *entity, irr::core::vector3df rot)
 	entity->transform->rotation->set(m.getRotationDegrees());
 }
 
-void BasicMoverComponent::turn(Entity *entity, irr::f32 rot)
+void BasicMoverComponent::turn(Entity *entity, irr::core::vector3df rot)
 {
-	rotate(entity, irr::core::vector3df(0.0f, rot, 0.0f));
+	//rotate(entity, irr::core::vector3df(0.0f, rot, 0.0f));
+	irr::core::matrix4 m;
+	m.setRotationDegrees(*entity->transform->rotation);
+	irr::core::matrix4 n;
+	n.setRotationDegrees(rot);
+	m *= n;
+	entity->transform->rotation->set(m.getRotationDegrees());
 }
 
-void BasicMoverComponent::pitch(Entity *entity, irr::f32 rot)
+void BasicMoverComponent::pitch(Entity *entity, irr::core::vector3df rot)
 {
-	rotate(entity, irr::core::vector3df(rot, 0.0f, 0.0f));
+	//rotate(entity, irr::core::vector3df(rot, 0.0f, 0.0f));
+	irr::core::matrix4 m;
+	m.setRotationDegrees(*entity->transform->rotation);
+	irr::core::matrix4 n;
+	n.setRotationDegrees(rot);
+	m *= n;
+	entity->transform->rotation->set(m.getRotationDegrees());
 }
 
 void BasicMoverComponent::roll(Entity *entity, irr::f32 rot)

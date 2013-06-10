@@ -2,12 +2,14 @@
 #include <string>
 #include <iostream>
 #include "Engine/IrrlichtNode.h"
+#include "HealthComponent.h"
+#include "SectorTemplate.h"
 
 int Enemy::newEnemyId = 0;
 
 Enemy::Enemy(void): Entity()
 {
-	
+	healthCom_ = new HealthComponent();
 }
 
 void Enemy::init()
@@ -26,6 +28,8 @@ void Enemy::init()
 void Enemy::onAdd()
 {
 	Entity::onAdd();
+
+	addComponent(healthCom_);
 }
 
 int Enemy::getId()
@@ -65,8 +69,10 @@ void Enemy::update()
 {
 	applySpeed();
 	Entity::update();
-	if (0 > this->getHealth())
+	if (this->getHealth() <= 0)
 	{
+		((SectorTemplate*)this->parent)->removeEnemyFromList(this);
+
 		this->destroy();
 	}
 }
@@ -104,115 +110,115 @@ void Enemy::applySpeed()
 void Enemy::steering(irr::core::vector3df rotational, irr::core::vector3df playerPos)
 {
 
-		irr::core::matrix4 matX;
-		irr::core::matrix4 matY;
-		irr::core::matrix4 matZ;
-		float mData[16];
-		
-		mData[0] = 1;
-		mData[1] = 0;
-		mData[2] = 0;
-		mData[3] = 0;
+	irr::core::matrix4 matX;
+	irr::core::matrix4 matY;
+	irr::core::matrix4 matZ;
+	float mData[16];
 
-		mData[4] = 0;
-		mData[5] = cos(DEGTORAD *  rotational.X);
-		mData[6] = -sin(DEGTORAD *  rotational.X);
-		mData[7] = 0;
+	mData[0] = 1;
+	mData[1] = 0;
+	mData[2] = 0;
+	mData[3] = 0;
 
-		mData[8] = 0;
-		mData[9] = sin( DEGTORAD * rotational.X);
-		mData[10] = cos(DEGTORAD * rotational.X);
-		mData[11] = 0;
+	mData[4] = 0;
+	mData[5] = cos(DEGTORAD *  rotational.X);
+	mData[6] = -sin(DEGTORAD *  rotational.X);
+	mData[7] = 0;
 
-		mData[12] = 0;
-		mData[13] = 0;
-		mData[14] = 0;
-		mData[15] = 1;
-		matX.setM(mData);
-		
-		mData[0] = cos(DEGTORAD *  rotational.Y);
-		mData[1] = 0;
-		mData[2] = -sin(DEGTORAD *  rotational.Y);
-		mData[3] = 0;
+	mData[8] = 0;
+	mData[9] = sin( DEGTORAD * rotational.X);
+	mData[10] = cos(DEGTORAD * rotational.X);
+	mData[11] = 0;
 
-		mData[4] = 0;
-		mData[5] = 1;
-		mData[6] = 0;
-		mData[7] = 0;
-	
-		mData[8] = sin(DEGTORAD *  rotational.Y);
-		mData[9] = 0;
-		mData[10] = cos(DEGTORAD *  rotational.Y);
-		mData[11] = 0;
+	mData[12] = 0;
+	mData[13] = 0;
+	mData[14] = 0;
+	mData[15] = 1;
+	matX.setM(mData);
 
-		mData[12] = 0;
-		mData[13] = 0;
-		mData[14] = 0;
-		mData[15] = 1;
-		matY.setM(mData);
+	mData[0] = cos(DEGTORAD *  rotational.Y);
+	mData[1] = 0;
+	mData[2] = -sin(DEGTORAD *  rotational.Y);
+	mData[3] = 0;
 
-		mData[0] = cos(DEGTORAD * rotational.Z);
-		mData[1] = -sin(DEGTORAD * rotational.Z);
-		mData[2] = 0;
-		mData[3] = 0;
+	mData[4] = 0;
+	mData[5] = 1;
+	mData[6] = 0;
+	mData[7] = 0;
 
-		mData[4] = sin(DEGTORAD * rotational.Z);
-		mData[5] = cos(DEGTORAD * rotational.Z);
-		mData[6] = 0;
-		mData[7] = 0;
+	mData[8] = sin(DEGTORAD *  rotational.Y);
+	mData[9] = 0;
+	mData[10] = cos(DEGTORAD *  rotational.Y);
+	mData[11] = 0;
 
-		mData[8] = 0;
-		mData[9] = 0;
-		mData[10] = 1;
-		mData[11] = 0;
+	mData[12] = 0;
+	mData[13] = 0;
+	mData[14] = 0;
+	mData[15] = 1;
+	matY.setM(mData);
 
-		mData[12] = 0;
-		mData[13] = 0;
-		mData[14] = 0;
-		mData[15] = 1;
-		matZ.setM(mData);
+	mData[0] = cos(DEGTORAD * rotational.Z);
+	mData[1] = -sin(DEGTORAD * rotational.Z);
+	mData[2] = 0;
+	mData[3] = 0;
 
-		matY = matY.operator*(matZ);
-		matX = matX.operator*(matY);
+	mData[4] = sin(DEGTORAD * rotational.Z);
+	mData[5] = cos(DEGTORAD * rotational.Z);
+	mData[6] = 0;
+	mData[7] = 0;
+
+	mData[8] = 0;
+	mData[9] = 0;
+	mData[10] = 1;
+	mData[11] = 0;
+
+	mData[12] = 0;
+	mData[13] = 0;
+	mData[14] = 0;
+	mData[15] = 1;
+	matZ.setM(mData);
+
+	matY = matY.operator*(matZ);
+	matX = matX.operator*(matY);
 
 
-		irr::core::vector3df newvelocity;
-		float mData2[4];
-		mData2[0] = this->transform->velocity->X;
-		mData2[1] = this->transform->velocity->Y;
-		mData2[2] = this->transform->velocity->Z;
-		mData2[3] = 1;
-	
-		matX.multiplyWith1x4Matrix(mData2);
+	irr::core::vector3df newvelocity;
+	float mData2[4];
+	mData2[0] = this->transform->velocity->X;
+	mData2[1] = this->transform->velocity->Y;
+	mData2[2] = this->transform->velocity->Z;
+	mData2[3] = 1;
 
-		newvelocity.X = mData2[0];
-		newvelocity.Y = mData2[1];
-		newvelocity.Z = mData2[2];
+	matX.multiplyWith1x4Matrix(mData2);
 
-		this->setOriginalVelocity(*this->transform->velocity);
-		this->transform->velocity = &newvelocity;
+	newvelocity.X = mData2[0];
+	newvelocity.Y = mData2[1];
+	newvelocity.Z = mData2[2];
 
-	    float magnitude = sqrt(pow(this->transform->velocity->X,2) + pow(this->transform->velocity->Y,2) + pow(this->transform->velocity->Z,2));
-		vector3df normalizedvelocity = vector3df((this->transform->velocity->X/magnitude),(this->transform->velocity->Y/magnitude),(this->transform->velocity->Z/magnitude));
+	this->setOriginalVelocity(*this->transform->velocity);
+	this->transform->velocity = &newvelocity;
 
-		irr::core::vector3df diffPos;
-		diffPos.Y = this->getPosition().Y - playerPos.Y;
-		diffPos.normalize();
-		
-		this->transform->rotation->X = RADTODEG * asin(diffPos.Y);
-		this->transform->rotation->Y = RADTODEG * acos(diffPos.X);
+	float magnitude = sqrt(pow(this->transform->velocity->X,2) + pow(this->transform->velocity->Y,2) + pow(this->transform->velocity->Z,2));
+	vector3df normalizedvelocity = vector3df((this->transform->velocity->X/magnitude),(this->transform->velocity->Y/magnitude),(this->transform->velocity->Z/magnitude));
+
+	irr::core::vector3df diffPos;
+	diffPos.Y = this->getPosition().Y - playerPos.Y;
+	diffPos.normalize();
+
+	this->transform->rotation->X = RADTODEG * asin(diffPos.Y);
+	this->transform->rotation->Y = RADTODEG * acos(diffPos.X);
 }
 
 void Enemy::contactResolverA(Enemy* _input)
 {
-    double deltamass = (this->getRadius() / _input->getRadius());
+	double deltamass = (this->getRadius() / _input->getRadius());
 	vector3df deltavelocity = this->getVelocity() - _input->getVelocity();
 	vector3df componentThisToBal = Collision::componentOnto(_input->getPosition() - *this->transform->position, deltavelocity);
-    vector3df componentNormalToBal = deltavelocity - componentThisToBal;
-    vector3df thisMassComponent = componentThisToBal * (float)(((deltamass- 1) / (deltamass + 1)));
+	vector3df componentNormalToBal = deltavelocity - componentThisToBal;
+	vector3df thisMassComponent = componentThisToBal * (float)(((deltamass- 1) / (deltamass + 1)));
 	vector3df balMassComponent = componentThisToBal * (float)((2 * deltamass / (deltamass + 1)));
-    this->transform->velocity = &(componentNormalToBal + thisMassComponent + _input->getVelocity());
-    _input->setVelocity(balMassComponent + _input->getVelocity());
+	this->transform->velocity = &(componentNormalToBal + thisMassComponent + _input->getVelocity());
+	_input->setVelocity(balMassComponent + _input->getVelocity());
 	this->setRadius(this->getRadius()*2 - this->getPosition().getDistanceFrom(_input->getPosition()));
 	_input->setRadius(this->getRadius());
 }
@@ -263,12 +269,11 @@ void Enemy::setLoS(unsigned int los)
 }
 void Enemy::setHealth(signed int health)
 {
-	this->_health = health;
+	healthCom_->setHealth(health);
 }
 void Enemy::setMaxHealth(unsigned int maxhealth)
 {
-	this->_maxHealth = maxhealth;
-	setHealth(maxhealth);
+	healthCom_->setMaxHealth(maxhealth);
 }
 void Enemy::setRadius(float rad)
 {
@@ -365,12 +370,12 @@ vector3df Enemy::getOriginalVelocity()
 
 int Enemy::getHealth()
 {
-	return this->_health;
+	return healthCom_->getHealth();
 }
 
 int Enemy::getMaxHealth()
 {
-	return this->_maxHealth;
+	return healthCom_->getMaxHealth();
 }
 
 void Enemy::chase(vector3df target)
@@ -379,12 +384,12 @@ void Enemy::chase(vector3df target)
 	vector3df selfPos = this->getPosition();
 
 	vector3df distancetoTarget = target - selfPos;
-	
-		//set state to chasing/attacking
-		*this->transform->velocity = distancetoTarget;
-		this->transform->velocity->normalize();
-		*this->transform->velocity *= 0.005f;
-		*this->transform->position += *this->transform->velocity;	
+
+	//set state to chasing/attacking
+	*this->transform->velocity = distancetoTarget;
+	this->transform->velocity->normalize();
+	*this->transform->velocity *= 0.005f;
+	*this->transform->position += *this->transform->velocity;	
 }
 void Enemy::flee(vector3df target)
 {
@@ -398,10 +403,10 @@ void Enemy::flee(vector3df target)
 
 void Enemy::receiveDamage(int damage)
 {
-	this->_health -= damage;
-	if(this->_health <= 0)
+	healthCom_->decreaseHealth(damage);
+
+	if(healthCom_->getHealth() <= 0)
 	{
-		this->_health = 0;
 		this->_isAlive = false;
 	}
 }

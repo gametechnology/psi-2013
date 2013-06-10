@@ -57,7 +57,7 @@ void Station :: init()
 	_isOccupied = false;
 	_player = NULL;
 
-	this->hud = new HudComposite(&(_healthComponent->health), &(_powerComponent->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
+	this->hud = new HudComposite(_healthComponent->getPointerToHealth(), &(_powerComponent->power), rect<s32>(10,680,210,680 + 32), &helpTextString);
 	this->addChild(hud);
 
 	// This
@@ -87,6 +87,15 @@ bool Station::IsStunned()
 	return difftime( *_stunTime, *t ) <= STUN_TIME;
 }
 
+bool Station::setStationOccupation()
+{
+	if(_isOccupied)
+		return false;
+
+	_isOccupied = true;
+	return true;
+}
+
 bool Station::setPlayerOccupation(Player* player)
 {
 	if(_isOccupied)
@@ -98,6 +107,12 @@ bool Station::setPlayerOccupation(Player* player)
 	_isOccupied = true;	
 	return true;
 }
+
+void Station::resetStationOccupation()
+{
+	_isOccupied = false;
+}
+
 
 void Station::resetPlayerOccupation()
 {
@@ -130,7 +145,7 @@ void Station::update()
 
 	if (game->input->isKeyboardButtonDown(KEY_ESCAPE)){
 		// Load Shipmap
-		leaveStation(_occupiedStation);
+		leaveStation(this->GetStationType());
 		cout << "Leave Station";
 	}
 }
@@ -195,13 +210,13 @@ void Station::updateHealth()
 
 int Station :: getHealth()
 {
-	return _healthComponent->health;
+	return _healthComponent->getHealth();
 }
 
 void Station::decreaseHealth(int health)
 {
 	_healthComponent->decreaseHealth(health);
-	if(_healthComponent->health <= 0)
+	if(_healthComponent->getHealth() <= 0)
 	{
 		setStationDestroyed(true);
 	}
@@ -239,7 +254,7 @@ void Station::increasePower(int power)
 void Station::repairStation(int health)
 {
 	this->setStationDestroyed(false);
-	_healthComponent->health = health;
+	_healthComponent->setHealth(health);
 }
 
 void Station::leaveStation(StationType station)
