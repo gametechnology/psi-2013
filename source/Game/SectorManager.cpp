@@ -10,6 +10,7 @@ SectorManager::SectorManager(GalaxyMap* map,Ship* ship) : Component() {
 	_map=map;
 	_ship=ship;
 	for (unsigned int i = 0; i < map->sectors.size(); i++) {
+			printf("[SectorManager] whats mapID:%i",map->sectors[i]->getId());
 		if(map->sectors[i]->type == HOME_BLUE){
 			//delete _mapSector;
 			_mapSector = map->sectors[i];

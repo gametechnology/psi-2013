@@ -9,6 +9,8 @@ MapSector::MapSector(std::string name,typeSector type, float radius) : Entity()
 	this->radius = radius;
 	this->distToBlueBase = INT_MAX;
 	this->skyboxTexture = "";
+	this->uid++;
+	_id  = uid;
 }
 
 void MapSector::onAdd() {
@@ -62,4 +64,7 @@ void MapSector::draw(){
 		0,
 		0,
 		true);
+}
+int MapSector::getId(){
+	return _id;
 }

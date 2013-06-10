@@ -15,10 +15,13 @@ public:
 	float radius;
 	int distToBlueBase;
 	irr::io::path skyboxTexture;
+	static int uid;
 
 	MapSector(std::string name,typeSector type, float radius);
 	~MapSector(void);
 	
+	int getId();
+
 	virtual void onAdd();
 	virtual void draw();
 	void resetTexture();
@@ -27,6 +30,7 @@ public:
 
 private:
 	irr::video::ITexture* _mapSectorTexture;
+	int _id;
 };
 
 #endif
