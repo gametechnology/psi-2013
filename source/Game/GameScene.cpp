@@ -88,28 +88,28 @@ void GameScene::update() {
 			((Ship*)_ship)->shipHealthComponent->assignDamage(300);
 		}
 
-		if(((Ship*)_ship)->getShipHealth() <= 0 ||(((ServerProxyShip*)_shipEnemy)->getHealth() <= 0))
+		int otherTeamId;
+		int myTeamId = PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> team_id;
+		if( myTeamId == 1)
 		{
-			int otherTeamId;
-			int myTeamId = PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> team_id;
-			if( myTeamId == 1)
-			{
-				otherTeamId = 2;
-			}else {
-				otherTeamId=1;
-			}
+			otherTeamId = 2;
+		}else {
+			otherTeamId=1;
+		}
 
-			if(((Ship*)_ship)->getShipHealth()<=0)
-			{				
-				SendAndReceivePackets::sendWinLosePacket(myTeamId);
-				SendAndReceivePackets::handleWinLose(myTeamId, myTeamId, this);
-			}
-			 if(((ServerProxyShip*)_shipEnemy)->getHealth() <= 0)
-			{
-				SendAndReceivePackets::sendWinLosePacket(otherTeamId);
-				SendAndReceivePackets::handleWinLose(otherTeamId, myTeamId, this);
-			}
-		}		
+		if(((Ship*)_ship)->getShipHealth() <= 0)
+		{		
+			SendAndReceivePackets::sendWinLosePacket(myTeamId);
+			SendAndReceivePackets::handleWinLose(myTeamId, myTeamId, this);	
+			std::cout<<"my team lost";
+		}
+
+		if((((ServerProxyShip*)_shipEnemy)->getHealth() <= 0))
+		{
+			SendAndReceivePackets::sendWinLosePacket(otherTeamId);
+			SendAndReceivePackets::handleWinLose(otherTeamId, myTeamId, this);
+			std::cout<<"other team lost";
+		}
 	}
 	if ( this -> game -> input -> isKeyboardButtonPressed( KEY_TAB ) )
 	{
