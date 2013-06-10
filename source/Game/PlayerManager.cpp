@@ -138,28 +138,24 @@ void PlayerManager :: OnClientJoinRequestReceived( char *player_name, ENetPeer p
 {
 	std :: cout << "I received a message from player " << player_name << " that he would like to join.\n";
 
-	int team_id = DistributeTeamId();
+	int team_id = DistributeTeamId( );
 	//if this is not the server, we do nothing. This is not a message for us.
 	//create a new PlayerData.
 	PlayerData *p = new PlayerData( player_name, team_id );
 	//and add it to our list of playerData's
 	this -> _list_of_players -> insert( p -> id, p );
 
-	//then, we generate a new packet for that specific client. 
-	NetworkPacket packet = NetworkPacket( PacketType :: SERVER_REQUEST_ACCEPTED );
-	packet << player_name << p -> id << p -> team_id;
-
-	//and we send the packet back to the client (and only to that client, the rest of the clients do not need to know abot ths message)
-	Network :: GetInstance( ) -> SendServerPacket( packet, true );
-	
-	//we now create a new packet that the server will send to all the clients. They should add the server as well.
-	NetworkPacket server_player_data_packet = NetworkPacket( PacketType :: SERVER_REQUEST_ACCEPTED );
-	//find the local player (which is the server).
-	PlayerData *server_player_data = GetLocalPlayerData( );
-	//extract the data from the server player
-	server_player_data_packet << server_player_data -> name << server_player_data -> id << server_player_data -> team_id;
-
-	Network :: GetInstance( ) -> SendServerPacket( server_player_data_packet, true );
+	//we then run throught
+	for ( int i = 1; i < this -> _list_of_players -> size( ) + 1; i++ )
+	{
+		//we now create a new packet that the server will send to all the clients. They should add the server as well.
+		NetworkPacket server_player_data_packet = NetworkPacket( PacketType :: SERVER_REQUEST_ACCEPTED );
+		//find the local player (which is the server).
+		PlayerData *player_data = this -> _list_of_players -> find( i ) -> getValue( );
+		//extract the data from the server player
+		server_player_data_packet << player_data -> name << player_data -> id << player_data -> team_id;
+		Network :: GetInstance( ) -> SendServerPacket( server_player_data_packet, true );
+	}
 }
 
 /**
@@ -245,7 +241,7 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		packet >> player_name >> player_id >> player_team_id;
 		
 		std :: cout << "I received a message from the server, with player_id: " << player_id <<" and team id is: "<< player_team_id << endl;
-		if ( strcmp( player_name, localName ) == 0 )
+		if ( strcmp( player_name, localName ) == 0 && this -> _local_player_id < 0 )
 		{
 			std :: cout << player_name << " would like to join";
 			this -> _local_player_id = player_id;
