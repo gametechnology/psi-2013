@@ -140,7 +140,7 @@ void PowerStation::createUI()
 
 void PowerStation::enable()
 {
-	(_ship)->help->setHelpText(L"Drag sliders to adjust power for its station.");
+	(_ship)->help->setHelpText(L"Drag sliders to adjust power for its station.\nPress 'esc' to leave station.");
 
 	createUI();
 	context.scrollBars.at(0)->setPos(this->_ship->GetStation(StationType::ST_HELM)->getPower());
