@@ -9,18 +9,19 @@
 SectorManager::SectorManager(GalaxyMap* map,Ship* ship) : Component() {
 	_map=map;
 	_ship=ship;
-	for (unsigned int i = 0; i < map->sectors.size(); i++) {
-			printf("[SectorManager] whats mapID:%i",map->sectors[i]->getId());
-		if(map->sectors[i]->type == HOME_BLUE){
+	printf("!!![SectorManager] _map->sectors.size(): %i \n",_map->sectors.size());
+	for (unsigned int i = 0; i < _map->sectors.size(); i++) {
+			printf("!!![SectorManager] whats mapID: %i \n",_map->sectors[i]->getId());
+		if(_map->sectors[i]->type == HOME_BLUE){
 			//delete _mapSector;
-			_mapSector = map->sectors[i];
+			_mapSector = _map->sectors[i];
 		}
 	}
 }
 
 void SectorManager::onAdd() {
 	activeSceneName = "SectorHomeBase";
-	printf("[PENIS]%s",_mapSector->skyboxTexture);
+	printf("[SectorManager] %s",_mapSector->skyboxTexture);
 	this->getGame()->sceneManager->addScene(activeSceneName, new SectorHomeBase(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size()));
 }
 

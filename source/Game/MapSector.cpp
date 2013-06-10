@@ -1,6 +1,7 @@
 #include "MapSector.h"
 #include "Engine\Game.h"
 
+int MapSector::uid;
 MapSector::MapSector(std::string name,typeSector type, float radius) : Entity()
 {
 	this->name = name;
