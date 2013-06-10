@@ -95,13 +95,18 @@ void PlayerManager :: UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_
 */
 void PlayerManager :: RequestJoinServer( char *player_name, int team_id )
 {
-	cout << "I would like to join this game. My name is: " <<player_name <<"\n";
+	cout << "I would like to join this game. My name is: " << player_name <<"\n";
 	//here, we received a message from a player that they want to join our game and they have sent some information regarding their data.
 			
 	//create a new packet that we are going to send to the server.
-	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_JOIN_SERVER );	
+	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_JOIN_SERVER );
 	packet << player_name << team_id;
 	Network :: GetInstance( ) -> SendPacket( packet, true );
+
+	if ( Network :: GetInstance( ) -> IsServer( ) )
+	{
+		this -> _local_player_id = 1;
+	}
 }
 
 PlayerData *PlayerManager :: GetLocalPlayerData( )
@@ -121,18 +126,12 @@ void PlayerManager :: OnClientJoinRequestReceived( char *player_name, int team_i
 	//and add it to our list of playerData's
 	this -> _list_of_players -> insert( p -> id, p );
 
-	if ( Network :: GetInstance( ) -> IsServer( ) )
-	{
-		this -> _local_player_id = p -> id;
-		return;
-	}
-
 	//then, we generate a new packet
 	NetworkPacket packet = NetworkPacket( PacketType :: SERVER_REQUEST_ACCEPTED );
 	packet << player_name << p -> id << p -> team_id;
 
 	//and we send the packet back to the client (and only to that client, the rest of the clients do not need to know abot ths message)
-	Network :: GetInstance( ) -> SendPacket( packet, true );
+	Network :: GetInstance( ) -> SendServerPacket( packet, true );
 }
 
 /**
