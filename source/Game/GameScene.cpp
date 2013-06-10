@@ -21,28 +21,24 @@ void GameScene::onAdd() {
 	this->_laserPool = new ObjectPool<Laser>(*this, 100);
 	EnemyFighter::laserPool = _laserPool;
 	Ship::laserPool = _laserPool;
-	if(Network::GetInstance()->IsServer())
-	{
-		_ship = new Ship(vector3df(0,0,0), vector3df(0,0,0), 1);
-	}else {
-		_ship = new Ship(vector3df(0,0,0), vector3df(0,0,0), 2);
-	}
+	_ship = new Ship(vector3df(0,0,0), vector3df(0,0,0), PlayerManager::GetInstance( )->GetLocalPlayerData( )->team_id);
 	addChild(_ship);
 
 	_camera = new Camera(); 
 	_ship->addChild(_camera);
 	_camera->init();
 
-	if(Network::GetInstance()->IsServer())
+	if(PlayerManager::GetInstance( )->GetLocalPlayerData( )->team_id == 1)
 	{
-		_shipEnemy = new ServerProxyShip(vector3df(0,0,-100), vector3df(0), 2);
+		_shipEnemy = new ServerProxyShip(vector3df(0,0,-100), vector3df(0), 1);
 	}else
 	{
-		_shipEnemy = new ClientProxyShip(vector3df(0,0,-100), vector3df(0), 1);
+		_shipEnemy = new ClientProxyShip(vector3df(0,0,-100), vector3df(0), 2);
 	}
+	addChild(_shipEnemy);
 
-	//BasicMoverComponent* movComp = new BasicMoverComponent();
-	//_shipEnemy->addComponent(movComp);
+	BasicMoverComponent* movComp = new BasicMoverComponent();
+	_shipEnemy->addComponent(movComp);
 
 	//Creates Map & SectorManager
 	galaxyMap = new GalaxyMap(300, 300, 15);
