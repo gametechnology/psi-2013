@@ -105,7 +105,7 @@ protected:
 	time_t *_stunTime;				//if a station fot stunned, the time it happened will be stored here.
 
 private:
-
+	irr::gui::IGUIStaticText* stringObj;
 	int _tempTimer;
 	int _totalHealth;
 	HealthComponent* _healthComponent;
