@@ -14,7 +14,7 @@ int main()
 
 		sf::UdpSocket Socket;
 		// Bind it (listen) to the port 4567
-		if (!Socket.bind(4567))
+		if (!Socket.bind(4444))
 		{
 			// Error...
 		}
@@ -39,20 +39,27 @@ int main()
 				for (iterator = iplist.begin(); iterator != iplist.end(); ++iterator) {		
 					if(Sender.toInteger() ==  (*iterator).ip.toInteger()){
 						alreadyin = true;
-						(*iterator).timein = 100;
+						(*iterator).timein = time(0);
 						break;
 					}
 						
 				}
 				if(!alreadyin){
-					wchar_t*  name;
-					recievepacket >> name;
-					host hoster;
 					
-					hoster.timein = time(0);;
+				
+					
+					host hoster;
+					wchar_t*name = new wchar_t[500];
+			
+					hoster.name = new wchar_t[500];
+					
+					recievepacket >> name;
+					wcsncpy(hoster.name, name, wcslen(name));
+					hoster.name[wcslen(name)] = 0;
+					hoster.timein = time(0);
 					hoster.ip = Sender;
-					hoster.name = name;
 					iplist.push_back(hoster);
+					delete name;
 				}
 			}
 			else
@@ -76,11 +83,11 @@ int main()
 						++i;
 					}
 				}
-				sendpacket << iplist.size();
+				sendpacket << static_cast<int>(iplist.size());
 				std::list<host>::iterator iterator;
 				for (iterator = iplist.begin(); iterator != iplist.end(); ++iterator) {		
 					sendpacket << (*iterator).ip.toString();
-					sendpacket << *(*iterator).name;
+					sendpacket << (*iterator).name;
 				}
 				// Send data to "192.168.0.2" on port 4567
 				if (Socket.send(sendpacket, Sender, 4567) != sf::Socket::Done)

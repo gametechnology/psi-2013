@@ -8,9 +8,7 @@ MainMenuScene::MainMenuScene() : Scene() {
 MainMenuScene::~MainMenuScene() {
 
 }
-struct host{
 
-}
 
 void MainMenuScene::init() {
 	//Get the device
@@ -114,9 +112,9 @@ void MainMenuScene::update(){
 		wchar_t* inputwchar = (wchar_t*)servernameInput->getText();
 		
 		sendpacket << true;
-		sendpacket << *inputwchar;
+		sendpacket << inputwchar;
 		// Send data to "192.168.0.2" on port 4567
-		if (Socket.send(sendpacket, "192.168.", 4567) != sf::Socket::Done)
+		if (Socket.send(sendpacket, "145.92.13.203", 4444) != sf::Socket::Done)
 		{
 			// Error...
 		}
@@ -127,7 +125,7 @@ void MainMenuScene::update(){
 		sf::Packet sendpacket;
 		sendpacket << false;
 		// Send data to "192.168.0.2" on port 4567
-		if (Socket.send(sendpacket, "192.168.", 4567) != sf::Socket::Done)
+		if (Socket.send(sendpacket, "145.92.13.203", 4444) != sf::Socket::Done)
 		{
 			// Error...
 		}
@@ -300,9 +298,13 @@ void MainMenuScene::BackToMainMenu()
 	startStatic_button->setVisible(false);
 	quit_button->setVisible(false);
 	waitinglabel->setVisible(false);
+	servernames->setVisible(true);
+	serveractions->setVisible(true);
+	serverip->setVisible(true);
+	
 }
 
-void serverlistreciever(void * menu){
+void MainMenuScene::serverlistreciever(void * menu){
 	sf::UdpSocket Socket;
 	MainMenuScene * mainmenu = (MainMenuScene*)menu;
 		// Bind it (listen) to the port 4567
@@ -321,19 +323,36 @@ void serverlistreciever(void * menu){
 		else
 		{
 		}
-		mainmenu->servernames	= mainmenu->guiEnv->addStaticText(L"Server name:",rect<s32>(position2di(50,225),dimension2di(100,25)),false,true,mainmenu->mainMenuWindow);
-		mainmenu->serverip = mainmenu->guiEnv->addStaticText(L"Server Ipadress:",rect<s32>(position2di(175,225),dimension2di(100,25)),false,true,mainmenu->mainMenuWindow);
-		mainmenu->serveractions	= mainmenu->guiEnv->addStaticText(L"Actions:",rect<s32>(position2di(300,225),dimension2di(100,25)),false,true,mainmenu->mainMenuWindow);
+		mainmenu->issearching = false;
 		int length;
 		 recievepacket >> length;
 		int height = 255;
+		
 		for (int i =0;i < length; i++)
-		{
-			std::string
-			mainmenu->servernames	= mainmenu->guiEnv->addStaticText(L"Server name:",rect<s32>(position2di(50,225),dimension2di(100,25)),false,true,mainmenu->mainMenuWindow);
-			mainmenu->serverip = mainmenu->guiEnv->addStaticText(L"Server Ipadress:",rect<s32>(position2di(175,225),dimension2di(100,25)),false,true,mainmenu->mainMenuWindow);
-			height +=;
+		{ 
+			std::wstring s;
+			
+			host newhost;
+			wchar_t*name = new wchar_t[500];
+			
+			newhost.name = new wchar_t[500];
+			newhost.id = i;
+			
+			recievepacket >> newhost.ipadress;
+			recievepacket >> name;
+
+			s.assign(newhost.ipadress.begin(), newhost.ipadress.end());
+			wcsncpy(newhost.name, name, wcslen(name));
+			newhost.name[wcslen(name)] = 0;
+			mainmenu->hostlist.push_back(newhost);
+			delete name;
+			mainmenu->lisitems.push_back(mainmenu->guiEnv->addStaticText(newhost.name,rect<s32>(position2di(50,height),dimension2di(100,25)),false,true,mainmenu->mainMenuWindow));
+			mainmenu->lisitems.push_back(mainmenu->guiEnv->addStaticText(s.c_str(),rect<s32>(position2di(175,height),dimension2di(100,25)),false,true,mainmenu->mainMenuWindow));
+			mainmenu->lisitems.push_back(mainmenu->guiEnv->addButton(rect<s32>(position2di(300,height),dimension2di(200,25)),mainmenu->mainMenuWindow,7 + i, L"Join game"));
+
+			height += 30;
 		}
+		
 }
 
 
