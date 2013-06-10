@@ -14,6 +14,7 @@ Ship::Ship(vector3df position, vector3df rotation) : Entity ()
 	this->transform->position = &position;
 	this->transform->rotation = &rotation;
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
+
 }
 
 Ship::~Ship(void)
@@ -52,6 +53,8 @@ void Ship::onAdd() {
 	this->_weaponStation->disable();
 	this->_powerStation->disable();
 	
+	this->shipHealthComponent = new ShipHealthComponent(this);
+	addComponent(shipHealthComponent);
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
 	_thrusters[1] = new Thruster(vector3df(0,-2, 4), vector3df(0, 4, 4 ));
@@ -72,9 +75,10 @@ void Ship::onAdd() {
 	this->navigationStationHealth	= env->addStaticText(strNavigationHealth.c_str(),	rect<s32>(40, 140, 300, 160), false);	this->navigationStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-
+	
 	irr::core::stringw strPing = "Ping :" + 0;
 	this->pingGuiText = env->addStaticText(strPing.c_str(), rect<s32>(500,  30, 600, 50), false);	this->pingGuiText->setOverrideColor(video::SColor(255, 255, 255, 255));
+
 	
 	//Todo: Remove debug info from helptext!
 	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
@@ -109,7 +113,7 @@ void Ship::init()
 	this->transform->rotation = &startRotation;*/
 	
 	Entity::init();
-
+	
 }
 
 Station *Ship :: GetStation( StationType s )
@@ -178,6 +182,11 @@ void Ship :: update()
 	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
 		this->_shipDestroyed = true;
 	}	
+
+	if(game->input->isKeyboardButtonPressed(KEY_MINUS)){
+		a = rand() % 50;
+		shipHealthComponent->assignDamage(a);
+	}
 }
 
 Thruster** Ship :: GetThrusters()
@@ -208,8 +217,6 @@ void Ship :: CheckChangeInput()
 //Swith to a specific station
 void Ship :: SwitchToStation(StationType stationType)
 {
-
-
 	//Check if we are already on this station
 	if (_currentStation != NULL)
 	{
@@ -235,12 +242,12 @@ void Ship :: draw()
 
 int Ship :: getShipHealth()
 {
-
-	return (this->_defenceStation->getHealth() +
+	/*return (this->_defenceStation->getHealth() +
 		this->_helmStation->getHealth() +
 		this->_navigationStation->getHealth() +
 		this->_powerStation->getHealth() +
-		this->_weaponStation->getHealth());
+		this->_weaponStation->getHealth());*/
+	return shipHealthComponent->health;
 }
 
 bool Ship :: getShipDestroyed()
@@ -271,17 +278,47 @@ void Ship::fireLaser()
 	Laser* laser = this->laserPool->GetFreeObject();
 	if(laser != NULL)
 	{
-		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
+		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 10 * _weaponStation->getPower()/100, 1.0);
 		std::cout << "weapon fired" << std::endl;
 
-		if(!Network::GetInstance()->IsServer()){
+		if(!Network::GetInstance()->IsServer()) {
 			NetworkPacket firepacket = NetworkPacket(PacketType::CLIENT_FIRE_LASER);
 			firepacket << *laser;
 			Network::GetInstance()->SendPacket(firepacket, true);
-
 		}
 	}
 }
+
+void Ship::addIShipListener(IShipListener* listener) {
+	listeners.push_back(listener);
+}
+
+void Ship::removeIShipListener(IShipListener* listener){
+	listeners.pop_back();
+}
+
+
+void Ship::notifyIShipListeners(ShipMessage message){
+	if(message == LEAVESTATION)
+		
+
+	for(std::list<IShipListener*>::iterator it = listeners.begin(); it != listeners.end(); ++it) {
+		(*it)->handleShipMessage(message);
+	}
+}
+
+void Ship::leaveStation(StationType station)
+{
+	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
+	packet << station;
+	Network::GetInstance()->SendPacket(packet, true);
+
+	this->_currentStation->disable();
+	this->_currentStation = NULL;
+	
+	this->notifyIShipListeners(LEAVESTATION);
+}
+
 
 void Ship::HandleNetworkMessage(NetworkPacket packet)
 {
@@ -311,12 +348,9 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 		if(_currentStation != NULL && _currentStation->GetStationType() == ST_WEAPON){
 			((WeaponStation*)_currentStation)->rotationForeign = rotation;
 		}
-		else{
+		else {
 			//Read the information from the network packet
-			*transform->rotation = rotation;
-			
-		
-			
+			*transform->rotation = rotation;			
 			
 			
 		}
