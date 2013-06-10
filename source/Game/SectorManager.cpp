@@ -29,9 +29,45 @@ void SectorManager::onAdd() {
 void SectorManager::handleMessage(unsigned int message, void* data) {
 	switch(message) {
 		case NEXT_SECTOR: //Switch Sector 
-			//Determen which is the new sector
-			int index = (int)data;
-			std::vector<MapSector*>::iterator temp = _mapSector->connections.begin();
+			
+			/////
+			NetworkPacket sendpacket = NetworkPacket(PacketType::CLIENT_REQUEST_NEXTSECTOR);
+			//we send a vector with 3 data in it. teamnumber, mapsector ID, wormHole ID
+			irr::core::vector3df currentSectorVector = irr::core::vector3df(1,_mapSector->getId(),index);
+			sendpacket << currentSectorVector;
+			Network::GetInstance()->SendPacket(sendpacket,false);
+			/////
+
+
+			break;
+	}
+	//delete data;
+}
+void SectorManager::HandleNetworkMessage(NetworkPacket packet){
+			irr::core::vector3df packetdata;
+			NetworkPacket sendToClientPacket = NetworkPacket(PacketType::SERVER_SEND_NEXTSECTOR);
+
+	switch(packet.GetType()){
+		case PacketType::CLIENT_REQUEST_NEXTSECTOR:
+			packet >> packetdata;
+			SearchNextMapSector(packetdata.Y,packetdata.Z);
+			//Send message to clients what there new sector is;
+			
+			sendToClientPacket << *this->_mapSector;//made operator;TODO: make extra parrameter for team filtering
+			Network::GetInstance()->SendServerPacket(sendToClientPacket);
+			break;
+		case PacketType::SERVER_SEND_NEXTSECTOR:
+			packet >> *this->_mapSector;
+			SetNextSector(*_mapSector);
+			break;
+
+	}
+}
+//looking through the map list and search the next sector in the conectionlist
+void SectorManager::SearchNextMapSector(int currMapId, int connectionId){
+	//Determen which is the new sector
+			int index = connectionId;
+			std::vector<MapSector*>::iterator temp = SearchMapSector(connectionId)->connections.begin();//Looking through mapSectors 
 			
 			try{
 				std::advance(temp,index);
@@ -41,16 +77,12 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 			
 			_mapSector = *temp;//change the _mapSector to the sector the data tells him to be
 			
-			/////
-			NetworkPacket sendpacket = NetworkPacket(PacketType::CLIENT_REQUEST_NEXTSECTOR);
-			//we send a vector with 3 data in it. teamnumber, mapsector ID, wormHole ID
-			irr::core::vector3df currentSectorVector = irr::core::vector3df(1,_mapSector->getId(),index);
-			sendpacket << currentSectorVector;
-			Network::GetInstance()->SendServerPacket(sendpacket,false);
-			/////
+}
 
-			char * tempName = activeSceneName;
-			printf("[SectorManager] MapID %i",_mapSector->getId());
+//gets a sector and loads the new scene etc. basicly splitting up the funtionality of handlemessage
+void SectorManager::SetNextSector(MapSector& nextsector){
+	char * tempName = activeSceneName;
+			printf("[SectorManager] MapID %i",nextsector.getId());
 			// Checks if the scene is destroyed 
 			if ( this->getGame()->sceneManager->destroyScene( tempName ) ) {
 				
@@ -60,73 +92,75 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 
 
 				//Creates new Sector
-				switch (_mapSector->type){ 
+				switch (nextsector.type){ 
 					case EMPTY:
 						//delete _currentSector;
 						printf("[SectorTemplate] EMPTY \n");
 						activeSceneName = "BaseSector";
-						this->getGame()->sceneManager->addScene(activeSceneName,new BaseSector(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size()));
+						this->getGame()->sceneManager->addScene(activeSceneName,new BaseSector(this,nextsector.skyboxTexture,2000.0,nextsector.connectionSize));
 						break;
 					case ASTEROID:
 						printf("[SectorTemplate] ASTEROID \n");
 						//delete _currentSector;
 						activeSceneName = "AsteroidSector";
-						this->getGame()->sceneManager->addScene(activeSceneName,new AsteroidSector(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size()));
+						this->getGame()->sceneManager->addScene(activeSceneName,new AsteroidSector(this,nextsector.skyboxTexture,2000.0,nextsector.connectionSize));
 						break;
 					case NEBULA:
 						printf("[SectorTemplate] NEBULA \n");
 						//delete _currentSector;
 						activeSceneName = "NebulaSector";
-						this->getGame()->sceneManager->addScene(activeSceneName,new NebulaSector(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size()));
+						this->getGame()->sceneManager->addScene(activeSceneName,new NebulaSector(this,nextsector.skyboxTexture,2000.0,nextsector.connectionSize));
 						break;
 					case SOLAR: 
 						printf("[SectorTemplate] SOLAR \n");
 						//delete _currentSector;
 						activeSceneName = "BaseSector";
-						this->getGame()->sceneManager->addScene(activeSceneName,new BaseSector(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size()));
+						this->getGame()->sceneManager->addScene(activeSceneName,new BaseSector(this,nextsector.skyboxTexture,2000.0,nextsector.connectionSize));
 						break;
 					case HOME_BLUE:
 						printf("[SectorTemplate] HOME_BLUE \n");
 						//delete _currentSector;
 						activeSceneName = "SectorHomeBase";
-						this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size()));
+						this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,nextsector.skyboxTexture,2000.0,nextsector.connectionSize));
 						break;
 					case HOME_RED:
 						printf("[SectorTemplate] HOME_RED \n");
 						//delete _currentSector;
 						activeSceneName = "SectorHomeBase";
-						this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size()));
+						this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,nextsector.skyboxTexture,2000.0,nextsector.connectionSize));
 						break;
 				}		
 			}
-			
-
-
+}
+//Search a mapSector out of the map, mostly used by the server when NetworkMessageHandled
+MapSector* SectorManager::SearchMapSector(int currMapId){
+	for (unsigned int i = 0; i < _map->sectors.size(); i++) {
+		if(_map->sectors[i]->getId() == currMapId){
+			//delete _mapSector;
+			return _map->sectors[i];
 			break;
+		}
 	}
-	//delete data;
-}
-void SectorManager::HandleNetworkMessage(NetworkPacket packet){
-	switch(packet.GetType()){
-		case PacketType::CLIENT_REQUEST_NEXTSECTOR:
-			irr::core::vector3df packetdata;
-			packet >> packetdata;
-			SearchNextMapSector(packetdata.Y,packetdata.Z);
-			break;
-		case PacketType::SERVER_SEND_NEXTSECTOR:
-			break;
-
-	}
-}
-void SectorManager::SearchNextMapSector(int currMapId, int connectionId){
-	//looking through the map list and looks the next sector in the conectionlist
-}
-void SectorManager::SetNextSector(MapSector nextsector){
-	//gets a sector and loads the new scene etc. basicly splitting up the funtionality of handlemessage
 }
 Ship* SectorManager::getShip(){
 	return _ship;
 }
 SectorManager::~SectorManager() {
 	
+}
+
+//OPERATORS FOR MAPSECTORS
+sf::Packet& operator <<(sf::Packet& out, const MapSector& in)
+{
+	return out << in.name << (int)in.type << in.explored << in.radius << in.distToBlueBase << in.skyboxTexture.c_str() << in._id <<in.connections.size() ;
+}
+
+sf::Packet& operator >>(sf::Packet& in, MapSector& out)
+{
+	int temp;
+	char* tempC;
+	in >> out.name >> temp >> out.explored >> out.radius >> out.distToBlueBase >> tempC >> out._id >> out.connectionSize ;
+	out.type = (typeSector)temp;
+	out.skyboxTexture = tempC;
+	return in;
 }

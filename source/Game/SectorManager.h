@@ -20,11 +20,14 @@ public:
 	Ship* getShip();
 
 	virtual void HandleNetworkMessage(NetworkPacket packet);
+	friend sf::Packet& operator <<(sf::Packet& out, MapSector& in);
+	friend sf::Packet& operator >>(sf::Packet& in, MapSector& out);
 private:
 	GalaxyMap* _map;
 	Ship* _ship;
 	void SearchNextMapSector(int currMapId, int connectionId);
-	void SetNextSector(MapSector nextsector);
+	void SetNextSector(MapSector& nextsector);
+	MapSector* SearchMapSector(int currMapId);
 };
 
 #endif
