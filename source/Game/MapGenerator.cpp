@@ -107,9 +107,9 @@ std::vector<MapSector*>* MapGenerator::createStaticMap(float width, float height
 
 	homeBlue->transform->position->set(randomPosition());
 
-	homeBlue->SetSkyboxTexture(nameskybox.at(0));
-	homeRed->SetSkyboxTexture(nameskybox.at(0));
-	empty->SetSkyboxTexture(nameskybox.at(0));
+	homeBlue->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
+	homeRed->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
+	empty->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
 
 	homeRed->transform->position->set(randomPosition());
 	empty->transform->position->set(randomPosition());
@@ -136,7 +136,7 @@ void MapGenerator::createSectors()
 
 	MapSector* homeRed = new MapSector(nameGenerator(HOME_RED), HOME_RED, _sectorRadius);
 	homeRed->transform->position->set(randomPosition());
-	homeRed->SetSkyboxTexture(nameskybox.at(0));
+	homeRed->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
 	sectors->push_back(homeRed);
 	
 	typeSector j;
@@ -145,7 +145,7 @@ void MapGenerator::createSectors()
 		j = getRandomType();
 		MapSector* sector = new MapSector(nameGenerator(j), j, _sectorRadius);
 		sector->transform->position->set(randomPosition());
-		sector->SetSkyboxTexture(nameskybox.at(0));
+		sector->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
 		sectors->push_back(sector);
 	}
 }
