@@ -25,7 +25,7 @@ PlayerManager* PlayerManager::GetInstance()
 	return _instance;
 }
 
-void PlayerManager::Init()
+void PlayerManager::Init( )
 {
 	this -> _list_of_players = new irr :: core :: map<int, PlayerData*>( );
 	//set the unique ID of the playerData's to be 0.
@@ -134,7 +134,7 @@ void PlayerManager :: OnClientJoinRequestReceived( char *player_name, int team_i
 	std :: cout << "I received a message from player " << player_name << " that he would like to join.\n";
 	//if this is not the server, we do nothing. This is not a message for us.
 	//create a new PlayerData.
-	PlayerData *p = new PlayerData( player_name, team_id, peer );
+	PlayerData *p = new PlayerData( player_name, team_id );
 	//and add it to our list of playerData's
 	this -> _list_of_players -> insert( p -> id, p );
 
@@ -163,7 +163,7 @@ void PlayerManager :: OnClientJoinedGameReceived( int player_id, char *player_na
 {
 	//otherwise, we are going to set the player id in our local playerData.
 	//if this new player is not already in the list of players, we insert it in the list
-	if ( this -> _list_of_players -> find( player_id ) -> getValue( ) == NULL )
+	if ( this -> _list_of_players -> find( player_id ) == NULL )
 	{
 		cout << "Yay! I now am in the game. this is my id: " << player_id << endl;
 		this -> _list_of_players -> insert( player_id, new PlayerData( player_name, player_team_id ) );
@@ -237,6 +237,7 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	case PacketType :: SERVER_REQUEST_ACCEPTED:
 		packet >> player_name >> player_id >> player_team_id;
 		
+		std :: cout << "I received a message from the server, with player_id: " << player_id;
 		if ( *localName == *player_name)
 		{
 			this -> _local_player_id = player_id;

@@ -20,14 +20,7 @@ public:
 		StationType		stationType;
 
 		PlayerData( ) { };
-		PlayerData( char *name, int team_id, ENetPeer peer ) 
-		{
-			this ->	id				= uniqueId++;
-			this -> name			= name;
-			this -> team_id			= team_id;
-			this -> stationType		= StationType :: ST_NONE;
-		}
-
+		
 		PlayerData( char *name, int team_id ) 
 		{
 			this ->	id				= uniqueId++;
@@ -35,6 +28,7 @@ public:
 			this -> team_id			= team_id;
 			this -> peer			= peer;
 			this -> stationType		= StationType :: ST_NONE;
+			std :: cout << "created a new playerdata";
 		}
 
 		friend std :: ostream& operator << ( std :: ostream &os, const PlayerData &pd )
