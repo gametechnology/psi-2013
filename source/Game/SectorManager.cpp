@@ -33,7 +33,7 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 			/////
 			NetworkPacket sendpacket = NetworkPacket(PacketType::CLIENT_REQUEST_NEXTSECTOR);
 			//we send a vector with 3 data in it. teamnumber, mapsector ID, wormHole ID
-			irr::core::vector3df currentSectorVector = irr::core::vector3df(1,_mapSector->getId(),index);
+			irr::core::vector3df currentSectorVector = irr::core::vector3df(1,_mapSector->getId(),(int)data);
 			sendpacket << currentSectorVector;
 			Network::GetInstance()->SendPacket(sendpacket,false);
 			/////
@@ -150,7 +150,7 @@ SectorManager::~SectorManager() {
 }
 
 //OPERATORS FOR MAPSECTORS
-sf::Packet& operator <<(sf::Packet& out, const MapSector& in)
+sf::Packet& operator <<(sf::Packet& out, MapSector& in)
 {
 	return out << in.name << (int)in.type << in.explored << in.radius << in.distToBlueBase << in.skyboxTexture.c_str() << in._id <<in.connections.size() ;
 }
