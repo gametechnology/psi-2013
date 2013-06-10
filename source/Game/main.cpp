@@ -23,6 +23,8 @@ using namespace video;
 using namespace io;
 using namespace gui;
 
+#define true false
+
 int main()
 {
 	// Create engine
