@@ -89,10 +89,11 @@ void GameScene::update() {
 		*/
 		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z))
 		{
-			_ship->shipHealthComponent->assignDamage(300);
+			((Ship*)_ship)->shipHealthComponent->assignDamage(300);
+			//((ServerProxyShip*)_shipEnemy)->
 		}
 
-		if(this->_ship->getShipHealth() <= 0 /*|| this->_shipEnemy->getShipHealth() <= 0*/)
+		if(((Ship*)_ship)->getShipHealth() <= 0 ||(((ServerProxyShip*)_shipEnemy)->getHealth() <= 0))
 		{
 			int otherTeamId;
 			int myTeamId = PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> team_id;
@@ -103,18 +104,16 @@ void GameScene::update() {
 				otherTeamId=1;
 			}
 
-			if(_ship->getShipHealth()<=0)
+			if(((Ship*)_ship)->getShipHealth()<=0)
 			{				
 				SendAndReceivePackets::sendWinLosePacket(myTeamId);
 				SendAndReceivePackets::handleWinLose(myTeamId, myTeamId, this);
 			}
-			 /*if(_shipEnemy->getShipHealth()<=0)
+			 if(((ServerProxyShip*)_shipEnemy)->getHealth() <= 0)
 			{
 				SendAndReceivePackets::sendWinLosePacket(otherTeamId);
 				SendAndReceivePackets::handleWinLose(otherTeamId, otherTeamId, this);
-			}*/
-			/*SendAndReceivePackets::sendWinLosePacket(1);
-			SendAndReceivePackets::handleWinLose(1, 2, this);*/
+			}
 		}		
 	}
 	if ( this -> game -> input -> isKeyboardButtonPressed( KEY_TAB ) )
