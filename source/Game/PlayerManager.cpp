@@ -173,7 +173,7 @@ void PlayerManager :: OnClientJoinedGameReceived( int player_id, char *player_na
 	if ( this -> _list_of_players -> find( player_id ) == NULL )
 	{
 		cout << "Yay! I now am in the game. this is my id: " << player_id << endl;
-		this -> _list_of_players -> insert( player_id, new PlayerData( player_name, player_team_id ) );
+		this -> _list_of_players -> insert( player_id, new PlayerData( player_name, player_team_id, player_id ) );
 	}
 }
 

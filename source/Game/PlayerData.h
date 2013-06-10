@@ -31,6 +31,16 @@ public:
 			std :: cout << "created a new playerdata";
 		}
 
+		PlayerData( char *name, int team_id, int player_id ) 
+		{
+			this ->	id				= player_id;
+			this -> name			= name;
+			this -> team_id			= team_id;
+			this -> peer			= peer;
+			this -> stationType		= StationType :: ST_NONE;
+			std :: cout << "created a new playerdata";
+		}
+
 		friend std :: ostream& operator << ( std :: ostream &os, const PlayerData &pd )
 		{
 			os << "\tName:\t\t" << pd.name << std :: endl;
