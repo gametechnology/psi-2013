@@ -47,8 +47,8 @@ void HealthBar::draw(){
 				irr::core::rect<s32>(				//draw size and position
 				(s32)pipos.X,		//xPosition, every 10 pips it moves 1 to the side.
 				(s32)pipos.Y,			//yPosition, every 10 pips it starts back at the top
-				(s32)pipos.X + size_.X,									//width
-				(s32)pipos.Y  + size_.Y									//lenght
+				(s32)(pipos.X + size_.X),									//width
+				(s32)(pipos.Y  + size_.Y)									//lenght
 				),
 				irr::core::rect<s32>(0,0,128, 32),	//size of image
 				NULL,

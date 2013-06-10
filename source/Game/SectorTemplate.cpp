@@ -136,7 +136,7 @@ void SectorTemplate::addWormHoles() {
 
 		wormHolePos.rotateXZBy(rotation, irr::core::vector3df( 0 ) );
 
-		wormHolePos = wormHolePos.setLength((float)(rand() % int(_boundry* 0.2) + int(_boundry* 0.8)));
+		wormHolePos = wormHolePos.setLength( _boundry* 0.9 );
 
 		// Adding the worm holes to the scene
 		addChild(_wormHoles[i]);
@@ -288,6 +288,18 @@ void SectorTemplate::createEnemies()
 
 	//_enemyList.push_back(new EnemyAsteroid(irr::core::vector3df(10,0,0), irr::core::vector3df(-0.02f,0,0)));
 	//addChild(_enemyList.back());
+}
+
+void SectorTemplate::removeEnemyFromList(Enemy* enemy)
+{
+	for(int i = 0; i < _enemyList.size(); i++)
+	{
+		if(_enemyList[i] == enemy)
+		{
+			_enemyList.erase(_enemyList.begin() + i);
+			break;
+		}
+	}
 }
 
 SectorTemplate::~SectorTemplate() {

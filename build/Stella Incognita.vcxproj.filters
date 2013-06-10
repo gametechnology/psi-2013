@@ -40,6 +40,12 @@
     <Filter Include="Header Files\Hud">
       <UniqueIdentifier>{a6bc21e1-73c1-47d4-8b26-2f75fcd82beb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Stations\GUIEventReceiver">
+      <UniqueIdentifier>{886a84e5-5e82-4992-8f06-cac0b1088e64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Stations\GUIEventReceiver">
+      <UniqueIdentifier>{5853dcec-c629-4baf-9b5d-4b02f0893e04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\Game\main.cpp">
@@ -76,9 +82,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Shipmap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\Game\Stations\Station.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\DefenceStation.cpp">
@@ -252,9 +255,6 @@
     <ClCompile Include="..\source\Game\SendAndReceivePackets.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\source\Game\StationStats.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\Game\EndScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
@@ -274,6 +274,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\PlayerManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\StationStats.cpp">
+      <Filter>Source Files\Stations</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\Stations\GUIEventReceiver\PowerStationEventReveiver.cpp">
+      <Filter>Source Files\Stations\GUIEventReceiver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\DummyShip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\ShipHealthComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -324,9 +336,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\GalaxyMap.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\source\Game\ArrayList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\MapGenerator.h">
@@ -440,9 +449,6 @@
     <ClInclude Include="..\source\Game\Stations\PowerStationData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\Collision.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\source\Game\EnemySceneTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -486,13 +492,31 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\IStateSwitch.h">
-    	<Filter>Header Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\PlayerData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\PlayerManager.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\DummyShip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ShipHealthComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\DummyShip.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\Stations\GUIEventReceiver\PowerStationEventReveiver.h">
+      <Filter>Header Files\Stations\GUIEventReceiver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\IShipListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\ArrayList.h">
+      <Filter>Header Files\Stations</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -14,8 +14,11 @@ public:
 
 	virtual void update();
 	virtual void handleMessage(unsigned int message, void* data = 0){};
+	void setMaxSpeed(float speed);
 private:
 	Ship *_ship;
 	bool powerEnable;
+	float maxSpeed;
+	bool invertVerticalAxis;
 };
 
