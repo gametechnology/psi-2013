@@ -78,20 +78,34 @@ void GameScene::update() {
 		Edit code below to make it send a winlose packet when one of the ship reaches health of 0
 		and give the right team id as the parameter
 		*/
-		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z) || this->_ship->getShipHealth() <= 0 /*|| this->_shipEnemy->getShipHealth() <= 0*/)
+		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z))
 		{
-			/* if(_ship->getShipHealth()<=0)
+			_ship->shipHealthComponent->setHealth(0);
+		}
+
+		if(this->_ship->getShipHealth() <= 0 || this->_shipEnemy->getShipHealth() <= 0)
+		{
+			int otherTeamId;
+			int myTeamId = PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> team_id;
+			if( myTeamId == 1)
 			{
-				SendAndReceivePackets::sendWinLosePacket(_ship->getid());
-				SendAndReceivePackets::handleWinLose(_ship->getid(), _ship->getid(), this);
-			}*/
-			/* if(_shipEnemy->getShipHealth()<=0)
+				otherTeamId = 2;
+			}else {
+				otherTeamId=1;
+			}
+
+			if(_ship->getShipHealth()<=0)
+			{				
+				SendAndReceivePackets::sendWinLosePacket(myTeamId);
+				SendAndReceivePackets::handleWinLose(myTeamId, myTeamId, this);
+			}
+			 if(_shipEnemy->getShipHealth()<=0)
 			{
-				SendAndReceivePackets::sendWinLosePacket(_shipEnemy->getid());
-				SendAndReceivePackets::handleWinLose(shipEnemy->getid(), _ship->getid(), this);
-			}*/
-			SendAndReceivePackets::sendWinLosePacket(1);
-			SendAndReceivePackets::handleWinLose(1, 2, this);
+				SendAndReceivePackets::sendWinLosePacket(otherTeamId);
+				SendAndReceivePackets::handleWinLose(otherTeamId, otherTeamId, this);
+			}
+			/*SendAndReceivePackets::sendWinLosePacket(1);
+			SendAndReceivePackets::handleWinLose(1, 2, this);*/
 		}		
 	}
 	if ( this -> game -> input -> isKeyboardButtonPressed( KEY_TAB ) )
