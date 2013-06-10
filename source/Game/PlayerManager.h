@@ -40,8 +40,6 @@ private:
 	void PongReceived(int player_name, int timePingSend);
 	void ServerSendPong(int player_name, int timePingSend);
 
-	PlayerData *GetLocalPlayerData( );
-
 public:
 	static PlayerManager* GetInstance();
 	~PlayerManager( );	
@@ -60,5 +58,6 @@ public:
 	//this makes sure that the local data is sent to all the other players on the network (only local data)
 	void SyncLocalPlayerData( StationType currentStation );
 	void ShowPlayerList( );
+	PlayerData *GetLocalPlayerData( );
 };
 #endif
