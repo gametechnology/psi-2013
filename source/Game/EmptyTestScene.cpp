@@ -32,5 +32,5 @@ void EmptyTestScene::update(){
 	if(game->input->isKeyboardButtonDown(KEY_KEY_S)){
 		a += 1;
 	}
-	
+	//test commit
 }
