@@ -287,7 +287,6 @@
       </ClCompile>
     <ClCompile Include="..\source\Game\DummyShip.cpp">
       <Filter>Source Files</Filter>
-      </ClCompile>
     </ClCompile>
     <ClCompile Include="..\source\Game\PlayerInfoScreen.cpp">
       <Filter>Source Files\Hud</Filter>
