@@ -2,9 +2,10 @@
 #include "Player.h"
 #include "Ship.h"
 
-int PlayerData :: uniqueId		= 1;
+int PlayerData :: uniqueId				= 1;
 PlayerManager* PlayerManager::_instance = 0;
 char *localName = new char;
+bool isDisconnected = false;
 
 PlayerManager :: PlayerManager( ) : INetworkListener( )
 {
@@ -17,6 +18,7 @@ PlayerManager* PlayerManager::GetInstance()
 	{
 		_instance = new PlayerManager();
 		_instance->ticker = 0;
+		_instance->timeSent = 0;
 	}
 
 	return _instance;
@@ -24,7 +26,7 @@ PlayerManager* PlayerManager::GetInstance()
 
 void PlayerManager::Init()
 {
-	this -> _serverPlayerData = new irr :: core :: map<int, PlayerData*>( );
+	this -> _list_of_players = new irr :: core :: map<int, PlayerData*>( );
 	//set the unique ID of the playerData's to be 0.
 	
 	if ( !Network :: GetInstance( ) -> IsServer( ) )
@@ -39,7 +41,7 @@ void PlayerManager::Init()
 	} 
 	else
 	{
-		//As a server I listen to:
+		//As a server I listexn to:
 		cout << endl << endl << endl << "I am a server!" << endl << endl;
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this);
@@ -70,8 +72,9 @@ PlayerManager :: ~PlayerManager( )
 	}
 	//delete all the other crap.
 }
-void PlayerManager :: stationUpdated(StationType stationType){
-	_localPlayerData ->stationType = stationType;
+void PlayerManager :: StationUpdated( StationType stationType )
+{
+	this -> GetLocalPlayerData( ) -> stationType = stationType;
 }
 
 /**
@@ -83,7 +86,7 @@ void PlayerManager :: UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_
 	//we create a new packet.
 	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_UPDATE_LOBBY_STATUS );
 	//first add the id, then what type of update we want to perform.
-	packet << _localPlayerData -> id << update << team_id; 
+	packet << this -> _local_player_id << update << team_id; 
 
 	Network :: GetInstance( ) -> SendPacket( packet, true );
 }
@@ -100,14 +103,16 @@ void PlayerManager :: RequestJoinServer( char *player_name, int team_id )
 {
 	cout << "I would like to join this game. My name is: " <<player_name <<"\n";
 	//here, we received a message from a player that they want to join our game and they have sent some information regarding their data.
-	localName = player_name;
-	
-	this ->	_localPlayerData = new PlayerData( player_name, team_id );
-	
+			
 	//create a new packet that we are going to send to the server.
 	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_JOIN_SERVER );	
 	packet << player_name << team_id;
 	Network :: GetInstance( ) -> SendPacket( packet, true );
+}
+
+PlayerData *PlayerManager :: GetLocalPlayerData( )
+{
+	return this -> _list_of_players -> find( this -> _local_player_id ) -> getValue( );
 }
 
 /**
@@ -115,32 +120,40 @@ void PlayerManager :: RequestJoinServer( char *player_name, int team_id )
 */
 void PlayerManager :: OnClientJoinRequestReceived( char *player_name, int team_id, ENetPeer peer )
 {
-	cout << "I received a message from player " << player_name << " that he would like to join.\n";
+	std :: cout << "I received a message from player " << player_name << " that he would like to join.\n";
 	//if this is not the server, we do nothing. This is not a message for us.
 	//create a new PlayerData.
 	PlayerData *p = new PlayerData( player_name, team_id, peer );
 	//and add it to our list of playerData's
-	this -> _serverPlayerData -> insert( p -> id, p );
+	this -> _list_of_players -> insert( p -> id, p );
+
+	if ( Network :: GetInstance( ) -> IsServer( ) )
+	{
+		this -> _local_player_id = p -> id;
+		return;
+	}
 
 	//then, we generate a new packet
 	NetworkPacket packet = NetworkPacket( PacketType :: SERVER_REQUEST_ACCEPTED );
-	packet << player_name << p -> id ;
+	packet << player_name << p -> id << p -> team_id;
 
 	//and we send the packet back to the client (and only to that client, the rest of the clients do not need to know abot ths message)
-	Network :: GetInstance( ) -> SendServerPacket( packet, true );
-	//Network :: GetInstance( ) -> SendPacket( packet, true );
-	//TODO: sort of error handling when things go wrong and send a CLIENT_REQUEST_DENIED packet	
+	Network :: GetInstance( ) -> SendPacket( packet, true );
 }
 
 /**
 *In this method, we received a message from the server that we were able to join to the game. It also generates an id for us.
 */
-void PlayerManager :: OnJoinAcceptedReceived( int player_id )
+void PlayerManager :: OnClientJoinedGameReceived( int player_id, char *player_name, int player_team_id )
 {
 	cout << "Yay! I now am in the game. this is my id: " << player_id << endl;
 	//if this machine is flagged as server, we do nothing.
 	//otherwise, we are going to set the player id in our local playerData.
-	this ->	_localPlayerData -> id = player_id;
+	//if this new player is not alreday in the list of players, we insert it in the list
+	if ( this -> _list_of_players -> find( player_id ) -> getValue( ) == NULL )
+	{
+		this -> _list_of_players -> insert( player_id, new PlayerData( player_name, player_team_id ) );
+	}
 }
 
 void PlayerManager :: OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id )
@@ -149,12 +162,12 @@ void PlayerManager :: OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS
 	switch( update )
 	{
 	case CLIENT_STATUS_UPDATE :: CHANGED_TEAM:
-		this -> _serverPlayerData -> find( player_id ) -> getValue( ) -> team_id = new_team_id;
+		this -> _list_of_players -> find( player_id ) -> getValue( ) -> team_id = new_team_id;
 		break;
 
 	case CLIENT_STATUS_UPDATE :: LEFT_GAME:
 		//we now remove it from the map.
-		this -> _serverPlayerData -> remove( player_id );
+		this -> _list_of_players -> remove( player_id );
 	}
 }
 
@@ -166,38 +179,12 @@ void PlayerManager :: OnJoinDeniedReceived( )
 	//TODO: Some shit.
 }
 
-void PlayerManager :: CheckInput( bool isDebugKeyPressed )
-{	const char *stationInfo;
-	if ( isDebugKeyPressed )
+void PlayerManager :: ShowPlayerList( )
+{
+	int size	= this -> _list_of_players -> size( ) + 1;
+	for ( int i = 1; i < size; i++ )
 	{
-		switch ( _localPlayerData -> stationType ) {
-			case -1:
-				stationInfo = "Hallway";
-				break;
-			case 0:
-				stationInfo = "Power Station";
-				break;
-			case 1:
-				stationInfo = "Defence Station";
-				break;
-			case 2:
-				stationInfo = "Weapon Station";
-				break;
-			case 3:
-				stationInfo = "Helm Station";
-				break;
-			case 4:
-				stationInfo = "Navigation Station";
-				break;
-		}
-
-
-
-		cout << "name: " << _localPlayerData -> name << ":\n";
-		cout << "\tID: " << _localPlayerData -> id << "\n";
-		cout << "\tteam_id: " << _localPlayerData -> team_id << "\n";
-		//cout << "\tip address: " << _localPlayerData -> peer -> ( int ) outgoingPeerID << "\n";
-		cout << "\tstation type: " << stationInfo << "\n";
+		std :: cout << *this -> _list_of_players -> find( i ) -> getValue( ) << std :: endl;
 	}
 }
 
@@ -215,6 +202,7 @@ void PlayerManager:: SendPlayerInfoRequest()
 void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 {
 	int			player_id;
+	int			timePingSent;
 	int			player_team_id = -1;
 	int			player_station_type;
 	int			update;
@@ -233,11 +221,13 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		break;
 
 	case PacketType :: SERVER_REQUEST_ACCEPTED:
-		packet >> player_name;
-		if ( *localName == *player_name){
-		packet >> player_id;
-		this -> OnJoinAcceptedReceived( player_id );
+		packet >> player_name >> player_id >> player_team_id;
+		
+		if ( *localName == *player_name)
+		{
+			this -> _local_player_id = player_id;
 		}
+		this -> OnClientJoinedGameReceived( player_id, player_name, player_team_id );
 		break;
 
 	case PacketType :: SERVER_REQUEST_DENIED:
@@ -255,11 +245,13 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 
 	case PacketType :: SERVER_PONG:
 		packet >> player_id;
-		PongReceived(player_id);
+		packet >> timePingSent;
+		PongReceived(player_id, timePingSent);
 		break;
 	case PacketType :: CLIENT_PING:
 		packet >> player_id;
-		ServerSendPong(player_id);
+		packet >> timePingSent;
+		ServerSendPong(player_id, timePingSent);
 		break;
 	}
 }
@@ -268,35 +260,47 @@ void PlayerManager :: PingSend()
 {
 	 ticker++;
 
-	 if (ticker >= 500)
+	 if (timeSent == 0 && ticker >= 500)
 	 {
-		  
+		  cout << "CLIENT: Ping send to the server from player-" << this -> GetLocalPlayerData( ) -> id << "("<< this -> GetLocalPlayerData( ) -> name <<") !" << endl;
+		  ticker = 0;
 		  timeSent = timeGetTime();
+		  isDisconnected = false;
 
 		  NetworkPacket packet = NetworkPacket(PacketType::CLIENT_PING);
-		  packet << _localPlayerData->id;
+		  packet << this -> GetLocalPlayerData( ) -> id;
+		  packet << (int) timeGetTime();
 		  Network :: GetInstance() -> SendPacket(packet, true);
-		  cout << "CLIENT: Ping send to the server from player-" << _localPlayerData->id << "("<< _localPlayerData->name <<") !" << endl;
-		  ticker = 0;
+		  cout << "CLIENT: Ping send to the server from player-" << this -> GetLocalPlayerData( ) -> id << "("<< this -> GetLocalPlayerData( ) -> name <<") !" << endl;
+	 }
+	 else if (ticker >= 1000 && !isDisconnected)
+	 {	
+		 isDisconnected = true;
+		 cout << endl <<"CLIENT: I am disconnected!" << endl;
 	 }
 }
 
-void PlayerManager :: PongReceived(int player_id)
+void PlayerManager :: PongReceived(int player_id, int timePingSent)
 {
-	if (player_id != _localPlayerData->id)
+	if (player_id != this -> GetLocalPlayerData( ) -> id)
 		return;
 
-	timeTaken = timeGetTime() - timeSent;
-	cout << "CLIENT: Pong received from server by player-" << _localPlayerData->id << "("<< _localPlayerData->name <<")!" << endl;
-	cout << "CLIENT: PingPong Time : " << timeTaken << " ms!" << endl << endl;
+	timeTaken = timeGetTime() - timePingSent;
+	cout << "CLIENT: Pong received from server by player-" << this -> GetLocalPlayerData( ) -> id << "("<< this -> GetLocalPlayerData( ) -> name <<")!" << endl;
+	cout << "CLIENT: " << timeTaken << " ms!" << endl << endl;
+
+	timeSent = 0;
 }
 
-void PlayerManager :: ServerSendPong(int player_id)
+void PlayerManager :: ServerSendPong(int player_id, int timePingSent)
 {
-	cout << "SERVER: Ping received from player-" << player_id << ", sending back Pong" << endl;
+	cout << "SERVER: Ping received from player-" << player_id << endl; 
+	cout << "SERVER: Sending back Pong[id=" << player_id << ", time=" << timePingSent << "]" << endl;
+	
 	NetworkPacket nwp = NetworkPacket(PacketType::SERVER_PONG);
 	nwp << player_id;
+	nwp << timePingSent;
 	
-	Network ::GetInstance()->SendServerPacket(nwp);
     Network ::GetInstance()->SendPacket(nwp);
+    Network ::GetInstance()->SendServerPacket(nwp);
 }
