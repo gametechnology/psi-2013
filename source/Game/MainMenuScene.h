@@ -54,11 +54,9 @@ public:
 	// other items in menu
 	IGUIStaticText* Clientlist;
 	IGUIStaticText* Namelabel;
-	IGUIStaticText* portLabel;
 	IGUIStaticText* ipLabel;
 	IGUIStaticText* waitinglabel;
 	IGUIEditBox* Ipadresinput;
-	IGUIEditBox* hostPortInput;
 	IGUIEditBox* Nameinput;
 	IGUIWindow* messagebox;
 

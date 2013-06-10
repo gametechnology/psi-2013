@@ -42,18 +42,20 @@ void MainMenuScene::addGuiElements()
 	// MainMenu
 	//////////////////////////////////////////
 	//Creat the main menu window
+	/*IVideoDriver* driver = guiEnv->getVideoDriver();
+	ITexture* backgroundimage = driver->getTexture("../../sydney.bmp");
+	*/
 	mainMenuWindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"Main menu",0,100);
 	mainMenuWindow->getCloseButton()->remove();
 
 	//Add text and button
+	
 	createServerWindow_Button = guiEnv->addButton(rect<s32>(position2di(50,135),dimension2di(200,25)),mainMenuWindow,2, L"Create a game");
 	joinServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,1,L"Join a game");
 		
-	portLabel = guiEnv->addStaticText(L"Port:",rect<s32>(position2di(50,65),dimension2di(100,25)),false,true,mainMenuWindow);
 	ipLabel	= guiEnv->addStaticText(L"Host ip:",rect<s32>(position2di(175,65),dimension2di(100,25)),false,true,mainMenuWindow);
 	Namelabel = guiEnv->addStaticText(L"Name:",rect<s32>(position2di(300,65),dimension2di(100,25)),false,true,mainMenuWindow);
 
-	hostPortInput = guiEnv->addEditBox(L"",rect<s32>(position2di(50, 80),dimension2di(100,25)),true,mainMenuWindow);
 	Ipadresinput = guiEnv->addEditBox(L"",rect<s32>(position2di(175, 80),dimension2di(100,25)),true,mainMenuWindow);
 	Nameinput = guiEnv->addEditBox(L"",rect<s32>(position2di(300, 80),dimension2di(100,25)),true,mainMenuWindow);
 
@@ -254,6 +256,7 @@ void MainMenuScene::BackToMainMenu()
 {
 	createServerWindow_Button->setVisible(true);
 	joinServerWindow_Button->setVisible(true);
+	ipLabel->setVisible(true);
 	Ipadresinput->setVisible(true);
 	Namelabel->setVisible(true);
 	Nameinput->setVisible(true);

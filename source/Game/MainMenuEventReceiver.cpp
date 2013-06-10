@@ -21,9 +21,6 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 		char* playername;
 		wchar_t* namewchar;
 
-		stringc portInput;
-		short port;
-
 		Player* newplayer;
 		NetworkPacket packet(START_GAME);
 		NetworkPacket namepacket(CLIENT_JOIN);
@@ -41,24 +38,21 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 				wcstombs(ipadress, inputwchar, wcslen(inputwchar));
 				ipadress[wcslen(inputwchar)] = 0;
 
-				portInput = mainmenu->hostPortInput->getText();
-				port = atof(portInput.c_str());
-
 				namewchar = (wchar_t*)mainmenu->Nameinput->getText();
 				playername = (char*)malloc(wcslen(namewchar)+ 1);
 				wcstombs(playername, namewchar, wcslen(namewchar));
 				playername[wcslen(namewchar)] = 0;
 
-				if((*ipadress == ' ' || *ipadress == NULL) || (*playername == ' ' || *playername == NULL) || (port == 0)){
-					if(*ipadress == ' ' || *ipadress == NULL || port == 0){
-						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Fill in an Ipadress and port",true,1,mainmenu->mainMenuWindow);
+				if((*ipadress == ' ' || *ipadress == NULL) || (*playername == ' ' || *playername == NULL)){
+					if(*ipadress == ' ' || *ipadress == NULL){
+						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Fill in an Ipadress",true,1,mainmenu->mainMenuWindow);
 						mainmenu->messagebox->setDraggable(false);
 					}else{
 						mainmenu->messagebox = this->contextGame->guiEnv->addMessageBox(L"Message",L"Fill in an Name",true,1,mainmenu->mainMenuWindow);
 						mainmenu->messagebox->setDraggable(false);
 					}
 				}else{
-					Network::GetInstance()->InitializeClient(ipadress, port);
+					Network::GetInstance()->InitializeClient(ipadress);
 					if(!Network::GetInstance()->IsConnected()){
 						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Not able to connect to server",true,1,mainmenu->mainMenuWindow);
 						mainmenu->messagebox->setDraggable(false);
@@ -72,6 +66,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->Clientlist->setVisible(true);
 						mainmenu->Ipadresinput->setVisible(false);
 						mainmenu->Namelabel->setVisible(false);
+						mainmenu->ipLabel->setVisible(false);
 						// TODO check merge Both??
 						mainmenu->waitinglabel = env->addStaticText(L"Waiting for host to start the game",rect<s32>(position2di(300,165),dimension2di(200,25)),false,true,mainmenu->mainMenuWindow);
 						mainmenu->Nameinput->setVisible(false);
@@ -100,6 +95,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					PlayerManager::GetInstance()->Init();
 					mainmenu->createServerWindow_Button->setVisible(false);
 					mainmenu->joinServerWindow_Button->setVisible(false);
+					mainmenu->ipLabel->setVisible(false);
 					mainmenu->Ipadresinput->setVisible(false);
 					mainmenu->Namelabel->setVisible(false);
 					mainmenu->Nameinput->setVisible(false);
