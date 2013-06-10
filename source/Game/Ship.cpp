@@ -30,6 +30,7 @@ void Ship::onAdd() {
 	this->transform->rotation = &startRotation;
 //	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
+	model->transform->rotation->X += 180;
 	addChild(model);
 
 	this->env = game->device->getGUIEnvironment();

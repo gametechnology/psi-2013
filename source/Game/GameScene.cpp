@@ -35,10 +35,10 @@ void GameScene::onAdd() {
 
 	if(Network::GetInstance()->IsServer())
 	{
-		_shipEnemy = new ServerProxyShip(vector3df(0,0,-100), vector3df(180,0,0), 2);
+		_shipEnemy = new ServerProxyShip(vector3df(0,0,-100), vector3df(0), 2);
 	}else
 	{
-		_shipEnemy = new ClientProxyShip(vector3df(0,0,-100), vector3df(180,0,0), 1);
+		_shipEnemy = new ClientProxyShip(vector3df(0,0,-100), vector3df(0), 1);
 	}
 	addChild(_shipEnemy);
 

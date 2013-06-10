@@ -27,6 +27,7 @@ void ClientProxyShip::onAdd()
 {
 	this->enable();
 	_model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
+	_model->transform->rotation->X += 180;
 	addChild(_model);
 
 	this->init();
@@ -65,6 +66,7 @@ void ClientProxyShip::HandleNetworkMessage(NetworkPacket packet)
 			*transform->angularVelocity = angularVelocity;
 			*transform->position = position;
 			*transform->velocity = velocity;
+			*transform->rotation = rotation;
 		}
 	}
 }
@@ -116,6 +118,7 @@ void ServerProxyShip::HandleNetworkMessage(NetworkPacket packet)
 			*transform->angularVelocity = angularVelocity;
 			*transform->position = position;
 			*transform->velocity = velocity;
+			*transform->rotation = rotation;
 		}
 	}
 }
@@ -139,6 +142,7 @@ void ServerProxyShip::onAdd()
 {
 	this->enable();
 	this->_model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
+	_model->transform->rotation->X += 180;
 	this->addChild(_model);
 
 	this->init();
