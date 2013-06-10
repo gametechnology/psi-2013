@@ -237,11 +237,13 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	case PacketType :: SERVER_REQUEST_ACCEPTED:
 		packet >> player_name >> player_id >> player_team_id;
 		
-		std :: cout << "I received a message from the server, with player_id: " << player_id;
-		if ( *localName == *player_name)
+		std :: cout << "I received a message from the server, with player_id: " << player_id << endl;
+		this -> _local_player_id = -1;
+		if ( *localName == *player_name )
 		{
 			this -> _local_player_id = player_id;
 		}
+		std :: cout << "_local_player_id set to " << player_id << endl;
 		this -> OnClientJoinedGameReceived( player_id, player_name, player_team_id );
 		break;
 
