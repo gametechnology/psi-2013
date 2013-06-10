@@ -50,6 +50,10 @@ enum PacketType
         SERVER_REQUEST_ACCEPTED,
         SERVER_REQUEST_DENIED, 
         SERVER_LOBBY_STATUS_CHANGED,
+
+		//For changing sector
+		CLIENT_REQUEST_NEXTSECTOR,
+		SERVER_SEND_NEXTSECTOR,
  
         //Add new PacketTypes above
         LAST_TYPE
@@ -94,7 +98,9 @@ inline char* getPacketTypeName(PacketType type)
                 case SERVER_REQUEST_ACCEPTED: { return "SERVER_REQUEST_ACCEPTED"; break; }
                 case SERVER_REQUEST_DENIED: { return "SERVER_REQUEST_DENIED"; break; }
                 case SERVER_LOBBY_STATUS_CHANGED: { return "SERVER_LOBBY_STATUS_CHANGED"; break; }
- 
+
+				case CLIENT_REQUEST_NEXTSECTOR:{return "CLIENT_REQUEST_NEXTSECTOR";break;}
+				case SERVER_SEND_NEXTSECTOR:{return "SERVER_SEND_NEXTSECTOR";break;}
                 default: { throw "Tried to get string from non-existing packet type"; }
         }
 }
