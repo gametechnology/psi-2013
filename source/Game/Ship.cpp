@@ -308,15 +308,16 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 				*transform->angularVelocity = angularVelocity;
 				*transform->position = position;
 				*transform->velocity = velocity;
+
+				//Apply updates 
+				if(_currentStation != NULL && _currentStation->GetStationType() == ST_WEAPON){
+					((WeaponStation*)_currentStation)->rotationForeign = rotation;
+				}
+				else{
+					//Read the information from the network packet
+					*transform->rotation = rotation;
+
 			}
-			
-		//Apply updates 
-		if(_currentStation != NULL && _currentStation->GetStationType() == ST_WEAPON){
-			((WeaponStation*)_currentStation)->rotationForeign = rotation;
-		}
-		else{
-			//Read the information from the network packet
-			*transform->rotation = rotation;
 		}
 	}
 }
