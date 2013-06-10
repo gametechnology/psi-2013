@@ -82,7 +82,12 @@ void GameScene::update() {
 		{
 			SendAndReceivePackets::sendWinLosePacket(1);
 			SendAndReceivePackets::handleWinLose(1, 2, this);
-		}
+		}		
+	}
+	if ( this -> game -> input -> isKeyboardButtonPressed( KEY_TAB ) )
+	{
+		PlayerManager :: GetInstance( ) -> ShowPlayerList( );
+		std :: cout << "\n-------------------------------\n";
 	}
 
 	Scene::update();
