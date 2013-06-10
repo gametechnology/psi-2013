@@ -278,12 +278,19 @@
     </ClCompile>
     <ClCompile Include="..\source\Game\StationStats.cpp">
       <Filter>Source Files\Stations</Filter>
+      </ClCompile>
+    <ClCompile Include="..\source\Game\CollisionTestScene.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\Stations\GUIEventReceiver\PowerStationEventReveiver.cpp">
       <Filter>Source Files\Stations\GUIEventReceiver</Filter>
-    </ClCompile>
+      </ClCompile>
     <ClCompile Include="..\source\Game\DummyShip.cpp">
       <Filter>Source Files</Filter>
+      </ClCompile>
+    </ClCompile>
+    <ClCompile Include="..\source\Game\PlayerInfoScreen.cpp">
+      <Filter>Source Files\Hud</Filter>
     </ClCompile>
     <ClCompile Include="..\source\Game\ShipHealthComponent.cpp">
       <Filter>Source Files</Filter>
@@ -501,13 +508,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\DummyShip.h">
+    <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\CollisionTestScene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\source\Game\ShipHealthComponent.h">
+    <ClInclude Include="..\source\Game\ShipHealthComponent.h"><Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\DummyShip.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\DummyShip.h">
       <Filter>Header Files</Filter>
+      </ClInclude>
+    <ClInclude Include="..\source\Game\PlayerInfoScreen.h">
+      <Filter>Header Files\Hud</Filter>
     </ClInclude>
     <ClInclude Include="..\source\Game\Stations\GUIEventReceiver\PowerStationEventReveiver.h">
       <Filter>Header Files\Stations\GUIEventReceiver</Filter>
