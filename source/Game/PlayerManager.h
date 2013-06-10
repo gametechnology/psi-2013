@@ -11,6 +11,8 @@
 
 #pragma comment(lib, "winmm.lib")
 
+class Game;
+
 class PlayerManager : public INetworkListener
 {
 private:
@@ -20,6 +22,8 @@ private:
 	
 	int timeSent, timeTaken;
 	int ticker;
+
+	Game* game;
 	
 	PlayerManager( );
 
@@ -47,6 +51,7 @@ public:
 	int getTimeTaken();
 
 	void Init();
+	void SetGame(Game* game);
 	void RequestJoinServer( char *player_name, int team_id );
 	void HandleNetworkMessage( NetworkPacket p );
 	void UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_id );

@@ -1,3 +1,4 @@
+#include "MainMenuScene.h"
 #include "PlayerManager.h"
 #include "Player.h"
 #include "Ship.h"
@@ -75,6 +76,11 @@ PlayerManager :: ~PlayerManager( )
 void PlayerManager :: StationUpdated( StationType stationType )
 {
 	this -> GetLocalPlayerData( ) -> stationType = stationType;
+}
+
+void PlayerManager :: SetGame(Game* game)
+{
+	this->game = game;
 }
 
 /**
@@ -276,6 +282,9 @@ void PlayerManager :: PingSend()
 	 {	
 		 isDisconnected = true;
 		 cout << endl <<"CLIENT: I am disconnected!" << endl;
+		 Scene* scene = new MainMenuScene();
+		 game->sceneManager->deactivateScene("GameScene");
+		 game->sceneManager->addScene("MainmenuScene", scene);
 	 }
 }
 
