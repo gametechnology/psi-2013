@@ -19,5 +19,6 @@ private:
 	Ship *_ship;
 	bool powerEnable;
 	float maxSpeed;
+	bool invertVerticalAxis;
 };
 

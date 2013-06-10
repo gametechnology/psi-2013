@@ -54,13 +54,7 @@ void Laser::fire(Transform* transform, vector3df target, float damage, f32 speed
 	this->_direction.normalize();
 	this->transform->position->dotProduct(this->_direction);
 	this->transform->position->operator+=(this->_direction);
-	this->transform->position->operator+=(this->_direction);
-	this->transform->position->operator+=(this->_direction);
-	this->transform->position->operator+=(this->_direction);
-	*this->transform->rotation = this->_direction;
-
-	//*this->transform->rotation += 90;
-
+	
 	*this->transform->velocity = this->_direction * speed;
 }
 

@@ -4,6 +4,7 @@ PowerStationData :: PowerStationData( )
 {
 	this -> _stationsPowerUsage	= new irr::core::map<StationType, Station*>( );
 	this -> powerPool	= POWER_MAX;
+	powerPoolText = NULL;
 }
 
 void PowerStationData :: SubscribeStation( Station *station )
