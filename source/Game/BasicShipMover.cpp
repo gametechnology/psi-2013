@@ -11,6 +11,7 @@
 BasicShipMover::BasicShipMover(Ship *ship) : BasicMoverComponent() {
 	this->_ship = ship;
 	this->maxSpeed = 0;
+	invertVerticalAxis = false;
 }
 
 BasicShipMover::~BasicShipMover() { 
@@ -22,6 +23,9 @@ void BasicShipMover::update() {
 	powerEnable = _ship->GetStation(ST_HELM)->HasPower();
 	powerEnable = true; //workAround to be commented when the switch between stations is working
 
+	if (getGame()->input->isKeyboardButtonReleased(KEY_KEY_Y))
+		invertVerticalAxis = !invertVerticalAxis;
+
 	if(powerEnable){ //power to steer
 	//FORWARD/BACKWARD
 	if (getGame()->input->isKeyboardButtonDown(KEY_KEY_W))
@@ -30,16 +34,24 @@ void BasicShipMover::update() {
 		move(_ship, core::vector3df(0, 0, -maxSpeed));
 
 	//PITCH
+	float temp = maxSpeed;
+	if (invertVerticalAxis) {
+		temp = -maxSpeed;
+	}
 	if (getGame()->input->isKeyboardButtonDown(KEY_UP))
-		pitch(_ship, maxSpeed);
+		//pitch(_ship, maxSpeed);
+		pitch(_ship, core::vector3df(temp, 0, 0));
 	if (getGame()->input->isKeyboardButtonDown(KEY_DOWN))
-		pitch(_ship, -maxSpeed);
+		//pitch(_ship, -maxSpeed);
+		pitch(_ship, core::vector3df(-temp, 0, 0));
 
 	//TURN 
 	if (getGame()->input->isKeyboardButtonDown(KEY_LEFT))
-		turn(_ship, -maxSpeed);
+		//turn(_ship, -maxSpeed);
+		turn(_ship, core::vector3df(0, -maxSpeed, 0));
 	if (getGame()->input->isKeyboardButtonDown(KEY_RIGHT))
-		turn(_ship, maxSpeed);
+		//turn(_ship, maxSpeed);
+		turn(_ship, core::vector3df(0, maxSpeed, 0));
 
 	//ROLL
 	if (getGame()->input->isKeyboardButtonDown(KEY_KEY_A))
