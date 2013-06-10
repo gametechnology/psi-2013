@@ -80,7 +80,7 @@ void GameScene::update() {
 		*/
 		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z))
 		{
-			_ship->shipHealthComponent->setHealth(0);
+			_ship->shipHealthComponent->assignDamage(300);
 		}
 
 		if(this->_ship->getShipHealth() <= 0 /*|| this->_shipEnemy->getShipHealth() <= 0*/)

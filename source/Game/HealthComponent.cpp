@@ -3,7 +3,7 @@
 
 HealthComponent::HealthComponent() : Component()
 {
-	maxHealth_ = 0;
+	maxHealth_ = 100;
 	health_ = maxHealth_;
 }
 
