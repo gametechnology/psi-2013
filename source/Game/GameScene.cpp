@@ -21,16 +21,25 @@ void GameScene::onAdd() {
 	this->_laserPool = new ObjectPool<Laser>(*this, 100);
 	EnemyFighter::laserPool = _laserPool;
 	Ship::laserPool = _laserPool;
-
-	_ship = new Ship(vector3df(0,0,0), vector3df(0,0,0));
+	if(Network::GetInstance()->IsServer())
+	{
+		_ship = new Ship(vector3df(0,0,0), vector3df(0,0,0), 1);
+	}else {
+		_ship = new Ship(vector3df(0,0,0), vector3df(0,0,0), 2);
+	}
 	addChild(_ship);
 
 	_camera = new Camera(); 
 	_ship->addChild(_camera);
 	_camera->init();
 
-	//_shipEnemy = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
-	//addChild(_shipEnemy);
+	if(Network::GetInstance()->IsServer())
+	{
+		_shipEnemy = new ServerProxyShip(vector3df(0,0,-100), vector3df(0), 2);
+	}else
+	{
+		_shipEnemy = new ClientProxyShip(vector3df(0,0,-100), vector3df(0), 1);
+	}
 
 	//BasicMoverComponent* movComp = new BasicMoverComponent();
 	//_shipEnemy->addComponent(movComp);
@@ -45,13 +54,13 @@ void GameScene::onAdd() {
 	}
 	galaxyMap->transform->position = new vector3df(980, 420, 0);
 	printf("-----------Added SectorManager----------\n\n");
+	addComponent(new SectorManager(galaxyMap, (Ship*)_ship));
 	addChild(galaxyMap);
-	addComponent(new SectorManager(galaxyMap,_ship));
 
 	_shipmap = new Shipmap(this);
 	addChild(_shipmap);
 
-	_ship->addIShipListener(this);
+	((Ship*)_ship)->addIShipListener(this);
 }
 
 void GameScene::init() {
@@ -132,7 +141,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 	case CLIENT_SWITCH_STATION:
 		unsigned int receivedStationType;
 		packet >> receivedStationType;
-		if(_ship->GetStation((StationType)receivedStationType)->setStationOccupation() == false)
+		if(((Ship*)_ship)->GetStation((StationType)receivedStationType)->setStationOccupation() == false)
 			printf("Could not set station to occupied!\n");
 		/* TODO: REIMPLEMENT WHEN NETWORKING AND PLAYERLISTS ARE FUNCTIONAL
 		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
@@ -141,7 +150,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 			{
 				unsigned int receivedStationType;
 				packet >> receivedStationType;
-				if(_ship->GetStation((StationType)receivedStationType)->setPlayerOccupation((*i)) == false)
+				if(((Ship*)_ship)->GetStation((StationType)receivedStationType)->setPlayerOccupation((*i)) == false)
 					printf("Code is not handling stations correctly. This error originates in [GameScene.cpp] in function [HandleNetworkMessage].\n");
 			}
 		}*/
@@ -149,7 +158,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 	case CLIENT_LEAVE_STATION:
 		unsigned int receivedStation;
 		packet >> receivedStation;
-		_ship->GetStation((StationType)receivedStation)->resetStationOccupation();
+		((Ship*)_ship)->GetStation((StationType)receivedStation)->resetStationOccupation();
 		/* TODO: REIMPLEMENT WHEN NETWORKING AND PLAYERLISTS ARE FUNCTIONAL
 		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
 		{			
@@ -157,7 +166,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 			{
 				unsigned int receivedStationType;
 				packet >> receivedStationType;
-				_ship->GetStation((StationType)receivedStationType)->resetPlayerOccupation();
+				((Ship*)_ship)->GetStation((StationType)receivedStationType)->resetPlayerOccupation();
 			}
 		}*/
 		break;
@@ -170,7 +179,7 @@ void GameScene::switchStation(StationType type)
 {
 	_shipmap->disable();
 
-	_ship->SwitchToStation(type);
+	((Ship*)_ship)->SwitchToStation(type);
 }
 
 void GameScene::handleShipMessage(ShipMessage message){

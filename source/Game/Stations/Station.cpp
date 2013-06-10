@@ -140,7 +140,6 @@ void Station::update()
 		}
 	}
 
-	std::cout << "power" << _powerComponent->power << "\n";
 	if (_powerComponent->power <= 0 && enabled && this->GetStationType() != StationType::ST_POWER) {
 		stringObj->setVisible(true);
 		stringObj->setText(L"You have no power here!");
