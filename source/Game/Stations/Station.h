@@ -41,6 +41,11 @@ public:
 	bool HasPower();
 	bool HasShield();
 
+	// This
+	std::list<Player*> playerlist;
+
+	StationType _occupiedStation;
+
 	/*
 	* Set the player for occupating this station.
 	*
@@ -49,11 +54,15 @@ public:
 	* fail if the station is already occupied.
 	*/
 	bool setPlayerOccupation(Player* player);
+	// because all the player stuff in networking is broken, we'll just do things manually temporarily:
+	bool setStationOccupation();
 	/*
 	* Resets the station it's occupation. Simultaneously setting the player pointer
 	* and occupied boolean to NULL and 'false' respectively.
 	*/
 	void resetPlayerOccupation();
+	// the above doesn't work due to player stuff being broken, so again manually:
+	void resetStationOccupation();
 
 	std::string helpTextString;
 

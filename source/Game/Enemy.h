@@ -7,6 +7,8 @@
 #include "Player.h"
 #include "NetworkInterface.h"
 
+class HealthComponent;
+
 using namespace irr;
 using namespace scene;
 using namespace video;
@@ -102,8 +104,7 @@ private:
 	
 	vector3df destination_;
 	vector3df originalvelocity_;
-	signed int _health;
-	unsigned int _maxHealth;
+	HealthComponent* healthCom_;
 	float radius_;
 	float originalradius_;
 	float outerradius_;
