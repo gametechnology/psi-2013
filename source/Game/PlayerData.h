@@ -6,7 +6,8 @@
 enum CLIENT_STATUS_UPDATE
 {
 	CHANGED_TEAM,
-	LEFT_GAME
+	LEFT_GAME,
+	UPDATE_STATION
 };
 
 struct PlayerData

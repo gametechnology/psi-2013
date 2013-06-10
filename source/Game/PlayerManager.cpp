@@ -46,7 +46,7 @@ void PlayerManager::Init( )
 		cout << endl << endl << endl << "I am a client!" << endl << endl;
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_REQUEST_ACCEPTED, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_REQUEST_DENIED, this );
-		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_LOBBY_STATUS, this );
+		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_UPDATE_STATUS, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_PONG, this );
 	} 
@@ -55,6 +55,7 @@ void PlayerManager::Init( )
 		//As a server I listexn to:
 		cout << endl << endl << endl << "I am a server!" << endl << endl;
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
+		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_UPDATE_STATUS, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this);
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_PING, this);
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_PONG, this);
@@ -68,6 +69,7 @@ PlayerManager :: ~PlayerManager( )
 	{
 		//As a client stop listening to:
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_ALL_PLAYERS, this );
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_UPDATE_STATUS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_REQUEST_DENIED, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_LOBBY_STATUS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_ALL_PLAYERS, this );
@@ -77,6 +79,7 @@ PlayerManager :: ~PlayerManager( )
 	{
 		//As a server stop listining to:
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this );
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_UPDATE_STATUS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_PING, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_PONG, this );
@@ -85,20 +88,21 @@ PlayerManager :: ~PlayerManager( )
 }
 void PlayerManager :: StationUpdated( StationType stationType )
 {
+	//this is done locally
 	this -> GetLocalPlayerData( ) -> stationType = stationType;
+	//but we also need to send the update data. 
+	//Create a packet.
+	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_UPDATE_STATUS );
+	packet << this -> _local_player_id << CLIENT_STATUS_UPDATE :: UPDATE_STATION << this -> GetLocalPlayerData( ) -> stationType;
+	Network :: GetInstance( ) -> SendPacket( packet );
 }
 
 /**
-*here, we received a message from the client, stating that their information has changed (changed team, left game )
+*here, we received a message from the client, stating that their information has changed (changed team, left game, changed station)
 */
-void PlayerManager :: UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_id )
+void PlayerManager :: UpdateClientStatus( CLIENT_STATUS_UPDATE update, NetworkPacket p )
 {	
-	//we create a new packet.
-	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_UPDATE_LOBBY_STATUS );
-	//first add the id, then what type of update we want to perform.
-	packet << this -> _local_player_id << update << team_id; 
-
-	Network :: GetInstance( ) -> SendPacket( packet, true );
+	
 }
 
 int PlayerManager :: getTimeTaken( )
@@ -173,18 +177,41 @@ void PlayerManager :: OnClientJoinedGameReceived( int player_id, char *player_na
 	}
 }
 
-void PlayerManager :: OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id )
+//here, the server received a message from the client that something has changed for the given player.
+void PlayerManager :: OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, StationType st )
 {
+	//what we should do here, is to run through all the playerdata's and tell them that playerinformation has changed
 	if ( !Network :: GetInstance( ) -> IsServer( ) ) return;
-	switch( update )
-	{
-	case CLIENT_STATUS_UPDATE :: CHANGED_TEAM:
-		this -> _list_of_players -> find( player_id ) -> getValue( ) -> team_id = new_team_id;
-		break;
 
-	case CLIENT_STATUS_UPDATE :: LEFT_GAME:
-		//we now remove it from the map.
-		this -> _list_of_players -> remove( player_id );
+	for ( int i = 1; i < this -> _list_of_players -> size( ); i++ )
+	{
+		NetworkPacket packet = NetworkPacket( PacketType :: SERVER_UPDATE_STATUS );
+		switch( update )
+		{
+			case CLIENT_STATUS_UPDATE :: CHANGED_TEAM:
+				//this -> _list_of_players -> find( player_id ) -> getValue( ) -> team_id = new_team_id;
+				break;
+
+			case CLIENT_STATUS_UPDATE :: LEFT_GAME:
+				//we now remove it from the map.
+				//this -> _list_of_players -> remove( player_id );
+				break;
+			case CLIENT_STATUS_UPDATE :: UPDATE_STATION:
+				//check if the player can make the change.
+				packet << player_id << ( int )update << st;
+				break;
+		}
+		Network :: GetInstance( ) -> SendServerPacket( packet );
+	}
+}
+
+void PlayerManager :: OnServerStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, StationType st )
+{
+	switch ( update )
+	{
+	case CLIENT_STATUS_UPDATE :: UPDATE_STATION:
+		this -> _list_of_players -> find( player_id ) -> getValue( ) -> stationType	= st;
+		break;
 	}
 }
 
@@ -254,10 +281,15 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 
 		this -> OnJoinDeniedReceived( );
 		break;
-	case PacketType :: CLIENT_UPDATE_LOBBY_STATUS:
-			packet >> player_id >> update >> player_team_id;
-			this -> OnClientStatusUpdateReceived( player_id, ( CLIENT_STATUS_UPDATE ) update, player_team_id );
+	case PacketType :: CLIENT_UPDATE_STATUS:
+		packet >> player_id >> update >> player_station_type;
+		this -> OnClientStatusUpdateReceived( player_id, ( CLIENT_STATUS_UPDATE )update, ( StationType )player_station_type );
 		break;
+	case PacketType :: SERVER_UPDATE_STATUS:
+		packet >> player_id >> update >> player_station_type;
+		this -> OnServerStatusUpdateReceived( player_id, ( CLIENT_STATUS_UPDATE )update, ( StationType )player_station_type );
+		break;
+
 	case PacketType :: SERVER_ALL_PLAYERS:
 		packet >> allPlayersMessage;
 		cout << "\nAll Player Message: \n" << allPlayersMessage.c_str() << endl;
