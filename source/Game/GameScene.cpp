@@ -40,9 +40,10 @@ void GameScene::onAdd() {
 	{
 		_shipEnemy = new ClientProxyShip(vector3df(0,0,-100), vector3df(0), 1);
 	}
+	addChild(_shipEnemy);
 
-	//BasicMoverComponent* movComp = new BasicMoverComponent();
-	//_shipEnemy->addComponent(movComp);
+	BasicMoverComponent* movComp = new BasicMoverComponent();
+	_shipEnemy->addComponent(movComp);
 
 	//Creates Map & SectorManager
 	galaxyMap = new GalaxyMap(300, 300, 15);
