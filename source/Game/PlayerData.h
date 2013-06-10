@@ -33,9 +33,9 @@ public:
 
 		friend std :: ostream& operator << ( std :: ostream &os, const PlayerData &pd )
 		{
-			os << "name:\t" << pd.name << std :: endl;
-			os << "id:\t" << pd.id << std :: endl;
-			os << "\tteam id:\t" << pd.team_id << std :: endl;
+			os << "\tName:\t\t" << pd.name << std :: endl;
+			os << "\tID:\t\t" << pd.id << std :: endl;
+			os << "\tTeam id:\t" << pd.team_id << std :: endl;
 
 			char *stationInfo;
 			switch ( pd.stationType ) 
@@ -59,7 +59,7 @@ public:
 					stationInfo = "Navigation Station";
 					break;
 			}
-			os << "\tstation" << stationInfo << std :: endl;
+			os << "\tStation:\t" << stationInfo << std :: endl;
 			return os;
 		}
 };

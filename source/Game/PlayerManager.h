@@ -11,6 +11,7 @@
 
 #pragma comment(lib, "winmm.lib")
 
+class Game;
 
 class PlayerManager : public INetworkListener
 {
@@ -26,6 +27,8 @@ private:
 	PlayerManager( );
 
 	int DistributeTeamId();
+
+	Game *game;
 
 	//these are client side functions. 
 	void OnClientJoinedGameReceived( int player_id, char *player_name, int player_team_id );
@@ -45,6 +48,7 @@ public:
 	~PlayerManager( );	
 
 	void PingSend();
+	void SetGame(Game *game);
 
 	int getTimeTaken();
 

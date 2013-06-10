@@ -280,6 +280,11 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	}
 }
 
+void PlayerManager :: SetGame(Game* game)
+{
+	this->game = game;
+}
+
 void PlayerManager :: PingSend()
 {
 	 ticker++;
@@ -301,6 +306,7 @@ void PlayerManager :: PingSend()
 	 {	
 		 isDisconnected = true;
 		 cout << endl <<"CLIENT: I am disconnected!" << endl;
+		 game->device->closeDevice();
 	 }
 }
 
