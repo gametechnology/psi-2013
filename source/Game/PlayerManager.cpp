@@ -9,6 +9,7 @@ bool isDisconnected = false;
 
 PlayerManager :: PlayerManager( ) : INetworkListener( )
 {
+	timeTaken = 0;
 }
 
 PlayerManager* PlayerManager::GetInstance()
@@ -88,6 +89,11 @@ void PlayerManager :: UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_
 	packet << this -> _local_player_id << update << team_id; 
 
 	Network :: GetInstance( ) -> SendPacket( packet, true );
+}
+
+int PlayerManager :: getTimeTaken()
+{	
+	return timeTaken;
 }
 
 /**
