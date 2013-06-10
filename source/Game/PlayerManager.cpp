@@ -132,25 +132,34 @@ void PlayerManager :: OnClientJoinRequestReceived( char *player_name, int team_i
 	//and add it to our list of playerData's
 	this -> _list_of_players -> insert( p -> id, p );
 
-	//then, we generate a new packet
+	//then, we generate a new packet for that specific client. 
 	NetworkPacket packet = NetworkPacket( PacketType :: SERVER_REQUEST_ACCEPTED );
 	packet << player_name << p -> id << p -> team_id;
 
 	//and we send the packet back to the client (and only to that client, the rest of the clients do not need to know abot ths message)
 	Network :: GetInstance( ) -> SendServerPacket( packet, true );
+	
+	//we now create a new packet that the server will send to all the clients. They should add the server as well.
+	NetworkPacket server_player_data_packet = NetworkPacket( PacketType :: SERVER_REQUEST_ACCEPTED );
+	//find the local player (which is the server).
+	PlayerData *server_player_data = GetLocalPlayerData( );
+	//extract the data from the server player
+	server_player_data_packet << server_player_data -> name << server_player_data -> id << server_player_data -> team_id;
+
+	Network :: GetInstance( ) -> SendServerPacket( server_player_data_packet, true );
 }
 
 /**
-*In this method, we received a message from the server that we were able to join to the game. It also generates an id for us.
+*In this method, we received a message from the server that we were able to join to the game. If the player is the player that sent the request (AKA, this local user)
+*then we set the local_player_id. We then continue to add it to our dictionary.
 */
 void PlayerManager :: OnClientJoinedGameReceived( int player_id, char *player_name, int player_team_id )
 {
-	cout << "Yay! I now am in the game. this is my id: " << player_id << endl;
-	//if this machine is flagged as server, we do nothing.
 	//otherwise, we are going to set the player id in our local playerData.
-	//if this new player is not alreday in the list of players, we insert it in the list
+	//if this new player is not already in the list of players, we insert it in the list
 	if ( this -> _list_of_players -> find( player_id ) -> getValue( ) == NULL )
 	{
+		cout << "Yay! I now am in the game. this is my id: " << player_id << endl;
 		this -> _list_of_players -> insert( player_id, new PlayerData( player_name, player_team_id ) );
 	}
 }
