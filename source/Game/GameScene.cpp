@@ -131,7 +131,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacket(packet, this->_laserPool->getAllObjects(), this));
 		break;
 	case SERVER_WINLOSE:
-		SendAndReceivePackets::receiveWinLosePacket(packet, 1, this);
+		SendAndReceivePackets::receiveWinLosePacket(packet, (PlayerManager::GetInstance()->GetLocalPlayerData()->team_id), this);
 		break;
 	case CLIENT_SWITCH_STATION:
 		unsigned int receivedStationType;
