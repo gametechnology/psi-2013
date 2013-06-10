@@ -15,6 +15,7 @@ Ship::Ship(vector3df position, vector3df rotation, int teamId) : ShipInterface (
 	this->transform->rotation = &rotation;
 	this->_teamId = teamId;
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
+
 }
 
 Ship::~Ship(void)
@@ -50,8 +51,9 @@ void Ship::onAdd() {
 	this->_navigationStation->disable();
 	this->_weaponStation->disable();
 	this->_powerStation->disable();
-
 	
+	this->shipHealthComponent = new ShipHealthComponent(this);
+	addComponent(shipHealthComponent);
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
 	_thrusters[1] = new Thruster(vector3df(0,-2, 4), vector3df(0, 4, 4 ));
@@ -72,8 +74,9 @@ void Ship::onAdd() {
 	this->navigationStationHealth	= env->addStaticText(strNavigationHealth.c_str(),	rect<s32>(40, 140, 300, 160), false);	this->navigationStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
-
 	
+	irr::core::stringw strPing = "Ping :" + 0;
+	this->pingGuiText = env->addStaticText(strPing.c_str(), rect<s32>(500,  30, 600, 50), false);	this->pingGuiText->setOverrideColor(video::SColor(255, 255, 255, 255));
 
 	
 	//Todo: Remove debug info from helptext!
@@ -111,7 +114,7 @@ void Ship::init()
 	ShipInterface::init();
 
 }
-
+	
 int Ship::getTeamId()
 {
 	return this->_teamId;
@@ -157,7 +160,12 @@ irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::co
 void Ship :: update()
 {
 	ShipInterface :: update();
+
+	PlayerManager ::GetInstance()->PingSend();
 	CheckChangeInput();
+
+    stringw strPing = "Ping:" + PlayerManager::GetInstance()->getTimeTaken();
+	this->pingGuiText->setText(		(varToString("Ping:", (float)PlayerManager::GetInstance()->getTimeTaken())).c_str());
 
 	//updating the text for testing the health
 	stringw strShipHealth		= "ship health: "				+ this->getShipHealth();
@@ -177,8 +185,12 @@ void Ship :: update()
 	//If the ship has no more health and is not already destroyed, destroy it
 	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
 		this->_shipDestroyed = true;
+	}	
+
+	if(game->input->isKeyboardButtonPressed(KEY_MINUS)){
+		a = rand() % 50;
+		shipHealthComponent->assignDamage(a);
 	}
-	PlayerManager::GetInstance() -> CheckInput( game -> input -> isKeyboardButtonPressed( KEY_KEY_Q ) );
 }
 
 Thruster** Ship :: GetThrusters()
@@ -209,8 +221,6 @@ void Ship :: CheckChangeInput()
 //Swith to a specific station
 void Ship :: SwitchToStation(StationType stationType)
 {
-
-
 	//Check if we are already on this station
 	if (_currentStation != NULL)
 	{
@@ -226,7 +236,7 @@ void Ship :: SwitchToStation(StationType stationType)
 
 	//Init and add the new station
 	_currentStation->enable();
-	PlayerManager::GetInstance() ->stationUpdated(stationType);
+	PlayerManager::GetInstance() -> StationUpdated( stationType );
 }
 
 void Ship :: draw()
@@ -236,18 +246,19 @@ void Ship :: draw()
 
 int Ship :: getShipHealth()
 {
-
-	return (this->_defenceStation->getHealth() +
+	/*return (this->_defenceStation->getHealth() +
 		this->_helmStation->getHealth() +
 		this->_navigationStation->getHealth() +
 		this->_powerStation->getHealth() +
-		this->_weaponStation->getHealth());
+		this->_weaponStation->getHealth());*/
+	return shipHealthComponent->health;
 }
 
 bool Ship :: getShipDestroyed()
 {
 	return this->_shipDestroyed;
 }
+
 
 void Ship::setInertiaMatrix(float h, float w, float d, float m)
 {
@@ -271,17 +282,47 @@ void Ship::fireLaser()
 	Laser* laser = this->laserPool->GetFreeObject();
 	if(laser != NULL)
 	{
-		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
+		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 10 * _weaponStation->getPower()/100, 1.0);
 		std::cout << "weapon fired" << std::endl;
 
-		if(!Network::GetInstance()->IsServer()){
+		if(!Network::GetInstance()->IsServer()) {
 			NetworkPacket firepacket = NetworkPacket(PacketType::CLIENT_FIRE_LASER);
 			firepacket << *laser;
 			Network::GetInstance()->SendPacket(firepacket, true);
-
 		}
 	}
 }
+
+void Ship::addIShipListener(IShipListener* listener) {
+	listeners.push_back(listener);
+}
+
+void Ship::removeIShipListener(IShipListener* listener){
+	listeners.pop_back();
+}
+
+
+void Ship::notifyIShipListeners(ShipMessage message){
+	if(message == LEAVESTATION)
+		
+
+	for(std::list<IShipListener*>::iterator it = listeners.begin(); it != listeners.end(); ++it) {
+		(*it)->handleShipMessage(message);
+	}
+}
+
+void Ship::leaveStation(StationType station)
+{
+	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
+	packet << station;
+	Network::GetInstance()->SendPacket(packet, true);
+
+	this->_currentStation->disable();
+	this->_currentStation = NULL;
+	
+	this->notifyIShipListeners(LEAVESTATION);
+}
+
 
 void Ship::HandleNetworkMessage(NetworkPacket packet)
 {

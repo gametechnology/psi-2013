@@ -14,13 +14,16 @@ public:
 	bool explored;
 	float radius;
 	int distToBlueBase;
+	irr::io::path skyboxTexture;
 
 	MapSector(std::string name,typeSector type, float radius);
 	~MapSector(void);
-
+	
 	virtual void onAdd();
 	virtual void draw();
 	void resetTexture();
+
+	void SetSkyboxTexture(const irr::io::path & texture);
 
 private:
 	irr::video::ITexture* _mapSectorTexture;

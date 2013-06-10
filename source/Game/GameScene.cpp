@@ -40,27 +40,27 @@ void GameScene::onAdd() {
 	{
 		_shipEnemy = new ClientProxyShip(vector3df(0,0,-100), vector3df(0), 1);
 	}
-	addChild(_shipEnemy);
 
-	BasicMoverComponent* movComp = new BasicMoverComponent();
-	_shipEnemy->addComponent(movComp);
+	//BasicMoverComponent* movComp = new BasicMoverComponent();
+	//_shipEnemy->addComponent(movComp);
 
 	//Creates Map & SectorManager
-	GalaxyMap* galaxyMap = new GalaxyMap(300, 300, 15);
+	galaxyMap = new GalaxyMap(300, 300, 15);
 
 	if (!testMap) {
 		galaxyMap->createMap(20, 2, 5);
 	} else {
 		galaxyMap->createStaticMap();
 	}
-
-	galaxyMap->transform->position = new vector3df(100, 670, 0);
+	galaxyMap->transform->position = new vector3df(980, 420, 0);
 	printf("-----------Added SectorManager----------\n\n");
 	addComponent(new SectorManager(galaxyMap, (Ship*)_ship));
+	addChild(galaxyMap);
 
 	_shipmap = new Shipmap(this);
 	addChild(_shipmap);
 
+	_ship->addIShipListener(this);
 }
 
 void GameScene::init() {
@@ -68,6 +68,12 @@ void GameScene::init() {
 }
 
 void GameScene::update() {
+	if (this->game->input->isKeyboardButtonDown(KEY_KEY_M)) {
+		galaxyMap->visible = true;
+	} else {
+		galaxyMap->visible = false;
+	}
+
 	if(Network::GetInstance()->IsServer())
 	{
 		this->_sendLasersTimer++;
@@ -85,7 +91,12 @@ void GameScene::update() {
 		{
 			SendAndReceivePackets::sendWinLosePacket(1);
 			SendAndReceivePackets::handleWinLose(1, 2, this);
-		}
+		}		
+	}
+	if ( this -> game -> input -> isKeyboardButtonPressed( KEY_TAB ) )
+	{
+		PlayerManager :: GetInstance( ) -> ShowPlayerList( );
+		std :: cout << "\n-------------------------------\n";
 	}
 
 	Scene::update();
@@ -104,6 +115,11 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 		SendAndReceivePackets::receiveWinLosePacket(packet, 1, this);
 		break;
 	case CLIENT_SWITCH_STATION:
+		unsigned int receivedStationType;
+		packet >> receivedStationType;
+		if(_ship->GetStation((StationType)receivedStationType)->setStationOccupation() == false)
+			printf("Could not set station to occupied!\n");
+		/* TODO: REIMPLEMENT WHEN NETWORKING AND PLAYERLISTS ARE FUNCTIONAL
 		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
 		{			
 			if((*i)->Ipadres == packet.GetSender().address.host)
@@ -113,9 +129,13 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 				if(((Ship*)_ship)->GetStation((StationType)receivedStationType)->setPlayerOccupation((*i)) == false)
 					printf("Code is not handling stations correctly. This error originates in [GameScene.cpp] in function [HandleNetworkMessage].\n");
 			}
-		}
+		}*/
 		break;
 	case CLIENT_LEAVE_STATION:
+		unsigned int receivedStation;
+		packet >> receivedStation;
+		_ship->GetStation((StationType)receivedStation)->resetStationOccupation();
+		/* TODO: REIMPLEMENT WHEN NETWORKING AND PLAYERLISTS ARE FUNCTIONAL
 		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
 		{			
 			if((*i)->Ipadres == packet.GetSender().address.host)
@@ -124,7 +144,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 				packet >> receivedStationType;
 				((Ship*)_ship)->GetStation((StationType)receivedStationType)->resetPlayerOccupation();
 			}
-		}
+		}*/
 		break;
 	case CLIENT_FIRE_LASER:
 		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacketFromClient(packet, this->_laserPool->getAllObjects(), this));
@@ -133,12 +153,20 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 
 void GameScene::switchStation(StationType type)
 {
-	this->removeChild(_shipmap);
+	_shipmap->disable();
 
 	((Ship*)_ship)->SwitchToStation(type);
+}
+
+void GameScene::handleShipMessage(ShipMessage message){
+	if (message == LEAVESTATION){		
+		_shipmap->enable();
+	}
 }
 
 GameScene::~GameScene() 
 {
 	delete _laserPool;
 }
+
+

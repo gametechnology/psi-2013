@@ -1,42 +1,45 @@
 #include "PowerStation.h"
+#include "GUIEventReceiver\PowerStationEventReveiver.h"
 
-#ifdef _IRR_WINDOWS_
-#pragma comment(lib, "Irrlicht.lib")
-#endif
+using namespace irr;
+using namespace irr::gui;
+using namespace irr::video;
+using namespace irr::core;
 
-#include <math.h>
+typedef PowerStationEventReveiver PSER;
 
-PowerStation :: PowerStation( Ship *ship ) : Station( ship )
+PowerStation::PowerStation(Ship *ship) : Station(ship)
 {
-	env = NULL;
+	context.counter = 0;
+	context.powerPool = 100;
+	shipYpos = 100;
+	scrollYpos = 266;
 }
 
 void PowerStation :: init() {
-	this -> _stationType		= ST_POWER;
-	this -> device				= this->game->device;
-	//this ->	driver				= device -> getVideoDriver( );
-	this -> env					= this->game->guiEnv;	
+	_stationType = ST_POWER;
+	setStationDestroyed(false);
+	this -> guiEnv= this->game->guiEnv;	
 	this -> setStationDestroyed(false);
 
-	skin = env->getSkin( );
-	font = env->getFont( "../assets/Textures/Stations/PowerStation/fontcopperplategothicbold.png" );
-	
+	skin = game->guiEnv->getSkin();
+	font = game->guiEnv->getFont( "../assets/Textures/Stations/PowerStation/fontcopperplategothicbold.png" );
+
 	if (font)
 		skin->setFont(font);
 	else
-		skin->setFont(env->getBuiltInFont(), EGDF_TOOLTIP);
-	
-	createUI();
-	Station::init();
-	SubscribeStation(this->_ship->GetStation(ST_DEFENCE) );
-	SubscribeStation(this->_ship->GetStation(ST_HELM) );
-	SubscribeStation(this->_ship->GetStation(ST_NAVIGATION) );
-	SubscribeStation(this->_ship->GetStation(ST_WEAPON) );
+		skin->setFont(game->guiEnv->getBuiltInFont(), EGDF_TOOLTIP);
+
+	//SubscribeStation(_ship->GetStation(ST_DEFENCE) );
+	SubscribeStation(_ship->GetStation(ST_HELM) );
+	//SubscribeStation(_ship->GetStation(ST_NAVIGATION) );
+	SubscribeStation(_ship->GetStation(ST_WEAPON) );
 	SubscribeStation(this);
 
+	Station::init();
 	Network::GetInstance()->AddListener(CLIENT_POWER_CHANGED, this);
 	Network::GetInstance()->AddListener(SERVER_POWER_CHANGED, this);
-
+	
 }
 
 PowerStation :: ~PowerStation()
@@ -45,6 +48,11 @@ PowerStation :: ~PowerStation()
 }
 
 void PowerStation::HandleNetworkMessage(NetworkPacket packet)
+{
+	handleNetworkMessage(packet);
+}
+
+void PowerStation::handleNetworkMessage(NetworkPacket packet)
 {
 	unsigned int stationName;
 	unsigned int stationValue;
@@ -81,199 +89,78 @@ void PowerStation :: UpdateStationPower(StationType type, int newValue, bool sen
 	this -> context.UpdatePowerUsage( type, newValue, sentByServer );
 }
 
-void PowerStation :: DoCameraShake( )
+void PowerStation::OnEnabled()
 {
-	//here, we are going to do the Harlem Shake
 }
 
-// Define some values that we'll use to identify individual GUI controls.
-enum
+void PowerStation::OnDisabled()
 {
-	GUI_ID_LEAVE_BUTTON = 101,
-	GUI_ID_POWER_DEFENCE,
-	GUI_ID_POWER_HELM,
-	GUI_ID_POWER_WEAPON,
-	GUI_ID_POWER_NAVIGATION,
-	GUI_ID_SCROLL_BAR
-};
+}
 
-/*
-The Event Receiver is not only capable of getting keyboard and
-mouse input events, but also events of the graphical user interface
-(gui). There are events for almost everything: Button click,
-Listbox selection change, events that say that a element was hovered
-and so on. To be able to react to some of these events, we create
-an event receiver.
-We only react to gui events, and if it's such an event, we get the
-id of the caller (the gui element which caused the event) and get
-the pointer to the gui environment.
-*/
-class MyEventReceiver : public IEventReceiver
+void PowerStation::removeUI()
 {
-
-public:
-	irr::IrrlichtDevice *device;
-
-	MyEventReceiver(PowerStationData & context, irr::IrrlichtDevice *device) : _context(context) { this->device = device; }
-
-	virtual bool OnEvent(const SEvent& event)
+	//Remove the static texts and scrollbars
+	for (int i = 0; i < context.scrollBars.size(); i++)
 	{
-		if (event.EventType == EET_GUI_EVENT)
-		{
-			s32 id = event.GUIEvent.Caller->getID();
-			IGUIEnvironment* env = this->device->getGUIEnvironment();
-
-			switch(event.GUIEvent.EventType)
-			{
-
-			/*
-			If a scrollbar changed its scroll position, and it is
-			'our' scrollbar (the one with id GUI_ID_SCROLL_BAR), then we update the power usage of that station.
-			*/
-			case EGET_SCROLL_BAR_CHANGED:
-				s32 pos;
-				
-				if(_context.selectedStation == 1)
-				{
-					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();					
-					_context.UpdatePowerUsage(ST_HELM, POWER_MAX - pos, false );
-				}
-				else if(_context.selectedStation == 2){
-					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-					_context.UpdatePowerUsage(ST_DEFENCE, POWER_MAX - pos, false );
-				}
-				else if(_context.selectedStation == 3){
-					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-					_context.UpdatePowerUsage(ST_NAVIGATION, POWER_MAX - pos, false );
-				}
-				else if(_context.selectedStation == 4){
-					pos = ((IGUIScrollBar*)event.GUIEvent.Caller)->getPos();
-
-					((IGUIScrollBar*)event.GUIEvent.Caller)->setPos( irr :: s32( ) );
-					_context.UpdatePowerUsage(ST_WEAPON, POWER_MAX - pos, false );
-				}
-				break;
-
-			//If the user selected a button, check to see which button was clicked.
-			case EGET_BUTTON_CLICKED:
-				switch(id)
-				{
-				case GUI_ID_LEAVE_BUTTON:
-					this->device->closeDevice();
-					return true;
-				case GUI_ID_POWER_HELM:
-					_context.scrollBar->setVisible(true);
-					_context.scrollBar->setPos(POWER_MAX - _context.GetPower(ST_HELM) );
-					_context.selectedStation = 1;
-
-					break;
-				case GUI_ID_POWER_DEFENCE:
-					_context.scrollBar->setVisible(true);
-					_context.scrollBar->setPos(POWER_MAX - _context.GetPower(ST_DEFENCE));
-					_context.selectedStation = 2;
-					break;
-				case GUI_ID_POWER_NAVIGATION:
-					_context.scrollBar->setVisible(true);
-					_context.scrollBar->setPos(POWER_MAX - _context.GetPower(ST_NAVIGATION));
-					_context.selectedStation = 3;
-					break;
-				case GUI_ID_POWER_WEAPON:
-					_context.scrollBar->setVisible(true);
-					_context.scrollBar->setPos(POWER_MAX - _context.GetPower(ST_WEAPON));
-					_context.selectedStation = 4;
-					break;
-					//TODO: change name
-				case GUI_ID_SCROLL_BAR:
-					break;
-				default:
-					_context.selectedStation = 0;
-					_context.scrollBar->setVisible(false);
-					break;
-				}
-				break;
-			}
-		}
-
-		return false;
+		context.scrollBars.at(i)->remove();
+		context.stationsText.at(i)->remove();
 	}
 
-private:
-	PowerStationData & _context;
-};
+	//Clear lists
+	context.scrollBars.clear();
+	context.stationsText.clear();
 
-
-
-void PowerStation::OnEnabled(){
-	createUI();
+	//Remove power text
+	if(context.powerPoolText != NULL)
+		context.powerPoolText->remove();
 }
 
-void PowerStation::OnDisabled(){
-	//TODO: Make a remove UI.
-	removeUI();
+void PowerStation :: DoCameraShake( )
+{
 }
 
 //Creates the User Interface. Is a helper method. Also initializes the event receiver.
 void PowerStation::createUI()
 {
-	declareUIData();
+	//declareUIData();
 	addImages();
-	createPowerPool();
-	createScrollbar();
-	createButtons();
-	createGeneralPowerTexts();
-	createCurrentSelectedStationText();
+	createPowerPoolText();
 
-	// Create the event receiver, giving it that context structure.
-	MyEventReceiver *receiver = new MyEventReceiver(context, this->game->device);
-	// And tell the device to use our custom event receiver.
+	//create the panels (scrollbar and text) for every station
+	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_HELM, 840, 150, 200, 30, 30,			PSER::GUI_ID_TEXT_HELM);
+	//createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_DEFENCE, 320, 150, 200, 30, 60,		PSER::GUI_ID_TEXT_DEFENCE);
+	createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_WEAPON, 580, 150, 200, 30, 30,		PSER::GUI_ID_TEXT_WEAPON);
+	//createPowerStatusPanel(PSER::GUI_ID_SCROLL_BAR_NAVIGATION, 840, 150, 200, 30, 60,	PSER::GUI_ID_TEXT_NAVIGATION);
+
+	receiver = new PSER(context, game->device);
+
+	game->input->unsetCustomEventReceiver();
 	game->input->setCustomEventReceiver(receiver);
 }
 
 void PowerStation::enable()
 {
-	((Ship*)parent)->help->setHelpText(L"Select a station by clicking on it's button\nGive power to the selected station by adjusting the slider.\ntodo: Exit station: 'Esc'");
-
-	Station::enable();
+	(_ship)->help->setHelpText(L"Drag sliders to adjust power for its station.\nPress 'esc' to leave station.");
 
 	createUI();
+	context.scrollBars.at(0)->setPos(this->_ship->GetStation(StationType::ST_HELM)->getPower());
+	context.scrollBars.at(1)->setPos(this->_ship->GetStation(StationType::ST_WEAPON)->getPower());
+	//context.UpdatePowerUsage(StationType::ST_WEAPON, this->_ship->GetStation(StationType::ST_WEAPON)->getPower(), false);
+	Station::enable();
 }
 
 void PowerStation::disable()
 {
-	Station::disable();
-
 	removeUI();
-	removeImages();
+	enabled = false;
+	Station::disable();
 }
 
-void PowerStation::removeUI()
-{
-	context.powerPoolText->remove();
-
-	context.helmStatus->remove();
-	context.weaponStatus->remove();
-	context.defenceStatus->remove();
-	context.navigationStatus->remove();
-	context.scrollBar->remove();
-	context.stationSelectedText->remove();
-
-	this->weaponButton->remove();
-	this->helmButton->remove();
-	this->navigationButton->remove();
-	this->defenseButton->remove();
-}
-
-//Defines the used driver and some UI data values.
-void PowerStation::declareUIData()
-{
-	context.counter = 0;
-	context.powerPool = 100;
-}
 //Creates the text for the power pool along with its value.
-void PowerStation::createPowerPool(){
+void PowerStation::createPowerPoolText()
+{
 	stringw str = varToString("Power Pool:\n", POWER_MAX, "%");
-
-	context.powerPoolText = env->addStaticText(str.c_str(), rect<s32>(40, 40, 200, 100), false);
+	context.powerPoolText = guiEnv->addStaticText(str.c_str(), rect<s32>(40, 40, 240, 200), false, true, NULL, PowerStationEventReveiver::POWER_POOL_STATUS, false);
 	context.powerPoolText->setOverrideColor(video::SColor(255, 0, 255, 0));
 }
 
@@ -289,142 +176,101 @@ stringw PowerStation::varToString(stringw str1, float var, stringw str2){
 //Adds the background image and the spaceship image. 
 void PowerStation::addImages()
 {
-	bgImage = env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
-	spaceshipImage = env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190,266));
+	spaceshipImage = game->driver->getTexture("../assets/Textures/Stations/PowerStation/powerstation.png");
+
 }
 
-void PowerStation::removeImages()
+void PowerStation::createPowerStatusPanel(int scrollBarID, int x, int y, int width, int height, int textOffset, int staticTextID)
 {
-	bgImage->remove();
-	spaceshipImage->remove();
+	//create a scrollbar
+	createScrollbar(scrollBarID, x, y, width, height);
+
+	//Create a static text above the scrollbar
+	createText(staticTextID, x, y - textOffset, width, height);
 }
 
-
-//Creates the power scrollbar. 
-void PowerStation::createScrollbar(){
-	context.scrollBar = env->addScrollBar(false, rect<s32>(1200, 20, 1230, 260), 0, GUI_ID_SCROLL_BAR);
-	context.scrollBar->setMax(100);
-	context.scrollBar->setSmallStep(1);
-	context.scrollBar->setLargeStep(10);
-	context.scrollBar->setPos(100);
+//Creates a power scrollbar. 
+void PowerStation::createScrollbar(int scrollBarID, int x, int y, int width, int height){
+	context.scrollBars.push_back(guiEnv->addScrollBar(true, rect<s32>(x, y, width + x, height + y), NULL, scrollBarID));
+	context.scrollBars.back()->setMax(100);
+	context.scrollBars.back()->setSmallStep(1);
+	context.scrollBars.back()->setLargeStep(100);
+	context.scrollBars.back()->setPos(0);
+	context.scrollBars.back()->setVisible(true);	
 }
 
-//Creates the station buttons.
-void PowerStation::createButtons(){
-	helmButton = env->addButton(rect<s32>(870, 460, 930, 520),0, GUI_ID_POWER_HELM,L"HLM",L"Helm Station");
-	weaponButton = env->addButton(rect<s32>(700, 560, 790, 660),0, GUI_ID_POWER_WEAPON,L"WPN",L"Weapons Station");
-
-	defenseButton = env->addButton(rect<s32>(700, 310, 790, 410),0, GUI_ID_POWER_DEFENCE,L"DEF",L"Defence Station");
-
-	navigationButton = env->addButton(rect<s32>(490, 310, 580, 410),0, GUI_ID_POWER_NAVIGATION,L"NAV",L"Navigation Station");
-	
-	//Placeholder code for Communication Station.
-
-	//IGUIButton *commbut;
-	//commbut = env->addButton(rect<s32>(700, 310, 790, 410),0, GUI_ID_POWER_COMM,L"",L"Communication Station");
-
+//Creates a power status texts for the different stations.
+void PowerStation::createText(int staticTextID, int x, int y , int width, int height)
+{
+	context.stationsText.push_back(guiEnv->addStaticText(L"", rect<s32>(x, y, width + x, height + y), false, true, NULL, staticTextID, false));
+	context.stationsText.back()->setOverrideColor(video::SColor(255, 0, 255, 0));
 }
-
-//Creates the power status texts for the different stations.
-void PowerStation::createGeneralPowerTexts(){
-	
-	context.helmStatus = env->addStaticText(L"Helm power status: ", rect<s32>(300, 40, 800, 60), false);
-	context.defenceStatus = env->addStaticText(L"defence power status: ", rect<s32>(300, 70, 800, 90), false);
-	context.weaponStatus = env->addStaticText(L"Weapon power status: ", rect<s32>(300, 100, 800, 120), false);
-	context.navigationStatus = env->addStaticText(L"Navigation power status: ", rect<s32>(300, 130, 800, 150), false);
-
-	context.helmStatus->setOverrideColor(video::SColor(255, 0, 255, 0));
-	context.defenceStatus->setOverrideColor(video::SColor(255, 0, 255, 0));
-	context.weaponStatus->setOverrideColor(video::SColor(255, 0, 255, 0));
-	context.navigationStatus->setOverrideColor(video::SColor(255, 0, 255, 0));
-}
-
-//Creates the "Station selected: " text.
-void PowerStation::createCurrentSelectedStationText(){
-	context.stationSelectedText = env->addStaticText(L"Station selected: ", rect<s32>(800, 40, 1200, 120), false);
-	context.stationSelectedText->setOverrideColor(video::SColor(255, 100, 125, 255));
-}
-
 
 //This method needs to be called every frame. It displays and updates the power status numbers of the different stations.
-//TODO: FIND OUT HOW TO UPDATE ALL
 void PowerStation::update()
 {
 	Station::update();
 
-	if(!enabled)
-		return;
-	
-	int helm		= context.GetPower(ST_HELM);
-	int defence		= context.GetPower(ST_DEFENCE);
-	int weapon		= context.GetPower(ST_WEAPON);
-	int navigation	= context.GetPower(ST_NAVIGATION);
+	//If enabled we update sliders
+	if(enabled)
+	{
+		int helm = context.GetPower(ST_HELM);
+		//int defence	= context.GetPower(ST_DEFENCE);
+		int weapon = context.GetPower(ST_WEAPON);
+		//int navigation = context.GetPower(ST_NAVIGATION);
 
-	context.powerPoolText->setText((varToString("Power Pool:\n", (float)context.powerPool, "%")).c_str());
+		context.powerPoolText->setText((varToString("Power Pool:\n", (float)context.powerPool, "%")).c_str());
 
-	context.helmStatus->setText((varToString(		"Helm power status: ", (float)helm, "%")).c_str());
-	context.defenceStatus->setText((varToString(	"Defence power status: ", (float)defence, "%")).c_str());
-	context.weaponStatus->setText((varToString(		"Weapon power status: ", (float)weapon, "%")).c_str());
-	context.navigationStatus->setText((varToString(	"Navigation power status: ", (float)navigation, "%")).c_str());
+		//Set text to stationtexts
+		context.stationsText.at(0)->setText((varToString("Helm : ", (float)helm, "%")).c_str());
+		//context.stationsText.at(1)->setText((varToString("Defence: ", (float)defence, "%")).c_str());
+		context.stationsText.at(1)->setText((varToString("Weapon: ", (float)weapon, "%")).c_str());
+		//context.stationsText.at(3)->setText((varToString("Navigation: ", (float)navigation, "%")).c_str());
 
-	//Checks the power percentage and assigns the text a color indicating the amount of power available to that station.
-	changeColorAccordingToPowerStatus(*context.helmStatus, (float)helm);
-	changeColorAccordingToPowerStatus(*context.defenceStatus, (float)defence);
-	changeColorAccordingToPowerStatus(*context.weaponStatus, (float)weapon);
-	changeColorAccordingToPowerStatus(*context.navigationStatus, (float)navigation);
+		//Checks the power percentage and assigns the text a color indicating the amount of power available to that station.
+		changeColorAccordingToPowerStatus(*context.stationsText.at(0), (float)helm);
+		//changeColorAccordingToPowerStatus(*context.stationsText.at(1), (float)defence);
+		changeColorAccordingToPowerStatus(*context.stationsText.at(1), (float)weapon);
+		//changeColorAccordingToPowerStatus(*context.stationsText.at(3), (float)navigation);
 
-	selectedStation();
+		//Update sliders
+		updateSliders();
+	}
+}
+
+void PowerStation::updateSliders()
+{
+	//Update the slider pos
+	for(int i = 0; i < context.scrollBars.size(); i++)
+	{
+		context.scrollBars.at(i)->setMax(context.scrollBars.at(i)->getPos() + context.powerPool);
+	}
+
+	//context.UpdatePowerUsage(StationType::ST_DEFENCE, context.scrollBars.at(0)->getPos(), false);
+	context.UpdatePowerUsage(StationType::ST_HELM, context.scrollBars.at(0)->getPos(), false);
+	context.UpdatePowerUsage(StationType::ST_WEAPON, context.scrollBars.at(1)->getPos(), false);
+
+
 }
 
 void PowerStation::draw()
 {
-	//env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), position2d<int>(0,0));
-	//env->addImage(this->game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), position2d<int>(190,266));
-	Station::draw();
-
-	game->driver->draw2DImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), 
-		position2d<s32>(0,0), 
-		rect<s32>(0, 0, 1280, 720), 
-		0,
-		SColor(255, 255, 255, 255),
-		true);
-	game->driver->draw2DImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/spaceship.png"), 
-		position2d<s32>(190, 266), 
-		rect<s32>(0, 0, 1280, 720), 
-		0,
-		SColor(255, 255, 255, 255),
-		true);
-}
-
-
-
-
-//This method displays the selected station. We're using an integer which indicates which station is currently selected. 
-//context.selectedStation gets changed by the EventListener when the user presses of the station buttons.
-void PowerStation::selectedStation(){
-	stringw str = L"";
-	switch ( context.selectedStation )
+	
+	if(enabled)
 	{
-		case 1:
-			str += "Station selected: \nHelm";
-			break;
-		case 2:
-			str += "Station selected: \nDefence";
-			break;
-		case 3:
-			str += "Station selected: \nNavigation";
-			break;
-		case 4:
-			str += "Station selected: \nWeapon";
-			break;
-		default:
-			str += "Station selected: ";
-			break;
+		game->driver->draw2DImage(game->driver->getTexture("../assets/Textures/Stations/PowerStation/black_bg.png"), 
+			position2d<s32>(0,0),
+			rect<s32>(0, 0, 1280, 720), 
+			0,
+			SColor(255, 255, 255, 255),
+			true);
+		game->driver->draw2DImage(spaceshipImage, core::position2d<s32>(110,190),
+		irr::core::rect<s32>(0,0,spaceshipImage->getOriginalSize().Width, spaceshipImage->getOriginalSize().Height),
+		0, video::SColor(255,255,255,255), true);
 	}
-	context.stationSelectedText->setText(str.c_str());
-	context.stationSelectedText->setOverrideColor(video::SColor(255, 100, 125, 255));
+	
+	Station::draw();
 }
-
 
 //This Method changes the color according to power status by looking at the amount of power a station has. 
 //changeColorAccordingToPowerStatus needs to be called once every frame. This is done by the updateAll() method.

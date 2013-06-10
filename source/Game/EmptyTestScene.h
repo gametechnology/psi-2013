@@ -7,6 +7,7 @@
 #include "Engine/Component.h"
 #include "../../include/Engine/Scene.h"
 #include "HudComposite.h"
+#include "Ship.h"
 
 class EmptyTestScene : public Scene
 {
@@ -22,6 +23,7 @@ public:
 	void update();
 	int a;
 	int b;
+	Ship* ship;
 
 
 };

@@ -8,6 +8,7 @@ MapSector::MapSector(std::string name,typeSector type, float radius) : Entity()
 	this->explored = false;
 	this->radius = radius;
 	this->distToBlueBase = INT_MAX;
+	this->skyboxTexture = "";
 }
 
 void MapSector::onAdd() {
@@ -48,6 +49,10 @@ void MapSector::resetTexture()
 	
 	}
 	game->driver->makeColorKeyTexture(this->_mapSectorTexture, core::position2d<s32>(0, 0));
+}
+
+void MapSector::SetSkyboxTexture(const irr::io::path & texture){
+	this->skyboxTexture = texture;
 }
 
 void MapSector::draw(){

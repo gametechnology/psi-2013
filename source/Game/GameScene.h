@@ -16,11 +16,13 @@
 #include "Laser.h"
 #include "ObjectPool.h"
 #include "NetworkInterface.h"
+#include "PlayerManager.h"
+#include "MapGenerator.h"
 
 // Forward declare Shipmap
 class Shipmap;
 
-class GameScene : public Scene, INetworkListener {
+class GameScene : public Scene, INetworkListener, IShipListener {
 public:
 	GameScene(std::list<Player*>, bool isTestMap = false);
 	virtual ~GameScene();
@@ -30,6 +32,8 @@ public:
 	void update();
 	void switchStation(StationType type);
 	void HandleNetworkMessage(NetworkPacket packet);
+
+	void handleShipMessage(ShipMessage message);
 private:
 	bool testMap;
 	Camera *_camera;
@@ -38,6 +42,7 @@ private:
 	ObjectPool<Laser>* _laserPool;
 	ShipInterface* _ship;
 	ShipInterface* _shipEnemy;
+	GalaxyMap* galaxyMap;
 
 	std::list<Player*> _playerList;
 };

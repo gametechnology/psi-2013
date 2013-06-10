@@ -1,6 +1,4 @@
 #include "Laser.h"
-#include "Engine\IrrlichtNode.h"
-#include "EnemyDrone.h"
 
 int Laser::newLaserId = 0;
 
@@ -8,7 +6,6 @@ Laser::Laser() : Enemy()
 {	
 	this->_currentLife = 0;
 	this->_timeofLife = 250;
-	this->_damage = 10;
 	this->disable();
 	this->scene = NULL;
 	this->_hasAnIrrlichtNode = false;
@@ -45,9 +42,10 @@ Laser::~Laser()
 
 }
 
-void Laser::fire(Transform* transform, vector3df target, f32 speed)
+void Laser::fire(Transform* transform, vector3df target, float damage, f32 speed)
 {
 	this->enable();
+	this->_damage = damage;
 
 	*this->transform->position = *transform->position;
 	*this->transform->rotation = *transform->rotation;
@@ -56,13 +54,7 @@ void Laser::fire(Transform* transform, vector3df target, f32 speed)
 	this->_direction.normalize();
 	this->transform->position->dotProduct(this->_direction);
 	this->transform->position->operator+=(this->_direction);
-	this->transform->position->operator+=(this->_direction);
-	this->transform->position->operator+=(this->_direction);
-	this->transform->position->operator+=(this->_direction);
-	*this->transform->rotation = this->_direction;
-
-	//*this->transform->rotation += 90;
-
+	
 	*this->transform->velocity = this->_direction * speed;
 }
 

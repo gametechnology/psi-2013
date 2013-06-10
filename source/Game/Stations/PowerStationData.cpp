@@ -4,6 +4,7 @@ PowerStationData :: PowerStationData( )
 {
 	this -> _stationsPowerUsage	= new irr::core::map<StationType, Station*>( );
 	this -> powerPool	= POWER_MAX;
+	powerPoolText = NULL;
 }
 
 void PowerStationData :: SubscribeStation( Station *station )
@@ -33,7 +34,6 @@ void PowerStationData :: UpdatePowerUsage(StationType type, int newValue, bool s
 		packet << newValue;
 		Network::GetInstance()->SendPacket(packet, true);
 	}
-
 }
 
 int PowerStationData :: GetPower(StationType type)
