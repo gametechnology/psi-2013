@@ -87,8 +87,7 @@ void PlayerManager :: SetGame(Game* game)
 *here, we received a message from the client, stating that their information has changed (changed team, left game )
 */
 void PlayerManager :: UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_id )
-{
-	
+{	
 	//we create a new packet.
 	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_UPDATE_LOBBY_STATUS );
 	//first add the id, then what type of update we want to perform.
@@ -97,7 +96,7 @@ void PlayerManager :: UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_
 	Network :: GetInstance( ) -> SendPacket( packet, true );
 }
 
-int PlayerManager :: getTimeTaken()
+int PlayerManager :: getTimeTaken( )
 {	
 	return timeTaken;
 }
@@ -107,6 +106,7 @@ int PlayerManager :: getTimeTaken()
 */
 void PlayerManager :: RequestJoinServer( char *player_name, int team_id )
 {
+	localName	= player_name;
 	cout << "I would like to join this game. My name is: " << player_name <<"\n";
 	//here, we received a message from a player that they want to join our game and they have sent some information regarding their data.
 			
@@ -238,9 +238,9 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		packet >> player_name >> player_id >> player_team_id;
 		
 		std :: cout << "I received a message from the server, with player_id: " << player_id << endl;
-		this -> _local_player_id = -1;
-		if ( *localName == *player_name )
+		if ( strcmp( player_name, localName ) == 0 )
 		{
+			std :: cout << player_name << " would like to join";
 			this -> _local_player_id = player_id;
 		}
 		std :: cout << "_local_player_id set to " << player_id << endl;
