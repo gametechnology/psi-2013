@@ -41,7 +41,9 @@ public:
 	~PlayerManager( );	
 
 	void PingSend();
-	
+
+	int getTimeTaken();
+
 	void Init();
 	void RequestJoinServer( char *player_name, int team_id );
 	void HandleNetworkMessage( NetworkPacket p );
