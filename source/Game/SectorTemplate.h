@@ -39,6 +39,7 @@ public:
 	void addWormHoles();
 	
 	virtual void createEnemies();
+	void removeEnemyFromList(Enemy* enemy);
 
 	void HandleNetworkMessage(NetworkPacket packet);
 	

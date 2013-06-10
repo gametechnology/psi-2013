@@ -43,6 +43,15 @@ MapGenerator::MapGenerator(int sectorCount, int minWormholes, int maxWormholes)
 	nametype.push_back("System");	//Solar
 	nametype.push_back("Sector");	//Home
 
+	nameskybox.push_back("skybox01.png");
+	nameskybox.push_back("skybox02.png");
+	nameskybox.push_back("skybox03.png");
+	nameskybox.push_back("skybox04.png");
+	nameskybox.push_back("skybox05.png");
+	nameskybox.push_back("skybox06.png");
+	nameskybox.push_back("skybox07.png");
+	nameskybox.push_back("skybox08.png");
+
 	this->sectorCount = sectorCount;
 	this->minWormholes = minWormholes;
 	this->maxWormholes = maxWormholes;
@@ -50,6 +59,8 @@ MapGenerator::MapGenerator(int sectorCount, int minWormholes, int maxWormholes)
 	for(int i = 0; i < TOTALTYPES - 2; i++) {
 		this->typeChances.push_back(100/(TOTALTYPES - 2));
 	}
+
+	sectors = new std::vector<MapSector*>();
 }
 
 MapGenerator::~MapGenerator()
@@ -82,17 +93,30 @@ std::vector<MapSector*>* MapGenerator::createNewMap(float width, float height, f
 	this->createSectors();
 	this->createConnections();
 
-	return &sectors;
+	return sectors;
 }
 std::vector<MapSector*>* MapGenerator::createStaticMap(float width, float height, float sectorRadius)
 {
-	std::vector<MapSector*>* map = new std::vector<MapSector*>();
-	MapSector* homeBlue = new MapSector(nameGenerator(HOME_BLUE), HOME_BLUE, 30);
-	MapSector* homeRed = new MapSector(nameGenerator(HOME_RED), HOME_RED, 30);
-	MapSector* empty = new MapSector(nameGenerator(EMPTY), EMPTY, 30);
-	map->push_back(homeBlue);
-	map->push_back(empty);
-	map->push_back(homeRed);
+	_width = width;
+	_height = height;
+	_sectorRadius = sectorRadius;
+
+	MapSector* homeBlue = new MapSector(nameGenerator(HOME_BLUE), HOME_BLUE, _sectorRadius);
+	MapSector* homeRed = new MapSector(nameGenerator(HOME_RED), HOME_RED, _sectorRadius);
+	MapSector* empty = new MapSector(nameGenerator(EMPTY), EMPTY, _sectorRadius);
+
+	homeBlue->transform->position->set(randomPosition());
+
+	homeBlue->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
+	homeRed->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
+	empty->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
+
+	homeRed->transform->position->set(randomPosition());
+	empty->transform->position->set(randomPosition());
+
+	sectors->push_back(homeBlue);
+	sectors->push_back(empty);
+	sectors->push_back(homeRed);
 	
 	homeBlue->connections.push_back(empty);
 	empty->connections.push_back(homeBlue);
@@ -100,23 +124,29 @@ std::vector<MapSector*>* MapGenerator::createStaticMap(float width, float height
 	empty->connections.push_back(homeRed);
 	homeRed->connections.push_back(empty);
 
-	return map;
+	return sectors;
 }
 
 void MapGenerator::createSectors()
 {
 	MapSector* homeBlue = new MapSector(nameGenerator(HOME_BLUE), HOME_BLUE, _sectorRadius);
-	sectors.push_back(homeBlue);
+	homeBlue->transform->position->set(randomPosition());
+	homeBlue->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
+	sectors->push_back(homeBlue);
 
 	MapSector* homeRed = new MapSector(nameGenerator(HOME_RED), HOME_RED, _sectorRadius);
-	sectors.push_back(homeRed);
+	homeRed->transform->position->set(randomPosition());
+	homeRed->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
+	sectors->push_back(homeRed);
 	
 	typeSector j;
 	for(int i = 0; i < sectorCount - 2; i++)
 	{
 		j = getRandomType();
 		MapSector* sector = new MapSector(nameGenerator(j), j, _sectorRadius);
-		sectors.push_back(sector);
+		sector->transform->position->set(randomPosition());
+		sector->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
+		sectors->push_back(sector);
 	}
 }
 
@@ -135,9 +165,9 @@ irr::core::vector3df MapGenerator::randomPosition()
 {
 	irr::core::vector3df randPos(_sectorRadius + rand() % ((int)(_width - (_sectorRadius * 2))), _sectorRadius + rand() % ((int)(_height - (_sectorRadius * 2))), 0);
 
-	for (unsigned int i = 0; i < sectors.size(); i++)
+	for (unsigned int i = 0; i < sectors->size(); i++)
 	{
-		if (sectors[i]->transform->position->getDistanceFrom(randPos) <  _sectorRadius * 2)
+		if (sectors->at(i)->transform->position->getDistanceFrom(randPos) < _sectorRadius * 2)
 		{
 			randPos = randomPosition();
 		}
@@ -147,32 +177,32 @@ irr::core::vector3df MapGenerator::randomPosition()
 
 void MapGenerator::createConnections()
 {
-	for (unsigned int i = 0; i < sectors.size(); i++) {
-		sectors[i]->connections.clear();
+	for (unsigned int i = 0; i < sectors->size(); i++) {
+		sectors->at(i)->connections.clear();
 	}
 
-	for (unsigned int i = 0; i < sectors.size(); i++) {
-		for (unsigned int j = i + 1; j < sectors.size(); j++) {
+	for (unsigned int i = 0; i < sectors->size(); i++) {
+		for (unsigned int j = i + 1; j < sectors->size(); j++) {
 
-			if (!collisionLineBetweenSectors(sectors[i], sectors[j])) {
+			if (!collisionLineBetweenSectors(sectors->at(i), sectors->at(j))) {
 				int wormholeCount = minWormholes + (rand() % (maxWormholes - minWormholes));
-				if ((int)(sectors[i]->connections.size()) < maxWormholes - 1 && (int)(sectors[j]->connections.size()) < maxWormholes - 1) {
-					sectors[i]->connections.push_back(sectors[j]);
-					sectors[j]->connections.push_back(sectors[i]);
+				if ((int)(sectors->at(i)->connections.size()) < maxWormholes - 1 && (int)(sectors->at(j)->connections.size()) < maxWormholes - 1) {
+					sectors->at(i)->connections.push_back(sectors->at(j));
+					sectors->at(j)->connections.push_back(sectors->at(i));
 				}
 			}
 		}
 	}
 	
-	for (unsigned int i = 0; i < sectors.size(); i++) {
-		if ((int)(sectors[i])->connections.size() <= minWormholes) {
+	for (unsigned int i = 0; i < sectors->size(); i++) {
+		if ((int)(sectors->at(i))->connections.size() <= minWormholes) {
 
-			for (unsigned int j = i + 1; j < sectors.size(); j++) {
-				if (!collisionLineBetweenSectors(sectors[i], sectors[j])) {
-					sectors[i]->connections.push_back(sectors[j]);
-					sectors[j]->connections.push_back(sectors[i]);
+			for (unsigned int j = i + 1; j < sectors->size(); j++) {
+				if (!collisionLineBetweenSectors(sectors->at(i), sectors->at(j))) {
+					sectors->at(i)->connections.push_back(sectors->at(j));
+					sectors->at(j)->connections.push_back(sectors->at(i));
 
-					if ((int)(sectors[i]->connections.size()) >= minWormholes) {
+					if ((int)(sectors->at(i)->connections.size()) >= minWormholes) {
 						break;
 					}
 				}
@@ -184,18 +214,18 @@ void MapGenerator::createConnections()
 	dijkstra();
 	
 	//Place the red base as far as possible from the blue base
-	MapSector* away = sectors.back();
+	MapSector* away = sectors->back();
 	MapSector* red;
 
 	std::string tempName;
 	typeSector tempType;
 
 	//Find the red base and the base furthest from blue base
-	for	(unsigned i = 0; i < sectors.size(); i++) {
-		if (sectors[i]->type == HOME_RED) {
-			red = sectors[i];
-		} else if (sectors[i]->distToBlueBase > away->distToBlueBase && sectors[i]->distToBlueBase != INT_MAX && sectors[i]->type != HOME_RED) {
-			away = sectors[i];
+	for	(unsigned i = 0; i < sectors->size(); i++) {
+		if (sectors->at(i)->type == HOME_RED) {
+			red = sectors->at(i);
+		} else if (sectors->at(i)->distToBlueBase > away->distToBlueBase && sectors->at(i)->distToBlueBase != INT_MAX && sectors->at(i)->type != HOME_RED) {
+			away = sectors->at(i);
 		}
 	}
 	
@@ -222,14 +252,14 @@ bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* se
 	
 	cr = _sectorRadius;
 
-	for(unsigned i=0;i<sectors.size();i++)
+	for(unsigned i=0;i<sectors->size();i++)
 	{
-		if (sectors[i] == sector1 || sectors[i] == sector2)
+		if (sectors->at(i) == sector1 || sectors->at(i) == sector2)
 		{
 			continue;
 		}
-		cx = sectors[i]->transform->position->X;
-		cy = sectors[i]->transform->position->Y;
+		cx = sectors->at(i)->transform->position->X;
+		cy = sectors->at(i)->transform->position->Y;
 
 		double vx = bx - ax;
 		double vy = by - ay;
@@ -300,16 +330,16 @@ std::string MapGenerator::nameGenerator(typeSector type)
 
 int MapGenerator::dijkstra()
 {
-	for(unsigned i = 0; i < sectors.size(); i++)
+	for(unsigned i = 0; i < sectors->size(); i++)
 	{
-		sectors[i]->distToBlueBase = INT_MAX;
+		sectors->at(i)->distToBlueBase = INT_MAX;
 	}
 
 	std::vector<MapSector*> openConnections;
 	std::vector<MapSector*> nextConnections;
 	std::vector<MapSector*> shortestPath;
 	int curDist = 0;
-	openConnections.push_back(sectors.front());
+	openConnections.push_back(sectors->front());
 
 	while(openConnections.size() > 0)
 	{
@@ -329,11 +359,11 @@ int MapGenerator::dijkstra()
 
 		curDist++;
 	}
-	for(unsigned i=0;i<sectors.size();i++)
+	for(unsigned i=0;i<sectors->size();i++)
 	{
-		if (sectors[i]->type == HOME_RED)
+		if (sectors->at(i)->type == HOME_RED)
 		{
-			return sectors[i]->distToBlueBase;
+			return sectors->at(i)->distToBlueBase;
 		}
 	}
 	return 0;

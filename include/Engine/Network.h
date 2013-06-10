@@ -30,6 +30,8 @@ enum PacketType
 	SERVER_LASER,
 	SERVER_WINLOSE,
 	SERVER_POWER_CHANGED,
+	SERVER_SWITCH_STATION,
+	SERVER_LEAVE_STATION,
 
         CLIENT_SWITCH_STATION,
         CLIENT_LEAVE_STATION,
@@ -71,6 +73,8 @@ inline char* getPacketTypeName(PacketType type)
 		case SERVER_WINLOSE: { return "SERVER_WINLOSE"; break; }
  
 		case SERVER_POWER_CHANGED: { return "SERVER_POWER_CHANGED"; break; }
+		case SERVER_SWITCH_STATION: { return "SERVER_SWITCH_STATION"; break; }
+		case SERVER_LEAVE_STATION: { return "SERVER_LEAVE_STATION"; break; }
 	
                 case CLIENT_SWITCH_STATION: { return "CLIENT_SWITCH_STATION"; break; }
                 case CLIENT_LEAVE_STATION: { return "CLIENT_LEAVE_STATION"; break; }

@@ -7,6 +7,8 @@
 #include "Enemy.h"
 #include "Stations\DefenceStation.h"
 #include "ObjectPool.h"
+#include "Engine\IrrlichtNode.h"
+#include "EnemyDrone.h"
 
 using namespace irr;
 using namespace scene;
@@ -24,7 +26,7 @@ class Laser : public Enemy
 		virtual void init();
 		virtual void onAdd();
 
-		void fire(Transform* transform, vector3df target, f32 speed);
+		void fire(Transform* transform, vector3df target, float damage, f32 speed);
 		void update();
 		void contactResolverA(Entity* input);
 		void contactResolverA(DefenceStation* input);

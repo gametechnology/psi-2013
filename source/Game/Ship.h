@@ -21,6 +21,7 @@
 #include "HudHelpText.h"
 
 #include "ShipHealthComponent.h"
+#include "IShipListener.h"
 
 class DefenceStation;
 class HelmStation;
@@ -75,9 +76,17 @@ public:
 	static ObjectPool<Laser>* laserPool;
 
 	void fireLaser();
+	void leaveStation(StationType station);
 	
 	void HandleNetworkMessage(NetworkPacket packet);
+
+	void addIShipListener(IShipListener* listener);
+	void removeIShipListener(IShipListener* listener);
+
+	void notifyIShipListeners(ShipMessage message);
+
 private:
+	std::list<IShipListener*> listeners;
 
 	Station				*_currentStation;
 	Thruster			*_thrusters[4];
