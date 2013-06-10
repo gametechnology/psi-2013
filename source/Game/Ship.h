@@ -49,7 +49,9 @@ public:
 	irr::gui::IGUIStaticText *powerStationHealth;
 	irr::gui::IGUIStaticText *weaponStationHealth;
 
+	irr::gui::IGUIStaticText *pingGuiText;
 	ShipHealthComponent* shipHealthComponent;
+
 	bool _shipDestroyed;
 
 	bool _sitOnStation;

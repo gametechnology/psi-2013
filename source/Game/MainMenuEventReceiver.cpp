@@ -64,6 +64,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->messagebox->setDraggable(false);
 					}else{
 						PlayerManager::GetInstance()->Init();
+						PlayerManager::GetInstance()->SetGame(this->contextGame);
 						//TODO: package met naam en checksum: Network->getinstance->GetPacketTypeChecksum
 						namepacket << namewchar << Network::GetInstance()->GetPacketTypeChecksum();
 						Network::GetInstance()->SendPacket(namepacket, true);
@@ -79,7 +80,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->waitinglabel->setVisible(true);
 
 						//TODO Proper team implementation
-						PlayerManager::GetInstance() -> RequestJoinServer( playername, 2 );
+						PlayerManager::GetInstance() -> RequestJoinServer( playername );
 					}
 				}
 
@@ -114,7 +115,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					mainmenu->playerlist.push_back(newplayer);
 
 					//the host is always on team 1
-					PlayerManager::GetInstance() -> RequestJoinServer( playername, 1 );
+					PlayerManager::GetInstance() -> RequestJoinServer( playername );
 
 					return true;
 				}

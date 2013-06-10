@@ -41,6 +41,12 @@ Station :: Station( Ship * ship ) : Entity()
 
 void Station::onAdd()
 {
+	stringObj = game->guiEnv->addStaticText(L"", irr::core::rect<irr::s32>(0, 200, 1280, 200 + 50), false, true,(irr::gui::IGUIElement*)0, -1, true);
+	stringObj->setTextAlignment(EGUIA_CENTER, EGUIA_CENTER);
+	stringObj->setOverrideColor(video::SColor(255, 255,0,0));
+	stringObj->setBackgroundColor(video::SColor(0, 255, 255, 255));
+	stringObj->setVisible(false);
+
 	Entity::onAdd();
 }
 
@@ -134,6 +140,15 @@ void Station::update()
 		}
 	}
 
+	std::cout << "power" << _powerComponent->power << "\n";
+	if (_powerComponent->power <= 0 && enabled && this->GetStationType() != StationType::ST_POWER) {
+		stringObj->setVisible(true);
+		stringObj->setText(L"You have no power here!");
+	} else {
+		stringObj->setVisible(false);
+		stringObj->setText(L"");
+	}
+
 	// Test code for testing energy of a station.
 	if(game->input->isKeyboardButtonDown(KEY_ADD) && _powerComponent->power < 50)
 		_powerComponent->power += 1;
@@ -144,6 +159,9 @@ void Station::update()
 	updateHealth();
 
 	if (game->input->isKeyboardButtonDown(KEY_ESCAPE)){
+		stringObj->setVisible(false);
+		stringObj->setText(L"");
+
 		// Load Shipmap
 		leaveStation(this->GetStationType());
 		cout << "Leave Station";

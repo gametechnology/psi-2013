@@ -52,7 +52,7 @@ void Ship::onAdd() {
 	this->_navigationStation->disable();
 	this->_weaponStation->disable();
 	this->_powerStation->disable();
-
+	
 	this->shipHealthComponent = new ShipHealthComponent(this);
 	addComponent(shipHealthComponent);
 	//Thrusters
@@ -76,8 +76,8 @@ void Ship::onAdd() {
 	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	
-
-	
+	irr::core::stringw strPing = "Ping :" + 0;
+	this->pingGuiText = env->addStaticText(strPing.c_str(), rect<s32>(500,  30, 600, 50), false);	this->pingGuiText->setOverrideColor(video::SColor(255, 255, 255, 255));
 
 	
 	//Todo: Remove debug info from helptext!
@@ -156,7 +156,12 @@ irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::co
 void Ship :: update()
 {
 	Entity :: update();
+
+	PlayerManager ::GetInstance()->PingSend();
 	CheckChangeInput();
+
+    stringw strPing = "Ping:" + PlayerManager::GetInstance()->getTimeTaken();
+	this->pingGuiText->setText(		(varToString("Ping:", (float)PlayerManager::GetInstance()->getTimeTaken())).c_str());
 
 	//updating the text for testing the health
 	stringw strShipHealth		= "ship health: "				+ this->getShipHealth();
@@ -176,8 +181,7 @@ void Ship :: update()
 	//If the ship has no more health and is not already destroyed, destroy it
 	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
 		this->_shipDestroyed = true;
-	}
-	PlayerManager::GetInstance() -> CheckInput( game -> input -> isKeyboardButtonPressed( KEY_KEY_Q ) );
+	}	
 
 	if(game->input->isKeyboardButtonPressed(KEY_MINUS)){
 		a = rand() % 50;
@@ -228,7 +232,7 @@ void Ship :: SwitchToStation(StationType stationType)
 
 	//Init and add the new station
 	_currentStation->enable();
-	PlayerManager::GetInstance() ->stationUpdated(stationType);
+	PlayerManager::GetInstance() -> StationUpdated( stationType );
 }
 
 void Ship :: draw()
@@ -250,6 +254,7 @@ bool Ship :: getShipDestroyed()
 {
 	return this->_shipDestroyed;
 }
+
 
 void Ship::setInertiaMatrix(float h, float w, float d, float m)
 {
