@@ -80,7 +80,12 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->Nameinput->setVisible(false);
 						mainmenu->quit_button->setVisible(true);
 						mainmenu->waitinglabel->setVisible(true);
+							std::list<irr::gui::IGUIElement*>::iterator iterator;
+								for (iterator = mainmenu->lisitems.begin(); iterator != mainmenu->lisitems.end(); ++iterator) {		
+									(*iterator)->remove();
 
+								}
+								mainmenu->lisitems.clear();
 						//TODO Proper team implementation
 						PlayerManager::GetInstance() -> RequestJoinServer( playername, 2 );
 					}
@@ -122,7 +127,12 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					newplayer->Team = 1;
 					newplayer->Ipadres = Network::GetInstance()->GetLocalAddress();
 					mainmenu->playerlist.push_back(newplayer);
+						std::list<irr::gui::IGUIElement*>::iterator iterator;
+								for (iterator = mainmenu->lisitems.begin(); iterator != mainmenu->lisitems.end(); ++iterator) {		
+									(*iterator)->remove();
 
+								}
+								mainmenu->lisitems.clear();
 					//the host is always on team 1
 					PlayerManager::GetInstance() -> RequestJoinServer( playername, 1 );
 
@@ -209,6 +219,12 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 								mainmenu->quit_button->setVisible(true);
 								mainmenu->waitinglabel->setVisible(true);
 
+								std::list<irr::gui::IGUIElement*>::iterator iterator;
+								for (iterator = mainmenu->lisitems.begin(); iterator != mainmenu->lisitems.end(); ++iterator) {		
+									(*iterator)->remove();
+
+								}
+								mainmenu->lisitems.clear();
 								//TODO Proper team implementation
 								PlayerManager::GetInstance() -> RequestJoinServer( playername, 2 );
 							}

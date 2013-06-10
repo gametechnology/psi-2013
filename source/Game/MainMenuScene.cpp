@@ -350,6 +350,7 @@ void MainMenuScene::serverlistreciever(void * menu){
 			mainmenu->lisitems.push_back(mainmenu->guiEnv->addStaticText(s.c_str(),rect<s32>(position2di(175,height),dimension2di(100,25)),false,true,mainmenu->mainMenuWindow));
 			mainmenu->lisitems.push_back(mainmenu->guiEnv->addButton(rect<s32>(position2di(300,height),dimension2di(200,25)),mainmenu->mainMenuWindow,7 + i, L"Join game"));
 
+
 			height += 30;
 		}
 		
