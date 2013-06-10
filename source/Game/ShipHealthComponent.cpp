@@ -6,6 +6,7 @@
 ShipHealthComponent::ShipHealthComponent(Ship* ship) : HealthComponent()
 {
 	this->ship_ = ship;
+	updateHealth();
 }
 //this function gets the health from all the stations and sums it all up to get the health
 void ShipHealthComponent::updateHealth(){
@@ -13,8 +14,7 @@ void ShipHealthComponent::updateHealth(){
 	health += ship_->GetStation(ST_POWER)->getHealth();
 	health += ship_->GetStation(ST_HELM)->getHealth();
 	health += ship_->GetStation(ST_WEAPON)->getHealth();
-	health /=3;
-	std::cout << "[ShipHealthComp - ShipHealth]" << health;
+	health /= 3;
 }
 
 //damage gets passed to the stations here. right now its random.
@@ -25,31 +25,32 @@ void ShipHealthComponent::assignDamage(int damage){
 	switch(a){
 	case 0:
 		ship_->GetStation(ST_POWER)->decreaseHealth(damage);
+		break;
 	case 1:
 		ship_->GetStation(ST_HELM)->decreaseHealth(damage);
+		break;
 	case 2:
 		ship_->GetStation(ST_WEAPON)->decreaseHealth(damage);
+		break;
 	case 3:
 		ship_->GetStation(ST_POWER)->decreaseHealth(damage * 0.5);
 		ship_->GetStation(ST_HELM)->decreaseHealth(damage * 0.5);
+		break;
 	case 4:
 		ship_->GetStation(ST_POWER)->decreaseHealth(damage * 0.5);
 		ship_->GetStation(ST_WEAPON)->decreaseHealth(damage * 0.5);
+		break;
 	case 5:
 		ship_->GetStation(ST_HELM)->decreaseHealth(damage * 0.5);
 		ship_->GetStation(ST_WEAPON)->decreaseHealth(damage * 0.5);
-
-	/*
-	default:
-		ship_->GetStation(ST_POWER)->decreaseHealth(damage);	
-		std::cout<< "[ShipHealthComponent] Switch bug" << a << endl;
-		*/
+		break;
 	}
-	
-	std::cout<< "[ShipHealthComponent] a = " << a << "    damage = " << damage << endl;
 	updateHealth();
 }
-
+void ShipHealthComponent::assignDamage(int damage, StationType type){
+	ship_->GetStation(type)->decreaseHealth(damage);
+	updateHealth();
+}
 
 ShipHealthComponent::~ShipHealthComponent(void)
 {

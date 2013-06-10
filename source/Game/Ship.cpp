@@ -54,7 +54,6 @@ void Ship::onAdd() {
 
 	this->shipHealthComponent = new ShipHealthComponent(this);
 	addComponent(shipHealthComponent);
-	shipHealthComponent->updateHealth();
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
 	_thrusters[1] = new Thruster(vector3df(0,-2, 4), vector3df(0, 4, 4 ));
@@ -178,9 +177,8 @@ void Ship :: update()
 	}
 	PlayerManager::GetInstance() -> CheckInput( game -> input -> isKeyboardButtonPressed( KEY_KEY_Q ) );
 
-	if(game->input->isKeyboardButtonDown(KEY_KEY_S)){
+	if(game->input->isKeyboardButtonPressed(KEY_MINUS)){
 		a = rand() % 50;
-		std::cout << "Give " << a << " of damage to the ship" << endl;
 		shipHealthComponent->assignDamage(a);
 	}
 }

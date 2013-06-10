@@ -10,6 +10,7 @@ public:
 	ShipHealthComponent(Ship* ship);
 	~ShipHealthComponent(void);
 	void assignDamage(int damage);
+	void assignDamage(int damage, StationType type);
 	void updateHealth();
 	int health;
 private:
