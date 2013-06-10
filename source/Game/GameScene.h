@@ -7,7 +7,9 @@
 #include <Engine\Scene.h>
 #include <Engine\Camera.h>
 
+#include "ShipInterface.h"
 #include "Ship.h"
+#include "ProxyShip.h"
 #include "ShipMover.h"
 #include "BasicMoverComponent.h"
 #include "Stations\Station.h"
@@ -38,8 +40,8 @@ private:
 	Shipmap* _shipmap;
 	int _sendLasersTimer;
 	ObjectPool<Laser>* _laserPool;
-	Ship* _ship;
-	Ship* _shipEnemy;
+	ShipInterface* _ship;
+	ShipInterface* _shipEnemy;
 	GalaxyMap* galaxyMap;
 
 	std::list<Player*> _playerList;
