@@ -130,7 +130,7 @@ bool ServerProxyShip::StationInUse(StationType type)
 
 int ServerProxyShip::getHealth()
 {
-	return this->_healthComponent.health;
+	return this->_healthComponent.getHealth();
 }
 
 void ServerProxyShip::init()

@@ -60,7 +60,7 @@ void GameScene::onAdd() {
 	_shipmap = new Shipmap(this);
 	addChild(_shipmap);
 
-	_ship->addIShipListener(this);
+	((Ship*)_ship)->addIShipListener(this);
 }
 
 void GameScene::init() {
@@ -117,7 +117,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 	case CLIENT_SWITCH_STATION:
 		unsigned int receivedStationType;
 		packet >> receivedStationType;
-		if(_ship->GetStation((StationType)receivedStationType)->setStationOccupation() == false)
+		if(((Ship*)_ship)->GetStation((StationType)receivedStationType)->setStationOccupation() == false)
 			printf("Could not set station to occupied!\n");
 		/* TODO: REIMPLEMENT WHEN NETWORKING AND PLAYERLISTS ARE FUNCTIONAL
 		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
@@ -134,7 +134,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 	case CLIENT_LEAVE_STATION:
 		unsigned int receivedStation;
 		packet >> receivedStation;
-		_ship->GetStation((StationType)receivedStation)->resetStationOccupation();
+		((Ship*)_ship)->GetStation((StationType)receivedStation)->resetStationOccupation();
 		/* TODO: REIMPLEMENT WHEN NETWORKING AND PLAYERLISTS ARE FUNCTIONAL
 		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
 		{			
