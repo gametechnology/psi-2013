@@ -107,7 +107,7 @@ void GameScene::update() {
 			 if(((ServerProxyShip*)_shipEnemy)->getHealth() <= 0)
 			{
 				SendAndReceivePackets::sendWinLosePacket(otherTeamId);
-				SendAndReceivePackets::handleWinLose(otherTeamId, otherTeamId, this);
+				SendAndReceivePackets::handleWinLose(otherTeamId, myTeamId, this);
 			}
 		}		
 	}
