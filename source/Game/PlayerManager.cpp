@@ -250,7 +250,7 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 			std :: cout << player_name << " would like to join";
 			this -> _local_player_id = player_id;
 		}
-		std :: cout << "_local_player_id set to " << player_id << endl;
+		
 		this -> OnClientJoinedGameReceived( player_id, player_name, player_team_id );
 		break;
 
