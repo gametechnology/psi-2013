@@ -111,15 +111,8 @@ void PlayerManager :: StationUpdated( StationType stationType )
 	//Create a packet.
 	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_UPDATE_STATUS );
 	packet << this -> _local_player_id << CLIENT_STATUS_UPDATE :: UPDATE_STATION << this -> GetLocalPlayerData( ) -> stationType;
+	//send a packet to the server that we changed station.
 	Network :: GetInstance( ) -> SendPacket( packet );
-}
-
-/**
-*here, we received a message from the client, stating that their information has changed (changed team, left game, changed station)
-*/
-void PlayerManager :: UpdateClientStatus( CLIENT_STATUS_UPDATE update, NetworkPacket p )
-{	
-	
 }
 
 int PlayerManager :: getTimeTaken( )
@@ -200,6 +193,7 @@ void PlayerManager :: OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS
 	//what we should do here, is to run through all the playerdata's and tell them that playerinformation has changed
 	if ( !Network :: GetInstance( ) -> IsServer( ) ) return;
 
+	//loop through our list of players (that we have as a server)
 	for ( int i = 1; i < this -> _list_of_players -> size( ); i++ )
 	{
 		NetworkPacket packet = NetworkPacket( PacketType :: SERVER_UPDATE_STATUS );
@@ -214,10 +208,11 @@ void PlayerManager :: OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS
 				//this -> _list_of_players -> remove( player_id );
 				break;
 			case CLIENT_STATUS_UPDATE :: UPDATE_STATION:
-				//check if the player can make the change.
-				packet << player_id << ( int )update << st;
+				//check if the player can make the change. Do this in the ship
+				packet << player_id << ( int )update << ( int )st;
 				break;
 		}
+		//send a packet to every client, with the playerID (the player that changed state, the update (what has changed) and the actual change (in this case te station).
 		Network :: GetInstance( ) -> SendServerPacket( packet );
 	}
 }
@@ -378,9 +373,6 @@ void PlayerManager :: ServerSendPong(int player_id, int timePingSent)
 	
 	
 	this -> _list_of_players -> find( player_id ) -> getValue( ) -> pingCounter = 0;
-		
-	
-
     Network ::GetInstance()->SendPacket(nwp);
     Network ::GetInstance()->SendServerPacket(nwp);
 }
