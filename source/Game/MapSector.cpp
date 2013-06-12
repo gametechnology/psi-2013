@@ -1,17 +1,18 @@
 #include "MapSector.h"
 #include "Engine\Game.h"
 
-int MapSector::uid;
+unsigned int MapSector::uid = 0;
 MapSector::MapSector(std::string name,typeSector type, float radius) : Entity()
 {
+	_id  = uid;
+	this->uid++;
 	this->name = name;
 	this->type = type;
 	this->explored = false;
 	this->radius = radius;
 	this->distToBlueBase = INT_MAX;
 	this->skyboxTexture = "";
-	this->uid++;
-	_id  = uid;
+	
 }
 
 void MapSector::onAdd() {

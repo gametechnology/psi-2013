@@ -18,8 +18,8 @@ public:
 	irr::io::path skyboxTexture;
 	int connectionSize;
 
-	static int uid;
-	int _id;
+	static unsigned int uid;
+	
 
 	MapSector(std::string name,typeSector type, float radius);
 	~MapSector(void);
@@ -33,6 +33,7 @@ public:
 	void SetSkyboxTexture(const irr::io::path & texture);
 	
 private:
+	unsigned int _id;
 	irr::video::ITexture* _mapSectorTexture;
 };
 
