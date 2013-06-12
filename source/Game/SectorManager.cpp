@@ -174,6 +174,6 @@ sf::Packet& operator >>(sf::Packet& in, MapSector& out)
 	in >> out.name >> temp >> out.explored >> out.radius >> out.distToBlueBase >> tempC >> id >> out.connectionSize ;
 	out.type = (typeSector)temp;
 	printf("operator >> skybox: %s \n", &tempC);
-	out.SetSkyboxTexture(&tempC);
+	out.SetSkyboxTexture(tempC);
 	return in;
 }
