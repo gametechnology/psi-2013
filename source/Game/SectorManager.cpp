@@ -29,6 +29,7 @@ void SectorManager::onAdd() {
 void SectorManager::handleMessage(unsigned int message, void* data) {
 	switch(message) {
 		case NEXT_SECTOR: //Switch Sector 
+	printf("[SectorManager] handleMessage NEXT_SECTOR\n");
 			
 			/////
 			NetworkPacket sendpacket = NetworkPacket(PacketType::CLIENT_REQUEST_NEXTSECTOR);
@@ -49,6 +50,7 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 
 	switch(packet.GetType()){
 		case PacketType::CLIENT_REQUEST_NEXTSECTOR:
+			printf("[SectorManager] CLIENT_REQUEST_NEXTSECTOR recieved\n");
 			packet >> packetdata;
 			SearchNextMapSector(packetdata.Y,packetdata.Z);
 			//Send message to clients what there new sector is;
@@ -57,6 +59,7 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 			Network::GetInstance()->SendPacket(sendToClientPacket, true);
 			break;
 		case PacketType::SERVER_SEND_NEXTSECTOR:
+			printf("[SectorManager] SERVER_SEND_NEXTSECTOR recieved\n");
 			packet >> *this->_mapSector;
 			SetNextSector(*_mapSector);
 			break;
@@ -65,6 +68,7 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 }
 //looking through the map list and search the next sector in the conectionlist
 void SectorManager::SearchNextMapSector(int currMapId, int connectionId){
+				printf("[SectorManager] SearchNextMapSector( %i , %i)\n",currMapId,connectionId);
 	//Determen which is the new sector
 	int index = connectionId;
 	std::vector<MapSector*>::iterator temp = SearchMapSector(connectionId)->connections.begin();//Looking through mapSectors 
@@ -81,6 +85,7 @@ void SectorManager::SearchNextMapSector(int currMapId, int connectionId){
 
 //gets a sector and loads the new scene etc. basicly splitting up the funtionality of handlemessage
 void SectorManager::SetNextSector(MapSector& nextsector){
+				printf("[SectorManager] SetNextSector\n");
 	char * tempName = activeSceneName;
 	printf("[SectorManager] MapID %i",nextsector.getId());
 	// Checks if the scene is destroyed 
@@ -134,6 +139,7 @@ void SectorManager::SetNextSector(MapSector& nextsector){
 }
 //Search a mapSector out of the map, mostly used by the server when NetworkMessageHandled
 MapSector* SectorManager::SearchMapSector(int currMapId){
+	printf("[SectorManager] SearchMapSector \n");
 	for (unsigned int i = 0; i < _map->sectors.size(); i++) {
 		if(_map->sectors[i]->getId() == currMapId){
 			//delete _mapSector;
@@ -152,17 +158,21 @@ SectorManager::~SectorManager() {
 //OPERATORS FOR MAPSECTORS
 sf::Packet& operator <<(sf::Packet& out, MapSector& in)
 {
+	
+	std::string tempC = in.skyboxTexture.c_str();
 	int id = in.getId();
 	return out << in.name << (int)in.type << in.explored << in.radius << in.distToBlueBase << in.skyboxTexture.c_str() << id <<in.connections.size() ;
+	printf("operator << skybox: %s \n",&tempC);
 }
 
 sf::Packet& operator >>(sf::Packet& in, MapSector& out)
 {
 	int id = out.getId();
 	int temp;
-	char* tempC;
+	std::string tempC;
 	in >> out.name >> temp >> out.explored >> out.radius >> out.distToBlueBase >> tempC >> id >> out.connectionSize ;
 	out.type = (typeSector)temp;
-	out.skyboxTexture = tempC;
+	printf("operator >> skybox: %s \n",tempC);
+	//out.SetSkyboxTexture(irr::io::path(tempC));
 	return in;
 }
