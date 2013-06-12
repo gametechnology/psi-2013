@@ -170,10 +170,10 @@ sf::Packet& operator >>(sf::Packet& in, MapSector& out)
 {
 	int id = out.getId();
 	int temp;
-	std::string tempC;
+	char tempC[64];
 	in >> out.name >> temp >> out.explored >> out.radius >> out.distToBlueBase >> tempC >> id >> out.connectionSize ;
 	out.type = (typeSector)temp;
-	printf("operator >> skybox: %s \n",irr::io::path(&tempC));
-	out.SetSkyboxTexture(irr::io::path(&tempC));
+	printf("operator >> skybox: %s \n", &tempC);
+	out.SetSkyboxTexture(&tempC);
 	return in;
 }
