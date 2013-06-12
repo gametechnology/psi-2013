@@ -30,6 +30,11 @@ void IrrlichtNode::update() {
 	Entity::update();
 }
 
+void IrrlichtNode::setVisible(bool isVisible)
+{
+	this->node->setVisible(isVisible);
+}
+
 IrrlichtNode::~IrrlichtNode() {
 	if (node != NULL) {
 		this->scene->getIrrlichtSceneManager()->addToDeletionQueue(node);

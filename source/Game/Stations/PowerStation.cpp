@@ -102,6 +102,7 @@ void PowerStation::removeUI()
 	//Remove the static texts and scrollbars
 	for (int i = 0; i < context.scrollBars.size(); i++)
 	{
+		context.scrollBars.at(i)->setEnabled(false);
 		context.scrollBars.at(i)->remove();
 		context.stationsText.at(i)->remove();
 	}
@@ -140,7 +141,7 @@ void PowerStation::createUI()
 
 void PowerStation::enable()
 {
-	(_ship)->help->setHelpText(L"Drag sliders to adjust power for its station.");
+	(_ship)->help->setHelpText(L"Drag sliders to adjust power for its station.\nPress 'esc' to leave station.");
 
 	createUI();
 	context.scrollBars.at(0)->setPos(this->_ship->GetStation(StationType::ST_HELM)->getPower());
