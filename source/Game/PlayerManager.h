@@ -38,7 +38,8 @@ private:
 
 	//these are the server-side functions
 	void OnClientJoinRequestReceived( char *player_name, ENetPeer peer );
-	void OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, int new_team_id );
+	void OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, StationType st );
+	void OnServerStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, StationType st );
 
 	void PongReceived(int player_name, int timePingSend);
 	void ServerSendPong(int player_name, int timePingSend);
@@ -52,10 +53,13 @@ public:
 
 	int getTimeTaken();
 
+
+	void NoPingCounter();
+
 	void Init();
 	void RequestJoinServer( char *player_name );
 	void HandleNetworkMessage( NetworkPacket p );
-	void UpdateClientStatus( CLIENT_STATUS_UPDATE update, int team_id );
+	void UpdateClientStatus( CLIENT_STATUS_UPDATE update, NetworkPacket p );
 	void SendPlayerInfoRequest();
 	void StationUpdated( StationType stationType );
 	//this makes sure that the local data is sent to all the other players on the network (only local data)

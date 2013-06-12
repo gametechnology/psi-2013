@@ -81,8 +81,13 @@ void Ship::onAdd() {
 	
 	//Todo: Remove debug info from helptext!
 	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
+	playerInfoScreen = new PlayerInfoScreen(L"fill this with the playerinfo", vector2df(900,100), vector2df(1280 - (2*100),720 - (2*100)));
+	
 	addComponent(help);
+	addComponent(playerInfoScreen);
+
 	help->init();
+	playerInfoScreen->init();
 	//Todo: Reset the helptext to above text when you leave a station without entering another!
 }
 
@@ -162,6 +167,7 @@ void Ship :: update()
 	ShipInterface :: update();
 
 	PlayerManager ::GetInstance()->PingSend();
+	PlayerManager ::GetInstance()->NoPingCounter();
 	CheckChangeInput();
 
     stringw strPing = "Ping:" + PlayerManager::GetInstance()->getTimeTaken();
