@@ -297,6 +297,9 @@
     <ClCompile Include="..\source\Game\BasicShipMover.cpp">
       <Filter>Source Files\Ship</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\Game\PlayerInfoScreen.cpp">
+      <Filter>Source Files\Hud</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\Game\GalaxyMap.h">
@@ -532,6 +535,9 @@
     </ClInclude>
     <ClInclude Include="..\source\Game\ProxyShip.h">
       <Filter>Header Files\Ship</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\Game\PlayerInfoScreen.h">
+      <Filter>Header Files\Hud</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
