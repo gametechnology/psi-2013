@@ -89,7 +89,6 @@ PlayerManager :: ~PlayerManager( )
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_UPDATE_STATUS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_REQUEST_DENIED, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_LOBBY_STATUS, this );
-		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_PONG, this );
 	} 
 	else
@@ -243,6 +242,7 @@ void PlayerManager :: ShowPlayerList( )
 		std :: cout << *this -> _list_of_players -> find( i ) -> getValue( ) << std :: endl;
 	}
 }
+
 
 /*void PlayerManager :: OnLobbyStatusReceived( int player_id, int team_id )
 {
