@@ -25,6 +25,7 @@ public:
 	~MapSector(void);
 	
 	int getId();
+	void setId(int new_id);
 
 	virtual void onAdd();
 	virtual void draw();

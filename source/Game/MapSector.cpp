@@ -70,3 +70,6 @@ void MapSector::draw(){
 int MapSector::getId(){
 	return _id;
 }
+void MapSector::setId(int new_id){
+	_id = new_id;
+}

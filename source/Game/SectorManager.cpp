@@ -9,20 +9,23 @@
 SectorManager::SectorManager(GalaxyMap* map,Ship* ship) : Component() {
 	Network::GetInstance()->AddListener(PacketType::CLIENT_REQUEST_NEXTSECTOR,this);
 	Network::GetInstance()->AddListener(PacketType::SERVER_SEND_NEXTSECTOR,this);
+	Network::GetInstance()->AddListener(PacketType::CLIENT_REQUEST_BEGINSECTOR,this);
 
 	_map=map;
 	_ship=ship;
-	for (unsigned int i = 0; i < _map->sectors.size(); i++) {
-		if(_map->sectors[i]->type == HOME_BLUE){
-			//delete _mapSector;
-			_mapSector = _map->sectors[i];
-		}
-	}
+	this->_mapSector = _map->sectors[0];
+
 }
 
 void SectorManager::onAdd() {
+	//asking for fist sector
+	NetworkPacket packet = NetworkPacket(PacketType::CLIENT_REQUEST_BEGINSECTOR);
+	packet << 1; // TODO: pass the teamNumber through here
+	Network::GetInstance()->SendPacket(packet,true);
+
+	//Creating an first scene
 	activeSceneName = "SectorHomeBase";
-	printf("[SectorManager] %s",_mapSector->skyboxTexture);
+	//printf("[SectorManager] %s",_mapSector->skyboxTexture);
 	this->getGame()->sceneManager->addScene(activeSceneName, new SectorHomeBase(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size()));
 }
 
@@ -44,19 +47,30 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 	}
 	//delete data;
 }
+
+
+
 void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 	irr::core::vector3df packetdata;
 	NetworkPacket sendToClientPacket = NetworkPacket(PacketType::SERVER_SEND_NEXTSECTOR);
-
+	MapSector* tempSec;
 	switch(packet.GetType()){
+		case PacketType::CLIENT_REQUEST_BEGINSECTOR:
+			printf("[SectorManager] CLIENT_REQUEST_BEGINSECTOR recieved\n");
+			tempSec = SearchBeginMapSector(0);
+
+			sendToClientPacket << *tempSec;//made operator;TODO: make extra parrameter for team filtering
+			Network::GetInstance()->SendPacket(sendToClientPacket, true);
+			break;
 		case PacketType::CLIENT_REQUEST_NEXTSECTOR:
 			printf("[SectorManager] CLIENT_REQUEST_NEXTSECTOR recieved\n");
 			packet >> packetdata;
-			SearchNextMapSector(packetdata.Y,packetdata.Z);
+			tempSec = SearchNextMapSector(packetdata.Y,packetdata.Z);
 			//Send message to clients what there new sector is;
 			
-			sendToClientPacket << *this->_mapSector;//made operator;TODO: make extra parrameter for team filtering
+			sendToClientPacket << *tempSec;//made operator;TODO: make extra parrameter for team filtering
 			Network::GetInstance()->SendPacket(sendToClientPacket, true);
+			
 			break;
 		case PacketType::SERVER_SEND_NEXTSECTOR:
 			printf("[SectorManager] SERVER_SEND_NEXTSECTOR recieved\n");
@@ -67,7 +81,7 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 	}
 }
 //looking through the map list and search the next sector in the conectionlist
-void SectorManager::SearchNextMapSector(int currMapId, int connectionId){
+MapSector* SectorManager::SearchNextMapSector(int currMapId, int connectionId){
 				printf("[SectorManager] SearchNextMapSector( %i , %i)\n",currMapId,connectionId);
 	//Determen which is the new sector
 	int index = connectionId;
@@ -79,10 +93,22 @@ void SectorManager::SearchNextMapSector(int currMapId, int connectionId){
 		printf("[SectorManager] Something went wrong... : %c", str);
 	}
 	
-	_mapSector = *temp;//change the _mapSector to the sector the data tells him to be
+	return *temp;//change the _mapSector to the sector the data tells him to be
 			
 }
+MapSector* SectorManager::SearchBeginMapSector(int teamID){
+				printf("[SectorManager] SearchBeginMapSector()\n");
+	//TODO: Search based on teamID to say which sector you need
+	MapSector* temp;
+	for (unsigned int i = 0; i < _map->sectors.size(); i++) {
+		if(_map->sectors[i]->type == HOME_BLUE){
+			//delete _mapSector;
+			temp = _map->sectors[i];
+		}
+	}
 
+	return temp;
+}
 //gets a sector and loads the new scene etc. basicly splitting up the funtionality of handlemessage
 void SectorManager::SetNextSector(MapSector& nextsector){
 				printf("[SectorManager] SetNextSector\n");
@@ -168,11 +194,12 @@ sf::Packet& operator <<(sf::Packet& out, MapSector& in)
 
 sf::Packet& operator >>(sf::Packet& in, MapSector& out)
 {
-	int id = out.getId();
+	int id;
 	int temp;
 	char tempC[64];
 	in >> out.name >> temp >> out.explored >> out.radius >> out.distToBlueBase >> tempC >> id >> out.connectionSize ;
 	out.type = (typeSector)temp;
+	out.setId(id);
 	printf("operator >> skybox: %s \n", &tempC);
 	out.SetSkyboxTexture(tempC);
 	return in;

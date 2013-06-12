@@ -54,6 +54,8 @@ enum PacketType
 		//For changing sector
 		CLIENT_REQUEST_NEXTSECTOR,
 		SERVER_SEND_NEXTSECTOR,
+		CLIENT_REQUEST_BEGINSECTOR
+		,
 		SERVER_PONG,
 		CLIENT_PING,
  
@@ -106,6 +108,7 @@ inline char* getPacketTypeName(PacketType type)
 				case CLIENT_PING: { return "CLIENT_PING"; break; }
 
 				case CLIENT_REQUEST_NEXTSECTOR:{return "CLIENT_REQUEST_NEXTSECTOR";break;}
+				case CLIENT_REQUEST_BEGINSECTOR:{return "CLIENT_REQUEST_BEGINSECTOR";break;}
 				case SERVER_SEND_NEXTSECTOR:{return "SERVER_SEND_NEXTSECTOR";break;}
                 default: { throw "Tried to get string from non-existing packet type"; }
         }

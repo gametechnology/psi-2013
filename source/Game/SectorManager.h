@@ -25,7 +25,8 @@ public:
 private:
 	GalaxyMap* _map;
 	Ship* _ship;
-	void SearchNextMapSector(int currMapId, int connectionId);
+	MapSector* SearchNextMapSector(int currMapId, int connectionId);
+	MapSector* SearchBeginMapSector(int teamID);
 	void SetNextSector(MapSector& nextsector);
 	MapSector* SearchMapSector(int currMapId);
 };
