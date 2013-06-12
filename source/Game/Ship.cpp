@@ -15,7 +15,8 @@ Ship::Ship(vector3df position, vector3df rotation, int teamId) : ShipInterface (
 	this->transform->rotation = &rotation;
 	this->_teamId = teamId;
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
-
+	Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ENTER_STATION_ACCEPTED, this );
+	Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ENTER_STATION_DENIED, this );
 }
 
 Ship::~Ship(void)
@@ -206,22 +207,33 @@ Thruster** Ship :: GetThrusters()
 
 void Ship :: CheckChangeInput()
 {
+	StationType st = StationType :: ST_NONE;
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_1))
-		SwitchToStation(ST_DEFENCE);
+		st = ST_DEFENCE;
+	
+		//SwitchToStation(ST_DEFENCE);
 
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_2))
-		SwitchToStation(ST_HELM);
+		st = ST_HELM;
+		//SwitchToStation(ST_HELM);
 
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_3))
-		SwitchToStation(ST_WEAPON);
+		st = ST_WEAPON;
+		//SwitchToStation(ST_WEAPON);
 
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_4))
-		SwitchToStation(ST_NAVIGATION);
+		st = ST_NAVIGATION;
+		//SwitchToStation(ST_NAVIGATION);
 
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_5))
-		SwitchToStation(ST_POWER);
+		st = ST_POWER;
+		//SwitchToStation(ST_POWER);
+	if ( st == StationType :: ST_NONE ) return;
 
-
+	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_ENTER_STATION );
+	packet << PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id << ( int )st;
+	Network :: GetInstance( ) -> SendPacket( packet );
+	//TODO: check that this works for the server as well as for the clients.
 }
 
 //Swith to a specific station
@@ -242,7 +254,7 @@ void Ship :: SwitchToStation(StationType stationType)
 
 	//Init and add the new station
 	_currentStation->enable();
-	PlayerManager::GetInstance() -> StationUpdated( stationType );
+	PlayerManager :: GetInstance( ) -> StationUpdated( stationType );
 }
 
 void Ship :: draw()
@@ -332,9 +344,10 @@ void Ship::leaveStation(StationType station)
 
 void Ship::HandleNetworkMessage(NetworkPacket packet)
 {
-		
-	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
+	int player_id;
+	if ( packet.GetType( ) == PacketType :: CLIENT_SHIP_MOVEMENT )
 	{
+	
 		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
 			int id;
 			irr::core::vector3df position;
@@ -362,7 +375,24 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 					//Read the information from the network packet
 					*transform->rotation = rotation;
 
+				}
 			}
+	}
+		
+	else if ( packet.GetType( ) == PacketType :: SERVER_ENTER_STATION_ACCEPTED )
+	{
+		int st;
+		packet >> player_id >> st;
+		if ( player_id == PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id )
+		{
+			SwitchToStation( ( StationType )st );
 		}
+	} else if( packet.GetType( ) == PacketType :: SERVER_ENTER_STATION_DENIED )
+	{
+		packet >> player_id;
+		if ( player_id == PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id )
+		{
+			//TODO: Show the player that he SHALL NO PASS!!!!
+		}		
 	}
 }
