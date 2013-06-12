@@ -160,9 +160,10 @@ sf::Packet& operator <<(sf::Packet& out, MapSector& in)
 {
 	
 	std::string tempC = in.skyboxTexture.c_str();
+	printf("operator << skybox: %s \n",&tempC);
 	int id = in.getId();
 	return out << in.name << (int)in.type << in.explored << in.radius << in.distToBlueBase << in.skyboxTexture.c_str() << id <<in.connections.size() ;
-	printf("operator << skybox: %s \n",&tempC);
+	
 }
 
 sf::Packet& operator >>(sf::Packet& in, MapSector& out)
@@ -172,7 +173,7 @@ sf::Packet& operator >>(sf::Packet& in, MapSector& out)
 	std::string tempC;
 	in >> out.name >> temp >> out.explored >> out.radius >> out.distToBlueBase >> tempC >> id >> out.connectionSize ;
 	out.type = (typeSector)temp;
-	printf("operator >> skybox: %s \n",tempC);
-	//out.SetSkyboxTexture(irr::io::path(tempC));
+	printf("operator >> skybox: %s \n",irr::io::path(&tempC));
+	out.SetSkyboxTexture(irr::io::path(&tempC));
 	return in;
 }
