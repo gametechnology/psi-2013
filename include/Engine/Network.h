@@ -30,8 +30,8 @@ enum PacketType
 		SERVER_LASER,
 		SERVER_WINLOSE,
 		SERVER_POWER_CHANGED,
-	SERVER_SWITCH_STATION,
-	SERVER_LEAVE_STATION,
+		SERVER_SWITCH_STATION,
+		SERVER_LEAVE_STATION,
 
         CLIENT_SWITCH_STATION,
         CLIENT_LEAVE_STATION,
@@ -45,11 +45,12 @@ enum PacketType
  
         //these are packages handled by the playerManager
         CLIENT_REQUEST_JOIN_SERVER,
-        CLIENT_UPDATE_LOBBY_STATUS,
- 
+        CLIENT_UPDATE_STATUS,
+		SERVER_UPDATE_STATUS,
+
         SERVER_REQUEST_ACCEPTED,
         SERVER_REQUEST_DENIED, 
-        SERVER_LOBBY_STATUS_CHANGED,
+        
 
 		SERVER_PONG,
 		CLIENT_PING,
@@ -76,8 +77,8 @@ inline char* getPacketTypeName(PacketType type)
 				case SERVER_WINLOSE: { return "SERVER_WINLOSE"; break; }
  
 				case SERVER_POWER_CHANGED: { return "SERVER_POWER_CHANGED"; break; }
-		case SERVER_SWITCH_STATION: { return "SERVER_SWITCH_STATION"; break; }
-		case SERVER_LEAVE_STATION: { return "SERVER_LEAVE_STATION"; break; }
+				case SERVER_SWITCH_STATION: { return "SERVER_SWITCH_STATION"; break; }
+				case SERVER_LEAVE_STATION: { return "SERVER_LEAVE_STATION"; break; }
 	
                 case CLIENT_SWITCH_STATION: { return "CLIENT_SWITCH_STATION"; break; }
                 case CLIENT_LEAVE_STATION: { return "CLIENT_LEAVE_STATION"; break; }
@@ -92,11 +93,13 @@ inline char* getPacketTypeName(PacketType type)
                 case SERVER_LOBBY_STATUS: {return "SERVER_LOBBY_STATUS"; break;}
  
                 case CLIENT_REQUEST_JOIN_SERVER: { return "CLIENT_REQUEST_JOIN_SERVER"; break;}
-                case CLIENT_UPDATE_LOBBY_STATUS: { return "CLIENT_UPDATE_LOBBY_STATUS"; break;}
+
+                case CLIENT_UPDATE_STATUS: { return "CLIENT_UPDATE_STATUS"; break;}
+				case SERVER_UPDATE_STATUS: { return "SERVER_UPDATE_STATUS"; break; }
  
                 case SERVER_REQUEST_ACCEPTED: { return "SERVER_REQUEST_ACCEPTED"; break; }
                 case SERVER_REQUEST_DENIED: { return "SERVER_REQUEST_DENIED"; break; }
-                case SERVER_LOBBY_STATUS_CHANGED: { return "SERVER_LOBBY_STATUS_CHANGED"; break; }
+                
 				
 				case SERVER_PONG: { return "SERVER_PONG"; break; }
 				case CLIENT_PING: { return "CLIENT_PING"; break; }
