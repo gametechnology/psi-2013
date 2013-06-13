@@ -48,6 +48,8 @@ public:
 private:
 
 	void freeStation(StationType type);
+	void SetStationHealth(StationType, int);
+	int GetStationHealth(StationType stationType);
 
 	//returns false when the station is already in use
 	bool enterStation(StationType type);
@@ -56,6 +58,7 @@ private:
 
 	int _teamId;
 	std::map<StationType, bool> _stationsInUse;
+	std::map<StationType, int> _stationsHealth;
 	HealthComponent _healthComponent;
 	IrrlichtNode* _model;
 };

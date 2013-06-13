@@ -81,11 +81,18 @@ void ClientProxyShip::HandleNetworkMessage(NetworkPacket packet)
 ServerProxyShip::ServerProxyShip(vector3df position, vector3df rotation, int teamId) : ShipInterface()
 {
 	this->_teamId = teamId;
+	this->_stationsHealth = std::map<StationType, int>();
+	//Add all the healths from stations together
+	for (int i = 0; i < 5; i++)
+	{
+		_stationsHealth.insert(std::pair<StationType, int>((StationType)i, 100));
+	}
 	*this->transform->position = position;
 	*this->transform->rotation = rotation;
 	this->fillStationList();
 	Network::GetInstance()->AddListener(CLIENT_SHIP_MOVEMENT, this);
 	Network::GetInstance()->AddListener(CLIENT_REQUEST_ENTER_STATION, this);
+	Network::GetInstance()->AddListener(CLIENT_HEALTH_CHANGED, this);
 	Network::GetInstance()->AddListener(CLIENT_LEAVE_STATION, this);
 }
 
@@ -164,6 +171,34 @@ void ServerProxyShip::HandleNetworkMessage(NetworkPacket packet)
 			freeStation((StationType)st);
 		}
 	}
+	if(packet.GetType() == PacketType::CLIENT_HEALTH_CHANGED)
+	{
+		//Station and health
+		int id;
+		int stationType;
+		int health;
+		
+		packet >> id;
+		packet >> stationType;
+		packet >> health;
+
+		//Check if we are the same team
+		if(id == this->getTeamId())
+		{
+			//set the health for this stationtype
+			this->SetStationHealth((StationType)stationType,health);
+		}
+	}
+}
+
+void ServerProxyShip::SetStationHealth(StationType stationType, int health)
+{
+	this->_stationsHealth.find(stationType)->second = health;
+}
+
+int ServerProxyShip::GetStationHealth(StationType stationType)
+{
+	return this->_stationsHealth.find(stationType)->second;
 }
 
 bool ServerProxyShip::StationInUse(StationType type)
@@ -173,7 +208,14 @@ bool ServerProxyShip::StationInUse(StationType type)
 
 int ServerProxyShip::getHealth()
 {
-	return this->_healthComponent.getHealth();
+	int totalHealth = 0;
+
+	//Add all the healths from stations together
+	for (int i = 0; i < _stationsHealth.size(); i++)
+	{
+		totalHealth += GetStationHealth((StationType)i);
+	}
+	return totalHealth;
 }
 
 void ServerProxyShip::init()
