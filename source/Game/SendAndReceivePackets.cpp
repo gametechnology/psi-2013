@@ -130,9 +130,9 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacket(NetworkPacket& pac
 					}
 				}
 
-				*laserList[j]->transform->position = *serverList[i].transform->position;
-				*laserList[j]->transform->velocity = *serverList[i].transform->velocity;
-				*laserList[j]->transform->rotation = *serverList[i].transform->rotation;
+				laserList[j]->transform->position = serverList[i].transform->position;
+				laserList[j]->transform->velocity = serverList[i].transform->velocity;
+				laserList[j]->transform->rotation = serverList[i].transform->rotation;
 
 			}
 		}
@@ -167,9 +167,9 @@ std::vector<Laser*> SendAndReceivePackets::receiveLaserPacketFromClient(NetworkP
 				}
 			}
 
-			*laserList[j]->transform->position = *clientLaser.transform->position;
-			*laserList[j]->transform->velocity = *clientLaser.transform->velocity;
-			*laserList[j]->transform->rotation = *clientLaser.transform->rotation;
+			laserList[j]->transform->position = clientLaser.transform->position;
+			laserList[j]->transform->velocity = clientLaser.transform->velocity;
+			laserList[j]->transform->rotation = clientLaser.transform->rotation;
 
 		}
 	}
@@ -260,7 +260,7 @@ sf::Packet& operator >>(sf::Packet& in, vector<Enemy>& out)
 
 sf::Packet& operator <<(sf::Packet& out, Laser& in)
 {
-	return out << in.getId() << in.enabled << *in.transform->position << *in.transform->velocity << *in.transform->rotation;
+	return out << in.getId() << in.enabled << in.transform->position << in.transform->velocity << in.transform->rotation;
 }
 
 sf::Packet& operator >>(sf::Packet& in, Laser& out)
@@ -289,9 +289,9 @@ sf::Packet& operator >>(sf::Packet& in, Laser& out)
 			}
 		}
 	}
-	*out.transform->position = position;
-	*out.transform->velocity = velocity;
-	*out.transform->rotation = rotation;
+	out.transform->position = position;
+	out.transform->velocity = velocity;
+	out.transform->rotation = rotation;
 
 	return in;
 }

@@ -14,7 +14,7 @@ void Sprite::draw()
 {
 	if(_texture != 0)
 	{
-		irr::core::position2d<irr::s32> twodposition = irr::core::position2d<irr::s32>(transform->position->X, transform->position->Y);
+		irr::core::position2d<irr::s32> twodposition = irr::core::position2d<irr::s32>(transform->position.X, transform->position.Y);
 
 		game->driver->draw2DImage(_texture,
 		twodposition,

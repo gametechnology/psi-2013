@@ -59,9 +59,15 @@ enum PacketType
         SERVER_REQUEST_DENIED, 
         
 
+		//For changing sector
+		CLIENT_REQUEST_NEXTSECTOR,
+		SERVER_SEND_NEXTSECTOR,
+		CLIENT_REQUEST_BEGINSECTOR
+		,
 		SERVER_PONG,
 		CLIENT_PING,
 		SERVER_DISCONNECTED,
+ 
         //Add new PacketTypes above
         LAST_TYPE
 };
@@ -115,7 +121,11 @@ inline char* getPacketTypeName(PacketType type)
 				case SERVER_PONG: { return "SERVER_PONG"; break; }
 				case CLIENT_PING: { return "CLIENT_PING"; break; }
 				case SERVER_DISCONNECTED: { return "SERVER_DISCONNECTED"; break; }
+
 				
+				case CLIENT_REQUEST_NEXTSECTOR:{return "CLIENT_REQUEST_NEXTSECTOR";break;}
+				case CLIENT_REQUEST_BEGINSECTOR:{return "CLIENT_REQUEST_BEGINSECTOR";break;}
+				case SERVER_SEND_NEXTSECTOR:{return "SERVER_SEND_NEXTSECTOR";break;}
                 default: { throw "Tried to get string from non-existing packet type"; }
         }
 }

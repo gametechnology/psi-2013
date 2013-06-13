@@ -48,7 +48,7 @@ void GameScene::onAdd() {
 	} else {
 		galaxyMap->createStaticMap();
 	}
-	galaxyMap->transform->position = new vector3df(980, 420, 0);
+	galaxyMap->transform->position = vector3df(980, 420, 0);
 	printf("-----------Added SectorManager----------\n\n");
 	addComponent(new SectorManager(galaxyMap, (Ship*)_ship));
 	addChild(galaxyMap);

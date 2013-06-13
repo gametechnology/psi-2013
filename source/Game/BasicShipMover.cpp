@@ -64,12 +64,12 @@ void BasicShipMover::update() {
 	//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
 	NetworkPacket movementPacket = NetworkPacket(PacketType::CLIENT_SHIP_MOVEMENT);
 	movementPacket << _ship->getTeamId(); // ID van het ship
-	movementPacket << *_ship->transform->position;
-	movementPacket << *_ship->transform->rotation;
-	movementPacket << *_ship->transform->velocity; 
-	movementPacket << *_ship->transform->acceleration; 
-	movementPacket << *_ship->transform->angularAccelaration; 
-	movementPacket << *_ship->transform->angularVelocity;
+	movementPacket << _ship->transform->position;
+	movementPacket << _ship->transform->rotation;
+	movementPacket << _ship->transform->velocity; 
+	movementPacket << _ship->transform->acceleration; 
+	movementPacket << _ship->transform->angularAccelaration; 
+	movementPacket << _ship->transform->angularVelocity;
 
 	//Send packet to server
 	//if(Network::GetInstance()->IsServer())

@@ -9,8 +9,8 @@
 ClientProxyShip::ClientProxyShip(vector3df position, vector3df rotation, int teamID) : ShipInterface()
 {
 	this->_teamId = teamID;
-	*this->transform->position = position;
-	*this->transform->rotation = rotation;
+	this->transform->position = position;
+	this->transform->rotation = rotation;
 	Network::GetInstance()->AddListener(CLIENT_SHIP_MOVEMENT, this);
 }
 
@@ -28,7 +28,7 @@ void ClientProxyShip::onAdd()
 {
 	this->enable();
 	_model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
-	_model->transform->rotation->X += 180;
+	_model->transform->rotation.X += 180;
 	addChild(_model);
 
 	this->init();
@@ -62,12 +62,12 @@ void ClientProxyShip::HandleNetworkMessage(NetworkPacket packet)
 
 		if(id == this->_teamId)
 		{
-			*transform->acceleration = acceleration;
-			*transform->angularAccelaration = angularAcceleration;
-			*transform->angularVelocity = angularVelocity;
-			*transform->position = position;
-			*transform->velocity = velocity;
-			*transform->rotation = rotation;
+			transform->acceleration = acceleration;
+			transform->angularAccelaration = angularAcceleration;
+			transform->angularVelocity = angularVelocity;
+			transform->position = position;
+			transform->velocity = velocity;
+			transform->rotation = rotation;
 		}
 	}
 }
@@ -81,14 +81,14 @@ void ClientProxyShip::HandleNetworkMessage(NetworkPacket packet)
 ServerProxyShip::ServerProxyShip(vector3df position, vector3df rotation, int teamId) : ShipInterface()
 {
 	this->_teamId = teamId;
+	this->transform->position = position;
+	this->transform->rotation = rotation;
 	this->_stationsHealth = std::map<StationType, int>();
 	//Add all the healths from stations together
 	for (int i = 0; i < 5; i++)
 	{
 		_stationsHealth.insert(std::pair<StationType, int>((StationType)i, 100));
 	}
-	*this->transform->position = position;
-	*this->transform->rotation = rotation;
 	this->fillStationList();
 	Network::GetInstance()->AddListener(CLIENT_SHIP_MOVEMENT, this);
 	Network::GetInstance()->AddListener(CLIENT_REQUEST_ENTER_STATION, this);
@@ -136,12 +136,12 @@ void ServerProxyShip::HandleNetworkMessage(NetworkPacket packet)
 
 		if(id == this->_teamId)
 		{
-			*transform->acceleration = acceleration;
-			*transform->angularAccelaration = angularAcceleration;
-			*transform->angularVelocity = angularVelocity;
-			*transform->position = position;
-			*transform->velocity = velocity;
-			*transform->rotation = rotation;
+			transform->acceleration = acceleration;
+			transform->angularAccelaration = angularAcceleration;
+			transform->angularVelocity = angularVelocity;
+			transform->position = position;
+			transform->velocity = velocity;
+			transform->rotation = rotation;
 		}
 	}else if(packet.GetType() == CLIENT_REQUEST_ENTER_STATION && Network::GetInstance()->IsServer())
 	{
@@ -229,7 +229,7 @@ void ServerProxyShip::onAdd()
 {
 	this->enable();
 	this->_model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
-	_model->transform->rotation->X += 180;
+	_model->transform->rotation.X += 180;
 	this->addChild(_model);
 
 	this->init();

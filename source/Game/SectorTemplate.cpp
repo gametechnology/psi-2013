@@ -142,8 +142,8 @@ void SectorTemplate::addWormHoles() {
 		addChild(_wormHoles[i]);
 
 		// And give it their position
-		*_wormHoles[i]->transform->position = wormHolePos;
-		printf("[SectorTemplate] wormhole.x[ %f ] wormhole.y[ %f ] wormhole.z[ %f ] \n",_wormHoles[i]->transform->position->X,_wormHoles[i]->transform->position->Y,_wormHoles[i]->transform->position->Z);
+		_wormHoles[i]->transform->position = wormHolePos;
+		printf("[SectorTemplate] wormhole.x[ %f ] wormhole.y[ %f ] wormhole.z[ %f ] \n",_wormHoles[i]->transform->position.X,_wormHoles[i]->transform->position.Y,_wormHoles[i]->transform->position.Z);
 	}
 	printf("[SectorTemplate] -=*[End of add WormHole]*=- \n");
 }
@@ -157,34 +157,32 @@ void SectorTemplate::update(){
 	this->_player->transform->position
 	with
 	this->_camera->getPosition()*/
-	if (!_sectormanager->destroyed)
-	{
-		if( _sectormanager->getShip()->transform->position->getLength() > _boundry ){
-			//printf("\n OUT OF BOUNDS!");
-		}
-		for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
-			irr::core::vector3df deltaPos = *_wormHoles[i]->transform->position - *_sectormanager->getShip()->transform->position;
-			float collisionRadius = 50;
-			if( deltaPos.getLength() < collisionRadius ){			
-				_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
-				break;
-			}
-		}
-	
-		if(timer >= 50)
-		{
-			if(Network::GetInstance()->IsServer())
-			{
-				//packet.clear();
-				//packet << _enemyList;
-
-				//Network::GetInstance()->SendServerPacket(packet);
-				SendAndReceivePackets::sendEnemyPacket(_enemyList);
-			}
-			timer = 0;
-		}
-		timer++;
+	if( _sectormanager->getShip()->transform->position.getLength() > _boundry ){
+		//printf("\n OUT OF BOUNDS!");
 	}
+	for(unsigned int i = 0; i < this->_wormHoles.size(); i++){
+		irr::core::vector3df deltaPos = _wormHoles[i]->transform->position - _sectormanager->getShip()->transform->position;
+		float collisionRadius = 50;
+		if( deltaPos.getLength() < collisionRadius ){			
+			_sectormanager->handleMessage(NEXT_SECTOR,(void*)i );
+			break;
+		}
+	}
+	
+	if(timer >= 50)
+	{
+		if(Network::GetInstance()->IsServer())
+		{
+			//packet.clear();
+			//packet << _enemyList;
+
+			//Network::GetInstance()->SendServerPacket(packet);
+			SendAndReceivePackets::sendEnemyPacket(_enemyList);
+		}
+		timer = 0;
+	}
+	timer++;
+	
 	Scene::update();
 }
 
@@ -306,6 +304,5 @@ void SectorTemplate::removeEnemyFromList(Enemy* enemy)
 
 SectorTemplate::~SectorTemplate() {
 	//_camera->drop();
-	delete _skybox;
 	Scene::~Scene();
 }

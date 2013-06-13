@@ -1,6 +1,7 @@
 #include "ShipHealthComponent.h"
 #include "Ship.h"
 #include "Stations\Station.h"
+#include "Messages.h"
 #include <stdlib.h>
 
 
@@ -61,6 +62,8 @@ void ShipHealthComponent::assignDamage(int damage){
 		break;
 	}
 	updateHealth();
+
+	entity->handleMessage(MESSAGES::DAMAGE);
 }
 
 void ShipHealthComponent::updateHealthToServer(int stationType, int stationHealth)
