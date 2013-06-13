@@ -27,7 +27,7 @@ void NavigationStation :: OnDisabled(){
 }
 
 void NavigationStation::enable() {
-	((Ship*)parent)->help->setHelpText(L"todo: Exit station: 'Esc'");
+	((Ship*)parent)->help->setHelpText(L"Exit station: 'Esc'");
 
 	Station::enable();
 }

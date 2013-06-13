@@ -15,7 +15,8 @@ Ship::Ship(vector3df position, vector3df rotation, int teamId) : ShipInterface (
 	this->transform->rotation = &rotation;
 	this->_teamId = teamId;
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
-
+	Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ENTER_STATION_ACCEPTED, this );
+	Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ENTER_STATION_DENIED, this );
 }
 
 Ship::~Ship(void)
@@ -81,8 +82,13 @@ void Ship::onAdd() {
 	
 	//Todo: Remove debug info from helptext!
 	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
+	playerInfoScreen = new PlayerInfoScreen(L"fill this with the playerinfo", vector2df(900,100), vector2df(1280 - (2*100),720 - (2*100)));
+	
 	addComponent(help);
+	addComponent(playerInfoScreen);
+
 	help->init();
+	playerInfoScreen->init();
 	//Todo: Reset the helptext to above text when you leave a station without entering another!
 }
 
@@ -162,6 +168,7 @@ void Ship :: update()
 	ShipInterface :: update();
 
 	PlayerManager ::GetInstance()->PingSend();
+	PlayerManager ::GetInstance()->NoPingCounter();
 	CheckChangeInput();
 
     stringw strPing = "Ping:" + PlayerManager::GetInstance()->getTimeTaken();
@@ -200,22 +207,33 @@ Thruster** Ship :: GetThrusters()
 
 void Ship :: CheckChangeInput()
 {
+	StationType st = StationType :: ST_NONE;
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_1))
-		SwitchToStation(ST_DEFENCE);
+		st = ST_DEFENCE;
+	
+		//SwitchToStation(ST_DEFENCE);
 
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_2))
-		SwitchToStation(ST_HELM);
+		st = ST_HELM;
+		//SwitchToStation(ST_HELM);
 
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_3))
-		SwitchToStation(ST_WEAPON);
+		st = ST_WEAPON;
+		//SwitchToStation(ST_WEAPON);
 
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_4))
-		SwitchToStation(ST_NAVIGATION);
+		st = ST_NAVIGATION;
+		//SwitchToStation(ST_NAVIGATION);
 
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_5))
-		SwitchToStation(ST_POWER);
+		st = ST_POWER;
+		//SwitchToStation(ST_POWER);
+	if ( st == StationType :: ST_NONE ) return;
 
-
+	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_ENTER_STATION );
+	packet << PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id << ( int )st;
+	Network :: GetInstance( ) -> SendPacket( packet );
+	//TODO: check that this works for the server as well as for the clients.
 }
 
 //Swith to a specific station
@@ -236,7 +254,7 @@ void Ship :: SwitchToStation(StationType stationType)
 
 	//Init and add the new station
 	_currentStation->enable();
-	PlayerManager::GetInstance() -> StationUpdated( stationType );
+	PlayerManager :: GetInstance( ) -> StationUpdated( stationType );
 }
 
 void Ship :: draw()
@@ -314,7 +332,7 @@ void Ship::notifyIShipListeners(ShipMessage message){
 void Ship::leaveStation(StationType station)
 {
 	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
-	packet << station;
+	packet << station << PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id;
 	Network::GetInstance()->SendPacket(packet, true);
 
 	this->_currentStation->disable();
@@ -326,9 +344,10 @@ void Ship::leaveStation(StationType station)
 
 void Ship::HandleNetworkMessage(NetworkPacket packet)
 {
-		
-	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
+	int player_id;
+	if ( packet.GetType( ) == PacketType :: CLIENT_SHIP_MOVEMENT )
 	{
+	
 		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
 			int id;
 			irr::core::vector3df position;
@@ -356,7 +375,24 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 					//Read the information from the network packet
 					*transform->rotation = rotation;
 
+				}
 			}
+	}
+		
+	else if ( packet.GetType( ) == PacketType :: SERVER_ENTER_STATION_ACCEPTED )
+	{
+		int st;
+		packet >> player_id >> st;
+		if ( player_id == PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id )
+		{
+			SwitchToStation( ( StationType )st );
 		}
+	} else if( packet.GetType( ) == PacketType :: SERVER_ENTER_STATION_DENIED )
+	{
+		packet >> player_id;
+		if ( player_id == PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id )
+		{
+			//TODO: Show the player that he SHALL NO PASS!!!!
+		}		
 	}
 }
