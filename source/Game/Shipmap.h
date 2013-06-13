@@ -44,10 +44,10 @@ class Shipmap : public Entity, public IShipListener, public INetworkListener
 
 	int tiles[7][12];
 
-	GameScene* _scene;
+	Ship* _ship;
 
 public:
-	Shipmap(GameScene* scene);
+	Shipmap(Ship* ship);
 	~Shipmap();
 	void onAdd();
 	void init();

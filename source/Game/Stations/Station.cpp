@@ -84,6 +84,11 @@ StationType Station :: GetStationType( )
 	return this -> _stationType;
 }
 
+bool Station::IsOccupied()
+{
+	return _isOccupied;
+}
+
 bool Station::IsStunned()
 {
 	time_t *t = new time_t();

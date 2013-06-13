@@ -47,7 +47,7 @@ void Game::init() {
 void Game::run()
 {
 	// Quick hack to switch to switch the order of draws. We had some problems with drawing stuff because of the draw order. 
-	bool switchDraws = false;
+	bool switchDraws = true;
 
 	//Main loop
 	while(device -> run( ) )

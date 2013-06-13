@@ -52,6 +52,8 @@ private:
 	//returns false when the station is already in use
 	bool enterStation(StationType type);
 
+	void fillStationList();
+
 	int _teamId;
 	std::map<StationType, bool> _stationsInUse;
 	HealthComponent _healthComponent;
