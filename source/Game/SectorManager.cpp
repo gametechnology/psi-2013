@@ -131,9 +131,16 @@ MapSector* SectorManager::SearchBeginMapSector(int teamID){
 	//TODO: Search based on teamID to say which sector you need
 	MapSector* temp;
 	for (unsigned int i = 0; i < _map->sectors.size(); i++) {
-		if(_map->sectors[i]->type == HOME_BLUE){
-			//delete _mapSector;
-			temp = _map->sectors[i];
+		if(this->_ship->getTeamId() == 1){
+			if(_map->sectors[i]->type == HOME_BLUE){
+				//delete _mapSector;
+				temp = _map->sectors[i];
+			}
+		}else{
+			if(_map->sectors[i]->type == HOME_RED){
+				//delete _mapSector;
+				temp = _map->sectors[i];
+			}
 		}
 	}
 
