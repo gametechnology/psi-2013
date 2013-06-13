@@ -55,7 +55,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 						mainmenu->messagebox->setDraggable(false);
 					}
 				}else{
-					Network::GetInstance()->InitializeClient(ipadress, 1234);
+					Network::GetInstance()->InitializeClient(ipadress);
 					if(!Network::GetInstance()->IsConnected()){
 						mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Not able to connect to server",true,1,mainmenu->mainMenuWindow);
 						mainmenu->messagebox->setDraggable(false);
@@ -195,7 +195,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 								mainmenu->messagebox->setDraggable(false);
 					
 						}else{
-							Network::GetInstance()->InitializeClient(currhost.ipadress.c_str(), 1234);
+							Network::GetInstance()->InitializeClient(currhost.ipadress.c_str());
 							if(!Network::GetInstance()->IsConnected()){
 								mainmenu->messagebox =  env->addMessageBox(L"Messsage",L"Not able to connect to server",true,1,mainmenu->mainMenuWindow);
 								mainmenu->messagebox->setDraggable(false);
