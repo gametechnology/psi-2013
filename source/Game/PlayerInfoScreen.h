@@ -10,7 +10,7 @@
 class PlayerInfoScreen : public Component
 {
 public:
-	PlayerInfoScreen(const wchar_t* helpText, irr::core::vector2df position, irr::core::vector2df size);
+	PlayerInfoScreen(irr::core::vector2df position, irr::core::vector2df size);
 	~PlayerInfoScreen(void); 
 	void update();
 	void draw();
@@ -20,9 +20,12 @@ public:
 	bool isVisible();
 private:
 	bool visible;
-	const wchar_t* _helpTextStr;
+	const wchar_t* _teamInfoTxt;
+	const wchar_t* playertext_team1;
+	const wchar_t* playertext_team2;
 	irr::core::vector2df _position;
 	irr::core::vector2df _size;
 	irr::gui::IGUIStaticText* stringObj;
+	irr::gui::IGUIStaticText* playerGUIText;
 };
 #endif
