@@ -139,16 +139,14 @@ int PlayerManager :: getTimeTaken( )
 	return timeTaken;
 }
 
-PlayerData *PlayerManager :: GetAllPlayers( int *size )
+std :: vector<PlayerData*> PlayerManager :: GetAllPlayers( )
 {
-	*size = this -> _list_of_players -> size( );
-	PlayerData *data;
-	data = ( PlayerData* )malloc( sizeof( data ) * ( *size ) );
-	for ( int i = 0; i < *size; i++ )
+	std :: vector<PlayerData*> players;
+	for ( int i = 1; i < this -> _list_of_players -> size( ) + 1; i++ )
 	{
-		data[i] = *this -> _list_of_players -> find( i ) -> getValue( );
+		players.push_back( this -> _list_of_players -> find( i ) -> getValue( ) );
 	}
-	return data;
+	return players;
 }
 
 /**
