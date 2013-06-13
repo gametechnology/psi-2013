@@ -60,7 +60,7 @@ void PlayerInfoScreen::update()
 			}
 			list << stationInfo << "\t and in team " << (*it)->team_id;
 		}
-
+		
 		const size_t cSize = strlen(list.str().c_str())+1;
 		_teamInfoTxt = new wchar_t[cSize];
 		mbstowcs(_teamInfoTxt, list.str().c_str(), cSize);

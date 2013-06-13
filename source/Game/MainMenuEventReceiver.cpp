@@ -158,6 +158,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					Network::GetInstance()->SendServerPacket(hostquitpacket, true);
 
 				}
+				PlayerManager :: GetInstance( ) -> ~PlayerManager( );
 				mainmenu->playerlist.clear();
 				Network::GetInstance()->DeInitialize();
 				mainmenu->BackToMainMenu();
