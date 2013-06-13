@@ -72,6 +72,7 @@ void HealthComponent::handleMessage(unsigned int message, void* data)
 	}
 }
 
+
 HealthComponent::~HealthComponent()
 {
 	Component::~Component();

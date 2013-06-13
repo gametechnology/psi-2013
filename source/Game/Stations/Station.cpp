@@ -167,6 +167,10 @@ void Station::update()
 	}
 }
 
+HealthComponent* Station::getHealthComponent()
+{
+	return _healthComponent;
+}
 
 void Station :: draw( )
 {	

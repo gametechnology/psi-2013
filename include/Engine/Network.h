@@ -36,6 +36,7 @@ enum PacketType
         CLIENT_SWITCH_STATION,
         CLIENT_LEAVE_STATION,
         CLIENT_POWER_CHANGED,
+        CLIENT_HEALTH_CHANGED,
 		CLIENT_FIRE_LASER,
         SERVER_ALL_PLAYERS,
         CLIENT_GET_ALL_PLAYERS,
@@ -47,6 +48,7 @@ enum PacketType
 		
         SERVER_JOIN_DENIED,
         SERVER_LOBBY_STATUS,
+
  
         //these are packages handled by the playerManager
         CLIENT_REQUEST_JOIN_SERVER,
@@ -88,6 +90,7 @@ inline char* getPacketTypeName(PacketType type)
                 case CLIENT_SWITCH_STATION: { return "CLIENT_SWITCH_STATION"; break; }
                 case CLIENT_LEAVE_STATION: { return "CLIENT_LEAVE_STATION"; break; }
                 case CLIENT_POWER_CHANGED: { return "CLIENT_POWER_CHANGED"; break; }
+                case CLIENT_HEALTH_CHANGED: { return "CLIENT_HEALTH_CHANGED"; break; }
 				case CLIENT_FIRE_LASER: { return "CLIENT_FIRE_LASER"; break; }
 
 				case CLIENT_REQUEST_ENTER_STATION: { return "CLIENT_REQUEST_ENTER_STATION"; }
