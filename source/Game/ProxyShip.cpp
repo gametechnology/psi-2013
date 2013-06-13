@@ -1,4 +1,5 @@
 #include "ProxyShip.h"
+#include "PlayerManager.h"
 
 
 ////////////////////////////////////////////
@@ -80,15 +81,34 @@ void ClientProxyShip::HandleNetworkMessage(NetworkPacket packet)
 ServerProxyShip::ServerProxyShip(vector3df position, vector3df rotation, int teamId) : ShipInterface()
 {
 	this->_teamId = teamId;
-	this->_stationsInUse = std::map<StationType, bool>();
+	this->_stationsHealth = std::map<StationType, int>();
+	//Add all the healths from stations together
+	for (int i = 0; i < 5; i++)
+	{
+		_stationsHealth.insert(std::pair<StationType, int>((StationType)i, 100));
+	}
 	*this->transform->position = position;
 	*this->transform->rotation = rotation;
+	this->fillStationList();
 	Network::GetInstance()->AddListener(CLIENT_SHIP_MOVEMENT, this);
+	Network::GetInstance()->AddListener(CLIENT_REQUEST_ENTER_STATION, this);
+	Network::GetInstance()->AddListener(CLIENT_HEALTH_CHANGED, this);
+	Network::GetInstance()->AddListener(CLIENT_LEAVE_STATION, this);
 }
 
 ServerProxyShip::~ServerProxyShip()
 {
 
+}
+
+void ServerProxyShip::fillStationList()
+{
+	this->_stationsInUse = std::map<StationType, bool>();
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_DEFENCE, false));
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_HELM, false));
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_NAVIGATION, false));
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_POWER, false));
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_WEAPON, false));
 }
 
 int ServerProxyShip::getTeamId()
@@ -98,6 +118,9 @@ int ServerProxyShip::getTeamId()
 
 void ServerProxyShip::HandleNetworkMessage(NetworkPacket packet)
 {
+	int player_id;
+	int team_id;
+	int st;
 	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
 	{
 		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
@@ -120,7 +143,62 @@ void ServerProxyShip::HandleNetworkMessage(NetworkPacket packet)
 			*transform->velocity = velocity;
 			*transform->rotation = rotation;
 		}
+	}else if(packet.GetType() == CLIENT_REQUEST_ENTER_STATION && Network::GetInstance()->IsServer())
+	{
+		packet >> player_id >> team_id >> st;
+		if(team_id != PlayerManager::GetInstance()->GetLocalPlayerData()->team_id)
+		{
+			printf("received packet\n");
+			if(StationInUse((StationType)st))
+			{
+				NetworkPacket declinePacket = NetworkPacket(SERVER_ENTER_STATION_DENIED);
+				declinePacket << player_id;
+				Network::GetInstance()->SendServerPacket(declinePacket, true);
+				return;
+			}
+			printf("accepted\n");
+			this->_stationsInUse.find((StationType)st)->second = true;
+			NetworkPacket acceptPacket = NetworkPacket(SERVER_ENTER_STATION_ACCEPTED);
+			acceptPacket << player_id << team_id << st;
+			Network::GetInstance()->SendServerPacket(acceptPacket, true);
+		}
+
+	}else if(packet.GetType() == CLIENT_LEAVE_STATION)
+	{
+		packet >> team_id >> st;
+		if(this->_teamId == team_id)
+		{
+			freeStation((StationType)st);
+		}
 	}
+	if(packet.GetType() == PacketType::CLIENT_HEALTH_CHANGED)
+	{
+		//Station and health
+		int id;
+		int stationType;
+		int health;
+		
+		packet >> id;
+		packet >> stationType;
+		packet >> health;
+
+		//Check if we are the same team
+		if(id == this->getTeamId())
+		{
+			//set the health for this stationtype
+			this->SetStationHealth((StationType)stationType,health);
+		}
+	}
+}
+
+void ServerProxyShip::SetStationHealth(StationType stationType, int health)
+{
+	this->_stationsHealth.find(stationType)->second = health;
+}
+
+int ServerProxyShip::GetStationHealth(StationType stationType)
+{
+	return this->_stationsHealth.find(stationType)->second;
 }
 
 bool ServerProxyShip::StationInUse(StationType type)
@@ -130,7 +208,14 @@ bool ServerProxyShip::StationInUse(StationType type)
 
 int ServerProxyShip::getHealth()
 {
-	return this->_healthComponent.getHealth();
+	int totalHealth = 0;
+
+	//Add all the healths from stations together
+	for (int i = 0; i < _stationsHealth.size(); i++)
+	{
+		totalHealth += GetStationHealth((StationType)i);
+	}
+	return totalHealth;
 }
 
 void ServerProxyShip::init()

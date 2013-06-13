@@ -40,6 +40,7 @@ public:
 
 	bool HasPower();
 	bool HasShield();
+	bool IsOccupied();
 
 	// This
 	std::list<Player*> playerlist;
