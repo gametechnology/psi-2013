@@ -1,6 +1,7 @@
 #ifndef MAPSECTOR
 #define MAPSECTOR
 #include "Engine\Entity.h"
+#include "NetworkInterface.h"
 #include <string>
 #include <vector>
 
@@ -15,17 +16,25 @@ public:
 	float radius;
 	int distToBlueBase;
 	irr::io::path skyboxTexture;
+	int connectionSize;
+
+	static unsigned int uid;
+	
 
 	MapSector(std::string name,typeSector type, float radius);
 	~MapSector(void);
 	
+	int getId();
+	void setId(int new_id);
+
 	virtual void onAdd();
 	virtual void draw();
 	void resetTexture();
 
 	void SetSkyboxTexture(const irr::io::path & texture);
-
+	
 private:
+	unsigned int _id;
 	irr::video::ITexture* _mapSectorTexture;
 };
 
