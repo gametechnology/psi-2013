@@ -3,7 +3,22 @@
 #include <Engine\CameraMover.h>
 
 Camera::Camera() : IrrlichtNode("") {
-	addComponent(new CameraMover());
+	
+}
+
+void Camera::onAdd() {
+	IrrlichtNode::onAdd();
+
+	addComponent(mover = new CameraMover());
+}
+
+void Camera::handleMessage(unsigned int message) {
+	switch (message)
+	{
+	case 0: // This is DAMAGE, if I'm not mistaken.
+		shake();
+		break;
+	}
 }
 
 void Camera::init() {
@@ -32,4 +47,8 @@ void Camera::setTarget(irr::core::vector3df target) {
 
 void Camera::setUpVector(irr::core::vector3df up) {
 	getCameraNode()->setUpVector(up);
+}
+
+void Camera::shake() {
+	mover->shake();
 }

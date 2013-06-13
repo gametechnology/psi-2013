@@ -9,6 +9,8 @@ public:
 	IrrlichtNode(const irr::io::path& modelPath);
 	virtual ~IrrlichtNode();
 
+	void handleMessage(unsigned int message) {};
+
 	virtual void init();
 	virtual void update();
 
