@@ -19,8 +19,7 @@ public:
 		static int		uniqueId;
 		int				pingCounter;
 		int				id;			//only sync this
-        int				team_id;
-		ENetPeer		peer;
+        int				team_id;		
 		char			*name;
 		StationType		stationType;
 		bool			isConnected;
@@ -30,30 +29,24 @@ public:
 		
 		PlayerData( char *name, int team_id ) 
 		{
-			this ->	id				= uniqueId++;
-			this -> name			= name;
-			this -> team_id			= team_id;
-			this -> peer			= peer;
-			this -> stationType		= StationType :: ST_NONE;
-			this -> isConnected		= true;
-			std :: cout << "created a new playerdata";
-
-			if ( Network :: GetInstance( ) -> IsServer( ) ){
-				pingCounter = 0;
-			}
+			SetValues( this -> uniqueId++, name, team_id );			
 		}
 
 		PlayerData( char *name, int team_id, int player_id ) 
 		{
+			SetValues( player_id, name, team_id );			
+		}
+
+		void SetValues( int player_id, char *name, int team_id )
+		{
 			this ->	id				= player_id;
 			this -> name			= name;
 			this -> team_id			= team_id;
-			this -> peer			= peer;
 			this -> stationType		= StationType :: ST_NONE;
 			this -> isConnected		= true;
-			std :: cout << "created a new playerdata";
-			
-			if ( Network :: GetInstance( ) -> IsServer( ) ){
+
+			if ( Network :: GetInstance( ) -> IsServer( ) )
+			{
 				pingCounter = 0;
 			}
 		}
