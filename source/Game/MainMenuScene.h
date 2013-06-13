@@ -37,6 +37,7 @@ public:
 	MainMenuScene();
 	void init();
 	void update();
+	void draw();
 	~MainMenuScene();
 	void StartGame();
 	void StartTestGame();
@@ -48,6 +49,7 @@ public:
 	//Create the different windows
 	MainMenuEventReceiver* eventReceiver;
 	IGUIWindow* mainMenuWindow;
+	ITexture* texture;
 	std::list<Player*> playerlist;
 	
 	//buttons in mainmenu

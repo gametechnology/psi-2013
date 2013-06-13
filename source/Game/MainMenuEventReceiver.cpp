@@ -110,6 +110,7 @@ bool MainMenuEventReceiver::OnEvent(const SEvent& event)
 					PlayerManager::GetInstance()->Init();
 					mainmenu->createServerWindow_Button->setVisible(false);
 					mainmenu->joinServerWindow_Button->setVisible(false);
+					mainmenu->ipLabel->setVisible(false);
 					mainmenu->Ipadresinput->setVisible(false);
 					mainmenu->Namelabel->setVisible(false);
 					mainmenu->Nameinput->setVisible(false);
