@@ -14,9 +14,14 @@ public:
 	virtual void update();
 
 	virtual void draw(){};
-	virtual void handleMessage(unsigned int message) {};
+	virtual void handleMessage(unsigned int message){};
+
+	void shake();
 private:
 	Camera* camera;
+
+	irr::f32 shakeStrength;
+	irr::f32 shakeDecrease;
 };
 
 #endif
