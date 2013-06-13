@@ -40,6 +40,11 @@ enum PacketType
         SERVER_ALL_PLAYERS,
         CLIENT_GET_ALL_PLAYERS,
  
+		//switch station packets
+		CLIENT_REQUEST_ENTER_STATION,
+		SERVER_ENTER_STATION_ACCEPTED,
+		SERVER_ENTER_STATION_DENIED,
+		
         SERVER_JOIN_DENIED,
         SERVER_LOBBY_STATUS,
  
@@ -85,7 +90,10 @@ inline char* getPacketTypeName(PacketType type)
                 case CLIENT_POWER_CHANGED: { return "CLIENT_POWER_CHANGED"; break; }
 				case CLIENT_FIRE_LASER: { return "CLIENT_FIRE_LASER"; break; }
 
- 
+				case CLIENT_REQUEST_ENTER_STATION: { return "CLIENT_REQUEST_ENTER_STATION"; }
+				case SERVER_ENTER_STATION_ACCEPTED: { return "CLIENT_UPDATE_STATUS"; }
+				case SERVER_ENTER_STATION_DENIED: { return "SERVER_ENTER_STATION_DENIED"; }
+
                 case SERVER_ALL_PLAYERS: {return "SERVER_ALL_PLAYERS"; break;}
                 case CLIENT_GET_ALL_PLAYERS: {return "CLIENT_GET_ALL_PLAYERS"; break;}
  
