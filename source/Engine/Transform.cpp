@@ -28,12 +28,13 @@ void Transform::update() {
 }
 
 Transform::~Transform() {
-	delete position;
-	delete rotation;
-	delete velocity;
-	delete acceleration;
-	delete angularVelocity;
-	delete angularAccelaration;
-	delete radii;
+	//printf("[Transform] delete");
+	//delete position;
+	//delete rotation;
+	//delete velocity;
+	//delete acceleration;
+	//delete angularVelocity;
+	//delete angularAccelaration;
+	//delete radii;
 
 }
