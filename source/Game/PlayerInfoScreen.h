@@ -20,9 +20,12 @@ public:
 	bool isVisible();
 private:
 	bool visible;
-	const wchar_t* _teamInfoTxt;
+	wchar_t* _teamInfoTxt;
 	const wchar_t* playertext_team1;
 	const wchar_t* playertext_team2;
+
+	irr::core::stringw varToString(irr::core::stringw str1, float var, irr::core::stringw str2);
+
 	irr::core::vector2df _position;
 	irr::core::vector2df _size;
 	irr::gui::IGUIStaticText* stringObj;
