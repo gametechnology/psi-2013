@@ -19,14 +19,12 @@ class PlayerManager : public INetworkListener
 private:
 	static PlayerManager*					_instance;
 	irr :: core :: map<int, PlayerData*>	*_list_of_players;
-	irr :: core :: map<StationType, bool>	*_list_of_joinable_stations_team_1;
-	irr :: core :: map<StationType, bool>	*_list_of_joinable_stations_team_2;
 	int										_local_player_id;
 	
 	int timeSent, timeTaken;
 	int ticker;
 	int lastId;
-		
+
 	PlayerManager( );
 
 	int DistributeTeamId( );

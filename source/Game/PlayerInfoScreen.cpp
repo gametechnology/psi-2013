@@ -29,7 +29,7 @@ void PlayerInfoScreen::update() {
 	if (visible)
 	{
 		int a;
-		PlayerData *p = PlayerManager ::GetInstance()->GetAllPlayers(a);
+		//PlayerData *p = PlayerManager ::GetInstance()->GetAllPlayers(a);
 
 	
 		
