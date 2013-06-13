@@ -53,7 +53,7 @@ void GameScene::onAdd() {
 	addComponent(new SectorManager(galaxyMap, (Ship*)_ship));
 	addChild(galaxyMap);
 
-	_shipmap = new Shipmap(this);
+	_shipmap = new Shipmap((Ship*)_ship);
 	addChild(_shipmap);
 
 	((Ship*)_ship)->addIShipListener(this);
@@ -96,6 +96,11 @@ void GameScene::update() {
 	}
 
 	Scene::update();
+}
+
+Shipmap* GameScene::getShipMap()
+{
+	return this->_shipmap;
 }
 
 void GameScene::HandleNetworkMessage(NetworkPacket packet)
@@ -145,13 +150,6 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 	case CLIENT_FIRE_LASER:
 		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacketFromClient(packet, this->_laserPool->getAllObjects(), this));
 	}
-}
-
-void GameScene::switchStation(StationType type)
-{
-	_shipmap->disable();
-
-	((Ship*)_ship)->SwitchToStation(type);
 }
 
 void GameScene::handleShipMessage(ShipMessage message){

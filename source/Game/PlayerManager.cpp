@@ -131,12 +131,24 @@ void PlayerManager :: StationUpdated( StationType stationType )
 	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_UPDATE_STATUS );
 	packet << this -> _local_player_id << CLIENT_STATUS_UPDATE :: UPDATE_STATION << this -> GetLocalPlayerData( ) -> stationType;
 	//send a packet to the server that we changed station.
-	Network :: GetInstance( ) -> SendPacket( packet );
+	Network :: GetInstance( ) -> SendPacket( packet, true );
 }
 
 int PlayerManager :: getTimeTaken( )
 {	
 	return timeTaken;
+}
+
+PlayerData *PlayerManager :: GetAllPlayers( int *size )
+{
+	*size = this -> _list_of_players -> size( );
+	PlayerData *data;
+	data = ( PlayerData* )malloc( sizeof( data ) * ( *size ) );
+	for ( int i = 0; i < *size; i++ )
+	{
+		data[i] = *this -> _list_of_players -> find( i ) -> getValue( );
+	}
+	return data;
 }
 
 /**
@@ -381,7 +393,7 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		break;
 
 		//here, fix the client join station requests.
-	case PacketType :: CLIENT_REQUEST_ENTER_STATION:
+	/*case PacketType :: CLIENT_REQUEST_ENTER_STATION:
 		packet >> player_id >> player_station_type;
 		this -> OnClientJoinStationRequestReceived( player_id, ( StationType )player_station_type );
 		break;
@@ -389,7 +401,7 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	case PacketType :: CLIENT_LEAVE_STATION:
 		packet >> player_station_type >> player_id;
 		this -> OnClientLeaveStationReceived( player_id );
-		break;
+		break;*/
 
 	case PacketType :: SERVER_PONG:
 		packet >> player_id;

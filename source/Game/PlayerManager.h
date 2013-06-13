@@ -59,8 +59,8 @@ public:
 
 	int getTimeTaken();
 
-
-	void NoPingCounter();
+	PlayerData *GetAllPlayers( int *size );
+	void NoPingCounter( );
 
 	void Init();
 	void RequestJoinServer( char *player_name );
