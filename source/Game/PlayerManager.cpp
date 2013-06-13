@@ -39,7 +39,7 @@ void PlayerManager :: NoPingCounter(){
 		if( this -> _list_of_players -> find( i ) -> getValue( ) -> isConnected )
 		{
 			this -> _list_of_players -> find( i ) -> getValue( ) -> pingCounter++;
-			if ( ( this -> _list_of_players -> find( i ) -> getValue( ) -> pingCounter) >= 1500 )
+			if ( ( this -> _list_of_players -> find( i ) -> getValue( ) -> pingCounter) >= 3500 )
 			{
 				cout << this -> _list_of_players -> find( i ) -> getValue( ) -> name << " is disconnected!" << endl;
 				this -> _list_of_players -> find( i ) -> getValue( ) -> isConnected = false;
@@ -436,7 +436,7 @@ void PlayerManager :: PingSend()
 		  Network :: GetInstance() -> SendPacket(packet, true);
 		  cout << "CLIENT: Ping send to the server from player-" << this -> GetLocalPlayerData( ) -> id << "("<< this -> GetLocalPlayerData( ) -> name <<") !" << endl;
 	 }
-	 else if (ticker >= 1000 && !isDisconnected)
+	 else if (ticker >= 3500 && !isDisconnected)
 	 {	
 		 isDisconnected = true;
 		 cout << endl <<"CLIENT: I am disconnected!" << endl;
@@ -467,6 +467,6 @@ void PlayerManager :: ServerSendPong(int player_id, int timePingSent)
 	
 	
 	this -> _list_of_players -> find( player_id ) -> getValue( ) -> pingCounter = 0;
-    Network ::GetInstance()->SendPacket(nwp);
-    Network ::GetInstance()->SendServerPacket(nwp);
+    Network ::GetInstance()->SendPacket(nwp, true);
+    Network ::GetInstance()->SendServerPacket(nwp, true);
 }
