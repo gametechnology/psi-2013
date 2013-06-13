@@ -82,6 +82,7 @@ public:
 
 	void repairStation(int health);
 	void handleMessage(unsigned int message, void* data);
+	HealthComponent* getHealthComponent();
 
 	virtual void onAdd();
 	virtual void init();

@@ -6,7 +6,7 @@
 bool Network::isInitialized = false;
 Network* Network::instance = 0;
 
-Network::Network() : _port(ENET_PORT_ANY)
+Network::Network()
 {
 	_isServer = false;
 	_isConnected = false;
@@ -48,9 +48,10 @@ void Network::StopThreads()
 	_receiverThread->terminate();
 }
 
-void Network::InitializeClient(const char* ipAdress, const short port, const unsigned int maxDownstream, const unsigned int maxUpstream)
+void Network::InitializeClient(const char* ipAdress, const unsigned int maxDownstream, const unsigned int maxUpstream)
 {
-	std::cout << "Initializing client at port " << port << ".\n";
+	std::cout << "Initializing client at port 1234.\n";
+
 
 	_host = enet_host_create (NULL, 1, 2, maxDownstream, maxUpstream);
 
@@ -60,8 +61,7 @@ void Network::InitializeClient(const char* ipAdress, const short port, const uns
 		std::cout << "Succesfully created ENet client host.\n";
 
 	enet_address_set_host(&_address, ipAdress);
-	_address.port = port;
-
+	_address.port = 1234;
 	_peer = enet_host_connect(_host, &_address, 2, 0);
 
 	if (_peer == NULL)
@@ -77,7 +77,7 @@ void Network::InitializeClient(const char* ipAdress, const short port, const uns
 	else
 	{
 		enet_peer_reset(_peer);
-		printf("Connection to %s:%i failed.\n", ipAdress, _address.port);
+		printf("Connection to %s:1234 failed.\n", ipAdress, _address.port);
 
 	}
 }

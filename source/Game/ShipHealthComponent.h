@@ -5,13 +5,15 @@
 class Station;
 class Ship;
 
-class ShipHealthComponent : public HealthComponent
+class ShipHealthComponent : public HealthComponent, public INetworkListener
 {
 public:
 	ShipHealthComponent(Ship* ship);
 	~ShipHealthComponent(void);
 	void assignDamage(int damage);
 	void updateHealth();
+	void updateHealthToServer(int stationType, int stationHealth);
+	void HandleNetworkMessage(NetworkPacket packet);
 	int health;
 private:
 	Ship* ship_;

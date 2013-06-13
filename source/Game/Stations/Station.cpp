@@ -155,7 +155,7 @@ void Station::update()
 		_powerComponent->power -= 1;
 	// End test code for testing energy of a station.
 
-	updateHealth();
+	//updateHealth();
 
 	if (game->input->isKeyboardButtonDown(KEY_ESCAPE)){
 		stringObj->setVisible(false);
@@ -167,6 +167,10 @@ void Station::update()
 	}
 }
 
+HealthComponent* Station::getHealthComponent()
+{
+	return _healthComponent;
+}
 
 void Station :: draw( )
 {	
