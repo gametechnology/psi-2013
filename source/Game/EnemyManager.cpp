@@ -103,15 +103,15 @@ void EnemyManager::update() {
 
 		if(dynamic_cast<EnemyDrone*>(_enemyList[i]))
 		{
-			_enemyList[i]->steering(irr::core::vector3df(0,1,0), *player->transform->position);
-			if((*player->transform->position - *_enemyList[i]->transform->position).getLength() <= _enemyList[i]->getLoS())
+			_enemyList[i]->steering(irr::core::vector3df(0,1,0), player->transform->position);
+			if((player->transform->position - _enemyList[i]->transform->position).getLength() <= _enemyList[i]->getLoS())
 			{
 				_enemyList[i]->inRangeList.push_back(player);
 			}
 		}else if(dynamic_cast<EnemyFighter*>(_enemyList[i]))
 		{
-			_enemyList[i]->steering(irr::core::vector3df(0,-1,0), *player->transform->position);
-			if((*player->transform->position - *_enemyList[i]->transform->position).getLength() <= _enemyList[i]->getLoS())
+			_enemyList[i]->steering(irr::core::vector3df(0,-1,0), player->transform->position);
+			if((player->transform->position - _enemyList[i]->transform->position).getLength() <= _enemyList[i]->getLoS())
 			{
 				_enemyList[i]->inRangeList.push_back(player);
 			}
@@ -201,7 +201,7 @@ void EnemyManager::LaserNarrowPhase(array<Enemy*> _enput, array<Laser*> _laput)
 	{
 		for(int j = 0; j < (int)(_enput.size()); j++)
 		{
-			float distance = (*_laput[i]->transform->position).getDistanceFrom(*_enput[j]->transform->position);
+			float distance = (_laput[i]->transform->position).getDistanceFrom(_enput[j]->transform->position);
 			if (distance < (_enput[j]->getRadius()))
 			{
 				_laput[i]->contactResolverA(_enput[j]);
@@ -219,7 +219,7 @@ void EnemyManager::NarrowPhaseDetection(array<Enemy*> _input)
 		{
 			if(i != j)
 			{
-				float distance = _input[i]->transform->position->getDistanceFrom(_input[j]->getPosition());
+				float distance = _input[i]->transform->position.getDistanceFrom(_input[j]->getPosition());
 				if (distance < (_input[i]->getOuterRadius() + _input[j]->getOuterRadius()))
 				{
 					if (distance < (_input[i]->getRadius() + _input[j]->getRadius() ) )

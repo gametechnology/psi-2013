@@ -27,7 +27,7 @@ void ShipMover::init() { }
 
 void ShipMover::update() {
 	//set the current rotation matrix which will be used to transform the local acceleration into world acceleration
-	this->shipRotation_= *(entity->transform->rotation);
+	this->shipRotation_= entity->transform->rotation;
 	//rotationMatrix.setRotationDegrees(shipRotation_);
 	
 	//handle input.
@@ -47,8 +47,8 @@ void ShipMover::update() {
 	worldLinForce_ = this->LocalToWorld(&localLinForce_, &rotationMatrix);		//i think it breaks here, with the fucntion and rotation
 	worldAngForce_ = this->LocalToWorld(&localAngForce_, &rotationMatrix);
 
-	*shipLinAcc_ += worldLinForce_; //force should be divided by mass. but the ship has no mass, I think.
-	*shipAngAcc_ += worldAngForce_;
+	shipLinAcc_ += worldLinForce_; //force should be divided by mass. but the ship has no mass, I think.
+	shipAngAcc_ += worldAngForce_;
 
 	/*this method is used because it uses the least amount of complicated calculations I could think of.
 	the complicated math is only done once in the thruster, and only simple adding and matrix transformations

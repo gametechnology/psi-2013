@@ -13,8 +13,8 @@ void Camera::init() {
 }
 
 void Camera::createNode() {
-	irr::core::vector3df lookAt = *this->parent->transform->position + irr::core::vector3df(0,0,-1); 
-	this->node = this->scene->getIrrlichtSceneManager()->addCameraSceneNode(NULL, *this->parent->transform->position, lookAt);
+	irr::core::vector3df lookAt = this->parent->transform->position + irr::core::vector3df(0,0,-1); 
+	this->node = this->scene->getIrrlichtSceneManager()->addCameraSceneNode(NULL, this->parent->transform->position, lookAt);
 	getCameraNode()->bindTargetAndRotation(true);
 }
 

@@ -54,8 +54,8 @@ void AstroidPlaceholder::onAdd() {
 	node->setMaterialTexture(0, this->game->driver->getTexture("../assets/Textures/SkyBoxes/skybox01.png"));
 
 	node->setPosition(irr::core::vector3df((float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750), (float)((rand() % 1500) - 750)));
-	this->transform->rotation = &irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90));
-		this->transform->velocity = &irr::core::vector3df(100, 100, 100);
+	this->transform->rotation = irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90));
+		this->transform->velocity = irr::core::vector3df(100, 100, 100);
 
 	Entity::onAdd();
 }

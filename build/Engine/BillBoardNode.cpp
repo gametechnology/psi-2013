@@ -10,7 +10,7 @@ void BillBoardNode::init(){
 }
 
 void BillBoardNode::createNode( ) {
-	node = scene->getIrrlichtSceneManager()->addBillboardSceneNode(0, _size, *transform->position);
+	node = scene->getIrrlichtSceneManager()->addBillboardSceneNode(0, _size, transform->position);
 	
 	// Setting materials
 	node->setMaterialFlag(video::EMF_LIGHTING, false);

@@ -8,8 +8,8 @@
 Thruster::Thruster(irr::core::vector3df position, irr::core::vector3df initialDirection, Ship* ship) : Entity()
 {
 	inertiaMatrix = ship->GetInertiaMatrix();
-	this->transform->position = &position;
-	this->transform->rotation = &initialDirection;
+	this->transform->position = position;
+	this->transform->rotation = initialDirection;
 	this->direction = initialDirection;
 	this->position = position;
 	nDirection = direction;

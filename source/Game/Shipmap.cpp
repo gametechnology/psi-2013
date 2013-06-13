@@ -80,8 +80,8 @@ void Shipmap::onAdd()
 		stationOccupied[i] = false;
 
 	// Player starting position - should start in the middle of the plane
-	this->transform->position->X = (float)((playerTile.x * tileSize) + offsetX);
-	this->transform->position->Y = (float)((playerTile.y * tileSize) + offsetY + 20);
+	this->transform->position.X = (float)((playerTile.x * tileSize) + offsetX);
+	this->transform->position.Y = (float)((playerTile.y * tileSize) + offsetY + 20);
 }
 
 void Shipmap::init()
@@ -139,7 +139,7 @@ void Shipmap::draw()
 		0, stationColor, true);
 
 	// player icon
-	game->driver->draw2DImage(icon, core::position2d<s32>((int)this->transform->position->X, (int)this->transform->position->Y),
+	game->driver->draw2DImage(icon, core::position2d<s32>((int)this->transform->position.X, (int)this->transform->position.Y),
 		irr::core::rect<s32>(iconOffset-30, 0, iconOffset, icon->getOriginalSize().Height),
 		0, video::SColor(255,255,255,255), true);
 
@@ -165,36 +165,36 @@ void Shipmap::update()
 
 	playerSpeed = 1.7f;
 
-	savedPosX = this->transform->position->X;
-	savedPosY = this->transform->position->Y;
+	savedPosX = this->transform->position.X;
+	savedPosY = this->transform->position.Y;
 
-	playerBox->UpperLeftCorner.X = (int)this->transform->position->X;
-	playerBox->UpperLeftCorner.Y = (int)this->transform->position->Y;
-	playerBox->LowerRightCorner.X = (int)(this->transform->position->X + iconRadius*2);
-	playerBox->LowerRightCorner.Y = (int)(this->transform->position->Y + iconRadius*2);
+	playerBox->UpperLeftCorner.X = (int)this->transform->position.X;
+	playerBox->UpperLeftCorner.Y = (int)this->transform->position.Y;
+	playerBox->LowerRightCorner.X = (int)(this->transform->position.X + iconRadius*2);
+	playerBox->LowerRightCorner.Y = (int)(this->transform->position.Y + iconRadius*2);
 
-	playerTile.x = (int)((this->transform->position->X - offsetX) / tileSize);
-	playerTile.y = (int)((this->transform->position->Y - offsetY) / tileSize);
+	playerTile.x = (int)((this->transform->position.X - offsetX) / tileSize);
+	playerTile.y = (int)((this->transform->position.Y - offsetY) / tileSize);
 
 
 	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_A)) {
 		isMoving = true;
-		this->transform->position->X -= playerSpeed; 
+		this->transform->position.X -= playerSpeed; 
 	}
 
 	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_D)) {
 		isMoving = true;
-		this->transform->position->X += playerSpeed;
+		this->transform->position.X += playerSpeed;
 	}
 
 	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_W)) {
 		isMoving = true;
-		this->transform->position->Y -= playerSpeed;
+		this->transform->position.Y -= playerSpeed;
 	}
 
 	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_S)){
 		isMoving = true;
-		this->transform->position->Y += playerSpeed;
+		this->transform->position.Y += playerSpeed;
 	}
 
 	// TODO replace stationOccupied[i] with the hasPlayer booleans of each individual station!
@@ -219,10 +219,10 @@ void Shipmap::update()
 	}
 	
 	if (isMoving) {
-		int leftTile = (int)((this->transform->position->X - offsetX) / tileSize);
-		int rightTile = (int)(((this->transform->position->X + iconRadius * 2) - offsetX) / tileSize);
-		int topTile = (int)((this->transform->position->Y - offsetY) / tileSize);
-		int bottomTile = (int)(((this->transform->position->Y + iconRadius * 2) - offsetY) / tileSize);
+		int leftTile = (int)((this->transform->position.X - offsetX) / tileSize);
+		int rightTile = (int)(((this->transform->position.X + iconRadius * 2) - offsetX) / tileSize);
+		int topTile = (int)((this->transform->position.Y - offsetY) / tileSize);
+		int bottomTile = (int)(((this->transform->position.Y + iconRadius * 2) - offsetY) / tileSize);
 
 		if (tiles[topTile][leftTile] == 1 || tiles[bottomTile][leftTile] == 1 || tiles[topTile][rightTile] == 1 || tiles[bottomTile][rightTile] == 1) {
 			isIntersecting = true;
@@ -250,8 +250,8 @@ void Shipmap::update()
 		}
 
 		if (isIntersecting) {
-			this->transform->position->X = savedPosX;
-			this->transform->position->Y = savedPosY;
+			this->transform->position.X = savedPosX;
+			this->transform->position.Y = savedPosY;
 		}
 	}
 

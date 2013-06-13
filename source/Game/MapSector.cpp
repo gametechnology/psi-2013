@@ -57,7 +57,7 @@ void MapSector::SetSkyboxTexture(const irr::io::path & texture){
 
 void MapSector::draw(){
 	game->driver->draw2DImage(this->_mapSectorTexture,
-		irr::core::rect<s32>((int)(this->transform->position->X - radius), (int)(this->transform->position->Y - radius), (int)(this->transform->position->X + radius), (int)(this->transform->position->Y + radius)),
+		irr::core::rect<s32>((int)(this->transform->position.X - radius), (int)(this->transform->position.Y - radius), (int)(this->transform->position.X + radius), (int)(this->transform->position.Y + radius)),
 		irr::core::rect<s32>(0, 0, _mapSectorTexture->getOriginalSize().Width, _mapSectorTexture->getOriginalSize().Height),
 		0,
 		0,

@@ -87,7 +87,7 @@ void StateSwitchDrone::handleOffensive()
 		return;
 
 	if(!_parent->inRangeList.empty())
-		_parent->chase(*_parent->inRangeList.back()->transform->position);
+		_parent->chase(_parent->inRangeList.back()->transform->position);
 }
 
 void StateSwitchDrone::handleDeath()
