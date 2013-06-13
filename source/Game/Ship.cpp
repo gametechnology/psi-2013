@@ -42,11 +42,11 @@ void Ship::onAdd() {
 	this->env = game->device->getGUIEnvironment();
 	this->_currentStation = NULL;
 
-	addChild(_defenceStation		= new DefenceStation(*this));
-	addChild(_helmStation			= new HelmStation(*this));
-	addChild(_navigationStation		= new NavigationStation(*this));
-	addChild(_weaponStation			= new WeaponStation(*this));
-	addChild(_powerStation			= new PowerStation(*this));
+	addChild(_defenceStation		= new DefenceStation(this));
+	addChild(_helmStation			= new HelmStation(this));
+	addChild(_navigationStation		= new NavigationStation(this));
+	addChild(_weaponStation			= new WeaponStation(this));
+	addChild(_powerStation			= new PowerStation(this));
 
 	this->init();
 
