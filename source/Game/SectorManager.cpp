@@ -106,10 +106,10 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 			break;
 		case PacketType::SERVER_SEND_NEXTSECTOR:
 			printf("\n[SectorManager] SERVER_SEND_NEXTSECTOR recieved\n\n");
-			int i;
+			int j;
 			packet >> *this->_mapSector;
-			packet >> i;
-			if(i == _ship->getTeamId()){
+			packet >> j;
+			if(j == _ship->getTeamId()){
 				SetNextSector(*_mapSector);
 			}
 			break;
@@ -143,7 +143,7 @@ MapSector* SectorManager::SearchBeginMapSector(int teamID){
 				temp = _map->sectors[i];
 			}
 		}else{
-			if(teamID == HOME_RED){
+			if(_map->sectors[i]->type == HOME_RED){
 				//delete _mapSector;
 				temp = _map->sectors[i];
 			}
