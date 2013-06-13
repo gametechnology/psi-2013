@@ -20,7 +20,11 @@ SectorManager::SectorManager(GalaxyMap* map,Ship* ship) : Component() {
 void SectorManager::onAdd() {
 	activeSceneName = "SectorHomeBase";
 	printf("[PENIS]%s",_mapSector->skyboxTexture);
-	this->getGame()->sceneManager->addScene(activeSceneName, new SectorHomeBase(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size()));
+	if (_ship->getTeamId() == 1)
+		this->getGame()->sceneManager->addScene(activeSceneName, new SectorHomeBase(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size(), HOME_BLUE));
+	else 
+		this->getGame()->sceneManager->addScene(activeSceneName, new SectorHomeBase(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size(), HOME_RED));
+
 }
 
 void SectorManager::handleMessage(unsigned int message, void* data) {
@@ -78,13 +82,13 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 						printf("[SectorTemplate] HOME_BLUE \n");
 						//delete _currentSector;
 						activeSceneName = "SectorHomeBase";
-						this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size()));
+						this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size(), HOME_BLUE));
 						break;
 					case HOME_RED:
 						printf("[SectorTemplate] HOME_RED \n");
 						//delete _currentSector;
 						activeSceneName = "SectorHomeBase";
-						this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size()));
+						this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size(), HOME_RED));
 						break;
 				}		
 			}
