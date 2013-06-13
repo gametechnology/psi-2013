@@ -14,6 +14,10 @@ void MainMenuScene::init() {
 	//Get the device
 	issearching = false;
 	guiEnv = game->guiEnv;
+
+	//Get the texture
+	texture = game->driver->getTexture("../assets/galaxy.jpg");
+
 	playerlist = std::list<Player*>();
 
 	this->addGuiElements();
@@ -37,6 +41,10 @@ void MainMenuScene::init() {
 	game->input->setCustomEventReceiver(eventReceiver);
 }
 
+void MainMenuScene::draw() {
+	game->driver->draw2DImage(texture, vector2di(0,0), rect<s32>(0,0,1280,720));  
+}
+
 void MainMenuScene::addGuiElements()
 {
 
@@ -44,14 +52,22 @@ void MainMenuScene::addGuiElements()
 	// MainMenu
 	//////////////////////////////////////////
 	//Creat the main menu window
+	IVideoDriver* driver = game->driver;
+
+	guiEnv->addImage(game->driver->getTexture("../assets/Enemyspaceship.png"),
+            position2d<int>(175,300));
+	guiEnv->addImage(game->driver->getTexture("../assets/SpaceShip.png"),
+            position2d<int>(400,300));
+	
 	mainMenuWindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"Main menu",0,100);
 	mainMenuWindow->getCloseButton()->remove();
 	
 	//Add text and button
+	
 	createServerWindow_Button = guiEnv->addButton(rect<s32>(position2di(50,135),dimension2di(200,25)),mainMenuWindow,2, L"Create a game");
 	joinServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,1,L"Join a game manualy");
 	findserver_Button	= guiEnv->addButton(rect<s32>(position2di(50,195),dimension2di(200,25)),mainMenuWindow,6,L"Find hosts");	
-	
+		
 	servernames	= guiEnv->addStaticText(L"Server name:",rect<s32>(position2di(50,225),dimension2di(100,25)),false,true,mainMenuWindow);
 	serverip = guiEnv->addStaticText(L"Server Ipadress:",rect<s32>(position2di(175,225),dimension2di(100,25)),false,true,mainMenuWindow);
 	serveractions	= guiEnv->addStaticText(L"Actions:",rect<s32>(position2di(300,225),dimension2di(100,25)),false,true,mainMenuWindow);
@@ -287,6 +303,7 @@ void MainMenuScene::BackToMainMenu()
 {
 	createServerWindow_Button->setVisible(true);
 	joinServerWindow_Button->setVisible(true);
+	ipLabel->setVisible(true);
 	Ipadresinput->setVisible(true);
 	Namelabel->setVisible(true);
 	Nameinput->setVisible(true);

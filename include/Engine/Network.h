@@ -36,6 +36,7 @@ enum PacketType
         CLIENT_SWITCH_STATION,
         CLIENT_LEAVE_STATION,
         CLIENT_POWER_CHANGED,
+        CLIENT_HEALTH_CHANGED,
 		CLIENT_FIRE_LASER,
         SERVER_ALL_PLAYERS,
         CLIENT_GET_ALL_PLAYERS,
@@ -47,6 +48,7 @@ enum PacketType
 		
         SERVER_JOIN_DENIED,
         SERVER_LOBBY_STATUS,
+
  
         //these are packages handled by the playerManager
         CLIENT_REQUEST_JOIN_SERVER,
@@ -88,6 +90,7 @@ inline char* getPacketTypeName(PacketType type)
                 case CLIENT_SWITCH_STATION: { return "CLIENT_SWITCH_STATION"; break; }
                 case CLIENT_LEAVE_STATION: { return "CLIENT_LEAVE_STATION"; break; }
                 case CLIENT_POWER_CHANGED: { return "CLIENT_POWER_CHANGED"; break; }
+                case CLIENT_HEALTH_CHANGED: { return "CLIENT_HEALTH_CHANGED"; break; }
 				case CLIENT_FIRE_LASER: { return "CLIENT_FIRE_LASER"; break; }
 
 				case CLIENT_REQUEST_ENTER_STATION: { return "CLIENT_REQUEST_ENTER_STATION"; }
@@ -119,8 +122,6 @@ inline char* getPacketTypeName(PacketType type)
 class Network
 {
 private:
-
-	const int _port;
 
 	static bool isInitialized;
 
@@ -157,7 +158,7 @@ public:
 	/*
 	* Initialize a client. When the connection with the server is succesfull, you will be able to send and receive messages.
 	*/
-	void InitializeClient(const char* ipAdress, const short port, unsigned int maxDownstream = 0, unsigned int maxUpstream = 0);
+	void InitializeClient(const char* ipAdress, unsigned int maxDownstream = 0, unsigned int maxUpstream = 0);
 
 	/* 
 	* Initialize a server. When succesfull, clients will be able to connect to you and receive your server messages.

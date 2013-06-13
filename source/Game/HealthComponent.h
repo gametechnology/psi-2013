@@ -2,6 +2,7 @@
 #define HEALTHCOMPONENT
 
 #include <Engine\Component.h>
+#include "NetworkInterface.h"
 
 class HealthComponent : public Component
 {
@@ -17,6 +18,8 @@ public:
 	void setMaxHealth(int maxHealth);
 	int getMaxHealth();
 	void handleMessage(unsigned int message, void* data);
+	void updateHealthToServer();
+
 private:
 	int maxHealth_;
 	int health_;
