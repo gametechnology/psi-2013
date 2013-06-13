@@ -68,7 +68,7 @@ void Game::run()
 			Hierarchy::Visualize(sceneManager->getLastScene());
 
 		// Quick hack to switch to switch the order of draws. We had some problems with drawing stuff because of the draw order.
-		if(input->isKeyboardButtonPressed(KEY_KEY_K))
+		if(input->isKeyboardButtonPressed(KEY_KEY_K) && input->isKeyboardButtonPressed(KEY_KEY_J))
 			switchDraws = !switchDraws;
 
 		if(switchDraws)
