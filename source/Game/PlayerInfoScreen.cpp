@@ -33,6 +33,7 @@ void PlayerInfoScreen::update()
 		std::vector<PlayerData*> playerInfo = PlayerManager::GetInstance()->GetAllPlayers();
 		
 		_teamInfoTxt = L"";
+		list << "All the players in the game:" << endl << endl;
 		for(std::vector<PlayerData*>::iterator it = playerInfo.begin(); it != playerInfo.end(); ++it) 
 		{
 			list << (*it)->id << "- Player " << (*it)->name << "\t is in the ";
