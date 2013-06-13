@@ -18,17 +18,26 @@ SectorManager::SectorManager(GalaxyMap* map,Ship* ship) : Component() {
 }
 
 void SectorManager::onAdd() {
-	//asking for fist sector
-	NetworkPacket packet = NetworkPacket(PacketType::CLIENT_REQUEST_BEGINSECTOR);
-	packet << 1; // TODO: pass the teamNumber through here
-	Network::GetInstance()->SendPacket(packet,true);
+	printf("\n[SectorManager] ONADD\n\n");
 
 	//Creating an first scene
 	activeSceneName = "SectorHomeBase";
 	//printf("[SectorManager] %s",_mapSector->skyboxTexture);
 	this->getGame()->sceneManager->addScene(activeSceneName, new SectorHomeBase(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size()));
+	
+	
+	Component::onAdd();
+	init();
 }
+void SectorManager::init(){
+	printf("\n[SectorManager] INIT\n\n");
+	//asking for fist sector
+	NetworkPacket packet = NetworkPacket(PacketType::CLIENT_REQUEST_BEGINSECTOR);
+	packet << 1; // TODO: pass the teamNumber through here
+	Network::GetInstance()->SendPacket(packet,true);
 
+	Component::init();
+}
 void SectorManager::handleMessage(unsigned int message, void* data) {
 	switch(message) {
 		case NEXT_SECTOR: //Switch Sector 
@@ -56,24 +65,24 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 	MapSector* tempSec;
 	switch(packet.GetType()){
 		case PacketType::CLIENT_REQUEST_BEGINSECTOR:
-			printf("[SectorManager] CLIENT_REQUEST_BEGINSECTOR recieved\n");
+			printf("\n [SectorManager] CLIENT_REQUEST_BEGINSECTOR recieved \n\n");
 			tempSec = SearchBeginMapSector(0);
 
 			sendToClientPacket << *tempSec;//made operator;TODO: make extra parrameter for team filtering
-			Network::GetInstance()->SendPacket(sendToClientPacket, true);
+			Network::GetInstance()->SendServerPacket(sendToClientPacket, true);
 			break;
 		case PacketType::CLIENT_REQUEST_NEXTSECTOR:
-			printf("[SectorManager] CLIENT_REQUEST_NEXTSECTOR recieved\n");
+			printf("\n[SectorManager] CLIENT_REQUEST_NEXTSECTOR recieved\n\n");
 			packet >> packetdata;
 			tempSec = SearchNextMapSector(packetdata.Y,packetdata.Z);
 			//Send message to clients what there new sector is;
 			
 			sendToClientPacket << *tempSec;//made operator;TODO: make extra parrameter for team filtering
-			Network::GetInstance()->SendPacket(sendToClientPacket, true);
+			Network::GetInstance()->SendServerPacket(sendToClientPacket, true);
 			
 			break;
 		case PacketType::SERVER_SEND_NEXTSECTOR:
-			printf("[SectorManager] SERVER_SEND_NEXTSECTOR recieved\n");
+			printf("\n[SectorManager] SERVER_SEND_NEXTSECTOR recieved\n\n");
 			packet >> *this->_mapSector;
 			SetNextSector(*_mapSector);
 			break;

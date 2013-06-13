@@ -14,6 +14,7 @@ public:
 	SectorManager(GalaxyMap* map,Ship* ship);
 	void handleMessage(unsigned int message, void* data = 0);
 	void onAdd();
+	void init();
 	virtual ~SectorManager();
 	MapSector* _mapSector;
 	char* activeSceneName;
