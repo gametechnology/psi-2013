@@ -59,7 +59,7 @@ void PlayerInfoScreen::update()
 					stationInfo = "Navigation Station";
 					break;
 			}
-			list << stationInfo << "\t and in team " << (*it)->team_id;
+			list << stationInfo << "\t and in team " << (*it)->team_id << endl;
 		}
 		
 		const size_t cSize = strlen(list.str().c_str())+1;
