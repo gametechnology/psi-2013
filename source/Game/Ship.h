@@ -92,6 +92,9 @@ public:
 
 	void notifyIShipListeners(ShipMessage message);
 
+	void foundEnemyBase();
+	void backAtOwnBase();
+
 private:
 	std::list<IShipListener*> listeners;
 
@@ -103,6 +106,8 @@ private:
 
 	stringw varToString(stringw str1, float var, stringw str2);
 	stringw varToString(stringw str1, float var);
+	bool _foundEnemyBase;
+	bool _backAtOwnBase;
 
 	void setInertiaMatrix(float h, float w, float d, float m);
 

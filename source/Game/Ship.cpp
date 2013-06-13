@@ -401,3 +401,22 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 		}		
 	}
 }
+
+void Ship::foundEnemyBase() {
+	
+	_foundEnemyBase = true;
+	printf("Found Enemy Base!!!! :)");
+
+}
+
+void Ship::backAtOwnBase() {
+
+	if (_foundEnemyBase == true){
+		_backAtOwnBase = true;
+		printf("You won!!"); 
+	}
+
+	else
+		printf("Find the enemy base first!");
+	
+}

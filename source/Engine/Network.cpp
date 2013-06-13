@@ -61,7 +61,7 @@ void Network::InitializeClient(const char* ipAdress, const unsigned int maxDowns
 		std::cout << "Succesfully created ENet client host.\n";
 
 	enet_address_set_host(&_address, ipAdress);
-
+	_address.port = 1234;
 	_peer = enet_host_connect(_host, &_address, 2, 0);
 
 	if (_peer == NULL)
