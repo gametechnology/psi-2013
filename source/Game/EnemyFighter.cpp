@@ -44,7 +44,9 @@ void EnemyFighter::chase(vector3df target)
 
 void EnemyFighter::update()
 {
-	EnemyFighter::stateSwitch->update();
+	if(!this->enabled){
+		EnemyFighter::stateSwitch->update();
+	}
 
 	if(game->input->isKeyboardButtonPressed(irr::KEY_KEY_M))
 	{

@@ -111,15 +111,15 @@ MapSector* SectorManager::SearchNextMapSector(int currMapId, int connectionId){
 				printf("[SectorManager] SearchNextMapSector( %i , %i)\n",currMapId,connectionId);
 	//Determen which is the new sector
 	int index = connectionId;
-	std::vector<MapSector*>::iterator temp = SearchMapSector(connectionId)->connections.begin();//Looking through mapSectors 
+	std::vector<MapSector*>::iterator temp = SearchMapSector(currMapId)->connections.begin();//Looking through mapSectors 
 	
 	try{
 		std::advance(temp,index);
 	}catch(char * str){
 		printf("[SectorManager] Something went wrong... : %c", str);
 	}
-	
-	return *temp;//change the _mapSector to the sector the data tells him to be
+	MapSector* tempSect = *temp;
+	return tempSect;//change the _mapSector to the sector the data tells him to be
 			
 }
 MapSector* SectorManager::SearchBeginMapSector(int teamID){
