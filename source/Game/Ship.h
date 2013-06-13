@@ -74,7 +74,7 @@ public:
 
 	Station*	GetStation(StationType);
 	Thruster**	GetThrusters();
-
+	matrix4* GetInertiaMatrix();
 	int getShipHealth();
 	bool getShipDestroyed();
 

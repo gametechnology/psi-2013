@@ -2,10 +2,13 @@
 #include "Engine\Game.h"
 #include "Engine\Entity.h"
 #include "Irrlicht\irrlicht.h"
+
+class Ship;
+
 class Thruster : public Entity
 {
 public:
-	Thruster(irr::core::vector3df position, irr::core::vector3df initialDirection);
+	Thruster(irr::core::vector3df position, irr::core::vector3df initialDirection, Ship* ship);
 	virtual ~Thruster();
 	void Activate();
 	void init();
@@ -22,6 +25,7 @@ public:
 	irr::core::vector3df direction;
 	irr::core::vector3df nDirection;
 
+	irr::core::matrix4* inertiaMatrix;
 	irr::core::vector3df forceComponent1;
 	irr::core::vector3df forceComponent2;
 

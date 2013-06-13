@@ -17,6 +17,7 @@ Ship::Ship(vector3df position, vector3df rotation, int teamId) : ShipInterface (
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
 	Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ENTER_STATION_ACCEPTED, this );
 	Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ENTER_STATION_DENIED, this );
+	setInertiaMatrix(2,2,2,2);
 }
 
 Ship::~Ship(void)
@@ -56,10 +57,10 @@ void Ship::onAdd() {
 	this->shipHealthComponent = new ShipHealthComponent(this);
 	addComponent(shipHealthComponent);
 	//Thrusters
-	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
-	_thrusters[1] = new Thruster(vector3df(0,-2, 4), vector3df(0, 4, 4 ));
-	_thrusters[2] = new Thruster(vector3df(0,2, -4), vector3df(0, -4, -4 ));
-	_thrusters[3] = new Thruster(vector3df(0,2, -4), vector3df(0, -4, 4 ));
+	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4), this);
+	_thrusters[1] = new Thruster(vector3df(0,-2, 4), vector3df(0, 4, 4 ), this);
+	_thrusters[2] = new Thruster(vector3df(0,2, -4), vector3df(0, -4, -4 ), this);
+	_thrusters[3] = new Thruster(vector3df(0,2, -4), vector3df(0, -4, 4 ), this);
 
 	irr::core::stringw strShipHealth			= "ship health: "; 
 	strShipHealth +	irr::core::stringw();
@@ -204,6 +205,9 @@ Thruster** Ship :: GetThrusters()
 {
 	return this->_thrusters;
 }
+matrix4* Ship::GetInertiaMatrix(){
+	return this->_inertiaMatrix;
+}
 
 void Ship :: CheckChangeInput()
 {
@@ -280,7 +284,8 @@ bool Ship :: getShipDestroyed()
 
 void Ship::setInertiaMatrix(float h, float w, float d, float m)
 {
-	//used for the momentum of inertia, currently not used, only m is used (mass)
+	//used for the momentum of inertia, currently not used, only m is used (mass')
+	_inertiaMatrix = new matrix4();
 	float inertiaData[16];
 	for(unsigned i = 0; i < 16; i++)
 	{
