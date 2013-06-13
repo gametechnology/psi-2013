@@ -47,6 +47,7 @@ private:
 
 	void PongReceived(int player_name, int timePingSend);
 	void ServerSendPong(int player_name, int timePingSend);
+	void FlagPlayerInList(int id);
 	PlayerData *GetPlayerData( int id );
 
 public:
