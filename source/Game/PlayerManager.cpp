@@ -44,6 +44,9 @@ void PlayerManager :: NoPingCounter(){
 				cout << this -> _list_of_players -> find( i ) -> getValue( ) -> name << " is disconnected!" << endl;
 				this -> _list_of_players -> find( i ) -> getValue( ) -> isConnected = false;
 				this -> _list_of_players -> find( i ) -> getValue( ) -> stationType = StationType :: ST_NONE;
+				char *nameHolder = this -> _list_of_players -> find( i ) -> getValue( ) -> name;
+				this -> _list_of_players -> find( i ) -> getValue( ) -> name = strcat(nameHolder," (Disconnected)");
+				cout <<*this -> _list_of_players -> find( i ) -> getValue( ) -> name;
 			}
 		}
 	}
