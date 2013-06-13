@@ -30,10 +30,10 @@ public:
 	void init();
 	void onAdd();
 	void update();
-	void switchStation(StationType type);
 	void HandleNetworkMessage(NetworkPacket packet);
 
 	void handleShipMessage(ShipMessage message);
+	Shipmap* getShipMap();
 private:
 	bool testMap;
 	Camera *_camera;

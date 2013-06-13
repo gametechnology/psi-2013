@@ -8,6 +8,7 @@
 #include "Engine\NetworkPacket.h"
 #include "Stations\Station.h"
 #include <time.h>
+#include <vector>
 
 #pragma comment(lib, "winmm.lib")
 
@@ -18,14 +19,12 @@ class PlayerManager : public INetworkListener
 private:
 	static PlayerManager*					_instance;
 	irr :: core :: map<int, PlayerData*>	*_list_of_players;
-	irr :: core :: map<StationType, bool>	*_list_of_joinable_stations_team_1;
-	irr :: core :: map<StationType, bool>	*_list_of_joinable_stations_team_2;
 	int										_local_player_id;
 	
 	int timeSent, timeTaken;
 	int ticker;
 	int lastId;
-		
+
 	PlayerManager( );
 
 	int DistributeTeamId( );
@@ -43,10 +42,11 @@ private:
 	void OnClientStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, StationType st );
 	void OnServerStatusUpdateReceived( int player_id, CLIENT_STATUS_UPDATE update, StationType st );
 	void OnClientJoinStationRequestReceived( int player_id, StationType st );
-	void OnClientLeaveStationReceived( int player_id );
+	
 
 	void PongReceived(int player_name, int timePingSend);
 	void ServerSendPong(int player_name, int timePingSend);
+	void FlagPlayerInList(int id);
 	PlayerData *GetPlayerData( int id );
 
 public:
@@ -58,7 +58,7 @@ public:
 
 	int getTimeTaken();
 
-	PlayerData *GetAllPlayers( int *size );
+	std :: vector<PlayerData*> GetAllPlayers( );
 	void NoPingCounter( );
 
 	void Init();
@@ -71,5 +71,6 @@ public:
 	void SyncLocalPlayerData( StationType currentStation );
 	void ShowPlayerList( );
 	PlayerData *GetLocalPlayerData( );
+	void OnClientLeaveStationReceived( int player_id );
 };
 #endif

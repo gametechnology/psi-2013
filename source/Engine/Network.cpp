@@ -281,8 +281,15 @@ void Network::DistributePacket(NetworkPacket networkPacket)
 			
 		}
 		std::list<INetworkListener*>::const_iterator iterator;
-		for (iterator = _listeners[type]->begin(); iterator != _listeners[type]->end(); ++iterator)
-			(*iterator)->HandleNetworkMessage(networkPacket);
+		
+		std::list<INetworkListener*>* local = _listeners[type];
+		for (iterator = local->begin(); iterator != local->end(); ++iterator)
+		{
+			if ( local -> size( ) > 0 )
+			{
+				(*iterator)->HandleNetworkMessage(networkPacket);
+			}
+		}
 	}
 	else
 		printf("Unknown PacketType '%s' received", type);
@@ -296,7 +303,8 @@ void Network::DistributeReceivedPackets()
 	_receivedPackets.clear();
 
 	std::vector<NetworkPacket>::const_iterator iterator;
-	for (iterator = packets.begin(); iterator != packets.end(); ++iterator) {
+	for (iterator = packets.begin(); iterator != packets.end(); ++iterator) 
+	{
 		this->DistributePacket(*iterator);
 	}
 
