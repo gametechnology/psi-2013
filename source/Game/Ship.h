@@ -91,6 +91,10 @@ public:
 	void removeIShipListener(IShipListener* listener);
 
 	void notifyIShipListeners(ShipMessage message);
+	bool StationInUse(StationType type);
+	
+	//returns false when the station is already in use
+	bool enterStation(StationType type);
 
 private:
 	std::list<IShipListener*> listeners;
@@ -100,11 +104,16 @@ private:
 	matrix4				*_inertiaMatrix;
 
 	int _teamId;
+	std::map<StationType, bool> _stationsInUse;
 
 	stringw varToString(stringw str1, float var, stringw str2);
 	stringw varToString(stringw str1, float var);
 
 	void setInertiaMatrix(float h, float w, float d, float m);
+
+	void freeStation(StationType type);
+
+	void fillStationList();
 
 	//delete
 	int a;

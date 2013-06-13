@@ -3,6 +3,8 @@
 #include "ShipMover.h"
 #include "SendAndReceivePackets.h"
 #include "PlayerManager.h"
+#include "GameScene.h"
+#include "Shipmap.h"
 
 vector3df startPosition;
 vector3df startRotation;
@@ -14,14 +16,16 @@ Ship::Ship(vector3df position, vector3df rotation, int teamId) : ShipInterface (
 	this->transform->position = &position;
 	this->transform->rotation = &rotation;
 	this->_teamId = teamId;
+	this->fillStationList();
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
 	Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ENTER_STATION_ACCEPTED, this );
 	Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ENTER_STATION_DENIED, this );
+	Network::GetInstance()->AddListener(CLIENT_REQUEST_ENTER_STATION, this);
+	Network::GetInstance()->AddListener(CLIENT_LEAVE_STATION, this);
 }
 
 Ship::~Ship(void)
 {
-	Entity::~Entity();
 }
 
 void Ship::onAdd() {
@@ -38,11 +42,11 @@ void Ship::onAdd() {
 	this->env = game->device->getGUIEnvironment();
 	this->_currentStation = NULL;
 
-	addChild(_defenceStation		= new DefenceStation(this));
-	addChild(_helmStation			= new HelmStation(this));
-	addChild(_navigationStation		= new NavigationStation(this));
-	addChild(_weaponStation			= new WeaponStation(this));
-	addChild(_powerStation			= new PowerStation(this));
+	addChild(_defenceStation		= new DefenceStation(*this));
+	addChild(_helmStation			= new HelmStation(*this));
+	addChild(_navigationStation		= new NavigationStation(*this));
+	addChild(_weaponStation			= new WeaponStation(*this));
+	addChild(_powerStation			= new PowerStation(*this));
 
 	this->init();
 
@@ -90,6 +94,16 @@ void Ship::onAdd() {
 	help->init();
 	playerInfoScreen->init();
 	//Todo: Reset the helptext to above text when you leave a station without entering another!
+}
+
+void Ship::fillStationList()
+{
+	this->_stationsInUse = std::map<StationType, bool>();
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_DEFENCE, false));
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_HELM, false));
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_NAVIGATION, false));
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_POWER, false));
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_WEAPON, false));
 }
 
 void Ship::init() 
@@ -147,6 +161,26 @@ Station *Ship :: GetStation( StationType s )
 		break;
 	};
 	return NULL;
+}
+
+bool Ship::StationInUse(StationType type)
+{
+	return this->_stationsInUse.find(type)->second;
+}
+
+void Ship::freeStation(StationType type)
+{
+	this->_stationsInUse.find(type)->second = false;
+}
+
+bool Ship::enterStation(StationType type)
+{
+	if(this->StationInUse(type))
+		return false;
+
+	this->_stationsInUse.find(type)->second = true;
+	this->SwitchToStation(type);
+	return true;
 }
 
 irr::core::stringw Ship::varToString(irr::core::stringw str1, float var){
@@ -230,30 +264,40 @@ void Ship :: CheckChangeInput()
 		//SwitchToStation(ST_POWER);
 	if ( st == StationType :: ST_NONE ) return;
 
-	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_ENTER_STATION );
-	packet << PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id << ( int )st;
-	Network :: GetInstance( ) -> SendPacket( packet );
-	//TODO: check that this works for the server as well as for the clients.
+	if(!Network::GetInstance()->IsServer())
+	{
+		NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_ENTER_STATION );
+		packet << PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id << PlayerManager::GetInstance()->GetLocalPlayerData()->team_id << ( int )st;
+		Network :: GetInstance( ) -> SendPacket( packet, true );
+		//TODO: check that this works for the server as well as for the clients.
+	}else
+	{
+		if(!this->enterStation(st))
+		{
+			//notify server player that the station is in use
+		}
+	}
 }
 
 //Swith to a specific station
 void Ship :: SwitchToStation(StationType stationType)
 {
 	//Check if we are already on this station
-	if (_currentStation != NULL)
+	if (this->_currentStation != NULL)
 	{
-		if (_currentStation->GetStationType() == stationType)
+		if (this->_currentStation->GetStationType() == stationType)
 			return;
 
 		//First remove the currentStation from the shipComponents
-		_currentStation->disable();
+		if(this->_currentStation->enabled)
+			this->_currentStation->disable();
 	}
 
 	//Find the new station
-	_currentStation = this->GetStation(stationType);
+	this->_currentStation = this->GetStation(stationType);
 
 	//Init and add the new station
-	_currentStation->enable();
+	this->_currentStation->enable();
 	PlayerManager :: GetInstance( ) -> StationUpdated( stationType );
 }
 
@@ -331,20 +375,27 @@ void Ship::notifyIShipListeners(ShipMessage message){
 
 void Ship::leaveStation(StationType station)
 {
-	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
-	packet << station;
-	Network::GetInstance()->SendPacket(packet, true);
-
+	if(!Network::GetInstance()->IsServer())
+	{
+		NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
+		packet << PlayerManager::GetInstance()->GetLocalPlayerData()->team_id << station;
+		Network::GetInstance()->SendPacket(packet, true);
+	}
+	this->freeStation(station);
+	printf("leave");
 	this->_currentStation->disable();
 	this->_currentStation = NULL;
+	((GameScene*)this->scene)->getShipMap()->enable();
 	
-	this->notifyIShipListeners(LEAVESTATION);
+	//this->notifyIShipListeners(LEAVESTATION);
 }
 
 
 void Ship::HandleNetworkMessage(NetworkPacket packet)
 {
 	int player_id;
+	int team_id;
+	int st;
 	if ( packet.GetType( ) == PacketType :: CLIENT_SHIP_MOVEMENT )
 	{
 	
@@ -377,15 +428,17 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 
 				}
 			}
-	}
-		
+	}	
 	else if ( packet.GetType( ) == PacketType :: SERVER_ENTER_STATION_ACCEPTED )
 	{
-		int st;
-		packet >> player_id >> st;
+		packet >> player_id >> team_id >> st;
 		if ( player_id == PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id )
 		{
 			SwitchToStation( ( StationType )st );
+			((GameScene*)this->scene)->getShipMap()->disable();
+		}else if(team_id == PlayerManager::GetInstance()->GetLocalPlayerData()->team_id)
+		{
+			this->_stationsInUse.find((StationType)st)->second = true;
 		}
 	} else if( packet.GetType( ) == PacketType :: SERVER_ENTER_STATION_DENIED )
 	{
@@ -394,5 +447,30 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 		{
 			//TODO: Show the player that he SHALL NO PASS!!!!
 		}		
+	}else if(packet.GetType() == CLIENT_REQUEST_ENTER_STATION && Network::GetInstance()->IsServer())
+	{
+		packet >> player_id >> team_id >> st;
+		if(team_id == PlayerManager::GetInstance()->GetLocalPlayerData()->team_id)
+		{
+			if(StationInUse((StationType)st))
+			{
+				NetworkPacket declinePacket = NetworkPacket(SERVER_ENTER_STATION_DENIED);
+				declinePacket << player_id;
+				Network::GetInstance()->SendServerPacket(declinePacket, true);
+				return;
+			}
+			this->_stationsInUse.find((StationType)st)->second = true;
+			NetworkPacket acceptPacket = NetworkPacket(SERVER_ENTER_STATION_ACCEPTED);
+			acceptPacket << player_id << team_id << st;
+			Network::GetInstance()->SendServerPacket(acceptPacket, true);
+		}
+
+	}else if(packet.GetType() == CLIENT_LEAVE_STATION)
+	{
+		packet >> team_id >> st;
+		if(this->_teamId == team_id)
+		{
+			freeStation((StationType)st);
+		}
 	}
 }

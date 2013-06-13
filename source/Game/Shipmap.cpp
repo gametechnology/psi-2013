@@ -1,12 +1,12 @@
 #include "Shipmap.h"
 
 
-Shipmap::Shipmap(GameScene* scene): _scene(scene), Entity()
+Shipmap::Shipmap(Ship* ship): _ship(ship), Entity()
 {
-	Network::GetInstance()->AddListener(CLIENT_SWITCH_STATION, this);
+	/*Network::GetInstance()->AddListener(CLIENT_SWITCH_STATION, this);
 	Network::GetInstance()->AddListener(SERVER_SWITCH_STATION, this);
 	Network::GetInstance()->AddListener(CLIENT_LEAVE_STATION, this);
-	Network::GetInstance()->AddListener(SERVER_LEAVE_STATION, this);
+	Network::GetInstance()->AddListener(SERVER_LEAVE_STATION, this);*/
 }
 
 Shipmap::~Shipmap()
@@ -177,7 +177,7 @@ void Shipmap::update()
 	// TODO replace stationOccupied[i] with the hasPlayer booleans of each individual station!
 	for(int i = 0; i < 5; i++) {
 		if(playerBox->isRectCollided(*boundingBoxes[i])) {
-			if (stationOccupied[i]) {
+			if (_ship->StationInUse((StationType)i)) {
 				onOccupiedStation = true;
 				onStation = false;
 			}
@@ -191,6 +191,7 @@ void Shipmap::update()
 	// Enter a station
 	if (onStation && (game->input->isKeyboardButtonDown(irr::KEY_KEY_E) || game->input->isKeyboardButtonDown(irr::KEY_KEY_F))) {
 			enterStation(_intersectingStation);
+			printf("enterrrrr");
 			return;
 	}
 	
@@ -208,7 +209,7 @@ void Shipmap::update()
 		if (tiles[topTile][leftTile] == 2 || tiles[bottomTile][leftTile] == 2 || tiles[topTile][rightTile] == 2 || tiles[bottomTile][rightTile] == 2) {
 			for(int i = 0; i < 5; i++) {
 				if(playerBox->isRectCollided(*boundingBoxes[i])) {
-					if (stationOccupied[i]) {
+					if (_ship->StationInUse((StationType)i)) {
 						onOccupiedStation = true;
 						onStation = false;
 					}
@@ -248,17 +249,30 @@ void Shipmap::update()
 }
 
 void Shipmap::enterStation(StationType station) {
-	NetworkPacket packet(PacketType::CLIENT_SWITCH_STATION);
-	packet << station;
-	// packet << (currentPlayer)->teamID; <-- when finally actually accessible
-	Network::GetInstance()->SendPacket(packet, true);
 
-	_scene->switchStation(station);
+	if(!Network::GetInstance()->IsServer())
+	{
+		printf("send requist");
+		NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_ENTER_STATION );
+		packet << PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id << PlayerManager::GetInstance()->GetLocalPlayerData()->team_id << ( int )station;
+		Network :: GetInstance( ) -> SendPacket( packet, true );
+		//TODO: check that this works for the server as well as for the clients.
+	}else
+	{
+		if(_ship->enterStation(station))
+		{
+			printf("weehoe");
+			this->disable();
+		}else
+		{
+			//notify server player that the station is in use
+		}
+	}
 }
 
 void Shipmap::HandleNetworkMessage(NetworkPacket packet)
 {
-	switch(packet.GetType())
+	/*switch(packet.GetType())
 	{
 	case CLIENT_SWITCH_STATION:
 		{
@@ -301,7 +315,7 @@ void Shipmap::HandleNetworkMessage(NetworkPacket packet)
 			stationOccupied[receivedStationType] = false;
 		}
 		break;
-	}
+	}*/
 }
 
 void Shipmap::handleShipMessage(ShipMessage message){
