@@ -160,7 +160,7 @@ void MainMenuScene::StartGame()
 	mainMenuWindow->remove();
 	mapGen.init(20, 2, 5);
 	GalaxyMap* galaxyMap = mapGen.createNewMap(300, 300, 15);
-	galaxyMap->transform->position->set(vector3df(100, 670, 0));
+	galaxyMap->transform->position.set(vector3df(100, 670, 0));
 	SectorManager sectorManager(galaxyMap);
 	sectorManager.init();*/
 	//TODO: Previous scene still displayed, shouldn't be the case

@@ -3,7 +3,7 @@
 
 DummyShip::DummyShip(vector3df position) : Enemy ()
 {
-	this->transform->position = &position;
+	this->transform->position = position;
 }
 
 DummyShip::~DummyShip(void)
@@ -29,8 +29,8 @@ void DummyShip::init()
 {
 	startPosition = vector3df(0,0,-100);
 	startRotation = vector3df(0,0,0);
-	this->transform->position = &startPosition;
-	this->transform->rotation = &startRotation;
+	this->transform->position = startPosition;
+	this->transform->rotation = startRotation;
 	this->setHealth(100);
 	Entity::init();
 }

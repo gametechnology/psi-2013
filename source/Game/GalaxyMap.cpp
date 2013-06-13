@@ -13,8 +13,8 @@ GalaxyMap::GalaxyMap(irr::f32 width, irr::f32 height, irr::f32 radius) : Entity(
 void GalaxyMap::onAdd(){
 	for(unsigned int i = 0; i < sectors.size(); i++) {
 		addChild(sectors[i]);
-		sectors[i]->transform->position->X += transform->position->X;
-		sectors[i]->transform->position->Y += transform->position->Y;
+		sectors[i]->transform->position.X += transform->position.X;
+		sectors[i]->transform->position.Y += transform->position.Y;
 	}
 	Entity::onAdd();
 }
@@ -53,10 +53,10 @@ void GalaxyMap::draw()
 
 	video::ITexture* bgMap = game->driver->getTexture("../assets/galaxy.jpg");
 	game->driver->draw2DImage(bgMap, irr::core::rect<s32>(
-			transform->position->X,
-			transform->position->Y,
-			transform->position->X + (int)width,
-			transform->position->Y + (int)height),
+			transform->position.X,
+			transform->position.Y,
+			transform->position.X + (int)width,
+			transform->position.Y + (int)height),
 			irr::core::rect<s32>(0, 0, bgMap->getOriginalSize().Width, bgMap->getOriginalSize().Height));
 
 	for(unsigned int i = 0; i < sectors.size(); i++) {
@@ -67,12 +67,12 @@ void GalaxyMap::draw()
 				//{
 					game->driver->draw2DLine(
 						irr::core::vector2d<irr::s32>(
-							(int)(sectors[i]->transform->position->X), 
-							(int)(sectors[i]->transform->position->Y)
+							(int)(sectors[i]->transform->position.X), 
+							(int)(sectors[i]->transform->position.Y)
 						),
 						core::vector2d<irr::s32>(
-							(int)(sectors[i]->connections[j]->transform->position->X),
-							(int)(sectors[i]->connections[j]->transform->position->Y)
+							(int)(sectors[i]->connections[j]->transform->position.X),
+							(int)(sectors[i]->connections[j]->transform->position.Y)
 						)
 					);
 				//}
@@ -88,8 +88,8 @@ void GalaxyMap::draw()
 		//{
 			font->draw(irr::core::stringw(sectors[i]->name.c_str()),
 				core::rect<s32>(
-					(int)(sectors[i]->transform->position->X),
-					(int)(sectors[i]->transform->position->Y - (1.5f*radius)),
+					(int)(sectors[i]->transform->position.X),
+					(int)(sectors[i]->transform->position.Y - (1.5f*radius)),
 					300, 50), video::SColor(255,255,255,255)
 				);
 		//}

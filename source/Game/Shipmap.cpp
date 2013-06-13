@@ -1,12 +1,13 @@
 #include "Shipmap.h"
+#include "Ship.h"
 
 
-Shipmap::Shipmap(GameScene* scene): _scene(scene), Entity()
+Shipmap::Shipmap(Ship* ship): _ship(ship), Entity()
 {
-	Network::GetInstance()->AddListener(CLIENT_SWITCH_STATION, this);
+	/*Network::GetInstance()->AddListener(CLIENT_SWITCH_STATION, this);
 	Network::GetInstance()->AddListener(SERVER_SWITCH_STATION, this);
 	Network::GetInstance()->AddListener(CLIENT_LEAVE_STATION, this);
-	Network::GetInstance()->AddListener(SERVER_LEAVE_STATION, this);
+	Network::GetInstance()->AddListener(SERVER_LEAVE_STATION, this);*/
 }
 
 Shipmap::~Shipmap()
@@ -79,8 +80,8 @@ void Shipmap::onAdd()
 		stationOccupied[i] = false;
 
 	// Player starting position - should start in the middle of the plane
-	this->transform->position->X = (float)((playerTile.x * tileSize) + offsetX);
-	this->transform->position->Y = (float)((playerTile.y * tileSize) + offsetY + 20);
+	this->transform->position.X = (float)((playerTile.x * tileSize) + offsetX);
+	this->transform->position.Y = (float)((playerTile.y * tileSize) + offsetY + 20);
 }
 
 void Shipmap::init()
@@ -91,32 +92,54 @@ void Shipmap::draw()
 {
 	Entity::draw();
 
+	video::SColor stationColor = video::SColor(255, 255, 255, 255);
+
 	game->driver->draw2DImage(bg, core::position2d<s32>(0,0),
 		irr::core::rect<s32>(0,0,bg->getOriginalSize().Width,bg->getOriginalSize().Height),
 		0, video::SColor(255,255,255,255), true);
 
+	if(_ship->GetStation(StationType::ST_NAVIGATION)->IsOccupied())
+		stationColor = video::SColor(255, 255, 0, 0);
+	else
+		stationColor = video::SColor(255, 255, 255, 255);
 	game->driver->draw2DImage(icon_navigation, core::position2d<s32>(boundingBoxes[4]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[4]->UpperLeftCorner.Y+stationIconDrawOffset),
 		irr::core::rect<s32>(stationIconOffset[0]-55, 0, stationIconOffset[0], icon_helm->getOriginalSize().Height),
-		0, video::SColor(255,255,255,255), true);
+		0, stationColor, true);
 
+	if(_ship->GetStation(StationType::ST_WEAPON)->IsOccupied())
+		stationColor = video::SColor(255, 255, 0, 0);
+	else
+		stationColor = video::SColor(255, 255, 255, 255);
 	game->driver->draw2DImage(icon_weapons, core::position2d<s32>(boundingBoxes[2]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[2]->UpperLeftCorner.Y+stationIconDrawOffset),
 		irr::core::rect<s32>(stationIconOffset[1]-55, 0, stationIconOffset[1], icon_defense->getOriginalSize().Height),
-		0, video::SColor(255,255,255,255), true);
+		0, stationColor, true);
 
+	if(_ship->GetStation(StationType::ST_POWER)->IsOccupied())
+		stationColor = video::SColor(255, 255, 0, 0);
+	else
+		stationColor = video::SColor(255, 255, 255, 255);
 	game->driver->draw2DImage(icon_engine, core::position2d<s32>(boundingBoxes[0]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[0]->UpperLeftCorner.Y+stationIconDrawOffset),
 		irr::core::rect<s32>(stationIconOffset[2]-55, 0, stationIconOffset[2], icon_weapons->getOriginalSize().Height),
-		0, video::SColor(255,255,255,255), true);
+		0, stationColor, true);
 
+	if(_ship->GetStation(StationType::ST_HELM)->IsOccupied())
+		stationColor = video::SColor(255, 255, 0, 0);
+	else
+		stationColor = video::SColor(255, 255, 255, 255);
 	game->driver->draw2DImage(icon_helm, core::position2d<s32>(boundingBoxes[3]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[3]->UpperLeftCorner.Y+stationIconDrawOffset),
 		irr::core::rect<s32>(stationIconOffset[3]-55, 0, stationIconOffset[3], icon_navigation->getOriginalSize().Height),
-		0, video::SColor(255,255,255,255), true);
+		0, stationColor, true);
 
+	if(_ship->GetStation(StationType::ST_DEFENCE)->IsOccupied())
+		stationColor = video::SColor(255, 255, 0, 0);
+	else
+		stationColor = video::SColor(255, 255, 255, 255);
 	game->driver->draw2DImage(icon_defense, core::position2d<s32>(boundingBoxes[1]->UpperLeftCorner.X+stationIconDrawOffset, boundingBoxes[1]->UpperLeftCorner.Y+stationIconDrawOffset),
 		irr::core::rect<s32>(stationIconOffset[4]-55, 0, stationIconOffset[4], icon_engine->getOriginalSize().Height),
-		0, video::SColor(255,255,255,255), true);
+		0, stationColor, true);
 
 	// player icon
-	game->driver->draw2DImage(icon, core::position2d<s32>((int)this->transform->position->X, (int)this->transform->position->Y),
+	game->driver->draw2DImage(icon, core::position2d<s32>((int)this->transform->position.X, (int)this->transform->position.Y),
 		irr::core::rect<s32>(iconOffset-30, 0, iconOffset, icon->getOriginalSize().Height),
 		0, video::SColor(255,255,255,255), true);
 
@@ -142,42 +165,42 @@ void Shipmap::update()
 
 	playerSpeed = 1.7f;
 
-	savedPosX = this->transform->position->X;
-	savedPosY = this->transform->position->Y;
+	savedPosX = this->transform->position.X;
+	savedPosY = this->transform->position.Y;
 
-	playerBox->UpperLeftCorner.X = (int)this->transform->position->X;
-	playerBox->UpperLeftCorner.Y = (int)this->transform->position->Y;
-	playerBox->LowerRightCorner.X = (int)(this->transform->position->X + iconRadius*2);
-	playerBox->LowerRightCorner.Y = (int)(this->transform->position->Y + iconRadius*2);
+	playerBox->UpperLeftCorner.X = (int)this->transform->position.X;
+	playerBox->UpperLeftCorner.Y = (int)this->transform->position.Y;
+	playerBox->LowerRightCorner.X = (int)(this->transform->position.X + iconRadius*2);
+	playerBox->LowerRightCorner.Y = (int)(this->transform->position.Y + iconRadius*2);
 
-	playerTile.x = (int)((this->transform->position->X - offsetX) / tileSize);
-	playerTile.y = (int)((this->transform->position->Y - offsetY) / tileSize);
+	playerTile.x = (int)((this->transform->position.X - offsetX) / tileSize);
+	playerTile.y = (int)((this->transform->position.Y - offsetY) / tileSize);
 
 
 	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_A)) {
 		isMoving = true;
-		this->transform->position->X -= playerSpeed; 
+		this->transform->position.X -= playerSpeed; 
 	}
 
 	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_D)) {
 		isMoving = true;
-		this->transform->position->X += playerSpeed;
+		this->transform->position.X += playerSpeed;
 	}
 
 	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_W)) {
 		isMoving = true;
-		this->transform->position->Y -= playerSpeed;
+		this->transform->position.Y -= playerSpeed;
 	}
 
 	if (game->input->isKeyboardButtonDown(irr::KEY_KEY_S)){
 		isMoving = true;
-		this->transform->position->Y += playerSpeed;
+		this->transform->position.Y += playerSpeed;
 	}
 
 	// TODO replace stationOccupied[i] with the hasPlayer booleans of each individual station!
 	for(int i = 0; i < 5; i++) {
 		if(playerBox->isRectCollided(*boundingBoxes[i])) {
-			if (stationOccupied[i]) {
+			if (_ship->StationInUse((StationType)i)) {
 				onOccupiedStation = true;
 				onStation = false;
 			}
@@ -191,14 +214,15 @@ void Shipmap::update()
 	// Enter a station
 	if (onStation && (game->input->isKeyboardButtonDown(irr::KEY_KEY_E) || game->input->isKeyboardButtonDown(irr::KEY_KEY_F))) {
 			enterStation(_intersectingStation);
+			printf("enterrrrr");
 			return;
 	}
 	
 	if (isMoving) {
-		int leftTile = (int)((this->transform->position->X - offsetX) / tileSize);
-		int rightTile = (int)(((this->transform->position->X + iconRadius * 2) - offsetX) / tileSize);
-		int topTile = (int)((this->transform->position->Y - offsetY) / tileSize);
-		int bottomTile = (int)(((this->transform->position->Y + iconRadius * 2) - offsetY) / tileSize);
+		int leftTile = (int)((this->transform->position.X - offsetX) / tileSize);
+		int rightTile = (int)(((this->transform->position.X + iconRadius * 2) - offsetX) / tileSize);
+		int topTile = (int)((this->transform->position.Y - offsetY) / tileSize);
+		int bottomTile = (int)(((this->transform->position.Y + iconRadius * 2) - offsetY) / tileSize);
 
 		if (tiles[topTile][leftTile] == 1 || tiles[bottomTile][leftTile] == 1 || tiles[topTile][rightTile] == 1 || tiles[bottomTile][rightTile] == 1) {
 			isIntersecting = true;
@@ -208,7 +232,7 @@ void Shipmap::update()
 		if (tiles[topTile][leftTile] == 2 || tiles[bottomTile][leftTile] == 2 || tiles[topTile][rightTile] == 2 || tiles[bottomTile][rightTile] == 2) {
 			for(int i = 0; i < 5; i++) {
 				if(playerBox->isRectCollided(*boundingBoxes[i])) {
-					if (stationOccupied[i]) {
+					if (_ship->StationInUse((StationType)i)) {
 						onOccupiedStation = true;
 						onStation = false;
 					}
@@ -226,8 +250,8 @@ void Shipmap::update()
 		}
 
 		if (isIntersecting) {
-			this->transform->position->X = savedPosX;
-			this->transform->position->Y = savedPosY;
+			this->transform->position.X = savedPosX;
+			this->transform->position.Y = savedPosY;
 		}
 	}
 
@@ -248,17 +272,30 @@ void Shipmap::update()
 }
 
 void Shipmap::enterStation(StationType station) {
-	NetworkPacket packet(PacketType::CLIENT_SWITCH_STATION);
-	packet << station;
-	// packet << (currentPlayer)->teamID; <-- when finally actually accessible
-	Network::GetInstance()->SendPacket(packet, true);
 
-	_scene->switchStation(station);
+	if(!Network::GetInstance()->IsServer())
+	{
+		printf("send requist");
+		NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_ENTER_STATION );
+		packet << PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id << PlayerManager::GetInstance()->GetLocalPlayerData()->team_id << ( int )station;
+		Network :: GetInstance( ) -> SendPacket( packet, true );
+		//TODO: check that this works for the server as well as for the clients.
+	}else
+	{
+		if(_ship->enterStation(station))
+		{
+			printf("weehoe");
+			this->disable();
+		}else
+		{
+			//notify server player that the station is in use
+		}
+	}
 }
 
 void Shipmap::HandleNetworkMessage(NetworkPacket packet)
 {
-	switch(packet.GetType())
+	/*switch(packet.GetType())
 	{
 	case CLIENT_SWITCH_STATION:
 		{
@@ -301,7 +338,7 @@ void Shipmap::HandleNetworkMessage(NetworkPacket packet)
 			stationOccupied[receivedStationType] = false;
 		}
 		break;
-	}
+	}*/
 }
 
 void Shipmap::handleShipMessage(ShipMessage message){

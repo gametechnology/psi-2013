@@ -161,8 +161,8 @@ void SectorManager::SetNextSector(MapSector& nextsector){
 	if ( this->getGame()->sceneManager->destroyScene( tempName ) ) {
 		
 		// Turn Around the ship and place it closer to the center so it does not come in a endless loop of wormhole transitions
-		_ship->transform->position->setLength( _ship->transform->position->getLength() * 0.8 );
-		_ship->transform->rotation->rotateXZBy( PI * 180 );
+				_ship->transform->position.setLength( _ship->transform->position.getLength() * 0.8 );
+				_ship->transform->rotation.rotateXZBy( PI * 180 );
 
 
 		//Creates new Sector

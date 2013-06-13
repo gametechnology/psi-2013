@@ -105,14 +105,14 @@ std::vector<MapSector*>* MapGenerator::createStaticMap(float width, float height
 	MapSector* homeRed = new MapSector(nameGenerator(HOME_RED), HOME_RED, _sectorRadius);
 	MapSector* empty = new MapSector(nameGenerator(EMPTY), EMPTY, _sectorRadius);
 
-	homeBlue->transform->position->set(randomPosition());
+	homeBlue->transform->position.set(randomPosition());
 
 	homeBlue->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
 	homeRed->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
 	empty->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
 
-	homeRed->transform->position->set(randomPosition());
-	empty->transform->position->set(randomPosition());
+	homeRed->transform->position.set(randomPosition());
+	empty->transform->position.set(randomPosition());
 
 	sectors->push_back(homeBlue);
 	sectors->push_back(empty);
@@ -130,12 +130,12 @@ std::vector<MapSector*>* MapGenerator::createStaticMap(float width, float height
 void MapGenerator::createSectors()
 {
 	MapSector* homeBlue = new MapSector(nameGenerator(HOME_BLUE), HOME_BLUE, _sectorRadius);
-	homeBlue->transform->position->set(randomPosition());
+	homeBlue->transform->position.set(randomPosition());
 	homeBlue->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
 	sectors->push_back(homeBlue);
 
 	MapSector* homeRed = new MapSector(nameGenerator(HOME_RED), HOME_RED, _sectorRadius);
-	homeRed->transform->position->set(randomPosition());
+	homeRed->transform->position.set(randomPosition());
 	homeRed->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
 	sectors->push_back(homeRed);
 	
@@ -144,7 +144,7 @@ void MapGenerator::createSectors()
 	{
 		j = getRandomType();
 		MapSector* sector = new MapSector(nameGenerator(j), j, _sectorRadius);
-		sector->transform->position->set(randomPosition());
+		sector->transform->position.set(randomPosition());
 		sector->SetSkyboxTexture(nameskybox.at(rand() % nameskybox.size()));
 		sectors->push_back(sector);
 	}
@@ -167,7 +167,7 @@ irr::core::vector3df MapGenerator::randomPosition()
 
 	for (unsigned int i = 0; i < sectors->size(); i++)
 	{
-		if (sectors->at(i)->transform->position->getDistanceFrom(randPos) < _sectorRadius * 2)
+		if (sectors->at(i)->transform->position.getDistanceFrom(randPos) < _sectorRadius * 2)
 		{
 			randPos = randomPosition();
 		}
@@ -245,10 +245,10 @@ bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* se
 {
 	float ax, ay, bx, by, cx, cy, cr;
 
-	ax = sector1->transform->position->X;
-	ay = sector1->transform->position->Y;
-	bx = sector2->transform->position->X;
-	by = sector2->transform->position->Y;
+	ax = sector1->transform->position.X;
+	ay = sector1->transform->position.Y;
+	bx = sector2->transform->position.X;
+	by = sector2->transform->position.Y;
 	
 	cr = _sectorRadius;
 
@@ -258,8 +258,8 @@ bool MapGenerator::collisionLineBetweenSectors(MapSector* sector1, MapSector* se
 		{
 			continue;
 		}
-		cx = sectors->at(i)->transform->position->X;
-		cy = sectors->at(i)->transform->position->Y;
+		cx = sectors->at(i)->transform->position.X;
+		cy = sectors->at(i)->transform->position.Y;
 
 		double vx = bx - ax;
 		double vy = by - ay;

@@ -3,6 +3,8 @@
 #include "ShipMover.h"
 #include "SendAndReceivePackets.h"
 #include "PlayerManager.h"
+#include "GameScene.h"
+#include "Shipmap.h"
 
 vector3df startPosition;
 vector3df startRotation;
@@ -11,29 +13,31 @@ ObjectPool<Laser>* Ship::laserPool;
 
 Ship::Ship(vector3df position, vector3df rotation, int teamId) : ShipInterface ()
 {
-	this->transform->position = &position;
-	this->transform->rotation = &rotation;
+	this->transform->position = position;
+	this->transform->rotation = rotation;
 	this->_teamId = teamId;
+	this->fillStationList();
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
 	Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ENTER_STATION_ACCEPTED, this );
 	Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ENTER_STATION_DENIED, this );
 	setInertiaMatrix(2,2,2,2);
+	Network::GetInstance()->AddListener(CLIENT_REQUEST_ENTER_STATION, this);
+	Network::GetInstance()->AddListener(CLIENT_LEAVE_STATION, this);
 }
 
 Ship::~Ship(void)
 {
-	Entity::~Entity();
 }
 
 void Ship::onAdd() {
 	ShipInterface::onAdd();
 	startPosition = vector3df(0,0,-100);
 	startRotation = vector3df(0,0,0);
-	this->transform->position = &startPosition;
-	this->transform->rotation = &startRotation;
+	this->transform->position = startPosition;
+	this->transform->rotation = startRotation;
 //	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
-	model->transform->rotation->X += 180;
+	model->transform->rotation.X += 180;
 	addChild(model);
 
 	this->env = game->device->getGUIEnvironment();
@@ -78,12 +82,14 @@ void Ship::onAdd() {
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	
 	irr::core::stringw strPing = "Ping :" + 0;
-	this->pingGuiText = env->addStaticText(strPing.c_str(), rect<s32>(500,  30, 600, 50), false);	this->pingGuiText->setOverrideColor(video::SColor(255, 255, 255, 255));
+	this->pingGuiText = env->addStaticText(strPing.c_str(), rect<s32>(500,  30, 700, 50), false);	this->pingGuiText->setOverrideColor(video::SColor(255, 255, 255, 255));
 
 	
 	//Todo: Remove debug info from helptext!
 	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
-	playerInfoScreen = new PlayerInfoScreen(L"fill this with the playerinfo", vector2df(900,100), vector2df(1280 - (2*100),720 - (2*100)));
+	
+	
+	playerInfoScreen = new PlayerInfoScreen(vector2df(500,0), vector2df(1280 - 500, 720));
 	
 	addComponent(help);
 	addComponent(playerInfoScreen);
@@ -91,6 +97,16 @@ void Ship::onAdd() {
 	help->init();
 	playerInfoScreen->init();
 	//Todo: Reset the helptext to above text when you leave a station without entering another!
+}
+
+void Ship::fillStationList()
+{
+	this->_stationsInUse = std::map<StationType, bool>();
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_DEFENCE, false));
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_HELM, false));
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_NAVIGATION, false));
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_POWER, false));
+	this->_stationsInUse.insert(std::pair<StationType, bool>(ST_WEAPON, false));
 }
 
 void Ship::init() 
@@ -150,6 +166,26 @@ Station *Ship :: GetStation( StationType s )
 	return NULL;
 }
 
+bool Ship::StationInUse(StationType type)
+{
+	return this->_stationsInUse.find(type)->second;
+}
+
+void Ship::freeStation(StationType type)
+{
+	this->_stationsInUse.find(type)->second = false;
+}
+
+bool Ship::enterStation(StationType type)
+{
+	if(this->StationInUse(type))
+		return false;
+
+	this->_stationsInUse.find(type)->second = true;
+	this->SwitchToStation(type);
+	return true;
+}
+
 irr::core::stringw Ship::varToString(irr::core::stringw str1, float var){
 	stringw str = L"";
 	str += str1;
@@ -172,6 +208,7 @@ void Ship :: update()
 	PlayerManager ::GetInstance()->NoPingCounter();
 	CheckChangeInput();
 
+	
     stringw strPing = "Ping:" + PlayerManager::GetInstance()->getTimeTaken();
 	this->pingGuiText->setText(		(varToString("Ping:", (float)PlayerManager::GetInstance()->getTimeTaken())).c_str());
 
@@ -234,30 +271,45 @@ void Ship :: CheckChangeInput()
 		//SwitchToStation(ST_POWER);
 	if ( st == StationType :: ST_NONE ) return;
 
-	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_ENTER_STATION );
-	packet << PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id << ( int )st;
-	Network :: GetInstance( ) -> SendPacket( packet );
-	//TODO: check that this works for the server as well as for the clients.
+	if(!Network::GetInstance()->IsServer())
+	{
+		NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_REQUEST_ENTER_STATION );
+		packet << PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id << PlayerManager::GetInstance()->GetLocalPlayerData()->team_id << ( int )st;
+		Network :: GetInstance( ) -> SendPacket( packet, true );
+		//TODO: check that this works for the server as well as for the clients.
+	}else
+	{
+		if(this->enterStation(st))
+		{
+			NetworkPacket acceptPacket = NetworkPacket(SERVER_ENTER_STATION_ACCEPTED);
+			acceptPacket << PlayerManager::GetInstance()->GetLocalPlayerData()->id << PlayerManager::GetInstance()->GetLocalPlayerData()->team_id << st;
+			Network::GetInstance()->SendServerPacket(acceptPacket, true);
+		}else
+		{
+			//notify server player that the station is in use
+		}
+	}
 }
 
 //Swith to a specific station
 void Ship :: SwitchToStation(StationType stationType)
 {
 	//Check if we are already on this station
-	if (_currentStation != NULL)
+	if (this->_currentStation != NULL)
 	{
-		if (_currentStation->GetStationType() == stationType)
+		if (this->_currentStation->GetStationType() == stationType)
 			return;
 
 		//First remove the currentStation from the shipComponents
-		_currentStation->disable();
+		if(this->_currentStation->enabled)
+			this->_currentStation->disable();
 	}
 
 	//Find the new station
-	_currentStation = this->GetStation(stationType);
+	this->_currentStation = this->GetStation(stationType);
 
 	//Init and add the new station
-	_currentStation->enable();
+	this->_currentStation->enable();
 	PlayerManager :: GetInstance( ) -> StationUpdated( stationType );
 }
 
@@ -337,19 +389,28 @@ void Ship::notifyIShipListeners(ShipMessage message){
 void Ship::leaveStation(StationType station)
 {
 	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
-	packet << station << PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id;
-	Network::GetInstance()->SendPacket(packet, true);
+	packet << PlayerManager::GetInstance()->GetLocalPlayerData()->team_id << station << PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id;
+	Network::GetInstance()->SendPacketToAllClients(packet, true);
 
+	if ( Network :: GetInstance( ) -> IsServer( ) )
+	{
+		PlayerManager :: GetInstance( ) -> OnClientLeaveStationReceived( PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id );
+	}
+
+	this->freeStation(station);
 	this->_currentStation->disable();
 	this->_currentStation = NULL;
+	((GameScene*)this->scene)->getShipMap()->enable();
 	
-	this->notifyIShipListeners(LEAVESTATION);
+	//this->notifyIShipListeners(LEAVESTATION);
 }
 
 
 void Ship::HandleNetworkMessage(NetworkPacket packet)
 {
 	int player_id;
+	int team_id;
+	int st;
 	if ( packet.GetType( ) == PacketType :: CLIENT_SHIP_MOVEMENT )
 	{
 	
@@ -366,11 +427,11 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 
 			if(id == this->_teamId)
 			{
-				*transform->acceleration = acceleration;
-				*transform->angularAccelaration = angularAcceleration;
-				*transform->angularVelocity = angularVelocity;
-				*transform->position = position;
-				*transform->velocity = velocity;
+				transform->acceleration = acceleration;
+				transform->angularAccelaration = angularAcceleration;
+				transform->angularVelocity = angularVelocity;
+				transform->position = position;
+				transform->velocity = velocity;
 
 				//Apply updates 
 				if(_currentStation != NULL && _currentStation->GetStationType() == ST_WEAPON){
@@ -378,19 +439,23 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 				}
 				else{
 					//Read the information from the network packet
-					*transform->rotation = rotation;
+					transform->rotation = rotation;
 
 				}
 			}
-	}
-		
+	}	
 	else if ( packet.GetType( ) == PacketType :: SERVER_ENTER_STATION_ACCEPTED )
 	{
-		int st;
-		packet >> player_id >> st;
+		printf("packet received\n");
+		packet >> player_id >> team_id >> st;
 		if ( player_id == PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id )
 		{
 			SwitchToStation( ( StationType )st );
+			((GameScene*)this->scene)->getShipMap()->disable();
+		}else if(team_id == PlayerManager::GetInstance()->GetLocalPlayerData()->team_id)
+		{
+			printf("station bezet\n");
+			this->_stationsInUse.find((StationType)st)->second = true;
 		}
 	} else if( packet.GetType( ) == PacketType :: SERVER_ENTER_STATION_DENIED )
 	{
@@ -399,6 +464,31 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 		{
 			//TODO: Show the player that he SHALL NO PASS!!!!
 		}		
+	}else if(packet.GetType() == CLIENT_REQUEST_ENTER_STATION && Network::GetInstance()->IsServer())
+	{
+		packet >> player_id >> team_id >> st;
+		if(team_id == PlayerManager::GetInstance()->GetLocalPlayerData()->team_id)
+		{
+			if(StationInUse((StationType)st))
+			{
+				NetworkPacket declinePacket = NetworkPacket(SERVER_ENTER_STATION_DENIED);
+				declinePacket << player_id;
+				Network::GetInstance()->SendServerPacket(declinePacket, true);
+				return;
+			}
+			this->_stationsInUse.find((StationType)st)->second = true;
+			NetworkPacket acceptPacket = NetworkPacket(SERVER_ENTER_STATION_ACCEPTED);
+			acceptPacket << player_id << team_id << st;
+			Network::GetInstance()->SendServerPacket(acceptPacket, true);
+		}
+
+	}else if(packet.GetType() == CLIENT_LEAVE_STATION)
+	{
+		packet >> team_id >> st;
+		if(this->_teamId == team_id)
+		{
+			freeStation((StationType)st);
+		}
 	}
 }
 
