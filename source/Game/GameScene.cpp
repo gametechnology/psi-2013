@@ -70,6 +70,13 @@ void GameScene::update() {
 		galaxyMap->visible = false;
 	}
 
+	if ( this -> game -> input -> isKeyboardButtonPressed( KEY_TAB ) )
+	{
+		PlayerManager :: GetInstance( ) -> ShowPlayerList( );
+		std :: cout << "\n-------------------------------\n";
+	}
+
+	//if this is the server
 	if(Network::GetInstance()->IsServer())
 	{
 		this->_sendLasersTimer++;
@@ -102,20 +109,17 @@ void GameScene::update() {
 			SendAndReceivePackets::sendWinLosePacket(myTeamId);
 			SendAndReceivePackets::handleWinLose(myTeamId, myTeamId, this);	
 			std::cout<<"my team lost";
-		}
-
-		if((((ServerProxyShip*)_shipEnemy)->getHealth() <= 0))
+		} else
 		{
-			SendAndReceivePackets::sendWinLosePacket(otherTeamId);
-			SendAndReceivePackets::handleWinLose(otherTeamId, myTeamId, this);
-			std::cout<<"other team lost";
+			if((((ServerProxyShip*)_shipEnemy)->getHealth() <= 0))
+			{
+				SendAndReceivePackets::sendWinLosePacket(otherTeamId);
+				SendAndReceivePackets::handleWinLose(otherTeamId, myTeamId, this);
+				std::cout<<"other team lost";
+			}
 		}
 	}
-	if ( this -> game -> input -> isKeyboardButtonPressed( KEY_TAB ) )
-	{
-		PlayerManager :: GetInstance( ) -> ShowPlayerList( );
-		std :: cout << "\n-------------------------------\n";
-	}
+	//any references to game beyond handleWinLose will result in crash of the game when it's being handled!
 
 	Scene::update();
 }

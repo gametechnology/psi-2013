@@ -74,7 +74,7 @@ void Entity::update() {
 			children.erase(children.begin()+i--);
 			delete child;
 		} else {
-			if ( children[i]->enabled == false ) continue;
+			if (!children[i]->enabled) continue;
 			children[i]->update();
 		}
 	}
