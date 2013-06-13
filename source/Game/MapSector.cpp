@@ -36,11 +36,11 @@ void MapSector::resetTexture()
 			break;
 
 		case HOME_BLUE:
-			this->_mapSectorTexture = game->driver->getTexture("../assets/Textures/HomeBase/blue.jpg");
+			this->_mapSectorTexture = game->driver->getTexture("../assets/Textures/MapSectors/home_blue.png");
 			break;
 	
 		case HOME_RED:
-			this->_mapSectorTexture = game->driver->getTexture("../assets/Textures/HomeBase/red.jpg");
+			this->_mapSectorTexture = game->driver->getTexture("../assets/Textures/MapSectors/home_red.png");
 			break;
 	
 		case SOLAR:

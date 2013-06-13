@@ -1,5 +1,6 @@
 #include "SectorHomeBase.h"
 #include "Messages.h"
+#include "MapSector.h"
 
 
 SectorHomeBase::SectorHomeBase(SectorManager* sectormanager, const io::path & skyBoxTexture, float boundryRadius, unsigned int amountWormHoles) : SectorTemplate(sectormanager, skyBoxTexture,boundryRadius,amountWormHoles) {
@@ -41,6 +42,10 @@ void BasePlaceholder::onAdd() {
 	node->setMaterialFlag(EMF_LIGHTING, false);
 	node->setMaterialFlag(EMF_FOG_ENABLE, true);
 	node->setMaterialTexture(0, game->driver->getTexture("../assets/Textures/HomeBase/white.jpg"));
+
+	if (typeSector(HOME_BLUE))
+		node->setMaterialTexture(0, game->driver->getTexture("../assets/Textures/HomeBase/blue.jpg"));
+
 
 	Entity::onAdd();
 }
