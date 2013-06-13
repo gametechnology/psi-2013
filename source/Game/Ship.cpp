@@ -381,8 +381,13 @@ void Ship::notifyIShipListeners(ShipMessage message){
 void Ship::leaveStation(StationType station)
 {
 	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
-	packet << PlayerManager::GetInstance()->GetLocalPlayerData()->team_id << station;
+	packet << PlayerManager::GetInstance()->GetLocalPlayerData()->team_id << station << PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id;
 	Network::GetInstance()->SendPacketToAllClients(packet, true);
+
+	if ( Network :: GetInstance( ) -> IsServer( ) )
+	{
+		PlayerManager :: GetInstance( ) -> OnClientLeaveStationReceived( PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id );
+	}
 
 	this->freeStation(station);
 	this->_currentStation->disable();
