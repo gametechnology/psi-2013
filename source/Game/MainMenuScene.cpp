@@ -12,6 +12,10 @@ MainMenuScene::~MainMenuScene() {
 void MainMenuScene::init() {
 	//Get the device
 	guiEnv = game->guiEnv;
+
+	//Get the texture
+	texture = game->driver->getTexture("../assets/galaxy.jpg");
+
 	playerlist = std::list<Player*>();
 
 	this->addGuiElements();
@@ -35,6 +39,10 @@ void MainMenuScene::init() {
 	game->input->setCustomEventReceiver(eventReceiver);
 }
 
+void MainMenuScene::draw() {
+	game->driver->draw2DImage(texture, vector2di(0,0), rect<s32>(0,0,1280,720));  
+}
+
 void MainMenuScene::addGuiElements()
 {
 
@@ -42,8 +50,15 @@ void MainMenuScene::addGuiElements()
 	// MainMenu
 	//////////////////////////////////////////
 	//Creat the main menu window
-	/*IVideoDriver* driver = guiEnv->getVideoDriver();
-	ITexture* backgroundimage = driver->getTexture("../../sydney.bmp");
+	IVideoDriver* driver = game->driver;
+	ITexture* backgroundimage = driver->getTexture("../assets/sydney.bmp");
+	driver->draw2DImage(backgroundimage, vector2di(0,0));
+	//guiEnv->addImage(
+	//guiEnv->addImage(backgroundimage, position2di(10,10)); 
+
+	/*
+	IGUISkin* skin = guiEnv->getSkin();
+	skin->setColor(gui::EGUI_DEFAULT_COLOR::EGDC_WINDOW, irr::video::SColor(255, 255, 0, 0));
 	*/
 	mainMenuWindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"Main menu",0,100);
 	mainMenuWindow->getCloseButton()->remove();
@@ -52,7 +67,7 @@ void MainMenuScene::addGuiElements()
 	
 	createServerWindow_Button = guiEnv->addButton(rect<s32>(position2di(50,135),dimension2di(200,25)),mainMenuWindow,2, L"Create a game");
 	joinServerWindow_Button	= guiEnv->addButton(rect<s32>(position2di(50,165),dimension2di(200,25)),mainMenuWindow,1,L"Join a game");
-		
+
 	ipLabel	= guiEnv->addStaticText(L"Host ip:",rect<s32>(position2di(175,65),dimension2di(100,25)),false,true,mainMenuWindow);
 	Namelabel = guiEnv->addStaticText(L"Name:",rect<s32>(position2di(300,65),dimension2di(100,25)),false,true,mainMenuWindow);
 
