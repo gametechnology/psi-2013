@@ -39,7 +39,7 @@ void PowerStation :: init() {
 	Station::init();
 	Network::GetInstance()->AddListener(CLIENT_POWER_CHANGED, this);
 	Network::GetInstance()->AddListener(SERVER_POWER_CHANGED, this);
-
+	
 }
 
 PowerStation :: ~PowerStation()
@@ -102,6 +102,7 @@ void PowerStation::removeUI()
 	//Remove the static texts and scrollbars
 	for (int i = 0; i < context.scrollBars.size(); i++)
 	{
+		context.scrollBars.at(i)->setEnabled(false);
 		context.scrollBars.at(i)->remove();
 		context.stationsText.at(i)->remove();
 	}
@@ -111,7 +112,7 @@ void PowerStation::removeUI()
 	context.stationsText.clear();
 
 	//Remove power text
-	if(context.powerPoolText == NULL)
+	if(context.powerPoolText != NULL)
 		context.powerPoolText->remove();
 }
 
@@ -140,9 +141,12 @@ void PowerStation::createUI()
 
 void PowerStation::enable()
 {
-	(_ship)->help->setHelpText(L"Drag sliders to adjust power for its station.");
+	(_ship)->help->setHelpText(L"Drag sliders to adjust power for its station.\nPress 'esc' to leave station.");
 
 	createUI();
+	context.scrollBars.at(0)->setPos(this->_ship->GetStation(StationType::ST_HELM)->getPower());
+	context.scrollBars.at(1)->setPos(this->_ship->GetStation(StationType::ST_WEAPON)->getPower());
+	//context.UpdatePowerUsage(StationType::ST_WEAPON, this->_ship->GetStation(StationType::ST_WEAPON)->getPower(), false);
 	Station::enable();
 }
 

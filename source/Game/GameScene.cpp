@@ -21,19 +21,24 @@ void GameScene::onAdd() {
 	this->_laserPool = new ObjectPool<Laser>(*this, 100);
 	EnemyFighter::laserPool = _laserPool;
 	Ship::laserPool = _laserPool;
-
-	_ship = new Ship(vector3df(0,0,0), vector3df(0,0,0));
+	_ship = new Ship(vector3df(0,0,0), vector3df(0,0,0), PlayerManager::GetInstance( )->GetLocalPlayerData( )->team_id);
 	addChild(_ship);
 
 	_camera = new Camera(); 
 	_ship->addChild(_camera);
 	_camera->init();
 
-	//_shipEnemy = new Ship(vector3df(0,0,-100), vector3df(180,0,0));
-	//addChild(_shipEnemy);
+	if(PlayerManager::GetInstance( )->GetLocalPlayerData( )->team_id == 1)
+	{
+		_shipEnemy = new ServerProxyShip(vector3df(0,0,-100), vector3df(0), 1);
+	}else
+	{
+		_shipEnemy = new ClientProxyShip(vector3df(0,0,-100), vector3df(0), 2);
+	}
+	addChild(_shipEnemy);
 
-	//BasicMoverComponent* movComp = new BasicMoverComponent();
-	//_shipEnemy->addComponent(movComp);
+	BasicMoverComponent* movComp = new BasicMoverComponent();
+	_shipEnemy->addComponent(movComp);
 
 	//Creates Map & SectorManager
 	galaxyMap = new GalaxyMap(300, 300, 15);
@@ -45,13 +50,13 @@ void GameScene::onAdd() {
 	}
 	galaxyMap->transform->position = new vector3df(980, 420, 0);
 	printf("-----------Added SectorManager----------\n\n");
+	addComponent(new SectorManager(galaxyMap, (Ship*)_ship));
 	addChild(galaxyMap);
-	addComponent(new SectorManager(galaxyMap,_ship));
 
 	_shipmap = new Shipmap(this);
 	addChild(_shipmap);
 
-	_ship->addIShipListener(this);
+	((Ship*)_ship)->addIShipListener(this);
 }
 
 void GameScene::init() {
@@ -78,21 +83,38 @@ void GameScene::update() {
 		Edit code below to make it send a winlose packet when one of the ship reaches health of 0
 		and give the right team id as the parameter
 		*/
-		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z) || this->_ship->getShipHealth() <= 0 /*|| this->_shipEnemy->getShipHealth() <= 0*/)
+		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z))
 		{
-			/* if(_ship->getShipHealth()<=0)
-			{
-				SendAndReceivePackets::sendWinLosePacket(_ship->getid());
-				SendAndReceivePackets::handleWinLose(_ship->getid(), _ship->getid(), this);
-			}*/
-			/* if(_shipEnemy->getShipHealth()<=0)
-			{
-				SendAndReceivePackets::sendWinLosePacket(_shipEnemy->getid());
-				SendAndReceivePackets::handleWinLose(shipEnemy->getid(), _ship->getid(), this);
-			}*/
-			SendAndReceivePackets::sendWinLosePacket(1);
-			SendAndReceivePackets::handleWinLose(1, 2, this);
+			((Ship*)_ship)->shipHealthComponent->assignDamage(300);
 		}
+
+		int otherTeamId;
+		int myTeamId = PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> team_id;
+		if( myTeamId == 1)
+		{
+			otherTeamId = 2;
+		}else {
+			otherTeamId=1;
+		}
+
+		if(((Ship*)_ship)->getShipHealth() <= 0)
+		{		
+			SendAndReceivePackets::sendWinLosePacket(myTeamId);
+			SendAndReceivePackets::handleWinLose(myTeamId, myTeamId, this);	
+			std::cout<<"my team lost";
+		}
+
+		if((((ServerProxyShip*)_shipEnemy)->getHealth() <= 0))
+		{
+			SendAndReceivePackets::sendWinLosePacket(otherTeamId);
+			SendAndReceivePackets::handleWinLose(otherTeamId, myTeamId, this);
+			std::cout<<"other team lost";
+		}
+	}
+	if ( this -> game -> input -> isKeyboardButtonPressed( KEY_TAB ) )
+	{
+		PlayerManager :: GetInstance( ) -> ShowPlayerList( );
+		std :: cout << "\n-------------------------------\n";
 	}
 
 	Scene::update();
@@ -108,12 +130,12 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacket(packet, this->_laserPool->getAllObjects(), this));
 		break;
 	case SERVER_WINLOSE:
-		SendAndReceivePackets::receiveWinLosePacket(packet, 1, this);
+		SendAndReceivePackets::receiveWinLosePacket(packet, (PlayerManager::GetInstance()->GetLocalPlayerData()->team_id), this);
 		break;
 	case CLIENT_SWITCH_STATION:
 		unsigned int receivedStationType;
 		packet >> receivedStationType;
-		if(_ship->GetStation((StationType)receivedStationType)->setStationOccupation() == false)
+		if(((Ship*)_ship)->GetStation((StationType)receivedStationType)->setStationOccupation() == false)
 			printf("Could not set station to occupied!\n");
 		/* TODO: REIMPLEMENT WHEN NETWORKING AND PLAYERLISTS ARE FUNCTIONAL
 		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
@@ -122,7 +144,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 			{
 				unsigned int receivedStationType;
 				packet >> receivedStationType;
-				if(_ship->GetStation((StationType)receivedStationType)->setPlayerOccupation((*i)) == false)
+				if(((Ship*)_ship)->GetStation((StationType)receivedStationType)->setPlayerOccupation((*i)) == false)
 					printf("Code is not handling stations correctly. This error originates in [GameScene.cpp] in function [HandleNetworkMessage].\n");
 			}
 		}*/
@@ -130,7 +152,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 	case CLIENT_LEAVE_STATION:
 		unsigned int receivedStation;
 		packet >> receivedStation;
-		_ship->GetStation((StationType)receivedStation)->resetStationOccupation();
+		((Ship*)_ship)->GetStation((StationType)receivedStation)->resetStationOccupation();
 		/* TODO: REIMPLEMENT WHEN NETWORKING AND PLAYERLISTS ARE FUNCTIONAL
 		for(std::list<Player*>::iterator i=_playerList.begin(); i!=_playerList.end(); ++i)
 		{			
@@ -138,7 +160,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 			{
 				unsigned int receivedStationType;
 				packet >> receivedStationType;
-				_ship->GetStation((StationType)receivedStationType)->resetPlayerOccupation();
+				((Ship*)_ship)->GetStation((StationType)receivedStationType)->resetPlayerOccupation();
 			}
 		}*/
 		break;
@@ -151,7 +173,7 @@ void GameScene::switchStation(StationType type)
 {
 	_shipmap->disable();
 
-	_ship->SwitchToStation(type);
+	((Ship*)_ship)->SwitchToStation(type);
 }
 
 void GameScene::handleShipMessage(ShipMessage message){

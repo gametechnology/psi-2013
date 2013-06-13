@@ -81,7 +81,7 @@ void ShipMover::NotMovementStuff(){
 
 	//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
 	NetworkPacket movementPacket = NetworkPacket(PacketType::CLIENT_SHIP_MOVEMENT);
-	//movementPacket << id; // ID van het ship
+	movementPacket << ((Ship*)entity)->getTeamId(); // ID van het ship
 	movementPacket << entity->transform->position;
 	movementPacket << entity->transform->rotation;
 	movementPacket << entity->transform->velocity; 
