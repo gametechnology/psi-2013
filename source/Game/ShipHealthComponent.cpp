@@ -71,6 +71,10 @@ void ShipHealthComponent::updateHealthToServer(int stationType, int stationHealt
 
 	//send package
 	Network::GetInstance()->SendPacket(healthPacket, false);
+
+	//When you are the server send you also need to send to packets to clients
+	if(Network::GetInstance()->IsServer())
+		Network::GetInstance()->SendServerPacket(healthPacket, false);
 }
 
 
