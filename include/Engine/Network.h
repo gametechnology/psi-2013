@@ -59,7 +59,7 @@ enum PacketType
 
 		SERVER_PONG,
 		CLIENT_PING,
- 
+		SERVER_DISCONNECTED,
         //Add new PacketTypes above
         LAST_TYPE
 };
@@ -111,7 +111,8 @@ inline char* getPacketTypeName(PacketType type)
 				
 				case SERVER_PONG: { return "SERVER_PONG"; break; }
 				case CLIENT_PING: { return "CLIENT_PING"; break; }
- 
+				case SERVER_DISCONNECTED: { return "SERVER_DISCONNECTED"; break; }
+				
                 default: { throw "Tried to get string from non-existing packet type"; }
         }
 }
