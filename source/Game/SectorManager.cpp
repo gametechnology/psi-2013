@@ -19,7 +19,10 @@ SectorManager::SectorManager(GalaxyMap* map,Ship* ship) : Component() {
 
 void SectorManager::onAdd() {
 	printf("\n[SectorManager] ONADD\n\n");
-
+	if(Network::GetInstance()->IsServer()){
+		this->_mapSector = SearchBeginMapSector(0);
+		this->_mapSector->connectionSize = this->_mapSector->connections.size();
+	}
 	//Creating an first scene
 	activeSceneName = "SectorHomeBase";
 	//printf("[SectorManager] %s",_mapSector->skyboxTexture);
@@ -31,10 +34,12 @@ void SectorManager::onAdd() {
 }
 void SectorManager::init(){
 	printf("\n[SectorManager] INIT\n\n");
-	//asking for fist sector
-	NetworkPacket packet = NetworkPacket(PacketType::CLIENT_REQUEST_BEGINSECTOR);
-	packet << 1; // TODO: pass the teamNumber through here
-	Network::GetInstance()->SendPacket(packet,true);
+	if(!Network::GetInstance()->IsServer()){
+		//asking for fist sector
+		NetworkPacket packet = NetworkPacket(PacketType::CLIENT_REQUEST_BEGINSECTOR);
+		packet << 1; // TODO: pass the teamNumber through here
+		Network::GetInstance()->SendPacket(packet,true);
+	}
 
 	Component::init();
 }
@@ -70,6 +75,12 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 
 			sendToClientPacket << *tempSec;//made operator;TODO: make extra parrameter for team filtering
 			Network::GetInstance()->SendServerPacket(sendToClientPacket, true);
+			if(Network::GetInstance()->IsServer()){
+			printf("[SectorManager]  is server setBeginSector\n");
+				tempSec->connectionSize = tempSec->connections.size();
+				SetNextSector(*tempSec);
+
+			}
 			break;
 		case PacketType::CLIENT_REQUEST_NEXTSECTOR:
 			printf("\n[SectorManager] CLIENT_REQUEST_NEXTSECTOR recieved\n\n");
@@ -79,6 +90,12 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 			
 			sendToClientPacket << *tempSec;//made operator;TODO: make extra parrameter for team filtering
 			Network::GetInstance()->SendServerPacket(sendToClientPacket, true);
+			if(Network::GetInstance()->IsServer()){
+			printf("[SectorManager]  is server setNextSector\n");
+				tempSec->connectionSize = tempSec->connections.size();
+				SetNextSector(*tempSec);
+
+			}
 			
 			break;
 		case PacketType::SERVER_SEND_NEXTSECTOR:
