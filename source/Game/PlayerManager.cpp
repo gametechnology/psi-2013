@@ -396,12 +396,12 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 	/*case PacketType :: CLIENT_REQUEST_ENTER_STATION:
 		packet >> player_id >> player_station_type;
 		this -> OnClientJoinStationRequestReceived( player_id, ( StationType )player_station_type );
-		break;
+		break;*/
 	
 	case PacketType :: CLIENT_LEAVE_STATION:
 		packet >> player_station_type >> player_id;
 		this -> OnClientLeaveStationReceived( player_id );
-		break;*/
+		break;
 
 	case PacketType :: SERVER_PONG:
 		packet >> player_id;

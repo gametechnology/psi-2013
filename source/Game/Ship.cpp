@@ -272,7 +272,12 @@ void Ship :: CheckChangeInput()
 		//TODO: check that this works for the server as well as for the clients.
 	}else
 	{
-		if(!this->enterStation(st))
+		if(this->enterStation(st))
+		{
+			NetworkPacket acceptPacket = NetworkPacket(SERVER_ENTER_STATION_ACCEPTED);
+			acceptPacket << PlayerManager::GetInstance()->GetLocalPlayerData()->id << PlayerManager::GetInstance()->GetLocalPlayerData()->team_id << st;
+			Network::GetInstance()->SendServerPacket(acceptPacket, true);
+		}else
 		{
 			//notify server player that the station is in use
 		}
@@ -375,14 +380,11 @@ void Ship::notifyIShipListeners(ShipMessage message){
 
 void Ship::leaveStation(StationType station)
 {
-	if(!Network::GetInstance()->IsServer())
-	{
-		NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
-		packet << PlayerManager::GetInstance()->GetLocalPlayerData()->team_id << station;
-		Network::GetInstance()->SendPacket(packet, true);
-	}
+	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
+	packet << PlayerManager::GetInstance()->GetLocalPlayerData()->team_id << station;
+	Network::GetInstance()->SendPacketToAllClients(packet, true);
+
 	this->freeStation(station);
-	printf("leave");
 	this->_currentStation->disable();
 	this->_currentStation = NULL;
 	((GameScene*)this->scene)->getShipMap()->enable();
@@ -431,6 +433,7 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 	}	
 	else if ( packet.GetType( ) == PacketType :: SERVER_ENTER_STATION_ACCEPTED )
 	{
+		printf("packet received\n");
 		packet >> player_id >> team_id >> st;
 		if ( player_id == PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id )
 		{
@@ -438,6 +441,7 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 			((GameScene*)this->scene)->getShipMap()->disable();
 		}else if(team_id == PlayerManager::GetInstance()->GetLocalPlayerData()->team_id)
 		{
+			printf("station bezet\n");
 			this->_stationsInUse.find((StationType)st)->second = true;
 		}
 	} else if( packet.GetType( ) == PacketType :: SERVER_ENTER_STATION_DENIED )
