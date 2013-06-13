@@ -292,12 +292,13 @@ void Network::DistributeReceivedPackets()
 {
 	_mutex.lock();
 
+	std::vector<NetworkPacket> packets = _receivedPackets;
+	_receivedPackets.clear();
+
 	std::vector<NetworkPacket>::const_iterator iterator;
-	for (iterator = _receivedPackets.begin(); iterator != _receivedPackets.end(); ++iterator) {
-		
+	for (iterator = packets.begin(); iterator != packets.end(); ++iterator) {
 		this->DistributePacket(*iterator);
 	}
-	_receivedPackets.clear();
 
 	_mutex.unlock();
 }

@@ -11,6 +11,8 @@ public:
 
 	virtual void init();
 	virtual void update();
+
+	virtual void setVisible(bool isVisible);
 	
 protected:
 	irr::io::path modelPath;

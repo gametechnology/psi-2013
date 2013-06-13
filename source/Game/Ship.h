@@ -19,6 +19,8 @@
 #include "Laser.h"
 #include "ObjectPool.h"
 #include "HudHelpText.h"
+#include "PlayerInfoScreen.h"
+#include "ShipInterface.h"
 
 #include "ShipHealthComponent.h"
 #include "IShipListener.h"
@@ -29,10 +31,11 @@ class NavigationStation;
 class PowerStation;
 class WeaponStation;
 
-class Ship : public Entity, public INetworkListener
+class Ship : public ShipInterface, public INetworkListener
 {
 public:
 	HudHelpText* help;
+	PlayerInfoScreen* playerInfoScreen;
 	//Player *players;
 	DefenceStation		*_defenceStation;
 	HelmStation			*_helmStation;
@@ -49,7 +52,9 @@ public:
 	irr::gui::IGUIStaticText *powerStationHealth;
 	irr::gui::IGUIStaticText *weaponStationHealth;
 
+	irr::gui::IGUIStaticText *pingGuiText;
 	ShipHealthComponent* shipHealthComponent;
+
 	bool _shipDestroyed;
 
 	bool _sitOnStation;
@@ -59,10 +64,12 @@ public:
 
 	void update();
 	void draw();
+	
+	int getTeamId();
 
 	void CheckChangeInput();
 
-	Ship(vector3df position, vector3df rotation);
+	Ship(vector3df position, vector3df rotation, int teamId);
 	virtual ~Ship(void);
 
 	Station*	GetStation(StationType);
@@ -94,6 +101,8 @@ private:
 	Station				*_currentStation;
 	Thruster			*_thrusters[4];
 	matrix4				*_inertiaMatrix;
+
+	int _teamId;
 
 	stringw varToString(stringw str1, float var, stringw str2);
 	stringw varToString(stringw str1, float var);

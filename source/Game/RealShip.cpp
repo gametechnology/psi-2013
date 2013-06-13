@@ -1,5 +1,4 @@
-#include "Ship.h"
-#include "Stations/Station.h"
+#include "RealShip.h"
 #include "ShipMover.h"
 #include "SendAndReceivePackets.h"
 #include "PlayerManager.h"
@@ -7,31 +6,28 @@
 vector3df startPosition;
 vector3df startRotation;
 
-ObjectPool<Laser>* Ship::laserPool;
+ObjectPool<Laser>* RealShip::laserPool;
 
-Ship::Ship(vector3df position, vector3df rotation, int teamId) : ShipInterface ()
+RealShip::RealShip(vector3df position, vector3df rotation) : Ship ()
 {
 	this->transform->position = &position;
 	this->transform->rotation = &rotation;
-	this->_teamId = teamId;
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
-
 }
 
-Ship::~Ship(void)
+RealShip::~RealShip(void)
 {
 	Entity::~Entity();
 }
 
-void Ship::onAdd() {
-	ShipInterface::onAdd();
+void RealShip::onAdd() {
+	Entity::onAdd();
 	startPosition = vector3df(0,0,-100);
 	startRotation = vector3df(0,0,0);
 	this->transform->position = &startPosition;
 	this->transform->rotation = &startRotation;
 //	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
-	model->transform->rotation->X += 180;
 	addChild(model);
 
 	this->env = game->device->getGUIEnvironment();
@@ -43,17 +39,19 @@ void Ship::onAdd() {
 	addChild(_weaponStation			= new WeaponStation(this));
 	addChild(_powerStation			= new PowerStation(this));
 
-	this->init();
-
+	this->_defenceStation->init();
+	this->_helmStation->init();
+	this->_navigationStation->init();
+	this->_weaponStation->init();
+	this->_powerStation->init();
 
 	this->_defenceStation->disable();
 	this->_helmStation->disable();
 	this->_navigationStation->disable();
 	this->_weaponStation->disable();
 	this->_powerStation->disable();
+
 	
-	this->shipHealthComponent = new ShipHealthComponent(this);
-	addComponent(shipHealthComponent);
 	//Thrusters
 	_thrusters[0] = new Thruster(vector3df(0,0, -4), vector3df(0, 4, -4));
 	_thrusters[1] = new Thruster(vector3df(0,-2, 4), vector3df(0, 4, 4 ));
@@ -74,24 +72,18 @@ void Ship::onAdd() {
 	this->navigationStationHealth	= env->addStaticText(strNavigationHealth.c_str(),	rect<s32>(40, 140, 300, 160), false);	this->navigationStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->powerStationHealth		= env->addStaticText(strPowerHealth.c_str(),		rect<s32>(40, 160, 300, 180), false);	this->powerStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
 	this->weaponStationHealth		= env->addStaticText(strWeaponHealth.c_str(),		rect<s32>(40, 180, 300, 200), false);	this->weaponStationHealth->setOverrideColor(video::SColor(255, 255, 255, 255));
+
 	
-	irr::core::stringw strPing = "Ping :" + 0;
-	this->pingGuiText = env->addStaticText(strPing.c_str(), rect<s32>(500,  30, 600, 50), false);	this->pingGuiText->setOverrideColor(video::SColor(255, 255, 255, 255));
 
 	
 	//Todo: Remove debug info from helptext!
 	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
-	playerInfoScreen = new PlayerInfoScreen(L"fill this with the playerinfo", vector2df(900,100), vector2df(1280 - (2*100),720 - (2*100)));
-	
 	addComponent(help);
-	addComponent(playerInfoScreen);
-
 	help->init();
-	playerInfoScreen->init();
 	//Todo: Reset the helptext to above text when you leave a station without entering another!
 }
 
-void Ship::init() 
+void RealShip::init() 
 {
 	//Isn't called
 	/*irr::core::stringw strShipHealth			= "ship health: "; 
@@ -116,16 +108,11 @@ void Ship::init()
 	this->transform->position = &startPosition;
 	this->transform->rotation = &startRotation;*/
 	
-	ShipInterface::init();
+	Entity::init();
 
 }
-	
-int Ship::getTeamId()
-{
-	return this->_teamId;
-}
 
-Station *Ship :: GetStation( StationType s )
+Station *RealShip :: GetStation( StationType s )
 {
 	switch( s )
 	{
@@ -148,13 +135,13 @@ Station *Ship :: GetStation( StationType s )
 	return NULL;
 }
 
-irr::core::stringw Ship::varToString(irr::core::stringw str1, float var){
+irr::core::stringw RealShip::varToString(irr::core::stringw str1, float var){
 	stringw str = L"";
 	str += str1;
 	str += (int)var;	
 	return str;
 }
-irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::core::stringw str2){
+irr::core::stringw RealShip::varToString(irr::core::stringw str1, float var, irr::core::stringw str2){
 	stringw str = L"";
 	str += str1;
 	str += (int)var;
@@ -162,16 +149,10 @@ irr::core::stringw Ship::varToString(irr::core::stringw str1, float var, irr::co
 	return str;
 }
 
-void Ship :: update()
+void RealShip :: update()
 {
-	ShipInterface :: update();
-
-	PlayerManager ::GetInstance()->PingSend();
-	PlayerManager ::GetInstance()->NoPingCounter();
+	Entity :: update();
 	CheckChangeInput();
-
-    stringw strPing = "Ping:" + PlayerManager::GetInstance()->getTimeTaken();
-	this->pingGuiText->setText(		(varToString("Ping:", (float)PlayerManager::GetInstance()->getTimeTaken())).c_str());
 
 	//updating the text for testing the health
 	stringw strShipHealth		= "ship health: "				+ this->getShipHealth();
@@ -191,20 +172,16 @@ void Ship :: update()
 	//If the ship has no more health and is not already destroyed, destroy it
 	if(this->getShipHealth() <= 0 && this->_shipDestroyed == false) {
 		this->_shipDestroyed = true;
-	}	
-
-	if(game->input->isKeyboardButtonPressed(KEY_MINUS)){
-		a = rand() % 50;
-		shipHealthComponent->assignDamage(a);
 	}
+	PlayerManager::GetInstance() -> CheckInput( game -> input -> isKeyboardButtonPressed( KEY_KEY_Q ) );
 }
 
-Thruster** Ship :: GetThrusters()
+Thruster** RealShip :: GetThrusters()
 {
 	return this->_thrusters;
 }
 
-void Ship :: CheckChangeInput()
+void RealShip :: CheckChangeInput()
 {
 	if (game->input->isKeyboardButtonPressed(KEY_KEY_1))
 		SwitchToStation(ST_DEFENCE);
@@ -225,8 +202,10 @@ void Ship :: CheckChangeInput()
 }
 
 //Swith to a specific station
-void Ship :: SwitchToStation(StationType stationType)
+void RealShip :: SwitchToStation(StationType stationType)
 {
+
+
 	//Check if we are already on this station
 	if (_currentStation != NULL)
 	{
@@ -242,31 +221,30 @@ void Ship :: SwitchToStation(StationType stationType)
 
 	//Init and add the new station
 	_currentStation->enable();
-	PlayerManager::GetInstance() -> StationUpdated( stationType );
+	PlayerManager::GetInstance() ->stationUpdated(stationType);
 }
 
-void Ship :: draw()
+void RealShip :: draw()
 {
-	ShipInterface :: draw();
+	Entity :: draw();
 }
 
-int Ship :: getShipHealth()
+int RealShip :: getShipHealth()
 {
-	/*return (this->_defenceStation->getHealth() +
+
+	return (this->_defenceStation->getHealth() +
 		this->_helmStation->getHealth() +
 		this->_navigationStation->getHealth() +
 		this->_powerStation->getHealth() +
-		this->_weaponStation->getHealth());*/
-	return shipHealthComponent->health;
+		this->_weaponStation->getHealth());
 }
 
-bool Ship :: getShipDestroyed()
+bool RealShip :: getShipDestroyed()
 {
 	return this->_shipDestroyed;
 }
 
-
-void Ship::setInertiaMatrix(float h, float w, float d, float m)
+void RealShip::setInertiaMatrix(float h, float w, float d, float m)
 {
 	//used for the momentum of inertia, currently not used, only m is used (mass)
 	float inertiaData[16];
@@ -283,105 +261,54 @@ void Ship::setInertiaMatrix(float h, float w, float d, float m)
 	_inertiaMatrix->setM(inertiaData);
 }
 
-void Ship::fireLaser()
+void RealShip::fireLaser()
 {
 	Laser* laser = this->laserPool->GetFreeObject();
 	if(laser != NULL)
 	{
-		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 10 * _weaponStation->getPower()/100, 1.0);
+		laser->fire(this->transform, this->scene->getIrrlichtSceneManager()->getActiveCamera()->getTarget(), 1.0);
 		std::cout << "weapon fired" << std::endl;
 
-		if(!Network::GetInstance()->IsServer()) {
+		if(!Network::GetInstance()->IsServer()){
 			NetworkPacket firepacket = NetworkPacket(PacketType::CLIENT_FIRE_LASER);
 			firepacket << *laser;
 			Network::GetInstance()->SendPacket(firepacket, true);
+
 		}
 	}
 }
 
-void Ship::addIShipListener(IShipListener* listener) {
-	listeners.push_back(listener);
-}
-
-void Ship::removeIShipListener(IShipListener* listener){
-	listeners.pop_back();
-}
-
-
-void Ship::notifyIShipListeners(ShipMessage message){
-	if(message == LEAVESTATION)
-		
-
-	for(std::list<IShipListener*>::iterator it = listeners.begin(); it != listeners.end(); ++it) {
-		(*it)->handleShipMessage(message);
-	}
-}
-
-void Ship::leaveStation(StationType station)
-{
-	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
-	packet << station;
-	Network::GetInstance()->SendPacket(packet, true);
-
-	this->_currentStation->disable();
-	this->_currentStation = NULL;
-	
-	this->notifyIShipListeners(LEAVESTATION);
-}
-
-
-void Ship::HandleNetworkMessage(NetworkPacket packet)
+void RealShip::HandleNetworkMessage(NetworkPacket packet)
 {
 		
 	if(packet.GetType() == PacketType::CLIENT_SHIP_MOVEMENT)
 	{
 		//Vec3 position, Vec3 orientation, Vec velocity Vec3 acceleration, Vec3 angularAcceleration, Vec3 angularVelocity
-			int id;
 			irr::core::vector3df position;
 			irr::core::vector3df rotation;
 			irr::core::vector3df velocity;
 			irr::core::vector3df acceleration;
 			irr::core::vector3df angularAcceleration;
 			irr::core::vector3df angularVelocity;
-
-			packet >> id >> position >> rotation >> velocity >> acceleration >> angularAcceleration >> angularVelocity;
-
-			if(id == this->_teamId)
-			{
-				*transform->acceleration = acceleration;
-				*transform->angularAccelaration = angularAcceleration;
-				*transform->angularVelocity = angularVelocity;
-				*transform->position = position;
-				*transform->velocity = velocity;
-
-				//Apply updates 
-				if(_currentStation != NULL && _currentStation->GetStationType() == ST_WEAPON){
-					((WeaponStation*)_currentStation)->rotationForeign = rotation;
-				}
-				else{
-					//Read the information from the network packet
-					*transform->rotation = rotation;
-
-			}
+			packet >> position;
+			packet >> rotation;
+			packet >> velocity;
+			packet >> acceleration;
+			packet >> angularAcceleration;
+			packet >> angularVelocity;
+			*transform->acceleration = acceleration;
+			*transform->angularAccelaration = angularAcceleration;
+			*transform->angularVelocity = angularVelocity;
+			*transform->position = position;
+			*transform->velocity = velocity;
+			
+		//Apply updates 
+		if(_currentStation != NULL && _currentStation->GetStationType() == ST_WEAPON){
+			((WeaponStation*)_currentStation)->rotationForeign = rotation;
+		}
+		else{
+			//Read the information from the network packet
+			*transform->rotation = rotation;
 		}
 	}
-}
-
-void Ship::foundEnemyBase() {
-	
-	_foundEnemyBase = true;
-	printf("Found Enemy Base!!!! :)");
-
-}
-
-void Ship::backAtOwnBase() {
-
-	if (_foundEnemyBase == true){
-		_backAtOwnBase = true;
-		printf("You won!!"); 
-	}
-
-	else
-		printf("Find the enemy base first!");
-	
 }
