@@ -51,15 +51,12 @@ void MainMenuScene::addGuiElements()
 	//////////////////////////////////////////
 	//Creat the main menu window
 	IVideoDriver* driver = game->driver;
-	ITexture* backgroundimage = driver->getTexture("../assets/sydney.bmp");
-	driver->draw2DImage(backgroundimage, vector2di(0,0));
-	//guiEnv->addImage(
-	//guiEnv->addImage(backgroundimage, position2di(10,10)); 
 
-	/*
-	IGUISkin* skin = guiEnv->getSkin();
-	skin->setColor(gui::EGUI_DEFAULT_COLOR::EGDC_WINDOW, irr::video::SColor(255, 255, 0, 0));
-	*/
+	guiEnv->addImage(game->driver->getTexture("../assets/Enemyspaceship.png"),
+            position2d<int>(175,300));
+	guiEnv->addImage(game->driver->getTexture("../assets/SpaceShip.png"),
+            position2d<int>(400,300));
+	
 	mainMenuWindow = guiEnv->addWindow(rect<s32>(position2di(80, 30),dimension2di(600, 550)),false,L"Main menu",0,100);
 	mainMenuWindow->getCloseButton()->remove();
 
