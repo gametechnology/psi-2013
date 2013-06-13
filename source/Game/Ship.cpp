@@ -332,7 +332,7 @@ void Ship::notifyIShipListeners(ShipMessage message){
 void Ship::leaveStation(StationType station)
 {
 	NetworkPacket packet(PacketType::CLIENT_LEAVE_STATION);
-	packet << station;
+	packet << station << PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> id;
 	Network::GetInstance()->SendPacket(packet, true);
 
 	this->_currentStation->disable();

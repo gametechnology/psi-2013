@@ -296,6 +296,11 @@ void PlayerManager :: OnClientLeaveStationReceived( int player_id )
 	packet << player_id << ( int )CLIENT_STATUS_UPDATE :: UPDATE_STATION << ( int )StationType :: ST_NONE;
 
 	Network :: GetInstance( ) -> SendServerPacket( packet );
+	//also, as a server, we need to manually set our local data.
+	if ( player_id == this -> _local_player_id )
+	{
+		this -> GetLocalPlayerData( ) -> stationType = StationType :: ST_NONE;
+	}
 }
 
 void PlayerManager:: SendPlayerInfoRequest()
@@ -363,7 +368,7 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		break;
 	
 	case PacketType :: CLIENT_LEAVE_STATION:
-		packet >> player_id;
+		packet >> player_station_type >> player_id;
 		this -> OnClientLeaveStationReceived( player_id );
 		break;
 
