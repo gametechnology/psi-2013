@@ -28,8 +28,11 @@ void PlayerInfoScreen::update() {
 
 	if (visible)
 	{
-	
+		int a;
 		//PlayerData *p = PlayerManager ::GetInstance()->GetAllPlayers(a);
+
+	
+		
 		_teamInfoTxt = L"henkie";
 	}
 }
