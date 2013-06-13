@@ -130,6 +130,18 @@ int PlayerManager :: getTimeTaken( )
 	return timeTaken;
 }
 
+PlayerData *PlayerManager :: GetAllPlayers( int *size )
+{
+	*size = this -> _list_of_players -> size( );
+	PlayerData *data;
+	data = ( PlayerData* )malloc( sizeof( data ) * ( *size ) );
+	for ( int i = 0; i < *size; i++ )
+	{
+		data[i] = *this -> _list_of_players -> find( i ) -> getValue( );
+	}
+	return data;
+}
+
 /**
 * only when a player joins the already existing game, we will be inside this function.
 */
