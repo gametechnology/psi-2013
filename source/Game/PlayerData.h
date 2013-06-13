@@ -51,6 +51,11 @@ public:
 			}
 		}
 
+		PlayerData* PlayerData :: operator = ( const PlayerData &pd )
+		{
+			return new PlayerData( pd.name, pd.team_id, pd.id );
+		}
+
 		friend std :: ostream& operator << ( std :: ostream &os, const PlayerData &pd )
 		{
 			os << "\tName:\t\t" << pd.name << std :: endl;

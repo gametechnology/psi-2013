@@ -7,8 +7,7 @@ bool isDisconnected = false;
 
 PlayerManager :: PlayerManager( ) : INetworkListener( )
 {
-	timeTaken = 0;
-	lastId = 2;
+	
 }
 
 PlayerManager* PlayerManager::GetInstance()
@@ -39,14 +38,23 @@ void PlayerManager :: NoPingCounter(){
 		if( this -> _list_of_players -> find( i ) -> getValue( ) -> isConnected )
 		{
 			this -> _list_of_players -> find( i ) -> getValue( ) -> pingCounter++;
-			if ( ( this -> _list_of_players -> find( i ) -> getValue( ) -> pingCounter) >= 1500 )
+			if ( ( this -> _list_of_players -> find( i ) -> getValue( ) -> pingCounter) >= 3500 )
 			{
 				cout << this -> _list_of_players -> find( i ) -> getValue( ) -> name << " is disconnected!" << endl;
 				this -> _list_of_players -> find( i ) -> getValue( ) -> isConnected = false;
 				this -> _list_of_players -> find( i ) -> getValue( ) -> stationType = StationType :: ST_NONE;
+				
 				char *nameHolder = this -> _list_of_players -> find( i ) -> getValue( ) -> name;
 				this -> _list_of_players -> find( i ) -> getValue( ) -> name = strcat(nameHolder," (Disconnected)");
 				cout <<*this -> _list_of_players -> find( i ) -> getValue( ) -> name;
+				
+				// Create packet for all the clients, so they know a player is disconnected, and flag them in their list.
+				NetworkPacket packet = NetworkPacket(PacketType::SERVER_DISCONNECTED);
+				// Find the player ID.
+				
+				packet << this->GetPlayerData(i)->id;
+				// Send packet from server.
+				Network::GetInstance()->SendServerPacket(packet);
 			}
 		}
 	}
@@ -54,6 +62,8 @@ void PlayerManager :: NoPingCounter(){
 
 void PlayerManager::Init( )
 {
+	timeTaken = 0;
+	lastId = 2;
 	this -> _list_of_players = new irr :: core :: map<int, PlayerData*>( );
 	//set the unique ID of the playerData's to be 0.
 	
@@ -66,10 +76,11 @@ void PlayerManager::Init( )
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_UPDATE_STATUS, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_PONG, this );
+		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_DISCONNECTED, this );
 	} 
 	else
 	{
-		//As a server I listexn to:
+		//As a server I listen to:
 		cout << endl << endl << endl << "I am a server!" << endl << endl;
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_UPDATE_STATUS, this );
@@ -78,16 +89,6 @@ void PlayerManager::Init( )
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_PONG, this);
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REQUEST_ENTER_STATION, this);
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_LEAVE_STATION, this );
-
-		this -> _list_of_joinable_stations_team_1 = new irr :: core :: map<StationType, bool>( );
-		this -> _list_of_joinable_stations_team_2 = new irr :: core :: map<StationType, bool>( );
-
-		//fill the lists of joinable stations.
-		for ( int i = 0; i < 5; i++ )
-		{
-			this -> _list_of_joinable_stations_team_1 -> insert( ( StationType )i, true );
-			this -> _list_of_joinable_stations_team_2 -> insert( ( StationType )i, true );
-		}
 	}
 	//we want to receive messages when players are added, when they are updating their info and when they leave again
 }
@@ -96,25 +97,25 @@ PlayerManager :: ~PlayerManager( )
 {
 	if ( !Network :: GetInstance( ) -> IsServer( ) )
 	{
-		//As a client stop listening to:
-		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_ALL_PLAYERS, this );
-		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_UPDATE_STATUS, this );
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_REQUEST_ACCEPTED, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_REQUEST_DENIED, this );
-		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_LOBBY_STATUS, this );
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_UPDATE_STATUS, this );
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_PONG, this );
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_DISCONNECTED, this );
 	} 
 	else
 	{
-		//As a server stop listining to:
-		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this );
-		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_UPDATE_STATUS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
-		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_PING, this );
-		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_PONG, this );
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_UPDATE_STATUS, this );
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_GET_ALL_PLAYERS, this);
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_PING, this);
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_PONG, this);
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_REQUEST_ENTER_STATION, this);
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: CLIENT_LEAVE_STATION, this );
 	}
 	//delete all the other crap.
+	delete this -> _list_of_players;
 }
 void PlayerManager :: StationUpdated( StationType stationType )
 {
@@ -125,7 +126,7 @@ void PlayerManager :: StationUpdated( StationType stationType )
 	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_UPDATE_STATUS );
 	packet << this -> _local_player_id << CLIENT_STATUS_UPDATE :: UPDATE_STATION << this -> GetLocalPlayerData( ) -> stationType;
 	//send a packet to the server that we changed station.
-	Network :: GetInstance( ) -> SendPacket( packet );
+	Network :: GetInstance( ) -> SendPacket( packet, true );
 }
 
 int PlayerManager :: getTimeTaken( )
@@ -133,16 +134,14 @@ int PlayerManager :: getTimeTaken( )
 	return timeTaken;
 }
 
-PlayerData *PlayerManager :: GetAllPlayers( int *size )
+std :: vector<PlayerData*> PlayerManager :: GetAllPlayers( )
 {
-	*size = this -> _list_of_players -> size( );
-	PlayerData *data;
-	data = ( PlayerData* )malloc( sizeof( data ) * ( *size ) );
-	for ( int i = 0; i < *size; i++ )
+	std :: vector<PlayerData*> players;
+	for ( int i = 1; i < this -> _list_of_players -> size( ) + 1; i++ )
 	{
-		data[i] = *this -> _list_of_players -> find( i ) -> getValue( );
+		players.push_back( this -> _list_of_players -> find( i ) -> getValue( ) );
 	}
-	return data;
+	return players;
 }
 
 /**
@@ -271,56 +270,31 @@ void PlayerManager :: ShowPlayerList( )
 	}
 }
 
-void PlayerManager :: OnClientJoinStationRequestReceived( int player_id, StationType st )
-{
-	//here, we received a message from the player that he would like to join a station.
-	//Let's check if he can.
-	//first, we check what team the player is in.
-	int team_id = this -> GetPlayerData( player_id ) -> team_id;
-	NetworkPacket *packet;
-	if ( team_id == 1 )
-	{		
-		if ( this -> _list_of_joinable_stations_team_1 -> find( st ) -> getValue( ) == true )
-		{ 
-			packet = new NetworkPacket( PacketType :: SERVER_ENTER_STATION_ACCEPTED );
-			this -> _list_of_joinable_stations_team_1 -> find( st ) -> getValue( ) = false;
-		} else packet = new NetworkPacket( PacketType :: SERVER_ENTER_STATION_DENIED );
-	} else
-	{
-		if ( this -> _list_of_joinable_stations_team_2 -> find( st ) -> getValue( ) == true )
-		{
-			packet = new NetworkPacket( PacketType :: SERVER_ENTER_STATION_ACCEPTED );
-			this -> _list_of_joinable_stations_team_2 -> find( st ) -> getValue( ) = false;
-		} else packet = new NetworkPacket( PacketType :: SERVER_ENTER_STATION_DENIED );
-	}
-	*packet << player_id << st;
-	Network :: GetInstance( ) -> SendServerPacket( *packet );
-	delete packet;
-}
-
 void PlayerManager :: OnClientLeaveStationReceived( int player_id )
 {
 	int team_id = this -> GetPlayerData( player_id ) -> team_id;
-	if ( team_id == 1 )
-	{
-		//this station is accessible again by other players of the player's team.
-		this -> _list_of_joinable_stations_team_1 -> find( this -> GetPlayerData( player_id ) -> stationType ) -> getValue( ) = true;
-	} else this -> _list_of_joinable_stations_team_2 -> find( this -> GetPlayerData( player_id ) -> stationType ) -> getValue( ) = true;
-
+	
 	NetworkPacket packet = NetworkPacket( PacketType :: SERVER_UPDATE_STATUS );
 	packet << player_id << ( int )CLIENT_STATUS_UPDATE :: UPDATE_STATION << ( int )StationType :: ST_NONE;
 
 	Network :: GetInstance( ) -> SendServerPacket( packet );
-	//also, as a server, we need to manually set our local data.
-	if ( player_id == this -> _local_player_id )
-	{
-		this -> GetLocalPlayerData( ) -> stationType = StationType :: ST_NONE;
-	}
+	//also, as a server, we need to manually set our local data.	
+	this -> GetPlayerData( player_id ) -> stationType = StationType :: ST_NONE;	
 }
 
 void PlayerManager:: SendPlayerInfoRequest()
 {
 	Network :: GetInstance( ) -> SendPacket( NetworkPacket(PacketType :: CLIENT_GET_ALL_PLAYERS) );
+}
+
+void PlayerManager :: FlagPlayerInList(int id){
+	if(this->GetPlayerData(id)->stationType != ST_NONE){
+		NetworkPacket packet = NetworkPacket(PacketType :: CLIENT_LEAVE_STATION);
+		packet << this->GetPlayerData(id)->team_id << this->GetPlayerData(id)->stationType;
+		Network::GetInstance()->SendPacketToAllClients(packet,true);
+	}
+	this->GetPlayerData(id)->isConnected = false;
+	this->GetPlayerData(id)->stationType = ST_NONE;
 }
 
 //handles all incoming messages of type Update player, remove player and add player
@@ -377,13 +351,13 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		break;
 
 		//here, fix the client join station requests.
-	case PacketType :: CLIENT_REQUEST_ENTER_STATION:
+	/*case PacketType :: CLIENT_REQUEST_ENTER_STATION:
 		packet >> player_id >> player_station_type;
 		this -> OnClientJoinStationRequestReceived( player_id, ( StationType )player_station_type );
-		break;
+		break;*/
 	
 	case PacketType :: CLIENT_LEAVE_STATION:
-		packet >> player_station_type >> player_id;
+		packet >> player_team_id >> player_station_type >> player_id;
 		this -> OnClientLeaveStationReceived( player_id );
 		break;
 
@@ -397,6 +371,9 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		packet >> timePingSent;
 		ServerSendPong(player_id, timePingSent);
 		break;
+	case PacketType :: SERVER_DISCONNECTED:
+		packet >> player_id;
+		FlagPlayerInList(player_id);
 	}
 }
 
@@ -422,7 +399,7 @@ void PlayerManager :: PingSend()
 		  Network :: GetInstance() -> SendPacket(packet, true);
 		  cout << "CLIENT: Ping send to the server from player-" << this -> GetLocalPlayerData( ) -> id << "("<< this -> GetLocalPlayerData( ) -> name <<") !" << endl;
 	 }
-	 else if (ticker >= 1000 && !isDisconnected)
+	 else if (ticker >= 3500 && !isDisconnected)
 	 {	
 		 isDisconnected = true;
 		 cout << endl <<"CLIENT: I am disconnected!" << endl;
@@ -453,6 +430,6 @@ void PlayerManager :: ServerSendPong(int player_id, int timePingSent)
 	
 	
 	this -> _list_of_players -> find( player_id ) -> getValue( ) -> pingCounter = 0;
-    Network ::GetInstance()->SendPacket(nwp);
-    Network ::GetInstance()->SendServerPacket(nwp);
+    Network ::GetInstance()->SendPacket(nwp, true);
+    Network ::GetInstance()->SendServerPacket(nwp, true);
 }
