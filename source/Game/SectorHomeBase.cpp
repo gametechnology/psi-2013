@@ -40,7 +40,7 @@ void BasePlaceholder::onAdd() {
 		
 	node->setMaterialFlag(EMF_LIGHTING, false);
 	node->setMaterialFlag(EMF_FOG_ENABLE, true);
-	node->setMaterialTexture(0, game->driver->getTexture("../assets/Textures/HomeBase/red.jpg"));
+	node->setMaterialTexture(0, game->driver->getTexture("../assets/Textures/HomeBase/white.jpg"));
 
 	Entity::onAdd();
 }
