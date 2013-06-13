@@ -41,7 +41,7 @@ void SectorManager::init(){
 	if(!Network::GetInstance()->IsServer()){
 		//asking for fist sector
 		NetworkPacket packet = NetworkPacket(PacketType::CLIENT_REQUEST_BEGINSECTOR);
-		packet << 1; // TODO: pass the teamNumber through here
+		packet << this->_ship->getTeamId(); // TODO: pass the teamNumber through here
 		Network::GetInstance()->SendPacket(packet,true);
 	}
 
@@ -55,7 +55,7 @@ void SectorManager::handleMessage(unsigned int message, void* data) {
 			/////
 			NetworkPacket sendpacket = NetworkPacket(PacketType::CLIENT_REQUEST_NEXTSECTOR);
 			//we send a vector with 3 data in it. teamnumber, mapsector ID, wormHole ID
-			irr::core::vector3df currentSectorVector = irr::core::vector3df(1,_mapSector->getId(),(int)data);
+			irr::core::vector3df currentSectorVector = irr::core::vector3df(this->_ship->getTeamId(),_mapSector->getId(),(int)data);
 			sendpacket << currentSectorVector;
 			Network::GetInstance()->SendPacket(sendpacket,false);
 			/////
@@ -75,9 +75,11 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 	switch(packet.GetType()){
 		case PacketType::CLIENT_REQUEST_BEGINSECTOR:
 			printf("\n [SectorManager] CLIENT_REQUEST_BEGINSECTOR recieved \n\n");
-			tempSec = SearchBeginMapSector(0);
+			int i;
+			packet>> i;
+			tempSec = SearchBeginMapSector(i);
 
-			sendToClientPacket << *tempSec;//made operator;TODO: make extra parrameter for team filtering
+			sendToClientPacket << *tempSec<< i;//made operator;TODO: make extra parrameter for team filtering
 			Network::GetInstance()->SendServerPacket(sendToClientPacket, true);
 			if(Network::GetInstance()->IsServer()){
 			printf("[SectorManager]  is server setBeginSector\n");
@@ -92,7 +94,7 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 			tempSec = SearchNextMapSector(packetdata.Y,packetdata.Z);
 			//Send message to clients what there new sector is;
 			
-			sendToClientPacket << *tempSec;//made operator;TODO: make extra parrameter for team filtering
+			sendToClientPacket << *tempSec<<packetdata.X;//made operator;TODO: make extra parrameter for team filtering
 			Network::GetInstance()->SendServerPacket(sendToClientPacket, true);
 			if(Network::GetInstance()->IsServer()){
 			printf("[SectorManager]  is server setNextSector\n");
@@ -104,8 +106,12 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 			break;
 		case PacketType::SERVER_SEND_NEXTSECTOR:
 			printf("\n[SectorManager] SERVER_SEND_NEXTSECTOR recieved\n\n");
+			int i;
 			packet >> *this->_mapSector;
-			SetNextSector(*_mapSector);
+			packet >> i;
+			if(i == _ship->getTeamId()){
+				SetNextSector(*_mapSector);
+			}
 			break;
 
 	}
@@ -131,13 +137,13 @@ MapSector* SectorManager::SearchBeginMapSector(int teamID){
 	//TODO: Search based on teamID to say which sector you need
 	MapSector* temp;
 	for (unsigned int i = 0; i < _map->sectors.size(); i++) {
-		if(this->_ship->getTeamId() == 1){
+		if(teamID == 1){
 			if(_map->sectors[i]->type == HOME_BLUE){
 				//delete _mapSector;
 				temp = _map->sectors[i];
 			}
 		}else{
-			if(_map->sectors[i]->type == HOME_RED){
+			if(teamID == HOME_RED){
 				//delete _mapSector;
 				temp = _map->sectors[i];
 			}
