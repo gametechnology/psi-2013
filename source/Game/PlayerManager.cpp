@@ -44,6 +44,12 @@ void PlayerManager :: NoPingCounter(){
 				cout << this -> _list_of_players -> find( i ) -> getValue( ) -> name << " is disconnected!" << endl;
 				this -> _list_of_players -> find( i ) -> getValue( ) -> isConnected = false;
 				this -> _list_of_players -> find( i ) -> getValue( ) -> stationType = StationType :: ST_NONE;
+				// Create packet for all the clients, so they know a player is disconnected, and flag them in their list.
+				NetworkPacket packet = NetworkPacket(PacketType::SERVER_DISCONNECTED);
+				// Find the player ID.
+				packet << this->GetPlayerData(i)->id;
+				// Send packet from server.
+				Network::GetInstance()->SendServerPacket(packet);
 			}
 		}
 	}
@@ -63,10 +69,12 @@ void PlayerManager::Init( )
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_UPDATE_STATUS, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_ALL_PLAYERS, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_PONG, this );
+		Network :: GetInstance( ) -> AddListener( PacketType :: SERVER_DISCONNECTED, this );
+
 	} 
 	else
 	{
-		//As a server I listexn to:
+		//As a server I listen to:
 		cout << endl << endl << endl << "I am a server!" << endl << endl;
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_REQUEST_JOIN_SERVER, this );
 		Network :: GetInstance( ) -> AddListener( PacketType :: CLIENT_UPDATE_STATUS, this );
@@ -99,6 +107,7 @@ PlayerManager :: ~PlayerManager( )
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_REQUEST_DENIED, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_LOBBY_STATUS, this );
 		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_PONG, this );
+		Network :: GetInstance( ) -> RemoveListener( PacketType :: SERVER_DISCONNECTED, this );
 	} 
 	else
 	{
@@ -122,7 +131,7 @@ void PlayerManager :: StationUpdated( StationType stationType )
 	NetworkPacket packet = NetworkPacket( PacketType :: CLIENT_UPDATE_STATUS );
 	packet << this -> _local_player_id << CLIENT_STATUS_UPDATE :: UPDATE_STATION << this -> GetLocalPlayerData( ) -> stationType;
 	//send a packet to the server that we changed station.
-	Network :: GetInstance( ) -> SendPacket( packet );
+	Network :: GetInstance( ) -> SendPacket( packet, true );
 }
 
 int PlayerManager :: getTimeTaken( )
@@ -130,16 +139,14 @@ int PlayerManager :: getTimeTaken( )
 	return timeTaken;
 }
 
-PlayerData *PlayerManager :: GetAllPlayers( int *size )
+std :: vector<PlayerData*> PlayerManager :: GetAllPlayers( )
 {
-	*size = this -> _list_of_players -> size( );
-	PlayerData *data;
-	data = ( PlayerData* )malloc( sizeof( data ) * ( *size ) );
-	for ( int i = 0; i < *size; i++ )
+	std :: vector<PlayerData*> players;
+	for ( int i = 1; i < this -> _list_of_players -> size( ) + 1; i++ )
 	{
-		data[i] = *this -> _list_of_players -> find( i ) -> getValue( );
+		players.push_back( this -> _list_of_players -> find( i ) -> getValue( ) );
 	}
-	return data;
+	return players;
 }
 
 /**
@@ -320,6 +327,16 @@ void PlayerManager:: SendPlayerInfoRequest()
 	Network :: GetInstance( ) -> SendPacket( NetworkPacket(PacketType :: CLIENT_GET_ALL_PLAYERS) );
 }
 
+void PlayerManager :: FlagPlayerInList(int id){
+	if(this->GetPlayerData(id)->stationType != ST_NONE){
+		NetworkPacket packet = NetworkPacket(PacketType :: CLIENT_LEAVE_STATION);
+		packet << this->GetPlayerData(id)->team_id << this->GetPlayerData(id)->stationType;
+		Network::GetInstance()->SendPacketToAllClients(packet,true);
+	}
+	this->GetPlayerData(id)->isConnected = false;
+	this->GetPlayerData(id)->stationType = ST_NONE;
+}
+
 //handles all incoming messages of type Update player, remove player and add player
 void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 {
@@ -374,10 +391,10 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		break;
 
 		//here, fix the client join station requests.
-	case PacketType :: CLIENT_REQUEST_ENTER_STATION:
+	/*case PacketType :: CLIENT_REQUEST_ENTER_STATION:
 		packet >> player_id >> player_station_type;
 		this -> OnClientJoinStationRequestReceived( player_id, ( StationType )player_station_type );
-		break;
+		break;*/
 	
 	case PacketType :: CLIENT_LEAVE_STATION:
 		packet >> player_station_type >> player_id;
@@ -394,6 +411,9 @@ void PlayerManager :: HandleNetworkMessage( NetworkPacket packet )
 		packet >> timePingSent;
 		ServerSendPong(player_id, timePingSent);
 		break;
+	case PacketType :: SERVER_DISCONNECTED:
+		packet >> player_id;
+		FlagPlayerInList(player_id);
 	}
 }
 

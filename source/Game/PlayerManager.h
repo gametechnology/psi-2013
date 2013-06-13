@@ -8,6 +8,7 @@
 #include "Engine\NetworkPacket.h"
 #include "Stations\Station.h"
 #include <time.h>
+#include <vector>
 
 #pragma comment(lib, "winmm.lib")
 
@@ -47,6 +48,7 @@ private:
 
 	void PongReceived(int player_name, int timePingSend);
 	void ServerSendPong(int player_name, int timePingSend);
+	void FlagPlayerInList(int id);
 	PlayerData *GetPlayerData( int id );
 
 public:
@@ -58,7 +60,7 @@ public:
 
 	int getTimeTaken();
 
-	PlayerData *GetAllPlayers( int *size );
+	std :: vector<PlayerData*> GetAllPlayers( );
 	void NoPingCounter( );
 
 	void Init();
