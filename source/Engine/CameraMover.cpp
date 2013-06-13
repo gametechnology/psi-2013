@@ -38,7 +38,7 @@ void CameraMover::update() {
 		shake();
 	}
 
-	offset += *camera->parent->transform->position;
+	offset += camera->parent->transform->position;
 	offset += riv * (((rand()%2) > 0) ? -1.0f : 1.0f) * shakeStrength;
 	offset += upv * (((rand()%2) > 0) ? -1.0f : 1.0f) * shakeStrength;
 	camera->getCameraNode()->setPosition(offset);
