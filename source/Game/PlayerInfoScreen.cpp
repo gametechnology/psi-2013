@@ -34,8 +34,11 @@ void PlayerInfoScreen::update()
 		
 		_teamInfoTxt = L"";
 		list << "All the players in the game:" << endl << endl;
+		list << "TEAM 1" << endl;
 		for(std::vector<PlayerData*>::iterator it = playerInfo.begin(); it != playerInfo.end(); ++it) 
 		{
+			if ((*it)->team_id == 1)
+				continue;
 			list << (*it)->id << "- Player " << (*it)->name << "\t is in the ";
 			char *stationInfo;
 			switch ( (*it)->stationType ) 
@@ -59,12 +62,44 @@ void PlayerInfoScreen::update()
 					stationInfo = "Navigation Station";
 					break;
 			}
-			list << stationInfo << "\t and in team " << (*it)->team_id << endl;
+			list << stationInfo << endl;
+		}
+		list << endl << "TEAM 2" << endl;
+		for(std::vector<PlayerData*>::iterator it = playerInfo.begin(); it != playerInfo.end(); ++it) 
+		{
+			if ((*it)->team_id != 1)
+				continue;
+			list << (*it)->id << "- Player " << (*it)->name << "\t is in the ";
+			char *stationInfo;
+			switch ( (*it)->stationType ) 
+			{
+				case -1:
+					stationInfo = "Hallway";
+					break;
+				case 0:
+					stationInfo = "Power Station";
+					break;
+				case 1:
+					stationInfo = "Defence Station";
+					break;
+				case 2:
+					stationInfo = "Weapon Station";
+					break;
+				case 3:
+					stationInfo = "Helm Station";
+					break;
+				case 4:
+					stationInfo = "Navigation Station";
+					break;
+			}
+			list << stationInfo << endl;
 		}
 		
 		const size_t cSize = strlen(list.str().c_str())+1;
 		_teamInfoTxt = new wchar_t[cSize];
 		mbstowcs(_teamInfoTxt, list.str().c_str(), cSize);
+
+		cout << endl << endl << "Tab Info:" << endl << _teamInfoTxt << endl << endl;
 	}
 }
 
