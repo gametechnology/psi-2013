@@ -16,7 +16,7 @@ bool EndSceneEventReceiver::OnEvent(const SEvent& event)
 			this->_contextGame->guiEnv->clear();
 			this->_contextGame->sceneManager->activateScene("MainMenuScene");
 			this->_contextGame->sceneManager->destroyScene("EndScene");
-			system("\"C:\\Users\\SamanthaVosh\\Desktop\\School\\Jaar_3\\Project_Stella_Incognita\\Sprint_2\\psi-2013\\psi-2013\\psi-2013\\binProject Stella Incognita.exe\"");
+			//system("\"C:\\Users\\SamanthaVosh\\Desktop\\School\\Jaar_3\\Project_Stella_Incognita\\Sprint_2\\psi-2013\\psi-2013\\psi-2013\\binProject Stella Incognita.exe\"");
 			std::exit(0);
 			break;
 		}
