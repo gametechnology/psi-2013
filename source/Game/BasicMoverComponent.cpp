@@ -13,8 +13,8 @@ BasicMoverComponent::~BasicMoverComponent()
 
 void BasicMoverComponent::update()
 {
-	irr::core::vector3df direction = entity->transform->rotation->rotationToDirection();
-	entity->transform->velocity->set(direction * thrust);
+	irr::core::vector3df direction = entity->transform->rotation.rotationToDirection();
+	entity->transform->velocity.set(direction * thrust);
 }
 
 
@@ -23,9 +23,9 @@ void BasicMoverComponent::update()
 void BasicMoverComponent::move(Entity *entity, irr::core::vector3df vel)
 {
 	irr::core::matrix4 m;
-	m.setRotationDegrees(*entity->transform->rotation);
+	m.setRotationDegrees(entity->transform->rotation);
 	m.transformVect(vel);
-	entity->transform->position->set(*entity->transform->position + vel);
+	entity->transform->position.set(entity->transform->position + vel);
 	entity->transform->position;
 
 }
@@ -33,33 +33,33 @@ void BasicMoverComponent::move(Entity *entity, irr::core::vector3df vel)
 void BasicMoverComponent::rotate(Entity *entity, irr::core::vector3df rot)
 {
 	irr::core::matrix4 m;
-	m.setRotationDegrees(*entity->transform->rotation);
+	m.setRotationDegrees(entity->transform->rotation);
 	irr::core::matrix4 n;
 	n.setRotationDegrees(rot);
 	m *= n;
-	entity->transform->rotation->set(m.getRotationDegrees());
+	entity->transform->rotation.set(m.getRotationDegrees());
 }
 
 void BasicMoverComponent::turn(Entity *entity, irr::core::vector3df rot)
 {
 	//rotate(entity, irr::core::vector3df(0.0f, rot, 0.0f));
 	irr::core::matrix4 m;
-	m.setRotationDegrees(*entity->transform->rotation);
+	m.setRotationDegrees(entity->transform->rotation);
 	irr::core::matrix4 n;
 	n.setRotationDegrees(rot);
 	m *= n;
-	entity->transform->rotation->set(m.getRotationDegrees());
+	entity->transform->rotation.set(m.getRotationDegrees());
 }
 
 void BasicMoverComponent::pitch(Entity *entity, irr::core::vector3df rot)
 {
 	//rotate(entity, irr::core::vector3df(rot, 0.0f, 0.0f));
 	irr::core::matrix4 m;
-	m.setRotationDegrees(*entity->transform->rotation);
+	m.setRotationDegrees(entity->transform->rotation);
 	irr::core::matrix4 n;
 	n.setRotationDegrees(rot);
 	m *= n;
-	entity->transform->rotation->set(m.getRotationDegrees());
+	entity->transform->rotation.set(m.getRotationDegrees());
 }
 
 void BasicMoverComponent::roll(Entity *entity, irr::f32 rot)

@@ -13,8 +13,8 @@ ObjectPool<Laser>* Ship::laserPool;
 
 Ship::Ship(vector3df position, vector3df rotation, int teamId) : ShipInterface ()
 {
-	this->transform->position = &position;
-	this->transform->rotation = &rotation;
+	this->transform->position = position;
+	this->transform->rotation = rotation;
 	this->_teamId = teamId;
 	this->fillStationList();
 	Network::GetInstance()->AddListener(PacketType::CLIENT_SHIP_MOVEMENT, this);
@@ -33,11 +33,11 @@ void Ship::onAdd() {
 	ShipInterface::onAdd();
 	startPosition = vector3df(0,0,-100);
 	startRotation = vector3df(0,0,0);
-	this->transform->position = &startPosition;
-	this->transform->rotation = &startRotation;
+	this->transform->position = startPosition;
+	this->transform->rotation = startRotation;
 //	Network::GetInstance()->AddListener(ClIENT_IN_LOBBY, this);
 	IrrlichtNode *model = new IrrlichtNode( irr::io::path("../assets/Models/myship.obj"));
-	model->transform->rotation->X += 180;
+	model->transform->rotation.X += 180;
 	addChild(model);
 
 	this->env = game->device->getGUIEnvironment();
@@ -86,7 +86,7 @@ void Ship::onAdd() {
 
 	
 	//Todo: Remove debug info from helptext!
-	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station\nDEBUG!! Shortcuts to enter a station: '1', '2', '3', '4', '5'\nShortcuts can be used from inside every station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
+	help = new HudHelpText(L"Move your player with 'WASD\nPress 'E' to enter a station", vector2df(100,100), vector2df(1280 - (2*100),720 - (2*100)));
 	
 	
 	playerInfoScreen = new PlayerInfoScreen(vector2df(500,0), vector2df(1280 - 500, 720));
@@ -427,11 +427,11 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 
 			if(id == this->_teamId)
 			{
-				*transform->acceleration = acceleration;
-				*transform->angularAccelaration = angularAcceleration;
-				*transform->angularVelocity = angularVelocity;
-				*transform->position = position;
-				*transform->velocity = velocity;
+				transform->acceleration = acceleration;
+				transform->angularAccelaration = angularAcceleration;
+				transform->angularVelocity = angularVelocity;
+				transform->position = position;
+				transform->velocity = velocity;
 
 				//Apply updates 
 				if(_currentStation != NULL && _currentStation->GetStationType() == ST_WEAPON){
@@ -439,7 +439,7 @@ void Ship::HandleNetworkMessage(NetworkPacket packet)
 				}
 				else{
 					//Read the information from the network packet
-					*transform->rotation = rotation;
+					transform->rotation = rotation;
 
 				}
 			}

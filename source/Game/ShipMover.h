@@ -32,8 +32,8 @@ private:
 	vector3df localLinForce_;
 	vector3df localAngForce_;
 	matrix4 rotationMatrix;
-	vector3df* shipLinAcc_;
-	vector3df* shipAngAcc_;
+	vector3df shipLinAcc_;
+	vector3df shipAngAcc_;
 	vector3df LocalToWorld(vector3df* localVector, matrix4* rMatrix);
 
 	void NotMovementStuff();

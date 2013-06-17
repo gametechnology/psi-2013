@@ -14,7 +14,7 @@ WeaponStation::WeaponStation(Ship *ship) : Station(ship)
 
 WeaponStation::~WeaponStation()
 {
-	
+	Station::~Station();
 }
 
 void WeaponStation::onAdd()
@@ -64,7 +64,7 @@ void WeaponStation::update()
 		if(rotationOwn.X <= 90)
 			rotationOwn.X += ANGLESPEED;}
 
-	*_ship->transform->rotation = rotationForeign + rotationOwn;
+	_ship->transform->rotation = rotationForeign + rotationOwn;
 }
 
 void WeaponStation::draw()
@@ -82,7 +82,7 @@ void WeaponStation::draw()
 void WeaponStation::enable()
 {
 
-	rotationForeign	= *_ship->transform->rotation;
+	rotationForeign	= _ship->transform->rotation;
 	((Ship*)parent)->help->setHelpText(L"Shoot: 'space'\nExit station: 'Esc'");
 
 	Station::enable();
@@ -90,6 +90,6 @@ void WeaponStation::enable()
 
 void WeaponStation::disable()
 {
-	_ship->transform->rotation->set( rotationForeign);
+	_ship->transform->rotation.set( rotationForeign);
 	Station::disable();
 }

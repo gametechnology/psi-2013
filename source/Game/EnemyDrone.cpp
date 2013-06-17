@@ -52,13 +52,16 @@ void EnemyDrone::wander()
 }
 void EnemyDrone::update()
 {
-	EnemyDrone::stateSwitch->update();
-	EnemyDrone::inRangeList.clear();
-	Enemy::update();
+	if(enabled) 
+	{
+		EnemyDrone::stateSwitch->update();
+		EnemyDrone::inRangeList.clear();
+		Enemy::update();
+	}
 }
 
 void EnemyDrone::contactResolverA(Entity* input)
 {
-	std::printf("HIT on DRONE! \n");
+	//std::printf("HIT on DRONE! \n");
 	Entity::contactResolverA(input);
 }

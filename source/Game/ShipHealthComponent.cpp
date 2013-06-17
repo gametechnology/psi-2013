@@ -1,6 +1,7 @@
 #include "ShipHealthComponent.h"
 #include "Ship.h"
 #include "Stations\Station.h"
+#include "Messages.h"
 #include <stdlib.h>
 
 
@@ -18,9 +19,7 @@ void ShipHealthComponent::updateHealth(){
 	health += ship_->GetStation(ST_POWER)->getHealth();
 	health += ship_->GetStation(ST_HELM)->getHealth();
 	health += ship_->GetStation(ST_WEAPON)->getHealth();
-	health += ship_->GetStation(ST_NAVIGATION)->getHealth();
-	health += ship_->GetStation(ST_DEFENCE)->getHealth();
-	health /= 5;
+	health /= 3;
 }
 
 //damage gets passed to the stations here. right now its random.
@@ -42,15 +41,15 @@ void ShipHealthComponent::assignDamage(int damage){
 		updateHealthToServer(StationType::ST_WEAPON, ship_->GetStation(ST_WEAPON)->getHealth());
 		break;
 	case 3:
-		ship_->GetStation(ST_DEFENCE)->decreaseHealth(damage * 0.5);
+		ship_->GetStation(ST_POWER)->decreaseHealth(damage * 0.5);
 		ship_->GetStation(ST_HELM)->decreaseHealth(damage * 0.5);
-		updateHealthToServer(StationType::ST_DEFENCE, ship_->GetStation(ST_DEFENCE)->getHealth());
+		updateHealthToServer(StationType::ST_POWER, ship_->GetStation(ST_POWER)->getHealth());
 		updateHealthToServer(StationType::ST_HELM, ship_->GetStation(ST_HELM)->getHealth());
 		break;
 	case 4:
-		ship_->GetStation(ST_NAVIGATION)->decreaseHealth(damage * 0.5);
+		ship_->GetStation(ST_POWER)->decreaseHealth(damage * 0.5);
 		ship_->GetStation(ST_WEAPON)->decreaseHealth(damage * 0.5);
-		updateHealthToServer(StationType::ST_NAVIGATION, ship_->GetStation(ST_NAVIGATION)->getHealth());
+		updateHealthToServer(StationType::ST_POWER, ship_->GetStation(ST_POWER)->getHealth());
 		updateHealthToServer(StationType::ST_WEAPON, ship_->GetStation(ST_WEAPON)->getHealth());
 		break;
 	case 5:
@@ -61,6 +60,8 @@ void ShipHealthComponent::assignDamage(int damage){
 		break;
 	}
 	updateHealth();
+
+	entity->handleMessage(MESSAGES::DAMAGE);
 }
 
 void ShipHealthComponent::updateHealthToServer(int stationType, int stationHealth)

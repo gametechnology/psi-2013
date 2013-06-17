@@ -130,7 +130,7 @@ void MainMenuScene::update(){
 		sendpacket << true;
 		sendpacket << inputwchar;
 		// Send data to "192.168.0.2" on port 4567
-		if (Socket.send(sendpacket, "145.92.13.33", 4444) != sf::Socket::Done)
+		if (Socket.send(sendpacket, "145.92.76.241", 4444) != sf::Socket::Done)
 		{
 			// Error...
 		}
@@ -141,7 +141,7 @@ void MainMenuScene::update(){
 		sf::Packet sendpacket;
 		sendpacket << false;
 		// Send data to "192.168.0.2" on port 4567
-		if (Socket.send(sendpacket, "145.92.13.33", 4444) != sf::Socket::Done)
+		if (Socket.send(sendpacket, "145.92.76.241", 4444) != sf::Socket::Done)
 		{
 			// Error...
 		}
@@ -160,7 +160,7 @@ void MainMenuScene::StartGame()
 	mainMenuWindow->remove();
 	mapGen.init(20, 2, 5);
 	GalaxyMap* galaxyMap = mapGen.createNewMap(300, 300, 15);
-	galaxyMap->transform->position->set(vector3df(100, 670, 0));
+	galaxyMap->transform->position.set(vector3df(100, 670, 0));
 	SectorManager sectorManager(galaxyMap);
 	sectorManager.init();*/
 	//TODO: Previous scene still displayed, shouldn't be the case
@@ -180,23 +180,11 @@ void MainMenuScene::StartTestGame()
 
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 {
-	wchar_t *  name ;
-	int lenght;
-	int team;
-	unsigned int ipclientaffect;
-	unsigned int checksum;
-	sf::IpAddress localip;
-	Player* newplayer;
-	std::list<Player*>::const_iterator iterator;
-
-	NetworkPacket deniedpack(CLIENT_JOIN_DENIED);
-	NetworkPacket packetsend(ClIENT_IN_LOBBY);
-
-	switch(packet.GetType())
-	{
-	case ClIENT_IN_LOBBY:
+	
+	if (ClIENT_IN_LOBBY == packet.GetType()){
 		if(!Network::GetInstance()->IsServer()){
 			playerlist.clear();
+			int lenght;
 			packet >> lenght;
 			for (int i = 0;i < lenght;i++){
 				Player * newplayer;
@@ -205,26 +193,32 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 				playerlist.push_back(newplayer);
 			}
 		}
-		break;
-	case CLIENT_JOIN_DENIED:
-		name = new wchar_t[500];
-		packet >> name;
+	}
+	if (CLIENT_JOIN_DENIED == packet.GetType()){
+		wchar_t *  message = new wchar_t[500];
+		unsigned int ipclientaffect;
+		packet >> message;
 		packet >> ipclientaffect;
-		localip = sf::IpAddress::getLocalAddress();
-		checksum = localip.m_address;
+		sf::IpAddress localip = sf::IpAddress::getLocalAddress();
+		unsigned int myip = localip.m_address;
 
-		if (ipclientaffect == checksum){
+		if (ipclientaffect == myip){
 			BackToMainMenu();
 			Network::GetInstance()->DeInitialize();
-			messagebox =  game->guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
+			messagebox =  game->guiEnv->addMessageBox(L"Message",message,true,1,mainMenuWindow);
 		}
-		delete name;
-		break;
-	case START_GAME:
+		delete message;
+	}
+	if (START_GAME == packet.GetType()){
 		StartGame();
-		break;
-	case CLIENT_JOIN:
-		name = new wchar_t[500];
+	}
+	if (CLIENT_JOIN == packet.GetType()){
+		NetworkPacket deniedpack(CLIENT_JOIN_DENIED);
+		NetworkPacket packetsend(ClIENT_IN_LOBBY);
+		wchar_t * name = new wchar_t[500];
+		unsigned int checksum;
+		int team;
+		std::list<Player*>::const_iterator iterator;
 		packet >> name;
 		packet >> checksum;
 
@@ -249,11 +243,10 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			team = 2;
 		else
 			team = 1;
-		newplayer = new Player( name,  packet.GetSender().address.host, team);
+		Player* newplayer = new Player( name,  packet.GetSender().address.host, team);
 		playerlist.push_back(newplayer);
 
-		lenght = playerlist.size();
-		packetsend << lenght;
+		packetsend <<  playerlist.size();;
 
 		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
 
@@ -261,8 +254,11 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		}
 		Network::GetInstance()->SendServerPacket(packetsend, true);
 		delete name;
-		break;
-	case CLIENT_QUIT:
+	}
+	if (CLIENT_QUIT == packet.GetType()){
+		NetworkPacket packetsend(ClIENT_IN_LOBBY);
+		Player* newplayer;
+		std::list<Player*>::const_iterator iterator;
 		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
 			if((*iterator)->Ipadres == packet.GetSender().address.host)
 				newplayer = (*iterator);
@@ -271,31 +267,27 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		if(newplayer == NULL)
 			return;
 		playerlist.remove(newplayer);
-		lenght = playerlist.size();
-		packetsend << lenght;
-		lenght = 0;
+		
+		packetsend << playerlist.size();
+		int teamcounter = 0;
 		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-			if(lenght != 0 && (lenght) % 2 != 0)
+			if(teamcounter != 0 && (teamcounter) % 2 != 0)
 				(*iterator)->Team = 2;
 			else
 				(*iterator)->Team = 1;
 			packetsend << (*iterator);
-			lenght++;
+			teamcounter++;
 		}
 		Network::GetInstance()->SendServerPacket(packetsend, true);
-		break;
-		break;
-	case HOST_DISCONNECT:
-		name = new wchar_t[500];
-		packet >> name;
+	}
+	if (HOST_DISCONNECT == packet.GetType()){
+		wchar_t * message = new wchar_t[500];
+		packet >> message;
 		playerlist.clear();
-		messagebox =  game->guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
+		messagebox =  game->guiEnv->addMessageBox(L"Message",message,true,1,mainMenuWindow);
 		Network::GetInstance()->DeInitialize();
 		BackToMainMenu();
-		delete name;
-		break;
-	default:
-		break;
+		delete message;
 	}
 }
 

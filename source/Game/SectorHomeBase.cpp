@@ -11,8 +11,8 @@ void SectorHomeBase::onAdd(){
 	//TODO causes memory leak should create entity's
 	BasePlaceholder* base = new BasePlaceholder(_type);
 	addChild(base);
-	base->transform->position = new irr::core::vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250));
-	base->transform->rotation = new irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90));
+	base->transform->position = irr::core::vector3df((float)((rand() % 500) - 250), (float)((rand() % 250) - 125), (float)((rand() % 500) - 250));
+	base->transform->rotation = irr::core::vector3df((float)(rand() % 90), (float)(rand() % 90), (float)(rand() % 90));
 	
 	SectorTemplate::onAdd();
 }

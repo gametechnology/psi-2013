@@ -5,21 +5,31 @@
 #include "SectorTemplate.h"
 #include "GalaxyMap.h"
 #include "MapSector.h"
+#include "NetworkInterface.h"
 #include "Ship.h"
 
 
-class SectorManager : public Component {
+class SectorManager : public Component, public INetworkListener {
 public:
 	SectorManager(GalaxyMap* map,Ship* ship);
 	void handleMessage(unsigned int message, void* data = 0);
 	void onAdd();
+	void init();
 	virtual ~SectorManager();
 	MapSector* _mapSector;
 	char* activeSceneName;
 	Ship* getShip();
+
+	virtual void HandleNetworkMessage(NetworkPacket packet);
+	friend sf::Packet& operator <<(sf::Packet& out, MapSector& in);
+	friend sf::Packet& operator >>(sf::Packet& in, MapSector& out);
 private:
 	GalaxyMap* _map;
 	Ship* _ship;
+	MapSector* SearchNextMapSector(int currMapId, int connectionId);
+	MapSector* SearchBeginMapSector(int teamID);
+	void SetNextSector(MapSector& nextsector);
+	MapSector* SearchMapSector(int currMapId);
 };
 
 #endif
