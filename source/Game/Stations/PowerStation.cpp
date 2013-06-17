@@ -44,7 +44,7 @@ void PowerStation :: init() {
 
 PowerStation :: ~PowerStation()
 {
-	
+	Station::~Station();
 }
 
 void PowerStation::HandleNetworkMessage(NetworkPacket packet)

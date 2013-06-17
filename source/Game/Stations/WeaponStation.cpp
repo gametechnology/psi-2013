@@ -14,7 +14,7 @@ WeaponStation::WeaponStation(Ship *ship) : Station(ship)
 
 WeaponStation::~WeaponStation()
 {
-	
+	Station::~Station();
 }
 
 void WeaponStation::onAdd()

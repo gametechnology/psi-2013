@@ -74,7 +74,7 @@ void Entity::update() {
 			children.erase(children.begin()+i--);
 			delete child;
 		} else {
-			if (!children[i]->enabled) continue;
+			if ( children[i]->enabled == false ) continue;
 			children[i]->update();
 		}
 	}
@@ -127,7 +127,7 @@ bool Entity::removeComponent(Component* component) {
 
 			components.erase(components.begin()+i);
 			component->destroy();
-		//	delete component;
+			delete component;
 			return true;
 		}
 	}

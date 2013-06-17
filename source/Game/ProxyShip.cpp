@@ -215,9 +215,7 @@ int ServerProxyShip::getHealth()
 	{
 		totalHealth += GetStationHealth((StationType)i);
 	}
-	cout<<totalHealth<<endl;
 	return totalHealth;
-
 }
 
 void ServerProxyShip::init()

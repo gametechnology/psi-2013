@@ -70,13 +70,6 @@ void GameScene::update() {
 		galaxyMap->visible = false;
 	}
 
-	if ( this -> game -> input -> isKeyboardButtonPressed( KEY_TAB ) )
-	{
-		PlayerManager :: GetInstance( ) -> ShowPlayerList( );
-		std :: cout << "\n-------------------------------\n";
-	}
-
-	//if this is the server
 	if(Network::GetInstance()->IsServer())
 	{
 		this->_sendLasersTimer++;
@@ -90,34 +83,17 @@ void GameScene::update() {
 		Edit code below to make it send a winlose packet when one of the ship reaches health of 0
 		and give the right team id as the parameter
 		*/
-		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z))
+		if(this->game->input->isKeyboardButtonPressed(KEY_KEY_Z) || ((Ship*)_ship)->getShipHealth() <= 0 || ((ServerProxyShip*)_shipEnemy)->getHealth() <= 0)
 		{
-			((Ship*)_ship)->shipHealthComponent->assignDamage(300);
-		}
-
-		int otherTeamId;
-		int myTeamId = PlayerManager :: GetInstance( ) -> GetLocalPlayerData( ) -> team_id;
-		if( myTeamId == 1)
-		{
-			otherTeamId = 2;
-		}else {
-			otherTeamId=1;
-		}
-
-		if(((Ship*)_ship)->getShipHealth() <= 0)
-		{		
-			SendAndReceivePackets::sendWinLosePacket(myTeamId);
-			SendAndReceivePackets::handleWinLose(myTeamId, myTeamId, this);	
-			std::cout<<"my team lost";
-
-		} else if((((ServerProxyShip*)_shipEnemy)->getHealth() <= 0))
-		{
-			SendAndReceivePackets::sendWinLosePacket(otherTeamId);
-			SendAndReceivePackets::handleWinLose(otherTeamId, myTeamId, this);
-			std::cout<<"other team lost";
-		}
+			SendAndReceivePackets::sendWinLosePacket(1);
+			SendAndReceivePackets::handleWinLose(1, 2, this);
+		}		
 	}
-	//any references to game beyond handleWinLose will result in crash of the game when it's being handled!
+	if ( this -> game -> input -> isKeyboardButtonPressed( KEY_TAB ) )
+	{
+		PlayerManager :: GetInstance( ) -> ShowPlayerList( );
+		std :: cout << "\n-------------------------------\n";
+	}
 
 	Scene::update();
 }
@@ -137,7 +113,7 @@ void GameScene::HandleNetworkMessage(NetworkPacket packet)
 		this->_laserPool->setAllObjects(SendAndReceivePackets::receiveLaserPacket(packet, this->_laserPool->getAllObjects(), this));
 		break;
 	case SERVER_WINLOSE:
-		SendAndReceivePackets::receiveWinLosePacket(packet, (PlayerManager::GetInstance()->GetLocalPlayerData()->team_id), this);
+		SendAndReceivePackets::receiveWinLosePacket(packet, 1, this);
 		break;
 	case CLIENT_SWITCH_STATION:
 		unsigned int receivedStationType;
@@ -184,7 +160,7 @@ void GameScene::handleShipMessage(ShipMessage message){
 
 GameScene::~GameScene() 
 {
-//	delete _laserPool;
+	delete _laserPool;
 }
 
 
