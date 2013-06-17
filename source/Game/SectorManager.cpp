@@ -80,7 +80,8 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 			packet>> i;
 			tempSec = SearchBeginMapSector(i);
 
-			sendToClientPacket << *tempSec<< i;//made operator;TODO: make extra parrameter for team filtering
+			sendToClientPacket << *tempSec;
+			sendToClientPacket << i;//made operator;TODO: make extra parrameter for team filtering
 			Network::GetInstance()->SendServerPacket(sendToClientPacket, true);
 			if(Network::GetInstance()->IsServer()){
 			printf("[SectorManager]  is server setBeginSector\n");
@@ -95,7 +96,8 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 			tempSec = SearchNextMapSector(packetdata.Y,packetdata.Z);
 			//Send message to clients what there new sector is;
 			
-			sendToClientPacket << *tempSec<<packetdata.X;//made operator;TODO: make extra parrameter for team filtering
+			sendToClientPacket << *tempSec;
+			sendToClientPacket << packetdata.X;//made operator;TODO: make extra parrameter for team filtering
 			Network::GetInstance()->SendServerPacket(sendToClientPacket, true);
 			if(Network::GetInstance()->IsServer()){
 			printf("[SectorManager]  is server setNextSector\n");

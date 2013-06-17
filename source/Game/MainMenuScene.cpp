@@ -180,11 +180,23 @@ void MainMenuScene::StartTestGame()
 
 void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 {
-	
-	if (ClIENT_IN_LOBBY == packet.GetType()){
+	wchar_t *  name ;
+	int lenght;
+	int team;
+	unsigned int ipclientaffect;
+	unsigned int checksum;
+	sf::IpAddress localip;
+	Player* newplayer;
+	std::list<Player*>::const_iterator iterator;
+
+	NetworkPacket deniedpack(CLIENT_JOIN_DENIED);
+	NetworkPacket packetsend(ClIENT_IN_LOBBY);
+
+	switch(packet.GetType())
+	{
+	case ClIENT_IN_LOBBY:
 		if(!Network::GetInstance()->IsServer()){
 			playerlist.clear();
-			int lenght;
 			packet >> lenght;
 			for (int i = 0;i < lenght;i++){
 				Player * newplayer;
@@ -193,32 +205,26 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 				playerlist.push_back(newplayer);
 			}
 		}
-	}
-	if (CLIENT_JOIN_DENIED == packet.GetType()){
-		wchar_t *  message = new wchar_t[500];
-		unsigned int ipclientaffect;
-		packet >> message;
+		break;
+	case CLIENT_JOIN_DENIED:
+		name = new wchar_t[500];
+		packet >> name;
 		packet >> ipclientaffect;
-		sf::IpAddress localip = sf::IpAddress::getLocalAddress();
-		unsigned int myip = localip.m_address;
+		localip = sf::IpAddress::getLocalAddress();
+		checksum = localip.m_address;
 
-		if (ipclientaffect == myip){
+		if (ipclientaffect == checksum){
 			BackToMainMenu();
 			Network::GetInstance()->DeInitialize();
-			messagebox =  game->guiEnv->addMessageBox(L"Message",message,true,1,mainMenuWindow);
+			messagebox =  game->guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
 		}
-		delete message;
-	}
-	if (START_GAME == packet.GetType()){
+		delete name;
+		break;
+	case START_GAME:
 		StartGame();
-	}
-	if (CLIENT_JOIN == packet.GetType()){
-		NetworkPacket deniedpack(CLIENT_JOIN_DENIED);
-		NetworkPacket packetsend(ClIENT_IN_LOBBY);
-		wchar_t * name = new wchar_t[500];
-		unsigned int checksum;
-		int team;
-		std::list<Player*>::const_iterator iterator;
+		break;
+	case CLIENT_JOIN:
+		name = new wchar_t[500];
 		packet >> name;
 		packet >> checksum;
 
@@ -243,10 +249,11 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 			team = 2;
 		else
 			team = 1;
-		Player* newplayer = new Player( name,  packet.GetSender().address.host, team);
+		newplayer = new Player( name,  packet.GetSender().address.host, team);
 		playerlist.push_back(newplayer);
 
-		packetsend <<  playerlist.size();;
+		lenght = playerlist.size();
+		packetsend << lenght;
 
 		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
 
@@ -254,11 +261,8 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		}
 		Network::GetInstance()->SendServerPacket(packetsend, true);
 		delete name;
-	}
-	if (CLIENT_QUIT == packet.GetType()){
-		NetworkPacket packetsend(ClIENT_IN_LOBBY);
-		Player* newplayer;
-		std::list<Player*>::const_iterator iterator;
+		break;
+	case CLIENT_QUIT:
 		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
 			if((*iterator)->Ipadres == packet.GetSender().address.host)
 				newplayer = (*iterator);
@@ -267,27 +271,31 @@ void MainMenuScene::HandleNetworkMessage(NetworkPacket packet)
 		if(newplayer == NULL)
 			return;
 		playerlist.remove(newplayer);
-		
-		packetsend << playerlist.size();
-		int teamcounter = 0;
+		lenght = playerlist.size();
+		packetsend << lenght;
+		lenght = 0;
 		for (iterator = playerlist.begin(); iterator != playerlist.end(); ++iterator){
-			if(teamcounter != 0 && (teamcounter) % 2 != 0)
+			if(lenght != 0 && (lenght) % 2 != 0)
 				(*iterator)->Team = 2;
 			else
 				(*iterator)->Team = 1;
 			packetsend << (*iterator);
-			teamcounter++;
+			lenght++;
 		}
 		Network::GetInstance()->SendServerPacket(packetsend, true);
-	}
-	if (HOST_DISCONNECT == packet.GetType()){
-		wchar_t * message = new wchar_t[500];
-		packet >> message;
+		break;
+		break;
+	case HOST_DISCONNECT:
+		name = new wchar_t[500];
+		packet >> name;
 		playerlist.clear();
-		messagebox =  game->guiEnv->addMessageBox(L"Message",message,true,1,mainMenuWindow);
+		messagebox =  game->guiEnv->addMessageBox(L"Message",name,true,1,mainMenuWindow);
 		Network::GetInstance()->DeInitialize();
 		BackToMainMenu();
-		delete message;
+		delete name;
+		break;
+	default:
+		break;
 	}
 }
 
