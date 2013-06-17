@@ -98,7 +98,7 @@ void Shipmap::draw()
 		irr::core::rect<s32>(0,0,bg->getOriginalSize().Width,bg->getOriginalSize().Height),
 		0, video::SColor(255,255,255,255), true);
 
-	if(_ship->GetStation(StationType::ST_NAVIGATION)->IsOccupied())
+	if(_ship->StationInUse(StationType::ST_NAVIGATION))
 		stationColor = video::SColor(255, 255, 0, 0);
 	else
 		stationColor = video::SColor(255, 255, 255, 255);
@@ -106,7 +106,7 @@ void Shipmap::draw()
 		irr::core::rect<s32>(stationIconOffset[0]-55, 0, stationIconOffset[0], icon_helm->getOriginalSize().Height),
 		0, stationColor, true);
 
-	if(_ship->GetStation(StationType::ST_WEAPON)->IsOccupied())
+	if(_ship->StationInUse(StationType::ST_WEAPON))
 		stationColor = video::SColor(255, 255, 0, 0);
 	else
 		stationColor = video::SColor(255, 255, 255, 255);
@@ -114,7 +114,7 @@ void Shipmap::draw()
 		irr::core::rect<s32>(stationIconOffset[1]-55, 0, stationIconOffset[1], icon_defense->getOriginalSize().Height),
 		0, stationColor, true);
 
-	if(_ship->GetStation(StationType::ST_POWER)->IsOccupied())
+	if(_ship->StationInUse(StationType::ST_POWER))
 		stationColor = video::SColor(255, 255, 0, 0);
 	else
 		stationColor = video::SColor(255, 255, 255, 255);
@@ -122,7 +122,7 @@ void Shipmap::draw()
 		irr::core::rect<s32>(stationIconOffset[2]-55, 0, stationIconOffset[2], icon_weapons->getOriginalSize().Height),
 		0, stationColor, true);
 
-	if(_ship->GetStation(StationType::ST_HELM)->IsOccupied())
+	if(_ship->StationInUse(StationType::ST_HELM))
 		stationColor = video::SColor(255, 255, 0, 0);
 	else
 		stationColor = video::SColor(255, 255, 255, 255);
@@ -130,7 +130,7 @@ void Shipmap::draw()
 		irr::core::rect<s32>(stationIconOffset[3]-55, 0, stationIconOffset[3], icon_navigation->getOriginalSize().Height),
 		0, stationColor, true);
 
-	if(_ship->GetStation(StationType::ST_DEFENCE)->IsOccupied())
+	if(_ship->StationInUse(StationType::ST_DEFENCE))
 		stationColor = video::SColor(255, 255, 0, 0);
 	else
 		stationColor = video::SColor(255, 255, 255, 255);
