@@ -110,11 +110,11 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 		case PacketType::SERVER_SEND_NEXTSECTOR:
 			printf("\n[SectorManager] SERVER_SEND_NEXTSECTOR recieved\n\n");
 			int j;
-			MapSector* tempMap;
-			packet >> *tempMap;
+			MapSector tempMap;
+			packet >> tempMap;
 			packet >> j;
 			if(j == _ship->getTeamId()){
-				SetNextSector(*tempMap);
+				SetNextSector(tempMap);
 			}
 			break;
 
@@ -255,19 +255,27 @@ sf::Packet& operator <<(sf::Packet& out, MapSector& in)
 	std::string tempC = in.skyboxTexture.c_str();
 	printf("operator << skybox: %s \n",&tempC);
 	int id = in.getId();
-	return out << in.name << (int)in.type << in.explored << in.radius << in.distToBlueBase << in.skyboxTexture.c_str() << id <<in.connections.size() ;
+	return out << in.name.c_str() << (int)in.type << in.explored << in.radius << in.distToBlueBase << in.skyboxTexture.c_str() << id <<in.connections.size() ;
 	
 }
 
 sf::Packet& operator >>(sf::Packet& in, MapSector& out)
 {
-	int id;
-	int temp;
-	char tempC[64];
-	in >> out.name >> temp >> out.explored >> out.radius >> out.distToBlueBase >> tempC >> id >> out.connectionSize ;
+	int id = 0;
+	int temp = 0;
+	//out.name  = " " ;
+	std::string tempC = " " ;
+	in >> out.name;
+	in >> temp;
+	in >> out.explored;
+	in >> out.radius;
+	in >> out.distToBlueBase;
+	in >> tempC;
+	in >> id;
+	in >> out.connectionSize;
 	out.type = (typeSector)temp;
 	out.setId(id);
 	printf("operator >> skybox: %s \n", &tempC);
-	out.SetSkyboxTexture(tempC);
+	out.SetSkyboxTexture(tempC.c_str());
 	return in;
 }

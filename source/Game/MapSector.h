@@ -22,6 +22,7 @@ public:
 	
 
 	MapSector(std::string name,typeSector type, float radius);
+	MapSector() { };
 	~MapSector(void);
 	
 	int getId();
