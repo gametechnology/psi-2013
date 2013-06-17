@@ -121,16 +121,12 @@ MapSector* SectorManager::SearchNextMapSector(int currMapId, int connectionId){
 				printf("[SectorManager] SearchNextMapSector( %i , %i)\n",currMapId,connectionId);
 	//Determen which is the new sector
 	int index = connectionId;
-	std::vector<MapSector*>::iterator temp = SearchMapSector(currMapId)->connections.begin();//Looking through mapSectors 
+	MapSector* mapTemp = SearchMapSector(currMapId);
+	std::vector<MapSector*> temp = mapTemp->connections;//Looking through mapSectors 
 	
-	try{
-		std::advance(temp,index);
-	}catch(char * str){
-		printf("[SectorManager] Something went wrong... : %c", str);
-	}
-	MapSector* tempSect = *temp;
+	MapSector* tempSect = temp[index];
 	return tempSect;//change the _mapSector to the sector the data tells him to be
-			
+	
 }
 MapSector* SectorManager::SearchBeginMapSector(int teamID){
 				printf("[SectorManager] SearchBeginMapSector()\n");
@@ -155,6 +151,7 @@ MapSector* SectorManager::SearchBeginMapSector(int teamID){
 //gets a sector and loads the new scene etc. basicly splitting up the funtionality of handlemessage
 void SectorManager::SetNextSector(MapSector& nextsector){
 				printf("[SectorManager] SetNextSector\n");
+	*_mapSector = nextsector;
 	char * tempName = activeSceneName;
 	printf("[SectorManager] MapID %i",nextsector.getId());
 	// Checks if the scene is destroyed 
@@ -216,6 +213,7 @@ MapSector* SectorManager::SearchMapSector(int currMapId){
 			break;
 		}
 	}
+	return NULL;
 }
 Ship* SectorManager::getShip(){
 	return _ship;
