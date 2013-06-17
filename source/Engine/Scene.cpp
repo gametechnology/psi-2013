@@ -16,6 +16,10 @@ void Scene::addGuiElements()
 }
 
 irr::scene::ISceneManager* Scene::getIrrlichtSceneManager() {
+	if (game->device == NULL)
+	{
+		printf("device doesn't exists");
+	}
 	return game->device->getSceneManager();
 }
 

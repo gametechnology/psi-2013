@@ -11,7 +11,7 @@ HelmStation::HelmStation(Ship *ship) : Station(ship)
 
 HelmStation::~HelmStation()
 {
-	Station::~Station();
+	
 }
 
 void HelmStation::onAdd()
