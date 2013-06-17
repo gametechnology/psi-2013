@@ -107,10 +107,11 @@ void SectorManager::HandleNetworkMessage(NetworkPacket packet){
 		case PacketType::SERVER_SEND_NEXTSECTOR:
 			printf("\n[SectorManager] SERVER_SEND_NEXTSECTOR recieved\n\n");
 			int j;
-			packet >> *this->_mapSector;
+			MapSector* tempMap;
+			packet >> *tempMap;
 			packet >> j;
 			if(j == _ship->getTeamId()){
-				SetNextSector(*_mapSector);
+				SetNextSector(*tempMap);
 			}
 			break;
 
