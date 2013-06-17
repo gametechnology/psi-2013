@@ -130,7 +130,7 @@ void MainMenuScene::update(){
 		sendpacket << true;
 		sendpacket << inputwchar;
 		// Send data to "192.168.0.2" on port 4567
-		if (Socket.send(sendpacket, "145.92.13.33", 4444) != sf::Socket::Done)
+		if (Socket.send(sendpacket, "145.92.76.241", 4444) != sf::Socket::Done)
 		{
 			// Error...
 		}
@@ -141,7 +141,7 @@ void MainMenuScene::update(){
 		sf::Packet sendpacket;
 		sendpacket << false;
 		// Send data to "192.168.0.2" on port 4567
-		if (Socket.send(sendpacket, "145.92.13.33", 4444) != sf::Socket::Done)
+		if (Socket.send(sendpacket, "145.92.76.241", 4444) != sf::Socket::Done)
 		{
 			// Error...
 		}
