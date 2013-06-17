@@ -201,6 +201,7 @@ void SectorManager::SetNextSector(MapSector& nextsector){
 						this->getGame()->sceneManager->addScene(activeSceneName,new SectorHomeBase(this,_mapSector->skyboxTexture,2000.0,_mapSector->connections.size(), HOME_RED));
 				break;
 		}		
+		_ship->handleMessage(MESSAGES::DAMAGE);
 	}
 }
 //Search a mapSector out of the map, mostly used by the server when NetworkMessageHandled
